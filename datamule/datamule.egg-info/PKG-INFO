@@ -1,3 +1,11 @@
+Metadata-Version: 2.1
+Name: datamule
+Version: 0.12
+Summary: Making it easier to use SEC filings
+Home-page: https://github.com/john-friedman/datamule-python
+Author: John Friedman
+Description-Content-Type: text/markdown
+
 ## datamule
 
 A python package to make using SEC filings easier. Currently makes downloads easier and faster.

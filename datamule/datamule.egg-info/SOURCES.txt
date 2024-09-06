@@ -1,0 +1,12 @@
+setup.py
+datamule/__init__.py
+datamule/global_vars.py
+datamule/helper.py
+datamule/sec_downloader.py
+datamule/sec_indexer.py
+datamule/test.py
+datamule.egg-info/PKG-INFO
+datamule.egg-info/SOURCES.txt
+datamule.egg-info/dependency_links.txt
+datamule.egg-info/requires.txt
+datamule.egg-info/top_level.txt
