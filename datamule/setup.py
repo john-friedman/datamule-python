@@ -4,21 +4,19 @@ from pathlib import Path
 long_description = Path("../readme.md").read_text()
 
 setup(
-    name="sec_parsers",
+    name="datamule",
     author="John Friedman",
-    version="0.549",
-    description = "A package to parse SEC filings",
+    version="0.1",
+    description = "Making it easier to use SEC filings",
     long_description=long_description,
     long_description_content_type='text/markdown',
     packages=find_packages(),
-    url="https://github.com/john-friedman/SEC-Parsers",
+    url="https://github.com/john-friedman/datamule-python",
     install_requires=[
-        'lxml', 
-        'requests',
+        'aiohttp',
+        'aiolimiter',
+        'pandas',
+        'tqdm',
+        'requests'
     ],
-    extras_require={
-        'downloaders': ['sec_downloaders'],
-        'visualizers': ['sec_visualizers'],
-        'all': ['sec_downloaders', 'sec_visualizers'],
-    },
 )

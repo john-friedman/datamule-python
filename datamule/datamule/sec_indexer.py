@@ -7,7 +7,7 @@ from tqdm import tqdm
 from datetime import datetime
 import csv
 import os
-from global_vars import headers
+from .global_vars import headers
 import requests
 import json
 

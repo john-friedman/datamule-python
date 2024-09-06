@@ -2,3 +2,5 @@ __pycache__/
 *data/
 Secrets/
 *filings/
+*.csv
+*.json
