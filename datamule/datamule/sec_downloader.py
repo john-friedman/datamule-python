@@ -8,13 +8,14 @@ import pandas as pd
 from .helper import construct_primary_doc_url
 from tqdm import tqdm
 import json
+import polars as pl
+from time import time
 
 class Downloader:
     def __init__(self, rate_limit=10):
         self.rate_limit = rate_limit
         self.limiter = AsyncLimiter(rate_limit, 1)  # rate_limit requests per second
         self.headers = headers
-        self.filings_index = None
         self.submissions_index = None
         self.company_tickers = None
         self.last_index_update = None
@@ -83,25 +84,37 @@ class Downloader:
     def run_download_urls(self, urls, output_dir='data'):
         return asyncio.run(self._download_urls(urls, output_dir))
     
+    # change to if no data found, ask to run index
+    # load metadata and print last_index_update
+    # load submissions_index
+    # load company_tickers
     def _load_data(self):
-        if any(x is None for x in [self.filings_index, self.submissions_index, self.company_tickers]):
-            # load metadata json
-            with open(self.indices_path + '/' + 'metadata.json', 'r') as f:
+        s = time()
+        # load metadata
+        try:
+            with open(self.indices_path + '/metadata.json', 'r') as f:
                 metadata = json.load(f)
-            last_index_update = metadata["last_index_update"]
-            self.last_index_update = last_index_update
-            print(f'Index last updated: {last_index_update}')
-
-
-        if self.filings_index is None:
-            print('Loading filings_index.csv')
-            self.filings_index = pd.read_csv(self.indices_path + '/' + 'filings_index.csv')
-        if self.submissions_index is None:
-            print('Loading submissions_index.csv')
-            self.submissions_index = pd.read_csv(self.indices_path + '/' + 'submissions_index.csv')
-        if self.company_tickers is None:
-            print('Loading company_tickers.csv')
-            self.company_tickers = pd.read_csv(self.indices_path + '/' + 'company_tickers.csv')
+                self.last_index_update = metadata.get('last_index_update')
+        except FileNotFoundError as e:
+            print('No metadata found. Please run the indexer to download the latest data.')
+            return e
+        
+        # load submissions_index
+        try:
+            self.submissions_index = pl.read_csv(self.indices_path + '/submissions_index.csv')
+        except FileNotFoundError as e:
+            print('No submissions index found. Please run the indexer to download the latest data.')
+            return e
+        
+        # load company_tickers
+        try:
+            self.company_tickers = pl.read_csv(self.indices_path + '/company_tickers.csv')
+        except FileNotFoundError as e:
+            print('No company tickers found. Please run the indexer to download the latest data.')
+            return e
+    
+        print(f"Time to load data: {time() - s}")
+        
 
     def download(self, output_dir='filings', form=None, date=None, cik=None, name=None, ticker=None):
         # Load data if not already loaded
@@ -111,60 +124,47 @@ class Downloader:
         if sum(x is not None for x in [cik, name, ticker]) > 1:
             raise ValueError('Please provide no more than one identifier: cik, name, or ticker')
 
-        # Filter submissions_index first (usually smaller than filings_index)
-        submissions_mask = pd.Series(True, index=self.submissions_index.index)
+        submissions_mask = pl.Series([True] * len(self.submissions_index))
 
         if form:
             form_list = [form] if isinstance(form, str) else form
-            submissions_mask &= self.submissions_index['form'].isin(form_list)
+            submissions_mask = submissions_mask & self.submissions_index['form'].is_in(form_list)
 
         if cik:
             ciks = [int(c) for c in (cik if isinstance(cik, list) else [cik])]
-            submissions_mask &= self.submissions_index['cik'].isin(ciks)
+            submissions_mask = submissions_mask & self.submissions_index['cik'].is_in(ciks)
 
         if name or ticker:
             if name:
-                matched_companies = self.company_tickers[self.company_tickers['title'].str.contains(name, case=False)]
+                matched_companies = self.company_tickers.filter(
+                    pl.col('title').str.contains(name, ignore_case=True)
+                )
             else:  # ticker
                 tickers = [t.upper() for t in (ticker if isinstance(ticker, list) else [ticker])]
-                matched_companies = self.company_tickers[self.company_tickers['ticker'].isin(tickers)]
+                matched_companies = self.company_tickers.filter(pl.col('ticker').is_in(tickers))
             
-            ciks = matched_companies['cik'].tolist()
-            submissions_mask &= self.submissions_index['cik'].isin(ciks)
+            ciks = matched_companies['cik'].to_list()
+            submissions_mask = submissions_mask & self.submissions_index['cik'].is_in(ciks)
 
-        filtered_submissions = self.submissions_index[submissions_mask]
-
-        # Filter filings_index
-        filings_mask = pd.Series(True, index=self.filings_index.index)
-
-        if date:
-            if isinstance(date, tuple) and len(date) == 2:
-                start_date, end_date = date
-                filings_mask &= (self.filings_index['filing_date'] >= start_date) & (self.filings_index['filing_date'] <= end_date)
-            elif isinstance(date, list):
-                filings_mask &= self.filings_index['filing_date'].isin(date)
-            else:
-                filings_mask &= (self.filings_index['filing_date'] == date)
-
-        filtered_filings = self.filings_index[filings_mask]
-
-        # Combine filters and merge with submissions to get CIK
-        key_cols = ['filing_entity', 'accepted_year', 'filing_count']
-        final_filings = pd.merge(
-            filtered_filings,
-            filtered_submissions[key_cols + ['cik']],
-            on=key_cols,
-            how='inner'
-        )
+        filtered_submissions = self.submissions_index.filter(submissions_mask)
 
         # Generate primary_doc_urls using construct_primary_doc_url function
-        primary_doc_urls = final_filings.apply(
-            lambda row: construct_primary_doc_url(
-                row['cik'], row['filing_entity'], row['accepted_year'], 
-                row['filing_count'], row['primary_doc_url']
-            ), 
-            axis=1
-        ).tolist()
+        primary_doc_urls = filtered_submissions.select(
+            pl.struct(['cik', 'filing_entity', 'accepted_year', 'filing_count', 'primary_doc_url'])
+            .map_elements(
+                lambda row: construct_primary_doc_url(
+                    row['cik'],
+                    row['filing_entity'],
+                    row['accepted_year'],
+                    row['filing_count'],
+                    row['primary_doc_url']
+                ),
+                return_dtype=pl.Utf8  # Assuming the URL is a string
+            )
+        ).to_series().to_list()
+
+        # make sure all urls are unique, since multiple companies might have same submission
+        primary_doc_urls = list(set(primary_doc_urls))
 
         # Download all primary_doc_urls
         print(f"Found {len(primary_doc_urls)} documents to download.")

@@ -1,7 +1,6 @@
 import asyncio
 import aiohttp
 from aiolimiter import AsyncLimiter
-import pandas as pd
 import time
 from tqdm import tqdm
 from datetime import datetime
@@ -17,7 +16,6 @@ class Indexer:
     def __init__(self, indices_path="data"):
         self.indices_path = indices_path
         self.tickers_file = os.path.join(indices_path, "company_tickers.csv")
-        self.filings_file = os.path.join(indices_path, "filings_index.csv")
         self.submissions_file = os.path.join(indices_path, "submissions_index.csv")
         self.metadata_file = os.path.join(indices_path, "metadata.json")
         os.makedirs(indices_path, exist_ok=True)
@@ -26,19 +24,19 @@ class Indexer:
         self.indices_path = indices_path
 
     def get_company_tickers(self, force_refresh=False):
-            if not force_refresh and os.path.exists(self.tickers_file):
-                return pd.read_csv(self.tickers_file)
-            
-            url = "https://www.sec.gov/files/company_tickers.json"
-            response = requests.get(url, headers=self.HEADERS)
-            if response.status_code == 200:
-                df = pd.DataFrame.from_dict(response.json(), orient='index')
-                df.columns = ['cik', 'ticker', 'title']
-                df['cik'] = df['cik'].astype(str).str.zfill(10)
-                df.to_csv(self.tickers_file, index=False)
-                return df
-            else:
-                raise Exception(f"Failed to fetch company tickers. Status code: {response.status_code}")
+        if not force_refresh and os.path.exists(self.tickers_file):
+            return pd.read_csv(self.tickers_file)
+        
+        url = "https://www.sec.gov/files/company_tickers.json"
+        response = requests.get(url, headers=self.HEADERS)
+        if response.status_code == 200:
+            df = pd.DataFrame.from_dict(response.json(), orient='index')
+            df.columns = ['cik', 'ticker', 'title']
+            df['cik'] = df['cik'].astype(str).str.zfill(10)
+            df.to_csv(self.tickers_file, index=False)
+            return df
+        else:
+            raise Exception(f"Failed to fetch company tickers. Status code: {response.status_code}")
 
     async def fetch_json(self, session, url, limiter):
         try:
@@ -62,19 +60,17 @@ class Indexer:
                 filings = zip(data['accessionNumber'], data['filingDate'], data['primaryDocument'], data['form'])
                 additional_files = []
             
-            processed_filings = []
-            processed_submissions = []
+            processed_data = []
             
             for accession, date, url, form in filings:
                 parts = accession.split('-')
                 accession_parts = [int(part) for part in parts]
-                processed_filings.append(tuple(accession_parts + [date, url]))
-                processed_submissions.append(tuple(accession_parts + [form, cik]))
+                processed_data.append(tuple(accession_parts + [date, url, form, cik]))
             
-            return processed_filings, processed_submissions, additional_files
+            return processed_data, additional_files
         except Exception as e:
             print(f"Error processing filing data: {str(e)}")
-            return [], [], []
+            return [], []
 
     def update_csv(self, data, output_file):
         mode = 'a' if os.path.exists(output_file) else 'w'
@@ -82,10 +78,7 @@ class Indexer:
             with open(output_file, mode, newline='') as csvfile:
                 writer = csv.writer(csvfile)
                 if mode == 'w':
-                    if 'filings_index.csv' in output_file:
-                        writer.writerow(['filing_entity', 'accepted_year', 'filing_count', 'filing_date', 'primary_doc_url'])
-                    elif 'submissions_index.csv' in output_file:
-                        writer.writerow(['filing_entity', 'accepted_year', 'filing_count', 'form', 'cik'])
+                    writer.writerow(['filing_entity', 'accepted_year', 'filing_count', 'filing_date', 'primary_doc_url', 'form', 'cik'])
                 writer.writerows(data)
         except Exception as e:
             print(f"Error in CSV update: {str(e)}")
@@ -104,9 +97,8 @@ class Indexer:
             if not data:
                 continue
             
-            filings, submissions, additional_files = self.process_filing_data(data, cik)
-            self.update_csv(filings, self.filings_file)
-            self.update_csv(submissions, self.submissions_file)
+            processed_data, additional_files = self.process_filing_data(data, cik)
+            self.update_csv(processed_data, self.submissions_file)
             
             for file in additional_files:
                 files_to_process.append(f"{self.API_BASE_URL}{file['name']}")

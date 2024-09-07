@@ -1,5 +1,5 @@
 aiohttp
 aiolimiter
-pandas
+polars
 tqdm
 requests

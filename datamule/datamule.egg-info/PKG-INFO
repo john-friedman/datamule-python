@@ -1,20 +1,19 @@
 Metadata-Version: 2.1
 Name: datamule
-Version: 0.12
+Version: 0.14
 Summary: Making it easier to use SEC filings
 Home-page: https://github.com/john-friedman/datamule-python
 Author: John Friedman
 Description-Content-Type: text/markdown
 
+![PyPI - Downloads](https://img.shields.io/pypi/dm/datamule)
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fjohn-friedman%2Fdatamule-python&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+![GitHub](https://img.shields.io/github/stars/john-friedman/datamule-python)
 ## datamule
 
-A python package to make using SEC filings easier. Currently makes downloads easier and faster.
+A python package to make using SEC filings easier. Currently makes downloads easier and faster. 
 
-Links to indices:
-* [Filings Index](https://www.mediafire.com/file/llo0w2cwerxnooo/filings_index.csv/file) (600mb)
-* [Submissions Index](https://www.mediafire.com/file/lw9f5igfvjumcla/submissions_index.csv/file) (400mb)
-* [Metadata](https://www.mediafire.com/file/7r42bx1x8eltf2f/metadata.json/file) (60b)
-* [Company Tickers](https://www.mediafire.com/file/idkhzh0wkm5xgox/company_tickers.csv/file) (400kb)
+Links: [Download Indices](https://www.mediafire.com/folder/9szwq6k80t4de/sec_indices) (900mb)
 
 
 Installation
@@ -33,8 +32,9 @@ downloader.set_indices_path(indices_path)
 
 Or run the indexer
 ```
-import sec_indexer
-sec_index.run()
+from datamule import Indexer
+indexer = Indexer()
+indexer.run()
 ```
 
 Example Downloads
@@ -64,4 +64,10 @@ downloader.download(form = '4',date=['2024-01-01', '2024-12-31'], output_dir='fi
 Future:
 * Integration with datamule's SEC Router endpoint for downloading on the fly
 * Integration with datamule's SEC Router bulk data endpoint to remove need for indexing.
-* Slimming down dependencies.
+
+Update Log:
+9/7/24
+* Simplified indices approach
+* Switched from pandas to polar. Loading indices now takes under 500 milliseconds.
+* reuploaded indices to mediafire - todo
+
