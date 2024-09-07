@@ -61,5 +61,3 @@ Update Log:
 9/7/24
 * Simplified indices approach
 * Switched from pandas to polar. Loading indices now takes under 500 milliseconds.
-* reuploaded indices to mediafire - todo
-
