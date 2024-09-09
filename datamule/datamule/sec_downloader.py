@@ -5,11 +5,13 @@ import random
 import os
 from .global_vars import headers
 import pandas as pd
-from .helper import construct_primary_doc_url
+from .helper import construct_primary_doc_url, query_datamule_api, construct_primary_doc_url_from_cik_and_accession_number
 from tqdm import tqdm
 import json
 import polars as pl
 from time import time
+import requests
+
 
 class Downloader:
     def __init__(self, rate_limit=10):
@@ -27,6 +29,7 @@ class Downloader:
 
     def set_headers(self, headers):
         self.headers = headers
+
 
     async def _download_url(self, session, url, output_dir):
         max_retries = 5
@@ -88,7 +91,14 @@ class Downloader:
     # load metadata and print last_index_update
     # load submissions_index
     # load company_tickers
-    def _load_data(self):
+
+    def _load_company_tickers(self):
+        try:
+            self.company_tickers = pl.read_csv(self.indices_path + '/company_tickers.csv')
+        except FileNotFoundError as e:
+            print('No company tickers found. Downloading company tickers...')
+            
+    def _load_indices(self):
         s = time()
         # load metadata
         try:
@@ -96,29 +106,38 @@ class Downloader:
                 metadata = json.load(f)
                 self.last_index_update = metadata.get('last_index_update')
         except FileNotFoundError as e:
-            print('No metadata found. Please run the indexer to download the latest data.')
+            print('No metadata found. Use download_from_router or run the indexer to download the latest data.')
             return e
         
         # load submissions_index
         try:
             self.submissions_index = pl.read_csv(self.indices_path + '/submissions_index.csv')
         except FileNotFoundError as e:
-            print('No submissions index found. Please run the indexer to download the latest data.')
-            return e
-        
-        # load company_tickers
-        try:
-            self.company_tickers = pl.read_csv(self.indices_path + '/company_tickers.csv')
-        except FileNotFoundError as e:
-            print('No company tickers found. Please run the indexer to download the latest data.')
+            print('No submissions index found. Use download_from_router or run the indexer to download the latest data')
             return e
     
         print(f"Time to load data: {time() - s}")
+
+
+    def download_from_router(self, output_dir='filings', form=None, date=None, cik=None, name=None, ticker=None):
+        """Function to download filings without indices using SEC Router. Limit 10 responses per query. If you need bulk data, use the download function instead."""
+        # first from ticker and name, get cik from self.company_tickers
+        
+        ciks = self.company_tickers.filter(pl.col('ticker').is_in(ticker))['cik'].to_list()
+        ciks += self.company_tickers.filter(pl.col('title').str.contains(name, ignore_case=True))['cik'].to_list()
+        dict_list = query_datamule_api(cik=ciks, form=form, date_range=date, output_dir=output_dir)
+
+        # construct primary_doc_url from cik and accession_number
+        primary_doc_urls = [construct_primary_doc_url_from_cik_and_accession_number(d['cik'], d['accession_number'], d['primary_doc_url']) for d in dict_list]
+        # download filings
+        self.run_download_urls(primary_doc_urls, output_dir)
+
         
 
     def download(self, output_dir='filings', form=None, date=None, cik=None, name=None, ticker=None):
         # Load data if not already loaded
-        self._load_data()
+        self._load_company_tickers()
+        self._load_indices()
 
         # Check there is only one identifier
         if sum(x is not None for x in [cik, name, ticker]) > 1:

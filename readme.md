@@ -2,7 +2,6 @@
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fjohn-friedman%2Fdatamule-python&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 ![GitHub](https://img.shields.io/github/stars/john-friedman/datamule-python)
 ## datamule
-
 A python package to make using SEC filings easier. Currently makes downloads easier and faster. 
 
 Links: [Download Indices](https://www.mediafire.com/folder/9szwq6k80t4de/sec_indices) (900mb)
@@ -54,10 +53,13 @@ downloader.download(form = '4',date=['2024-01-01', '2024-12-31'], output_dir='fi
 ```
 
 Future:
-* Integration with datamule's SEC Router endpoint for downloading on the fly
+* we want to bundle company tickers into the package to make querying api easier.
 * Integration with datamule's SEC Router bulk data endpoint to remove need for indexing.
+* remove company tickers from indexer
 
 Update Log:
+9/8/24
+* Added integration with datamule's SEC Router API
 9/7/24
 * Simplified indices approach
 * Switched from pandas to polar. Loading indices now takes under 500 milliseconds.
