@@ -14,6 +14,17 @@ pip install datamule
 
 ## Quickstart:
 
+### Using the API 
+Limited to 10,000 results per query.
+
+```
+from datamule import Downloader
+downloader = Downloader()
+downloader.download_using_api(form='10-K',ticker='AAPL')
+```
+
+### Without the API
+
 Either download the pre-built indices from the links in the readme and set the indices_path to the folder
 ```
 from datamule import Downloader
@@ -52,12 +63,14 @@ downloader.download(form='10-K', date=('2024-01-01', '2024-12-31'), output_dir='
 downloader.download(form = '4',date=['2024-01-01', '2024-12-31'], output_dir='filings')
 ```
 
-Future:
-* we want to bundle company tickers into the package to make querying api easier.
+TODO
 * Integration with datamule's SEC Router bulk data endpoint to remove need for indexing.
-* remove company tickers from indexer
+* integration with datamules Parser endpoint
+* download indices instead of re-running using python
 
 Update Log:
+9/9/24
+* added download_using_api(self, output_dir, **kwargs). No indices required.
 9/8/24
 * Added integration with datamule's SEC Router API
 9/7/24

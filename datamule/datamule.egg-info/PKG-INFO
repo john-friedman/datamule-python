@@ -1,7 +1,7 @@
 Metadata-Version: 2.1
 Name: datamule
-Version: 0.15
-Summary: Making it easier to use SEC filings
+Version: 0.17
+Summary: Making it easier to use SEC filings.
 Home-page: https://github.com/john-friedman/datamule-python
 Author: John Friedman
 Description-Content-Type: text/markdown
@@ -10,7 +10,6 @@ Description-Content-Type: text/markdown
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fjohn-friedman%2Fdatamule-python&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 ![GitHub](https://img.shields.io/github/stars/john-friedman/datamule-python)
 ## datamule
-
 A python package to make using SEC filings easier. Currently makes downloads easier and faster. 
 
 Links: [Download Indices](https://www.mediafire.com/folder/9szwq6k80t4de/sec_indices) (900mb)
@@ -22,6 +21,17 @@ pip install datamule
 ```
 
 ## Quickstart:
+
+### Using the API 
+Limited to 10,000 results per query.
+
+```
+from datamule import Downloader
+downloader = Downloader()
+downloader.download_using_api(form='10-K',ticker='AAPL')
+```
+
+### Without the API
 
 Either download the pre-built indices from the links in the readme and set the indices_path to the folder
 ```
@@ -61,13 +71,14 @@ downloader.download(form='10-K', date=('2024-01-01', '2024-12-31'), output_dir='
 downloader.download(form = '4',date=['2024-01-01', '2024-12-31'], output_dir='filings')
 ```
 
-Future:
-* we want to bundle company tickers into the package.
-* add more functionality to query_datamule_api such as search by ticker
+TODO
 * Integration with datamule's SEC Router bulk data endpoint to remove need for indexing.
-* remove company tickers from indexer
+* integration with datamules Parser endpoint
+* download indices instead of re-running using python
 
 Update Log:
+9/9/24
+* added download_using_api(self, output_dir, **kwargs). No indices required.
 9/8/24
 * Added integration with datamule's SEC Router API
 9/7/24
