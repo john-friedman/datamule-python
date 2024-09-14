@@ -6,11 +6,10 @@ A python package to make using SEC filings easier. Integrated with [datamule](ht
 
 ## features
 current:
+* parse textual filings into simplified html, interactive html, or structured json.
 * download sec filings quickly and easily
 * download datasets such as every MD&A from 2024 or every 2024 10K converted to structured json
 
-future:
-* integration with parser api
 
 Installation
 ```
@@ -19,7 +18,36 @@ pip install datamule
 
 ## quickstart:
 
-### using the api 
+### parsing
+
+simplified html
+```
+simplified_html = dm.parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605/000095017022000796/tsla-20211231.htm',return_type='simplify')
+```
+
+[Alt text](https://github.com/john-friedman/datamule-python/static/simplify.png "Optional title")
+[Download Example](https://github.com/john-friedman/datamule-python/static/appl_simplify.html){:download}
+
+
+interactive html
+```
+interactive_html = dm.parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605/000095017022000796/tsla-20211231.htm',return_type='interactive')
+```
+
+
+[Alt text](https://github.com/john-friedman/datamule-python/static/interactive.png "Optional title")
+[Download Example](https://github.com/john-friedman/datamule-python/static/appl_interactive.html){:download}
+
+json
+```
+d = dm.parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605/000095017022000796/tsla-20211231.htm',return_type='json')
+```
+
+[Alt text](https://github.com/john-friedman/datamule-python/static/json.png "Optional title")
+[Download Example](https://github.com/john-friedman/datamule-python/static/appl.json){:download}
+
+
+### using the indices api 
 Limited to 10,000 results per query.
 
 ```
@@ -28,7 +56,7 @@ downloader = Downloader()
 downloader.download_using_api(form='10-K',ticker='AAPL')
 ```
 
-### without the api
+### without the indices api
 
 Either download the pre-built indices from the links in the readme and set the indices_path to the folder
 ```
@@ -79,10 +107,13 @@ Update Log:
 * added download_datasets
 * added option to download indices
 * added support for jupyter notebooks
+
 9/9/24
 * added download_using_api(self, output_dir, **kwargs). No indices required.
+
 9/8/24
 * Added integration with datamule's SEC Router API
+
 9/7/24
 * Simplified indices approach
 * Switched from pandas to polar. Loading indices now takes under 500 milliseconds.

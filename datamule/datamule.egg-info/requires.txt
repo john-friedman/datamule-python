@@ -3,3 +3,4 @@ aiolimiter
 polars
 tqdm
 requests
+nest_asyncio

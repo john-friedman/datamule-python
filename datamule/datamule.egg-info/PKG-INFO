@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: datamule
-Version: 0.18
+Version: 0.20
 Summary: Making it easier to use SEC filings.
 Home-page: https://github.com/john-friedman/datamule-python
 Author: John Friedman
@@ -9,20 +9,25 @@ Description-Content-Type: text/markdown
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/datamule)
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fjohn-friedman%2Fdatamule-python&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 ![GitHub](https://img.shields.io/github/stars/john-friedman/datamule-python)
-## datamule
-A python package to make using SEC filings easier. Currently makes downloads easier and faster. 
+# datamule
+A python package to make using SEC filings easier. Integrated with [datamule](https://datamule.xyz/)'s APIs and datasets.
 
-Links: [Download Indices](https://www.mediafire.com/folder/9szwq6k80t4de/sec_indices) (900mb)
+## features
+current:
+* download sec filings quickly and easily
+* download datasets such as every MD&A from 2024 or every 2024 10K converted to structured json
 
+future:
+* integration with parser api
 
 Installation
 ```
 pip install datamule
 ```
 
-## Quickstart:
+## quickstart:
 
-### Using the API 
+### using the api 
 Limited to 10,000 results per query.
 
 ```
@@ -31,7 +36,7 @@ downloader = Downloader()
 downloader.download_using_api(form='10-K',ticker='AAPL')
 ```
 
-### Without the API
+### without the api
 
 Either download the pre-built indices from the links in the readme and set the indices_path to the folder
 ```
@@ -40,11 +45,11 @@ downloader = Downloader()
 downloader.set_indices_path(indices_path)
 ```
 
-Or run the indexer
+Or run the indexer. Downloading indices takes about 30 seconds, re-running takes about 20 minutes.
 ```
 from datamule import Indexer
 indexer = Indexer()
-indexer.run()
+indexer.run(download=False)
 ```
 
 Example Downloads
@@ -71,12 +76,17 @@ downloader.download(form='10-K', date=('2024-01-01', '2024-12-31'), output_dir='
 downloader.download(form = '4',date=['2024-01-01', '2024-12-31'], output_dir='filings')
 ```
 
-TODO
-* Integration with datamule's SEC Router bulk data endpoint to remove need for indexing.
-* integration with datamules Parser endpoint
-* download indices instead of re-running using python
+## datasets
+```
+downloader.download_dataset('10K')
+downloader.download_dataset('MDA')
+```
 
 Update Log:
+9/13/24
+* added download_datasets
+* added option to download indices
+* added support for jupyter notebooks
 9/9/24
 * added download_using_api(self, output_dir, **kwargs). No indices required.
 9/8/24
