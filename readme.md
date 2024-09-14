@@ -47,7 +47,7 @@ d = dm.parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605
 [Download Example](https://github.com/john-friedman/datamule-python/blob/main/static/appl_json.json)
 
 
-### using the indices api 
+### downloading filings using the indices api 
 Limited to 10,000 results per query. Uses endpoint: https://api.datamule.xyz/submissions. A full list of params can be found here (SEC Router)[https://medium.com/@jgfriedman99/sec-router-05a2308b24ce]
 
 ```
@@ -56,7 +56,7 @@ downloader = Downloader()
 downloader.download_using_api(form='10-K',ticker='AAPL')
 ```
 
-### without the indices api
+### downloading filings without the indices api
 
 Either download the pre-built indices from the links in the readme and set the indices_path to the folder
 ```
@@ -96,7 +96,7 @@ downloader.download(form='10-K', date=('2024-01-01', '2024-12-31'), output_dir='
 downloader.download(form = '4',date=['2024-01-01', '2024-12-31'], output_dir='filings')
 ```
 
-## datasets
+### datasets
 
 Need a better way to store datasets, as I'm running out of storage. Currently stored on [Dropbox](https://www.dropbox.com/home/datamule%20datasets) 2gb free tier.
 ```
