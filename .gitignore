@@ -3,4 +3,3 @@ __pycache__/
 Secrets/
 *filings/
 *.csv
-*.json
