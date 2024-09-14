@@ -25,8 +25,8 @@ simplified html
 simplified_html = dm.parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605/000095017022000796/tsla-20211231.htm',return_type='simplify')
 ```
 
-[Alt text](https://github.com/john-friedman/datamule-python/static/simplify.png "Optional title")
-[Download Example](https://github.com/john-friedman/datamule-python/static/appl_simplify.html){:download}
+[Alt text](https://github.com/john-friedman/datamule-python/tree/main/static/simplify.png "Optional title")
+[Download Example](https://github.com/john-friedman/datamule-python/tree/main/static/appl_simplify.html){:download}
 
 
 interactive html
@@ -35,16 +35,16 @@ interactive_html = dm.parse_textual_filing(url='https://www.sec.gov/Archives/edg
 ```
 
 
-[Alt text](https://github.com/john-friedman/datamule-python/static/interactive.png "Optional title")
-[Download Example](https://github.com/john-friedman/datamule-python/static/appl_interactive.html){:download}
+[Alt text](https://github.com/john-friedman/datamule-python/tree/main/static/interactive.png "Optional title")
+[Download Example](https://github.com/john-friedman/datamule-python/tree/main/static/appl_interactive.html){:download}
 
 json
 ```
 d = dm.parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605/000095017022000796/tsla-20211231.htm',return_type='json')
 ```
 
-[Alt text](https://github.com/john-friedman/datamule-python/static/json.png "Optional title")
-[Download Example](https://github.com/john-friedman/datamule-python/static/appl.json){:download}
+[Alt text](https://github.com/john-friedman/datamule-python/tree/main/static/json.png "Optional title")
+[Download Example](https://github.com/john-friedman/datamule-python/tree/main/static/appl.json){:download}
 
 
 ### using the indices api 
