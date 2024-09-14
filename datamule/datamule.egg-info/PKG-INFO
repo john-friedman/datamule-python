@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: datamule
-Version: 0.20
+Version: 0.21
 Summary: Making it easier to use SEC filings.
 Home-page: https://github.com/john-friedman/datamule-python
 Author: John Friedman
@@ -14,11 +14,10 @@ A python package to make using SEC filings easier. Integrated with [datamule](ht
 
 ## features
 current:
+* parse textual filings into simplified html, interactive html, or structured json.
 * download sec filings quickly and easily
 * download datasets such as every MD&A from 2024 or every 2024 10K converted to structured json
 
-future:
-* integration with parser api
 
 Installation
 ```
@@ -27,8 +26,37 @@ pip install datamule
 
 ## quickstart:
 
-### using the api 
-Limited to 10,000 results per query.
+### parsing
+Uses endpoint: https://jgfriedman99.pythonanywhere.com/parse_url with params url and return_type. Current endpoint can be slow. If it's too slow for your use-case, please contact me.
+
+#### simplified html
+```
+simplified_html = dm.parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605/000095017022000796/tsla-20211231.htm',return_type='simplify')
+```
+![Alt text](https://raw.githubusercontent.com/john-friedman/datamule-python/main/static/simplify.png "Optional title")
+[Download Example](https://github.com/john-friedman/datamule-python/blob/main/static/appl_simplify.htm)
+
+
+#### interactive html
+```
+interactive_html = dm.parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605/000095017022000796/tsla-20211231.htm',return_type='interactive')
+```
+
+
+![Alt text](https://raw.githubusercontent.com/john-friedman/datamule-python/main/static/interactive.png "Optional title")
+[Download Example](https://github.com/john-friedman/datamule-python/blob/main/static/appl_interactive.htm)
+
+#### json
+```
+d = dm.parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605/000095017022000796/tsla-20211231.htm',return_type='json')
+```
+
+![Alt text](https://raw.githubusercontent.com/john-friedman/datamule-python/main/static/json.png "Optional title")
+[Download Example](https://github.com/john-friedman/datamule-python/blob/main/static/appl_json.json)
+
+
+### using the indices api 
+Limited to 10,000 results per query. Uses endpoint: https://api.datamule.xyz/submissions. A full list of params can be found here (SEC Router)[https://medium.com/@jgfriedman99/sec-router-05a2308b24ce]
 
 ```
 from datamule import Downloader
@@ -36,7 +64,7 @@ downloader = Downloader()
 downloader.download_using_api(form='10-K',ticker='AAPL')
 ```
 
-### without the api
+### without the indices api
 
 Either download the pre-built indices from the links in the readme and set the indices_path to the folder
 ```
@@ -77,20 +105,29 @@ downloader.download(form = '4',date=['2024-01-01', '2024-12-31'], output_dir='fi
 ```
 
 ## datasets
+
+Need a better way to store datasets, as I'm running out of storage. Currently stored on [Dropbox](https://www.dropbox.com/home/datamule%20datasets) 2gb free tier.
 ```
 downloader.download_dataset('10K')
 downloader.download_dataset('MDA')
 ```
 
-Update Log:
+
+## Update Log
+9/14/24
+* added support for parser API
+
 9/13/24
 * added download_datasets
 * added option to download indices
 * added support for jupyter notebooks
+
 9/9/24
 * added download_using_api(self, output_dir, **kwargs). No indices required.
+
 9/8/24
 * Added integration with datamule's SEC Router API
+
 9/7/24
 * Simplified indices approach
 * Switched from pandas to polar. Loading indices now takes under 500 milliseconds.

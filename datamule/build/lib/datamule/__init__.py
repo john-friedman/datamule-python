@@ -20,3 +20,4 @@ if _is_jupyter():
 
 from .sec_downloader import Downloader
 from .sec_indexer import Indexer
+from .datamule_api import parse_textual_filing

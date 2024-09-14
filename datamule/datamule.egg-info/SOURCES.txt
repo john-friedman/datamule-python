@@ -1,5 +1,6 @@
 setup.py
 datamule/__init__.py
+datamule/datamule_api.py
 datamule/global_vars.py
 datamule/helper.py
 datamule/sec_downloader.py
