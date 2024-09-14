@@ -48,7 +48,7 @@ d = dm.parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605
 
 
 ### downloading filings using the indices api 
-Limited to 10,000 results per query. Uses endpoint: https://api.datamule.xyz/submissions. A full list of params can be found here (SEC Router)[https://medium.com/@jgfriedman99/sec-router-05a2308b24ce]
+Limited to 10,000 results per query. Uses endpoint: https://api.datamule.xyz/submissions. A full list of params can be found here [SEC Router](https://medium.com/@jgfriedman99/sec-router-05a2308b24ce)
 
 ```
 from datamule import Downloader
