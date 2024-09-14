@@ -19,8 +19,9 @@ pip install datamule
 ## quickstart:
 
 ### parsing
+Uses endpoint: https://jgfriedman99.pythonanywhere.com/parse_url with params url and return_type. Current endpoint can be slow. If it's too slow for your use-case, please contact me.
 
-simplified html
+#### simplified html
 ```
 simplified_html = dm.parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605/000095017022000796/tsla-20211231.htm',return_type='simplify')
 ```
@@ -28,7 +29,7 @@ simplified_html = dm.parse_textual_filing(url='https://www.sec.gov/Archives/edga
 [Download Example](https://github.com/john-friedman/datamule-python/blob/main/static/appl_simplify.htm)
 
 
-interactive html
+#### interactive html
 ```
 interactive_html = dm.parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605/000095017022000796/tsla-20211231.htm',return_type='interactive')
 ```
@@ -37,7 +38,7 @@ interactive_html = dm.parse_textual_filing(url='https://www.sec.gov/Archives/edg
 ![Alt text](https://raw.githubusercontent.com/john-friedman/datamule-python/main/static/interactive.png "Optional title")
 [Download Example](https://github.com/john-friedman/datamule-python/blob/main/static/appl_interactive.htm)
 
-json
+#### json
 ```
 d = dm.parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605/000095017022000796/tsla-20211231.htm',return_type='json')
 ```
@@ -47,7 +48,7 @@ d = dm.parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605
 
 
 ### using the indices api 
-Limited to 10,000 results per query.
+Limited to 10,000 results per query. Uses endpoint: https://api.datamule.xyz/submissions. A full list of params can be found here (SEC Router)[https://medium.com/@jgfriedman99/sec-router-05a2308b24ce]
 
 ```
 from datamule import Downloader
@@ -96,12 +97,18 @@ downloader.download(form = '4',date=['2024-01-01', '2024-12-31'], output_dir='fi
 ```
 
 ## datasets
+
+Need a better way to store datasets, as I'm running out of storage. Currently stored on [Dropbox](https://www.dropbox.com/home/datamule%20datasets) 2gb free tier.
 ```
 downloader.download_dataset('10K')
 downloader.download_dataset('MDA')
 ```
 
-Update Log:
+
+## Update Log
+9/14/24
+* added support for parser API
+
 9/13/24
 * added download_datasets
 * added option to download indices
