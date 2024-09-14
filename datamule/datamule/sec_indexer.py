@@ -6,10 +6,11 @@ from tqdm import tqdm
 from datetime import datetime
 import csv
 import os
-from .global_vars import headers
+from .global_vars import headers, indices_metadata_url, indices_company_tickers_url, indices_submissions_url
 import requests
 import json
 import polars as pl
+from .helper import _download_from_dropbox
 
 class Indexer:
     API_BASE_URL = "https://data.sec.gov/submissions/"
@@ -140,20 +141,28 @@ class Indexer:
         except Exception as e:
             print(f"An error occurred in the scraping process: {str(e)}")
 
-    def run(self):
-        print(f"Starting SEC filing scraper at {datetime.now()}")
-        asyncio.run(self.scrape_filings())
+    def run(self,download=True):
 
-        # Load metadata.json if it exists, or create a new dictionary
-        try:
-            with open(self.metadata_file, 'r') as f:
-                metadata = json.load(f)
-        except FileNotFoundError:
-            metadata = {}
+        if download:
+            print(f"Downloading indices at {datetime.now()}")
+            os.makedirs(self.indices_path, exist_ok=True)
+            _download_from_dropbox(indices_metadata_url, self.metadata_file)
+            _download_from_dropbox(indices_company_tickers_url, self.tickers_file)
+            _download_from_dropbox(indices_submissions_url, self.submissions_file)
+        else:
+            print(f"Starting SEC Indexer at {datetime.now()}")
+            asyncio.run(self.scrape_filings())
 
-        # Update the 'last_index_update' key with the current datetime
-        metadata['last_index_update'] = datetime.now().isoformat()
+            # Load metadata.json if it exists, or create a new dictionary
+            try:
+                with open(self.metadata_file, 'r') as f:
+                    metadata = json.load(f)
+            except FileNotFoundError:
+                metadata = {}
 
-        # Save the updated metadata back to the file
-        with open(self.metadata_file, 'w') as f:
-            json.dump(metadata, f, indent=4)
+            # Update the 'last_index_update' key with the current datetime
+            metadata['last_index_update'] = datetime.now().isoformat()
+
+            # Save the updated metadata back to the file
+            with open(self.metadata_file, 'w') as f:
+                json.dump(metadata, f, indent=4)

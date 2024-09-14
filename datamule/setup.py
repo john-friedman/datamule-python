@@ -6,7 +6,7 @@ long_description = Path("../readme.md").read_text()
 setup(
     name="datamule",
     author="John Friedman",
-    version="0.17",
+    version="0.18",
     description = "Making it easier to use SEC filings.",
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -17,6 +17,7 @@ setup(
         'aiolimiter',
         'polars',
         'tqdm',
-        'requests'
+        'requests',
+        'nest_asyncio'
     ]
 )
