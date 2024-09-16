@@ -110,6 +110,9 @@ downloader.download_dataset('MDA')
 * add mulebot
 
 ## Update Log
+9/16/24
+* added human_readable option to download, and download_using_api.
+
 9/15/24
 * fixed downloading filings overwriting each other due to same name.
 

@@ -121,7 +121,9 @@ class Downloader:
     
         print(f"Time to load data: {time() - s}")        
 
-    def download(self, output_dir='filings',return_urls = False, form=None, date=None, cik=None, name=None, ticker=None):
+    def download(self, output_dir='filings',return_urls = False, human_readable = False, form=None, date=None, cik=None, name=None, ticker=None):
+        """return_urls: if True, returns a list of URLs to download. If False, downloads the files to output_dir.
+        human_readable: if True, returns human-readable version of the file if available."""
         # Load data if not already loaded
         self._load_company_tickers()
         self._load_indices()
@@ -131,6 +133,9 @@ class Downloader:
             raise ValueError('Please provide no more than one identifier: cik, name, or ticker')
 
         submissions_mask = pl.Series([True] * len(self.submissions_index))
+
+        # add to mask rows where primary_doc_url is not None and form is 10-K
+        submissions_mask = submissions_mask & ~self.submissions_index['primary_doc_url'].is_null()
 
         if form:
             form_list = [form] if isinstance(form, str) else form
@@ -170,6 +175,13 @@ class Downloader:
 
         filtered_submissions = self.submissions_index.filter(submissions_mask)
 
+        # check human readable
+        if human_readable:
+            pass
+        else:
+           filtered_submissions = filtered_submissions.with_columns(
+                pl.col('primary_doc_url').str.split('/').list.last().alias('primary_doc_url')
+            )
         # Generate primary_doc_urls using construct_primary_doc_url function
         primary_doc_urls = filtered_submissions.select(
             pl.struct(['cik', 'accession_number', 'primary_doc_url'])
@@ -193,7 +205,7 @@ class Downloader:
         print(f"Found {len(primary_doc_urls)} documents to download.")
         self.run_download_urls(primary_doc_urls, output_dir)
 
-    def download_using_api(self, output_dir='filings', return_urls=False, **kwargs):
+    def download_using_api(self, output_dir='filings', return_urls=False, human_readable = False,**kwargs):
         base_url = "https://api.datamule.xyz/submissions"
         
         # Handle 'date' parameter
@@ -221,8 +233,16 @@ class Downloader:
         response.raise_for_status()  # Raise an exception for HTTP errors
 
         dict_list = response.json()
+
+        # TODO: add handling for null primary_doc_url. I forget if the database uses None or ''.
+        # Deciding whether to fix this here or in the database API. Low priority, unless it affects someone.
+
         # construct primary_doc_url from cik and accession_number
-        primary_doc_urls = [construct_primary_doc_url(d['cik'], d['accession_number'], d['primary_doc_url']) for d in dict_list]
+        if human_readable:
+            primary_doc_urls = [construct_primary_doc_url(d['cik'], d['accession_number'], d['primary_doc_url']) for d in dict_list]
+        else:
+            primary_doc_urls = [construct_primary_doc_url(d['cik'], d['accession_number'], d['primary_doc_url'].rsplit('/', 1)[-1]) for d in dict_list]
+
         if return_urls:
             return primary_doc_urls
         # download filings
