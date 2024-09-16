@@ -3,7 +3,7 @@ import aiohttp
 from aiolimiter import AsyncLimiter
 import time
 from tqdm import tqdm
-from datetime import datetime
+from datetime import datetime, timedelta
 import csv
 import os
 from .global_vars import headers, indices_metadata_url, indices_company_tickers_url, indices_submissions_url
@@ -13,14 +13,16 @@ import polars as pl
 from .helper import _download_from_dropbox
 
 class Indexer:
-    API_BASE_URL = "https://data.sec.gov/submissions/"
-    HEADERS = headers
     def __init__(self, indices_path="data"):
         self.indices_path = indices_path
         self.tickers_file = os.path.join(indices_path, "company_tickers.csv")
         self.submissions_file = os.path.join(indices_path, "submissions_index.csv")
         self.metadata_file = os.path.join(indices_path, "metadata.json")
         os.makedirs(indices_path, exist_ok=True)
+
+        self.headers = headers
+        self.api_base_url = "https://data.sec.gov/submissions/"
+        self.WATCH_URL = "https://efts.sec.gov/LATEST/search-index"
 
     def set_indices_path(self, indices_path):
         self.indices_path = indices_path
@@ -30,7 +32,7 @@ class Indexer:
             return pl.read_csv(self.tickers_file)
         
         url = "https://www.sec.gov/files/company_tickers.json"
-        response = requests.get(url, headers=self.HEADERS)
+        response = requests.get(url, headers=self.headers)
         if response.status_code == 200:
             # Parse the JSON content
             data = json.loads(response.content)
@@ -56,7 +58,7 @@ class Indexer:
     async def fetch_json(self, session, url, limiter):
         try:
             async with limiter:
-                async with session.get(url, headers=self.HEADERS) as response:
+                async with session.get(url, headers=self.headers) as response:
                     if response.status == 200:
                         return await response.json()
                     else:
@@ -97,7 +99,7 @@ class Indexer:
             print(f"Error in CSV update: {str(e)}")
 
     async def process_cik(self, session, cik, limiter):
-        main_url = f"{self.API_BASE_URL}CIK{str(cik).zfill(10)}.json"
+        main_url = f"{self.api_base_url}CIK{str(cik).zfill(10)}.json"
         processed_files = set()
         files_to_process = [main_url]
         
@@ -114,7 +116,7 @@ class Indexer:
             self.update_csv(processed_data, self.submissions_file)
             
             for file in additional_files:
-                files_to_process.append(f"{self.API_BASE_URL}{file['name']}")
+                files_to_process.append(f"{self.api_base_url}{file['name']}")
             
             processed_files.add(url)
         
@@ -166,3 +168,58 @@ class Indexer:
             # Save the updated metadata back to the file
             with open(self.metadata_file, 'w') as f:
                 json.dump(metadata, f, indent=4)
+
+    async def _watch_efts(self, form=None, cik=None, interval=1, silent=False):
+        params = {
+            "startdt": (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d"),
+            "enddt": datetime.now().strftime("%Y-%m-%d")
+        }
+
+        # Handle forms parameter
+        if form:
+            if isinstance(form, str):
+                params["forms"] = form
+            elif isinstance(form, list):
+                params["forms"] = ",".join(form)
+            else:
+                raise ValueError("forms must be a string or a list of strings")
+        else:
+            params["forms"] = "-0"  # Default value if no forms specified
+
+        # Handle cik parameter
+        if cik:
+            if isinstance(cik, str):
+                params["ciks"] = cik
+            elif isinstance(cik, list):
+                params["ciks"] = ",".join(cik)
+            else:
+                raise ValueError("cik must be a string or a list of strings")
+
+        previous_value = None
+        
+        async with aiohttp.ClientSession() as session:
+            while True:
+                try:
+                    async with session.get(self.WATCH_URL, params=params, headers=self.headers) as response:
+                        if response.status == 200:
+                            data = await response.json()
+                            current_value = data['hits']['total']['value']
+                            
+                            if previous_value is not None and current_value != previous_value:
+                                if not silent:
+                                    print(f"Value changed from {previous_value} to {current_value}")
+                                return True
+                            
+                            previous_value = current_value
+                            if not silent:
+                                print(f"Current value: {current_value}. Checking again in {interval} seconds.")
+                        else:
+                            print(f"Error occurred: HTTP {response.status}")
+                
+                except aiohttp.ClientError as e:
+                    print(f"Error occurred: {e}")
+                
+                await asyncio.sleep(interval)
+
+    def watch(self,interval=1,silent=True,form=None,cik=None):
+        return asyncio.run(self._watch_efts(interval=interval,silent=silent,form=form,cik=cik))
