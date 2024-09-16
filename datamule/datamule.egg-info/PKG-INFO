@@ -1,10 +1,11 @@
 Metadata-Version: 2.1
 Name: datamule
-Version: 0.22
+Version: 0.23
 Summary: Making it easier to use SEC filings.
 Home-page: https://github.com/john-friedman/datamule-python
 Author: John Friedman
 Description-Content-Type: text/markdown
+Provides-Extra: filingsviewer
 
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/datamule)
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fjohn-friedman%2Fdatamule-python&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
@@ -55,8 +56,8 @@ d = dm.parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605
 [Download Example](https://github.com/john-friedman/datamule-python/blob/main/static/appl_json.json)
 
 
-### using the indices api 
-Limited to 10,000 results per query. Uses endpoint: https://api.datamule.xyz/submissions. A full list of params can be found here (SEC Router)[https://medium.com/@jgfriedman99/sec-router-05a2308b24ce]
+### downloading filings using the indices api 
+Limited to 10,000 results per query. Uses endpoint: https://api.datamule.xyz/submissions. A full list of params can be found here [SEC Router](https://medium.com/@jgfriedman99/sec-router-05a2308b24ce)
 
 ```
 from datamule import Downloader
@@ -64,7 +65,7 @@ downloader = Downloader()
 downloader.download_using_api(form='10-K',ticker='AAPL')
 ```
 
-### without the indices api
+### downloading filings without the indices api
 
 Either download the pre-built indices from the links in the readme and set the indices_path to the folder
 ```
@@ -73,7 +74,7 @@ downloader = Downloader()
 downloader.set_indices_path(indices_path)
 ```
 
-Or run the indexer. Downloading indices takes about 30 seconds, re-running takes about 20 minutes.
+Or run the indexer. If download = True, downloads the last uploaded indices (9/14/24). If false, re-runs the indexer.
 ```
 from datamule import Indexer
 indexer = Indexer()
@@ -104,16 +105,23 @@ downloader.download(form='10-K', date=('2024-01-01', '2024-12-31'), output_dir='
 downloader.download(form = '4',date=['2024-01-01', '2024-12-31'], output_dir='filings')
 ```
 
-## datasets
+### datasets
 
-Need a better way to store datasets, as I'm running out of storage. Currently stored on [Dropbox](https://www.dropbox.com/home/datamule%20datasets) 2gb free tier.
+Need a better way to store datasets, as I'm running out of storage. Currently stored on [Dropbox](https://www.dropbox.com/scl/fo/byxiish8jmdtj4zitxfjn/AAaiwwuyaYp_zRfFyqfBUS8?rlkey=sx7g5uxrz4dn35c593584ztds&st=yohhlwfx&dl=0) 2gb free tier.
 ```
 downloader.download_dataset('10K')
 downloader.download_dataset('MDA')
 ```
 
+## TODO
+* standardize accession number to not include '-'. Currently db does not have '-' but submissions_index.csv does.
+* add code to convert parsed json to interactive html
+* add mulebot
 
 ## Update Log
+9/15/24
+* fixed downloading filings overwriting each other due to same name.
+
 9/14/24
 * added support for parser API
 

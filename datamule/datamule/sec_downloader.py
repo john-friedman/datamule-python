@@ -37,7 +37,7 @@ class Downloader:
         max_retries = 5
         base_delay = 5
 
-        filename = url.split('/')[-1]
+        filename = url.split('/')[7] + url.split('/')[-1]
         filepath = os.path.join(output_dir, filename)
 
         for attempt in range(max_retries):

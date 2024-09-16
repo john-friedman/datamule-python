@@ -65,7 +65,7 @@ downloader = Downloader()
 downloader.set_indices_path(indices_path)
 ```
 
-Or run the indexer. Downloading indices takes about 30 seconds, re-running takes about 20 minutes.
+Or run the indexer. If download = True, downloads the last uploaded indices (9/14/24). If false, re-runs the indexer.
 ```
 from datamule import Indexer
 indexer = Indexer()
@@ -104,8 +104,15 @@ downloader.download_dataset('10K')
 downloader.download_dataset('MDA')
 ```
 
+## TODO
+* standardize accession number to not include '-'. Currently db does not have '-' but submissions_index.csv does.
+* add code to convert parsed json to interactive html
+* add mulebot
 
 ## Update Log
+9/15/24
+* fixed downloading filings overwriting each other due to same name.
+
 9/14/24
 * added support for parser API
 
