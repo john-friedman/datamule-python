@@ -3,7 +3,8 @@
 ![GitHub](https://img.shields.io/github/stars/john-friedman/datamule-python)
 
 # datamule
-A python package to make using SEC filings easier. Integrated with [datamule](https://datamule.xyz/)'s APIs and datasets.
+A python package to make using SEC filings easier. Integrated with [datamule](https://datamule.xyz/)'s APIs and datasets. Other useful SEC packages include:
+[Edgartools](https://github.com/dgunning/edgartools), [SEC Parsers](https://github.com/john-friedman/SEC-Parsers).
 
 ## features
 current:
@@ -13,7 +14,7 @@ current:
 * download datasets such as every MD&A from 2024 or every 2024 10K converted to structured json
 
 
-installation
+## installation
 ```
 pip install datamule
 ```
@@ -147,14 +148,28 @@ d = dm.parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605
 
 
 ## TODO
-* weird issue with human readable = True, suspect issue on SEC end
+* deprecate one of the datamule apis, as we can use EFTS instead.
 * add all companies not just public + update
 * standardize accession number to not include '-'. Currently db does not have '-' but submissions_index.csv does.
 * add code to convert parsed json to interactive html
 * add mulebot
 
+## Known Issues
+* Many SEC files are malformed, e.g. this [Tesla Form D HTML 2009](https://www.sec.gov/Archives/edgar/data/1318605/000131860509000004/xslFormDX01/primary_doc.xml) is missing a closing `</meta>` tag among other things.
+
+This error is hard to notice, as if you use a webbrowser it will automatically fix the malformed html for you. In the future, `datamule` will fix SEC errors for you. In the meantime, this should work:
+```
+from lxml import etree
+
+with open('filings/000131860509000005primary_doc.xml', 'r', encoding='utf-8') as file:
+    html = etree.parse(file, etree.HTMLParser())
+```
+
+Current solution ideas: detect if html masquerading as xml, parse with lxml etree, and fix file extension.
+
 
 ## Update Log
+9/17/24 - forthcoming overhaul. download will switch to downloading using EFTS API. download_using_api will be removed. need to download indices will be removed.
 9/16/24
 v0.26
 * added indexer.watch(interval,cik,form) to monitor when EDGAR updates.

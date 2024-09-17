@@ -10,5 +10,5 @@ datamule.egg-info/SOURCES.txt
 datamule.egg-info/dependency_links.txt
 datamule.egg-info/requires.txt
 datamule.egg-info/top_level.txt
-filingsviewer/__init__.py
-filingsviewer/filings_viewer.py
+datamule/filing_viewer/__init__.py
+datamule/filing_viewer/filing_viewer.py
