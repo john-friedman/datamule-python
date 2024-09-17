@@ -37,7 +37,7 @@ indexer = dm.Indexer()
 
 It uses the [submissions endpoint](https://data.sec.gov/submissions/CIK0001318605.json), and [submissions archive endpoint](https://data.sec.gov/submissions/CIK0001318605-submissions-001.json).
 
-TODO: add indexer run option using EFTS endpoint
+TODO: add indexer run option using EFTS endpoint. EFTS has more submissions as it includes individuals.
 
 ```
 indexer.run(download=True)
@@ -147,9 +147,12 @@ d = dm.parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605
 
 
 ## TODO
+* weird issue with human readable = True, suspect issue on SEC end
+* add all companies not just public + update
 * standardize accession number to not include '-'. Currently db does not have '-' but submissions_index.csv does.
 * add code to convert parsed json to interactive html
 * add mulebot
+
 
 ## Update Log
 9/16/24
