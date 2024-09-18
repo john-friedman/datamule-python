@@ -6,6 +6,7 @@ import os
 from .global_vars import headers, dataset_10k_url, dataset_mda_url
 from .helper import construct_primary_doc_url, _download_from_dropbox
 from tqdm import tqdm
+from tqdm.asyncio import tqdm as atqdm
 import json
 import polars as pl
 from time import time
@@ -17,15 +18,8 @@ class Downloader:
         self.rate_limit = rate_limit
         self.limiter = AsyncLimiter(rate_limit, 1)  # rate_limit requests per second
         self.headers = headers
-        self.submissions_index = None
-        self.company_tickers = None
-        self.last_index_update = None
 
         self.dataset_path = 'datasets'
-        self.indices_path = 'data'
-
-    def set_indices_path(self, indices_path):
-        self.indices_path = indices_path
 
     def set_dataset_path(self, dataset_path):
         self.dataset_path = dataset_path
@@ -33,6 +27,7 @@ class Downloader:
     def set_headers(self, headers):
         self.headers = headers
 
+    # Downloads a filing's primary document from the SEC website
     async def _download_url(self, session, url, output_dir):
         max_retries = 5
         base_delay = 5
@@ -68,6 +63,7 @@ class Downloader:
         print(f"Max retries reached for {url}")
         return None
 
+    # Downloads a list of URLs to a specified directory
     async def _download_urls(self, urls, output_dir):
             os.makedirs(output_dir, exist_ok=True)
 
@@ -86,168 +82,157 @@ class Downloader:
             print(f"Successfully downloaded {len(successful_downloads)} out of {len(urls)} URLs")
             return successful_downloads
 
-    def run_download_urls(self, urls, output_dir='data'):
+    # Runs the downloads
+    def run_download_urls(self, urls, output_dir='filings'):
         # first check if urls are valid, e.g. have end extension
         urls = [url for url in urls if url.split('/')[-1].split('.')[-1] != '']
         
         return asyncio.run(self._download_urls(urls, output_dir))
     
-    # change to if no data found, ask to run index
-    # load metadata and print last_index_update
-    # load submissions_index
-    # load company_tickers
+    def download(self, output_dir='filings',return_urls = False, form=None, date=None, cik=None, name=None, ticker=None):
+        """return_urls: if True, returns a list of URLs to download. If False, downloads the files to output_dir."""
+        # Note: we removed human_readable since the EFTS API does not have it. If people want it back, we can add it back in since each form has a speicifc URL that can be used to download the human readable version.
+        # load company tickers
 
-    def _load_company_tickers(self):
-        try:
-            self.company_tickers = pl.read_csv(self.indices_path + '/company_tickers.csv')
-        except FileNotFoundError as e:
-            raise FileNotFoundError('No company tickers found. Use download_using_api or run the indexer to download the latest data.')
-            
-    def _load_indices(self):
-        s = time()
-        # load metadata
-        try:
-            with open(self.indices_path + '/metadata.json', 'r') as f:
-                metadata = json.load(f)
-                self.last_index_update = metadata.get('last_index_update')
-        except FileNotFoundError as e:
-            raise FileNotFoundError('No metadata found. Use download_using_api or run the indexer to download the latest data.')
-        
-        # load submissions_index
-        try:
-            self.submissions_index = pl.read_csv(self.indices_path + '/submissions_index.csv')
-        except FileNotFoundError as e:
-            raise FileNotFoundError('No submissions index found. Use download_using_api or run the indexer to download the latest data.')
-    
-        print(f"Time to load data: {time() - s}")        
-
-    def download(self, output_dir='filings',return_urls = False, human_readable = False, form=None, date=None, cik=None, name=None, ticker=None):
-        """return_urls: if True, returns a list of URLs to download. If False, downloads the files to output_dir.
-        human_readable: if True, returns human-readable version of the file if available."""
-        # Load data if not already loaded
-        self._load_company_tickers()
-        self._load_indices()
+        # name / ticker will be converted to CIK. We will need to find more company names. currently only have ones with tickers.
 
         # Check there is only one identifier
         if sum(x is not None for x in [cik, name, ticker]) > 1:
             raise ValueError('Please provide no more than one identifier: cik, name, or ticker')
+        
 
-        submissions_mask = pl.Series([True] * len(self.submissions_index))
+        # if form we add to params. making sure to modify search to only vary dates
 
-        # add to mask rows where primary_doc_url is not None and form is 10-K
-        submissions_mask = submissions_mask & ~self.submissions_index['primary_doc_url'].is_null()
+        # if date we add to params. making sure we only download within that date range.
 
-        if form:
-            form_list = [form] if isinstance(form, str) else form
-            submissions_mask = submissions_mask & self.submissions_index['form'].is_in(form_list)
+        # combos
+        form, cik, date,   
+     
+    async def _fetch_url_for_efts(self,session, url, rate_limiter):
+        async with rate_limiter:
+            try:
+                async with asyncio.timeout(10):  # 10 second timeout
+                    async with session.get(url, headers=self.headers) as response:
+                        #print(f"Requesting {url}")
+                        if response.status != 200:
+                            print(f"Error: HTTP {response.status}")
+                            return None
+                        return await response.json()
+            except asyncio.TimeoutError:
+                print(f"Timeout occurred for {url}")
+            except Exception as e:
+                print(f"Error occurred: {e}")
+        return None
 
-        if cik:
-            ciks = [int(c) for c in (cik if isinstance(cik, list) else [cik])]
-            submissions_mask = submissions_mask & self.submissions_index['cik'].is_in(ciks)
+    async def _get_filing_urls_from_efts(self, base_url):
+        rate_limiter = AsyncLimiter(10, 1)  # 10 requests per second
+        full_urls = []
+        start = 0
+        page_size = 100
 
-        if name or ticker:
-            if name:
-                matched_companies = self.company_tickers.filter(
-                    pl.col('title').str.contains(name, ignore_case=True)
-                )
-            else:  # ticker
-                tickers = [t.upper() for t in (ticker if isinstance(ticker, list) else [ticker])]
-                matched_companies = self.company_tickers.filter(pl.col('ticker').is_in(tickers))
-            
-            ciks = matched_companies['cik'].to_list()
-            submissions_mask = submissions_mask & self.submissions_index['cik'].is_in(ciks)
+        async with aiohttp.ClientSession() as session:
+            while True:
+                tasks = []
+                for i in range(10):  # Create 10 concurrent tasks
+                    url = f"{base_url}&from={start + i * page_size}"
+                    tasks.append(self._fetch_url_for_efts(session, url, rate_limiter))
 
-        if date:
-            if isinstance(date, tuple) and len(date) == 2:
-                # Date range
-                start_date, end_date = date
-                submissions_mask = submissions_mask & (
-                    (self.submissions_index['filing_date'] >= start_date) &
-                    (self.submissions_index['filing_date'] <= end_date)
-                )
-            elif isinstance(date, list):
-                # List of specific dates
-                submissions_mask = submissions_mask & self.submissions_index['filing_date'].is_in(date)
-            else:
-                # Single date
-                submissions_mask = submissions_mask & (self.submissions_index['filing_date'] == date)
+                results = await atqdm.gather(*tasks, desc="Fetching URLs")
+                
+                for data in results:
+                    if data is None or 'hits' not in data:
+                        continue
+                    
+                    hits = data['hits']['hits']
+                    
+                    if not hits:
+                        return full_urls  # All data fetched
+                    
+                    full_urls.extend([
+                        f"https://www.sec.gov/Archives/edgar/data/{hit['_source']['ciks'][0]}/{hit['_id'].split(':')[0].replace('-', '')}/{hit['_id'].split(':')[1]}"
+                        for hit in hits
+                    ])
+                    
+                    if start + page_size > data['hits']['total']['value']:
+                        return full_urls  # All data fetched
+                
+                start += 10 * page_size  # Move to the next batch
 
+        return full_urls
+    
+    def _number_of_efts_filings(self,url):
+        response = requests.get(url, headers=self.headers)
+        data = response.json()
 
-        filtered_submissions = self.submissions_index.filter(submissions_mask)
+        doc_count = 0
+        for bucket in data['aggregations']['form_filter']['buckets']:
+            doc_count += bucket['doc_count']
+        return doc_count
+    
+    def orchestrator(self, return_urls= False,cik=None, name= None, ticker = None, form = None, date = None):
+        base_url = "https://efts.sec.gov/LATEST/search-index?"
+        # convert name / ticker to CIK
 
-        # check human readable
-        if human_readable:
+        # Check there is only one identifier
+        if sum(x is not None for x in [cik, name, ticker]) > 1:
+            raise ValueError('Please provide no more than one identifier: cik, name, or ticker')
+        
+        # construct the EFTS URL
+
+        if cik is None:
             pass
         else:
-           filtered_submissions = filtered_submissions.with_columns(
-                pl.col('primary_doc_url').str.split('/').list.last().alias('primary_doc_url')
-            )
-        # Generate primary_doc_urls using construct_primary_doc_url function
-        primary_doc_urls = filtered_submissions.select(
-            pl.struct(['cik', 'accession_number', 'primary_doc_url'])
-            .map_elements(
-                lambda row: construct_primary_doc_url(
-                    row['cik'],
-                    row['accession_number'],
-                    row['primary_doc_url']
-                ),
-                return_dtype=pl.Utf8  # Assuming the URL is a string
-            )
-        ).to_series().to_list()
-
-        # make sure all urls are unique, since multiple companies might have same submission
-        primary_doc_urls = list(set(primary_doc_urls))
-
-        if return_urls:
-            return primary_doc_urls
-
-        # Download all primary_doc_urls
-        print(f"Found {len(primary_doc_urls)} documents to download.")
-        self.run_download_urls(primary_doc_urls, output_dir)
-
-    def download_using_api(self, output_dir='filings', return_urls=False, human_readable = False,**kwargs):
-        base_url = "https://api.datamule.xyz/submissions"
-        
-        # Handle 'date' parameter
-        if 'date' in kwargs:
-            if isinstance(kwargs['date'], tuple):
-                # If 'date' is a tuple, use it for date_range
-                kwargs['date_range'] = ','.join(map(str, kwargs['date']))
+            if isinstance(cik, list):
+                base_url += f"&ciks={','.join(cik)}"
             else:
-                # If 'date' is a list or singular value, use it for filing_date
-                if isinstance(kwargs['date'], list):
-                    kwargs['filing_date'] = ','.join(map(str, kwargs['date']))
-                else:
-                    kwargs['filing_date'] = str(kwargs['date'])
-            del kwargs['date']
-        
-        # Convert date_range to comma-separated string if it's a list
-        if 'date_range' in kwargs and isinstance(kwargs['date_range'], list):
-            kwargs['date_range'] = ','.join(map(str, kwargs['date_range']))
-        
-        # Convert filing_date to comma-separated string if it's a list
-        if 'filing_date' in kwargs and isinstance(kwargs['filing_date'], list):
-            kwargs['filing_date'] = ','.join(map(str, kwargs['filing_date']))
-        
-        response = requests.get(base_url, params=kwargs)
-        response.raise_for_status()  # Raise an exception for HTTP errors
+                base_url += f"&ciks={cik}"
 
-        dict_list = response.json()
-
-        # TODO: add handling for null primary_doc_url. I forget if the database uses None or ''.
-        # Deciding whether to fix this here or in the database API. Low priority, unless it affects someone.
-
-        # construct primary_doc_url from cik and accession_number
-        if human_readable:
-            primary_doc_urls = [construct_primary_doc_url(d['cik'], d['accession_number'], d['primary_doc_url']) for d in dict_list]
+        if date is not None:
+            if isinstance(date, str):
+                base_url += f"&startdt={date}&enddt={date}"
         else:
-            primary_doc_urls = [construct_primary_doc_url(d['cik'], d['accession_number'], d['primary_doc_url'].rsplit('/', 1)[-1]) for d in dict_list]
+            base_url += f"&startdt=2001-01-01&enddt={datetime.today().strftime('%Y-%m-%d')}"
 
+        # if both date and form are none
+        if form is None and date is None:
+            pass
+        else:
+            if form is None:
+                base_url += f"forms=-0" # all forms
+            else:
+                if isinstance(form, list):
+                    base_url += f"&forms={','.join(form)}"
+                else:
+                    base_url += f"&forms={form}"
+
+            total_filings = self._number_of_efts_filings(base_url)
+
+            if total_filings < 10000:
+                efts_urls = [base_url]
+            else:
+                pass
+
+                # find total number of filings by sending one request
+                # then subset by date to aggregate under 10000, aiming for 1,000
+
+        all_primary_doc_urls = []
+        for efts_url in efts_urls:
+            # fetch the URLs from the EFTS API
+            primary_doc_urls = asyncio.run(self._get_filing_urls_from_efts(efts_url))
+
+            # remove duplicates (We should test this later) WIP
+            primary_doc_urls = list(set(primary_doc_urls))
+
+            if not return_urls:
+                # download the filings
+                self.run_download_urls(primary_doc_urls)
+            else:
+                all_primary_doc_urls.extend(primary_doc_urls)
+        
         if return_urls:
-            return primary_doc_urls
-        # download filings
-        self.run_download_urls(primary_doc_urls, output_dir)
-        return response.json()
+            return all_primary_doc_urls
+
+       
     
     def download_dataset(self,dataset):
         # check if dataset dir exists

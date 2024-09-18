@@ -169,7 +169,9 @@ Current solution ideas: detect if html masquerading as xml, parse with lxml etre
 
 
 ## Update Log
-9/17/24 - forthcoming overhaul. download will switch to downloading using EFTS API. download_using_api will be removed. need to download indices will be removed.
+forthcoming overhaul. download will switch to downloading using EFTS API. download_using_api will be removed. need to download indices will be removed. company tickers will be bundled into package.
+
+
 9/16/24
 v0.26
 * added indexer.watch(interval,cik,form) to monitor when EDGAR updates.
