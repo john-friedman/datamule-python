@@ -9,9 +9,10 @@ from tqdm import tqdm
 from tqdm.asyncio import tqdm as atqdm
 import json
 import polars as pl
-from time import time
+from time import sleep
 import requests
 import zipfile
+from datetime import datetime
 
 class Downloader:
     def __init__(self, rate_limit=10):
@@ -218,6 +219,7 @@ class Downloader:
         all_primary_doc_urls = []
         for efts_url in efts_urls:
             # fetch the URLs from the EFTS API
+            print(f"Fetching URLs from {efts_url}")
             primary_doc_urls = asyncio.run(self._get_filing_urls_from_efts(efts_url))
 
             # remove duplicates (We should test this later) WIP
