@@ -19,5 +19,4 @@ if _is_jupyter():
     nest_asyncio.apply()
 
 from .sec_downloader import Downloader
-from .sec_indexer import Indexer
 from .datamule_api import parse_textual_filing

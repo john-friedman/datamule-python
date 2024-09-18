@@ -164,20 +164,21 @@ class Downloader:
         
         return all_primary_doc_urls if return_urls else None
 
-    def download(self, return_urls=False, cik=None, name=None, ticker=None, form=None, date=None):
+    def download(self, return_urls=False, cik=None, ticker=None, form=None, date=None):
         base_url = "https://efts.sec.gov/LATEST/search-index?"
-        if sum(x is not None for x in [cik, name, ticker]) > 1:
+        if sum(x is not None for x in [cik, ticker]) > 1:
             raise ValueError('Please provide no more than one identifier: cik, name, or ticker')
         
-        # use self.company_tickers {}
-        if ticker:
-            cik = [company['cik'] for company in self.company_tickers if ticker in company['ticker']][0]
-        elif name:
-            cik = [company['cik'] for company in self.company_tickers if name in company['name']][0]
-
-        
+        if ticker is not None:
+            cik = self._identifier_to_cik(ticker)
+            print(cik)
+                
         if cik:
-            base_url += f"&ciks={','.join(cik) if isinstance(cik, list) else cik}"
+            if isinstance(cik, list):
+                formatted_ciks = ','.join(str(c).zfill(10) for c in cik)
+            else:
+                formatted_ciks = str(cik).zfill(10)
+            base_url += f"&ciks={formatted_ciks}"
         
         form_str = f"&forms={','.join(form) if isinstance(form, list) else form}" if form else "&forms=-0"
         
@@ -223,3 +224,79 @@ class Downloader:
                             output_file.write(chunk)
                             pbar.update(len(chunk))
             os.remove(zip_path)
+
+
+    async def _watch_efts(self, form=None, cik=None, interval=1, silent=False):
+        params = {
+            "startdt": (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d"),
+            "enddt": datetime.now().strftime("%Y-%m-%d")
+        }
+
+        # Handle forms parameter
+        if form:
+            if isinstance(form, str):
+                params["forms"] = form
+            elif isinstance(form, list):
+                params["forms"] = ",".join(form)
+            else:
+                raise ValueError("forms must be a string or a list of strings")
+        else:
+            params["forms"] = "-0"  # Default value if no forms specified
+
+        # Handle cik parameter
+        if cik:
+            if isinstance(cik, list):
+                params['ciks'] = ','.join(str(c).zfill(10) for c in cik)
+        else:
+            params['ciks'] = str(cik).zfill(10)
+
+        previous_value = None
+        
+        async with aiohttp.ClientSession() as session:
+            while True:
+                try:
+                    watch_url = "https://efts.sec.gov/LATEST/search-index"
+                    async with session.get(watch_url, params=params, headers=self.headers) as response:
+                        if response.status == 200:
+                            data = await response.json()
+                            current_value = data['hits']['total']['value']
+                            
+                            if previous_value is not None and current_value != previous_value:
+                                if not silent:
+                                    print(f"Value changed from {previous_value} to {current_value}")
+                                return True
+                            
+                            previous_value = current_value
+                            if not silent:
+                                print(f"Current value: {current_value}. Checking again in {interval} seconds.")
+                        else:
+                            print(f"Error occurred: HTTP {response.status}")
+                
+                except aiohttp.ClientError as e:
+                    print(f"Error occurred: {e}")
+                
+                await asyncio.sleep(interval)
+
+    # WIP add option to return new results
+    def watch(self,interval=1,silent=True, form=None,cik=None, ticker=None):
+        if sum(x is not None for x in [cik, ticker]) > 1:
+            raise ValueError('Please provide no more than one identifier: cik, name, or ticker')
+        
+        if ticker:
+            cik = self._identifier_to_cik(ticker)
+        # wip add ticker conversion
+        return asyncio.run(self._watch_efts(interval=interval,silent=silent,form=form,cik=cik))
+    
+    def _identifier_to_cik(self, ticker=None):
+        if ticker:
+            if isinstance(ticker, list):
+                cik = []
+                for t in ticker:
+                    cik.extend([company['cik'] for company in self.company_tickers if t == company['ticker']])
+            else:
+                cik = [company['cik'] for company in self.company_tickers if ticker == company['ticker']]
+
+        if not cik:
+            raise ValueError("No matching companies found")
+
+        return cik
