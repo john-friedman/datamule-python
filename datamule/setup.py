@@ -24,4 +24,8 @@ setup(
         "filing_viewer": ["lxml"
         ],
     },
+       package_data={
+        "my_package": ["data/company_ticker.csv"],
+    },
+    include_package_data=True,
 )

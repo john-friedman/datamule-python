@@ -5,3 +5,4 @@ Secrets/
 *.csv
 /examples/*
 !/examples/*.ipynb
+!*company_tickers.csv

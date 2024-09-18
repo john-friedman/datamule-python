@@ -148,8 +148,7 @@ d = dm.parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605
 
 
 ## TODO
-* deprecate one of the datamule apis, as we can use EFTS instead.
-* add all companies not just public + update
+* bundle company tickers into package
 * standardize accession number to not include '-'. Currently db does not have '-' but submissions_index.csv does.
 * add code to convert parsed json to interactive html
 * add mulebot

@@ -76,3 +76,7 @@ https://efts.sec.gov/LATEST/search-index?q=the&dateRange=all&category=form-cat1&
 `startdt`: We use this.
 `enddt`: We use this.
 `filter_forms`: 
+
+
+Note: sec.gov has a 10r/s rate limit
+I think efts has a seperate rate limit
