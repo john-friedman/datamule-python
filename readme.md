@@ -160,12 +160,13 @@ Current solution ideas: detect if html masquerading as xml, parse with lxml etre
 
 ## Updates
 9/18/24
-v3.01
+v0.301
 * Fixed package data issue with jupyter notebook
 v0.29
 * Overhaul. Removes the need to download or construct indices. Expands scope to every SEC filing since 2001, including companies without tickers and individuals. Indexer().watch() has been moved to the downloader. Option to filter by company name has been removed for now due to issues with needing exactly the correct name.
 
 9/16/24
+
 v0.26
 * added indexer.watch(interval,cik,form) to monitor when EDGAR updates.
 v0.25
