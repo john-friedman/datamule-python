@@ -6,7 +6,7 @@
 A python package to make using SEC filings easier. Integrated with [datamule](https://datamule.xyz/)'s APIs and datasets. Other useful SEC packages include:
 [Edgartools](https://github.com/dgunning/edgartools), [SEC Parsers](https://github.com/john-friedman/SEC-Parsers).
 
-<b>IMPORTANT NOTICE</b>: Overhaul coming 9/18/24. In v0.29 Downloader will no longer require indices, and lots of QOL improvements.
+<b>NOTICE</b>: As of v0.29 Downloader no longer requires indices.
 
 ## features
 * monitor edgar for new filings
@@ -91,8 +91,8 @@ if changed_bool:
 
 ### download_datasets
 ```
-downloader.download_dataset('10K')
-downloader.download_dataset('MDA')
+downloader.download_dataset('10K') # Every 2024 10-K up to September 1st converted to json form. 
+downloader.download_dataset('MDA') # Every MD&A extracted from the 10K dataset.
 ```
 
 Need a better way to store datasets, as I'm running out of storage. Currently stored on [Dropbox](https://www.dropbox.com/scl/fo/byxiish8jmdtj4zitxfjn/AAaiwwuyaYp_zRfFyqfBUS8?rlkey=sx7g5uxrz4dn35c593584ztds&st=yohhlwfx&dl=0) 2gb free tier.
@@ -126,11 +126,21 @@ d = dm.parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605
 ![Alt text](https://raw.githubusercontent.com/john-friedman/datamule-python/main/static/json.png "Optional title")
 [Download Example](https://github.com/john-friedman/datamule-python/blob/main/static/appl_json.json)
 
+## filing viewer
+converts parsed filing json into html with features like table of contents sidebar. 
 
-## TODO
-* standardize accession number to not include '-'. Currently db does not have '-' but submissions_index.csv does.
-* add code to convert parsed json to interactive html
-* add mulebot
+```
+from datamule import parse_textual_filing
+from datamule.filing_viewer import create_interactive_html
+d = parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605/000095017022000796/tsla-20211231.htm',return_type='json')
+create_interactive_html(data,path)
+```
+
+future features:
+* copy paste and download tables
+* copy paste and download text
+* download filing
+
 
 ## Known Issues
 * Many SEC files are malformed, e.g. this [Tesla Form D HTML 2009](https://www.sec.gov/Archives/edgar/data/1318605/000131860509000004/xslFormDX01/primary_doc.xml) is missing a closing `</meta>` tag among other things.
@@ -145,9 +155,13 @@ with open('filings/000131860509000005primary_doc.xml', 'r', encoding='utf-8') as
 
 Current solution ideas: detect if html masquerading as xml, parse with lxml etree, and fix file extension.
 
-## Updates
+## TODO
+* add mulebot
 
+## Updates
 9/18/24
+v3.01
+* Fixed package data issue with jupyter notebook
 v0.29
 * Overhaul. Removes the need to download or construct indices. Expands scope to every SEC filing since 2001, including companies without tickers and individuals. Indexer().watch() has been moved to the downloader. Option to filter by company name has been removed for now due to issues with needing exactly the correct name.
 

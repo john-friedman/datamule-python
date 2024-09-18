@@ -6,3 +6,5 @@ Secrets/
 /examples/*
 !/examples/*.ipynb
 !*company_tickers.csv
+*.venv
+*.env

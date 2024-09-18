@@ -6,7 +6,7 @@ long_description = Path("../readme.md").read_text()
 setup(
     name="datamule",
     author="John Friedman",
-    version="0.27",
+    version="0.301",
     description="Making it easier to use SEC filings.",
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -15,7 +15,6 @@ setup(
     install_requires=[
         'aiohttp',
         'aiolimiter',
-        'polars',
         'tqdm',
         'requests',
         'nest_asyncio'
@@ -25,7 +24,7 @@ setup(
         ],
     },
        package_data={
-        "my_package": ["data/company_ticker.csv"],
+        "datamule": ["data/*.csv"],
     },
     include_package_data=True,
 )
