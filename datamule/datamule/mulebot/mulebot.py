@@ -12,19 +12,10 @@ class MuleBot:
             {"role": "system", "content": "You are a helpful assistant to assist with questions related to the Securities and Exchanges Commission."}
         ]
         self.total_tokens = 0
-
-    def set_api_key(self, api_key=None):
-        if api_key:
-            openai.api_key = api_key
-        else:
-            try:
-                with open("apikey.txt", "r") as f:
-                    openai.api_key = f.read().strip()
-                print("API key loaded successfully.")
-            except FileNotFoundError:
-                print("Error: apikey.txt not found. Please provide an API key.")
-                return
         self.client = openai.OpenAI()
+
+    def set_api_key(self, api_key):
+        openai.api_key = api_key
 
     def chat(self):
         if not self.client:
