@@ -160,6 +160,9 @@ Current solution ideas: detect if html masquerading as xml, parse with lxml etre
 
 ## Updates
 9/18/24
+v.302
+* re-added output dir to download. Did not mean to remove. Oops.
+
 v0.301
 * Fixed package data issue with jupyter notebook
 v0.29

@@ -10,6 +10,7 @@ from datetime import datetime, timedelta
 from urllib.parse import urlparse, parse_qs, urlencode
 import math
 from .global_vars import headers
+from .helper import _download_from_dropbox
 from pkg_resources import resource_filename
 import csv
 
@@ -140,7 +141,7 @@ class Downloader:
             current_start = current_end + timedelta(days=1)
         return urls
 
-    def _conductor(self, efts_url, return_urls):
+    def _conductor(self, efts_url, return_urls,output_dir):
         total_filings = self._number_of_efts_filings(efts_url)
         all_primary_doc_urls = []
         
@@ -151,7 +152,7 @@ class Downloader:
             if return_urls:
                 return primary_doc_urls
             else:
-                self.run_download_urls(primary_doc_urls)
+                self.run_download_urls(urls=primary_doc_urls,output_dir=output_dir)
                 return None
         
         for subset_url in self._subset_urls(efts_url, total_filings):
@@ -160,11 +161,11 @@ class Downloader:
             if return_urls:
                 all_primary_doc_urls.extend(sub_primary_doc_urls)
             else:
-                self.run_download_urls(sub_primary_doc_urls)
+                self.run_download_urls(urls=primary_doc_urls,output_dir=output_dir)
         
         return all_primary_doc_urls if return_urls else None
 
-    def download(self, return_urls=False, cik=None, ticker=None, form=None, date=None):
+    def download(self, output_dir = 'filings',  return_urls=False,cik=None, ticker=None, form=None, date=None):
         base_url = "https://efts.sec.gov/LATEST/search-index?"
         if sum(x is not None for x in [cik, ticker]) > 1:
             raise ValueError('Please provide no more than one identifier: cik, name, or ticker')
@@ -190,9 +191,9 @@ class Downloader:
         all_primary_doc_urls = []
         for efts_url in efts_url_list:
             if return_urls:
-                all_primary_doc_urls.extend(self._conductor(efts_url, True))
+                all_primary_doc_urls.extend(self._conductor(efts_url=efts_url, return_urls=True,output_dir=output_dir))
             else:
-                self._conductor(efts_url, False)
+                self._conductor(efts_url=efts_url, return_urls=False,output_dir=output_dir)
         
         return all_primary_doc_urls if return_urls else None
 
