@@ -1,7 +1,7 @@
 import requests
 from .global_vars import headers
 
-def get_all_company_facts(cik):
+def get_all_facts_for_company(cik):
     """Get all company facts for a given CIK. Returns a list of dictionaries with information about each fact and the table."""
     url = f'https://data.sec.gov/api/xbrl/companyfacts/CIK{str(cik).zfill(10)}.json'
     response = requests.get(url, headers=headers)

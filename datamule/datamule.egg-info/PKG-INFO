@@ -1,11 +1,15 @@
 Metadata-Version: 2.1
 Name: datamule
-Version: 0.302
+Version: 0.310
 Summary: Making it easier to use SEC filings.
 Home-page: https://github.com/john-friedman/datamule-python
 Author: John Friedman
 Description-Content-Type: text/markdown
 Provides-Extra: filing_viewer
+Provides-Extra: mulebot
+Provides-Extra: mulebot_server
+Provides-Extra: mulebot_frontend
+Provides-Extra: all
 
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/datamule)
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fjohn-friedman%2Fdatamule-python&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
@@ -169,6 +173,9 @@ Current solution ideas: detect if html masquerading as xml, parse with lxml etre
 
 ## Updates
 9/18/24
+v.302
+* re-added output dir to download. Did not mean to remove. Oops.
+
 v0.301
 * Fixed package data issue with jupyter notebook
 v0.29

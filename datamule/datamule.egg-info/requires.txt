@@ -4,5 +4,14 @@ tqdm
 requests
 nest_asyncio
 
+[all]
+lxml
+
 [filing_viewer]
 lxml
+
+[mulebot]
+
+[mulebot_frontend]
+
+[mulebot_server]

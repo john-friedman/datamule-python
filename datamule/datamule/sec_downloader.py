@@ -10,28 +10,14 @@ from datetime import datetime, timedelta
 from urllib.parse import urlparse, parse_qs, urlencode
 import math
 from .global_vars import headers
-from .helper import _download_from_dropbox
-from pkg_resources import resource_filename
-import csv
+from .helper import _download_from_dropbox, identifier_to_cik
+
 
 class Downloader:
     def __init__(self, rate_limit=10):
         self.global_limiter = AsyncLimiter(rate_limit, 1)
         self.headers = headers  # Define headers in global_vars.py
         self.dataset_path = 'datasets'
-
-        self.company_tickers = self.load_company_tickers()
-
-    def load_company_tickers(self):
-        csv_path = resource_filename('datamule', 'data/company_tickers.csv')
-        company_tickers = []
-        
-        with open(csv_path, 'r') as csvfile:
-            csv_reader = csv.DictReader(csvfile)
-            for row in csv_reader:
-                company_tickers.append(row)
-        
-        return company_tickers
 
 
     async def _download_url(self, session, url, output_dir):
@@ -171,7 +157,7 @@ class Downloader:
             raise ValueError('Please provide no more than one identifier: cik, name, or ticker')
         
         if ticker is not None:
-            cik = self._identifier_to_cik(ticker)
+            cik = identifier_to_cik(ticker)
                 
         if cik:
             if isinstance(cik, list):
@@ -285,20 +271,7 @@ class Downloader:
             raise ValueError('Please provide no more than one identifier: cik, name, or ticker')
         
         if ticker:
-            cik = self._identifier_to_cik(ticker)
+            cik = identifier_to_cik(ticker)
         # wip add ticker conversion
         return asyncio.run(self._watch_efts(interval=interval,silent=silent,form=form,cik=cik))
     
-    def _identifier_to_cik(self, ticker=None):
-        if ticker:
-            if isinstance(ticker, list):
-                cik = []
-                for t in ticker:
-                    cik.extend([company['cik'] for company in self.company_tickers if t == company['ticker']])
-            else:
-                cik = [company['cik'] for company in self.company_tickers if ticker == company['ticker']]
-
-        if not cik:
-            raise ValueError("No matching companies found")
-
-        return cik
