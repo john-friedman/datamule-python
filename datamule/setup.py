@@ -7,9 +7,8 @@ long_description = Path("../readme.md").read_text()
 # Define the extras and their dependencies
 extras = {
     "filing_viewer": ["lxml"],
-    "mulebot": [],
-    "mulebot_server": [],
-    "mulebot_frontend": [],
+    "mulebot": ['openai'],
+    "mulebot_server": ['flask']
 }
 
 # Create the 'all' option
@@ -19,7 +18,7 @@ extras["all"] = list(all_dependencies)
 setup(
     name="datamule",
     author="John Friedman",
-    version="0.310",
+    version="0.311",
     description="Making it easier to use SEC filings.",
     long_description=long_description,
     long_description_content_type='text/markdown',

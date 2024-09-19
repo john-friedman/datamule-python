@@ -16,5 +16,5 @@ datamule/filing_viewer/filing_viewer.py
 datamule/mulebot/__init__.py
 datamule/mulebot/mulebot.py
 datamule/mulebot/tools.py
-datamule/mulebot/mulebot_frontend/__init__.py
 datamule/mulebot/mulebot_server/__init__.py
+datamule/mulebot/mulebot_server/server.py

@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.311 (2024-09-19)
+- Added basic mulebot tool calling and interface.
+
 ## v0.302 (2024-09-18)
 - Re-added output directory to download functionality (unintentional previous removal)
 

@@ -6,12 +6,14 @@ nest_asyncio
 
 [all]
 lxml
+openai
+flask
 
 [filing_viewer]
 lxml
 
 [mulebot]
-
-[mulebot_frontend]
+openai
 
 [mulebot_server]
+flask

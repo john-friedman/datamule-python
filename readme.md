@@ -4,7 +4,9 @@
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fjohn-friedman%2Fdatamule-python&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 ![GitHub](https://img.shields.io/github/stars/john-friedman/datamule-python)
 
-A Python package to simplify working with SEC filings. Integrated with [datamule](https://datamule.xyz/)'s APIs and datasets.
+A Python package to simplify working with SEC filings. Also includes Mulebot, an open-source chatbot for SEC data that does not require storage. Integrated with [datamule](https://datamule.xyz/)'s APIs and datasets.
+
+<!-- Link to medium article, how to setup a SEC chatbot in 5 minutes. -->
 
 ## Features
 
@@ -51,7 +53,6 @@ Available extras:
 - `filing_viewer`: Includes dependencies for the filing viewer module
 - `mulebot`: Includes MuleBot for interacting with SEC data (coming soon)
 - `mulebot_server`: Includes Flask server for running MuleBot (coming soon)
-- `mulebot_frontend`: Includes frontend controls for MuleBot output (coming soon)
 - `all`: Installs all available extras
 
 ## Quick Start
@@ -120,18 +121,46 @@ data = parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605
 create_interactive_html(data, 'output_path.html')
 ```
 
-### MuleBot
+### Mulebot 
 
-Interact with SEC data using MuleBot (coming soon):
+Interact with SEC data using MuleBot (coming soon). Mulebot uses tool calling to interface with SEC and datamule endpoints.
+
+Features (coming soon):
+* Interface with XBRL company facts
+* Interface with 10-ks, etc and summarize sections.
+
+To use Mulebot you will need an [OpenAI API Key](https://platform.openai.com/api-keys).
+
+#### Mulebot Server
+
+Mulebot server is a customizable front-end for Mulebot.
+
+Features (coming soon):
+* Display XBRL tables with download / copy button.
+* Download XBRL tables for a specific company in ZIP.
+* Display sections of filings, like MD&A with links to filing viewer and original.
+
+Quickstart
 
 ```python
-# Placeholder for MuleBot usage
-# This feature is currently in development
+from datamule.mulebot.mulebot_server import server
+
+def main():
+    # Your OpenAI API key
+    api_key = "sk-<YOUR_API_KEY>"
+    server.set_api_key(api_key)
+
+    # Run the server
+    print("Starting MuleBotServer...")
+    server.run(debug=True, host='0.0.0.0', port=5000)
+
+if __name__ == "__main__":
+    main()
 ```
 
 ## Datasets
 
-Access pre-processed datasets:
+Access parsed datasets:
 
 ```python
 downloader = dm.Downloader()
