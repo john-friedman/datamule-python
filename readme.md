@@ -95,7 +95,7 @@ if changed_bool:
 
 ### Parsing
 
-Parse textual filings into different formats:
+Parse textual filings into different formats. Uses [datamule parser endpoint](https://jgfriedman99.pythonanywhere.com/parse_url). If it is too slow for your use-case let me know. A faster endpoint is coming soon.
 
 ```python
 # Simplified HTML
@@ -156,8 +156,8 @@ downloader.download_dataset('MDA')
   ```
 
 ## Roadmap
-
 - [ ] Add Mulebot
+- [ ] Downloader refactor and integrate XBRL downloads
 
 ## Contributing
 
