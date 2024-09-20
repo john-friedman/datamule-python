@@ -123,7 +123,6 @@ create_interactive_html(data, 'output_path.html')
 
 ![interactive](https://github.com/john-friedman/datamule-python/blob/main/static/interactive.png)
 
-![json](https://github.com/john-friedman/datamule-python/blob/main/static/json.png)
 
 
 ### Mulebot 
