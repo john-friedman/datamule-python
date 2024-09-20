@@ -164,7 +164,10 @@ if __name__ == "__main__":
 
 ## Datasets
 
-Access parsed datasets:
+Available datasets:
+- 2024 10-K filings converted to JSON `10K`
+- Management's Discussion and Analysis (MD&A) sections extracted from 2024 10-K filings `MDA`
+- Every XBRL (Coming Soon)
 
 ```python
 downloader = dm.Downloader()
@@ -191,6 +194,7 @@ downloader.download_dataset('MDA')
 ## Roadmap
 - [ ] Add Mulebot
 - [ ] Downloader refactor and integrate XBRL downloads
+- [ ] Analytics?
 
 ## Contributing
 

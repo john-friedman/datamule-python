@@ -9,9 +9,8 @@ import zipfile
 from datetime import datetime, timedelta
 from urllib.parse import urlparse, parse_qs, urlencode
 import math
-from .global_vars import headers
+from .global_vars import headers, dataset_10k_url, dataset_mda_url
 from .helper import _download_from_dropbox, identifier_to_cik
-
 
 class Downloader:
     def __init__(self, rate_limit=10):
@@ -19,8 +18,9 @@ class Downloader:
         self.headers = headers  # Define headers in global_vars.py
         self.dataset_path = 'datasets'
 
-
-    async def _download_url(self, session, url, output_dir):
+    # DONE
+    async def _write_file_from_url(self, session, url, output_dir):
+        """Asynchronously download a single URL to a specified directory."""
         filename = f"{url.split('/')[7]}_{url.split('/')[-1]}"
         filepath = os.path.join(output_dir, filename)
 
@@ -46,19 +46,10 @@ class Downloader:
                 return None
         return None
 
-    async def _download_urls(self, urls, output_dir):
-        os.makedirs(output_dir, exist_ok=True)
-        async with aiohttp.ClientSession() as session:
-            tasks = [self._download_url(session, url, output_dir) for url in urls]
-            results = [await f for f in tqdm(asyncio.as_completed(tasks), total=len(tasks), desc="Downloading files")]
-        successful_downloads = [result for result in results if result is not None]
-        print(f"Successfully downloaded {len(successful_downloads)} out of {len(urls)} URLs")
-        return successful_downloads
 
-    def run_download_urls(self, urls, output_dir='filings'):
-        return asyncio.run(self._download_urls([url for url in urls if url.split('/')[-1].split('.')[-1] != ''], output_dir))
-
-    async def _fetch_url_for_efts(self, session, url):
+    # DONE
+    async def _fetch_json_from_url(self, session, url):
+        """Asynchronously fetch JSON data from a URL."""
         async with self.global_limiter:
             try:
                 async with asyncio.timeout(10):
@@ -67,13 +58,31 @@ class Downloader:
             except Exception as e:
                 print(f"Error occurred: {e}")
         return None
+    
+    # DONE
+    async def _download_urls(self, urls, output_dir):
+        """Asynchronously download a list of URLs to a specified directory."""
+        os.makedirs(output_dir, exist_ok=True)
+        async with aiohttp.ClientSession() as session:
+            tasks = [self._write_file_from_url(session, url, output_dir) for url in urls]
+            results = [await f for f in tqdm(asyncio.as_completed(tasks), total=len(tasks), desc="Downloading files")]
+        successful_downloads = [result for result in results if result is not None]
+        print(f"Successfully downloaded {len(successful_downloads)} out of {len(urls)} URLs")
+        return successful_downloads
 
+    # DONE
+    def run_download_urls(self, urls, output_dir='filings'):
+        """Download a list of URLs to a specified directory"""
+        return asyncio.run(self._download_urls([url for url in urls if url.split('/')[-1].split('.')[-1] != ''], output_dir))
+
+    # DONE
     async def _get_filing_urls_from_efts(self, base_url):
+        """Asynchronously fetch all filing URLs from a given EFTS URL."""
         full_urls = []
         start, page_size = 0, 100
         async with aiohttp.ClientSession() as session:
             while True:
-                tasks = [self._fetch_url_for_efts(session, f"{base_url}&from={start + i * page_size}") for i in range(10)]
+                tasks = [self._fetch_json_from_url(session, f"{base_url}&from={start + i * page_size}") for i in range(10)]
                 results = await atqdm.gather(*tasks, desc="Fetching URLs")
                 for data in results:
                     if data and 'hits' in data:
@@ -86,11 +95,16 @@ class Downloader:
                 start += 10 * page_size
         return full_urls
 
+    # DONE
     def _number_of_efts_filings(self, url):
+        """Get the number of filings from a given EFTS URL."""
         response = requests.get(url, headers=self.headers)
         return sum(bucket['doc_count'] for bucket in response.json()['aggregations']['form_filter']['buckets'])
 
+    # Possible issue: if more than 10000 filings after filtering, the function will miss some filings.
+    # Low priority for now.
     def _subset_urls(self, full_url, total_filings, target_filings_per_range=1000):
+        """Split an EFTS URL into multiple URLs based on the number of filings."""
         parsed_url = urlparse(full_url)
         params = parse_qs(parsed_url.query)
         start = datetime.strptime(params.get('startdt', [None])[0], "%Y-%m-%d")
@@ -127,7 +141,9 @@ class Downloader:
             current_start = current_end + timedelta(days=1)
         return urls
 
+    # DONE
     def _conductor(self, efts_url, return_urls,output_dir):
+        """Conduct the download process based on the number of filings."""
         total_filings = self._number_of_efts_filings(efts_url)
         all_primary_doc_urls = []
         
@@ -151,7 +167,9 @@ class Downloader:
         
         return all_primary_doc_urls if return_urls else None
 
+    # DONE
     def download(self, output_dir = 'filings',  return_urls=False,cik=None, ticker=None, form=None, date=None):
+        """Download filings based on CIK, ticker, form, and date. Date can be a single date, date range, or list of dates."""
         base_url = "https://efts.sec.gov/LATEST/search-index?"
         if sum(x is not None for x in [cik, ticker]) > 1:
             raise ValueError('Please provide no more than one identifier: cik, name, or ticker')
@@ -170,6 +188,8 @@ class Downloader:
         
         if isinstance(date, list):
             efts_url_list = [f"{base_url}{form_str}&startdt={d}&enddt={d}" for d in date]
+        elif isinstance(date, tuple):
+            efts_url_list = [f"{base_url}{form_str}&startdt={date[0]}&enddt={date[1]}"]
         else:
             date_str = f"&startdt={date}&enddt={date}" if date else f"&startdt=2001-01-01&enddt={datetime.now().strftime('%Y-%m-%d')}"
             efts_url_list = [f"{base_url}{form_str}{date_str}"]
@@ -183,36 +203,22 @@ class Downloader:
         
         return all_primary_doc_urls if return_urls else None
 
-    def download_dataset(self, dataset):
-        if not os.path.exists(self.dataset_path):
-            os.makedirs(self.dataset_path)
+    # DONE. Add more datasets
+    def download_dataset(self, dataset, dataset_path='datasets'):
+        """Download a dataset from Dropbox. Currently supports '10K' and 'MDA'."""
+        if not os.path.exists(dataset_path):
+            os.makedirs(dataset_path)
 
         if dataset == '10K':
-            zip_path = self.dataset_path + '/10K.zip'
-            extract_path = self.dataset_path
-            _download_from_dropbox(dataset_10k_url, zip_path)
-            with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-                zip_ref.extractall(extract_path)
-            os.remove(zip_path)
+            file_path = os.path.join(dataset_path, '10K.zip')
+            _download_from_dropbox(dataset_10k_url, file_path)
         elif dataset == "MDA":
-            zip_path = self.dataset_path + '/MDA.zip'
-            extract_path = self.dataset_path + '/MDA.csv'
-            _download_from_dropbox(dataset_mda_url, zip_path)
-            with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-                file_info = zip_ref.infolist()[0]
-                with zip_ref.open(file_info) as file_in_zip, \
-                    open(extract_path, 'wb') as output_file:
-                    with tqdm(total=file_info.file_size, unit='B', unit_scale=True, desc="Extracting") as pbar:
-                        while True:
-                            chunk = file_in_zip.read(8192)
-                            if not chunk:
-                                break
-                            output_file.write(chunk)
-                            pbar.update(len(chunk))
-            os.remove(zip_path)
+            file_path = os.path.join(dataset_path, 'MDA.zip')
+            _download_from_dropbox(dataset_mda_url, file_path)
 
-
+    # DONE. May need simplification
     async def _watch_efts(self, form=None, cik=None, interval=1, silent=False):
+        """Watch the EFTS API for changes in the number of filings."""
         params = {
             "startdt": (datetime.now()).strftime("%Y-%m-%d"),
             "enddt": datetime.now().strftime("%Y-%m-%d")
@@ -237,41 +243,39 @@ class Downloader:
             pass
 
         previous_value = None
+        watch_url = "https://efts.sec.gov/LATEST/search-index" + "?" + urlencode(params)
         
         async with aiohttp.ClientSession() as session:
-            while True:
-                try:
-                    watch_url = "https://efts.sec.gov/LATEST/search-index"
-                    async with session.get(watch_url, params=params, headers=self.headers) as response:
-                        if response.status == 200:
-                            data = await response.json()
+                while True:
+                    data = await self._fetch_json_from_url(session, watch_url)
+                    
+                    if data:
+                        if not silent:
+                            print(f"URL: {watch_url}?{urlencode(params)}")
+                        
+                        current_value = data['hits']['total']['value']
+                        
+                        if previous_value is not None and current_value != previous_value:
                             if not silent:
-                                print(response.url)
-                            current_value = data['hits']['total']['value']
-                            
-                            if previous_value is not None and current_value != previous_value:
-                                if not silent:
-                                    print(f"Value changed from {previous_value} to {current_value}")
-                                return True
-                            
-                            previous_value = current_value
-                            if not silent:
-                                print(f"Current value: {current_value}. Checking again in {interval} seconds.")
-                        else:
-                            print(f"Error occurred: HTTP {response.status}")
-                
-                except aiohttp.ClientError as e:
-                    print(f"Error occurred: {e}")
-                
-                await asyncio.sleep(interval)
+                                print(f"Value changed from {previous_value} to {current_value}")
+                            return True
+                        
+                        previous_value = current_value
+                        if not silent:
+                            print(f"Current value: {current_value}. Checking again in {interval} seconds.")
+                    else:
+                        print("Error occurred while fetching data.")
+                    
+                    await asyncio.sleep(interval)
 
-    # WIP add option to return new results
+    # DONE. May add return results option in the future
     def watch(self,interval=1,silent=True, form=None,cik=None, ticker=None):
+        """Watch the EFTS API for changes in the number of filings."""
         if sum(x is not None for x in [cik, ticker]) > 1:
             raise ValueError('Please provide no more than one identifier: cik, name, or ticker')
         
         if ticker:
             cik = identifier_to_cik(ticker)
-        # wip add ticker conversion
+
         return asyncio.run(self._watch_efts(interval=interval,silent=silent,form=form,cik=cik))
     
