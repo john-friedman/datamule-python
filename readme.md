@@ -68,13 +68,18 @@ downloader.download(form='10-K', ticker='AAPL')
 
 ### Downloader
 
-The `Downloader` class uses the [EFTS API](https://efts.sec.gov/LATEST/search-index) to retrieve filings.
+```
+downloader = dm.Downloader()
+```
 
 #### Downloading Filings
 
-```python
-downloader = dm.Downloader()
+Uses the [EFTS API](https://efts.sec.gov/LATEST/search-index) to retrieve filings. I am considering renaming `download` to `download_filings`.
+```
+download(self, output_dir = 'filings',  return_urls=False,cik=None, ticker=None, form=None, date=None)
+```
 
+```python
 # Download all 10-K filings for Tesla using CIK
 downloader.download(form='10-K', cik='1318605', output_dir='filings')
 
@@ -83,6 +88,14 @@ downloader.download(form='10-K', ticker=['TSLA', 'META'], output_dir='filings')
 
 # Download every form 3 for a specific date
 downloader.download(form='3', date='2024-05-21', output_dir='filings')
+```
+
+#### Downloading Company Concepts XBRL
+
+Uses the [Company Concepts API](https://data.sec.gov/api/xbrl/companyfacts/CIK0001318605.json) to retrieve XBRL.
+
+```
+download_company_concepts(self, output_dir = 'company_concepts',cik=None, ticker=None)
 ```
 
 #### Monitoring for New Filings
@@ -191,9 +204,15 @@ downloader.download_dataset('MDA')
       html = etree.parse(file, etree.HTMLParser())
   ```
 
+- SEC Endpoints have issues. e.g. The EFTS search returns the primary doc url for https://www.sec.gov/Archives/edgar/data/1036804/000095011601000004/ as https://www.sec.gov/Archives/edgar/data/1036804/000095011601000004/0001.txt, when it should send you to https://www.sec.gov/Archives/edgar/data/1036804/000095011601000004/0000950116-01-000004.txt.
+
+This is currently a low priority issue. Let me know if you need the data, and I'll move it up the priority list.
+
 ## Roadmap
 - [ ] Add Mulebot
 - [ ] Downloader refactor and integrate XBRL downloads
+- [ ] Refactor fetch json. to integrate parsing then download.
+- [ ] Paths may be messed up on non windows devices. Need to verify.
 - [ ] Analytics?
 
 ## Contributing

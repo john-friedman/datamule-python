@@ -80,13 +80,18 @@ downloader.download(form='10-K', ticker='AAPL')
 
 ### Downloader
 
-The `Downloader` class uses the [EFTS API](https://efts.sec.gov/LATEST/search-index) to retrieve filings.
+```
+downloader = dm.Downloader()
+```
 
 #### Downloading Filings
 
-```python
-downloader = dm.Downloader()
+Uses the [EFTS API](https://efts.sec.gov/LATEST/search-index) to retrieve filings. I am considering renaming `download` to `download_filings`.
+```
+download(self, output_dir = 'filings',  return_urls=False,cik=None, ticker=None, form=None, date=None)
+```
 
+```python
 # Download all 10-K filings for Tesla using CIK
 downloader.download(form='10-K', cik='1318605', output_dir='filings')
 
@@ -95,6 +100,14 @@ downloader.download(form='10-K', ticker=['TSLA', 'META'], output_dir='filings')
 
 # Download every form 3 for a specific date
 downloader.download(form='3', date='2024-05-21', output_dir='filings')
+```
+
+#### Downloading Company Concepts XBRL
+
+Uses the [Company Concepts API](https://data.sec.gov/api/xbrl/companyfacts/CIK0001318605.json) to retrieve XBRL.
+
+```
+download_company_concepts(self, output_dir = 'company_concepts',cik=None, ticker=None)
 ```
 
 #### Monitoring for New Filings
@@ -132,6 +145,10 @@ from datamule.filing_viewer import create_interactive_html
 data = parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605/000095017022000796/tsla-20211231.htm', return_type='json')
 create_interactive_html(data, 'output_path.html')
 ```
+
+![interactive](https://github.com/john-friedman/datamule-python/blob/main/static/interactive.png)
+
+
 
 ### Mulebot 
 
@@ -172,7 +189,10 @@ if __name__ == "__main__":
 
 ## Datasets
 
-Access parsed datasets:
+Available datasets:
+- 2024 10-K filings converted to JSON `10K`
+- Management's Discussion and Analysis (MD&A) sections extracted from 2024 10-K filings `MDA`
+- Every XBRL (Coming Soon)
 
 ```python
 downloader = dm.Downloader()
@@ -199,6 +219,9 @@ downloader.download_dataset('MDA')
 ## Roadmap
 - [ ] Add Mulebot
 - [ ] Downloader refactor and integrate XBRL downloads
+- [ ] Refactor fetch json. to integrate parsing then download.
+- [ ] Paths may be messed up on non windows devices. Need to verify.
+- [ ] Analytics?
 
 ## Contributing
 

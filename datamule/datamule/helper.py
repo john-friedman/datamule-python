@@ -65,7 +65,7 @@ def load_company_tickers():
 
 # DONE
 def identifier_to_cik(ticker):
-    """Convert a company ticker to CIK code"""
+    """Convert company tickers to CIK codes"""
     company_tickers = load_company_tickers()
     if ticker:
         if isinstance(ticker, list):

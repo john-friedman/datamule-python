@@ -1,17 +1,9 @@
-import requests
-from .global_vars import headers
 
-def get_all_facts_for_company(cik):
-    """Get all company facts for a given CIK. Returns a list of dictionaries with information about each fact and the table."""
-    url = f'https://data.sec.gov/api/xbrl/companyfacts/CIK{str(cik).zfill(10)}.json'
-    response = requests.get(url, headers=headers)
-
-    # Raise an exception if the response code is not 200
-    response.raise_for_status()
-
-    # Get the JSON response
-    data = response.json()
-
+# WIP. has issue with some concepts
+# Need to increase speed
+def parse_company_concepts(data):
+    # get cik
+    cik = data['cik']
     # get categories
     categories = list(data['facts'].keys())
 
@@ -25,7 +17,18 @@ def get_all_facts_for_company(cik):
             for unit in units:
                 table = data['facts'][category][fact]['units'][unit]
 
-                table_dict = {'category': category, 'fact': fact, 'label': label, 'description': description, 'unit': unit, 'table': table}
+                # Find all unique keys across all rows
+                all_keys = set()
+                for row in table:
+                    all_keys.update(row.keys())
+
+                # Ensure all rows have all keys
+                for row in table:
+                    for key in all_keys:
+                        if key not in row:
+                            row[key] = None
+
+                table_dict = {'cik':cik, 'category': category, 'fact': fact, 'label': label, 'description': description, 'unit': unit, 'table': table}
                 table_dict_list.append(table_dict)
 
     return table_dict_list

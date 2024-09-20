@@ -9,8 +9,14 @@ import zipfile
 from datetime import datetime, timedelta
 from urllib.parse import urlparse, parse_qs, urlencode
 import math
+from collections import defaultdict
+import csv
+
 from .global_vars import headers, dataset_10k_url, dataset_mda_url
 from .helper import _download_from_dropbox, identifier_to_cik
+from .parsers import parse_company_concepts
+
+
 
 class Downloader:
     def __init__(self, rate_limit=10):
@@ -69,6 +75,17 @@ class Downloader:
         successful_downloads = [result for result in results if result is not None]
         print(f"Successfully downloaded {len(successful_downloads)} out of {len(urls)} URLs")
         return successful_downloads
+    
+    # WIP
+    async def _fetch_json_from_urls(self, urls):
+        """Asynchronously fetch JSON data from a list of URLs."""
+        async with aiohttp.ClientSession() as session:
+            tasks = [self._fetch_json_from_url(session, url) for url in urls]
+            results = [await f for f in tqdm(asyncio.as_completed(tasks), total=len(tasks), desc="Fetching data")]
+        success = [result for result in results if result is not None]
+        print(f"Successfully fetched {len(success)} out of {len(urls)} URLs")
+        return success
+    
 
     # DONE
     def run_download_urls(self, urls, output_dir='filings'):
@@ -139,7 +156,9 @@ class Downloader:
             if current_end == end:
                 break
             current_start = current_end + timedelta(days=1)
-        return urls
+
+        # reverse order of urls to download from newest to oldest
+        return urls[::-1]
 
     # DONE
     def _conductor(self, efts_url, return_urls,output_dir):
@@ -158,16 +177,16 @@ class Downloader:
                 return None
         
         for subset_url in self._subset_urls(efts_url, total_filings):
-            sub_primary_doc_urls = self._conductor(subset_url, True)
+            sub_primary_doc_urls = self._conductor(efts_url=subset_url, return_urls=True,output_dir=output_dir)
             
             if return_urls:
                 all_primary_doc_urls.extend(sub_primary_doc_urls)
             else:
-                self.run_download_urls(urls=primary_doc_urls,output_dir=output_dir)
+                self.run_download_urls(urls=sub_primary_doc_urls,output_dir=output_dir)
         
         return all_primary_doc_urls if return_urls else None
 
-    # DONE
+    # DONE. May rename to download_filings
     def download(self, output_dir = 'filings',  return_urls=False,cik=None, ticker=None, form=None, date=None):
         """Download filings based on CIK, ticker, form, and date. Date can be a single date, date range, or list of dates."""
         base_url = "https://efts.sec.gov/LATEST/search-index?"
@@ -202,6 +221,87 @@ class Downloader:
                 self._conductor(efts_url=efts_url, return_urls=False,output_dir=output_dir)
         
         return all_primary_doc_urls if return_urls else None
+    
+    # TODO add QoL like download all ciks
+    # WIP
+    def download_company_concepts(self, output_dir = 'company_concepts',cik=None, ticker=None):
+        if sum(x is not None for x in [cik, ticker]) > 1:
+            raise ValueError('Please provide no more than one identifier: cik, name, or ticker')
+        
+        if isinstance(ticker, list):
+            raise ValueError('Please provide only one ticker')
+        elif isinstance(cik, list):
+            raise ValueError('Please provide only one cik')
+        
+        if ticker is not None:
+            cik = identifier_to_cik(ticker)
+            cik = cik[0]
+            
+
+        os.makedirs(output_dir, exist_ok=True)
+
+        if not cik:
+            raise ValueError("Please provide a CIK or ticker")
+
+        urls = [f'https://data.sec.gov/api/xbrl/companyfacts/CIK{str(cik).zfill(10)}.json']
+        results = asyncio.run(self._fetch_json_from_urls(urls))
+        for result in results:
+            table_dict_list = parse_company_concepts(result)
+
+            cik_groups = defaultdict(list)
+            for item in table_dict_list:
+                cik_groups[item['cik']].append(item)
+
+            for cik, group in cik_groups.items():
+                # Create a directory for each CIK
+                cik_dir = output_dir + '/' + str(cik)
+                os.makedirs(cik_dir, exist_ok=True)
+
+                # Create a set to track unique facts for metadata
+                unique_facts = set()
+
+                # Write table CSV files
+                for item in group:
+                    fact = item['fact']
+                    unique_facts.add(fact)
+                    filename = f"{fact}.csv"
+                    filepath = os.path.join(cik_dir, filename)
+                    with open(filepath, 'w', newline='') as csvfile:
+                        # Assuming all dictionaries in the list have the same keys
+                        fieldnames = item['table'][0].keys()
+                        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                        
+                        # Write the header
+                        writer.writeheader()
+                        
+                        # Write the rows
+                        for row in item['table']:
+                            writer.writerow(row)
+
+                # Write metadata CSV file
+                metadata_filename = f"{cik}_metadata.csv"
+                metadata_filepath = os.path.join(cik_dir, metadata_filename)
+
+                with open(metadata_filepath, 'w', newline='') as csvfile:
+                    fieldnames = ['fact', 'category', 'label', 'description', 'unit', 'table']
+                    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+                    writer.writeheader()
+                    for item in group:
+                        if item['fact'] in unique_facts:
+                            writer.writerow({
+                                'fact': item['fact'],
+                                'category': item['category'],
+                                'label': item['label'],
+                                'description': item['description'],
+                                'unit': item['unit'],
+                                'table': item['fact']  # Using 'fact' as table name
+                            })
+                            unique_facts.remove(item['fact'])
+
+        print(f"Downloaded company concepts to {output_dir}")
+
+        
 
     # DONE. Add more datasets
     def download_dataset(self, dataset, dataset_path='datasets'):
