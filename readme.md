@@ -121,6 +121,11 @@ data = parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605
 create_interactive_html(data, 'output_path.html')
 ```
 
+![interactive](https://github.com/john-friedman/datamule-python/blob/main/static/interactive.png)
+
+![json](https://github.com/john-friedman/datamule-python/blob/main/static/json.png)
+
+
 ### Mulebot 
 
 Interact with SEC data using MuleBot (coming soon). Mulebot uses tool calling to interface with SEC and datamule endpoints.
