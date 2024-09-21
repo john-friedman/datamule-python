@@ -1,8 +1,12 @@
 import openai
 import json
-from datamule.parsers import get_all_facts_for_company
+
 from datamule.helper import identifier_to_cik
 from .tools import tools
+from .helper import get_company_concept
+
+
+
 
 class MuleBot:
     def __init__(self, api_key):
@@ -17,7 +21,7 @@ class MuleBot:
 
         try:
             response = self.client.chat.completions.create(
-                model="gpt-4-0613",
+                model="gpt-4o-mini",
                 messages=self.messages,
                 tools=tools,
                 tool_choice="auto"
@@ -38,6 +42,11 @@ class MuleBot:
                         result = identifier_to_cik(function_args["ticker"])
                         function_response = f"The CIK for {function_args['ticker']} is {result}"
                         self.messages.append({"role": "function", "name": "identifier_to_cik", "content": function_response})
+                    elif tool_call.function.name == "get_company_concept":
+                        function_args = json.loads(tool_call.function.arguments)
+                        result = get_company_concept(function_args["cik"], function_args["search_term"])
+                        
+                        # now we need to send another call to pick which table to display
 
                 final_response = self.client.chat.completions.create(
                     model="gpt-4-0613",
