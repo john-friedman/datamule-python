@@ -12,10 +12,8 @@ import math
 from collections import defaultdict
 import csv
 
-from .global_vars import headers, dataset_10k_url, dataset_mda_url
-from .helper import _download_from_dropbox, identifier_to_cik
-from .parsers import parse_company_concepts
-
+from .global_vars import headers, dataset_10k_url, dataset_mda_url, dataset_xbrl_url
+from .helper import _download_from_dropbox, identifier_to_cik, load_company_tickers
 
 
 class Downloader:
@@ -24,11 +22,20 @@ class Downloader:
         self.headers = headers  # Define headers in global_vars.py
         self.dataset_path = 'datasets'
 
-    # DONE
-    async def _write_file_from_url(self, session, url, output_dir):
+    # WIP. generalize
+    # we could add filepath here
+    async def _write_file_from_url(self, session, url, output_dir,temp_fix=None):
         """Asynchronously download a single URL to a specified directory."""
-        filename = f"{url.split('/')[7]}_{url.split('/')[-1]}"
-        filepath = os.path.join(output_dir, filename)
+
+        # this is issue preventing generalization
+
+        # workaround
+        if temp_fix is None:
+            filename = f"{url.split('/')[7]}_{url.split('/')[-1]}"
+            filepath = os.path.join(output_dir, filename)
+        else:
+            filename = f"{url.split('/')[-1]}"
+            filepath = os.path.join(output_dir, filename)
 
         for attempt in range(5):
             try:
@@ -66,11 +73,11 @@ class Downloader:
         return None
     
     # DONE
-    async def _download_urls(self, urls, output_dir):
+    async def _download_urls(self, urls, output_dir,temp_fix=None):
         """Asynchronously download a list of URLs to a specified directory."""
         os.makedirs(output_dir, exist_ok=True)
         async with aiohttp.ClientSession() as session:
-            tasks = [self._write_file_from_url(session, url, output_dir) for url in urls]
+            tasks = [self._write_file_from_url(session=session, url=url, output_dir=output_dir,temp_fix=temp_fix) for url in urls]
             results = [await f for f in tqdm(asyncio.as_completed(tasks), total=len(tasks), desc="Downloading files")]
         successful_downloads = [result for result in results if result is not None]
         print(f"Successfully downloaded {len(successful_downloads)} out of {len(urls)} URLs")
@@ -88,9 +95,9 @@ class Downloader:
     
 
     # DONE
-    def run_download_urls(self, urls, output_dir='filings'):
+    def run_download_urls(self, urls, output_dir='filings',temp_fix=None):
         """Download a list of URLs to a specified directory"""
-        return asyncio.run(self._download_urls([url for url in urls if url.split('/')[-1].split('.')[-1] != ''], output_dir))
+        return asyncio.run(self._download_urls([url for url in urls if url.split('/')[-1].split('.')[-1] != ''], output_dir,temp_fix=temp_fix))
 
     # DONE
     async def _get_filing_urls_from_efts(self, base_url):
@@ -222,86 +229,31 @@ class Downloader:
         
         return all_primary_doc_urls if return_urls else None
     
-    # TODO add QoL like download all ciks
-    # WIP
+    # DONE
     def download_company_concepts(self, output_dir = 'company_concepts',cik=None, ticker=None):
         if sum(x is not None for x in [cik, ticker]) > 1:
             raise ValueError('Please provide no more than one identifier: cik, name, or ticker')
         
-        if isinstance(ticker, list):
-            raise ValueError('Please provide only one ticker')
-        elif isinstance(cik, list):
-            raise ValueError('Please provide only one cik')
+        ciks = None
+        if cik:
+            if isinstance(cik, list):
+                ciks = cik
+            else:
+                ciks = [cik]
         
         if ticker is not None:
-            cik = identifier_to_cik(ticker)
-            cik = cik[0]
+            ciks = identifier_to_cik(ticker)
+
+        # load all company ciks from company tickers
+        if ciks is None:
+            company_tickers = load_company_tickers()
+            ciks = [company['cik'] for company in company_tickers]
             
-
         os.makedirs(output_dir, exist_ok=True)
+                
 
-        if not cik:
-            raise ValueError("Please provide a CIK or ticker")
-
-        urls = [f'https://data.sec.gov/api/xbrl/companyfacts/CIK{str(cik).zfill(10)}.json']
-        results = asyncio.run(self._fetch_json_from_urls(urls))
-        for result in results:
-            table_dict_list = parse_company_concepts(result)
-
-            cik_groups = defaultdict(list)
-            for item in table_dict_list:
-                cik_groups[item['cik']].append(item)
-
-            for cik, group in cik_groups.items():
-                # Create a directory for each CIK
-                cik_dir = output_dir + '/' + str(cik)
-                os.makedirs(cik_dir, exist_ok=True)
-
-                # Create a set to track unique facts for metadata
-                unique_facts = set()
-
-                # Write table CSV files
-                for item in group:
-                    fact = item['fact']
-                    unique_facts.add(fact)
-                    filename = f"{fact}.csv"
-                    filepath = os.path.join(cik_dir, filename)
-                    with open(filepath, 'w', newline='') as csvfile:
-                        # Assuming all dictionaries in the list have the same keys
-                        fieldnames = item['table'][0].keys()
-                        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-                        
-                        # Write the header
-                        writer.writeheader()
-                        
-                        # Write the rows
-                        for row in item['table']:
-                            writer.writerow(row)
-
-                # Write metadata CSV file
-                metadata_filename = f"{cik}_metadata.csv"
-                metadata_filepath = os.path.join(cik_dir, metadata_filename)
-
-                with open(metadata_filepath, 'w', newline='') as csvfile:
-                    fieldnames = ['fact', 'category', 'label', 'description', 'unit', 'table']
-                    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
-                    writer.writeheader()
-                    for item in group:
-                        if item['fact'] in unique_facts:
-                            writer.writerow({
-                                'fact': item['fact'],
-                                'category': item['category'],
-                                'label': item['label'],
-                                'description': item['description'],
-                                'unit': item['unit'],
-                                'table': item['fact']  # Using 'fact' as table name
-                            })
-                            unique_facts.remove(item['fact'])
-
-        print(f"Downloaded company concepts to {output_dir}")
-
-        
+        urls = [f'https://data.sec.gov/api/xbrl/companyfacts/CIK{str(cik).zfill(10)}.json' for cik in ciks]
+        self.run_download_urls(urls=urls,output_dir=output_dir,temp_fix='company_concepts')
 
     # DONE. Add more datasets
     def download_dataset(self, dataset, dataset_path='datasets'):
@@ -315,6 +267,9 @@ class Downloader:
         elif dataset == "MDA":
             file_path = os.path.join(dataset_path, 'MDA.zip')
             _download_from_dropbox(dataset_mda_url, file_path)
+        elif dataset == "XBRL":
+            file_path = os.path.join(dataset_path, 'XBRL.zip')
+            _download_from_dropbox(dataset_xbrl_url, file_path)
 
     # DONE. May need simplification
     async def _watch_efts(self, form=None, cik=None, interval=1, silent=False):

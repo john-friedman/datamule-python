@@ -26,7 +26,6 @@ A Python package to simplify working with SEC filings. Also includes Mulebot, an
   - [Parsing](#parsing)
   - [Filing Viewer](#filing-viewer)
   - [MuleBot](#mulebot)
-- [Datasets](#datasets)
 - [Examples](#examples)
 - [Known Issues](#known-issues)
 - [Roadmap](#roadmap)
@@ -96,6 +95,20 @@ Uses the [Company Concepts API](https://data.sec.gov/api/xbrl/companyfacts/CIK00
 
 ```
 download_company_concepts(self, output_dir = 'company_concepts',cik=None, ticker=None)
+```
+
+#### Datasets
+
+Available datasets:
+- 2024 10-K filings converted to JSON `10K`
+- Management's Discussion and Analysis (MD&A) sections extracted from 2024 10-K filings `MDA`
+- Every Company Concepts XBRL `XBRL`
+
+Also available on [Dropbox](https://www.dropbox.com/scl/fo/byxiish8jmdtj4zitxfjn/AAaiwwuyaYp_zRfFyqfBUS8?rlkey=g1zk5pg7iendbsa34ltnokuxl&st=ca7zoeum&dl=0)
+
+```python
+# Download all 2024 10-K filings converted to JSON
+downloader.download_dataset('10K')
 ```
 
 #### Monitoring for New Filings
@@ -175,22 +188,7 @@ if __name__ == "__main__":
     main()
 ```
 
-## Datasets
 
-Available datasets:
-- 2024 10-K filings converted to JSON `10K`
-- Management's Discussion and Analysis (MD&A) sections extracted from 2024 10-K filings `MDA`
-- Every XBRL (Coming Soon)
-
-```python
-downloader = dm.Downloader()
-
-# Download all 2024 10-K filings converted to JSON
-downloader.download_dataset('10K')
-
-# Download all MD&As extracted from 2024 10-K filings
-downloader.download_dataset('MDA')
-```
 
 ## Known Issues
 
