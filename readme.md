@@ -4,7 +4,7 @@
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fjohn-friedman%2Fdatamule-python&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 ![GitHub](https://img.shields.io/github/stars/john-friedman/datamule-python)
 
-A Python package to simplify working with SEC filings. Also includes Mulebot, an open-source chatbot for SEC data that does not require storage. Integrated with [datamule](https://datamule.xyz/)'s APIs and datasets.
+A Python package to work with SEC filings at scale. Also includes Mulebot, an open-source chatbot for SEC data that does not require storage. Integrated with [datamule](https://datamule.xyz/)'s APIs and datasets.
 
 <!-- Link to medium article, how to setup a SEC chatbot in 5 minutes. -->
 
@@ -66,6 +66,8 @@ downloader.download(form='10-K', ticker='AAPL')
 ## Usage
 
 ### Downloader
+
+Download speed is close to theoretical maximum set by SEC rate limits.
 
 ```
 downloader = dm.Downloader()
