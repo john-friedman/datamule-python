@@ -124,6 +124,17 @@ if changed_bool:
 
 ### Parsing
 
+#### Parse SEC XBRL
+
+Parses XBRL in JSON format to tables. [SEC XBRL](https://www.sec.gov/search-filings/edgar-application-programming-interfaces). See [Parse every SEC XBRL to csv in ten minutes](https://github.com/john-friedman/datamule-python/blob/main/examples/parse_all_xbrl.ipynb)
+
+```
+from datamule import parse_company_concepts
+table_dict_list = parse_company_concepts(company_concepts) # Returns a list of tables with labels
+```
+
+#### Parse Textual Filings into structured data
+
 Parse textual filings into different formats. Uses [datamule parser endpoint](https://jgfriedman99.pythonanywhere.com/parse_url). If it is too slow for your use-case let me know. A faster endpoint is coming soon.
 
 ```python
