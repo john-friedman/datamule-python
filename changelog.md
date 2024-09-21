@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.312 (2024-09-20)
+- Added download_company_concepts
+
 ## v0.311 (2024-09-19)
 - Added basic mulebot tool calling and interface.
 
