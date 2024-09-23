@@ -8,8 +8,11 @@ import requests
 from datamule.parsers import parse_company_concepts
 from datamule.global_vars import headers
 from .search import fuzzy_search
+from datamule.helper import identifier_to_cik
 
-def get_company_concept(cik,search_term):
+def get_company_concept(ticker,search_term):
+
+    cik = identifier_to_cik(ticker)[0]
     url = f'https://data.sec.gov/api/xbrl/companyfacts/CIK{str(cik).zfill(10)}.json'
     response = requests.get(url,headers=headers)
     data = response.json()
@@ -32,4 +35,7 @@ def get_company_concept(cik,search_term):
     matched_tables = [table_dict_list[labels.index(match)] for match in matches]
     
     return matched_tables
+
+def select_table(table_dict_list, label):
+    return next((d for d in table_dict_list if d.get('label') == label), None)
 
