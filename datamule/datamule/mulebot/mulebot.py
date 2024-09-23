@@ -26,8 +26,6 @@ class MuleBot:
                 tool_choice="auto"
             )
 
-            #print(f"Response: {response}\n")
-
             self.total_tokens += response.usage.total_tokens
             assistant_message = response.choices[0].message
 
@@ -35,9 +33,12 @@ class MuleBot:
                 assistant_message.content = "I'm processing your request."
 
             self.messages.append({"role": "assistant", "content": assistant_message.content})
-
-            if assistant_message.tool_calls:
-                for tool_call in assistant_message.tool_calls:
+            
+            tool_calls = assistant_message.tool_calls
+            if tool_calls is None:
+                return {'key':'text','value':assistant_message.content}
+            else:
+                for tool_call in tool_calls:
                     print(f"Tool call: {tool_call.function.name}")
                     if tool_call.function.name == "identifier_to_cik":
                         function_args = json.loads(tool_call.function.arguments)
@@ -100,8 +101,8 @@ class MuleBot:
             response_type = response['key']
 
             if response_type == 'text':
-                values = response['value']
-                print(values[0])
+                value = response['value']
+                print(value)
             elif response_type == 'table':
-                values = response['value']
-                print(values)
+                value = response['value']
+                print(value)
