@@ -220,9 +220,9 @@ if __name__ == "__main__":
 This is currently a low priority issue. Let me know if you need the data, and I'll move it up the priority list.
 
 ## Roadmap
-- [ ] Add Mulebot
+- [ ] Add Mulebot. Add table artifact (current issue is with bad data input). Add section and filing viewer
 - [ ] Downloader refactor and integrate XBRL downloads
-- [ ] Refactor fetch json. to integrate parsing then download.
+- [ ] add sec_fetch. Either urllib or request should be fastest. integrate into mulebot
 - [ ] Paths may be messed up on non windows devices. Need to verify.
 - [ ] Analytics?
 
