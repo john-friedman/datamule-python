@@ -4,29 +4,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot Interface</title>
+    <title>MuleBot Chat Interface</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <style>
-        #chat-container {
-            width: 400px;
-            margin: 0 auto;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
             padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            background-color: #f0f0f0;
+        }
+
+        #chat-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
         }
 
         #chat-messages {
-            height: 300px;
-            overflow-y: scroll;
-            margin-bottom: 10px;
-            padding: 10px;
-            border: 1px solid #eee;
+            height: 400px;
+            overflow-y: auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .message {
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .user-message {
+            text-align: right;
+        }
+
+        .bot-message {
+            text-align: left;
+        }
+
+        .message span {
+            display: inline-block;
+            padding: 8px 12px;
+            border-radius: 18px;
+            max-width: 80%;
+        }
+
+        .user-message span {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .bot-message span {
+            background-color: #e9e9e9;
+            color: #333;
+        }
+
+        #input-container {
+            display: flex;
+            padding: 20px;
+            background-color: #fff;
+            border-top: 1px solid #eee;
         }
 
         #user-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            margin-left: 10px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            border-collapse: collapse;
             width: 100%;
-            padding: 5px;
+            margin-top: 10px;
             margin-bottom: 10px;
+            background-color: white;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+
+        .table-message {
+            font-style: italic;
+            color: #666;
+            margin-top: 5px;
+        }
+
+        #token-count {
+            text-align: right;
+            padding: 10px;
+            font-size: 12px;
+            color: #666;
         }
     </style>
 </head>
@@ -34,8 +129,11 @@
 <body>
     <div id="chat-container">
         <div id="chat-messages"></div>
-        <input type="text" id="user-input" placeholder="Type your message...">
-        <button onclick="sendMessage()">Send</button>
+        <div id="input-container">
+            <input type="text" id="user-input" placeholder="Type your message...">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+        <div id="token-count">Total tokens: 0</div>
     </div>
 
     <script>
@@ -43,7 +141,7 @@
             var userInput = $('#user-input').val();
             if (userInput.trim() === '') return;
 
-            $('#chat-messages').append('<p><strong>You:</strong> ' + userInput + '</p>');
+            appendMessage('user', userInput);
             $('#user-input').val('');
 
             $.ajax({
@@ -52,10 +150,53 @@
                 contentType: 'application/json',
                 data: JSON.stringify({ message: userInput }),
                 success: function (response) {
-                    $('#chat-messages').append('<p><strong>Chatbot:</strong> ' + response.response + '</p>');
+                    if (response.response.key === 'text') {
+                        appendMessage('bot', response.response.value);
+                    } else if (response.response.key === 'table') {
+                        var tableHtml = createTable(response.response.value);
+                        appendMessage('bot', '<div class="table-message">Table has been generated:</div>' + tableHtml);
+                    }
+                    $('#token-count').text('Total tokens: ' + response.total_tokens);
                     $('#chat-messages').scrollTop($('#chat-messages')[0].scrollHeight);
+                },
+                error: function (xhr, status, error) {
+                    appendMessage('bot', 'Error: ' + error);
                 }
             });
+        }
+
+        function appendMessage(sender, content) {
+            var messageClass = sender === 'user' ? 'user-message' : 'bot-message';
+            var messageHtml = '<div class="message ' + messageClass + '"><span>' + content + '</span></div>';
+            $('#chat-messages').append(messageHtml);
+            $('#chat-messages').scrollTop($('#chat-messages')[0].scrollHeight);
+        }
+
+        function createTable(data) {
+            if (!Array.isArray(data) || data.length === 0) {
+                return '<p>No data available.</p>';
+            }
+
+            var tableHtml = '<table>';
+
+            // Add table header
+            tableHtml += '<tr>';
+            for (var key in data[0]) {
+                tableHtml += '<th>' + key + '</th>';
+            }
+            tableHtml += '</tr>';
+
+            // Add table rows
+            data.forEach(function (row) {
+                tableHtml += '<tr>';
+                for (var key in row) {
+                    tableHtml += '<td>' + row[key] + '</td>';
+                }
+                tableHtml += '</tr>';
+            });
+
+            tableHtml += '</table>';
+            return tableHtml;
         }
 
         $('#user-input').keypress(function (e) {

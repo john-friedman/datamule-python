@@ -8,10 +8,10 @@ from .search import fuzzy_search
 
 
 class MuleBot:
-    def __init__(self, api_key, silent=False):
+    def __init__(self, api_key):
         self.client = openai.OpenAI(api_key=api_key)
         self.messages = [
-            {"role": "system", "content": "You are a helpful, but concise, assistant to assist with questions related to the Securities and Exchanges Commission."}
+            {"role": "system", "content": "You are a helpful, but concise, assistant to assist with questions related to the Securities and Exchanges Commission. You are allowed to guess tickers."}
         ]
         self.total_tokens = 0
 
@@ -25,6 +25,8 @@ class MuleBot:
                 tools=tools,
                 tool_choice="auto"
             )
+
+            #print(f"Response: {response}\n")
 
             self.total_tokens += response.usage.total_tokens
             assistant_message = response.choices[0].message
@@ -41,9 +43,8 @@ class MuleBot:
                         function_args = json.loads(tool_call.function.arguments)
                         print(f"Function args: {function_args}")
                         
-                        result = identifier_to_cik(function_args["ticker"])
-                        function_response = f"The CIK for {function_args['ticker']} is {result}"
-                        self.messages.append({"role": "function", "name": "identifier_to_cik", "content": function_response})
+                        cik = identifier_to_cik(function_args["ticker"])
+                        return {'key':'text','value':cik}
                     elif tool_call.function.name == "get_company_concept":
                         function_args = json.loads(tool_call.function.arguments)
                         print(f"Function args: {function_args}")
@@ -78,25 +79,16 @@ class MuleBot:
 
                         return {'key':'table','value':selected_table}
 
+            return {'key':'text','value':'No tool call was made.'}
 
-
-                final_response = self.client.chat.completions.create(
-                    model="gpt-4o-mini",
-                    messages=self.messages
-                )
-                self.total_tokens += final_response.usage.total_tokens
-                assistant_message = final_response.choices[0].message
-                self.messages.append({"role": "assistant", "content": assistant_message.content})
-
-            return assistant_message.content
-
-        except openai.BadRequestError as e:
+        except Exception as e:
             return f"An error occurred: {str(e)}"
 
     def get_total_tokens(self):
         return self.total_tokens
     
     def run(self):
+        """Basic chatbot loop"""
         print("MuleBot: Hello! I'm here to assist you with questions related to the Securities and Exchange Commission. Type 'quit', 'exit', or 'bye' to end the conversation.")
         while True:
             user_input = input("You: ")
@@ -105,5 +97,11 @@ class MuleBot:
                 break
             
             response = self.process_message(user_input)
-            print("MuleBot:", response)
-            print(f"Total tokens used: {self.get_total_tokens()}")
+            response_type = response['key']
+
+            if response_type == 'text':
+                values = response['value']
+                print(values[0])
+            elif response_type == 'table':
+                values = response['value']
+                print(values)
