@@ -7,10 +7,9 @@
 import requests
 from datamule.parsers import parse_company_concepts
 from datamule.global_vars import headers
-from .search import fuzzy_search
 from datamule.helper import identifier_to_cik
 
-def get_company_concept(ticker,search_term):
+def get_company_concept(ticker):
 
     cik = identifier_to_cik(ticker)[0]
     url = f'https://data.sec.gov/api/xbrl/companyfacts/CIK{str(cik).zfill(10)}.json'
@@ -18,24 +17,10 @@ def get_company_concept(ticker,search_term):
     data = response.json()
 
     table_dict_list = parse_company_concepts(data)
+    print(table_dict_list)
 
     # drop tables where label is None
     table_dict_list = [table_dict for table_dict in table_dict_list if table_dict['label'] is not None]
-
-    # convert search term to lowercase
-    search_term = search_term.lower()
-
-    # convert table labels to lowercase using list comprehension
-    labels = [table_dict['label'].lower() for table_dict in table_dict_list]
-
-    # search by label
-    matches = fuzzy_search(search_term, labels)
     
-    # return matched tables
-    matched_tables = [table_dict_list[labels.index(match)] for match in matches]
-    
-    return matched_tables
-
-def select_table(table_dict_list, label):
-    return next((d for d in table_dict_list if d.get('label') == label), None)
+    return table_dict_list
 

@@ -3,14 +3,13 @@ get_company_concept_tool = {
         "type": "function",
         "function": {
             "name": "get_company_concept",
-            "description": "Get specific XBRL facts for a company",
+            "description": "Get company XBRL concepts and facts for a given ticker",
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "ticker": {"type": "string", "description": "The ticker of the company to get facts for"},
-                    "search_term": {"type": "string", "description": "The concept to search for (e.g., 'revenue')"}
+                    "ticker": {"type": "string", "description": "The ticker of the company to get facts for"}
                 },
-                "required": ["cik", "search_term"]
+                "required": ["ticker"]
             }
         }
     }
@@ -26,21 +25,6 @@ identifier_to_cik_tool =     {
                     "ticker": {"type": "string", "description": "The ticker to convert to a CIK"},
                 },
                 "required": ["ticker"]
-            }
-        }
-    }
-
-select_table_tool = {
-        "type": "function",
-        "function": {
-            "name": "select_table",
-            "description": "Select a specific table by label",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "label": {"type": "string", "description": "Select a table by it's exact label"},
-                },
-                "required": ["label"]
             }
         }
     }

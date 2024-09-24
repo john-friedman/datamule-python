@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MuleBot Chat Interface with Artifacts</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -134,6 +135,14 @@
             font-weight: bold;
             border-bottom: 1px solid #ddd;
         }
+
+        #table-container {
+            width: 100%;
+            height: 600px;
+            border: none;
+            display: none;
+            overflow: auto;
+        }
     </style>
 </head>
 
@@ -154,6 +163,7 @@
         <div id="artifact-container">
             <div id="artifact-header">Artifact Display</div>
             <div id="artifact-content"></div>
+            <div id="table-container"></div>
         </div>
     </div>
 
@@ -163,7 +173,8 @@
             "Get all company facts for Tesla",
             "Get the advertising revenue company concept for Tesla",
             "Show me Tesla's Model S section",
-            "Summarize Apple's Management Discussion and analysis section"
+            "Summarize Apple's Management Discussion and analysis section",
+            "Show company concepts table"
         ];
         let currentSuggestionIndex = 0;
 
@@ -182,27 +193,31 @@
             appendMessage('user', userInput);
             $('#user-input').val('');
 
-            $.ajax({
-                url: '/chat',
-                method: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify({ message: userInput }),
-                success: function (response) {
-                    if (response.response.key === 'text') {
-                        appendMessage('bot', response.response.value);
-                    } else if (response.response.key === 'table') {
-                        currentArtifactId++;
-                        var tableHtml = createTable(response.response.value);
-                        displayArtifact(tableHtml);
-                        appendMessage('bot', 'I\'ve created a table for you. <span class="artifact-link" onclick="showArtifact(' + currentArtifactId + ')">Click here to view the artifact</span>.');
+            if (userInput.toLowerCase().includes("show company concepts table")) {
+                loadConceptsTable();
+            } else {
+                $.ajax({
+                    url: '/chat',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ message: userInput }),
+                    success: function (response) {
+                        if (response.response.key === 'text') {
+                            appendMessage('bot', response.response.value);
+                        } else if (response.response.key === 'table') {
+                            currentArtifactId++;
+                            var tableHtml = createTable(response.response.value);
+                            displayArtifact(tableHtml);
+                            appendMessage('bot', 'I\'ve created a table for you. <span class="artifact-link" onclick="showArtifact(' + currentArtifactId + ')">Click here to view the artifact</span>.');
+                        }
+                        $('#token-count').text('Total tokens: ' + response.total_tokens);
+                        $('#chat-messages').scrollTop($('#chat-messages')[0].scrollHeight);
+                    },
+                    error: function (xhr, status, error) {
+                        appendMessage('bot', 'Error: ' + error);
                     }
-                    $('#token-count').text('Total tokens: ' + response.total_tokens);
-                    $('#chat-messages').scrollTop($('#chat-messages')[0].scrollHeight);
-                },
-                error: function (xhr, status, error) {
-                    appendMessage('bot', 'Error: ' + error);
-                }
-            });
+                });
+            }
         }
 
         function appendMessage(sender, content) {
@@ -241,6 +256,8 @@
 
         function displayArtifact(content) {
             $('#artifact-content').html(content);
+            $('#artifact-content').show();
+            $('#table-container').hide();
         }
 
         function showArtifact(id) {
@@ -249,10 +266,32 @@
             $('#artifact-container')[0].scrollIntoView({ behavior: 'smooth' });
         }
 
+        function loadConceptsTable() {
+            $('#artifact-content').hide();
+            $('#table-container').show();
+            $('#table-container').load('table.html', function () {
+                // Remove the <script> tags from the loaded content
+                $('#table-container script').remove();
+
+                // Execute the scripts manually
+                $.getScript('table.html', function () {
+                    appendMessage('bot', 'I\'ve loaded the company concepts table for you. You can view it in the artifact display area.');
+                });
+            });
+        }
+
         $('#user-input').keypress(function (e) {
             if (e.which == 13) {
                 sendMessage();
                 return false;
+            }
+        });
+
+        // Add event listener for messages from the table
+        window.addEventListener('message', function (event) {
+            if (event.data.type === 'tableData') {
+                // Handle table data, e.g., display it in the chat
+                appendMessage('bot', 'Received table data: ' + JSON.stringify(event.data.content));
             }
         });
     </script>
