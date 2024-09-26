@@ -9,7 +9,7 @@ class Parser:
         pass
 
     # WIP
-    def parse_company_concepts(data):
+    def parse_company_concepts(self, data):
         # get cik
         cik = data['cik']
         # get categories

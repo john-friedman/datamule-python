@@ -18,7 +18,7 @@ identifier_to_cik_tool =     {
         "type": "function",
         "function": {
             "name": "identifier_to_cik",
-            "description": "Convert a company's ticker to a CIK",
+            "description": "ONLY use this when explicitly asked to convert a company's ticker to a CIK.",
             "parameters": {
                 "type": "object",
                 "properties": {

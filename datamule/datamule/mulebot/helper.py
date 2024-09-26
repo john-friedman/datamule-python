@@ -1,13 +1,9 @@
-# TODO custom parse company concepts that feeds descriptions into chatbot
-# so we need 1 request from server
-# 2. parse all
-# 3. have search function that feeds labels into chatbot
-# 4. output table
-
 import requests
-from datamule.sec_parser import parse_company_concepts
 from datamule.global_vars import headers
 from datamule.helper import identifier_to_cik
+from datamule import Parser
+
+parser = Parser()
 
 def get_company_concept(ticker):
 
@@ -16,7 +12,7 @@ def get_company_concept(ticker):
     response = requests.get(url,headers=headers)
     data = response.json()
 
-    table_dict_list = parse_company_concepts(data)
+    table_dict_list = parser.parse_company_concepts(data)
     print(table_dict_list)
 
     # drop tables where label is None

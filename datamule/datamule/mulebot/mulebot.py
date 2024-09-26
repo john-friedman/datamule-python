@@ -15,12 +15,14 @@ class MuleBot:
         self.total_tokens = 0
 
     def process_message(self, user_input):
-        self.messages.append({"role": "user", "content": user_input})
+
+        new_message_chain = self.messages
+        new_message_chain.append({"role": "user", "content": user_input})
 
         try:
             response = self.client.chat.completions.create(
                 model="gpt-4o-mini",
-                messages=self.messages,
+                messages=new_message_chain,
                 tools=tools,
                 tool_choice="auto"
             )
@@ -31,7 +33,7 @@ class MuleBot:
             if assistant_message.content is None:
                 assistant_message.content = "I'm processing your request."
 
-            self.messages.append({"role": "assistant", "content": assistant_message.content})
+            new_message_chain.append({"role": "assistant", "content": assistant_message.content})
             
             tool_calls = assistant_message.tool_calls
             if tool_calls is None:
@@ -49,7 +51,6 @@ class MuleBot:
                         function_args = json.loads(tool_call.function.arguments)
                         print(f"Function args: {function_args}")
                         table_dict_list = get_company_concept(function_args["ticker"])
-                    
                         return {'key':'table','value':table_dict_list}
 
             return {'key':'text','value':'No tool call was made.'}
