@@ -21,4 +21,5 @@ if _is_jupyter():
 from .sec_downloader import Downloader
 from .datamule_api import parse_textual_filing
 from .helper import load_company_tickers
-from .parsers import parse_company_concepts
+from .sec_parser import Parser
+from .table_parser import TableParser

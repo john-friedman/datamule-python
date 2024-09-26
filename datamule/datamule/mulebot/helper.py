@@ -5,7 +5,7 @@
 # 4. output table
 
 import requests
-from datamule.parsers import parse_company_concepts
+from datamule.sec_parser import parse_company_concepts
 from datamule.global_vars import headers
 from datamule.helper import identifier_to_cik
 
