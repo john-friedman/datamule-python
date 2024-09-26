@@ -1,5 +1,3 @@
-# File: datamule/mulebot_server.py
-
 from flask import Flask, request, jsonify, render_template
 from datamule.mulebot import MuleBot
 
@@ -16,16 +14,36 @@ class MuleBotServer:
 
         @self.app.route('/chat', methods=['POST'])
         def chat():
-            if not self.mulebot:
-                return jsonify({'error': 'MuleBot not initialized. Please set API key.'}), 500
-
             user_input = request.json['message']
             
             # Process the message using MuleBot's process_message method
             response = self.mulebot.process_message(user_input)
+            response_type = response['key']
+
+            # Prepare the response based on the type
+            if response_type == 'text':
+                # If response type is text, add it to the chat
+                chat_response = {
+                    'type': 'text',
+                    'content': response['value']
+                }
+            elif response_type == 'table':
+                # If response type is table, prepare it for the artifact window
+                print(str(response['value'])[0:500])
+                chat_response = {
+                    'type': 'artifact',
+                    'content': response['value'],
+                    'artifact_type': 'table'
+                }
+            else:
+                # Handle other types of responses if needed
+                chat_response = {
+                    'type': 'unknown',
+                    'content': 'Unsupported response type'
+                }
             
             return jsonify({
-                'response': response,
+                'response': chat_response,
                 'total_tokens': self.mulebot.get_total_tokens()
             })
 

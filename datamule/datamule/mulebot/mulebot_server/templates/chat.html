@@ -4,295 +4,281 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MuleBot Chat Interface with Artifacts</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>Chatbot Frontend</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f0f0f0;
-        }
-
-        .container {
-            display: flex;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .header h1 {
-            margin: 0;
-            color: #007bff;
-        }
-
-        .header h2 {
-            margin: 5px 0 0;
-            font-weight: normal;
-            color: #666;
-        }
-
         #chat-container {
-            flex: 1;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            margin-right: 20px;
-        }
-
-        #artifact-container {
-            width: 400px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        #chat-messages,
-        #artifact-content {
             height: 400px;
             overflow-y: auto;
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-
-        .message {
-            margin-bottom: 15px;
-            line-height: 1.4;
-        }
-
-        .user-message {
-            text-align: right;
-        }
-
-        .bot-message {
-            text-align: left;
-        }
-
-        .message span {
-            display: inline-block;
-            padding: 8px 12px;
-            border-radius: 18px;
-            max-width: 80%;
-        }
-
-        .user-message span {
-            background-color: #007bff;
-            color: white;
-        }
-
-        .bot-message span {
-            background-color: #e9e9e9;
-            color: #333;
-        }
-
-        #input-container {
-            display: flex;
-            padding: 20px;
-            background-color: #fff;
-            border-top: 1px solid #eee;
-        }
-
-        #user-input {
-            flex-grow: 1;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-
-        button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            margin-left: 10px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        #token-count {
-            text-align: right;
-            padding: 10px;
-            font-size: 12px;
-            color: #666;
-        }
-
-        #artifact-header {
-            background-color: #f2f2f2;
-            padding: 10px;
-            font-weight: bold;
-            border-bottom: 1px solid #ddd;
         }
 
         #table-container {
-            width: 100%;
-            height: 600px;
-            border: none;
-            display: none;
-            overflow: auto;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-wrapper::after {
+            content: "\25BC";
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid #d4d4d4;
+            border-top: none;
+            z-index: 99;
+            top: 100%;
+            left: 0;
+            right: 0;
+            max-height: 200px;
+            overflow-y: auto;
+            background-color: #fff;
+        }
+
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #d4d4d4;
+        }
+
+        .autocomplete-items div:hover {
+            background-color: #e9e9e9;
+        }
+
+        .autocomplete-active {
+            background-color: DodgerBlue !important;
+            color: #ffffff;
         }
     </style>
 </head>
 
 <body>
-    <div class="header">
-        <h1>MuleBot</h1>
-        <h2>An SEC Chatbot</h2>
-    </div>
-    <div class="container">
-        <div id="chat-container">
-            <div id="chat-messages"></div>
-            <div id="input-container">
-                <input type="text" id="user-input" placeholder="Type your message...">
-                <button onclick="sendMessage()">Send</button>
+    <div class="container mt-5">
+        <h1 class="mb-4">Chatbot</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div id="chat-container" class="border p-3 mb-3"></div>
+                <form id="chat-form">
+                    <div class="input-group">
+                        <input type="text" id="user-input" class="form-control" placeholder="Type your message...">
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </form>
             </div>
-            <div id="token-count">Total tokens: 0</div>
-        </div>
-        <div id="artifact-container">
-            <div id="artifact-header">Artifact Display</div>
-            <div id="artifact-content"></div>
-            <div id="table-container"></div>
+            <div class="col-md-6">
+                <div id="table-container" class="border p-3">
+                    <div class="mb-3 select-wrapper">
+                        <input type="text" id="table-select" class="form-control" placeholder="Select a table...">
+                        <div id="autocomplete-list" class="autocomplete-items"></div>
+                    </div>
+                    <div class="mb-3">
+                        <button id="download-csv" class="btn btn-secondary me-2">Download Selected Table (CSV)</button>
+                        <button id="download-all-zip" class="btn btn-secondary">Download All Tables (ZIP)</button>
+                    </div>
+                    <div id="metadata-content"></div>
+                    <div id="table-content"></div>
+                </div>
+            </div>
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
     <script>
-        let currentArtifactId = 0;
-        const suggestedCommands = [
-            "Get all company facts for Tesla",
-            "Get the advertising revenue company concept for Tesla",
-            "Show me Tesla's Model S section",
-            "Summarize Apple's Management Discussion and analysis section",
-            "Show company concepts table"
-        ];
-        let currentSuggestionIndex = 0;
+        const chatContainer = document.getElementById('chat-container');
+        const chatForm = document.getElementById('chat-form');
+        const userInput = document.getElementById('user-input');
+        const tableContainer = document.getElementById('table-container');
+        const tableSelect = document.getElementById('table-select');
+        const autocompleteList = document.getElementById('autocomplete-list');
+        const metadataContent = document.getElementById('metadata-content');
+        const tableContent = document.getElementById('table-content');
+        const downloadCsvBtn = document.getElementById('download-csv');
+        const downloadAllZipBtn = document.getElementById('download-all-zip');
 
-        function cyclePlaceholder() {
-            $('#user-input').attr('placeholder', suggestedCommands[currentSuggestionIndex]);
-            currentSuggestionIndex = (currentSuggestionIndex + 1) % suggestedCommands.length;
-        }
+        let tables = [];
+        let selectedTable = null;
 
-        setInterval(cyclePlaceholder, 5000); // Change suggestion every 5 seconds
-        cyclePlaceholder(); // Initial call to set first suggestion
-
-        function sendMessage() {
-            var userInput = $('#user-input').val();
-            if (userInput.trim() === '') return;
-
-            appendMessage('user', userInput);
-            $('#user-input').val('');
-
-            if (userInput.toLowerCase().includes("show company concepts table")) {
-                loadConceptsTable();
-            } else {
-                $.ajax({
-                    url: '/chat',
-                    method: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify({ message: userInput }),
-                    success: function (response) {
-                        if (response.response.key === 'text') {
-                            appendMessage('bot', response.response.value);
-                        } else if (response.response.key === 'table') {
-                            currentArtifactId++;
-                            var tableHtml = createTable(response.response.value);
-                            displayArtifact(tableHtml);
-                            appendMessage('bot', 'I\'ve created a table for you. <span class="artifact-link" onclick="showArtifact(' + currentArtifactId + ')">Click here to view the artifact</span>.');
-                        }
-                        $('#token-count').text('Total tokens: ' + response.total_tokens);
-                        $('#chat-messages').scrollTop($('#chat-messages')[0].scrollHeight);
-                    },
-                    error: function (xhr, status, error) {
-                        appendMessage('bot', 'Error: ' + error);
-                    }
-                });
-            }
-        }
-
-        function appendMessage(sender, content) {
-            var messageClass = sender === 'user' ? 'user-message' : 'bot-message';
-            var messageHtml = '<div class="message ' + messageClass + '"><span>' + content + '</span></div>';
-            $('#chat-messages').append(messageHtml);
-            $('#chat-messages').scrollTop($('#chat-messages')[0].scrollHeight);
-        }
-
-        function createTable(data) {
-            if (!Array.isArray(data) || data.length === 0) {
-                return '<p>No data available.</p>';
-            }
-
-            var tableHtml = '<table>';
-
-            // Add table header
-            tableHtml += '<tr>';
-            for (var key in data[0]) {
-                tableHtml += '<th>' + key + '</th>';
-            }
-            tableHtml += '</tr>';
-
-            // Add table rows
-            data.forEach(function (row) {
-                tableHtml += '<tr>';
-                for (var key in row) {
-                    tableHtml += '<td>' + row[key] + '</td>';
-                }
-                tableHtml += '</tr>';
-            });
-
-            tableHtml += '</table>';
-            return tableHtml;
-        }
-
-        function displayArtifact(content) {
-            $('#artifact-content').html(content);
-            $('#artifact-content').show();
-            $('#table-container').hide();
-        }
-
-        function showArtifact(id) {
-            // In a real application, you might fetch the artifact content based on the ID
-            // For now, we'll just scroll to the artifact container
-            $('#artifact-container')[0].scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function loadConceptsTable() {
-            $('#artifact-content').hide();
-            $('#table-container').show();
-            $('#table-container').load('table.html', function () {
-                // Remove the <script> tags from the loaded content
-                $('#table-container script').remove();
-
-                // Execute the scripts manually
-                $.getScript('table.html', function () {
-                    appendMessage('bot', 'I\'ve loaded the company concepts table for you. You can view it in the artifact display area.');
-                });
-            });
-        }
-
-        $('#user-input').keypress(function (e) {
-            if (e.which == 13) {
-                sendMessage();
-                return false;
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const message = userInput.value.trim();
+            if (message) {
+                appendMessage('You', message);
+                userInput.value = '';
+                const response = await sendMessage(message);
+                handleResponse(response);
             }
         });
 
-        // Add event listener for messages from the table
-        window.addEventListener('message', function (event) {
-            if (event.data.type === 'tableData') {
-                // Handle table data, e.g., display it in the chat
-                appendMessage('bot', 'Received table data: ' + JSON.stringify(event.data.content));
+        function appendMessage(sender, message) {
+            const messageElement = document.createElement('div');
+            messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+            chatContainer.appendChild(messageElement);
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        async function sendMessage(message) {
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message }),
+            });
+            return response.json();
+        }
+
+        function handleResponse(response) {
+            if (response.response.type === 'text') {
+                appendMessage('Bot', response.response.content);
+            } else if (response.response.type === 'artifact' && response.response.artifact_type === 'table') {
+                appendMessage('Bot', 'I have prepared a table for you. Please check the table view.');
+                renderTables(response.response.content);
             }
+        }
+
+        function renderTables(tableData) {
+            tables = Array.isArray(tableData) ? tableData : [tableData];
+
+            tableSelect.addEventListener('input', function (e) {
+                const val = this.value.toLowerCase();
+                createAutocompleteList(tables.filter(table =>
+                    table.fact.toLowerCase().includes(val)
+                ));
+            });
+
+            tableSelect.addEventListener('focus', function () {
+                createAutocompleteList(tables);
+            });
+
+            if (tables.length > 0) {
+                selectedTable = tables[0];
+                tableSelect.value = selectedTable.fact;
+                renderSelectedTable(selectedTable);
+                createAutocompleteList(tables);
+            }
+        }
+
+        function createAutocompleteList(filteredTables) {
+            autocompleteList.innerHTML = '';
+            filteredTables.forEach(table => {
+                const div = document.createElement("div");
+                div.innerHTML = table.fact;
+                div.addEventListener("click", function (e) {
+                    tableSelect.value = this.innerHTML;
+                    selectedTable = table;
+                    renderSelectedTable(table);
+                    closeAutocompleteList();
+                });
+                autocompleteList.appendChild(div);
+            });
+        }
+
+        function closeAutocompleteList() {
+            autocompleteList.style.display = 'none';
+        }
+
+        function renderSelectedTable(selectedTable) {
+            renderMetadata(selectedTable);
+            renderTableContent(selectedTable);
+        }
+
+        function renderMetadata(tableData) {
+            const metadataHtml = `
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Metadata</h5>
+                        <p><strong>CIK:</strong> ${tableData.cik}</p>
+                        <p><strong>Category:</strong> ${tableData.category}</p>
+                        <p><strong>Fact:</strong> ${tableData.fact}</p>
+                        <p><strong>Label:</strong> ${tableData.label}</p>
+                        <p><strong>Description:</strong> ${tableData.description}</p>
+                        <p><strong>Unit:</strong> ${tableData.unit}</p>
+                    </div>
+                </div>
+            `;
+            metadataContent.innerHTML = metadataHtml;
+        }
+
+        function renderTableContent(tableData) {
+            if (tableData.table && tableData.table.length > 0) {
+                let html = '<table class="table table-striped mt-3">';
+                html += '<thead><tr>';
+                Object.keys(tableData.table[0]).forEach(header => {
+                    html += `<th>${header}</th>`;
+                });
+                html += '</tr></thead><tbody>';
+                tableData.table.forEach(row => {
+                    html += '<tr>';
+                    Object.values(row).forEach(cell => {
+                        html += `<td>${cell}</td>`;
+                    });
+                    html += '</tr>';
+                });
+                html += '</tbody></table>';
+                tableContent.innerHTML = html;
+            } else {
+                tableContent.innerHTML = '<p>No table data available.</p>';
+            }
+        }
+
+        // Show autocomplete list when clicking on the input
+        tableSelect.addEventListener("click", function (e) {
+            createAutocompleteList(tables);
+            autocompleteList.style.display = 'block';
+        });
+
+        // Close the autocomplete list when clicking outside
+        document.addEventListener("click", function (e) {
+            if (e.target !== tableSelect) {
+                closeAutocompleteList();
+            }
+        });
+
+        // Download CSV function
+        function downloadCSV(table) {
+            let csv = '';
+            const headers = Object.keys(table.table[0]);
+            csv += headers.join(',') + '\n';
+            table.table.forEach(row => {
+                csv += Object.values(row).join(',') + '\n';
+            });
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            saveAs(blob, `${table.fact}.csv`);
+        }
+
+        // Download selected table as CSV
+        downloadCsvBtn.addEventListener('click', () => {
+            if (selectedTable) {
+                downloadCSV(selectedTable);
+            } else {
+                alert('Please select a table first.');
+            }
+        });
+
+        // Download all tables as ZIP
+        downloadAllZipBtn.addEventListener('click', async () => {
+            const zip = new JSZip();
+            tables.forEach(table => {
+                let csv = '';
+                const headers = Object.keys(table.table[0]);
+                csv += headers.join(',') + '\n';
+                table.table.forEach(row => {
+                    csv += Object.values(row).join(',') + '\n';
+                });
+                zip.file(`${table.fact}.csv`, csv);
+            });
+            const content = await zip.generateAsync({ type: "blob" });
+            saveAs(content, "all_tables.zip");
         });
     </script>
 </body>

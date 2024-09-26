@@ -3,7 +3,7 @@ get_company_concept_tool = {
         "type": "function",
         "function": {
             "name": "get_company_concept",
-            "description": "Get company XBRL concepts and facts for a given ticker",
+            "description": "ONLY use this when explicitly asked to get company XBRL concepts or facts for a given ticker",
             "parameters": {
                 "type": "object",
                 "properties": {

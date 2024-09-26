@@ -13,7 +13,6 @@ def get_company_concept(ticker):
     data = response.json()
 
     table_dict_list = parser.parse_company_concepts(data)
-    print(table_dict_list)
 
     # drop tables where label is None
     table_dict_list = [table_dict for table_dict in table_dict_list if table_dict['label'] is not None]
