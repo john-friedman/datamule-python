@@ -2,9 +2,11 @@ import openai
 import json
 
 from datamule.helper import identifier_to_cik
+from datamule import Downloader
 from .tools import tools
 from .helper import get_company_concept
 
+downloader = Downloader()
 
 class MuleBot:
     def __init__(self, api_key):
@@ -52,6 +54,11 @@ class MuleBot:
                         print(f"Function args: {function_args}")
                         table_dict_list = get_company_concept(function_args["ticker"])
                         return {'key':'table','value':table_dict_list}
+                    elif tool_call.function.name == "get_filing_urls":
+                        function_args = json.loads(tool_call.function.arguments)
+                        print(f"Function args: {function_args}")
+                        result = downloader.download(**function_args,return_urls=True)
+                        return {'key':'text','value':f"Filing urls: {result}"}
 
             return {'key':'text','value':'No tool call was made.'}
 

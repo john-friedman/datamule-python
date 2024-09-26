@@ -6,6 +6,8 @@ class Parser:
     # WIP. will setup after parse filing API is updated to send to json first.
     def parse_filing(arg):
         # add handling for url vs file
+
+        # api will handle filing type detection
         pass
 
     # WIP
