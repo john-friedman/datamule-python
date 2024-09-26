@@ -1,5 +1,8 @@
 # Changelog
 
+## v0.314 (2024-09-26)
+- Added TableParser
+
 ## v0.312 (2024-09-20)
 - Added download_company_concepts
 

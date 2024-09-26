@@ -5,8 +5,8 @@ requests
 nest_asyncio
 
 [all]
-lxml
 flask
+lxml
 openai
 
 [filing_viewer]
