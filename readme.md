@@ -231,6 +231,7 @@ This is currently a low priority issue. Let me know if you need the data, and I'
 - [ ] Downloader refactor and integrate XBRL downloads
 - [ ] add sec_fetch. Either urllib or request should be fastest. integrate into mulebot
 - [ ] Paths may be messed up on non windows devices. Need to verify.
+- [ ] Consider change from function calling to using ell.
 - [ ] Analytics?
 
 ## Contributing
