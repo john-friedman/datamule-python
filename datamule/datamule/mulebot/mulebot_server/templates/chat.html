@@ -209,6 +209,11 @@
             console.log('Artifact data:', artifactData);
 
             if (artifactType === 'artifact-table') {
+                artifacts = Array.isArray(artifactData) ? artifactData : [artifactData];
+                artifacts.forEach(artifact => {
+                    artifact.type = artifactType;
+                    console.log('Processed artifact:', artifact);
+                });
                 renderTableArtifact(artifactData[0]);
             }
             else if (artifactType === 'artifact-list') {
@@ -272,7 +277,7 @@
                 <div class="card mb-3">
                     <div class="card-body">
                         <h5 class="card-title">Metadata</h5>
-                        <p><strong>Type:</strong> ${artifactData.type}</p>
+
                         <p><strong>Fact:</strong> ${artifactData.fact}</p>
                         ${artifactData.cik ? `<p><strong>CIK:</strong> ${artifactData.cik}</p>` : ''}
                         ${artifactData.category ? `<p><strong>Category:</strong> ${artifactData.category}</p>` : ''}
