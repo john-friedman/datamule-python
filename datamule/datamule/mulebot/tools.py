@@ -46,6 +46,37 @@ get_filing_urls_tool = {
     }
 }
 
+find_filing_section_by_title_tool = {
+    "type": "function",
+    "function": {
+        "name": "find_filing_section_by_title",
+        "description": "ONLY use this when explicitly given a filing URL and told to find a specific section",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "url": {"type": "string", "description": "URL of the filing to parse"},
+                "title": {"type": "string", "description": "The section title to search for in the filing"}
+            },
+            "required": ["url","title"]
+        }
+    }
+}
+
+return_title_tool = {
+    "type": "function",
+    "function": {
+        "name": "return_title",
+        "description": "use this to select a title",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "title": {"type": "string", "description": "The title to return"}
+            },
+            "required": ["title"]
+        }
+    }
+}
 
 
-tools = [get_company_concept_tool, identifier_to_cik_tool, get_filing_urls_tool]
+
+tools = [get_company_concept_tool, identifier_to_cik_tool, get_filing_urls_tool, find_filing_section_by_title_tool]

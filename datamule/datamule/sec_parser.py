@@ -1,14 +1,14 @@
-
+from .datamule_api import parse_textual_filing
 class Parser:
     def __init__(self):
         pass
 
     # WIP. will setup after parse filing API is updated to send to json first.
-    def parse_filing(arg):
+    def parse_filing(self,url):
         # add handling for url vs file
-
         # api will handle filing type detection
-        pass
+        data = parse_textual_filing(url=url,return_type='json')
+        return data 
 
     # WIP
     def parse_company_concepts(self, data):

@@ -2,11 +2,14 @@ import openai
 import json
 
 from datamule.helper import identifier_to_cik
-from datamule import Downloader
-from .tools import tools
-from .helper import get_company_concept
+from datamule import Downloader, Parser
+from .search import search_filing
+from .tools import tools, return_title_tool
+from .helper import get_company_concept, select_dict_by_title
 
 downloader = Downloader()
+parser = Parser()
+
 
 class MuleBot:
     def __init__(self, api_key):
@@ -59,6 +62,36 @@ class MuleBot:
                         print(f"Function args: {function_args}")
                         result = downloader.download(**function_args,return_urls=True)
                         return {'key':'list','value':result}
+                    elif tool_call.function.name == "find_filing_section_by_title":
+                        function_args = json.loads(tool_call.function.arguments)
+                        print(f"Function args: {function_args}")
+                        # Parse the filing
+                        data = parser.parse_filing(function_args["url"])
+
+                        # find possible matches
+                        section_dicts = search_filing(query = function_args["title"], nested_dict =data, score_cutoff=0.3)
+
+                        # feed titles back to assistant
+                        titles = [section['title'] for section in section_dicts]
+                        new_message_chain.append({"role": "assistant", "content": f"Which of these titles is closest: {','.join(titles)}"})
+
+                        title_response = self.client.chat.completions.create(
+                            model="gpt-4o-mini",
+                            messages=new_message_chain,
+                            tools=[return_title_tool],
+                            tool_choice="required"
+                        )
+
+                        title_tool_call = title_response.choices[0].message.tool_calls[0]
+                        title = json.loads(title_tool_call.function.arguments)['title']
+                        print(f"Selected title: {title}")
+                        #print(f"Possible titles: {titles}")
+
+                        # select the section
+                        section_dict = select_dict_by_title(data, title)
+                        
+
+                        return {'key':'filing','value':section_dict}
 
             return {'key':'text','value':'No tool call was made.'}
 
@@ -87,5 +120,11 @@ class MuleBot:
                 value = response['value']
                 print(value)
             elif response_type == 'list':
+                value = response['value']
+                print(value)
+            elif response_type == 'filing':
+                value = response['value']
+                print(value)
+            else:
                 value = response['value']
                 print(value)

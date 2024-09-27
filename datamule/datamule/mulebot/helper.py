@@ -19,3 +19,17 @@ def get_company_concept(ticker):
     
     return table_dict_list
 
+def select_dict_by_title(data, title):
+    if isinstance(data, dict):
+        if data.get('title') == title:
+            return data
+        for value in data.values():
+            result = select_dict_by_title(value, title)
+            if result:
+                return result
+    elif isinstance(data, list):
+        for item in data:
+            result = select_dict_by_title(item, title)
+            if result:
+                return result
+    return None
