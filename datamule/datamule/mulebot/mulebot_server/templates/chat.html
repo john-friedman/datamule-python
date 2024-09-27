@@ -59,6 +59,60 @@
             background-color: DodgerBlue !important;
             color: #ffffff;
         }
+
+        /* Style for the list container */
+        .list-group {
+            margin-top: 20px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Style for each list item */
+        .list-group-item {
+            padding: 15px 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 5px 0;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            word-wrap: break-word;
+            /* Ensure long URLs wrap within the item */
+            overflow: hidden;
+            /* Hide overflow content */
+            text-overflow: ellipsis;
+            /* Add ellipsis for overflow text */
+        }
+
+        /* Hover effect for list items */
+        .list-group-item:hover {
+            background-color: #e9ecef;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Style for the hyperlink in each list item */
+        .list-group-item a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: 500;
+            display: inline-block;
+            max-width: 100%;
+            /* Prevent the link from exceeding list item width */
+            white-space: nowrap;
+            /* Prevent wrapping */
+            overflow: hidden;
+            /* Hide overflow content */
+            text-overflow: ellipsis;
+            /* Show ellipsis for long URLs */
+        }
+
+        /* Change link color on hover */
+        .list-group-item a:hover {
+            text-decoration: underline;
+            color: #0056b3;
+        }
     </style>
 </head>
 
@@ -135,22 +189,17 @@
 
         function renderArtifact(artifactData, artifactType) {
             console.log('Artifact type:', artifactType);
-            artifacts = Array.isArray(artifactData) ? artifactData : [artifactData];
-            artifacts.forEach(artifact => {
-                artifact.type = artifactType;
-            });
+            console.log('Artifact data:', artifactData);
 
-            if (artifacts.length > 0) {
-                const selectedArtifact = artifacts[0];
-                if (selectedArtifact.type === 'artifact-table') {
-                    renderTableArtifact(selectedArtifact);
-                } else if (selectedArtifact.type === 'artifact-list') {
 
-                    renderListArtifact(selectedArtifact);
-                } else {
-                    console.log('Unknown artifact type:', selectedArtifact.type);
-                    artifactContent.innerHTML = '<p>Unable to display this artifact type.</p>';
-                }
+            if (artifactType === 'artifact-table') {
+                renderTableArtifact(artifactData[0]);
+            }
+            else if (artifactType === 'artifact-list') {
+                renderListArtifact(artifactData);
+            }
+            else {
+                console.log('Unsupported artifact type:', artifactType);
             }
         }
 
@@ -191,13 +240,19 @@
         }
 
         function renderListArtifact(listData) {
-            let html = `<ul class="list-group">`;
-            listData.urls.forEach(url => {
+            let html = `<h4>URLs</h4><ul class="list-group">`;
+
+            // Iterate over `listData` directly, as it is a list of URLs
+            listData.forEach(url => {
                 html += `<li class="list-group-item"><a href="${url}" target="_blank">${url}</a></li>`;
             });
+
             html += '</ul>';
+
+            // Render the generated HTML into the artifactContent element
             artifactContent.innerHTML = html;
         }
+
 
         function renderMetadata(artifactData) {
             const metadataHtml = `
