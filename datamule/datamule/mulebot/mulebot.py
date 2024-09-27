@@ -91,7 +91,7 @@ class MuleBot:
                         #section_dict = select_dict_by_title(data, title)
                         
                         # probably want to return full dict, and section label
-                        return {'key':'filing','value':{'data':data,'section':title}}
+                        return {'key':'filing','value':{'data':data,'title':title}}
 
             return {'key':'text','value':'No tool call was made.'}
 

@@ -1,6 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 from datamule.mulebot import MuleBot
-from datamule.filing_viewer import create_interactive_html
+from datamule.filing_viewer import create_interactive_filing, create_valid_id
 
 class MuleBotServer:
     def __init__(self):
@@ -44,10 +44,10 @@ class MuleBotServer:
             elif response_type == 'filing':
                 data = response['value']['data']
                 title = response['value']['title']
+                section_id = create_valid_id(title)
 
                 # create a filing viewer display
-                # rewrite, then add here TODO
-                html = create_interactive_html(data)
+                html = create_interactive_filing(data)
                 # select section
                 # TODO
                 
@@ -56,6 +56,7 @@ class MuleBotServer:
                     'type': 'artifact',
                     'content': html,
                     'data': data,
+                    'section_id': section_id,
                     'artifact_type': 'artifact-filing'
                 }
 

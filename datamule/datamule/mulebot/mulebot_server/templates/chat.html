@@ -145,6 +145,8 @@
                         <li>Get all company facts for Tesla</li>
                         <li>Get Ford's CIK</li>
                         <li>Get all 10-K urls for META</li>
+                        <li>Get the management discussion and analysis section from
+                            https://www.sec.gov/Archives/edgar/data/1318605/000095017022000796/tsla-20211231.htm</li>
                     </ul>
                 </div>
             </div>
@@ -196,8 +198,19 @@
             if (response.response.type === 'text') {
                 appendMessage('Bot', response.response.content);
             } else if (response.response.type === 'artifact') {
-                appendMessage('Bot', `I have prepared an ${response.response.artifact_type} for you. Please check the artifact view.`);
-                renderArtifact(response.response.content, response.response.artifact_type);
+                let artifactType = response.response.artifact_type;
+                let artifactContent = response.response.content;
+
+                if (artifactType === 'artifact-filing') {
+                    artifactContent = {
+                        content: response.response.content,
+                        data: response.response.data,
+                        section_id: response.response.section_id
+                    };
+                }
+
+                appendMessage('Bot', `I have prepared an ${artifactType} for you. Please check the artifact view.`);
+                renderArtifact(artifactContent, artifactType);
                 showArtifacts();
             } else {
                 appendMessage('Bot', 'I have received a response, but it is not a supported type.');
@@ -218,6 +231,9 @@
             }
             else if (artifactType === 'artifact-list') {
                 renderListArtifact(artifactData);
+            }
+            else if (artifactType === 'artifact-filing') {
+                renderFilingArtifact(artifactData);
             }
             else {
                 console.log('Unsupported artifact type:', artifactType);
@@ -270,6 +286,67 @@
             html += '</ul>';
 
             artifactContent.innerHTML = html;
+        }
+
+        function renderFilingArtifact(artifactData) {
+            const { content: html, data, section_id } = artifactData;
+
+            // Create a container for the iframe
+            const container = document.createElement('div');
+            container.className = 'filing-container';
+            container.style.width = '100%';
+            container.style.height = '600px'; // You can adjust this height as needed
+
+            // Create the iframe
+            const iframe = document.createElement('iframe');
+            iframe.srcdoc = html;
+            iframe.style.width = '100%';
+            iframe.style.height = '100%';
+            iframe.style.border = 'none';
+
+            // Add the iframe to the container
+            container.appendChild(iframe);
+
+            // Clear the existing content and add the new container
+            artifactContent.innerHTML = '';
+            artifactContent.appendChild(container);
+
+            // Scroll to the specified section after the iframe loads
+            iframe.onload = () => {
+                if (section_id) {
+                    const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+                    const targetElement = iframeDocument.getElementById(section_id);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }
+            };
+
+            // Create a button container
+            const buttonContainer = document.createElement('div');
+            buttonContainer.className = 'mt-3';
+
+            // Add a download button for the HTML content
+            const downloadHtmlBtn = document.createElement('button');
+            downloadHtmlBtn.className = 'btn btn-secondary me-2';
+            downloadHtmlBtn.textContent = 'Download Filing HTML';
+            downloadHtmlBtn.onclick = () => {
+                const blob = new Blob([html], { type: 'text/html' });
+                saveAs(blob, 'filing.html');
+            };
+            buttonContainer.appendChild(downloadHtmlBtn);
+
+            // Add a download button for the JSON data
+            const downloadJsonBtn = document.createElement('button');
+            downloadJsonBtn.className = 'btn btn-secondary';
+            downloadJsonBtn.textContent = 'Download Filing Data (JSON)';
+            downloadJsonBtn.onclick = () => {
+                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                saveAs(blob, 'filing_data.json');
+            };
+            buttonContainer.appendChild(downloadJsonBtn);
+
+            artifactContent.appendChild(buttonContainer);
         }
 
         function renderMetadata(artifactData) {
