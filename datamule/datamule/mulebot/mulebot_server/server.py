@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify, render_template
 from datamule.mulebot import MuleBot
+from datamule.filing_viewer import create_interactive_html
 
 class MuleBotServer:
     def __init__(self):
@@ -39,6 +40,23 @@ class MuleBotServer:
                     'type': 'artifact',
                     'content': response['value'],
                     'artifact_type': 'artifact-list'
+                }
+            elif response_type == 'filing':
+                data = response['value']['data']
+                title = response['value']['title']
+
+                # create a filing viewer display
+                # rewrite, then add here TODO
+                html = create_interactive_html(data)
+                # select section
+                # TODO
+                
+                # we'll need to display the filing viewer in the artifact window, with a json export option
+                chat_response = {
+                    'type': 'artifact',
+                    'content': html,
+                    'data': data,
+                    'artifact_type': 'artifact-filing'
                 }
 
             else:

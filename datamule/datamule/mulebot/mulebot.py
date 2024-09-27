@@ -88,10 +88,10 @@ class MuleBot:
                         #print(f"Possible titles: {titles}")
 
                         # select the section
-                        section_dict = select_dict_by_title(data, title)
+                        #section_dict = select_dict_by_title(data, title)
                         
-
-                        return {'key':'filing','value':section_dict}
+                        # probably want to return full dict, and section label
+                        return {'key':'filing','value':{'data':data,'section':title}}
 
             return {'key':'text','value':'No tool call was made.'}
 

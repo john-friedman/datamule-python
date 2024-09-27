@@ -1,1 +1,1 @@
-from .filing_viewer import create_interactive_html
+from .filing_viewer import create_interactive_filing

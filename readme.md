@@ -177,9 +177,10 @@ Interact with SEC data using MuleBot (coming soon). Mulebot uses tool calling to
 
 Features (coming soon):
 * Interface with XBRL company facts
-* Interface with 10-ks, etc and summarize sections.
+* Interface with 10-ks, etc
 
 To use Mulebot you will need an [OpenAI API Key](https://platform.openai.com/api-keys).
+<!--Example hosted here: have a link to vercel function? --->
 
 #### Mulebot Server
 
@@ -227,9 +228,9 @@ if __name__ == "__main__":
 This is currently a low priority issue. Let me know if you need the data, and I'll move it up the priority list.
 
 ## Roadmap
-- [ ] Add Mulebot. Add table artifact (current issue is with bad data input). Add section and filing viewer
-- [ ] Downloader refactor and integrate XBRL downloads
-- [ ] add sec_fetch. Either urllib or request should be fastest. integrate into mulebot
+- [ ] Add Mulebot. add view section artifact with pop out to json or filing viewer
+- [ ] refactor downloader, and setup retriever. probably using urllib or requests for one-time
+- [ ] filing viewer band-aid fix. will wait until mule parser update to devote more effort
 - [ ] Paths may be messed up on non windows devices. Need to verify.
 - [ ] Consider change from function calling to using ell.
 - [ ] Analytics?
