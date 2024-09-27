@@ -1,4 +1,7 @@
 # Changelog
+## v0.323 (2024-09-27)
+- Added Mulebot
+- Reworked Filing Viewer
 
 ## v0.314 (2024-09-26)
 - Added TableParser

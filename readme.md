@@ -14,7 +14,7 @@ A Python package to work with SEC filings at scale. Also includes Mulebot, an op
 - Parse textual filings into simplified HTML, interactive HTML, or structured JSON
 - Download SEC filings quickly and easily
 - Access datasets such as every MD&A from 2024 or every 2024 10-K converted to structured JSON
-- Interact with SEC data using MuleBot (coming soon)
+- Interact with SEC data using MuleBot
 
 ## Table of Contents
 
@@ -50,8 +50,8 @@ pip install datamule[all]  # Install all extras
 
 Available extras:
 - `filing_viewer`: Includes dependencies for the filing viewer module
-- `mulebot`: Includes MuleBot for interacting with SEC data (coming soon)
-- `mulebot_server`: Includes Flask server for running MuleBot (coming soon)
+- `mulebot`: Includes MuleBot for interacting with SEC data
+- `mulebot_server`: Includes Flask server for running MuleBot
 - `all`: Installs all available extras
 
 ## Quick Start
@@ -161,10 +161,10 @@ Convert parsed filing JSON into HTML with features like a table of contents side
 
 ```python
 from datamule import parse_textual_filing
-from datamule.filing_viewer import create_interactive_html
+from datamule.filing_viewer import create_interactive_filing
 
 data = parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605/000095017022000796/tsla-20211231.htm', return_type='json')
-create_interactive_html(data, 'output_path.html')
+create_interactive_filing(data)
 ```
 
 ![interactive](https://github.com/john-friedman/datamule-python/blob/main/static/interactive.png)
@@ -173,18 +173,42 @@ create_interactive_html(data, 'output_path.html')
 
 ### Mulebot 
 
-Interact with SEC data using MuleBot (coming soon). Mulebot uses tool calling to interface with SEC and datamule endpoints.
+Interact with SEC data using MuleBot. Mulebot uses tool calling to interface with SEC and datamule endpoints.
 
-Features (coming soon):
-* Interface with XBRL company facts
-* Interface with 10-ks, etc
+```python
+from datamule.mulebot import MuleBot
+mulebot = MuleBot(openai_api_key)
+mulebot.run()
+```
 
 To use Mulebot you will need an [OpenAI API Key](https://platform.openai.com/api-keys).
-<!--Example hosted here: have a link to vercel function? --->
 
 #### Mulebot Server
 
-Mulebot server is a customizable front-end for Mulebot.
+Mulebot server is a customizable front-end for Mulebot. 
+
+Artifacts:
+* Filing Viewer
+* Company Facts Viewer
+* List Viewer
+
+```python
+from datamule.mulebot.mulebot_server import server
+
+def main():
+    # Your OpenAI API key
+    api_key = openai_api_key
+    server.set_api_key(api_key)
+
+    # Run the server
+    print("Starting MuleBotServer...")
+    server.run(debug=True, host='0.0.0.0', port=5000)
+
+if __name__ == "__main__":
+    main()
+```
+
+<!--Example hosted here: have a link to vercel function? --->
 
 Features (coming soon):
 * Display XBRL tables with download / copy button.

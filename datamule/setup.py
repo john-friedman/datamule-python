@@ -18,7 +18,7 @@ extras["all"] = list(all_dependencies)
 setup(
     name="datamule",
     author="John Friedman",
-    version="0.315",
+    version="0.323",
     description="Making it easier to use SEC filings.",
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -32,8 +32,9 @@ setup(
         'nest_asyncio'
     ],
     extras_require=extras,
-    package_data={
+   package_data={
         "datamule": ["data/*.csv"],
+        "datamule.mulebot.mulebot_server": ["templates/*.html"],  # Add this line
     },
     include_package_data=True,
 )

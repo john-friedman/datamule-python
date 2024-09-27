@@ -1,11 +1,12 @@
-# File: datamule/mulebot_server.py
-
+import os
 from flask import Flask, request, jsonify, render_template
 from datamule.mulebot import MuleBot
+from datamule.filing_viewer import create_interactive_filing, create_valid_id
 
 class MuleBotServer:
     def __init__(self):
-        self.app = Flask(__name__)
+        template_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'templates'))
+        self.app = Flask(__name__, template_folder=template_dir)
         self.mulebot = None  # We'll initialize this when we have the API key
         self.setup_routes()
 
@@ -16,16 +17,60 @@ class MuleBotServer:
 
         @self.app.route('/chat', methods=['POST'])
         def chat():
-            if not self.mulebot:
-                return jsonify({'error': 'MuleBot not initialized. Please set API key.'}), 500
-
             user_input = request.json['message']
             
             # Process the message using MuleBot's process_message method
             response = self.mulebot.process_message(user_input)
+            response_type = response['key']
+
+            # Prepare the response based on the type
+            if response_type == 'text':
+                # If response type is text, add it to the chat
+                chat_response = {
+                    'type': 'text',
+                    'content': response['value']
+                }
+            elif response_type == 'table':
+                # If response type is table, prepare it for the artifact window
+                chat_response = {
+                    'type': 'artifact',
+                    'content': response['value'],
+                    'artifact_type': 'artifact-table'
+                }
+            elif response_type == 'list':
+                chat_response = {
+                    'type': 'artifact',
+                    'content': response['value'],
+                    'artifact_type': 'artifact-list'
+                }
+            elif response_type == 'filing':
+                data = response['value']['data']
+                title = response['value']['title']
+                section_id = create_valid_id(title)
+
+                # create a filing viewer display
+                html = create_interactive_filing(data)
+                # select section
+                # TODO
+                
+                # we'll need to display the filing viewer in the artifact window, with a json export option
+                chat_response = {
+                    'type': 'artifact',
+                    'content': html,
+                    'data': data,
+                    'section_id': section_id,
+                    'artifact_type': 'artifact-filing'
+                }
+
+            else:
+                # Handle other types of responses if needed
+                chat_response = {
+                    'type': 'unknown',
+                    'content': 'Unsupported response type'
+                }
             
             return jsonify({
-                'response': response,
+                'response': chat_response,
                 'total_tokens': self.mulebot.get_total_tokens()
             })
 

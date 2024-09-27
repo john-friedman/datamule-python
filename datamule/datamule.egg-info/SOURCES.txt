@@ -15,8 +15,6 @@ datamule.egg-info/top_level.txt
 datamule/data/company_tickers.csv
 datamule/filing_viewer/__init__.py
 datamule/filing_viewer/filing_viewer.py
-datamule/filing_viewer/scripts.py
-datamule/filing_viewer/styles.py
 datamule/mulebot/__init__.py
 datamule/mulebot/helper.py
 datamule/mulebot/mulebot.py
@@ -24,3 +22,4 @@ datamule/mulebot/search.py
 datamule/mulebot/tools.py
 datamule/mulebot/mulebot_server/__init__.py
 datamule/mulebot/mulebot_server/server.py
+datamule/mulebot/mulebot_server/templates/chat.html

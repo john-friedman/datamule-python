@@ -1,10 +1,12 @@
+import os
 from flask import Flask, request, jsonify, render_template
 from datamule.mulebot import MuleBot
 from datamule.filing_viewer import create_interactive_filing, create_valid_id
 
 class MuleBotServer:
     def __init__(self):
-        self.app = Flask(__name__)
+        template_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'templates'))
+        self.app = Flask(__name__, template_folder=template_dir)
         self.mulebot = None  # We'll initialize this when we have the API key
         self.setup_routes()
 
