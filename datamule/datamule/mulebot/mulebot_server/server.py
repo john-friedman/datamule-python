@@ -29,12 +29,18 @@ class MuleBotServer:
                 }
             elif response_type == 'table':
                 # If response type is table, prepare it for the artifact window
-                print(str(response['value'])[0:500])
                 chat_response = {
                     'type': 'artifact',
                     'content': response['value'],
-                    'artifact_type': 'table'
+                    'artifact_type': 'artifact-table'
                 }
+            elif response_type == 'list':
+                chat_response = {
+                    'type': 'artifact',
+                    'content': response['value'],
+                    'artifact_type': 'artifact-list'
+                }
+
             else:
                 # Handle other types of responses if needed
                 chat_response = {

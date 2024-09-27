@@ -58,7 +58,7 @@ class MuleBot:
                         function_args = json.loads(tool_call.function.arguments)
                         print(f"Function args: {function_args}")
                         result = downloader.download(**function_args,return_urls=True)
-                        return {'key':'text','value':f"Filing urls: {result}"}
+                        return {'key':'list','value':result}
 
             return {'key':'text','value':'No tool call was made.'}
 
@@ -84,5 +84,8 @@ class MuleBot:
                 value = response['value']
                 print(value)
             elif response_type == 'table':
+                value = response['value']
+                print(value)
+            elif response_type == 'list':
                 value = response['value']
                 print(value)

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot Frontend</title>
+    <title>Mulebot</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script>
@@ -14,7 +14,7 @@
             overflow-y: auto;
         }
 
-        #table-container {
+        #artifact-container {
             max-height: 400px;
             overflow-y: auto;
         }
@@ -64,7 +64,7 @@
 
 <body>
     <div class="container mt-5">
-        <h1 class="mb-4">Chatbot</h1>
+        <h1 class="mb-4">Mulebot</h1>
         <div class="row">
             <div class="col-md-6">
                 <div id="chat-container" class="border p-3 mb-3"></div>
@@ -76,17 +76,8 @@
                 </form>
             </div>
             <div class="col-md-6">
-                <div id="table-container" class="border p-3">
-                    <div class="mb-3 select-wrapper">
-                        <input type="text" id="table-select" class="form-control" placeholder="Select a table...">
-                        <div id="autocomplete-list" class="autocomplete-items"></div>
-                    </div>
-                    <div class="mb-3">
-                        <button id="download-csv" class="btn btn-secondary me-2">Download Selected Table (CSV)</button>
-                        <button id="download-all-zip" class="btn btn-secondary">Download All Tables (ZIP)</button>
-                    </div>
-                    <div id="metadata-content"></div>
-                    <div id="table-content"></div>
+                <div id="artifact-container" class="border p-3">
+                    <div id="artifact-content"></div>
                 </div>
             </div>
         </div>
@@ -97,16 +88,10 @@
         const chatContainer = document.getElementById('chat-container');
         const chatForm = document.getElementById('chat-form');
         const userInput = document.getElementById('user-input');
-        const tableContainer = document.getElementById('table-container');
-        const tableSelect = document.getElementById('table-select');
-        const autocompleteList = document.getElementById('autocomplete-list');
-        const metadataContent = document.getElementById('metadata-content');
-        const tableContent = document.getElementById('table-content');
-        const downloadCsvBtn = document.getElementById('download-csv');
-        const downloadAllZipBtn = document.getElementById('download-all-zip');
+        const artifactContainer = document.getElementById('artifact-container');
+        const artifactContent = document.getElementById('artifact-content');
 
-        let tables = [];
-        let selectedTable = null;
+        let artifacts = [];
 
         chatForm.addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -140,79 +125,50 @@
         function handleResponse(response) {
             if (response.response.type === 'text') {
                 appendMessage('Bot', response.response.content);
-            } else if (response.response.type === 'artifact' && response.response.artifact_type === 'table') {
-                appendMessage('Bot', 'I have prepared a table for you. Please check the table view.');
-                renderTables(response.response.content);
+            } else if (response.response.type === 'artifact') {
+                appendMessage('Bot', `I have prepared an ${response.response.artifact_type} for you. Please check the artifact view.`);
+                renderArtifact(response.response.content, response.response.artifact_type);
+            } else {
+                appendMessage('Bot', 'I have received a response, but it is not a supported type.');
             }
         }
 
-        function renderTables(tableData) {
-            tables = Array.isArray(tableData) ? tableData : [tableData];
-
-            tableSelect.addEventListener('input', function (e) {
-                const val = this.value.toLowerCase();
-                createAutocompleteList(tables.filter(table =>
-                    table.fact.toLowerCase().includes(val)
-                ));
+        function renderArtifact(artifactData, artifactType) {
+            console.log('Artifact type:', artifactType);
+            artifacts = Array.isArray(artifactData) ? artifactData : [artifactData];
+            artifacts.forEach(artifact => {
+                artifact.type = artifactType;
             });
 
-            tableSelect.addEventListener('focus', function () {
-                createAutocompleteList(tables);
-            });
+            if (artifacts.length > 0) {
+                const selectedArtifact = artifacts[0];
+                if (selectedArtifact.type === 'artifact-table') {
+                    renderTableArtifact(selectedArtifact);
+                } else if (selectedArtifact.type === 'artifact-list') {
 
-            if (tables.length > 0) {
-                selectedTable = tables[0];
-                tableSelect.value = selectedTable.fact;
-                renderSelectedTable(selectedTable);
-                createAutocompleteList(tables);
+                    renderListArtifact(selectedArtifact);
+                } else {
+                    console.log('Unknown artifact type:', selectedArtifact.type);
+                    artifactContent.innerHTML = '<p>Unable to display this artifact type.</p>';
+                }
             }
         }
 
-        function createAutocompleteList(filteredTables) {
-            autocompleteList.innerHTML = '';
-            filteredTables.forEach(table => {
-                const div = document.createElement("div");
-                div.innerHTML = table.fact;
-                div.addEventListener("click", function (e) {
-                    tableSelect.value = this.innerHTML;
-                    selectedTable = table;
-                    renderSelectedTable(table);
-                    closeAutocompleteList();
-                });
-                autocompleteList.appendChild(div);
-            });
-        }
-
-        function closeAutocompleteList() {
-            autocompleteList.style.display = 'none';
-        }
-
-        function renderSelectedTable(selectedTable) {
-            renderMetadata(selectedTable);
-            renderTableContent(selectedTable);
-        }
-
-        function renderMetadata(tableData) {
-            const metadataHtml = `
-                <div class="card mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">Metadata</h5>
-                        <p><strong>CIK:</strong> ${tableData.cik}</p>
-                        <p><strong>Category:</strong> ${tableData.category}</p>
-                        <p><strong>Fact:</strong> ${tableData.fact}</p>
-                        <p><strong>Label:</strong> ${tableData.label}</p>
-                        <p><strong>Description:</strong> ${tableData.description}</p>
-                        <p><strong>Unit:</strong> ${tableData.unit}</p>
-                    </div>
+        function renderTableArtifact(tableData) {
+            let html = `
+                <div class="mb-3 select-wrapper">
+                    <input type="text" id="artifact-select" class="form-control" placeholder="Select a table..." value="${tableData.fact}">
+                    <div id="autocomplete-list" class="autocomplete-items"></div>
                 </div>
+                <div class="mb-3">
+                    <button id="download-csv" class="btn btn-secondary me-2">Download Selected Table (CSV)</button>
+                    <button id="download-all-zip" class="btn btn-secondary">Download All Tables (ZIP)</button>
+                </div>
+                <div id="metadata-content"></div>
             `;
-            metadataContent.innerHTML = metadataHtml;
-        }
 
-        function renderTableContent(tableData) {
             if (tableData.table && tableData.table.length > 0) {
-                let html = '<table class="table table-striped mt-3">';
-                html += '<thead><tr>';
+                html += '<table class="table table-striped mt-3"><thead><tr>';
                 Object.keys(tableData.table[0]).forEach(header => {
                     html += `<th>${header}</th>`;
                 });
@@ -225,26 +181,103 @@
                     html += '</tr>';
                 });
                 html += '</tbody></table>';
-                tableContent.innerHTML = html;
             } else {
-                tableContent.innerHTML = '<p>No table data available.</p>';
+                html += '<p>No table data available.</p>';
             }
+
+            artifactContent.innerHTML = html;
+            renderMetadata(tableData);
+            setupTableEventListeners(tableData);
         }
 
-        // Show autocomplete list when clicking on the input
-        tableSelect.addEventListener("click", function (e) {
-            createAutocompleteList(tables);
-            autocompleteList.style.display = 'block';
-        });
+        function renderListArtifact(listData) {
+            let html = `<ul class="list-group">`;
+            listData.urls.forEach(url => {
+                html += `<li class="list-group-item"><a href="${url}" target="_blank">${url}</a></li>`;
+            });
+            html += '</ul>';
+            artifactContent.innerHTML = html;
+        }
 
-        // Close the autocomplete list when clicking outside
-        document.addEventListener("click", function (e) {
-            if (e.target !== tableSelect) {
-                closeAutocompleteList();
-            }
-        });
+        function renderMetadata(artifactData) {
+            const metadataHtml = `
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Metadata</h5>
+                        <p><strong>Type:</strong> ${artifactData.type}</p>
+                        <p><strong>Fact:</strong> ${artifactData.fact}</p>
+                        ${artifactData.cik ? `<p><strong>CIK:</strong> ${artifactData.cik}</p>` : ''}
+                        ${artifactData.category ? `<p><strong>Category:</strong> ${artifactData.category}</p>` : ''}
+                        ${artifactData.label ? `<p><strong>Label:</strong> ${artifactData.label}</p>` : ''}
+                        ${artifactData.description ? `<p><strong>Description:</strong> ${artifactData.description}</p>` : ''}
+                        ${artifactData.unit ? `<p><strong>Unit:</strong> ${artifactData.unit}</p>` : ''}
+                    </div>
+                </div>
+            `;
+            document.getElementById('metadata-content').innerHTML = metadataHtml;
+        }
 
-        // Download CSV function
+        function setupTableEventListeners(tableData) {
+            const artifactSelect = document.getElementById('artifact-select');
+            const autocompleteList = document.getElementById('autocomplete-list');
+            const downloadCsvBtn = document.getElementById('download-csv');
+            const downloadAllZipBtn = document.getElementById('download-all-zip');
+
+            artifactSelect.addEventListener('input', function (e) {
+                const val = this.value.toLowerCase();
+                createAutocompleteList(artifacts.filter(artifact =>
+                    artifact.fact.toLowerCase().includes(val)
+                ));
+            });
+
+            artifactSelect.addEventListener('focus', function () {
+                createAutocompleteList(artifacts);
+            });
+
+            downloadCsvBtn.addEventListener('click', () => {
+                downloadCSV(tableData);
+            });
+
+            downloadAllZipBtn.addEventListener('click', async () => {
+                const tables = artifacts.filter(artifact => artifact.type === 'artifact-table');
+                if (tables.length === 0) {
+                    alert('No tables available to download.');
+                    return;
+                }
+                const zip = new JSZip();
+                tables.forEach(table => {
+                    let csv = '';
+                    const headers = Object.keys(table.table[0]);
+                    csv += headers.join(',') + '\n';
+                    table.table.forEach(row => {
+                        csv += Object.values(row).join(',') + '\n';
+                    });
+                    zip.file(`${table.fact}.csv`, csv);
+                });
+                const content = await zip.generateAsync({ type: "blob" });
+                saveAs(content, "all_tables.zip");
+            });
+        }
+
+        function createAutocompleteList(filteredArtifacts) {
+            const autocompleteList = document.getElementById('autocomplete-list');
+            autocompleteList.innerHTML = '';
+            filteredArtifacts.forEach(artifact => {
+                const div = document.createElement("div");
+                div.innerHTML = artifact.fact;
+                div.addEventListener("click", function (e) {
+                    document.getElementById('artifact-select').value = this.innerHTML;
+                    renderTableArtifact(artifact);
+                    closeAutocompleteList();
+                });
+                autocompleteList.appendChild(div);
+            });
+        }
+
+        function closeAutocompleteList() {
+            document.getElementById('autocomplete-list').style.display = 'none';
+        }
+
         function downloadCSV(table) {
             let csv = '';
             const headers = Object.keys(table.table[0]);
@@ -256,29 +289,10 @@
             saveAs(blob, `${table.fact}.csv`);
         }
 
-        // Download selected table as CSV
-        downloadCsvBtn.addEventListener('click', () => {
-            if (selectedTable) {
-                downloadCSV(selectedTable);
-            } else {
-                alert('Please select a table first.');
+        document.addEventListener("click", function (e) {
+            if (e.target.id !== 'artifact-select') {
+                closeAutocompleteList();
             }
-        });
-
-        // Download all tables as ZIP
-        downloadAllZipBtn.addEventListener('click', async () => {
-            const zip = new JSZip();
-            tables.forEach(table => {
-                let csv = '';
-                const headers = Object.keys(table.table[0]);
-                csv += headers.join(',') + '\n';
-                table.table.forEach(row => {
-                    csv += Object.values(row).join(',') + '\n';
-                });
-                zip.file(`${table.fact}.csv`, csv);
-            });
-            const content = await zip.generateAsync({ type: "blob" });
-            saveAs(content, "all_tables.zip");
         });
     </script>
 </body>
