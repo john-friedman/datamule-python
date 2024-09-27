@@ -60,7 +60,6 @@
             color: #ffffff;
         }
 
-        /* Style for the list container */
         .list-group {
             margin-top: 20px;
             max-width: 600px;
@@ -71,7 +70,6 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        /* Style for each list item */
         .list-group-item {
             padding: 15px 20px;
             border: 1px solid #ddd;
@@ -79,39 +77,46 @@
             margin: 5px 0;
             transition: background-color 0.3s, box-shadow 0.3s;
             word-wrap: break-word;
-            /* Ensure long URLs wrap within the item */
             overflow: hidden;
-            /* Hide overflow content */
             text-overflow: ellipsis;
-            /* Add ellipsis for overflow text */
         }
 
-        /* Hover effect for list items */
         .list-group-item:hover {
             background-color: #e9ecef;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
-        /* Style for the hyperlink in each list item */
         .list-group-item a {
             text-decoration: none;
             color: #007bff;
             font-weight: 500;
             display: inline-block;
             max-width: 100%;
-            /* Prevent the link from exceeding list item width */
             white-space: nowrap;
-            /* Prevent wrapping */
             overflow: hidden;
-            /* Hide overflow content */
             text-overflow: ellipsis;
-            /* Show ellipsis for long URLs */
         }
 
-        /* Change link color on hover */
         .list-group-item a:hover {
             text-decoration: underline;
             color: #0056b3;
+        }
+
+        #suggestion-container {
+            display: block;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        #suggestion-container h5 {
+            margin-bottom: 10px;
+        }
+
+        #suggestion-container ul {
+            padding-left: 20px;
         }
     </style>
 </head>
@@ -130,8 +135,17 @@
                 </form>
             </div>
             <div class="col-md-6">
-                <div id="artifact-container" class="border p-3">
+                <button id="toggle-artifacts" class="btn btn-secondary mb-3">Show Artifacts</button>
+                <div id="artifact-container" class="border p-3" style="display: none;">
                     <div id="artifact-content"></div>
+                </div>
+                <div id="suggestion-container">
+                    <h5>Suggested Commands:</h5>
+                    <ul>
+                        <li>Get all company facts for Tesla</li>
+                        <li>Get Ford's CIK</li>
+                        <li>Get all 10-K urls for META</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -144,6 +158,8 @@
         const userInput = document.getElementById('user-input');
         const artifactContainer = document.getElementById('artifact-container');
         const artifactContent = document.getElementById('artifact-content');
+        const toggleArtifactsBtn = document.getElementById('toggle-artifacts');
+        const suggestionContainer = document.getElementById('suggestion-container');
 
         let artifacts = [];
 
@@ -182,6 +198,7 @@
             } else if (response.response.type === 'artifact') {
                 appendMessage('Bot', `I have prepared an ${response.response.artifact_type} for you. Please check the artifact view.`);
                 renderArtifact(response.response.content, response.response.artifact_type);
+                showArtifacts();
             } else {
                 appendMessage('Bot', 'I have received a response, but it is not a supported type.');
             }
@@ -190,7 +207,6 @@
         function renderArtifact(artifactData, artifactType) {
             console.log('Artifact type:', artifactType);
             console.log('Artifact data:', artifactData);
-
 
             if (artifactType === 'artifact-table') {
                 renderTableArtifact(artifactData[0]);
@@ -242,17 +258,14 @@
         function renderListArtifact(listData) {
             let html = `<h4>URLs</h4><ul class="list-group">`;
 
-            // Iterate over `listData` directly, as it is a list of URLs
             listData.forEach(url => {
                 html += `<li class="list-group-item"><a href="${url}" target="_blank">${url}</a></li>`;
             });
 
             html += '</ul>';
 
-            // Render the generated HTML into the artifactContent element
             artifactContent.innerHTML = html;
         }
-
 
         function renderMetadata(artifactData) {
             const metadataHtml = `
@@ -349,6 +362,29 @@
                 closeAutocompleteList();
             }
         });
+
+        function showArtifacts() {
+            artifactContainer.style.display = 'block';
+            suggestionContainer.style.display = 'none';
+            toggleArtifactsBtn.textContent = 'Hide Artifacts';
+        }
+
+        function hideArtifacts() {
+            artifactContainer.style.display = 'none';
+            suggestionContainer.style.display = 'block';
+            toggleArtifactsBtn.textContent = 'Show Artifacts';
+        }
+
+        toggleArtifactsBtn.addEventListener('click', () => {
+            if (artifactContainer.style.display === 'none') {
+                showArtifacts();
+            } else {
+                hideArtifacts();
+            }
+        });
+
+        // Initially hide artifacts
+        hideArtifacts();
     </script>
 </body>
 
