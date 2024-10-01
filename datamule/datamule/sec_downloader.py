@@ -5,15 +5,14 @@ import os
 from tqdm import tqdm
 from tqdm.asyncio import tqdm as atqdm
 import requests
-import zipfile
 from datetime import datetime, timedelta
 from urllib.parse import urlparse, parse_qs, urlencode
 import math
-from collections import defaultdict
-import csv
+import re
 
-from .global_vars import headers, dataset_10k_url, dataset_mda_url, dataset_xbrl_url
+from .global_vars import headers, dataset_10k_url, dataset_mda_url, dataset_xbrl_url, dataset_10k_record_list
 from .helper import _download_from_dropbox, identifier_to_cik, load_company_tickers
+from .zenodo_downloader import download_from_zenodo
 
 
 class Downloader:
@@ -82,16 +81,6 @@ class Downloader:
         successful_downloads = [result for result in results if result is not None]
         print(f"Successfully downloaded {len(successful_downloads)} out of {len(urls)} URLs")
         return successful_downloads
-    
-    # WIP
-    async def _fetch_json_from_urls(self, urls):
-        """Asynchronously fetch JSON data from a list of URLs."""
-        async with aiohttp.ClientSession() as session:
-            tasks = [self._fetch_json_from_url(session, url) for url in urls]
-            results = [await f for f in tqdm(asyncio.as_completed(tasks), total=len(tasks), desc="Fetching data")]
-        success = [result for result in results if result is not None]
-        print(f"Successfully fetched {len(success)} out of {len(urls)} URLs")
-        return success
     
 
     # DONE
@@ -255,21 +244,28 @@ class Downloader:
         urls = [f'https://data.sec.gov/api/xbrl/companyfacts/CIK{str(cik).zfill(10)}.json' for cik in ciks]
         self.run_download_urls(urls=urls,output_dir=output_dir,temp_fix='company_concepts')
 
-    # DONE. Add more datasets
+    # WIP
     def download_dataset(self, dataset, dataset_path='datasets'):
-        """Download a dataset from Dropbox. Currently supports '10K' and 'MDA'."""
+        """Download a dataset from Dropbox. Currently supports 'parsed_10k' and 'mda'."""
         if not os.path.exists(dataset_path):
             os.makedirs(dataset_path)
 
-        if dataset == '10K':
+        if dataset == 'parsed_10k':
             file_path = os.path.join(dataset_path, '10K.zip')
             _download_from_dropbox(dataset_10k_url, file_path)
-        elif dataset == "MDA":
+        elif dataset == "mda":
             file_path = os.path.join(dataset_path, 'MDA.zip')
             _download_from_dropbox(dataset_mda_url, file_path)
-        elif dataset == "XBRL":
+        elif dataset == "xbrl":
             file_path = os.path.join(dataset_path, 'XBRL.zip')
             _download_from_dropbox(dataset_xbrl_url, file_path)
+        elif re.match(r"10k_(\d{4})$", dataset):
+            year = dataset.split('_')[-1]
+            record = next((record['record'] for record in dataset_10k_record_list if record['year'] == int(year)), None)
+            out_path = os.path.join(dataset_path, '10K') 
+            download_from_zenodo(record, out_path)
+
+            
 
     # DONE. May need simplification
     async def _watch_efts(self, form=None, cik=None, interval=1, silent=False):

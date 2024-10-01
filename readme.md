@@ -14,8 +14,9 @@ Articles:
 - Monitor EDGAR for new filings
 - Parse textual filings into simplified HTML, interactive HTML, or structured JSON
 - Download SEC filings quickly and easily
-- Access datasets such as every MD&A from 2024 or every 2024 10-K converted to structured JSON
+- Access datasets such as every 10-K since 2001, 2024 MD&A, 2024 10-K converted to structured JSON, and more.
 - Interact with SEC data using MuleBot
+
 
 ## Table of Contents
 
@@ -102,17 +103,22 @@ download_company_concepts(self, output_dir = 'company_concepts',cik=None, ticker
 
 #### Datasets
 
-Available datasets:
-- 2024 10-K filings converted to JSON `10K`
-- Management's Discussion and Analysis (MD&A) sections extracted from 2024 10-K filings `MDA`
-- Every Company Concepts XBRL `XBRL`
+Note: Dataset module is a WIP. Some downloads may be large.
 
-Also available on [Dropbox](https://www.dropbox.com/scl/fo/byxiish8jmdtj4zitxfjn/AAaiwwuyaYp_zRfFyqfBUS8?rlkey=g1zk5pg7iendbsa34ltnokuxl&st=ca7zoeum&dl=0)
+Available datasets:
+- 2024 10-K filings converted to JSON `parsed_10k`
+- Management's Discussion and Analysis (MD&A) sections extracted from 2024 10-K filings `mda`
+- Every Company Concepts XBRL `xbrl` (730mb)
+- Every 10-K from 2001 to September 2024 `10k_{year}` e.g. `10k_2002`. Takes ~ 2.5 minutes to download per year.
+
+Also available on [Dropbox](https://www.dropbox.com/scl/fo/byxiish8jmdtj4zitxfjn/AAaiwwuyaYp_zRfFyqfBUS8?rlkey=g1zk5pg7iendbsa34ltnokuxl&st=ca7zoeum&dl=0) and [Zenodo](https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Friedman%2C%20John%22&l=list&p=1&s=10&sort=bestmatch)
 
 ```python
 # Download all 2024 10-K filings converted to JSON
-downloader.download_dataset('10K')
+downloader.download_dataset('parsed_10k')
 ```
+
+Note: I'm currently exploring ways to speed up dataset downloads. Zenodo has great hosting, but caps download speed at ~1-5mb/s. I can workaround this limit by uploading data in smaller chunks, but I'd like to find a better solution.
 
 #### Monitoring for New Filings
 
@@ -209,12 +215,6 @@ if __name__ == "__main__":
     main()
 ```
 
-<!--Example hosted here: have a link to vercel function? --->
-
-Features (coming soon):
-* Display XBRL tables with download / copy button.
-* Download XBRL tables for a specific company in ZIP.
-* Display sections of filings, like MD&A with links to filing viewer and original.
 
 Quickstart
 
@@ -253,11 +253,11 @@ if __name__ == "__main__":
 This is currently a low priority issue. Let me know if you need the data, and I'll move it up the priority list.
 
 ## Roadmap
+- [ ] mulebot - look at adding summarization. Add some protections to too many tokens being used + add options to allow summarization etc.
+- [ ] Make sure mulebot is stateless.
 - [ ] Fix code debt.
-- [ ] refactor downloader, and setup retriever. probably using urllib or requests for one-time
 - [ ] filing viewer band-aid fix. will wait until mule parser update to devote more effort
 - [ ] Paths may be messed up on non windows devices. Need to verify.
-- [ ] Consider change from function calling to using ell.
 - [ ] Analytics?
 
 ## Contributing
