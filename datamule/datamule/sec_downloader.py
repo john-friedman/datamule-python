@@ -13,7 +13,7 @@ import aiofiles
 import json
 
 from .global_vars import headers, dataset_10k_url, dataset_mda_url, dataset_xbrl_url, dataset_10k_record_list
-from .helper import _download_from_dropbox, identifier_to_cik, load_company_tickers
+from .helper import _download_from_dropbox, identifier_to_cik, load_company_tickers, fix_filing_url
 from .zenodo_downloader import download_from_zenodo
 
 class Downloader:
@@ -179,6 +179,8 @@ class Downloader:
         
         if total_filings < 10000:
             primary_doc_urls = asyncio.run(self._get_filing_urls_from_efts(efts_url))
+            # fix primary doc urls for filings
+            primary_doc_urls = [fix_filing_url(url) for url in primary_doc_urls]
             print(f"{efts_url}\nTotal filings: {len(primary_doc_urls)}")
             
             if return_urls:
