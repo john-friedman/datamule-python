@@ -16,6 +16,11 @@ from .global_vars import headers, dataset_10k_url, dataset_mda_url, dataset_xbrl
 from .helper import _download_from_dropbox, identifier_to_cik, load_company_tickers, fix_filing_url
 from .zenodo_downloader import download_from_zenodo
 
+class RetryException(Exception):
+    def __init__(self, url, retry_after):
+        self.url = url
+        self.retry_after = retry_after
+
 class Downloader:
     def __init__(self):
         self.headers = headers
@@ -38,42 +43,28 @@ class Downloader:
         """Get the appropriate rate limiter for a given URL."""
         domain = self.get_domain(url)
         return self.domain_limiters.get(domain, self.domain_limiters['default'])
-
-    async def _fetch_content_from_url(self, session, url, max_retries=3, current_retry=0):
-        """Asynchronously fetch content from a URL with domain-specific rate limiting."""
+    
+    # No such thing as Retry After header for SEC. should change
+    async def _fetch_content_from_url(self, session, url):
         limiter = self.get_limiter(url)
         async with limiter:
             try:
                 async with session.get(url, headers=self.headers) as response:
                     if response.status == 429:
-                        if current_retry >= max_retries:
-                            raise Exception(f"Max retries ({max_retries}) exceeded for URL: {url}")
-                        
-                        retry_after = int(response.headers.get('Retry-After', 603))
-                        print(f"Rate limited. Retry {current_retry + 1}/{max_retries} after {retry_after} seconds.")
-                        await asyncio.sleep(retry_after)
-                        return await self._fetch_content_from_url(session, url, max_retries, current_retry + 1)
+                        retry_after = int(response.headers.get('Retry-After', 60))
+                        raise RetryException(url, retry_after)
                     
                     response.raise_for_status()
                     return await response.read()
             
             except aiohttp.ClientResponseError as e:
                 if e.status == 429:
-                    if current_retry >= max_retries:
-                        raise Exception(f"Max retries ({max_retries}) exceeded for URL: {url}")
-                    
-                    retry_after = int(e.headers.get('Retry-After', 603))
-                    print(f"Rate limited. Retry {current_retry + 1}/{max_retries} after {retry_after} seconds.")
-                    await asyncio.sleep(retry_after)
-                    return await self._fetch_content_from_url(session, url, max_retries, current_retry + 1)
+                    retry_after = int(e.headers.get('Retry-After', 60))
+                    raise RetryException(url, retry_after)
                 raise
             
             except Exception as e:
                 print(f"Error downloading {url}: {str(e)}")
-                if current_retry < max_retries:
-                    print(f"Retrying ({current_retry + 1}/{max_retries})...")
-                    await asyncio.sleep(5)  # Wait 5 seconds before retrying
-                    return await self._fetch_content_from_url(session, url, max_retries, current_retry + 1)
                 raise
 
     async def write_content_to_file(self, content, filepath):
@@ -98,15 +89,39 @@ class Downloader:
         return json.loads(content)
 
     async def _download_urls(self, urls, filenames, output_dir):
-        """Asynchronously download a list of URLs to a specified directory."""
         os.makedirs(output_dir, exist_ok=True)
         async with aiohttp.ClientSession() as session:
             tasks = [self.download_file(session, url, os.path.join(output_dir, filename)) 
                      for url, filename in zip(urls, filenames) if filename]
-            results = [await f for f in tqdm(asyncio.as_completed(tasks), total=len(tasks), desc="Downloading files")]
-        successful_downloads = [result for result in results if result is not None]
-        print(f"Successfully downloaded {len(successful_downloads)} out of {len(urls)} URLs")
-        return successful_downloads
+            
+            retry_tasks = []
+            max_retries = 20
+            retry_count = 0
+
+            while tasks and retry_count < max_retries:
+                results = []
+                for task in tqdm(asyncio.as_completed(tasks), total=len(tasks), desc=f"Downloading files (Attempt {retry_count + 1})"):
+                    try:
+                        result = await task
+                        results.append(result)
+                    except RetryException as e:
+                        print(f"Rate limited for {e.url}. Will retry after {e.retry_after} seconds.")
+                        retry_tasks.append((e.url, e.retry_after))
+                    except Exception as e:
+                        print(f"Failed to download: {str(e)}")
+
+                if retry_tasks:
+                    await asyncio.sleep(max(retry.retry_after for retry in retry_tasks))
+                    tasks = [self.download_file(session, retry.url, os.path.join(output_dir, next(filename for url, filename in zip(urls, filenames) if url == retry.url))) 
+                             for retry in retry_tasks]
+                    retry_tasks = []
+                    retry_count += 1
+                else:
+                    break
+
+            successful_downloads = [result for result in results if result is not None]
+            print(f"Successfully downloaded {len(successful_downloads)} out of {len(urls)} URLs")
+            return successful_downloads
 
     def run_download_urls(self, urls, filenames, output_dir='filings'):
         """Download a list of URLs to a specified directory"""
