@@ -74,7 +74,7 @@ downloader = dm.Downloader()
 
 #### Downloading Filings
 
-Uses the [EFTS API](https://efts.sec.gov/LATEST/search-index) to retrieve filings. I am considering renaming `download` to `download_filings`.
+Uses the [EFTS API](https://efts.sec.gov/LATEST/search-index) to retrieve filings. 
 ```python
 download(self, output_dir = 'filings',  return_urls=False,cik=None, ticker=None, form=None, date=None)
 ```
@@ -99,7 +99,9 @@ download_company_concepts(self, output_dir = 'company_concepts',cik=None, ticker
 ```
 
 #### Changing Rate Limits
-The SEC.gov officially supports 10 requests / second. In practice this is not the case. <!---link-> After experimentation, 7 requests / second seems to ensure consistent non rate limit blocking.
+The SEC.gov officially supports 10 requests / second. In practice this is not the case. After heavy experimentation the downloader's default rate limit for sec.gov has been set to 7 requests / second. If you intend to download less than 1,000 filings at a time, setting the rate limit to 10 should be fine. If you need to download more than 10,000 filings, setting the rate limit to 5 will likely avoid rate limiting. Also, downloading at off-peak times will likely let you set higher rate-limits.
+
+[Experiment Details](https://medium.com/@jgfriedman99/downloading-filings-from-the-sec-100x-faster-c38a37a59296)
 
 ```python
 downloader.set_limiter('www.sec.gov', 10)
