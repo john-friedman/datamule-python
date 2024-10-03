@@ -79,3 +79,7 @@ def identifier_to_cik(ticker):
         raise ValueError("No matching companies found")
 
     return cik
+
+def fix_filing_url(url):
+    pass
+    # if url ends with /0001.txt replace with accession number e.g. 0001193125-20-000010-0001.txt

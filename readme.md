@@ -20,7 +20,6 @@ Articles:
 
 ## Table of Contents
 
-- [Features](#features)
 - [Installation](#installation)
 - [Quick Start](#quick-start)
 - [Usage](#usage)
@@ -46,7 +45,7 @@ pip install datamule
 Installation with additional features:
 ```bash
 pip install datamule[filing_viewer]  # Install with filing viewer module
-pip install datamule[mulebot]  # Install with MuleBot (coming soon)
+pip install datamule[mulebot]  # Install with MuleBot
 pip install datamule[all]  # Install all extras
 ```
 
@@ -69,8 +68,6 @@ downloader.download(form='10-K', ticker='AAPL')
 
 ### Downloader
 
-Download speed is close to theoretical maximum set by SEC rate limits.
-
 ```
 downloader = dm.Downloader()
 ```
@@ -78,7 +75,7 @@ downloader = dm.Downloader()
 #### Downloading Filings
 
 Uses the [EFTS API](https://efts.sec.gov/LATEST/search-index) to retrieve filings. I am considering renaming `download` to `download_filings`.
-```
+```python
 download(self, output_dir = 'filings',  return_urls=False,cik=None, ticker=None, form=None, date=None)
 ```
 
@@ -99,6 +96,13 @@ Uses the [Company Concepts API](https://data.sec.gov/api/xbrl/companyfacts/CIK00
 
 ```
 download_company_concepts(self, output_dir = 'company_concepts',cik=None, ticker=None)
+```
+
+#### Changing Rate Limits
+The SEC.gov officially supports 10 requests / second. In practice this is not the case. <!---link-> After experimentation, 7 requests / second seems to ensure consistent non rate limit blocking.
+
+```python
+downloader.set_limiter('www.sec.gov', 10)
 ```
 
 #### Datasets
@@ -253,6 +257,7 @@ if __name__ == "__main__":
 This is currently a low priority issue. Let me know if you need the data, and I'll move it up the priority list.
 
 ## Roadmap
+- [ ] Downloader add option to save progress
 - [ ] mulebot - look at adding summarization. Add some protections to too many tokens being used + add options to allow summarization etc.
 - [ ] Make sure mulebot is stateless.
 - [ ] Fix code debt.

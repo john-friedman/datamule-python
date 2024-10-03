@@ -1,5 +1,5 @@
 headers = {
-    "User-Agent": "Jan Doe jandoe@gmail.com"  # Replace with your information
+    "User-Agent": "red Doe redrun@gmail.com"  # Replace with your information
 }
 
 dataset_10k_url = "https://www.dropbox.com/scl/fi/b5hex8bj21tij91pg7iwe/10K-JSON.zip?rlkey=l4fbefm71m1rdyz0hv69dsjel&st=rhpx6q0t&dl=0"
