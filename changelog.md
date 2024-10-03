@@ -1,4 +1,7 @@
 # Changelog
+## v0.330 (2024-10-03)
+- Made downloader more robust and added set_limiter to allow precision control.
+- Added dataset of every 10K since 2001
 ## v0.323 (2024-09-27)
 - Added Mulebot
 - Reworked Filing Viewer

@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: datamule
-Version: 0.323
+Version: 0.330
 Summary: Making it easier to use SEC filings.
 Home-page: https://github.com/john-friedman/datamule-python
 Author: John Friedman
@@ -16,21 +16,22 @@ Provides-Extra: all
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fjohn-friedman%2Fdatamule-python&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 ![GitHub](https://img.shields.io/github/stars/john-friedman/datamule-python)
 
-A Python package to work with SEC filings at scale. Also includes Mulebot, an open-source chatbot for SEC data that does not require storage. Integrated with [datamule](https://datamule.xyz/)'s APIs and datasets.
+A Python package to work with SEC filings at scale. Also includes [Mulebot](https://kpio.pythonanywhere.com/), an open-source chatbot for SEC data that does not require storage. Integrated with [datamule](https://datamule.xyz/)'s APIs and datasets.
 
-<!-- Link to medium article, how to setup a SEC chatbot in 5 minutes. -->
+Articles:
+[How to deploy a financial chatbot to the internet in 5 minutes](https://medium.com/@jgfriedman99/how-to-deploy-a-financial-chatbot-in-5-minutes-ef5eec973d4c)
 
 ## Features
 
 - Monitor EDGAR for new filings
 - Parse textual filings into simplified HTML, interactive HTML, or structured JSON
 - Download SEC filings quickly and easily
-- Access datasets such as every MD&A from 2024 or every 2024 10-K converted to structured JSON
+- Access datasets such as every 10-K since 2001, 2024 MD&A, 2024 10-K converted to structured JSON, and more.
 - Interact with SEC data using MuleBot
+
 
 ## Table of Contents
 
-- [Features](#features)
 - [Installation](#installation)
 - [Quick Start](#quick-start)
 - [Usage](#usage)
@@ -56,7 +57,7 @@ pip install datamule
 Installation with additional features:
 ```bash
 pip install datamule[filing_viewer]  # Install with filing viewer module
-pip install datamule[mulebot]  # Install with MuleBot (coming soon)
+pip install datamule[mulebot]  # Install with MuleBot
 pip install datamule[all]  # Install all extras
 ```
 
@@ -79,16 +80,14 @@ downloader.download(form='10-K', ticker='AAPL')
 
 ### Downloader
 
-Download speed is close to theoretical maximum set by SEC rate limits.
-
 ```
 downloader = dm.Downloader()
 ```
 
 #### Downloading Filings
 
-Uses the [EFTS API](https://efts.sec.gov/LATEST/search-index) to retrieve filings. I am considering renaming `download` to `download_filings`.
-```
+Uses the [EFTS API](https://efts.sec.gov/LATEST/search-index) to retrieve filings. 
+```python
 download(self, output_dir = 'filings',  return_urls=False,cik=None, ticker=None, form=None, date=None)
 ```
 
@@ -111,19 +110,33 @@ Uses the [Company Concepts API](https://data.sec.gov/api/xbrl/companyfacts/CIK00
 download_company_concepts(self, output_dir = 'company_concepts',cik=None, ticker=None)
 ```
 
+#### Changing Rate Limits
+The SEC.gov officially supports 10 requests / second. In practice this is not the case. After heavy experimentation the downloader's default rate limit for sec.gov has been set to 7 requests / second. If you intend to download less than 1,000 filings at a time, setting the rate limit to 10 should be fine. If you need to download more than 10,000 filings, setting the rate limit to 5 will likely avoid rate limiting. Also, downloading at off-peak times will likely let you set higher rate-limits.
+
+[Experiment Details](https://medium.com/@jgfriedman99/downloading-filings-from-the-sec-100x-faster-c38a37a59296)
+
+```python
+downloader.set_limiter('www.sec.gov', 10)
+```
+
 #### Datasets
 
-Available datasets:
-- 2024 10-K filings converted to JSON `10K`
-- Management's Discussion and Analysis (MD&A) sections extracted from 2024 10-K filings `MDA`
-- Every Company Concepts XBRL `XBRL`
+Note: Dataset module is a WIP. Some downloads may be large.
 
-Also available on [Dropbox](https://www.dropbox.com/scl/fo/byxiish8jmdtj4zitxfjn/AAaiwwuyaYp_zRfFyqfBUS8?rlkey=g1zk5pg7iendbsa34ltnokuxl&st=ca7zoeum&dl=0)
+Available datasets:
+- 2024 10-K filings converted to JSON `parsed_10k`
+- Management's Discussion and Analysis (MD&A) sections extracted from 2024 10-K filings `mda`
+- Every Company Concepts XBRL `xbrl` (730mb)
+- Every 10-K from 2001 to September 2024 `10k_{year}` e.g. `10k_2002`. Takes ~ 2.5 minutes to download per year.
+
+Also available on [Dropbox](https://www.dropbox.com/scl/fo/byxiish8jmdtj4zitxfjn/AAaiwwuyaYp_zRfFyqfBUS8?rlkey=g1zk5pg7iendbsa34ltnokuxl&st=ca7zoeum&dl=0) and [Zenodo](https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Friedman%2C%20John%22&l=list&p=1&s=10&sort=bestmatch)
 
 ```python
 # Download all 2024 10-K filings converted to JSON
-downloader.download_dataset('10K')
+downloader.download_dataset('parsed_10k')
 ```
+
+Note: I'm currently exploring ways to speed up dataset downloads. Zenodo has great hosting, but caps download speed at ~1-5mb/s. I can workaround this limit by uploading data in smaller chunks, but I'd like to find a better solution.
 
 #### Monitoring for New Filings
 
@@ -173,10 +186,10 @@ Convert parsed filing JSON into HTML with features like a table of contents side
 
 ```python
 from datamule import parse_textual_filing
-from datamule.filing_viewer import create_interactive_html
+from datamule.filing_viewer import create_interactive_filing
 
 data = parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605/000095017022000796/tsla-20211231.htm', return_type='json')
-create_interactive_html(data, 'output_path.html')
+create_interactive_filing(data)
 ```
 
 ![interactive](https://github.com/john-friedman/datamule-python/blob/main/static/interactive.png)
@@ -197,7 +210,7 @@ To use Mulebot you will need an [OpenAI API Key](https://platform.openai.com/api
 
 #### Mulebot Server
 
-Mulebot server is a customizable front-end for Mulebot. 
+Mulebot server is a customizable front-end for Mulebot. [Example](https://kpio.pythonanywhere.com/)
 
 Artifacts:
 * Filing Viewer
@@ -220,12 +233,6 @@ if __name__ == "__main__":
     main()
 ```
 
-<!--Example hosted here: have a link to vercel function? --->
-
-Features (coming soon):
-* Display XBRL tables with download / copy button.
-* Download XBRL tables for a specific company in ZIP.
-* Display sections of filings, like MD&A with links to filing viewer and original.
 
 Quickstart
 
@@ -264,11 +271,12 @@ if __name__ == "__main__":
 This is currently a low priority issue. Let me know if you need the data, and I'll move it up the priority list.
 
 ## Roadmap
-- [ ] Add Mulebot. add view section artifact with pop out to json or filing viewer
-- [ ] refactor downloader, and setup retriever. probably using urllib or requests for one-time
+- [ ] Downloader add option to save progress
+- [ ] mulebot - look at adding summarization. Add some protections to too many tokens being used + add options to allow summarization etc.
+- [ ] Make sure mulebot is stateless.
+- [ ] Fix code debt.
 - [ ] filing viewer band-aid fix. will wait until mule parser update to devote more effort
 - [ ] Paths may be messed up on non windows devices. Need to verify.
-- [ ] Consider change from function calling to using ell.
 - [ ] Analytics?
 
 ## Contributing

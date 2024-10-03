@@ -3,22 +3,20 @@ from pathlib import Path
 
 long_description = Path("../readme.md").read_text()
 
-# TODO before push
-# Define the extras and their dependencies
 extras = {
     "filing_viewer": ["lxml"],
     "mulebot": ['openai'],
     "mulebot_server": ['flask']
 }
 
-# Create the 'all' option
+
 all_dependencies = set(dep for extra_deps in extras.values() for dep in extra_deps)
 extras["all"] = list(all_dependencies)
 
 setup(
     name="datamule",
     author="John Friedman",
-    version="0.323",
+    version="0.330",
     description="Making it easier to use SEC filings.",
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -34,7 +32,7 @@ setup(
     extras_require=extras,
    package_data={
         "datamule": ["data/*.csv"],
-        "datamule.mulebot.mulebot_server": ["templates/*.html"],  # Add this line
+        "datamule.mulebot.mulebot_server": ["templates/*.html"],
     },
     include_package_data=True,
 )

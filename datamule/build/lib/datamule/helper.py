@@ -4,6 +4,7 @@ from tqdm import tqdm
 import zipfile
 from pkg_resources import resource_filename
 import csv
+import re
 
 # Unused in current implementation.
 def construct_primary_doc_url(cik, accession_number,primary_doc_url):
@@ -79,3 +80,22 @@ def identifier_to_cik(ticker):
         raise ValueError("No matching companies found")
 
     return cik
+
+
+def fix_filing_url(url):
+    """Some Filings URLs have the wrong path. This is an issue with EFTS, that is solved in SEC.gov index page, but SEC.gov still has links to broken url."""
+    # Check if the URL ends with '/0001.txt'
+    if url.endswith('/0001.txt'):
+        # Extract the accession number from the URL
+        match = re.search(r'/(\d{18})/', url)
+        if match:
+            accession_number = match.group(1)
+            # Add dashes to the accession number
+            formatted_accession_number = f"{accession_number[:10]}-{accession_number[10:12]}-{accession_number[12:]}"
+            # Construct the new URL
+            new_url = url.rsplit('/', 1)[0] + f'/{formatted_accession_number}-0001.txt'
+            return new_url
+    
+    # If the URL doesn't end with '/0001.txt' or doesn't contain a valid accession number,
+    # return the original URL
+    return url
