@@ -74,7 +74,7 @@ downloader = dm.Downloader()
 
 #### Downloading Filings
 
-Uses the [EFTS API](https://efts.sec.gov/LATEST/search-index) to retrieve filings. 
+Uses the [EFTS API](https://efts.sec.gov/LATEST/search-index) to retrieve filings locations, and the [SEC API](sec.gov) to download filings.
 ```python
 download(self, output_dir = 'filings',  return_urls=False,cik=None, ticker=None, form=None, date=None)
 ```
@@ -90,6 +90,8 @@ downloader.download(form='10-K', ticker=['TSLA', 'META'], output_dir='filings')
 downloader.download(form='3', date='2024-05-21', output_dir='filings')
 ```
 
+View the SEC Filing Glossary [here](https://datamule.xyz/sec_glossary) or download the json file [here](https://datamule.xyz/static/sec-glossary.json).
+
 #### Downloading Company Concepts XBRL
 
 Uses the [Company Concepts API](https://data.sec.gov/api/xbrl/companyfacts/CIK0001318605.json) to retrieve XBRL.
@@ -98,10 +100,10 @@ Uses the [Company Concepts API](https://data.sec.gov/api/xbrl/companyfacts/CIK00
 download_company_concepts(self, output_dir = 'company_concepts',cik=None, ticker=None)
 ```
 
-#### Changing Rate Limits
-The SEC.gov officially supports 10 requests / second. In practice this is not the case. After heavy experimentation the downloader's default rate limit for sec.gov has been set to 7 requests / second. If you intend to download less than 1,000 filings at a time, setting the rate limit to 10 should be fine. If you need to download more than 10,000 filings, setting the rate limit to 5 will likely avoid rate limiting. Also, downloading at off-peak times will likely let you set higher rate-limits.
+View the XBRL Fact Glossary [here](https://datamule.xyz/xbrl_fact_glossary) or as a csv file [here](https://datamule.xyz/static/xbrl_descriptions.csv).
 
-[Experiment Details](https://medium.com/@jgfriedman99/downloading-filings-from-the-sec-100x-faster-c38a37a59296)
+#### Changing Rate Limits
+The SEC.gov officially supports 10 requests / second. In practice this is not the case. After heavy experimentation the downloader's default rate limit for sec.gov has been set to 7 requests / second. If you intend to download less than 1,000 filings at a time, setting the rate limit to 10 should be fine. If you need to download more than 10,000 filings, setting the rate limit to 5 will likely avoid rate limiting. Also, downloading at off-peak times will likely let you set higher rate-limits. [Experiment Details](https://medium.com/@jgfriedman99/downloading-filings-from-the-sec-100x-faster-c38a37a59296)
 
 ```python
 downloader.set_limiter('www.sec.gov', 10)
@@ -182,7 +184,7 @@ create_interactive_filing(data)
 
 ![interactive](https://github.com/john-friedman/datamule-python/blob/main/static/interactive.png)
 
-
+Try out the Filings Viewer [here](https://datamule.xyz/filings_viewer). Note: This is an older version with bugs, that will be updated with the next release of the Parser API.
 
 ### Mulebot 
 
