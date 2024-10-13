@@ -1,5 +1,5 @@
 // main.js
-import { appendMessage, sendMessage, handleResponse } from './chat.js';
+import { appendMessage, sendMessage, handleResponse, showThinkingIndicator, hideThinkingIndicator } from './chat.js';
 import { initializeArtifacts } from './artifacts.js';
 import { handleDocumentClick } from './tableArtifacts.js';
 import { initializeSuggestions } from './suggestions.js';
@@ -18,8 +18,13 @@ function initializeChat() {
             if (message) {
                 appendMessage('You', message);
                 userInput.value = '';
-                const response = await sendMessage(message);
-                handleResponse(response);
+                showThinkingIndicator();
+                try {
+                    const response = await sendMessage(message);
+                    handleResponse(response);
+                } finally {
+                    hideThinkingIndicator();
+                }
             }
         });
     }

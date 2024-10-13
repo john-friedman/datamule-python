@@ -28,9 +28,17 @@ body {
 }
 
 /* Chat container */
-#chat-container {
+#chat-outer-container {
+    position: relative;
     height: 400px;
+    overflow: hidden;
+}
+
+#chat-container {
+    height: 100%;
     overflow-y: auto;
+    padding-bottom: 40px;
+    /* Make room for the thinking indicator */
 }
 
 /* Artifact container */
@@ -92,4 +100,39 @@ body {
 .autocomplete-active {
     background-color: DodgerBlue !important;
     color: #ffffff;
+}
+
+/* Thinking Indicator */
+.thinking-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px 5px 0 0;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.dot-animation {
+    display: inline-block;
+    width: 20px;
+    text-align: left;
+    animation: dotAnimation 1.5s infinite;
+}
+
+@keyframes dotAnimation {
+    0% {
+        content: '.';
+    }
+
+    33% {
+        content: '..';
+    }
+
+    66% {
+        content: '...';
+    }
 }

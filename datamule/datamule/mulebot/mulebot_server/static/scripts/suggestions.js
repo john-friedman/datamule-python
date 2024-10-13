@@ -1,5 +1,5 @@
 // suggestions.js
-import { appendMessage, sendMessage, handleResponse } from './chat.js';
+import { appendMessage, sendMessage, handleResponse, showThinkingIndicator, hideThinkingIndicator } from './chat.js';
 import { renderArtifact, showArtifacts } from './artifacts.js';
 
 export function initializeSuggestions() {
@@ -23,12 +23,15 @@ export function initializeSuggestions() {
     // Function to execute chat request
     async function executeChatRequest(message) {
         try {
-            appendMessage('You', message); // Add user message to chat
+            appendMessage('You', message);
+            showThinkingIndicator();
             const response = await sendMessage(message);
             handleResponse(response);
         } catch (error) {
             console.error('Error executing chat request:', error);
             appendMessage('Bot', 'Sorry, there was an error processing your request.');
+        } finally {
+            hideThinkingIndicator();
         }
     }
 

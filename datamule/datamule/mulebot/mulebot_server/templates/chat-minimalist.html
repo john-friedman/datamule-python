@@ -18,7 +18,12 @@
             <div class="col-md-6">
                 <div class="card mb-3">
                     <div class="card-body">
-                        <div id="chat-container" class="mb-3"></div>
+                        <div id="chat-outer-container">
+                            <div id="chat-container" class="mb-3"></div>
+                            <div id="thinking-indicator" class="thinking-indicator">
+                                <span>Bot is thinking</span><span class="dot-animation">...</span>
+                            </div>
+                        </div>
                         <form id="chat-form">
                             <div class="input-group">
                                 <input type="text" id="user-input" class="form-control"
@@ -50,7 +55,6 @@
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
-    <script src="{{ url_for('static', filename='scripts/minimalist.js') }}"></script>
 
     <!-- Application scripts -->
     <script type="module" src="{{ url_for('static', filename='scripts/utils.js') }}"></script>
