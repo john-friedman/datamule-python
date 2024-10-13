@@ -4,7 +4,7 @@
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fjohn-friedman%2Fdatamule-python&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 ![GitHub](https://img.shields.io/github/stars/john-friedman/datamule-python)
 
-A Python package to work with SEC filings at scale. Also includes [Mulebot](https://kpio.pythonanywhere.com/), an open-source chatbot for SEC data that does not require storage. Integrated with [datamule](https://datamule.xyz/)'s APIs and datasets.
+A Python package to work with SEC filings at scale. Also includes [Mulebot](https://chat.datamule.xyz/), an open-source chatbot for SEC data that does not require storage. Integrated with [datamule](https://datamule.xyz/)'s APIs and datasets.
 
 Articles:
 [How to deploy a financial chatbot to the internet in 5 minutes](https://medium.com/@jgfriedman99/how-to-deploy-a-financial-chatbot-in-5-minutes-ef5eec973d4c)
@@ -193,7 +193,7 @@ To use Mulebot you will need an [OpenAI API Key](https://platform.openai.com/api
 
 #### Mulebot Server
 
-Mulebot server is a customizable front-end for Mulebot. [Example](https://kpio.pythonanywhere.com/)
+Mulebot server is a customizable front-end for Mulebot. [Example](https://chat.datamule.xyz/)
 
 Artifacts:
 * Filing Viewer
