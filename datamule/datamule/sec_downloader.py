@@ -35,6 +35,9 @@ class Downloader:
         """Set a custom rate limit for a specific domain."""
         self.domain_limiters[domain] = AsyncLimiter(rate_limit, 1)
 
+    def set_headers(self, user_agent):
+        self.headers = {'User-Agent': user_agent}
+
     def get_domain(self, url):
         """Extract the domain from a URL."""
         return urlparse(url).netloc
@@ -204,6 +207,7 @@ class Downloader:
 
         return urls[::-1]
 
+    # Check if conductor is WAI
     def _conductor(self, efts_url, return_urls, output_dir):
         """Conduct the download process based on the number of filings."""
         total_filings = self._number_of_efts_filings(efts_url)

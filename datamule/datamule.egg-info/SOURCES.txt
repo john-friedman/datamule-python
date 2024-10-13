@@ -22,4 +22,8 @@ datamule/mulebot/search.py
 datamule/mulebot/tools.py
 datamule/mulebot/mulebot_server/__init__.py
 datamule/mulebot/mulebot_server/server.py
+datamule/mulebot/mulebot_server/static/css/styles.css
+datamule/mulebot/mulebot_server/static/scripts/script.js
+datamule/mulebot/mulebot_server/templates/chat copy.html
+datamule/mulebot/mulebot_server/templates/chat-minimalist.html
 datamule/mulebot/mulebot_server/templates/chat.html

@@ -95,6 +95,16 @@ def fix_filing_url(url):
             # Construct the new URL
             new_url = url.rsplit('/', 1)[0] + f'/{formatted_accession_number}-0001.txt'
             return new_url
+    elif url.endswith('/0001.htm'):
+        # Extract the accession number from the URL
+        match = re.search(r'/(\d{18})/', url)
+        if match:
+            accession_number = match.group(1)
+            # Add dashes to the accession number
+            formatted_accession_number = f"{accession_number[:10]}-{accession_number[10:12]}-{accession_number[12:]}"
+            # Construct the new URL
+            new_url = url.rsplit('/', 1)[0] + f'/{formatted_accession_number}-0001.htm'
+            return new_url
     
     # If the URL doesn't end with '/0001.txt' or doesn't contain a valid accession number,
     # return the original URL

@@ -4,16 +4,18 @@ from datamule.mulebot import MuleBot
 from datamule.filing_viewer import create_interactive_filing, create_valid_id
 
 class MuleBotServer:
-    def __init__(self):
+    def __init__(self, template='chat.html'):
         template_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'templates'))
-        self.app = Flask(__name__, template_folder=template_dir)
-        self.mulebot = None  # We'll initialize this when we have the API key
+        static_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'static'))
+        self.app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
+        self.mulebot = None
+        self.template = template
         self.setup_routes()
 
     def setup_routes(self):
         @self.app.route('/')
         def home():
-            return render_template('chat.html')
+            return render_template(self.template)
 
         @self.app.route('/chat', methods=['POST'])
         def chat():
@@ -82,5 +84,3 @@ class MuleBotServer:
             raise ValueError("API key not set. Please call set_api_key() before running the server.")
         self.app.run(debug=debug, host=host, port=port)
 
-# Create a single instance of MuleBotServer
-server = MuleBotServer()

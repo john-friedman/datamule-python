@@ -1,12 +1,9 @@
-
-# need to add input as well as visualize original with parsed table
-# takes selectolax table
 class TableParser:
     def __init__(self):
         pass
 
-    # detects if a table is a table or a header disguised as a table
     def detect_table(self, table):
+        """Detects if a table is a table or a header disguised as a table"""
         if table.tag != 'table':
             return False
         
@@ -20,19 +17,21 @@ class TableParser:
 
     def _parse_table_row(self, table_row):
         # select all cells
-        rows = table_row.css('td')
+        cells = table_row.css('td')
         # get text from each cell
-        rows = [row.text().strip() for row in rows]
+        cells = [cell.text().strip() for cell in cells]
+        # remove rows that only have *
+        cells = [cell for cell in cells if not cell == '*']
 
         # remove empty strings
-        rows = [row for row in rows if row]
+        cells = [cell for cell in cells if cell]
 
         # cleanup headers
-        rows = [row.replace('\n',' ') for row in rows]
-        rows = [row.replace('\xa0',' ') for row in rows]
+        cells = [cell.replace('\n',' ') for cell in cells]
+        cells = [cell.replace('\xa0',' ') for cell in cells]
 
-        return rows
-
+        return cells
+    
 
     def parse_table(self, table):
         table_data = []
@@ -44,8 +43,8 @@ class TableParser:
                 row_dict = dict(zip(header, row_data))
                 table_data.append(row_dict)
 
-        # make sure to return the original table in html form
         return {'parsed_table': table_data, 'original_table': table.html}
+
 
     def extract_all_tables(self, tree):
         tables = tree.css('table')

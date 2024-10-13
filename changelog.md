@@ -1,4 +1,7 @@
 # Changelog
+## v0.332 (2024-10-05)
+- Table parser tweak to output parsed tables in list format.
+
 ## v0.330 (2024-10-03)
 - Made downloader more robust and added set_limiter to allow precision control.
 - Added dataset of every 10K since 2001

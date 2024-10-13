@@ -3,6 +3,7 @@ aiolimiter
 tqdm
 requests
 nest_asyncio
+aiofiles
 
 [all]
 openai
