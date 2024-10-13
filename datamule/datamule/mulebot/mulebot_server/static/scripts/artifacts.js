@@ -1,14 +1,17 @@
 // artifacts.js
-import { renderTableArtifact } from './tableArtifacts.js';
+import { renderTableArtifact, handleArtifactSelectInput, handleArtifactSelectFocus, handleDocumentClick } from './tableArtifacts.js';
 import { renderListArtifact } from './listArtifacts.js';
 import { renderFilingArtifact } from './filingArtifacts.js';
-import { handleArtifactSelectInput, handleArtifactSelectFocus, handleDocumentClick } from './tableArtifacts.js';
 
 export let artifactContent = null;
 export let artifactContainer = null;
 export let suggestionContainer = null;
 export let toggleArtifactsBtn = null;
 export let allArtifacts = [];
+
+function debugLog(message, data = null) {
+    console.log(`[Debug ${new Date().toISOString()}] ${message}`, data);
+}
 
 export function initializeArtifacts() {
     artifactContent = document.getElementById('artifact-content');
@@ -17,6 +20,12 @@ export function initializeArtifacts() {
     toggleArtifactsBtn = document.getElementById('toggle-artifacts');
 
     setupArtifactEventListeners();
+    debugLog('Artifacts initialized', {
+        artifactContent: !!artifactContent,
+        artifactContainer: !!artifactContainer,
+        suggestionContainer: !!suggestionContainer,
+        toggleArtifactsBtn: !!toggleArtifactsBtn
+    });
 }
 
 function setupArtifactEventListeners() {
@@ -33,19 +42,20 @@ function setupArtifactEventListeners() {
     }, true);
 
     document.addEventListener('click', handleDocumentClick);
+    debugLog('Artifact event listeners set up');
 }
 
 export function renderArtifact(artifactData, artifactType) {
-    console.log('Artifact type:', artifactType);
-    console.log('Artifact data:', artifactData);
+    debugLog('Rendering artifact', { type: artifactType, data: artifactData });
 
     if (artifactType === 'artifact-table') {
         const newArtifacts = Array.isArray(artifactData) ? artifactData : [artifactData];
         newArtifacts.forEach(artifact => {
             artifact.type = artifactType;
-            console.log('Processed artifact:', artifact);
+            debugLog('Processing artifact', artifact);
         });
         allArtifacts = [...allArtifacts, ...newArtifacts];
+        debugLog('Updated allArtifacts', allArtifacts.map(a => ({ fact: a.fact, type: a.type })));
         renderTableArtifact(artifactData[0]);
     }
     else if (artifactType === 'artifact-list') {
@@ -55,7 +65,7 @@ export function renderArtifact(artifactData, artifactType) {
         renderFilingArtifact(artifactData);
     }
     else {
-        console.log('Unsupported artifact type:', artifactType);
+        debugLog('Unsupported artifact type', artifactType);
     }
 }
 
@@ -64,6 +74,13 @@ export function showArtifacts() {
         artifactContainer.style.display = 'block';
         suggestionContainer.style.display = 'none';
         toggleArtifactsBtn.textContent = 'Hide Artifacts';
+        debugLog('Artifacts shown');
+    } else {
+        debugLog('Error: Could not show artifacts', {
+            artifactContainer: !!artifactContainer,
+            suggestionContainer: !!suggestionContainer,
+            toggleArtifactsBtn: !!toggleArtifactsBtn
+        });
     }
 }
 
@@ -72,5 +89,12 @@ export function hideArtifacts() {
         artifactContainer.style.display = 'none';
         suggestionContainer.style.display = 'block';
         toggleArtifactsBtn.textContent = 'Show Artifacts';
+        debugLog('Artifacts hidden');
+    } else {
+        debugLog('Error: Could not hide artifacts', {
+            artifactContainer: !!artifactContainer,
+            suggestionContainer: !!suggestionContainer,
+            toggleArtifactsBtn: !!toggleArtifactsBtn
+        });
     }
 }

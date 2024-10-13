@@ -45,28 +45,43 @@ export function renderTableArtifact(tableData) {
     }
 
     artifactContent.innerHTML = html;
-    debugLog('HTML content set', html);
     renderMetadata(tableData);
     updateDebugInfo();
+
+    setupTableEventListeners();
+}
+
+function setupTableEventListeners() {
+    debugLog('Setting up table event listeners');
+    const downloadCsvBtn = document.getElementById('download-csv');
+    const downloadAllZipBtn = document.getElementById('download-all-zip');
+
+    if (downloadCsvBtn) {
+        downloadCsvBtn.addEventListener('click', handleDownloadCsv);
+    }
+    if (downloadAllZipBtn) {
+        downloadAllZipBtn.addEventListener('click', handleDownloadAllZip);
+    }
 }
 
 export function handleArtifactSelectInput(e) {
-    debugLog('Artifact select input event', e.target.value);
-    const val = e.target.value.toLowerCase();
-    debugLog('All artifacts before filtering:', allArtifacts);
-    const filteredArtifacts = allArtifacts.filter(artifact => {
-        if (artifact && artifact.fact) {
-            return artifact.fact.toLowerCase().includes(val);
-        }
-        return false;
-    });
-    debugLog('Filtered artifacts', filteredArtifacts);
-    createAutocompleteList(filteredArtifacts);
+    const inputValue = e.target.value.toLowerCase().trim();
+    debugLog('Artifact select input event', { inputValue, allArtifactsLength: allArtifacts.length });
+
+    const filteredArtifacts = allArtifacts.filter(artifact =>
+        artifact &&
+        artifact.type === 'artifact-table' &&
+        artifact.fact &&
+        artifact.fact.toLowerCase().includes(inputValue)
+    );
+
+    debugLog('Filtered artifacts', filteredArtifacts.map(a => a.fact));
+    createAutocompleteList(filteredArtifacts, inputValue);
 }
 
 export function handleArtifactSelectFocus() {
     debugLog('Artifact select focus event');
-    createAutocompleteList(allArtifacts);
+    createAutocompleteList(allArtifacts, '');
 }
 
 function handleDownloadCsv() {
@@ -85,7 +100,7 @@ async function handleDownloadAllZip() {
         alert('No tables available to download.');
         return;
     }
-    // ... (rest of the function remains the same)
+    // Implement ZIP download logic here
 }
 
 export function handleDocumentClick(e) {
@@ -95,39 +110,42 @@ export function handleDocumentClick(e) {
     }
 }
 
-function createAutocompleteList(filteredArtifacts) {
-    debugLog('Creating autocomplete list', filteredArtifacts);
+function createAutocompleteList(artifacts, inputValue) {
+    debugLog('Creating autocomplete list', artifacts.map(a => a.fact));
     const autocompleteList = document.getElementById('autocomplete-list');
+
     if (!autocompleteList) {
         debugLog('Error: autocompleteList element not found');
         return;
     }
+
     autocompleteList.innerHTML = '';
     autocompleteList.style.display = 'block';
 
-    if (filteredArtifacts.length === 0) {
-        const div = document.createElement("div");
-        div.innerHTML = "No matching tables found";
-        div.style.color = "#999";
-        autocompleteList.appendChild(div);
+    // Filter artifacts for partial matches
+    const filteredArtifacts = artifacts.filter(artifact =>
+        artifact.fact.toLowerCase().includes(inputValue.toLowerCase())
+    );
+
+    if (filteredArtifacts.length === 0 && inputValue) {
+        autocompleteList.innerHTML = '<div style="color: #999;">No matching tables found</div>';
+        debugLog('No matching tables found');
     } else {
         filteredArtifacts.forEach(artifact => {
             const div = document.createElement("div");
-            div.innerHTML = artifact.fact;
-            div.addEventListener("click", function (e) {
-                debugLog('Autocomplete item clicked', this.innerHTML);
-                document.getElementById('artifact-select').value = this.innerHTML;
-                const selectedArtifact = allArtifacts.find(a => a.fact === this.innerHTML);
-                if (selectedArtifact) {
-                    renderTableArtifact(selectedArtifact);
-                }
+            div.textContent = artifact.fact;
+            div.addEventListener("click", function () {
+                debugLog('Autocomplete item clicked', this.textContent);
+                document.getElementById('artifact-select').value = this.textContent;
+                renderTableArtifact(artifact);
                 closeAutocompleteList();
             });
             autocompleteList.appendChild(div);
         });
+        debugLog('Autocomplete list created with items:', filteredArtifacts.map(a => a.fact));
     }
-    debugLog('Autocomplete list created', autocompleteList.innerHTML);
 }
+
 
 function closeAutocompleteList() {
     debugLog('Closing autocomplete list');
