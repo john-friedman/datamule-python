@@ -61,6 +61,10 @@ body {
 }
 
 /* Autocomplete */
+.select-wrapper {
+    position: relative;
+}
+
 .autocomplete-items {
     position: absolute;
     border: 1px solid #d4d4d4;
@@ -77,6 +81,7 @@ body {
 .autocomplete-items div {
     padding: 10px;
     cursor: pointer;
+    background-color: #fff;
     border-bottom: 1px solid #d4d4d4;
 }
 

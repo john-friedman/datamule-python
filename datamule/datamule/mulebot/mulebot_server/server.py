@@ -4,7 +4,7 @@ from datamule.mulebot import MuleBot
 from datamule.filing_viewer import create_interactive_filing, create_valid_id
 
 class MuleBotServer:
-    def __init__(self, template='chat.html'):
+    def __init__(self, template='chat-minimalist.html'):
         template_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'templates'))
         static_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), 'static'))
         self.app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
