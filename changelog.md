@@ -1,4 +1,7 @@
 # Changelog
+## v0.334 (2024-10-13)
+- added links to github and website for chatbot
+
 ## v0.333 (2024-10-13)
 - changed MuleBot server UI to be minimalist
 - refactored MuleBot server into multiple modules

@@ -27,6 +27,42 @@ body {
     opacity: 0.65;
 }
 
+/* Social Buttons */
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: 36px;
+    border-radius: 6px;
+    margin: 0 5px;
+    padding: 0 12px;
+    background-color: #f8f9fa;
+    border: 1px solid #6c757d;
+    color: #6c757d;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+    background-color: #6c757d;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.social-btn:hover svg {
+    fill: #ffffff;
+}
+
+.social-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: #6c757d;
+    margin-right: 6px;
+    transition: fill 0.3s ease;
+}
+
 /* Chat container */
 #chat-outer-container {
     position: relative;
