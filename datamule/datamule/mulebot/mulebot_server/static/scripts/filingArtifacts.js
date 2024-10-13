@@ -1,7 +1,5 @@
 // filingArtifacts.js
-import { artifactContent } from './artifacts.js';
-
-function renderFilingArtifact(artifactData) {
+export function renderFilingArtifact(artifactData) {
     const { content: html, data, section_id } = artifactData;
 
     const container = document.createElement('div');
@@ -17,8 +15,11 @@ function renderFilingArtifact(artifactData) {
 
     container.appendChild(iframe);
 
-    artifactContent.innerHTML = '';
-    artifactContent.appendChild(container);
+    const artifactContent = document.getElementById('artifact-content');
+    if (artifactContent) {
+        artifactContent.innerHTML = '';
+        artifactContent.appendChild(container);
+    }
 
     iframe.onload = () => {
         if (section_id) {
@@ -53,5 +54,3 @@ function renderFilingArtifact(artifactData) {
 
     artifactContent.appendChild(buttonContainer);
 }
-
-export { renderFilingArtifact };

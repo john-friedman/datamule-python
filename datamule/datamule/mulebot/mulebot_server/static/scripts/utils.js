@@ -1,5 +1,5 @@
 // utils.js
-function renderMetadata(artifactData) {
+export function renderMetadata(artifactData) {
     const metadataHtml = `
         <div class="card mb-3">
             <div class="card-body">
@@ -16,7 +16,7 @@ function renderMetadata(artifactData) {
     document.getElementById('metadata-content').innerHTML = metadataHtml;
 }
 
-function downloadCSV(table) {
+export function downloadCSV(table) {
     let csv = '';
     const headers = Object.keys(table.table[0]);
     csv += headers.join(',') + '\n';
@@ -26,5 +26,3 @@ function downloadCSV(table) {
     const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     saveAs(blob, `${table.fact}.csv`);
 }
-
-export { renderMetadata, downloadCSV };

@@ -1,8 +1,8 @@
 // chat.js
-import { chatContainer } from './main.js';
 import { renderArtifact, showArtifacts } from './artifacts.js';
 
 export function appendMessage(sender, message) {
+    const chatContainer = document.getElementById('chat-container');
     const messageElement = document.createElement('div');
     messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
     chatContainer.appendChild(messageElement);

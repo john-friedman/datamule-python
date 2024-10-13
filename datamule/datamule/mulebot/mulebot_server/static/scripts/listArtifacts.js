@@ -1,7 +1,5 @@
 // listArtifacts.js
-import { artifactContent } from './artifacts.js';
-
-function renderListArtifact(listData) {
+export function renderListArtifact(listData) {
     let html = `<h4>URLs</h4><ul class="list-group">`;
 
     listData.forEach(url => {
@@ -10,7 +8,8 @@ function renderListArtifact(listData) {
 
     html += '</ul>';
 
-    artifactContent.innerHTML = html;
+    const artifactContent = document.getElementById('artifact-content');
+    if (artifactContent) {
+        artifactContent.innerHTML = html;
+    }
 }
-
-export { renderListArtifact };
