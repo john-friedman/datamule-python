@@ -163,13 +163,6 @@ interactive_html = dm.parse_textual_filing(url='https://www.sec.gov/Archives/edg
 json_data = dm.parse_textual_filing(url='https://www.sec.gov/Archives/edgar/data/1318605/000095017022000796/tsla-20211231.htm', return_type='json')
 ```
 
-### Table Parser
-Parses html tables into a useful form. This exists, mostly, as a placeholder. Links: [Visual Example](https://datamule.xyz/table_parser)
-
-```
-table_parser = TableParser()
-```
-
 ### Filing Viewer
 
 Convert parsed filing JSON into HTML with features like a table of contents sidebar:

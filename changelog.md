@@ -1,4 +1,8 @@
 # Changelog
+## v0.333 (2024-10-13)
+- changed MuleBot server UI to be minimalist
+- refactored MuleBot server into multiple modules
+
 ## v0.332 (2024-10-05)
 - Table parser tweak to output parsed tables in list format.
 

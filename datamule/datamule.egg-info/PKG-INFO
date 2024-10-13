@@ -273,11 +273,8 @@ if __name__ == "__main__":
 This is currently a low priority issue. Let me know if you need the data, and I'll move it up the priority list.
 
 ## Roadmap
-- [ ] Downloader add option to save progress
+- [ ] mulebot table autocomplete broken but table download works. have llm explain code and think about it
 - [ ] mulebot - look at adding summarization. Add some protections to too many tokens being used + add options to allow summarization etc.
-- [ ] Make sure mulebot is stateless.
-- [ ] Fix code debt.
-- [ ] filing viewer band-aid fix. will wait until mule parser update to devote more effort
 - [ ] Paths may be messed up on non windows devices. Need to verify.
 - [ ] Analytics?
 
