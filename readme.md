@@ -239,6 +239,8 @@ if __name__ == "__main__":
 This is currently a low priority issue. Let me know if you need the data, and I'll move it up the priority list.
 
 ## Roadmap
+- [ ] zenodo partitioning for better download speeds
+- [ ] enable searching across downloaded filings
 - [ ] mulebot add method to use custom html templates
 - [ ] mulebot - look at adding summarization. Add some protections to too many tokens being used + add options to allow summarization etc.
 - [ ] Paths may be messed up on non windows devices. Need to verify.

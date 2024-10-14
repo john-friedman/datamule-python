@@ -2,8 +2,10 @@
 import { renderArtifact, showArtifacts } from './artifacts.js';
 
 let thinkingIndicator = null;
+let isHandlingResponse = false;
 
 export function appendMessage(sender, message) {
+    console.log(`Appending message from ${sender}: ${message}`);
     const chatContainer = document.getElementById('chat-container');
     const messageElement = document.createElement('div');
     messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
@@ -34,6 +36,7 @@ export function hideThinkingIndicator() {
 }
 
 export async function sendMessage(message) {
+    console.log(`Sending message: ${message}`);
     showThinkingIndicator();
     try {
         const response = await fetch('/chat', {
@@ -43,31 +46,47 @@ export async function sendMessage(message) {
             },
             body: JSON.stringify({ message }),
         });
-        return response.json();
+        const data = await response.json();
+        console.log('Received response:', data);
+        return data;
     } finally {
         hideThinkingIndicator();
     }
 }
 
 export function handleResponse(response) {
-    if (response.response.type === 'text') {
-        appendMessage('Bot', response.response.content);
-    } else if (response.response.type === 'artifact') {
-        let artifactType = response.response.artifact_type;
-        let artifactContent = response.response.content;
+    if (isHandlingResponse) {
+        console.log('Already handling a response, skipping.');
+        return;
+    }
+    isHandlingResponse = true;
+    console.log('Handling response:', response);
 
-        if (artifactType === 'artifact-filing') {
-            artifactContent = {
-                content: response.response.content,
-                data: response.response.data,
-                section_id: response.response.section_id
-            };
+    try {
+        if (response.response.type === 'text') {
+            appendMessage('Bot', response.response.content);
+        } else if (response.response.type === 'artifact') {
+            let artifactType = response.response.artifact_type;
+            let artifactContent = response.response.content;
+
+            if (artifactType === 'artifact-filing') {
+                artifactContent = {
+                    content: response.response.content,
+                    data: response.response.data,
+                    section_id: response.response.section_id
+                };
+            }
+
+            appendMessage('Bot', `I have prepared an ${artifactType} for you. Please check the artifact view.`);
+            renderArtifact(artifactContent, artifactType);
+            showArtifacts();
+        } else {
+            appendMessage('Bot', 'I have received a response, but it is not a supported type.');
         }
-
-        appendMessage('Bot', `I have prepared an ${artifactType} for you. Please check the artifact view.`);
-        renderArtifact(artifactContent, artifactType);
-        showArtifacts();
-    } else {
-        appendMessage('Bot', 'I have received a response, but it is not a supported type.');
+    } finally {
+        isHandlingResponse = false;
     }
 }
+
+// Make sendMessage globally accessible
+window.sendMessage = sendMessage;
