@@ -200,29 +200,14 @@ Artifacts:
 * Company Facts Viewer
 * List Viewer
 
-```python
-from datamule.mulebot.mulebot_server import server
-
-def main():
-    # Your OpenAI API key
-    api_key = openai_api_key
-    server.set_api_key(api_key)
-
-    # Run the server
-    print("Starting MuleBotServer...")
-    server.run(debug=True, host='0.0.0.0', port=5000)
-
-if __name__ == "__main__":
-    main()
-```
-
-
 Quickstart
 
 ```python
-from datamule.mulebot.mulebot_server import server
+from datamule.mulebot.mulebot_server import MuleBotServer
 
 def main():
+    server = MuleBotServer()
+
     # Your OpenAI API key
     api_key = "sk-<YOUR_API_KEY>"
     server.set_api_key(api_key)
