@@ -508,3 +508,67 @@ class Downloader:
     def update_company_metadata(self):
         """Download metadata for all companies."""
         return asyncio.run(self._download_company_metadata())
+    
+    async def _download_company_tickers(self):
+        """Download and process the company tickers JSON file from the SEC."""
+        url = 'https://www.sec.gov/files/company_tickers.json'
+        
+        # Define file paths
+        json_file = resource_filename('datamule', 'data/company_tickers.json')
+        csv_file = resource_filename('datamule', 'data/company_tickers.csv')
+        
+        # Define temporary file paths
+        temp_json_file = json_file + '.temp'
+        temp_csv_file = csv_file + '.temp'
+
+        async with aiohttp.ClientSession() as session:
+            try:
+                content = await self._fetch_content_from_url(session, url)
+                
+                # Save the raw JSON file
+                await self.write_content_to_file(content, temp_json_file)
+                
+                # Parse the JSON content
+                data = json.loads(content)
+                
+                # Convert to CSV
+                with open(temp_csv_file, 'w', newline='') as csvfile:
+                    fieldnames = ['cik', 'ticker', 'title']
+                    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+                    writer.writeheader()
+                    for _, company in data.items():
+                        writer.writerow({
+                            'cik': str(company['cik_str']).zfill(10),
+                            'ticker': company['ticker'],
+                            'title': company['title']
+                        })
+
+                # If everything went well, replace the original files
+                if os.path.exists(json_file):
+                    os.remove(json_file)
+                if os.path.exists(csv_file):
+                    os.remove(csv_file)
+                
+                os.remove(json_file)
+                os.rename(temp_csv_file, csv_file)
+
+
+                print(f"Company tickers successfully updated in {csv_file}")
+
+            except Exception as e:
+                print(f"Error occurred while updating company tickers: {str(e)}")
+                print("Temporary files have been kept. Please manually review and rename if necessary.")
+                return
+
+            finally:
+                # Clean up temp files if they still exist
+                for temp_file in [temp_json_file, temp_csv_file]:
+                    if os.path.exists(temp_file):
+                        try:
+                            os.remove(temp_file)
+                        except Exception as e:
+                            print(f"Warning: Could not remove temporary file {temp_file}: {str(e)}")
+
+    def update_company_tickers(self):
+        """Wrapper method to run the asynchronous download of company tickers."""
+        asyncio.run(self._download_company_tickers())
