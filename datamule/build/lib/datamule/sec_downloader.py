@@ -4,7 +4,6 @@ from aiolimiter import AsyncLimiter
 import os
 from tqdm import tqdm
 from tqdm.asyncio import tqdm as atqdm
-import requests
 from datetime import datetime, timedelta
 from urllib.parse import urlparse, parse_qs, urlencode
 import math
@@ -15,6 +14,7 @@ import json
 from .global_vars import headers, dataset_10k_url, dataset_mda_url, dataset_xbrl_url, dataset_10k_record_list
 from .helper import _download_from_dropbox, identifier_to_cik, load_company_tickers, fix_filing_url
 from .zenodo_downloader import download_from_zenodo
+from .ftd import get_all_ftd_urls, process_all_ftd_zips
 
 class RetryException(Exception):
     def __init__(self, url, retry_after=601):
@@ -26,7 +26,7 @@ class Downloader:
         self.headers = headers
         self.dataset_path = 'datasets'
         self.domain_limiters = {
-            'www.sec.gov': AsyncLimiter(7, 1),
+            'www.sec.gov': AsyncLimiter(10, 1),
             'efts.sec.gov': AsyncLimiter(10, 1),
             'default': AsyncLimiter(10, 1)
         }
@@ -47,7 +47,6 @@ class Downloader:
         domain = self.get_domain(url)
         return self.domain_limiters.get(domain, self.domain_limiters['default'])
     
-    # No such thing as Retry After header for SEC. should change
     async def _fetch_content_from_url(self, session, url):
         limiter = self.get_limiter(url)
         async with limiter:
@@ -141,13 +140,11 @@ class Downloader:
             print(f"\nSuccessfully downloaded {completed_files} out of {total_files} URLs")
             return completed_files
 
-
-
     def run_download_urls(self, urls, filenames, output_dir='filings'):
         """Download a list of URLs to a specified directory"""
         return asyncio.run(self._download_urls(urls, filenames, output_dir))
 
-    async def _get_filing_urls_from_efts(self, base_url):
+    async def _get_filing_urls_from_efts(self, base_url, sics=None, items=None):
         """Asynchronously fetch all filing URLs from a given EFTS URL."""
         full_urls = []
         start, page_size = 0, 100
@@ -160,16 +157,41 @@ class Downloader:
                         hits = data['hits']['hits']
                         if not hits:
                             return full_urls
-                        full_urls.extend([f"https://www.sec.gov/Archives/edgar/data/{hit['_source']['ciks'][0]}/{hit['_id'].split(':')[0].replace('-', '')}/{hit['_id'].split(':')[1]}" for hit in hits])
+                        
+                        for hit in hits:
+                            # Check SIC filter
+                            sic_match = sics is None or any(int(sic) in sics for sic in hit['_source'].get('sics', []))
+                            
+                            # Check item filter
+                            item_match = items is None or any(item in items for item in hit['_source'].get('items', []))
+                            
+                            if sic_match and item_match:
+                                url = f"https://www.sec.gov/Archives/edgar/data/{hit['_source']['ciks'][0]}/{hit['_id'].split(':')[0].replace('-', '')}/{hit['_id'].split(':')[1]}"
+                                full_urls.append(url)
+                        
                         if start + page_size > data['hits']['total']['value']:
                             return full_urls
                 start += 10 * page_size
         return full_urls
 
-    def _number_of_efts_filings(self, url):
-        """Get the number of filings from a given EFTS URL."""
-        response = requests.get(url, headers=self.headers)
-        return sum(bucket['doc_count'] for bucket in response.json()['aggregations']['form_filter']['buckets'])
+    async def _number_of_efts_filings(self, session, url):
+        """Get the number of filings from a given EFTS URL asynchronously."""
+        limiter = self.get_limiter(url)
+        async with limiter:
+            try:
+                async with session.get(url, headers=self.headers) as response:
+                    if response.status == 429:
+                        raise RetryException(url)
+                    response.raise_for_status()
+                    data = await response.json()
+                    return sum(bucket['doc_count'] for bucket in data['aggregations']['form_filter']['buckets'])
+            except aiohttp.ClientResponseError as e:
+                if e.status == 429:
+                    raise RetryException(url)
+                raise
+            except Exception as e:
+                print(f"Error fetching number of filings from {url}: {str(e)}")
+                raise
 
     def _subset_urls(self, full_url, total_filings, target_filings_per_range=1000):
         """Split an EFTS URL into multiple URLs based on the number of filings."""
@@ -207,15 +229,20 @@ class Downloader:
 
         return urls[::-1]
 
-    # Check if conductor is WAI
-    def _conductor(self, efts_url, return_urls, output_dir):
+    async def _conductor(self, efts_url, return_urls, output_dir, sics, items):
         """Conduct the download process based on the number of filings."""
-        total_filings = self._number_of_efts_filings(efts_url)
+        async with aiohttp.ClientSession() as session:
+            try:
+                total_filings = await self._number_of_efts_filings(session, efts_url)
+            except RetryException as e:
+                print(f"Rate limited when fetching number of filings. Retrying after {e.retry_after} seconds.")
+                await asyncio.sleep(e.retry_after)
+                return await self._conductor(efts_url, return_urls, output_dir, sics, items)
+
         all_primary_doc_urls = []
         
         if total_filings < 10000:
-            primary_doc_urls = asyncio.run(self._get_filing_urls_from_efts(efts_url))
-            # fix primary doc urls for filings
+            primary_doc_urls = await self._get_filing_urls_from_efts(efts_url, sics=sics, items=items)
             primary_doc_urls = [fix_filing_url(url) for url in primary_doc_urls]
             print(f"{efts_url}\nTotal filings: {len(primary_doc_urls)}")
             
@@ -223,21 +250,21 @@ class Downloader:
                 return primary_doc_urls
             else:
                 filenames = [f"{url.split('/')[7]}_{url.split('/')[-1]}" for url in primary_doc_urls]
-                self.run_download_urls(urls=primary_doc_urls, filenames=filenames, output_dir=output_dir)
+                await self._download_urls(urls=primary_doc_urls, filenames=filenames, output_dir=output_dir)
                 return None
         
         for subset_url in self._subset_urls(efts_url, total_filings):
-            sub_primary_doc_urls = self._conductor(efts_url=subset_url, return_urls=True, output_dir=output_dir)
+            sub_primary_doc_urls = await self._conductor(efts_url=subset_url, return_urls=True, output_dir=output_dir, sics=sics, items=items)
             
             if return_urls:
                 all_primary_doc_urls.extend(sub_primary_doc_urls)
             else:
                 filenames = [f"{url.split('/')[7]}_{url.split('/')[-1]}" for url in sub_primary_doc_urls]
-                self.run_download_urls(urls=sub_primary_doc_urls, filenames=filenames, output_dir=output_dir)
+                await self._download_urls(urls=sub_primary_doc_urls, filenames=filenames, output_dir=output_dir)
         
         return all_primary_doc_urls if return_urls else None
 
-    def download(self, output_dir='filings', return_urls=False, cik=None, ticker=None, form=None, date=None):
+    def download(self, output_dir='filings', return_urls=False, cik=None, ticker=None, form=None, date=None, sics=None, items=None):
         """Download filings based on CIK, ticker, form, and date. Date can be a single date, date range, or list of dates."""
         base_url = "https://efts.sec.gov/LATEST/search-index"
         params = {}
@@ -268,9 +295,9 @@ class Downloader:
         all_primary_doc_urls = []
         for efts_url in efts_url_list:
             if return_urls:
-                all_primary_doc_urls.extend(self._conductor(efts_url=efts_url, return_urls=True, output_dir=output_dir))
+                all_primary_doc_urls.extend(asyncio.run(self._conductor(efts_url=efts_url, return_urls=True, output_dir=output_dir, sics=sics, items=items)))
             else:
-                self._conductor(efts_url=efts_url, return_urls=False, output_dir=output_dir)
+                asyncio.run(self._conductor(efts_url=efts_url, return_urls=False, output_dir=output_dir, sics=sics, items=items))
         
         return all_primary_doc_urls if return_urls else None
 
@@ -304,20 +331,32 @@ class Downloader:
         if not os.path.exists(dataset_path):
             os.makedirs(dataset_path)
 
+        #soft deprecation
         if dataset == 'parsed_10k':
             file_path = os.path.join(dataset_path, '10K.zip')
             _download_from_dropbox(dataset_10k_url, file_path)
+        # soft deprecation
         elif dataset == "mda":
             file_path = os.path.join(dataset_path, 'MDA.zip')
             _download_from_dropbox(dataset_mda_url, file_path)
+        # soft deprecation
         elif dataset == "xbrl":
             file_path = os.path.join(dataset_path, 'XBRL.zip')
             _download_from_dropbox(dataset_xbrl_url, file_path)
         elif re.match(r"10k_(\d{4})$", dataset):
             year = dataset.split('_')[-1]
             record = next((record['record'] for record in dataset_10k_record_list if record['year'] == int(year)), None)
-            out_path = os.path.join(dataset_path, '10K') 
-            download_from_zenodo(record, out_path)
+            output_dir = os.path.join(dataset_path, f'10K_{year}') 
+            download_from_zenodo(record, output_dir)
+        elif dataset == 'ftd':
+            output_dir = os.path.join(dataset_path, 'ftd')
+
+            urls = get_all_ftd_urls()
+            self.run_download_urls(urls, filenames=[url.split('/')[-1] for url in urls], output_dir=output_dir)
+            process_all_ftd_zips(output_dir)
+
+
+
 
     async def _watch_efts(self, form=None, cik=None, interval=1, silent=False):
         """Watch the EFTS API for changes in the number of filings."""

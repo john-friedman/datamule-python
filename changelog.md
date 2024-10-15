@@ -1,6 +1,7 @@
 # Changelog
 ## v0.337 (2024-10-14)
 - added filtering by sics and items to downloader
+- added FTD dataset to download_dataset
 
 ## v0.335 (2024-10-13)
 - added prefill option for mulebot server

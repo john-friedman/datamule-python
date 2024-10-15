@@ -1,6 +1,7 @@
 setup.py
 datamule/__init__.py
 datamule/datamule_api.py
+datamule/ftd.py
 datamule/global_vars.py
 datamule/helper.py
 datamule/sec_downloader.py
@@ -13,6 +14,7 @@ datamule.egg-info/dependency_links.txt
 datamule.egg-info/requires.txt
 datamule.egg-info/top_level.txt
 datamule/data/company_tickers.csv
+datamule/data/ftd_locations.csv
 datamule/filing_viewer/__init__.py
 datamule/filing_viewer/filing_viewer.py
 datamule/mulebot/__init__.py

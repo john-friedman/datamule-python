@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: datamule
-Version: 0.336
+Version: 0.337
 Summary: Making it easier to use SEC filings.
 Home-page: https://github.com/john-friedman/datamule-python
 Author: John Friedman
@@ -88,7 +88,7 @@ downloader = dm.Downloader()
 
 Uses the [EFTS API](https://efts.sec.gov/LATEST/search-index) to retrieve filings locations, and the [SEC API](sec.gov) to download filings.
 ```python
-download(self, output_dir = 'filings',  return_urls=False,cik=None, ticker=None, form=None, date=None)
+download(self, output_dir='filings', return_urls=False, cik=None, ticker=None, form=None, date=None,sics=None,items=None)
 ```
 
 ```python
@@ -122,23 +122,15 @@ downloader.set_limiter('www.sec.gov', 10)
 ```
 
 #### Datasets
-
-Note: Dataset module is a WIP. Some downloads may be large.
-
 Available datasets:
-- 2024 10-K filings converted to JSON `parsed_10k`
-- Management's Discussion and Analysis (MD&A) sections extracted from 2024 10-K filings `mda`
-- Every Company Concepts XBRL `xbrl` (730mb)
-- Every 10-K from 2001 to September 2024 `10k_{year}` e.g. `10k_2002`. Takes ~ 2.5 minutes to download per year.
-
-Also available on [Dropbox](https://www.dropbox.com/scl/fo/byxiish8jmdtj4zitxfjn/AAaiwwuyaYp_zRfFyqfBUS8?rlkey=g1zk5pg7iendbsa34ltnokuxl&st=ca7zoeum&dl=0) and [Zenodo](https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Friedman%2C%20John%22&l=list&p=1&s=10&sort=bestmatch)
+- Every [FTD](https://www.sec.gov/data-research/sec-markets-data/fails-deliver-data) since 2004. `ftd` (1.3gb, ~60s to download)
+- Every [10-K](https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Friedman%2C%20John%22&l=list&p=1&s=10&sort=bestmatch) from 2001 to September 2024. `10k_{year}` e.g. `10k_2002`. (Speed depends on Zenodo's servers. Working on finding a better host)
 
 ```python
-# Download all 2024 10-K filings converted to JSON
-downloader.download_dataset('parsed_10k')
+downloader.download_dataset(dataset='ftd', dataset_path='datasets')
 ```
 
-Note: I'm currently exploring ways to speed up dataset downloads. Zenodo has great hosting, but caps download speed at ~1-5mb/s. I can workaround this limit by uploading data in smaller chunks, but I'd like to find a better solution.
+Note: I've signed up for a DropBox plus account and will be migrating the Zenodo datasets there. Target is that downloading every 10-K takes less than 5 minutes.
 
 #### Monitoring for New Filings
 
@@ -257,6 +249,7 @@ This is currently a low priority issue. Let me know if you need the data, and I'
 - [ ] mulebot - look at adding summarization. Add some protections to too many tokens being used + add options to allow summarization etc.
 - [ ] Paths may be messed up on non windows devices. Need to verify.
 - [ ] Analytics?
+- [ ] downloader succesful downloads message may be slightly off.
 
 ## Contributing
 
