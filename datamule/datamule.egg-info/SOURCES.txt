@@ -28,6 +28,7 @@ datamule/mulebot/mulebot_server/static/scripts/chat.js
 datamule/mulebot/mulebot_server/static/scripts/filingArtifacts.js
 datamule/mulebot/mulebot_server/static/scripts/listArtifacts.js
 datamule/mulebot/mulebot_server/static/scripts/main.js
+datamule/mulebot/mulebot_server/static/scripts/prefilledPrompt.js
 datamule/mulebot/mulebot_server/static/scripts/suggestions.js
 datamule/mulebot/mulebot_server/static/scripts/tableArtifacts.js
 datamule/mulebot/mulebot_server/static/scripts/utils.js

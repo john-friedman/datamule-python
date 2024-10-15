@@ -27,20 +27,20 @@ function initializeChat() {
             if (message) {
                 appendMessage('You', message);
                 userInput.value = '';
+                showThinkingIndicator();
                 try {
                     const response = await sendMessage(message);
                     handleResponse(response);
                 } catch (error) {
                     console.error('Error processing message:', error);
+                } finally {
+                    hideThinkingIndicator();
                 }
             }
         });
     }
 
     document.addEventListener('click', handleDocumentClick);
-
-    // Handle prefilled prompt
-    handlePrefilledPrompt();
 }
 
 // Wait for the DOM to be fully loaded before initializing
@@ -49,3 +49,9 @@ if (document.readyState === 'loading') {
 } else {
     initializeChat();
 }
+
+// Add this new event listener for the window load event
+window.addEventListener('load', () => {
+    console.log('Window fully loaded, handling prefilled prompt');
+    handlePrefilledPrompt();
+});

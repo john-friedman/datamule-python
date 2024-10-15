@@ -147,7 +147,7 @@ class Downloader:
         """Download a list of URLs to a specified directory"""
         return asyncio.run(self._download_urls(urls, filenames, output_dir))
 
-    async def _get_filing_urls_from_efts(self, base_url):
+    async def _get_filing_urls_from_efts(self, base_url, sics=None, items=None):
         """Asynchronously fetch all filing URLs from a given EFTS URL."""
         full_urls = []
         start, page_size = 0, 100
@@ -160,7 +160,18 @@ class Downloader:
                         hits = data['hits']['hits']
                         if not hits:
                             return full_urls
-                        full_urls.extend([f"https://www.sec.gov/Archives/edgar/data/{hit['_source']['ciks'][0]}/{hit['_id'].split(':')[0].replace('-', '')}/{hit['_id'].split(':')[1]}" for hit in hits])
+                        
+                        for hit in hits:
+                            # Check SIC filter
+                            sic_match = sics is None or any(int(sic) in sics for sic in hit['_source'].get('sics', []))
+                            
+                            # Check item filter
+                            item_match = items is None or any(item in items for item in hit['_source'].get('items', []))
+                            
+                            if sic_match and item_match:
+                                url = f"https://www.sec.gov/Archives/edgar/data/{hit['_source']['ciks'][0]}/{hit['_id'].split(':')[0].replace('-', '')}/{hit['_id'].split(':')[1]}"
+                                full_urls.append(url)
+                        
                         if start + page_size > data['hits']['total']['value']:
                             return full_urls
                 start += 10 * page_size
@@ -208,13 +219,15 @@ class Downloader:
         return urls[::-1]
 
     # Check if conductor is WAI
-    def _conductor(self, efts_url, return_urls, output_dir):
+    def _conductor(self, efts_url, return_urls, output_dir,sics,items):
         """Conduct the download process based on the number of filings."""
+
+        # This will cause issues with rate limit WIP
         total_filings = self._number_of_efts_filings(efts_url)
         all_primary_doc_urls = []
         
         if total_filings < 10000:
-            primary_doc_urls = asyncio.run(self._get_filing_urls_from_efts(efts_url))
+            primary_doc_urls = asyncio.run(self._get_filing_urls_from_efts(efts_url,sics=sics,items=items))
             # fix primary doc urls for filings
             primary_doc_urls = [fix_filing_url(url) for url in primary_doc_urls]
             print(f"{efts_url}\nTotal filings: {len(primary_doc_urls)}")
@@ -227,7 +240,7 @@ class Downloader:
                 return None
         
         for subset_url in self._subset_urls(efts_url, total_filings):
-            sub_primary_doc_urls = self._conductor(efts_url=subset_url, return_urls=True, output_dir=output_dir)
+            sub_primary_doc_urls = self._conductor(efts_url=subset_url, return_urls=True, output_dir=output_dir,sics=sics,items=items)
             
             if return_urls:
                 all_primary_doc_urls.extend(sub_primary_doc_urls)
@@ -237,7 +250,7 @@ class Downloader:
         
         return all_primary_doc_urls if return_urls else None
 
-    def download(self, output_dir='filings', return_urls=False, cik=None, ticker=None, form=None, date=None):
+    def download(self, output_dir='filings', return_urls=False, cik=None, ticker=None, form=None, date=None,sics=None,items=None):
         """Download filings based on CIK, ticker, form, and date. Date can be a single date, date range, or list of dates."""
         base_url = "https://efts.sec.gov/LATEST/search-index"
         params = {}
@@ -268,9 +281,9 @@ class Downloader:
         all_primary_doc_urls = []
         for efts_url in efts_url_list:
             if return_urls:
-                all_primary_doc_urls.extend(self._conductor(efts_url=efts_url, return_urls=True, output_dir=output_dir))
+                all_primary_doc_urls.extend(self._conductor(efts_url=efts_url, return_urls=True, output_dir=output_dir,sics=sics,items=items))
             else:
-                self._conductor(efts_url=efts_url, return_urls=False, output_dir=output_dir)
+                self._conductor(efts_url=efts_url, return_urls=False, output_dir=output_dir,sics=sics,items=items)
         
         return all_primary_doc_urls if return_urls else None
 

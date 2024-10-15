@@ -76,7 +76,7 @@ downloader = dm.Downloader()
 
 Uses the [EFTS API](https://efts.sec.gov/LATEST/search-index) to retrieve filings locations, and the [SEC API](sec.gov) to download filings.
 ```python
-download(self, output_dir = 'filings',  return_urls=False,cik=None, ticker=None, form=None, date=None)
+download(self, output_dir='filings', return_urls=False, cik=None, ticker=None, form=None, date=None,sics=None,items=None)
 ```
 
 ```python

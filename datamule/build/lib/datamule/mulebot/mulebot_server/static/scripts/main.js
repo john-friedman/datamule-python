@@ -3,8 +3,16 @@ import { appendMessage, sendMessage, handleResponse, showThinkingIndicator, hide
 import { initializeArtifacts } from './artifacts.js';
 import { handleDocumentClick } from './tableArtifacts.js';
 import { initializeSuggestions } from './suggestions.js';
+import { handlePrefilledPrompt } from './prefilledPrompt.js';
+
+let chatInitialized = false;
 
 function initializeChat() {
+    if (chatInitialized) return;
+    chatInitialized = true;
+
+    console.log('Initializing chat');
+
     initializeArtifacts();
     initializeSuggestions();
 
@@ -14,6 +22,7 @@ function initializeChat() {
     if (chatForm) {
         chatForm.addEventListener('submit', async (e) => {
             e.preventDefault();
+            console.log('Form submitted');
             const message = userInput.value.trim();
             if (message) {
                 appendMessage('You', message);
@@ -22,6 +31,8 @@ function initializeChat() {
                 try {
                     const response = await sendMessage(message);
                     handleResponse(response);
+                } catch (error) {
+                    console.error('Error processing message:', error);
                 } finally {
                     hideThinkingIndicator();
                 }
@@ -38,3 +49,9 @@ if (document.readyState === 'loading') {
 } else {
     initializeChat();
 }
+
+// Add this new event listener for the window load event
+window.addEventListener('load', () => {
+    console.log('Window fully loaded, handling prefilled prompt');
+    handlePrefilledPrompt();
+});

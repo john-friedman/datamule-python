@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: datamule
-Version: 0.334
+Version: 0.336
 Summary: Making it easier to use SEC filings.
 Home-page: https://github.com/john-friedman/datamule-python
 Author: John Friedman
@@ -212,29 +212,14 @@ Artifacts:
 * Company Facts Viewer
 * List Viewer
 
-```python
-from datamule.mulebot.mulebot_server import server
-
-def main():
-    # Your OpenAI API key
-    api_key = openai_api_key
-    server.set_api_key(api_key)
-
-    # Run the server
-    print("Starting MuleBotServer...")
-    server.run(debug=True, host='0.0.0.0', port=5000)
-
-if __name__ == "__main__":
-    main()
-```
-
-
 Quickstart
 
 ```python
-from datamule.mulebot.mulebot_server import server
+from datamule.mulebot.mulebot_server import MuleBotServer
 
 def main():
+    server = MuleBotServer()
+
     # Your OpenAI API key
     api_key = "sk-<YOUR_API_KEY>"
     server.set_api_key(api_key)
@@ -266,7 +251,9 @@ if __name__ == "__main__":
 This is currently a low priority issue. Let me know if you need the data, and I'll move it up the priority list.
 
 ## Roadmap
-- [ ] mulebot table autocomplete broken but table download works. have llm explain code and think about it
+- [ ] zenodo partitioning for better download speeds
+- [ ] enable searching across downloaded filings
+- [ ] mulebot add method to use custom html templates
 - [ ] mulebot - look at adding summarization. Add some protections to too many tokens being used + add options to allow summarization etc.
 - [ ] Paths may be messed up on non windows devices. Need to verify.
 - [ ] Analytics?

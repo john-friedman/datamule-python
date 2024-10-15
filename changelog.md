@@ -1,4 +1,10 @@
 # Changelog
+## v0.337 (2024-10-14)
+- added filtering by sics and items to downloader
+
+## v0.335 (2024-10-13)
+- added prefill option for mulebot server
+
 ## v0.334 (2024-10-13)
 - added links to github and website for chatbot
 

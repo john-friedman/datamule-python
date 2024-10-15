@@ -17,6 +17,11 @@ class MuleBotServer:
         def home():
             return render_template(self.template)
 
+        @self.app.route('/chat-with-prompt')
+        def chat_with_prompt():
+            prefilled_prompt = request.args.get('prompt', '')
+            return render_template(self.template, prefilled_prompt=prefilled_prompt)
+
         @self.app.route('/chat', methods=['POST'])
         def chat():
             user_input = request.json['message']
@@ -52,8 +57,6 @@ class MuleBotServer:
 
                 # create a filing viewer display
                 html = create_interactive_filing(data)
-                # select section
-                # TODO
                 
                 # we'll need to display the filing viewer in the artifact window, with a json export option
                 chat_response = {
@@ -63,7 +66,6 @@ class MuleBotServer:
                     'section_id': section_id,
                     'artifact_type': 'artifact-filing'
                 }
-
             else:
                 # Handle other types of responses if needed
                 chat_response = {
@@ -83,4 +85,3 @@ class MuleBotServer:
         if not self.mulebot:
             raise ValueError("API key not set. Please call set_api_key() before running the server.")
         self.app.run(debug=debug, host=host, port=port)
-
