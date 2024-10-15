@@ -2,3 +2,5 @@ https://www.sec.gov/data-research/sec-markets-data/financial-statement-data-sets
 
 fred data
 + bonds
+
+https://www.reddit.com/r/quant/comments/1g41gl8/comment/ls3d3na/?context=3

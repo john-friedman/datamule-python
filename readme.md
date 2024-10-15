@@ -64,6 +64,13 @@ downloader = dm.Downloader()
 downloader.download(form='10-K', ticker='AAPL')
 ```
 
+### Package Data CSVs
+company former names: cik,former_name,from_date,to_date
+company metadata: cik,name,entityType,sic,sicDescription,ownerOrg,insiderTransactionForOwnerExists,insiderTransactionForIssuerExists,tickers,exchanges,ein,description,website,investorWebsite,category,fiscalYearEnd,stateOfIncorporation,stateOfIncorporationDescription,phone,flags,mailing_street1,mailing_street2,mailing_city,mailing_stateOrCountry,mailing_zipCode,mailing_stateOrCountryDescription,business_street1,business_street2,business_city,business_stateOrCountry,business_zipCode,business_stateOrCountryDescription
+
+sec glossary: "form","count","description","example_filing_url","example_primary_doc_url"
+
+xbrl descriptions: category,fact,description
 
 ## Usage
 
@@ -233,6 +240,7 @@ if __name__ == "__main__":
 This is currently a low priority issue. Let me know if you need the data, and I'll move it up the priority list.
 
 ## Roadmap
+- [ ] readme rewrite. add package data to datasets
 - [ ] setup sics crosswalk
 - [ ] add package data to readme
 - [ ] add update for company tickers
