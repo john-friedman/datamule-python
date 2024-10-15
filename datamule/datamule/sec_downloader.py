@@ -10,6 +10,7 @@ import math
 import re
 import aiofiles
 import json
+import csv
 
 from .global_vars import headers, dataset_10k_url, dataset_mda_url, dataset_xbrl_url, dataset_10k_record_list
 from .helper import _download_from_dropbox, identifier_to_cik, load_company_tickers, fix_filing_url
@@ -28,6 +29,7 @@ class Downloader:
         self.domain_limiters = {
             'www.sec.gov': AsyncLimiter(10, 1),
             'efts.sec.gov': AsyncLimiter(10, 1),
+            'data.sec.gov': AsyncLimiter(10, 1),
             'default': AsyncLimiter(10, 1)
         }
 
@@ -411,3 +413,67 @@ class Downloader:
                 cik = identifier_to_cik(ticker)
 
             return asyncio.run(self._watch_efts(interval=interval, silent=silent, form=form, cik=cik))
+
+    async def _download_company_metadata(self, output_dir='company_metadata'):
+        os.makedirs(output_dir, exist_ok=True)
+        company_tickers = load_company_tickers()
+        
+        metadata_file = os.path.join(output_dir, 'company_metadata.csv')
+        former_names_file = os.path.join(output_dir, 'company_former_names.csv')
+        
+        metadata_fields = ['cik', 'name', 'entityType', 'sic', 'sicDescription', 'ownerOrg', 
+                        'insiderTransactionForOwnerExists', 'insiderTransactionForIssuerExists', 
+                        'tickers', 'exchanges', 'ein', 'description', 'website', 'investorWebsite', 
+                        'category', 'fiscalYearEnd', 'stateOfIncorporation', 'stateOfIncorporationDescription', 
+                        'phone', 'flags', 'mailing_street1', 'mailing_street2', 'mailing_city', 
+                        'mailing_stateOrCountry', 'mailing_zipCode', 'mailing_stateOrCountryDescription', 
+                        'business_street1', 'business_street2', 'business_city', 'business_stateOrCountry', 
+                        'business_zipCode', 'business_stateOrCountryDescription']
+        
+        former_names_fields = ['cik', 'former_name', 'from_date', 'to_date']
+        
+        async with aiohttp.ClientSession() as session:
+            with open(metadata_file, 'w', newline='') as mf, open(former_names_file, 'w', newline='') as fnf:
+                metadata_writer = csv.DictWriter(mf, fieldnames=metadata_fields)
+                metadata_writer.writeheader()
+                
+                former_names_writer = csv.DictWriter(fnf, fieldnames=former_names_fields)
+                former_names_writer.writeheader()
+                
+                for company in tqdm(company_tickers, desc="Downloading company metadata"):
+                    cik = company['cik']
+                    url = f'https://data.sec.gov/submissions/CIK{cik.zfill(10)}.json'
+                    
+                    try:
+                        data = await self._fetch_json_from_url(session, url)
+                        
+                        metadata = {field: data.get(field, '') for field in metadata_fields if field not in ['tickers', 'exchanges']}
+                        metadata['cik'] = cik
+                        metadata['tickers'] = ','.join(data.get('tickers', []))
+                        metadata['exchanges'] = ','.join(data.get('exchanges', []))
+                        
+                        # Add address information
+                        for address_type in ['mailing', 'business']:
+                            address = data.get('addresses', {}).get(address_type, {})
+                            for key, value in address.items():
+                                metadata[f'{address_type}_{key}'] = value if value is not None else ''
+                        
+                        metadata_writer.writerow(metadata)
+                        
+                        for former_name in data.get('formerNames', []):
+                            former_names_writer.writerow({
+                                'cik': cik,
+                                'former_name': former_name['name'],
+                                'from_date': former_name['from'],
+                                'to_date': former_name['to']
+                            })
+                    
+                    except Exception as e:
+                        print(f"Error processing CIK {cik}: {str(e)}")
+        
+        print(f"Metadata saved to {metadata_file}")
+        print(f"Former names saved to {former_names_file}")
+
+    def download_company_metadata(self, output_dir='metadata'):
+        """Download metadata for all companies."""
+        return asyncio.run(self._download_company_metadata(output_dir=output_dir))

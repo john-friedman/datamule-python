@@ -6,9 +6,9 @@ nest_asyncio
 aiofiles
 
 [all]
-flask
 lxml
 openai
+flask
 
 [filing_viewer]
 lxml

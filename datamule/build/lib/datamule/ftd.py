@@ -1,4 +1,3 @@
-import pandas as pd
 from datetime import datetime, timedelta
 import pkg_resources
 import io
@@ -28,7 +27,6 @@ def process_ftd_zip(zip_path):
     os.remove(zip_path)
 
 def process_all_ftd_zips(output_dir):
-
     zip_files = [f for f in os.listdir(output_dir) if f.endswith('.zip')]
     
     # Use ThreadPoolExecutor for parallel processing with tqdm
@@ -38,11 +36,14 @@ def process_all_ftd_zips(output_dir):
                   desc="Processing ZIP files",
                   unit="file"))
 
-# AI Slop
-
 def load_csv_data():
     csv_content = pkg_resources.resource_string('datamule', 'data/ftd_locations.csv')
-    return pd.read_csv(io.BytesIO(csv_content))
+    csv_data = []
+    csv_file = io.StringIO(csv_content.decode('utf-8'))
+    csv_reader = csv.DictReader(csv_file)
+    for row in csv_reader:
+        csv_data.append(row)
+    return csv_data
 
 def extract_date_from_url(url):
     match = re.search(r'cnsfails(\d{6})[ab]\.zip', url)
@@ -63,8 +64,8 @@ def generate_urls(start_date, end_date):
 
 def get_all_ftd_urls():
     # Load existing URLs
-    df = load_csv_data()
-    existing_urls = df['url'].tolist()
+    csv_data = load_csv_data()
+    existing_urls = [row['url'] for row in csv_data]
 
     # Find the last date in the existing URLs
     last_date = max(extract_date_from_url(url) for url in existing_urls if extract_date_from_url(url))
