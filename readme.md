@@ -64,6 +64,7 @@ downloader = dm.Downloader()
 downloader.download(form='10-K', ticker='AAPL')
 ```
 
+
 ## Usage
 
 ### Downloader
@@ -119,6 +120,7 @@ downloader.download_dataset(dataset='ftd', dataset_path='datasets')
 ```
 
 Note: I've signed up for a DropBox plus account and will be migrating the Zenodo datasets there. Target is that downloading every 10-K takes less than 5 minutes.
+
 
 #### Monitoring for New Filings
 
@@ -232,6 +234,8 @@ This is currently a low priority issue. Let me know if you need the data, and I'
 
 ## Roadmap
 - [ ] setup sics crosswalk
+- [ ] add package data to readme
+- [ ] add update for company tickers
 - [ ] ciks locations incorporated state etc data
 - [ ] enable searching across downloaded filings
 - [ ] mulebot add method to use custom html templates

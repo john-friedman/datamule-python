@@ -11,6 +11,8 @@ import re
 import aiofiles
 import json
 import csv
+from pkg_resources import resource_filename
+
 
 from .global_vars import headers, dataset_10k_url, dataset_mda_url, dataset_xbrl_url, dataset_10k_record_list
 from .helper import _download_from_dropbox, identifier_to_cik, load_company_tickers, fix_filing_url
@@ -414,12 +416,14 @@ class Downloader:
 
             return asyncio.run(self._watch_efts(interval=interval, silent=silent, form=form, cik=cik))
 
-    async def _download_company_metadata(self, output_dir='company_metadata'):
-        os.makedirs(output_dir, exist_ok=True)
-        company_tickers = load_company_tickers()
+    async def _download_company_metadata(self):
+        # Define file paths
+        metadata_file = resource_filename('datamule', 'data/company_metadata.csv')
+        former_names_file = resource_filename('datamule', 'data/company_former_names.csv')
         
-        metadata_file = os.path.join(output_dir, 'company_metadata.csv')
-        former_names_file = os.path.join(output_dir, 'company_former_names.csv')
+        # Define temporary file paths
+        temp_metadata_file = metadata_file + '.temp'
+        temp_former_names_file = former_names_file + '.temp'
         
         metadata_fields = ['cik', 'name', 'entityType', 'sic', 'sicDescription', 'ownerOrg', 
                         'insiderTransactionForOwnerExists', 'insiderTransactionForIssuerExists', 
@@ -432,15 +436,17 @@ class Downloader:
         
         former_names_fields = ['cik', 'former_name', 'from_date', 'to_date']
         
+        company_tickers = load_company_tickers()
+        
         async with aiohttp.ClientSession() as session:
-            with open(metadata_file, 'w', newline='') as mf, open(former_names_file, 'w', newline='') as fnf:
+            with open(temp_metadata_file, 'w', newline='') as mf, open(temp_former_names_file, 'w', newline='') as fnf:
                 metadata_writer = csv.DictWriter(mf, fieldnames=metadata_fields)
                 metadata_writer.writeheader()
                 
                 former_names_writer = csv.DictWriter(fnf, fieldnames=former_names_fields)
                 former_names_writer.writeheader()
                 
-                for company in tqdm(company_tickers, desc="Downloading company metadata"):
+                for company in tqdm(company_tickers, desc="Updating company metadata"):
                     cik = company['cik']
                     url = f'https://data.sec.gov/submissions/CIK{cik.zfill(10)}.json'
                     
@@ -471,9 +477,34 @@ class Downloader:
                     except Exception as e:
                         print(f"Error processing CIK {cik}: {str(e)}")
         
-        print(f"Metadata saved to {metadata_file}")
-        print(f"Former names saved to {former_names_file}")
+        # Now we can safely replace the original files
+        
+        try:
+            # Remove original files if they exist
+            if os.path.exists(metadata_file):
+                os.remove(metadata_file)
+            if os.path.exists(former_names_file):
+                os.remove(former_names_file)
+            
+            # Rename temp files to original names
+            os.rename(temp_metadata_file, metadata_file)
+            os.rename(temp_former_names_file, former_names_file)
+            
+            print(f"Metadata successfully updated in {metadata_file}")
+            print(f"Former names successfully updated in {former_names_file}")
+        except Exception as e:
+            print(f"Error occurred while finalizing file update: {str(e)}")
+            print("Temporary files have been kept. Please manually review and rename if necessary.")
+            return
 
-    def download_company_metadata(self, output_dir='metadata'):
+        # Clean up temp files if they still exist for some reason
+        for temp_file in [temp_metadata_file, temp_former_names_file]:
+            if os.path.exists(temp_file):
+                try:
+                    os.remove(temp_file)
+                except Exception as e:
+                    print(f"Warning: Could not remove temporary file {temp_file}: {str(e)}")
+
+    def update_company_metadata(self):
         """Download metadata for all companies."""
-        return asyncio.run(self._download_company_metadata(output_dir=output_dir))
+        return asyncio.run(self._download_company_metadata())
