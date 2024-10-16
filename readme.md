@@ -63,11 +63,11 @@ downloader.download(form='10-K', ticker='AAPL')
 ```
 
 ### Package Data CSVs
-- company_former_names.csv - former names of companies
-- company_metadata.csv - metadata including sic classification
-- company_tickers.csv - cik, ticker, name
-- sec-glossary.csv - form and description
-- xbrl_descriptions.csv - category fact description
+- [company_former_names.csv](https://github.com/john-friedman/datamule-python/blob/main/datamule/datamule/data/company_former_names.csv) - former names of companies
+- [company_metadata.csv](https://raw.githubusercontent.com/john-friedman/datamule-python/refs/heads/main/datamule/datamule/data/company_metadata.csv) - metadata including sic classification
+- [company_tickers.csv](https://github.com/john-friedman/datamule-python/blob/main/datamule/datamule/data/company_tickers.csv) - cik, ticker, name
+- [sec-glossary.csv](https://github.com/john-friedman/datamule-python/blob/main/datamule/datamule/data/sec-glossary.csv) - form and description
+- [xbrl_descriptions.csv](https://github.com/john-friedman/datamule-python/blob/main/datamule/datamule/data/xbrl_descriptions.csv) - category fact description
 
 ## Usage
 
