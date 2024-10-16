@@ -8,3 +8,4 @@ Secrets/
 !*company_tickers.csv
 *.venv
 *.env
+!/datamule/datamule/data/**
