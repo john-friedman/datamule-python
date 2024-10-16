@@ -69,6 +69,12 @@ downloader.download(form='10-K', ticker='AAPL')
 - [sec-glossary.csv](https://github.com/john-friedman/datamule-python/blob/main/datamule/datamule/data/sec-glossary.csv) - form and description
 - [xbrl_descriptions.csv](https://github.com/john-friedman/datamule-python/blob/main/datamule/datamule/data/xbrl_descriptions.csv) - category fact description
 
+#### Updating Package Data
+```
+downloader.update_company_tickers()
+downloader.update_metadata()
+```
+
 ## Usage
 
 ### Downloader
