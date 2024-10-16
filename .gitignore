@@ -1,11 +1,27 @@
+# Ignore __pycache__ directories
 __pycache__/
-*data/
+
+# Ignore Secrets directory
 Secrets/
+
+# Ignore filings directories
 *filings/
+
+# Ignore CSV files, except company_tickers.csv
 *.csv
+!*company_tickers.csv
+
+# Ignore examples, but allow .ipynb files
 /examples/*
 !/examples/*.ipynb
-!*company_tickers.csv
+
+# Ignore .venv and .env files
 *.venv
 *.env
+
+# Allow all files in \datamule\datamule\data
 !/datamule/datamule/data/**
+
+# Ignore data directories, except the specific one we want to allow
+*data/
+!/datamule/datamule/data/
