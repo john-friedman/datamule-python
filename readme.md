@@ -70,7 +70,7 @@ downloader.download(form='10-K', ticker='AAPL')
 - [xbrl_descriptions.csv](https://github.com/john-friedman/datamule-python/blob/main/datamule/datamule/data/xbrl_descriptions.csv) - category fact description
 
 #### Updating Package Data
-```
+```python
 downloader.update_company_tickers()
 downloader.update_metadata()
 ```
@@ -133,11 +133,10 @@ Note: I've signed up for a DropBox plus account and will be migrating the Zenodo
 
 #### Monitoring for New Filings
 
+Monitor for new filings using form, cik, ticker, and passing in call back functions.
+
 ```python
-print("Monitoring SEC EDGAR for changes...")
-changed_bool = downloader.watch(1, silent=False, cik=['0001267602', '0001318605'], form=['3', 'S-8 POS'])
-if changed_bool:
-    print("New filing detected!")
+downloader.watch(self, interval=1, silent=True, form=None, cik=None, ticker=None, callback=None)
 ```
 
 ### Parsing

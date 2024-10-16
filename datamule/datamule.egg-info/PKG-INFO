@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: datamule
-Version: 0.341
+Version: 0.342
 Summary: Making it easier to use SEC filings.
 Home-page: https://github.com/john-friedman/datamule-python
 Author: John Friedman
@@ -80,6 +80,12 @@ downloader.download(form='10-K', ticker='AAPL')
 - [company_tickers.csv](https://github.com/john-friedman/datamule-python/blob/main/datamule/datamule/data/company_tickers.csv) - cik, ticker, name
 - [sec-glossary.csv](https://github.com/john-friedman/datamule-python/blob/main/datamule/datamule/data/sec-glossary.csv) - form and description
 - [xbrl_descriptions.csv](https://github.com/john-friedman/datamule-python/blob/main/datamule/datamule/data/xbrl_descriptions.csv) - category fact description
+
+#### Updating Package Data
+```python
+downloader.update_company_tickers()
+downloader.update_metadata()
+```
 
 ## Usage
 

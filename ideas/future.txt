@@ -6,8 +6,7 @@ fred data
 https://www.reddit.com/r/quant/comments/1g41gl8/comment/ls3d3na/?context=3
 
 https://www.reddit.com/r/quant/comments/1g41gl8/what_sec_data_do_people_use/
-13f
-5500
+13f info table? - should be able to write a parser that does this easily. that would be up to date
 
-looks like we could also add 13f parser that would be more up to date
-https://www.sec.gov/Archives/edgar/data/854157/000106299324010116/xslForm13F_X02/form13fInfoTable.xml
+request for form 5500
+https://www.dol.gov/agencies/ebsa/employers-and-advisers/plan-administration-and-compliance/reporting-and-filing/form-5500

@@ -1,4 +1,6 @@
 # Changelog
+## v0.342 (2024-10-16)
+- added callback function option to downloader.watch()
 ## v0.341 (2024-10-15)
 - added company metadata datasets, sics, former names, etc to package data
 

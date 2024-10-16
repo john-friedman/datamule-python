@@ -348,10 +348,7 @@ class Downloader:
             self.run_download_urls(urls, filenames=[url.split('/')[-1] for url in urls], output_dir=output_dir)
             process_all_ftd_zips(output_dir)
 
-
-
-
-    async def _watch_efts(self, form=None, cik=None, interval=1, silent=False):
+    async def _watch_efts(self, form=None, cik=None, interval=1, silent=False, callback=None):
         """Watch the EFTS API for changes in the number of filings."""
         params = {
             "startdt": datetime.now().strftime("%Y-%m-%d"),
@@ -385,7 +382,8 @@ class Downloader:
                     if previous_value is not None and current_value != previous_value:
                         if not silent:
                             print(f"Value changed from {previous_value} to {current_value}")
-                        return True
+                        if callback:
+                            callback(data)
                     
                     previous_value = current_value
                     if not silent:
@@ -395,15 +393,15 @@ class Downloader:
                 
                 await asyncio.sleep(interval)
 
-    def watch(self, interval=1, silent=True, form=None, cik=None, ticker=None):
-            """Watch the EFTS API for changes in the number of filings."""
-            if sum(x is not None for x in [cik, ticker]) > 1:
-                raise ValueError('Please provide no more than one identifier: cik or ticker')
-            
-            if ticker:
-                cik = identifier_to_cik(ticker)
+    def watch(self, interval=1, silent=True, form=None, cik=None, ticker=None, callback=None):
+        """Watch the EFTS API for changes in the number of filings."""
+        if sum(x is not None for x in [cik, ticker]) > 1:
+            raise ValueError('Please provide no more than one identifier: cik or ticker')
+        
+        if ticker:
+            cik = identifier_to_cik(ticker)
 
-            return asyncio.run(self._watch_efts(interval=interval, silent=silent, form=form, cik=cik))
+        return asyncio.run(self._watch_efts(interval=interval, silent=silent, form=form, cik=cik, callback=callback))
 
     async def _download_company_metadata(self):
         # Define file paths
