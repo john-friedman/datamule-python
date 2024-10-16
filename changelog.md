@@ -1,4 +1,7 @@
 # Changelog
+## v0.341 (2024-10-15)
+- added company metadata datasets, sics, former names, etc to package data
+
 ## v0.337 (2024-10-14)
 - added filtering by sics and items to downloader
 - added FTD dataset to download_dataset

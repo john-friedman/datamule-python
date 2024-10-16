@@ -1,0 +1,174 @@
+/* Global Styles */
+body {
+    background-color: #f8f9fa;
+    color: #343a40;
+}
+
+/* Cards */
+.card {
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, .1);
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-primary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+}
+
+.btn-primary:disabled {
+    background-color: #6c757d;
+    border-color: #6c757d;
+    opacity: 0.65;
+}
+
+/* Social Buttons */
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    height: 36px;
+    border-radius: 6px;
+    margin: 0 5px;
+    padding: 0 12px;
+    background-color: #f8f9fa;
+    border: 1px solid #6c757d;
+    color: #6c757d;
+    font-size: 14px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+    background-color: #6c757d;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.social-btn:hover svg {
+    fill: #ffffff;
+}
+
+.social-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: #6c757d;
+    margin-right: 6px;
+    transition: fill 0.3s ease;
+}
+
+/* Chat container */
+#chat-outer-container {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+}
+
+#chat-container {
+    height: 100%;
+    overflow-y: auto;
+    padding-bottom: 40px;
+    /* Make room for the thinking indicator */
+}
+
+/* Artifact container */
+#artifact-container {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+/* Suggestion Box */
+.suggestion-box {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.suggestion-item {
+    background-color: white;
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.suggestion-item:hover {
+    background-color: #f0f0f0;
+}
+
+/* Autocomplete */
+.select-wrapper {
+    position: relative;
+}
+
+.autocomplete-items {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-top: none;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    background-color: #fff;
+}
+
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+}
+
+.autocomplete-items div:hover {
+    background-color: #e9e9e9;
+}
+
+.autocomplete-active {
+    background-color: DodgerBlue !important;
+    color: #ffffff;
+}
+
+/* Thinking Indicator */
+.thinking-indicator {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px 5px 0 0;
+    display: none;
+    z-index: 1000;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.dot-animation {
+    display: inline-block;
+    width: 20px;
+    text-align: left;
+    animation: dotAnimation 1.5s infinite;
+}
+
+@keyframes dotAnimation {
+    0% {
+        content: '.';
+    }
+
+    33% {
+        content: '..';
+    }
+
+    66% {
+        content: '...';
+    }
+}
