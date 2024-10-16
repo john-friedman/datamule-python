@@ -20,6 +20,6 @@ if _is_jupyter():
 
 from .sec_downloader import Downloader
 from .datamule_api import parse_textual_filing
-from .helper import load_company_tickers
+from .helper import load_package_csv
 from .sec_parser import Parser
 from .table_parser import TableParser

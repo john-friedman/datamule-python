@@ -15,7 +15,7 @@ from pkg_resources import resource_filename
 
 
 from .global_vars import headers, dataset_10k_url, dataset_mda_url, dataset_xbrl_url, dataset_10k_record_list
-from .helper import _download_from_dropbox, identifier_to_cik, load_company_tickers, fix_filing_url
+from .helper import _download_from_dropbox, identifier_to_cik, load_package_csv, fix_filing_url
 from .zenodo_downloader import download_from_zenodo
 from .ftd import get_all_ftd_urls, process_all_ftd_zips
 
@@ -320,7 +320,7 @@ class Downloader:
                 ciks = identifier_to_cik(ticker)
 
             if ciks is None:
-                company_tickers = load_company_tickers()
+                company_tickers = load_package_csv()
                 ciks = [company['cik'] for company in company_tickers]
                 
             os.makedirs(output_dir, exist_ok=True)
@@ -336,18 +336,7 @@ class Downloader:
             os.makedirs(dataset_path)
 
         #soft deprecation
-        if dataset == 'parsed_10k':
-            file_path = os.path.join(dataset_path, '10K.zip')
-            _download_from_dropbox(dataset_10k_url, file_path)
-        # soft deprecation
-        elif dataset == "mda":
-            file_path = os.path.join(dataset_path, 'MDA.zip')
-            _download_from_dropbox(dataset_mda_url, file_path)
-        # soft deprecation
-        elif dataset == "xbrl":
-            file_path = os.path.join(dataset_path, 'XBRL.zip')
-            _download_from_dropbox(dataset_xbrl_url, file_path)
-        elif re.match(r"10k_(\d{4})$", dataset):
+        if re.match(r"10k_(\d{4})$", dataset):
             year = dataset.split('_')[-1]
             record = next((record['record'] for record in dataset_10k_record_list if record['year'] == int(year)), None)
             output_dir = os.path.join(dataset_path, f'10K_{year}') 
@@ -436,7 +425,7 @@ class Downloader:
         
         former_names_fields = ['cik', 'former_name', 'from_date', 'to_date']
         
-        company_tickers = load_company_tickers()
+        company_tickers = load_package_csv()
         
         async with aiohttp.ClientSession() as session:
             with open(temp_metadata_file, 'w', newline='') as mf, open(temp_former_names_file, 'w', newline='') as fnf:
@@ -549,7 +538,6 @@ class Downloader:
                 if os.path.exists(csv_file):
                     os.remove(csv_file)
                 
-                os.remove(json_file)
                 os.rename(temp_csv_file, csv_file)
 
 

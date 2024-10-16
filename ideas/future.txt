@@ -4,3 +4,10 @@ fred data
 + bonds
 
 https://www.reddit.com/r/quant/comments/1g41gl8/comment/ls3d3na/?context=3
+
+https://www.reddit.com/r/quant/comments/1g41gl8/what_sec_data_do_people_use/
+13f
+5500
+
+looks like we could also add 13f parser that would be more up to date
+https://www.sec.gov/Archives/edgar/data/854157/000106299324010116/xslForm13F_X02/form13fInfoTable.xml

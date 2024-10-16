@@ -10,13 +10,11 @@ Articles:
 [How to deploy a financial chatbot to the internet in 5 minutes](https://medium.com/@jgfriedman99/how-to-deploy-a-financial-chatbot-in-5-minutes-ef5eec973d4c)
 
 ## Features
-
 - Monitor EDGAR for new filings
 - Parse textual filings into simplified HTML, interactive HTML, or structured JSON
 - Download SEC filings quickly and easily
-- Access datasets such as every 10-K since 2001, 2024 MD&A, 2024 10-K converted to structured JSON, and more.
+- Access datasets such as every 10-K, SIC codes, etc.
 - Interact with SEC data using MuleBot
-
 
 ## Table of Contents
 
@@ -65,18 +63,17 @@ downloader.download(form='10-K', ticker='AAPL')
 ```
 
 ### Package Data CSVs
-company former names: cik,former_name,from_date,to_date
-company metadata: cik,name,entityType,sic,sicDescription,ownerOrg,insiderTransactionForOwnerExists,insiderTransactionForIssuerExists,tickers,exchanges,ein,description,website,investorWebsite,category,fiscalYearEnd,stateOfIncorporation,stateOfIncorporationDescription,phone,flags,mailing_street1,mailing_street2,mailing_city,mailing_stateOrCountry,mailing_zipCode,mailing_stateOrCountryDescription,business_street1,business_street2,business_city,business_stateOrCountry,business_zipCode,business_stateOrCountryDescription
-
-sec glossary: "form","count","description","example_filing_url","example_primary_doc_url"
-
-xbrl descriptions: category,fact,description
+- company_former_names.csv - former names of companies
+- company_metadata.csv - metadata including sic classification
+- company_tickers.csv - cik, ticker, name
+- sec-glossary.csv - form and description
+- xbrl_descriptions.csv - category fact description
 
 ## Usage
 
 ### Downloader
 
-```
+```python
 downloader = dm.Downloader()
 ```
 
@@ -104,7 +101,7 @@ View the SEC Filing Glossary [here](https://datamule.xyz/sec_glossary) or downlo
 
 Uses the [Company Concepts API](https://data.sec.gov/api/xbrl/companyfacts/CIK0001318605.json) to retrieve XBRL.
 
-```
+```python
 download_company_concepts(self, output_dir = 'company_concepts',cik=None, ticker=None)
 ```
 
@@ -128,7 +125,6 @@ downloader.download_dataset(dataset='ftd', dataset_path='datasets')
 
 Note: I've signed up for a DropBox plus account and will be migrating the Zenodo datasets there. Target is that downloading every 10-K takes less than 5 minutes.
 
-
 #### Monitoring for New Filings
 
 ```python
@@ -144,7 +140,7 @@ if changed_bool:
 
 Parses XBRL in JSON format to tables. [SEC XBRL](https://www.sec.gov/search-filings/edgar-application-programming-interfaces). See [Parse every SEC XBRL to csv in ten minutes](https://github.com/john-friedman/datamule-python/blob/main/examples/parse_all_xbrl.ipynb)
 
-```
+```python
 from datamule import parse_company_concepts
 table_dict_list = parse_company_concepts(company_concepts) # Returns a list of tables with labels
 ```
@@ -220,8 +216,6 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-
-
 
 ## Known Issues
 

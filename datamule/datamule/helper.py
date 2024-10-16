@@ -52,9 +52,9 @@ def _download_from_dropbox(url, output_path):
         print(f"Downloaded file is not a zip. Saved to {output_path}")
 
 # May generalize to load any package resource
-def load_company_tickers():
-    """Load company tickers from package"""
-    csv_path = resource_filename('datamule', 'data/company_tickers.csv')
+def load_package_csv(name):
+    """Load package CSV files"""
+    csv_path = resource_filename('datamule', f'data/{name}.csv')
     company_tickers = []
     
     with open(csv_path, 'r') as csvfile:
@@ -67,7 +67,7 @@ def load_company_tickers():
 # DONE
 def identifier_to_cik(ticker):
     """Convert company tickers to CIK codes"""
-    company_tickers = load_company_tickers()
+    company_tickers = load_package_csv('company_tickers')
     if ticker:
         if isinstance(ticker, list):
             cik = []
