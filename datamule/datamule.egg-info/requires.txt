@@ -7,8 +7,8 @@ aiofiles
 
 [all]
 lxml
-openai
 flask
+openai
 
 [filing_viewer]
 lxml

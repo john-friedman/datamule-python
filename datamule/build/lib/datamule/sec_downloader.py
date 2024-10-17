@@ -14,7 +14,7 @@ import csv
 from pkg_resources import resource_filename
 
 
-from .global_vars import headers, dataset_10q_url_list, dataset_10k_record_list
+from .global_vars import headers, dataset_10q_url_list, dataset_10k_record_list,dataset_10k_url_list
 from .helper import identifier_to_cik, load_package_csv, fix_filing_url
 from .zenodo_downloader import download_from_zenodo
 from .ftd import get_all_ftd_urls, process_all_ftd_zips
@@ -361,6 +361,19 @@ class Downloader:
                 dropbox_downloader.download(urls=year_data['urls'], output_dir=output_dir)
             else:
                 print(f"No data found for 10Q_{year}")
+
+        elif re.match(r"10k_(\d{4})$", dataset):
+            dropbox_downloader = DropboxDownloader()
+            year = int(dataset.split('_')[-1])
+            year_data = next((data for data in dataset_10k_url_list if data['year'] == year), None)
+            
+            if year_data:
+                output_dir = os.path.join(dataset_path, f'10K_{year}')
+                os.makedirs(output_dir, exist_ok=True)
+                
+                dropbox_downloader.download(urls=year_data['urls'], output_dir=output_dir)
+            else:
+                print(f"No data found for 10K_{year}")
 
     async def _watch_efts(self, form=None, cik=None, interval=1, silent=False, callback=None):
         """Watch the EFTS API for changes in the number of filings."""

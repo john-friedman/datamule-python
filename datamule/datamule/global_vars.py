@@ -2,6 +2,97 @@ headers = {
     "User-Agent": "Peter Smith petersmith@gmail.com"  # Replace with your information
 }
 
+dataset_10k_url_list = [
+    {'year': 2024, 'urls': [
+        'https://www.dropbox.com/scl/fi/3gd9whn8qtychbxuxnbsa/2024_archive.zip.001?rlkey=2n8qwhcccevniqkvy39ksa467&st=hn3kacs6&dl=1',
+        'https://www.dropbox.com/scl/fi/8citjlh4h58speyag3hd9/2024_archive.zip.002?rlkey=ymadt6wc81e9m3a15znwum7s1&st=opzcpxye&dl=1'
+    ]},
+    {'year': 2023, 'urls': [
+        'https://www.dropbox.com/scl/fi/hdnb6bbr7l3xgrfmc73ht/2023_archive.zip.001?rlkey=kd0npzwvscacfdz0syq2irnu7&st=nzmh3lwr&dl=1',
+        'https://www.dropbox.com/scl/fi/ubiyq3tssa95enbb8xi9u/2023_archive.zip.002?rlkey=xkef3tx3q5a4f3oh38tx4cjy4&st=z3nrs8g3&dl=1'
+    ]},
+    {'year': 2022, 'urls': [
+        'https://www.dropbox.com/scl/fi/rlhvogepk9cpnohhq4gs7/2022_archive.zip.001?rlkey=81hmjgdt1rtjub64wrlp9oy5t&st=i6ecnbux&dl=1',
+        'https://www.dropbox.com/scl/fi/r5m6y1j8uf02uy61u3fcn/2022_archive.zip.002?rlkey=z80qlgjifbtf5mjuqlu98478p&st=7wqvhekh&dl=1'
+    ]},
+    {'year': 2021, 'urls': [
+        'https://www.dropbox.com/scl/fi/wemvdqxsqddlhlcgon36g/2021_archive.zip.001?rlkey=tjl3525vn60zwosnqdgznecj5&st=66bycsgf&dl=1',
+        'https://www.dropbox.com/scl/fi/si0nynzxxf31kxpxobzrf/2021_archive.zip.002?rlkey=93oczu6hs5iusex2f65k2mxc7&st=x8cymp6w&dl=1'
+    ]},
+    {'year': 2020, 'urls': [
+        'https://www.dropbox.com/scl/fi/vxvgwrw2q04qlj5m2aoog/2020_archive.zip.001?rlkey=88h3x78axn5ghvk9t5otqpdjd&st=72xwi1y1&dl=1',
+        'https://www.dropbox.com/scl/fi/9blysoqztxg5vedrf2l2i/2020_archive.zip.002?rlkey=msvos1omcb8fowb4q1nm38m6e&st=bscfunry&dl=1'
+    ]},
+    {'year': 2019, 'urls': [
+        'https://www.dropbox.com/scl/fi/hq5o9zo8xrqmd7l4o06hy/2019_archive.zip.001?rlkey=sazeziru87k7qptqhxenv0d6m&st=241jmwwd&dl=1',
+        'https://www.dropbox.com/scl/fi/2jyxw65unxhhsk5fuhuon/2019_archive.zip.002?rlkey=nzyf1em08qgxdhpz2vuoj417u&st=ii9zpdxi&dl=1'
+    ]},
+    {'year': 2018, 'urls': [
+        'https://www.dropbox.com/scl/fi/c1vexzflxr6qcsg25nxp7/2018_archive.zip.001?rlkey=hnb5zeashbtqfhxsnf9vt94vv&st=wy9i633f&dl=1',
+        'https://www.dropbox.com/scl/fi/yzt3464lscpmy5n39olk5/2018_archive.zip.002?rlkey=tu3lbnjnd1xwni8f6nfpbmtgm&st=c0zur5sz&dl=1'
+    ]},
+    {'year': 2017, 'urls': [
+        'https://www.dropbox.com/scl/fi/3trjwjx6v64ilnt8nyp02/2017_archive.zip.001?rlkey=vl4x1rrp0fisjy3djrraayjoe&st=ept0d24k&dl=1',
+        'https://www.dropbox.com/scl/fi/p011jrntmkrmlb9u84k62/2017_archive.zip.002?rlkey=55uka4y2d90eb5d8lgu86yl6c&st=ildtcc94&dl=1'
+    ]},
+    {'year': 2016, 'urls': [
+        'https://www.dropbox.com/scl/fi/5oydfbume2mxqfobn2e9r/2016_archive.zip.001?rlkey=4h76gl9ny8e7vgcdnphf7bzn9&st=jkr0ioby&dl=1',
+        'https://www.dropbox.com/scl/fi/faofea4f2mkzjslt12s0b/2016_archive.zip.002?rlkey=bolnuqm3fq7yrfqhf5ek92dgp&st=33w8ivrx&dl=1'
+    ]},
+    {'year': 2015, 'urls': [
+        'https://www.dropbox.com/scl/fi/75rdrrsrgbg95qcedcr65/2015_archive.zip.001?rlkey=pb4ec6sda3ii0lnzua4enxnr3&st=t7wkjb60&dl=1',
+        'https://www.dropbox.com/scl/fi/ixfttx508tp8cuf3xismr/2015_archive.zip.002?rlkey=xcoqtcx3vjnh3ctxhpqe4jv2j&st=56fgbb8w&dl=1'
+    ]},
+    {'year': 2014, 'urls': [
+        'https://www.dropbox.com/scl/fi/1y1j6ct6mox76euu38t2c/2014_archive.zip.001?rlkey=hwh83ttl3nahb1oegib05p3k7&st=d01umhdp&dl=1',
+        'https://www.dropbox.com/scl/fi/bh2yu3coqcshj5mybk3wd/2014_archive.zip.002?rlkey=0g4ftzhytyn3vk8kgwu72b6lf&st=jz9pzdoy&dl=1'
+    ]},
+    {'year': 2013, 'urls': [
+        'https://www.dropbox.com/scl/fi/jraed38u18c9y16mwcnmo/2013_archive.zip.001?rlkey=fvy6flk8uxk2mn5wjvynu96ag&st=3sivwbx7&dl=1',
+        'https://www.dropbox.com/scl/fi/cgi8opfbnu727seazzmvd/2013_archive.zip.002?rlkey=sm7h7wfzud22u3ed1pw8fr7u9&st=19tunve8&dl=1'
+    ]},
+    {'year': 2012, 'urls': [
+        'https://www.dropbox.com/scl/fi/hji2bb1ce2wdwf5yc6dyf/2012_archive.zip.001?rlkey=0r53m8roo6e8grqez3lnhpayk&st=1jx5jq4r&dl=1',
+        'https://www.dropbox.com/scl/fi/hqoh4l305b168619eytkj/2012_archive.zip.002?rlkey=2laeldqzlwskwoha9idmioolf&st=1w8zowyp&dl=1'
+    ]},
+    {'year': 2011, 'urls': [
+        'https://www.dropbox.com/scl/fi/z7z8qnmf73hqr33b386zu/2011_archive.zip.001?rlkey=kdkd3urxmo830n30gwiapqvkz&st=2hsuxpcm&dl=1',
+        'https://www.dropbox.com/scl/fi/illd2qfsj2vuy4yjd13el/2011_archive.zip.002?rlkey=oewcg57c92wlbufwhon21mjeq&st=ir05xure&dl=1'
+    ]},
+    {'year': 2010, 'urls': [
+        'https://www.dropbox.com/scl/fi/j41ta06g0fso473x4oa1f/2010_archive.zip.001?rlkey=1r83ibenn06fxs6zhm6oi46pr&st=iia9qtid&dl=1',
+        'https://www.dropbox.com/scl/fi/31b6huoywrrc44b76wm1w/2010_archive.zip.002?rlkey=40jfl7zqnw5sikgd4wuo1095m&st=igy563mu&dl=1'
+    ]},
+    {'year': 2009, 'urls': [
+        'https://www.dropbox.com/scl/fi/4y6c1icwvkjwwqbgx4w1a/2009_archive.zip.001?rlkey=3qqp4ikinplktw6g39x68rdmj&st=dcg0eik1&dl=1',
+        'https://www.dropbox.com/scl/fi/jq808ah0j0vg1sqdmvnnm/2009_archive.zip.002?rlkey=wbgtvj8fkpgmcj5oxpj88jfog&st=4txza2fu&dl=1'
+    ]},
+    {'year': 2008, 'urls': [
+        'https://www.dropbox.com/scl/fi/uf1ym44ns1936uj8vqfwk/2008_archive.zip.001?rlkey=9rivaprk7yjrutdfu7sqo3jxv&st=gj75o1ne&dl=1'
+    ]},
+    {'year': 2007, 'urls': [
+        'https://www.dropbox.com/scl/fi/58qmwj7m3rrl7kr00lwat/2007_archive.zip.001?rlkey=815zw0gnb7gowcdf0iuvtctqh&st=7cajp3ii&dl=1'
+    ]},
+    {'year': 2006, 'urls': [
+        'https://www.dropbox.com/scl/fi/gxi8qzpz53f9qcvn2hpl5/2006_archive.zip.001?rlkey=hmehz1azpbxzpw6j1wy5eppq0&st=czxrdcnh&dl=1'
+    ]},
+    {'year': 2005, 'urls': [
+        'https://www.dropbox.com/scl/fi/tjstefvwfzs3p0a1vzlbg/2005_archive.zip.001?rlkey=825m16ziekd9mwc3ybvjvisj0&st=4dyy121i&dl=1'
+    ]},
+    {'year': 2004, 'urls': [
+        'https://www.dropbox.com/scl/fi/2g25emvme8gqoxnv5fhla/2004_archive.zip.001?rlkey=lz8oyniqgc7xvn343d39600ic&st=yvmi9h1t&dl=1'
+    ]},
+    {'year': 2003, 'urls': [
+        'https://www.dropbox.com/scl/fi/d2ub0o4sqo0b2evd9s9z3/2003_archive.zip.001?rlkey=qxsltqjfxnk0xrp0qx5c49v57&st=cc4dzjo2&dl=1'
+    ]},
+    {'year': 2002, 'urls': [
+        'https://www.dropbox.com/scl/fi/9xy6y09y2b5zp4w4c7cty/2002_archive.zip.001?rlkey=c4qqact06zz7ykmfc1n5odf2a&st=d93mptu8&dl=1'
+    ]},
+    {'year': 2001, 'urls': [
+        'https://www.dropbox.com/scl/fi/b3miae1kvths87e0cq8fs/2001_archive.zip.001?rlkey=g21mnbzicju3czney275bpjyp&st=0nji6q8l&dl=1'
+    ]}
+]
+
 dataset_10q_url_list = [
     {'year': 2001, 'urls': ['https://www.dropbox.com/scl/fi/1bzig8wabbtezfg6dipou/2001_archive.zip.001?rlkey=4sddwex8k9kd4jahypsxgvbs2&st=s5x7wnh5&dl=1']},
     {'year': 2002, 'urls': ['https://www.dropbox.com/scl/fi/qe0om30w0dhtg3byse8n1/2002_archive.zip.001?rlkey=7ji21x7ppavstwoe1dz7028r5&st=hb5dkzo2&dl=1']},
