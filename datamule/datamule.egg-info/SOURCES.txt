@@ -1,11 +1,13 @@
 setup.py
 datamule/__init__.py
 datamule/datamule_api.py
+datamule/dropbox_downloader.py
 datamule/ftd.py
 datamule/global_vars.py
 datamule/helper.py
 datamule/sec_downloader.py
 datamule/sec_parser.py
+datamule/sec_search.py
 datamule/table_parser.py
 datamule/zenodo_downloader.py
 datamule.egg-info/PKG-INFO

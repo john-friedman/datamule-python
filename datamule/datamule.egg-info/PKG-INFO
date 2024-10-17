@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: datamule
-Version: 0.342
+Version: 0.343
 Summary: Making it easier to use SEC filings.
 Home-page: https://github.com/john-friedman/datamule-python
 Author: John Friedman
@@ -135,21 +135,20 @@ downloader.set_limiter('www.sec.gov', 10)
 #### Datasets
 Available datasets:
 - Every [FTD](https://www.sec.gov/data-research/sec-markets-data/fails-deliver-data) since 2004. `ftd` (1.3gb, ~60s to download)
-- Every [10-K](https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Friedman%2C%20John%22&l=list&p=1&s=10&sort=bestmatch) from 2001 to September 2024. `10k_{year}` e.g. `10k_2002`. (Speed depends on Zenodo's servers. Working on finding a better host)
+- Every [10-Q](https://www.dropbox.com/scl/fo/m7yg1eyst7oi6aqciarrd/ABrkRn0-I5nIwoM5m2wlZVg?rlkey=5qcuduan5mk4aic9wz45aqrqb&st=fetx6qnx&dl=0) since 2001. (500mb-3gb per year, ~5 minutes to download)
+- Every [10-K](https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Friedman%2C%20John%22&l=list&p=1&s=10&sort=bestmatch) from 2001 to September 2024. `10k_{year}` e.g. `10k_2002`. (Speed depends on Zenodo's servers. Switching to DropBox)
 
 ```python
 downloader.download_dataset(dataset='ftd', dataset_path='datasets')
+downloader.download_dataset(dataset='10q_2023',dataset_path='10q')
 ```
-
-Note: I've signed up for a DropBox plus account and will be migrating the Zenodo datasets there. Target is that downloading every 10-K takes less than 5 minutes.
 
 #### Monitoring for New Filings
 
+Monitor for new filings using form, cik, ticker, and passing in call back functions.
+
 ```python
-print("Monitoring SEC EDGAR for changes...")
-changed_bool = downloader.watch(1, silent=False, cik=['0001267602', '0001318605'], form=['3', 'S-8 POS'])
-if changed_bool:
-    print("New filing detected!")
+downloader.watch(self, interval=1, silent=True, form=None, cik=None, ticker=None, callback=None)
 ```
 
 ### Parsing
@@ -252,12 +251,7 @@ if __name__ == "__main__":
 This is currently a low priority issue. Let me know if you need the data, and I'll move it up the priority list.
 
 ## Roadmap
-- [ ] readme rewrite. add package data to datasets
-- [ ] setup sics crosswalk
-- [ ] add package data to readme
-- [ ] add update for company tickers
-- [ ] ciks locations incorporated state etc data
-- [ ] enable searching across downloaded filings
+- [ ] sec search engine
 - [ ] mulebot add method to use custom html templates
 - [ ] mulebot - look at adding summarization. Add some protections to too many tokens being used + add options to allow summarization etc.
 - [ ] Paths may be messed up on non windows devices. Need to verify.
