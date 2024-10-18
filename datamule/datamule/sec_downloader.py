@@ -360,9 +360,20 @@ class Downloader:
             process_all_ftd_zips(output_dir)
         elif dataset == '13f_information_table':    
             output_dir = os.path.join(dataset_path, '13f_information_table')
+
+            # download the bulk data from the SEC
             urls = get_all_13f_urls()
             self.run_download_urls(urls, filenames=[url.split('/')[-1] for url in urls], output_dir=output_dir)
             process_all_13f_zips(output_dir)
+
+            # use downloader and parser to get the rest
+            # we need date of last info table
+
+            self.download(output_dir=output_dir, form='13F-HR', date=('2021-01-01','2021-12-31'),file_types=['INFORMATION TABLE'])
+            # find all the 13F-HR forms with extension .xml
+            # Filing(filename,filing_type='13F-HR-INFORMATIONTABLE')
+            # Filing.parse()
+            # Filing.write_csv()
 
         elif re.match(r"10q_(\d{4})$", dataset):
             dropbox_downloader = DropboxDownloader()
