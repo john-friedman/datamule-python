@@ -6,6 +6,11 @@ from tqdm import tqdm
 import traceback
 import polars as pl
 import shutil
+import glob
+import re
+from aiolimiter import AsyncLimiter
+
+from .sec_filing import Filing
 
 def generate_quarterly_urls(start_date, end_date):
     urls = []
@@ -138,3 +143,89 @@ def get_13f_data_cutoff_date():
             return datetime(year, prev_end_month, {5: 31, 8: 31, 11: 30}[prev_end_month])
     else:
         return recent_end_date
+    
+
+def process_xml_files(output_dir):
+    xml_files = glob.glob(os.path.join(output_dir, '*.xml'))
+    
+    for xml_file in tqdm(xml_files, desc="Processing XML files"):
+        filing = Filing(xml_file, filing_type='13F-HR-INFORMATIONTABLE')
+        filing.parse_filing()
+
+        filename = os.path.basename(xml_file)
+        match = re.match(r'(\d+)_', filename)
+        if match:
+            accession_number = match.group(1)
+        else:
+            raise ValueError(f"Could not extract accession number from {filename}")
+
+        filing.write_csv(accession_number=accession_number)
+        os.remove(xml_file)
+
+def combine_csv_files(output_dir, cutoff_date):
+    csv_files = glob.glob(os.path.join(output_dir, '*.csv'))
+    combined_df = pl.DataFrame()
+
+    for csv_file in tqdm(csv_files, desc="Combining CSV files"):
+        # Infer schema from the file
+        inferred_schema = pl.read_csv(csv_file, infer_schema_length=1000).schema
+        
+        # Read the CSV file with the inferred schema
+        df = pl.read_csv(csv_file, dtypes=inferred_schema)
+        
+        # Cast all columns to strings
+        df = df.select([pl.col(col).cast(pl.Utf8) for col in df.columns])
+        
+        if combined_df.is_empty():
+            combined_df = df
+        else:
+            combined_df = pl.concat([combined_df, df], how="diagonal")
+        
+        os.remove(csv_file)
+
+    current_date = datetime.now().strftime('%Y-%m-%d')
+    combined_csv_name = f"13F_HR_{cutoff_date.strftime('%Y-%m-%d')}_{current_date}.csv"
+    combined_csv_path = os.path.join(output_dir, combined_csv_name)
+    combined_df.write_csv(combined_csv_path)
+    print(f"Combined CSV file saved as: {combined_csv_path}")
+
+def download_and_process_13f_data(downloader, output_dir='13f_information_table'):
+    os.makedirs(output_dir, exist_ok=True)
+
+    # Store original rate limiters
+    original_sec_limiter = downloader.domain_limiters['www.sec.gov']
+    original_efts_limiter = downloader.domain_limiters['efts.sec.gov']
+
+    try:
+        # Process Current 13F-HR filings
+        current_date = datetime.now().strftime('%Y-%m-%d')
+        cutoff_date = get_13f_data_cutoff_date()
+
+        # Set rate limiters for downloading filings
+        downloader.domain_limiters['www.sec.gov'] = AsyncLimiter(5, 1)
+        downloader.domain_limiters['efts.sec.gov'] = AsyncLimiter(5, 1)
+
+        downloader.download(output_dir=output_dir, form='13F-HR', date=(cutoff_date.strftime('%Y-%m-%d'), current_date), file_types=['INFORMATION TABLE'])
+
+        # Process XML files
+        process_xml_files(output_dir)
+
+        # Combine CSV files
+        combine_csv_files(output_dir, cutoff_date)
+
+        # Download bulk data
+        urls = get_all_13f_urls()
+        
+        # Set rate limiters for bulk download
+        downloader.domain_limiters['www.sec.gov'] = AsyncLimiter(1, 1)
+        downloader.domain_limiters['efts.sec.gov'] = AsyncLimiter(1, 1)
+
+        downloader.run_download_urls(urls, filenames=[url.split('/')[-1] for url in urls], output_dir=output_dir)
+        process_all_13f_zips(output_dir)
+        
+
+
+    finally:
+        # Restore original rate limiters
+        downloader.domain_limiters['www.sec.gov'] = original_sec_limiter
+        downloader.domain_limiters['efts.sec.gov'] = original_efts_limiter

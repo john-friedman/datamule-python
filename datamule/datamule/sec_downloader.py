@@ -20,7 +20,7 @@ from .helper import identifier_to_cik, load_package_csv, fix_filing_url
 from .zenodo_downloader import download_from_zenodo
 from .ftd import get_all_ftd_urls, process_all_ftd_zips
 from .dropbox_downloader import DropboxDownloader
-from .information_table_13f import get_all_13f_urls, process_all_13f_zips, get_13f_data_cutoff_date
+from .information_table_13f import download_and_process_13f_data
 from .sec_filing import Filing
 
 class RetryException(Exception):
@@ -362,54 +362,7 @@ class Downloader:
             process_all_ftd_zips(output_dir)
         elif dataset == '13f_information_table':    
             output_dir = os.path.join(dataset_path, '13f_information_table')
-
-            # Temporarily set the rate limiters for SEC.gov and EFTS.gov to 5
-            original_sec_limiter = self.domain_limiters['www.sec.gov']
-            original_efts_limiter = self.domain_limiters['efts.sec.gov']
-            self.domain_limiters['www.sec.gov'] = AsyncLimiter(5, 1)
-            self.domain_limiters['efts.sec.gov'] = AsyncLimiter(5, 1)
-
-            try:
-                # download the bulk data from the SEC
-                urls = get_all_13f_urls()
-                self.run_download_urls(urls, filenames=[url.split('/')[-1] for url in urls], output_dir=output_dir)
-                process_all_13f_zips(output_dir)
-
-                # use downloader and parser to get the rest
-                cutoff_date = get_13f_data_cutoff_date()
-                # convert the cutoff date to the format used by the SEC
-                cutoff_date = datetime.strftime(cutoff_date, '%Y-%m-%d')
-                # get current date
-                current_date = datetime.now().strftime('%Y-%m-%d')
-                
-                self.download(output_dir=output_dir, form='13F-HR', date=(cutoff_date,current_date),file_types=['INFORMATION TABLE'])
-                xml_files = glob.glob(os.path.join(output_dir, '*.xml'))
-                
-                for xml_file in xml_files:
-                    # Create a Filing object for each XML file
-                    filing = Filing(xml_file, filing_type='13F-HR-INFORMATIONTABLE')
-
-                    # Parse the filing
-                    filing.parse_filing()
-
-                    # Extract the accession number using regex
-                    filename = os.path.basename(xml_file)
-                    match = re.match(r'(\d+)_', filename)
-                    if match:
-                        accession_number = match.group(1)
-                    else:
-                        raise ValueError(f"Could not extract accession number from {filename}")
-
-                    # write to csv
-                    filing.write_csv(accession_number=accession_number)
-
-                    # delete the xml file
-                    os.remove(xml_file)
-
-            finally:
-                # Restore the original rate limiters
-                self.domain_limiters['www.sec.gov'] = original_sec_limiter
-                self.domain_limiters['efts.sec.gov'] = original_efts_limiter
+            download_and_process_13f_data(self, output_dir)
 
         elif re.match(r"10q_(\d{4})$", dataset):
             dropbox_downloader = DropboxDownloader()

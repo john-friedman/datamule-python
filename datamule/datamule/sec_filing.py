@@ -1,6 +1,7 @@
 import csv
 
 from .sec_parser import Parser
+from .helper import convert_to_dashed_accession
 
 class Filing:
     def __init__(self, filename,filing_type):
@@ -37,7 +38,7 @@ class Filing:
             for row in self.data:
                 row_data = {k: self._csv_safe_value(v) for k, v in row.items()}
                 if accession_number is not None:
-                    row_data['Accession Number'] = accession_number
+                    row_data['Accession Number'] = convert_to_dashed_accession(accession_number)
                 writer.writerow(row_data)
 
         return output_filename

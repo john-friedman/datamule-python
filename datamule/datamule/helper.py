@@ -110,4 +110,15 @@ def fix_filing_url(url):
     # return the original URL
     return url
 
-
+def convert_to_dashed_accession(accession):
+    # Remove any existing dashes or whitespace
+    cleaned = ''.join(accession.split())
+    
+    # Check if the cleaned string has 18 characters
+    if len(cleaned) != 18:
+        raise ValueError("Invalid accession number format. Expected 18 characters.")
+    
+    # Insert dashes at the correct positions
+    dashed = f"{cleaned[:10]}-{cleaned[10:12]}-{cleaned[12:]}"
+    
+    return dashed
