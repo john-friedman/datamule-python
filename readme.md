@@ -238,6 +238,8 @@ if __name__ == "__main__":
 
 
 ## Roadmap
+- [ ] Need to make conductor more robust. We have new options now including desc / asc
+- [ ] add facet filters for forms etc
 - [ ] sec search engine
 - [ ] mulebot add method to use custom html templates
 - [ ] mulebot - look at adding summarization. Add some protections to too many tokens being used + add options to allow summarization etc.

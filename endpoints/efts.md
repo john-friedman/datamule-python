@@ -82,3 +82,5 @@ Note: adding q will allow api to return attachments, e.g. 10k exhibit 99
 
 Note: sec.gov has a 10r/s rate limit
 I think efts has a seperate rate limit
+
+Note: sort=desc / asc is nice

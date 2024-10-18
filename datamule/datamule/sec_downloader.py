@@ -149,7 +149,7 @@ class Downloader:
         """Download a list of URLs to a specified directory"""
         return asyncio.run(self._download_urls(urls, filenames, output_dir))
 
-    async def _get_filing_urls_from_efts(self, base_url, sics=None, items=None):
+    async def _get_filing_urls_from_efts(self, base_url, sics=None, items=None, file_types=None):
         """Asynchronously fetch all filing URLs from a given EFTS URL."""
         full_urls = []
         start, page_size = 0, 100
@@ -170,7 +170,10 @@ class Downloader:
                             # Check item filter
                             item_match = items is None or any(item in items for item in hit['_source'].get('items', []))
                             
-                            if sic_match and item_match:
+                            # Check file type filter
+                            file_type_match = file_types is None or hit['_source'].get('file_type') in (file_types if isinstance(file_types, list) else [file_types])
+                            
+                            if sic_match and item_match and file_type_match:
                                 url = f"https://www.sec.gov/Archives/edgar/data/{hit['_source']['ciks'][0]}/{hit['_id'].split(':')[0].replace('-', '')}/{hit['_id'].split(':')[1]}"
                                 full_urls.append(url)
                         
@@ -234,7 +237,7 @@ class Downloader:
 
         return urls[::-1]
 
-    async def _conductor(self, efts_url, return_urls, output_dir, sics, items):
+    async def _conductor(self, efts_url, return_urls, output_dir, sics, items, file_types):
         """Conduct the download process based on the number of filings."""
         async with aiohttp.ClientSession() as session:
             try:
@@ -242,12 +245,12 @@ class Downloader:
             except RetryException as e:
                 print(f"Rate limited when fetching number of filings. Retrying after {e.retry_after} seconds.")
                 await asyncio.sleep(e.retry_after)
-                return await self._conductor(efts_url, return_urls, output_dir, sics, items)
+                return await self._conductor(efts_url, return_urls, output_dir, sics, items, file_types)
 
         all_primary_doc_urls = []
         
         if total_filings < 10000:
-            primary_doc_urls = await self._get_filing_urls_from_efts(efts_url, sics=sics, items=items)
+            primary_doc_urls = await self._get_filing_urls_from_efts(efts_url, sics=sics, items=items, file_types=file_types)
             primary_doc_urls = [fix_filing_url(url) for url in primary_doc_urls]
             print(f"{efts_url}\nTotal filings: {len(primary_doc_urls)}")
             
@@ -259,7 +262,7 @@ class Downloader:
                 return None
         
         for subset_url in self._subset_urls(efts_url, total_filings):
-            sub_primary_doc_urls = await self._conductor(efts_url=subset_url, return_urls=True, output_dir=output_dir, sics=sics, items=items)
+            sub_primary_doc_urls = await self._conductor(efts_url=subset_url, return_urls=True, output_dir=output_dir, sics=sics, items=items, file_types=file_types)
             
             if return_urls:
                 all_primary_doc_urls.extend(sub_primary_doc_urls)
@@ -269,8 +272,8 @@ class Downloader:
         
         return all_primary_doc_urls if return_urls else None
 
-    def download(self, output_dir='filings', return_urls=False, cik=None, ticker=None, form=None, date=None, sics=None, items=None):
-        """Download filings based on CIK, ticker, form, and date. Date can be a single date, date range, or list of dates."""
+    def download(self, output_dir='filings', return_urls=False, cik=None, ticker=None, form=None, date=None, sics=None, items=None, file_types=None):
+        """Download filings based on CIK, ticker, form, date, SICs, items, and file types. Date can be a single date, date range, or list of dates."""
         base_url = "https://efts.sec.gov/LATEST/search-index"
         params = {}
 
@@ -289,6 +292,13 @@ class Downloader:
         
         params['forms'] = ','.join(form) if isinstance(form, list) else form if form else "-0"
         
+        if file_types:
+            params['q'] = '-'
+            if isinstance(file_types, list):
+                params['file_type'] = ','.join(file_types)
+            else:
+                params['file_type'] = file_types
+        
         if isinstance(date, list):
             efts_url_list = [self.generate_url(base_url, {**params, 'startdt': d, 'enddt': d}) for d in date]
         elif isinstance(date, tuple):
@@ -300,9 +310,9 @@ class Downloader:
         all_primary_doc_urls = []
         for efts_url in efts_url_list:
             if return_urls:
-                all_primary_doc_urls.extend(asyncio.run(self._conductor(efts_url=efts_url, return_urls=True, output_dir=output_dir, sics=sics, items=items)))
+                all_primary_doc_urls.extend(asyncio.run(self._conductor(efts_url=efts_url, return_urls=True, output_dir=output_dir, sics=sics, items=items, file_types=file_types)))
             else:
-                asyncio.run(self._conductor(efts_url=efts_url, return_urls=False, output_dir=output_dir, sics=sics, items=items))
+                asyncio.run(self._conductor(efts_url=efts_url, return_urls=False, output_dir=output_dir, sics=sics, items=items, file_types=file_types))
         
         return all_primary_doc_urls if return_urls else None
 

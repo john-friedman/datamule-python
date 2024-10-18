@@ -22,4 +22,5 @@ from .sec_downloader import Downloader
 from .datamule_api import parse_textual_filing
 from .helper import load_package_csv
 from .sec_parser import Parser
+from .sec_filing import Filing
 from .table_parser import TableParser

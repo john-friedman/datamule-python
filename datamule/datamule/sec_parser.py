@@ -1,16 +1,59 @@
+import xml.etree.ElementTree as ET
 from .datamule_api import parse_textual_filing
+
 class Parser:
     def __init__(self):
         pass
 
-    # WIP. will setup after parse filing API is updated to send to json first.
-    def parse_filing(self,url):
+    def parse_filing(self, file, filing_type):
         # add handling for url vs file
         # api will handle filing type detection
-        data = parse_textual_filing(url=url,return_type='json')
+        if filing_type == '13F-HR-INFORMATIONTABLE':
+            return self._parse_13f_hr_information_table_xml(file)
+        else:
+            data = parse_textual_filing(url=file, return_type='json')
         return data 
 
-    # WIP
+    def _parse_13f_hr_information_table_xml(self, xml_file):
+        # Parse the XML file
+        tree = ET.parse(xml_file)
+        root = tree.getroot()
+
+        data = []
+        
+        # Iterate through each infoTable
+        for info_table in root.findall('.//{*}infoTable'):
+            row = {
+                'NAME_OF_ISSUER': info_table.findtext('.//{*}nameOfIssuer') or '',
+                'TITLE_OF_CLASS': info_table.findtext('.//{*}titleOfClass') or '',
+                'CUSIP': info_table.findtext('.//{*}cusip') or '',
+                'FIGI': info_table.findtext('.//{*}figi') or '',
+                'VALUE_IN_DOLLARS': info_table.findtext('.//{*}value') or '',
+                'SHARES_OR_PRINCIPAL_AMOUNT': '',
+                'SHARES_OR_PRINCIPAL_AMOUNT_TYPE': '',
+                'PUT_OR_CALL': info_table.findtext('.//{*}putCall') or '',
+                'INVESTMENT_DISCRETION': info_table.findtext('.//{*}investmentDiscretion') or '',
+                'OTHER_MANAGER': info_table.findtext('.//{*}otherManager') or '',
+                'VOTING_AUTHORITY_SOLE': '',
+                'VOTING_AUTHORITY_SHARED': '',
+                'VOTING_AUTHORITY_NONE': ''
+            }
+            
+            shrs_or_prn_amt = info_table.find('.//{*}shrsOrPrnAmt')
+            if shrs_or_prn_amt is not None:
+                row['SHARES_OR_PRINCIPAL_AMOUNT'] = shrs_or_prn_amt.findtext('.//{*}sshPrnamt') or ''
+                row['SHARES_OR_PRINCIPAL_AMOUNT_TYPE'] = shrs_or_prn_amt.findtext('.//{*}sshPrnamtType') or ''
+            
+            voting_authority = info_table.find('.//{*}votingAuthority')
+            if voting_authority is not None:
+                row['VOTING_AUTHORITY_SOLE'] = voting_authority.findtext('.//{*}Sole') or ''
+                row['VOTING_AUTHORITY_SHARED'] = voting_authority.findtext('.//{*}Shared') or ''
+                row['VOTING_AUTHORITY_NONE'] = voting_authority.findtext('.//{*}None') or ''
+            
+            data.append(row)
+
+        return data
+
     def parse_company_concepts(self, data):
         # get cik
         cik = data['cik']

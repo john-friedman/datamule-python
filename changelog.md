@@ -1,5 +1,7 @@
 # Changelog
-## v0.343 (2024-10-15)
+## v0.350 (2024-10-17)
+- added bulk downloads for 10k
+## v0.343 (2024-10-16)
 - added bulk downloads for 10q
 ## v0.342 (2024-10-16)
 - added callback function option to downloader.watch()
