@@ -19,6 +19,7 @@ from .helper import identifier_to_cik, load_package_csv, fix_filing_url
 from .zenodo_downloader import download_from_zenodo
 from .ftd import get_all_ftd_urls, process_all_ftd_zips
 from .dropbox_downloader import DropboxDownloader
+from .information_table_13f import get_all_13f_urls, process_all_13f_zips
 
 class RetryException(Exception):
     def __init__(self, url, retry_after=601):
@@ -354,10 +355,14 @@ class Downloader:
             download_from_zenodo(record, output_dir)
         elif dataset == 'ftd':
             output_dir = os.path.join(dataset_path, 'ftd')
-
             urls = get_all_ftd_urls()
             self.run_download_urls(urls, filenames=[url.split('/')[-1] for url in urls], output_dir=output_dir)
             process_all_ftd_zips(output_dir)
+        elif dataset == '13f_information_table':    
+            output_dir = os.path.join(dataset_path, '13f_information_table')
+            urls = get_all_13f_urls()
+            self.run_download_urls(urls, filenames=[url.split('/')[-1] for url in urls], output_dir=output_dir)
+            process_all_13f_zips(output_dir)
 
         elif re.match(r"10q_(\d{4})$", dataset):
             dropbox_downloader = DropboxDownloader()
@@ -384,6 +389,7 @@ class Downloader:
                 dropbox_downloader.download(urls=year_data['urls'], output_dir=output_dir)
             else:
                 print(f"No data found for 10K_{year}")
+
 
     async def _watch_efts(self, form=None, cik=None, interval=1, silent=False, callback=None):
         """Watch the EFTS API for changes in the number of filings."""

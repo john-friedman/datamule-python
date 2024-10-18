@@ -238,6 +238,7 @@ if __name__ == "__main__":
 
 
 ## Roadmap
+- [ ] add current names to former names
 - [ ] Need to make conductor more robust. We have new options now including desc / asc
 - [ ] add facet filters for forms etc
 - [ ] sec search engine
