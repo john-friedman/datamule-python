@@ -20,16 +20,20 @@ def generate_new_format_urls(start_date, end_date):
     urls = []
     current_date = max(start_date, datetime(2024, 1, 1))
     
-    # Handle Jan-Feb 2024 separately
-    if current_date <= datetime(2024, 2, 29):
-        urls.append("https://www.sec.gov/files/structureddata/data/form-13f-data-sets/01jan2024-29feb2024_form13f.zip")
-        current_date = datetime(2024, 3, 1)
-    
     while current_date <= end_date:
-        if current_date.month in [3, 6, 9, 12]:
-            next_date = current_date.replace(day=1) + timedelta(days=92) - timedelta(days=1)
+        if current_date.month in [1, 3, 6, 9]:
+            if current_date.month == 1:
+                next_date = datetime(current_date.year, 2, 28 if current_date.year % 4 else 29)
+            elif current_date.month == 3:
+                next_date = datetime(current_date.year, 5, 31)
+            elif current_date.month == 6:
+                next_date = datetime(current_date.year, 8, 31)
+            else:  # September
+                next_date = datetime(current_date.year, 11, 30)
+            
             if next_date > end_date:
                 next_date = end_date
+            
             url = f"https://www.sec.gov/files/structureddata/data/form-13f-data-sets/{current_date.strftime('%d%b%Y').lower()}-{next_date.strftime('%d%b%Y').lower()}_form13f.zip"
             urls.append(url)
             current_date = next_date + timedelta(days=1)
@@ -98,3 +102,39 @@ def process_all_13f_zips(output_dir):
     # Count remaining CSV files
     csv_files = [f for f in os.listdir(output_dir) if f.endswith('.csv')]
     print(f"Processed {len(csv_files)} files. CSV files are stored in {output_dir}")
+
+def get_13f_data_cutoff_date():
+    current_date = datetime.now()
+
+    # Define the end months for each period
+    period_end_months = [2, 5, 8, 11]
+    
+    # Find the most recent period end date
+    year = current_date.year
+    month = current_date.month
+    
+    # Find the most recent period end month
+    recent_end_month = max([m for m in period_end_months if m <= month] or [period_end_months[-1]])
+    if recent_end_month > month:
+        year -= 1
+
+    # Calculate the end date of the most recent period
+    if recent_end_month == 2:
+        recent_end_date = datetime(year, 2, 28 if year % 4 else 29)
+    else:
+        recent_end_date = datetime(year, recent_end_month, {5: 31, 8: 31, 11: 30}[recent_end_month])
+
+    # Add 7 days buffer
+    buffer_date = recent_end_date + timedelta(days=7)
+
+    # If current date is within the buffer period, go back to the previous period
+    if current_date <= buffer_date:
+        prev_end_month = period_end_months[(period_end_months.index(recent_end_month) - 1) % 4]
+        if prev_end_month > recent_end_month:
+            year -= 1
+        if prev_end_month == 2:
+            return datetime(year, 2, 28 if year % 4 else 29)
+        else:
+            return datetime(year, prev_end_month, {5: 31, 8: 31, 11: 30}[prev_end_month])
+    else:
+        return recent_end_date
