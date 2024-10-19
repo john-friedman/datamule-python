@@ -4,6 +4,7 @@ tqdm
 requests
 nest_asyncio
 aiofiles
+polars
 
 [all]
 openai

@@ -1,4 +1,8 @@
 # Changelog
+## v0.351 (2024-10-18)
+- added download attachments by file type
+- added download by item type
+- added download dataset for up to date 13F-HR information tables
 ## v0.350 (2024-10-17)
 - added bulk downloads for 10k
 ## v0.343 (2024-10-16)

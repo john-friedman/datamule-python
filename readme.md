@@ -87,7 +87,7 @@ downloader = dm.Downloader()
 
 Uses the [EFTS API](https://efts.sec.gov/LATEST/search-index) to retrieve filings locations, and the [SEC API](sec.gov) to download filings.
 ```python
-download(self, output_dir='filings', return_urls=False, cik=None, ticker=None, form=None, date=None,sics=None,items=None)
+download(self, output_dir='filings', return_urls=False, cik=None, ticker=None, form=None, date=None, sics=None, items=None, file_types=None)
 ```
 
 ```python
@@ -99,6 +99,12 @@ downloader.download(form='10-K', ticker=['TSLA', 'META'], output_dir='filings')
 
 # Download every form 3 for a specific date
 downloader.download(form='3', date='2024-05-21', output_dir='filings')
+
+# Download filing attachments such as information tables
+downloader.download(form='13F-HR',file_types=['INFORMATION TABLE'],date=('2024-09-14','2024-09-16'))
+
+# Download based on items
+downloader.download(form='8-K',items=['8.01'])
 ```
 
 View the SEC Filing Glossary [here](https://datamule.xyz/sec_glossary) or download the json file [here](https://datamule.xyz/static/sec-glossary.json).
@@ -125,13 +131,16 @@ Available datasets:
 - Every [FTD](https://www.sec.gov/data-research/sec-markets-data/fails-deliver-data) since 2004. `ftd` (1.3gb, ~60s to download)
 - Every [10-Q](https://www.dropbox.com/scl/fo/m7yg1eyst7oi6aqciarrd/ABrkRn0-I5nIwoM5m2wlZVg?rlkey=5qcuduan5mk4aic9wz45aqrqb&st=fetx6qnx&dl=0) since 2001. (500mb-3gb per year, ~5 minutes to download)
 - Every [10-K](https://www.dropbox.com/scl/fo/ejek7n8st0x5j84xu0p4d/ACVrKdvw6j2Zv0EtpeC18ak?rlkey=lq6ouvwlbs2tfr55za2b0k0p1&st=thrzm40o&dl=0) from 2001 to September 2024. `10k_{year}` e.g. `10k_2002`. 
+- Every 13F-HR Information Table since 2013. Up to the current date.
 
 ```python
-downloader.download_dataset(dataset='ftd', dataset_path='datasets')
-downloader.download_dataset(dataset='10q_2023',dataset_path='10q')
+downloader.download_dataset(dataset='ftd')
+downloader.download_dataset(dataset='10q_2023')
+downloader.download_dataset(dataset='13f_information_table')
 ```
 
 Note: Bulk datasets may become out of data. If this is the case use download_dataset() + download() to fill the gaps.
+Note: 13f_information_table will always be up to date as it automatically implements this.
 
 #### Monitoring for New Filings
 
