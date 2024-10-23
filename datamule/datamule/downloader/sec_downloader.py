@@ -28,6 +28,23 @@ class RetryException(Exception):
         self.retry_after = retry_after
 
 class Downloader:
+    """
+    A class for asynchronously downloading and managing SEC filing data.
+
+    This class provides functionality to download various types of SEC filings,
+    company metadata, and other SEC datasets. It handles rate limiting for SEC.gov
+    domains and provides both synchronous and asynchronous interfaces.
+
+    Attributes:
+        headers (dict): HTTP headers used for requests, including User-Agent
+        dataset_path (str): Default path for storing downloaded datasets
+        domain_limiters (dict): Rate limiters for different SEC.gov domains
+
+    Example:
+        >>> downloader = Downloader()
+        >>> downloader.set_headers("Your Name your@email.com")
+        >>> downloader.download(form="10-K", ticker="AAPL", date="2023-01-01")
+    """
     def __init__(self):
         self.headers = headers
         self.dataset_path = 'datasets'
@@ -39,19 +56,35 @@ class Downloader:
         }
 
     def set_limiter(self, domain, rate_limit):
-        """Set a custom rate limit for a specific domain."""
+        """
+        Set a custom rate limit for a specific domain.
+
+        Args:
+            domain (str): The domain to set the rate limit for
+            rate_limit (int): Number of requests allowed per second
+
+        Example:
+            >>> downloader.set_limiter('www.sec.gov', 5)
+        """
         self.domain_limiters[domain] = AsyncLimiter(rate_limit, 1)
 
     def set_headers(self, user_agent):
+        """
+        Set custom headers for HTTP requests.
+
+        Args:
+            user_agent (str): User agent string for SEC.gov requests
+                Should be in format "Name Email"
+
+        Example:
+            >>> downloader.set_headers("Your Name your@email.com")
+        """
         self.headers = {'User-Agent': user_agent}
 
-    def get_domain(self, url):
-        """Extract the domain from a URL."""
-        return urlparse(url).netloc
 
     def get_limiter(self, url):
         """Get the appropriate rate limiter for a given URL."""
-        domain = self.get_domain(url)
+        domain = urlparse(url).netloc
         return self.domain_limiters.get(domain, self.domain_limiters['default'])
     
     async def _fetch_content_from_url(self, session, url):
@@ -81,7 +114,20 @@ class Downloader:
             await f.write(content)
 
     def generate_url(self, base_url, params):
-        """Generate a URL based on parameters."""
+        """
+        Generate a complete URL by combining base URL with query parameters.
+
+        Args:
+            base_url (str): Base URL (e.g., 'https://efts.sec.gov/search')
+            params (dict): Query parameters to append
+
+        Returns:
+            str: Complete URL with encoded parameters
+
+        Example:
+            >>> generate_url('https://api.sec.gov', {'form': '10-K'})
+            'https://api.sec.gov?form=10-K'
+        """
         return f"{base_url}?{urlencode(params)}"
 
     async def download_file(self, session, url, output_path):
@@ -274,8 +320,84 @@ class Downloader:
         
         return all_primary_doc_urls if return_urls else None
 
-    def download(self, output_dir='filings', return_urls=False, cik=None, ticker=None, form=None, date=None, sics=None, items=None, file_types=None):
-        """Download filings based on CIK, ticker, form, date, SICs, items, and file types. Date can be a single date, date range, or list of dates."""
+    def download(self, output_dir='filings', return_urls=False, cik=None, ticker=None, 
+                form=None, date=None, sics=None, items=None, file_types=None):
+        """
+        Download SEC filings based on specified criteria and filters.
+
+        This method queries the SEC EFTS API to download filings matching the provided criteria.
+        It handles rate limiting, pagination, and supports various filtering options.
+
+        Args:
+            output_dir (str, optional): Directory where downloaded filings will be saved.
+                Defaults to 'filings'.
+            return_urls (bool, optional): If True, returns list of filing URLs instead of
+                downloading them. Defaults to False.
+            cik (str|list, optional): Central Index Key(s) of companies. Can be single CIK
+                or list of CIKs. Will be zero-padded to 10 digits.
+            ticker (str, optional): Stock ticker symbol. Will be converted to CIK.
+                Mutually exclusive with cik parameter.
+            form (str|list, optional): SEC form type(s) to download. Examples:
+                - Single form: "10-K", "10-Q", "8-K"
+                - Multiple forms: ["10-K", "10-Q"]
+                - Defaults to "-0" (all forms)
+            date (str|tuple|list, optional): Filing date criteria. Can be:
+                - Single date: "2023-01-01"
+                - Date range tuple: ("2023-01-01", "2023-12-31")
+                - List of dates: ["2023-01-01", "2023-02-01"]
+                - Defaults to all dates from 2001-01-01 to present
+            sics (list, optional): Standard Industrial Classification codes to filter by.
+                Example: [1311, 2834]
+            items (list, optional): Form-specific item numbers to filter by.
+                Example: ["1.01", "2.01"] for 8-K items
+            file_types (str|list, optional): Types of files to download.
+                Examples: "EX-10", ["EX-10", "EX-21"]
+
+        Returns:
+            list|None: If return_urls=True, returns list of filing URLs.
+                Otherwise returns None.
+
+        Raises:
+            ValueError: If both cik and ticker are provided
+            aiohttp.ClientError: For HTTP request failures
+            RetryException: When SEC rate limit is hit
+
+        Examples:
+            Download Apple's 10-K filings from 2023:
+            >>> downloader = Downloader()
+            >>> downloader.download(
+            ...     ticker="AAPL",
+            ...     form="10-K",
+            ...     date=("2023-01-01", "2023-12-31")
+            ... )
+
+            Get URLs for multiple companies' 8-Ks:
+            >>> urls = downloader.download(
+            ...     cik=["320193", "789019"],
+            ...     form="8-K",
+            ...     return_urls=True
+            ... )
+
+            Download specific exhibits for a date range:
+            >>> downloader.download(
+            ...     ticker="MSFT",
+            ...     file_types=["EX-99.1"],
+            ...     date=("2022-01-01", "2022-12-31")
+            ... )
+
+            Download filings for specific SIC codes:
+            >>> downloader.download(
+            ...     form="10-Q",
+            ...     sics=[1311, 2834],  # Oil/Gas, Pharmaceutical
+            ...     date="2023-01-01"
+            ... )
+
+        Notes:
+            - The method handles SEC.gov rate limiting automatically
+            - Large date ranges are automatically split into smaller chunks
+            - Downloaded files are named as: {cik}_{filename}
+            - Use return_urls=True to get URLs without downloading
+        """
         base_url = "https://efts.sec.gov/LATEST/search-index"
         params = {}
 
@@ -319,32 +441,88 @@ class Downloader:
         return all_primary_doc_urls if return_urls else None
 
     def download_company_concepts(self, output_dir='company_concepts', cik=None, ticker=None):
-            if sum(x is not None for x in [cik, ticker]) > 1:
-                raise ValueError('Please provide no more than one identifier: cik or ticker')
-            
-            ciks = None
-            if cik:
-                if isinstance(cik, list):
-                    ciks = cik
-                else:
-                    ciks = [cik]
-            
-            if ticker is not None:
-                ciks = identifier_to_cik(ticker)
+        """
+        Download XBRL company concepts and facts data from SEC's API.
 
-            if ciks is None:
-                company_tickers = load_package_csv()
-                ciks = [company['cik'] for company in company_tickers]
+        Retrieves company financial facts in structured XBRL format, including historical values
+        for balance sheet, income statement, and other disclosure concepts.
+
+        Args:
+            output_dir (str, optional): Directory to save downloaded files.
+                Defaults to 'company_concepts'.
+            cik (str|list, optional): Central Index Key(s). Can be:
+                - Single CIK: "320193" 
+                - List of CIKs: ["320193", "789019"]
+                - If neither cik nor ticker provided, downloads all companies
+            ticker (str, optional): Stock ticker symbol. Will be converted to CIK.
+                Mutually exclusive with cik parameter.
+
+        Raises:
+            ValueError: If both cik and ticker are provided
+
+        Examples:
+            Download Apple's XBRL facts:
+            >>> downloader.download_company_concepts(ticker="AAPL")
+
+            Download multiple specific companies:
+            >>> downloader.download_company_concepts(
+            ...     cik=["320193", "789019"]  # Apple and Microsoft
+            ... )
+        """
+        if sum(x is not None for x in [cik, ticker]) > 1:
+            raise ValueError('Please provide no more than one identifier: cik or ticker')
+        
+        ciks = None
+        if cik:
+            if isinstance(cik, list):
+                ciks = cik
+            else:
+                ciks = [cik]
+        
+        if ticker is not None:
+            ciks = identifier_to_cik(ticker)
+
+        if ciks is None:
+            company_tickers = load_package_csv()
+            ciks = [company['cik'] for company in company_tickers]
+            
+        os.makedirs(output_dir, exist_ok=True)
                 
-            os.makedirs(output_dir, exist_ok=True)
-                    
-            urls = [f'https://data.sec.gov/api/xbrl/companyfacts/CIK{str(cik).zfill(10)}.json' for cik in ciks]
-            filenames = [f"CIK{str(cik).zfill(10)}.json" for cik in ciks]
-            self.run_download_urls(urls=urls, filenames=filenames, output_dir=output_dir)
+        urls = [f'https://data.sec.gov/api/xbrl/companyfacts/CIK{str(cik).zfill(10)}.json' for cik in ciks]
+        filenames = [f"CIK{str(cik).zfill(10)}.json" for cik in ciks]
+        self.run_download_urls(urls=urls, filenames=filenames, output_dir=output_dir)
 
 
     def download_dataset(self, dataset, dataset_path='datasets'):
-        """Download a dataset from Dropbox. Currently supports 'parsed_10k' and 'mda'."""
+        """
+        Download and process pre-packaged SEC filing datasets.
+
+        Downloads various SEC filing datasets including 10-K/Q filings,
+        13F holdings data, and fails-to-deliver records.
+
+        Args:
+            dataset (str): Type of dataset to download. Supported formats:
+                - "10k_YYYY": 10-K filings for specified year (e.g., "10k_2023") 
+                - "10q_YYYY": 10-Q filings for specified year (e.g., "10q_2023")
+                - "ftd": Fails-to-deliver data for all securities
+                - "13f_information_table": Investment manager holdings from 13F filings
+
+            dataset_path (str, optional): Base directory for storing downloaded data.
+                Defaults to 'datasets'.
+
+        Examples:
+            Download parsed 10-K filings from 2023:
+            >>> downloader.download_dataset("10k_2023")
+
+            Get fails-to-deliver data:
+            >>> downloader.download_dataset("ftd")
+
+            Download 13F holdings:
+            >>> downloader.download_dataset("13f_information_table")
+
+            Get Q1 filings from 2022:
+            >>> downloader.download_dataset("10q_2022")
+        """
         if not os.path.exists(dataset_path):
             os.makedirs(dataset_path)
 
@@ -442,7 +620,23 @@ class Downloader:
                 await asyncio.sleep(interval)
 
     def watch(self, interval=1, silent=True, form=None, cik=None, ticker=None, callback=None):
-        """Watch the EFTS API for changes in the number of filings."""
+        """
+        Monitor SEC EFTS API for new filings in real-time.
+
+        Args:
+            interval (int): Seconds between checks. Defaults to 1.
+            silent (bool): Suppress progress messages. Defaults to True.
+            form (str|list): Form type(s) to watch (e.g., "8-K", ["10-K", "10-Q"])
+            cik (str|list): CIK(s) to monitor
+            ticker (str): Ticker symbol to monitor (alternative to CIK)
+            callback (callable): Function called when new filings detected
+
+        Raises:
+            ValueError: If both cik and ticker provided
+
+        Example:
+            >>> downloader.watch(form="8-K", ticker="AAPL", callback=lambda x: print(f"New filings: {x}"))
+        """
         if sum(x is not None for x in [cik, ticker]) > 1:
             raise ValueError('Please provide no more than one identifier: cik or ticker')
         
@@ -541,7 +735,16 @@ class Downloader:
                     print(f"Warning: Could not remove temporary file {temp_file}: {str(e)}")
 
     def update_company_metadata(self):
-        """Download metadata for all companies."""
+        """
+        Update local company metadata files with latest SEC data.
+
+        Downloads current company information including addresses, SIC codes,
+        and historical names. Creates/updates CSV files: company_metadata.csv
+        and company_former_names.csv.
+
+        Example:
+            >>> downloader.update_company_metadata()
+        """
         return asyncio.run(self._download_company_metadata())
     
     async def _download_company_tickers(self):
@@ -604,5 +807,13 @@ class Downloader:
                             print(f"Warning: Could not remove temporary file {temp_file}: {str(e)}")
 
     def update_company_tickers(self):
-        """Wrapper method to run the asynchronous download of company tickers."""
+        """
+        Update local CIK-to-ticker mapping files.
+
+        Downloads latest company tickers from SEC and updates company_tickers.csv
+        with current CIK, ticker, and company name data.
+
+        Example:
+            >>> downloader.update_company_tickers()
+        """
         asyncio.run(self._download_company_tickers())

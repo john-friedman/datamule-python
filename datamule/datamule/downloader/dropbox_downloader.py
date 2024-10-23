@@ -16,20 +16,72 @@ import zipfile
 import shutil
 
 class DropboxDownloader:
+    """
+    Asynchronous downloader for handling multiple file downloads with rate limiting and progress tracking.
+    
+    This class provides functionality to download multiple files concurrently with rate limiting,
+    progress bars, and automatic handling of zip archives (including multi-part archives).
+
+    Parameters
+    ----------
+    concurrent_downloads : int, optional
+        Maximum number of concurrent downloads allowed (default is 5)
+    rate_limit : int, optional
+        Maximum number of requests per second (default is 10)
+
+    Attributes
+    ----------
+    semaphore : asyncio.Semaphore
+        Controls the number of concurrent downloads
+    rate_limiter : AsyncLimiter
+        Handles rate limiting of requests
+    session : aiohttp.ClientSession
+        HTTP session for making requests
+    progress_bars : dict
+        Dictionary of progress bars for active downloads
+    """
+
     def __init__(self, concurrent_downloads=5, rate_limit=10):
+        """Initialize the DropboxDownloader with specified concurrency and rate limits."""
         self.semaphore = asyncio.Semaphore(concurrent_downloads)
         self.rate_limiter = AsyncLimiter(rate_limit, 1)  # rate_limit requests per second
         self.session = None
         self.progress_bars = {}
 
     async def create_session(self):
+        """
+        Create an aiohttp client session.
+
+        This method should be called before starting any downloads.
+        """
         self.session = aiohttp.ClientSession()
 
     async def close_session(self):
+        """
+        Close the aiohttp client session.
+
+        This method should be called after all downloads are complete.
+        """
         if self.session:
             await self.session.close()
 
     async def download_file(self, url, dest_folder):
+        """
+        Download a single file with progress tracking and automatic unzipping.
+
+        Parameters
+        ----------
+        url : str
+            URL of the file to download
+        dest_folder : str
+            Destination folder where the file will be saved
+
+        Notes
+        -----
+        - Uses a progress bar to show download progress
+        - Automatically handles zip files and multi-part archives
+        - Rate limited based on the instance settings
+        """
         async with self.semaphore:
             await self.rate_limiter.acquire()
             try:
@@ -64,13 +116,31 @@ class DropboxDownloader:
                     
                 print(f"Downloaded {file_name}")
                 
-                # Check if the file is part of a multi-part archive or a standalone zip
                 if re.match(r'.*\.zip(\.001)?$', file_name):
                     await self.unzip_file(file_path, dest_folder)
+
             except Exception as e:
                 print(f"Error downloading {url}: {str(e)}")
 
     async def unzip_file(self, file_path, dest_folder):
+        """
+        Extract contents of a zip file and clean up archive files.
+
+        Handles both single zip files and multi-part archives.
+
+        Parameters
+        ----------
+        file_path : str
+            Path to the zip file
+        dest_folder : str
+            Destination folder for extracted contents
+
+        Notes
+        -----
+        - Automatically combines multi-part archives
+        - Deletes archive files after successful extraction
+        - Handles both .zip and .zip.001 format files
+        """
         try:
             base_name = os.path.splitext(file_path)[0]
             if file_path.endswith('.001'):
@@ -95,7 +165,7 @@ class DropboxDownloader:
                 zip_ref.extractall(dest_folder)
             print(f"Unzipped {os.path.basename(base_name)}")
 
-            # Remove the zip parts, combined zip file, and standalone zip file
+            # Remove archive files
             if os.path.exists(combined_zip):
                 os.remove(combined_zip)
             
@@ -107,7 +177,6 @@ class DropboxDownloader:
                 os.remove(part_path)
                 part_num += 1
             
-            # Remove standalone zip file if it exists
             standalone_zip = f"{base_name}.zip"
             if os.path.exists(standalone_zip):
                 os.remove(standalone_zip)
@@ -117,12 +186,40 @@ class DropboxDownloader:
             print(f"Error unzipping {file_path}: {str(e)}")
 
     async def _download_urls(self, urls, dest_folder):
+        """
+        Internal method to handle multiple URL downloads.
+
+        Parameters
+        ----------
+        urls : list of str
+            List of URLs to download
+        dest_folder : str
+            Destination folder for downloaded files
+        """
         os.makedirs(dest_folder, exist_ok=True)
         await self.create_session()
         tasks = [self.download_file(url, dest_folder) for url in urls]
         await asyncio.gather(*tasks)
         await self.close_session()
 
-    def download(self,urls, output_dir):
-        """Download a list of URLs to a specified directory"""
+    def download(self, urls, output_dir):
+        """
+        Download multiple URLs to a specified directory.
+
+        This is the main method to use for downloading files. It handles the creation
+        and cleanup of the async event loop.
+
+        Parameters
+        ----------
+        urls : list of str
+            List of URLs to download
+        output_dir : str
+            Directory where files will be saved
+
+        Examples
+        --------
+        >>> downloader = DropboxDownloader(concurrent_downloads=3, rate_limit=5)
+        >>> urls = ['http://example.com/file1.zip', 'http://example.com/file2.zip']
+        >>> downloader.download(urls, '/path/to/output')
+        """
         return asyncio.run(self._download_urls(urls, output_dir))
