@@ -15,13 +15,12 @@ from pkg_resources import resource_filename
 import glob
 
 
-from .global_vars import headers, dataset_10q_url_list, dataset_10k_record_list,dataset_10k_url_list
-from .helper import identifier_to_cik, load_package_csv, fix_filing_url
-from .zenodo_downloader import download_from_zenodo
+from ..global_vars import headers, dataset_10q_url_list,dataset_10k_url_list
+from ..helper import identifier_to_cik, load_package_csv, fix_filing_url
 from .ftd import get_all_ftd_urls, process_all_ftd_zips
 from .dropbox_downloader import DropboxDownloader
 from .information_table_13f import download_and_process_13f_data
-from .sec_filing import Filing
+from ..sec_filing import Filing
 
 class RetryException(Exception):
     def __init__(self, url, retry_after=601):
@@ -349,12 +348,18 @@ class Downloader:
         if not os.path.exists(dataset_path):
             os.makedirs(dataset_path)
 
-        #soft deprecation
         if re.match(r"10k_(\d{4})$", dataset):
-            year = dataset.split('_')[-1]
-            record = next((record['record'] for record in dataset_10k_record_list if record['year'] == int(year)), None)
-            output_dir = os.path.join(dataset_path, f'10K_{year}') 
-            download_from_zenodo(record, output_dir)
+            dropbox_downloader = DropboxDownloader()
+            year = int(dataset.split('_')[-1])
+            year_data = next((data for data in dataset_10k_url_list if data['year'] == year), None)
+            
+            if year_data:
+                output_dir = os.path.join(dataset_path, f'10K_{year}')
+                os.makedirs(output_dir, exist_ok=True)
+                
+                dropbox_downloader.download(urls=year_data['urls'], output_dir=output_dir)
+            else:
+                print(f"No data found for 10Q_{year}")
         elif dataset == 'ftd':
             output_dir = os.path.join(dataset_path, 'ftd')
             urls = get_all_ftd_urls()

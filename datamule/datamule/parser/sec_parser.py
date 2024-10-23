@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as ET
-from .datamule_api import parse_textual_filing
+from ..datamule_api import parse_textual_filing
 
 class Parser:
     def __init__(self):

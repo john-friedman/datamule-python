@@ -1,4 +1,7 @@
 # Changelog
+## v0.352 (2024-10-21)
+- fixed download dataset for 10-k to use Dropbox not Zenodo.
+
 ## v0.351 (2024-10-18)
 - added download attachments by file type
 - added download by item type

@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: datamule
-Version: 0.351
+Version: 0.352
 Summary: Making it easier to use SEC filings.
 Home-page: https://github.com/john-friedman/datamule-python
 Author: John Friedman
@@ -26,6 +26,7 @@ Articles:
 - Parse textual filings into simplified HTML, interactive HTML, or structured JSON
 - Download SEC filings quickly and easily
 - Access datasets such as every 10-K, SIC codes, etc.
+- Download 100,000 MD&A since 2001. (beta, requires free api_key)
 - Interact with SEC data using MuleBot
 
 ## Table of Contents
@@ -87,6 +88,11 @@ downloader.update_company_tickers()
 downloader.update_metadata()
 ```
 
+## API Key
+Some datasets / features require an API key. 
+
+[WIP]
+
 ## Usage
 
 ### Downloader
@@ -144,6 +150,7 @@ Available datasets:
 - Every [10-Q](https://www.dropbox.com/scl/fo/m7yg1eyst7oi6aqciarrd/ABrkRn0-I5nIwoM5m2wlZVg?rlkey=5qcuduan5mk4aic9wz45aqrqb&st=fetx6qnx&dl=0) since 2001. (500mb-3gb per year, ~5 minutes to download)
 - Every [10-K](https://www.dropbox.com/scl/fo/ejek7n8st0x5j84xu0p4d/ACVrKdvw6j2Zv0EtpeC18ak?rlkey=lq6ouvwlbs2tfr55za2b0k0p1&st=thrzm40o&dl=0) from 2001 to September 2024. `10k_{year}` e.g. `10k_2002`. 
 - Every 13F-HR Information Table since 2013. Up to the current date.
+- 100,000 MD&A's since 2001. Requires [free api key](https://datamule.xyz/dashboard) *beta* 
 
 ```python
 downloader.download_dataset(dataset='ftd')

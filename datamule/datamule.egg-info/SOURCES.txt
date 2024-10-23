@@ -1,17 +1,10 @@
 setup.py
 datamule/__init__.py
 datamule/datamule_api.py
-datamule/dropbox_downloader.py
-datamule/ftd.py
 datamule/global_vars.py
 datamule/helper.py
-datamule/information_table_13f.py
-datamule/sec_downloader.py
 datamule/sec_filing.py
-datamule/sec_parser.py
 datamule/sec_search.py
-datamule/table_parser.py
-datamule/zenodo_downloader.py
 datamule.egg-info/PKG-INFO
 datamule.egg-info/SOURCES.txt
 datamule.egg-info/dependency_links.txt
@@ -23,6 +16,12 @@ datamule/data/company_tickers.csv
 datamule/data/ftd_locations.csv
 datamule/data/sec-glossary.csv
 datamule/data/xbrl_descriptions.csv
+datamule/downloader/__init__.py
+datamule/downloader/dropbox_downloader.py
+datamule/downloader/ftd.py
+datamule/downloader/information_table_13f.py
+datamule/downloader/sec_downloader.py
+datamule/downloader/zenodo_downloader.py
 datamule/filing_viewer/__init__.py
 datamule/filing_viewer/filing_viewer.py
 datamule/mulebot/__init__.py
@@ -43,3 +42,5 @@ datamule/mulebot/mulebot_server/static/scripts/suggestions.js
 datamule/mulebot/mulebot_server/static/scripts/tableArtifacts.js
 datamule/mulebot/mulebot_server/static/scripts/utils.js
 datamule/mulebot/mulebot_server/templates/chat-minimalist.html
+datamule/parser/__init__.py
+datamule/parser/sec_parser.py

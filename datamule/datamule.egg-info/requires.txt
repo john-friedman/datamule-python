@@ -7,8 +7,8 @@ aiofiles
 polars
 
 [all]
-openai
 lxml
+openai
 flask
 
 [filing_viewer]

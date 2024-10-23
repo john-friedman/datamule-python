@@ -10,7 +10,7 @@ import glob
 import re
 from aiolimiter import AsyncLimiter
 
-from .sec_filing import Filing
+from ..sec_filing import Filing
 
 def generate_quarterly_urls(start_date, end_date):
     urls = []

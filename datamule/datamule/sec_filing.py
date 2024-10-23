@@ -1,6 +1,6 @@
 import csv
 
-from .sec_parser import Parser
+from .parser.sec_parser import Parser
 from .helper import convert_to_dashed_accession
 
 class Filing:
