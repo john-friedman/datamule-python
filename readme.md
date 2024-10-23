@@ -6,7 +6,7 @@
 
 A Python package for working with SEC filings at scale. Includes [Mulebot](https://chat.datamule.xyz/), an open-source chatbot for SEC data with no storage requirements.
 
-📚 [Full Documentation](https://your-docs-url-here.github.io/datamule/) | 🌐 [Website](https://datamule.xyz/) | 📝 [Article: Deploy a Financial Chatbot in 5 Minutes](https://medium.com/@jgfriedman99/how-to-deploy-a-financial-chatbot-in-5-minutes-ef5eec973d4c)
+📚 [Full Documentation](https://john-friedman.github.io/datamule-python/) | 🌐 [Website](https://datamule.xyz/) | 📝 [Article: Deploy a Financial Chatbot in 5 Minutes](https://medium.com/@jgfriedman99/how-to-deploy-a-financial-chatbot-in-5-minutes-ef5eec973d4c)
 
 ## Key Features
 
@@ -33,10 +33,11 @@ import datamule as dm
 downloader = dm.Downloader()
 downloader.download(form='10-K', ticker='AAPL')
 
-# Use MuleBot (requires OpenAI API key)
-from datamule.mulebot import MuleBot
-mulebot = MuleBot(openai_api_key)
-mulebot.run()
+# Download filing attachments such as information tables
+downloader.download(form='13F-HR',file_types=['INFORMATION TABLE'],date=('2024-09-14','2024-09-16'))
+
+# Download every 10Q from 2023. Should take 2 minutes
+downloader.download_dataset(dataset='10q_2023')
 ```
 
 ## Available Extras
@@ -62,7 +63,7 @@ Access comprehensive SEC datasets including:
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request. Check our [contribution guidelines](link-to-contributing) for more details.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## License
 
@@ -70,4 +71,4 @@ Contributions are welcome! Please feel free to submit a Pull Request. Check our 
 
 ---
 
-For detailed usage examples, API reference, and advanced features, please visit our [documentation](https://your-docs-url-here.github.io/datamule/).
+For detailed usage examples, API reference, and advanced features, please visit our [documentation](https://john-friedman.github.io/datamule-python/).
