@@ -10,7 +10,6 @@ Features
 - Parse textual filings into simplified HTML, interactive HTML, or structured JSON
 - Download SEC filings quickly and easily
 - Access datasets such as every 10-K, SIC codes, etc.
-- Download 100,000 MD&A since 2001 (beta, requires free api_key)
 - Interact with SEC data using MuleBot
 
 .. toctree::
