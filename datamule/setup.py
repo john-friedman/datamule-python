@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 from pathlib import Path
 
-long_description = Path("../readme.md").read_text()
+long_description = Path("../readme.md").read_text(encoding='utf-8')
 
 extras = {
     "filing_viewer": ["lxml"],
@@ -15,7 +15,7 @@ extras["all"] = list(all_dependencies)
 setup(
     name="datamule",
     author="John Friedman",
-    version="0.354",
+    version="0.355",
     description="Making it easier to use SEC filings.",
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -28,7 +28,8 @@ setup(
         'requests',
         'nest_asyncio',
         'aiofiles',
-        'polars'
+        'polars',
+        'setuptools'
     ],
     extras_require=extras,
     package_data={
