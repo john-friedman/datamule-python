@@ -1,4 +1,7 @@
 # Changelog
+## v0.356 (2024-10-23)
+- added parsing to the package for 13f information table and 8ks
+
 ## v0.355 (2024-10-23)
 - added setuptools to package. you normally do not have to declare setuptools, but this solves edge cases.
 ## v0.352 (2024-10-21)

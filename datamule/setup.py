@@ -15,7 +15,7 @@ extras["all"] = list(all_dependencies)
 setup(
     name="datamule",
     author="John Friedman",
-    version="0.355",
+    version="0.356",
     description="Making it easier to use SEC filings.",
     long_description=long_description,
     long_description_content_type='text/markdown',
@@ -29,7 +29,8 @@ setup(
         'nest_asyncio',
         'aiofiles',
         'polars',
-        'setuptools'
+        'setuptools',
+        'selectolax'
     ],
     extras_require=extras,
     package_data={

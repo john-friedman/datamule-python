@@ -1,0 +1,195 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parsing &mdash; datamule  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Filing Viewer" href="filing_viewer.html" />
+    <link rel="prev" title="Downloader" href="downloader.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            datamule
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Usage Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="downloader.html">Downloader</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Parsing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sec-xbrl-parsing">SEC XBRL Parsing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filing-parser">Filing Parser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#textual-filing-parsing">Textual Filing Parsing</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="filing_viewer.html">Filing Viewer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mulebot.html">MuleBot</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../known_issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">datamule</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Usage Guide</a></li>
+      <li class="breadcrumb-item active">Parsing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/usage/parsing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="parsing">
+<h1>Parsing<a class="headerlink" href="#parsing" title="Link to this heading"></a></h1>
+<section id="sec-xbrl-parsing">
+<h2>SEC XBRL Parsing<a class="headerlink" href="#sec-xbrl-parsing" title="Link to this heading"></a></h2>
+<p>Parse XBRL data in JSON format to tables:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datamule</span> <span class="kn">import</span> <span class="n">parse_company_concepts</span>
+<span class="n">table_dict_list</span> <span class="o">=</span> <span class="n">parse_company_concepts</span><span class="p">(</span><span class="n">company_concepts</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="filing-parser">
+<h2>Filing Parser<a class="headerlink" href="#filing-parser" title="Link to this heading"></a></h2>
+<p>Currently parses 8-Ks, 13-F Information Tables using a basic parser. For a more advanced parser see the Textual Filing Parsing below.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datamule</span> <span class="kn">import</span> <span class="n">Filing</span>
+
+<span class="c1"># Initialize Filing object</span>
+<span class="n">filing</span> <span class="o">=</span> <span class="n">Filing</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">filing_type</span><span class="o">=</span><span class="s1">&#39;8-K&#39;</span><span class="p">)</span>
+<span class="n">filing</span> <span class="o">=</span> <span class="n">Filing</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">filing_type</span><span class="o">=</span><span class="s1">&#39;13F-HR-INFORMATIONTABLE&#39;</span><span class="p">)</span>
+
+<span class="c1"># Parse the filing, using the declared filing type</span>
+<span class="n">parsed_data</span> <span class="o">=</span> <span class="n">filing</span><span class="o">.</span><span class="n">parse_filing</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Example output:</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;000000428504000011_form8k&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;content&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;ITEM 5.02&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ITEM 5.02&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DEPARTURE OF DIRECTORS OR PRINCIPAL OFFICERS; ELECTION OF DIRECTORS; APPOINTMENT OF PRINCIPAL OFFICERS. d) Alcan Inc. announces that Dr. Onno H. Ruding was appointed Director of the Board on September 23, 2004. Dr. Ruding is a former Minister of Finance of the Netherlands and was an Executive Director of the International Monetary Fund in Washington, D.C. and a member of the Board of Managing Directors of AMRO Bank in Amsterdam. He is the former Vice Chairman of Citicorp and Citibank, N.A. Dr. Ruding serves as a director on the boards of Corning Inc., Holcim AG and RTL Group and is president of the Centre for European Policy Studies (CEPS) in Brussels. Dr. Ruding is also a member of the international advisory committees of Robeco Group and the Federal Reserve Bank of New York. Dr. Ruding has also been appointed as a member of the Human Resources and Corporate Governance Committees. -2-&quot;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;SIGNATURES&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SIGNATURES&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;text&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Pursuant to the requirements of the Securities Exchange Act of 1934, the registrant has duly caused this report to be signed on its behalf by the undersigned hereunto duly authorized. ALCAN INC. BY: /s/ Roy Millington Roy Millington Corporate Secretary Date: September 28, 2004 -3-&quot;</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="textual-filing-parsing">
+<h2>Textual Filing Parsing<a class="headerlink" href="#textual-filing-parsing" title="Link to this heading"></a></h2>
+<p>Parse textual filings into different formats using the datamule api. Note: datamule api is in beta, so if you want to use this at scale, please reach out to me: <a class="reference external" href="https://www.linkedin.com/in/johngfriedman/">John G Friedman</a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simplified HTML</span>
+<span class="n">simplified_html</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">parse_textual_filing</span><span class="p">(</span>
+    <span class="n">url</span><span class="o">=</span><span class="s1">&#39;https://www.sec.gov/Archives/edgar/data/1318605/000095017022000796/tsla-20211231.htm&#39;</span><span class="p">,</span>
+    <span class="n">return_type</span><span class="o">=</span><span class="s1">&#39;simplify&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># Interactive HTML</span>
+<span class="n">interactive_html</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">parse_textual_filing</span><span class="p">(</span>
+    <span class="n">url</span><span class="o">=</span><span class="s1">&#39;https://www.sec.gov/Archives/edgar/data/1318605/000095017022000796/tsla-20211231.htm&#39;</span><span class="p">,</span>
+    <span class="n">return_type</span><span class="o">=</span><span class="s1">&#39;interactive&#39;</span>
+<span class="p">)</span>
+
+<span class="c1"># JSON</span>
+<span class="n">json_data</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">parse_textual_filing</span><span class="p">(</span>
+    <span class="n">url</span><span class="o">=</span><span class="s1">&#39;https://www.sec.gov/Archives/edgar/data/1318605/000095017022000796/tsla-20211231.htm&#39;</span><span class="p">,</span>
+    <span class="n">return_type</span><span class="o">=</span><span class="s1">&#39;json&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>Simplified HTML:</p>
+<img alt="Simplified HTML Output Example" class="align-center" src="../_images/simplify.png" />
+<p>Interactive HTML:</p>
+<img alt="Interactive HTML Output Example" class="align-center" src="../_images/interactive.png" />
+<p>JSON:</p>
+<img alt="JSON Output Example" class="align-center" src="../_images/json.png" />
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="downloader.html" class="btn btn-neutral float-left" title="Downloader" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="filing_viewer.html" class="btn btn-neutral float-right" title="Filing Viewer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
