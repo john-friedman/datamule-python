@@ -1,7 +1,7 @@
 Dataset Builder
 ==============
 
-Transforms unstructured text data into structured datasets using Gemini API. You can get a free API Key from [here](https://ai.google.dev/pricing) with a 15 rpm limit. For higher rate limits, you can then setup the Google $300 Free Credit Trial for 90 days.
+Transforms unstructured text data into structured datasets using Gemini API. You can get a free API Key from `Google AI Studio <https://aistudio.google.com/app/apikey>`_ with a 15 rpm limit. For higher rate limits, you can then setup the Google $300 Free Credit Trial for 90 days.
 
 Requirements
 -----------
@@ -10,6 +10,9 @@ Input CSV must contain ``accession_number`` and ``text`` columns.
 
 Methods
 -------
+
+set_api_key(api_key)
+    Sets Google Gemini API key for authentication.
 
 set_paths(input_path, output_path, failed_path)
     Sets input CSV path, output path, and failed records log path.
@@ -38,8 +41,12 @@ Usage
 .. code-block:: python
 
     from datamule.dataset_builder.dataset_builder import DatasetBuilder
+    import os
 
     builder = DatasetBuilder()
+
+    # Set API key
+    builder.set_api_key(os.environ["GOOGLE_API_KEY"])
 
     # Set required configurations
     builder.set_paths(
@@ -77,3 +84,46 @@ Usage
 
     # Build the dataset
     builder.build()
+
+API Key Setup
+------------
+
+1. Get API Key:
+   Visit `Google AI Studio <https://aistudio.google.com/app/apikey>`_ to generate your API key.
+
+2. Set API Key as Environment Variable:
+
+   Windows (Command Prompt):
+   ::
+
+       setx GOOGLE_API_KEY your-api-key
+
+   Windows (PowerShell):
+   ::
+
+       [System.Environment]::SetEnvironmentVariable('GOOGLE_API_KEY', 'your-api-key', 'User')
+
+   macOS/Linux (bash):
+   ::
+
+       echo 'export GOOGLE_API_KEY="your-api-key"' >> ~/.bash_profile
+       source ~/.bash_profile
+
+   macOS (zsh):
+   ::
+
+       echo 'export GOOGLE_API_KEY="your-api-key"' >> ~/.zshrc
+       source ~/.zshrc
+
+   Note: Replace 'your-api-key' with your actual API key.
+
+
+Alternative API Key Setup
+-----------------------
+
+You can also set the API key directly in your Python code, though this is not recommended for production:
+
+.. code-block:: python
+
+    api_key = "your-api-key"  # Replace with your actual API key
+    builder.set_api_key(api_key)

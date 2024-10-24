@@ -44,6 +44,13 @@ class DatasetBuilder:
         self.failed_lock = Lock()
         self.model_name = "gemini-1.5-flash-8b"  # Default model
         self.model_config = {}  # Additional model configuration
+        self.api_key = None
+
+    def set_api_key(self, api_key):
+        """Set the API key for Google's Generative AI."""
+        self.api_key = api_key
+        genai.configure(api_key=api_key)
+        return self
 
     def set_paths(self, input_path, output_path, failed_path):
         """Set input and output file paths."""
@@ -90,8 +97,9 @@ class DatasetBuilder:
     def validate_config(self):
         """Validate that all required configurations are set."""
         if not all([self.base_prompt, self.response_schema, self.input_path, 
-                   self.output_path, self.failed_path]):
+                   self.output_path, self.failed_path, self.api_key]):
             raise ValueError("""Missing required configuration. Please ensure you have set:
+                           - API key
                            - Paths (input_path, output_path, failed_path)
                            - Base prompt
                            - Response schema""")
@@ -161,7 +169,6 @@ class DatasetBuilder:
         self.validate_config()
 
         # Initialize model and rate limiter
-        genai.configure(api_key=os.environ["API_KEY"])
         model = genai.GenerativeModel(self.model_name)
         rate_limiter = RateLimiter(self.max_rpm)
         
