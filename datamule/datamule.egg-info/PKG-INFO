@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: datamule
-Version: 0.356
+Version: 0.357
 Summary: Making it easier to use SEC filings.
 Home-page: https://github.com/john-friedman/datamule-python
 Author: John Friedman
@@ -22,11 +22,11 @@ A Python package for working with SEC filings at scale. Includes [Mulebot](https
 
 ## Key Features
 
-- 📥 Download SEC filings quickly and efficiently
-- 🔍 Monitor EDGAR for new filings in real-time
-- 📊 Parse textual filings into simplified HTML, interactive HTML, or structured JSON
-- 💾 Access comprehensive datasets (10-Ks, SIC codes, etc.)
-- 🤖 Interact with SEC data using MuleBot
+- 📥 [Download SEC filings quickly and efficiently](https://john-friedman.github.io/datamule-python/usage/downloader.html#)
+- 🔍 [Monitor EDGAR for new filings in real-time](https://john-friedman.github.io/datamule-python/usage/downloader.html#monitoring-new-filings)
+- 📊 [Parse filings at scale](https://john-friedman.github.io/datamule-python/usage/parsing.html#filing-parser)
+- 💾 [Access comprehensive datasets (10-Ks, SIC codes, etc.)](https://john-friedman.github.io/datamule-python/datasets.html)
+- 🤖 [Interact with SEC data using MuleBot](https://john-friedman.github.io/datamule-python/usage/mulebot.html)
 
 ## Quick Start
 

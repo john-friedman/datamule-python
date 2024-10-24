@@ -47,8 +47,6 @@
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Quick Start</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#basic-usage">Basic Usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#package-data">Package Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#updating-package-data">Updating Package Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#api-key">API Key</a></li>
 </ul>
 </li>
@@ -92,25 +90,6 @@
 
 <span class="n">downloader</span> <span class="o">=</span> <span class="n">dm</span><span class="o">.</span><span class="n">Downloader</span><span class="p">()</span>
 <span class="n">downloader</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">form</span><span class="o">=</span><span class="s1">&#39;10-K&#39;</span><span class="p">,</span> <span class="n">ticker</span><span class="o">=</span><span class="s1">&#39;AAPL&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</section>
-<section id="package-data">
-<h2>Package Data<a class="headerlink" href="#package-data" title="Link to this heading"></a></h2>
-<p>The package includes several useful CSV datasets:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">company_former_names.csv</span></code>: Former names of companies</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">company_metadata.csv</span></code>: Metadata including SIC classification</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">company_tickers.csv</span></code>: CIK, ticker, name mappings</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">sec-glossary.csv</span></code>: Form types and descriptions</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">xbrl_descriptions.csv</span></code>: Category fact descriptions</p></li>
-</ul>
-</section>
-<section id="updating-package-data">
-<h2>Updating Package Data<a class="headerlink" href="#updating-package-data" title="Link to this heading"></a></h2>
-<p>You can update the package data using:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">downloader</span><span class="o">.</span><span class="n">update_company_tickers</span><span class="p">()</span>
-<span class="n">downloader</span><span class="o">.</span><span class="n">update_metadata</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>

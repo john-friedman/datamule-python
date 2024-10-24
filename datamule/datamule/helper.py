@@ -64,6 +64,18 @@ def load_package_csv(name):
     
     return company_tickers
 
+def load_package_dataset(dataset):
+    if dataset == 'company_tickers':
+        return load_package_csv('company_tickers')
+    elif dataset =='company_former_names':
+        return load_package_csv('company_former_names')
+    elif dataset =='company_metadata':
+        return load_package_csv('company_metadata')
+    elif dataset == 'sec_glossary':
+        return load_package_csv('sec-glossary')
+    elif dataset == 'xbrl_descriptions':
+        return load_package_csv('xbrl_descriptions')
+
 # DONE
 def identifier_to_cik(ticker):
     """Convert company tickers to CIK codes"""

@@ -483,7 +483,7 @@ class Downloader:
             ciks = identifier_to_cik(ticker)
 
         if ciks is None:
-            company_tickers = load_package_csv()
+            company_tickers = load_package_csv('company_tickers')
             ciks = [company['cik'] for company in company_tickers]
             
         os.makedirs(output_dir, exist_ok=True)
@@ -572,6 +572,7 @@ class Downloader:
                 dropbox_downloader.download(urls=year_data['urls'], output_dir=output_dir)
             else:
                 print(f"No data found for 10K_{year}")
+            
 
 
     async def _watch_efts(self, form=None, cik=None, interval=1, silent=False, callback=None):
@@ -665,7 +666,7 @@ class Downloader:
         
         former_names_fields = ['cik', 'former_name', 'from_date', 'to_date']
         
-        company_tickers = load_package_csv()
+        company_tickers = load_package_csv('company_tickers')
         
         async with aiohttp.ClientSession() as session:
             with open(temp_metadata_file, 'w', newline='') as mf, open(temp_former_names_file, 'w', newline='') as fnf:

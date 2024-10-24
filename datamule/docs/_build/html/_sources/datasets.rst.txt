@@ -42,3 +42,31 @@ Notes
 
 * Bulk datasets may become out of date. Use ``download_dataset()`` + ``download()`` to fill gaps
 * The 13f_information_table dataset automatically implements gap-filling
+
+Package Data
+-----------
+
+The package includes several useful CSV datasets:
+
+- ``company_former_names.csv``: Former names of companies
+- ``company_metadata.csv``: Metadata including SIC classification
+- ``company_tickers.csv``: CIK, ticker, name mappings
+- ``sec-glossary.csv``: Form types and descriptions
+- ``xbrl_descriptions.csv``: Category fact descriptions
+
+Usage Example
+
+.. code-block:: python
+    
+    from datamule import load_package_dataset
+    company_tickers = pd.DataFrame(load_package_dataset('company_tickers'))
+
+Updating Package Data
+-------------------
+
+You can update the package data using:
+
+.. code-block:: python
+
+    downloader.update_company_tickers()
+    downloader.update_metadata()

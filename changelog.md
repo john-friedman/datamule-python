@@ -1,4 +1,7 @@
 # Changelog
+## v0.357
+- added a better way to access package data
+
 ## v0.356 (2024-10-23)
 - added parsing to the package for 13f information table and 8ks
 

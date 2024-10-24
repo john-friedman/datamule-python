@@ -9,9 +9,9 @@ setuptools
 selectolax
 
 [all]
-lxml
 flask
 openai
+lxml
 
 [filing_viewer]
 lxml
