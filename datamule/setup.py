@@ -6,7 +6,8 @@ long_description = Path("../readme.md").read_text(encoding='utf-8')
 extras = {
     "filing_viewer": ["lxml"],
     "mulebot": ['openai'],
-    "mulebot_server": ['flask']
+    "mulebot_server": ['flask'],
+    "dataset_builder": ['pandas', 'google-generativeai', 'psutil']  # Add new extra
 }
 
 all_dependencies = set(dep for extra_deps in extras.values() for dep in extra_deps)

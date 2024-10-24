@@ -2,78 +2,77 @@ from pathlib import Path
 from selectolax.parser import HTMLParser
 import re
 
-# Mostly AI Slop
+# Pre-compile regex pattern with flags
+ITEM_PATTERN = re.compile(
+    r"(?:^[ \t]*)"
+    r"(?:"
+    r"(?:Item|ITEM)\s*"
+    r"(?:"
+    r"1\.0[1-4]|"
+    r"2\.0[1-6]|"
+    r"3\.0[1-3]|"
+    r"4\.0[1-2]|"
+    r"5\.0[1-8]|"
+    r"6\.0[1-5]|"
+    r"7\.01|"
+    r"8\.01|"
+    r"9\.01"
+    r")"
+    r"|"
+    r"SIGNATURES?"
+    r")",
+    re.IGNORECASE | re.MULTILINE
+)
 
-def load_file_content(filename):
-    ext = filename.lower().split('.')[-1]
-    
-    with open(filename, 'r', encoding='utf-8') as file:
-        if ext in ['html', 'htm']:
-            from selectolax.parser import HTMLParser
-            return HTMLParser(file.read()).text()
-        return file.read()
+# Pre-compile whitespace normalization pattern
+WHITESPACE_PATTERN = re.compile(r'\s+')
 
-def parse_8k(filename):
-    # load text
+def load_file_content(filename: Path) -> str:
+    """Load and parse file content based on extension."""
+    path = Path(filename)
+    with open(path, 'r', encoding='utf-8') as file:
+        content = file.read()
+        return HTMLParser(content).text() if path.suffix.lower() in {'.html', '.htm'} else content
+
+def parse_section(text: str, start: int, end: int) -> str:
+    """Parse and clean a section of text."""
+    return WHITESPACE_PATTERN.sub(' ', text[start:end].strip())
+
+def parse_8k(filename: Path) -> dict:
+    """Parse 8-K document and extract sections."""
     text = load_file_content(filename)
-
-    # Pattern for all items and signatures at start of line (with optional spaces)
-    pattern = (
-        r"(?:^[ \t]*)"  # Start of line with optional whitespace
-        r"(?:"  # Start non-capturing group for entire pattern
-        r"(?:Item|ITEM)\s*"  # Match "Item" or "ITEM" followed by whitespace
-        r"(?:"  # Start non-capturing group for item numbers
-        r"1\.0[1-4]|"  # Section 1
-        r"2\.0[1-6]|"  # Section 2
-        r"3\.0[1-3]|"  # Section 3
-        r"4\.0[1-2]|"  # Section 4
-        r"5\.0[1-8]|"  # Section 5
-        r"6\.0[1-5]|"  # Section 6
-        r"7\.01|"      # Section 7
-        r"8\.01|"      # Section 8
-        r"9\.01"       # Section 9
-        r")"
-        r"|"           # OR
-        r"SIGNATURES?" # Match SIGNATURE or SIGNATURES
-        r")"          # End main non-capturing group
-    )
+    document_name = Path(filename).stem
     
-    # Find all matches with their positions using MULTILINE flag
-    matches = []
-    for match in re.finditer(pattern, text, re.IGNORECASE | re.MULTILINE):
-        matches.append((match.group().strip(), match.start()))
+    # Get all matches at once
+    matches = [(m.group().strip(), m.start()) for m in ITEM_PATTERN.finditer(text)]
+    if not matches:
+        return {document_name: {"content": {}}}
     
-    # Extract text between matches
-    sections = {}
-    document_name = Path(filename).stem  # Get filename without extension
-    sections[document_name] = {"content": {}}
+    # Pre-calculate section boundaries
+    sections_data = []
+    for i, (current_match, start_pos) in enumerate(matches[:-1]):
+        sections_data.append((
+            current_match.upper(),
+            start_pos + len(current_match),
+            matches[i + 1][1]
+        ))
     
-    for i in range(len(matches) - 1):
-        current_item = matches[i][0].upper()
-        start_pos = matches[i][1] + len(matches[i][0])  # Use original match length
-        end_pos = matches[i + 1][1]
-        
-        # Clean the extracted text
-        section_text = text[start_pos:end_pos].strip()
-        section_text = re.sub(r'\s+', ' ', section_text)  # Normalize whitespace
-        
-        # Skip empty sections
-        if section_text:
-            sections[document_name]["content"][current_item] = {
-                "title": current_item,
-                "text": section_text
-            }
+    # Add last section
+    last_match, last_pos = matches[-1]
+    sections_data.append((
+        last_match.upper(),
+        last_pos + len(last_match),
+        len(text)
+    ))
     
-    # Handle the last section (up to end of text)
-    if matches:
-        last_item = matches[-1][0].upper()
-        last_start = matches[-1][1] + len(matches[-1][0])
-        last_text = text[last_start:].strip()
-        last_text = re.sub(r'\s+', ' ', last_text)
-        if last_text:
-            sections[document_name]["content"][last_item] = {
-                "title": last_item,
-                "text": last_text
-            }
+    # Build sections dictionary using dictionary comprehension
+    content = {
+        title: {
+            "title": title,
+            "text": section_text
+        }
+        for title, start, end in sections_data
+        if (section_text := parse_section(text, start, end))  # Using assignment expression
+    }
     
-    return sections
+    return {document_name: {"content": content}}
