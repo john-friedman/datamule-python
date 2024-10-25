@@ -9,5 +9,6 @@ This section provides detailed information about using datamule's features.
 
    downloader
    parsing
+   dataset_builder
    filing_viewer
    mulebot
