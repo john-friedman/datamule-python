@@ -90,7 +90,7 @@ def parse_8k(filename: Path) -> dict:
     # Get all matches at once
     matches = [(clean_title(m.group().strip()), m.start()) for m in ITEM_PATTERN.finditer(text)]
     if not matches:
-        return {document_name: {"content": {}}}
+        return {document_name: {"content": []}}
     
     # Validate section sequence
     validate_section_sequence(matches)
@@ -112,14 +112,14 @@ def parse_8k(filename: Path) -> dict:
         len(text)
     ))
     
-    # Build sections dictionary using dictionary comprehension
-    content = {
-        title: {
+    # Build sections list using list comprehension
+    content = [
+        {
             "title": title,
             "text": section_text
         }
         for title, start, end in sections_data
         if (section_text := parse_section(text, start, end))
-    }
+    ]
     
     return {document_name: {"content": content}}
