@@ -16,11 +16,11 @@ extras["all"] = list(all_dependencies)
 setup(
     name="datamule",
     author="John Friedman",
-    version="0.357",
+    version="0.363",
     description="Making it easier to use SEC filings.",
     long_description=long_description,
     long_description_content_type='text/markdown',
-    packages=find_packages(),
+    packages=find_packages(include=['datamule*']) + ['datamule.dataset_builder'],  # Just add the specific package
     url="https://github.com/john-friedman/datamule-python",
     install_requires=[
         'aiohttp',

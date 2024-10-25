@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: datamule
-Version: 0.357
+Version: 0.363
 Summary: Making it easier to use SEC filings.
 Home-page: https://github.com/john-friedman/datamule-python
 Author: John Friedman
@@ -8,6 +8,7 @@ Description-Content-Type: text/markdown
 Provides-Extra: filing_viewer
 Provides-Extra: mulebot
 Provides-Extra: mulebot_server
+Provides-Extra: dataset_builder
 Provides-Extra: all
 
 # datamule

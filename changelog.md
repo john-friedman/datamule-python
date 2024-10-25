@@ -1,4 +1,8 @@
 # Changelog
+## v0.363
+- added dataset_builder
+- made 8-k parsing more robust
+
 ## v0.357
 - added a better way to access package data
 

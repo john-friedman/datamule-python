@@ -16,6 +16,8 @@ datamule/data/company_tickers.csv
 datamule/data/ftd_locations.csv
 datamule/data/sec-glossary.csv
 datamule/data/xbrl_descriptions.csv
+datamule/dataset_builder/_init.py
+datamule/dataset_builder/dataset_builder.py
 datamule/downloader/__init__.py
 datamule/downloader/dropbox_downloader.py
 datamule/downloader/ftd.py
