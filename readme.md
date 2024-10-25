@@ -6,7 +6,7 @@
 
 A Python package for working with SEC filings at scale. Includes [Mulebot](https://chat.datamule.xyz/), an open-source chatbot for SEC data with no storage requirements.
 
-📚 [Full Documentation](https://john-friedman.github.io/datamule-python/) | 🌐 [Website](https://datamule.xyz/) | 📝 [Article: Deploy a Financial Chatbot in 5 Minutes](https://medium.com/@jgfriedman99/how-to-deploy-a-financial-chatbot-in-5-minutes-ef5eec973d4c)
+📚 [Full Documentation](https://john-friedman.github.io/datamule-python/) | 🌐 [Website](https://datamule.xyz/) |[Article: Creating Structured Datasets from SEC filings](https://medium.com/@jgfriedman99/how-to-create-alternative-datasets-using-datamule-d3a0192da8f6) |  📝 [Article: Deploy a Financial Chatbot in 5 Minutes](https://medium.com/@jgfriedman99/how-to-deploy-a-financial-chatbot-in-5-minutes-ef5eec973d4c)
 
 ## Key Features
 
