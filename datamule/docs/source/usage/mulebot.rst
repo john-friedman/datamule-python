@@ -1,7 +1,7 @@
 MuleBot
 =======
 
-MuleBot allows you to interact with SEC data using natural language. It uses tool calling to interface with SEC and datamule endpoints.
+MuleBot allows you to interact with SEC data using natural language. It uses tool calling to interface with SEC and datamule endpoints. This is a proof of concept. It will later have useful features.
 
 Basic Usage
 ----------
