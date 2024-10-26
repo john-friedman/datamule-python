@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
 from ..datamule_api import parse_textual_filing
-from .basic_textual_parser import parse_8k
+from .basic_8k_parser import parse_8k
+from .basic_10kq_parser import parse_10kq
 
 class Parser:
 
@@ -14,6 +15,10 @@ class Parser:
             return self._parse_13f_hr_information_table_xml(filename)
         elif filing_type == '8-K':
             return parse_8k(filename)
+        elif filing_type == '10-K':
+            return parse_10kq(filename)
+        elif filing_type == '10-Q':
+            return parse_10kq(filename)
         else:
             data = parse_textual_filing(url=filename, return_type='json')
         return data 

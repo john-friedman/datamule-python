@@ -76,3 +76,8 @@ You can watch for new filings:
 .. code-block:: python
 
     downloader.watch(interval=1, form='8-K', ticker='AAPL')
+
+Misc Information
+------------------
+
+The downloader can not distinguish between 10-K and 10-KSB (phased out in 2009).
