@@ -55,8 +55,13 @@ ITEM8_PATTERN = re.compile(
     re.IGNORECASE | re.MULTILINE
 )
 
-ITEM1_6_PATTERN = re.compile(
-    r"^[ \t]*(?:Item|ITEM)\s*(?:1|6)(?:\s|$)",
+ITEM6_PATTERN = re.compile(
+    r"^[ \t]*(?:Item|ITEM)\s*6",
+    re.IGNORECASE | re.MULTILINE
+)
+
+ITEM1_PATTERN = re.compile(
+    r"^[ \t]*(?:Item|ITEM)\s*1(?:\s|$)",
     re.IGNORECASE | re.MULTILINE
 )
 
@@ -74,23 +79,48 @@ def clean_title(title: str) -> str:
 def parse_section(text: str, start: int, end: int) -> str:
     return WHITESPACE_PATTERN.sub(' ', text[start:end].strip())
 
+def find_first_real_item(text: str, cutoff_pos: int) -> int:
+    print(f"Cutoff pos: {cutoff_pos}")
+    # Find the first Item 1 after cutoff
+    item1_matches = list(ITEM1_PATTERN.finditer(text[cutoff_pos:]))
+    if item1_matches:
+        pos = cutoff_pos + item1_matches[0].start()
+        print(f"Found Item 1 at: {pos}")
+        print(f"Text around: {text[pos-50:pos+50]}")
+        return pos
+    
+    # If no Item 1, try Item 6
+    item6_matches = list(ITEM6_PATTERN.finditer(text[cutoff_pos:]))
+    if item6_matches:
+        pos = cutoff_pos + item6_matches[0].start()
+        print(f"Found Item 6 at: {pos}")
+        print(f"Text around: {text[pos-50:pos+50]}")
+        return pos
+        
+    print("No Item 1 or 6 found after cutoff")
+    return cutoff_pos
+
 def parse_10kq(filename: Path) -> dict:
     text = load_file_content(filename)
     document_name = Path(filename).stem
     
+    start_pos = 0
     sig_matches = list(SIGNATURES_PATTERN.finditer(text))
     if len(sig_matches) > 1:
-        text = text[sig_matches[0].end():]
+        start_pos = sig_matches[0].end()
+        start_pos = find_first_real_item(text, start_pos)
     else:
-        # If no multiple signatures, try Item 8 detection
         item8_matches = list(ITEM8_PATTERN.finditer(text))
-        if item8_matches:
+        item6_matches = list(ITEM6_PATTERN.finditer(text))
+        
+        if item8_matches and item6_matches:
             first_item8_pos = item8_matches[0].start()
-            # Look for Item 1 or 6 AFTER the first Item 8
-            item1_6_matches = list(ITEM1_6_PATTERN.finditer(text[first_item8_pos:]))
-            if item1_6_matches:
-                # First Item 8 was in TOC, skip to the Item 1/6 we found
-                text = text[first_item8_pos + item1_6_matches[0].start():]
+            last_item6_pos = item6_matches[-1].start()
+            
+            if first_item8_pos < last_item6_pos:
+                start_pos = find_first_real_item(text, last_item6_pos)
+    
+    text = text[start_pos:]
     
     section_matches = list(PART_PATTERN.finditer(text))
     item_matches = list(ITEM_PATTERN.finditer(text))
