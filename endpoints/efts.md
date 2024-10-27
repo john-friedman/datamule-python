@@ -77,10 +77,12 @@ https://efts.sec.gov/LATEST/search-index?q=the&dateRange=all&category=form-cat1&
 `enddt`: We use this.
 `filter_forms`: 
 
-Note: adding q will allow api to return attachments, e.g. 10k exhibit 99
+Note: adding q=- will allow api to return attachments, e.g. 10k exhibit 99
 
 
 Note: sec.gov has a 10r/s rate limit
 I think efts has a seperate rate limit
 
 Note: sort=desc / asc is nice
+
+Note: efts api does not allow filtering by historic form file types, e.g 10-KSB, so those will appear as 10-K
