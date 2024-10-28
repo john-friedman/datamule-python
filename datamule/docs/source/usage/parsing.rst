@@ -28,7 +28,7 @@ Currently parses 10-Ks, 10-Qs, 8-Ks, 13-F Information Tables using a basic parse
     # Parse the filing, using the declared filing type
     parsed_data = filing.parse_filing()
 
-Example output:
+Example 8-K output:
 
 .. code-block:: json
 
