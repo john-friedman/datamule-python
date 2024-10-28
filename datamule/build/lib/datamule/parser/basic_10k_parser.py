@@ -7,6 +7,14 @@ ITEM_PATTERN = re.compile(r'\n\s*item[.:)?\s]+(\d+[A-Z]?)', re.I)
 IS_10K_PATTERN = re.compile(r'item[.:)?\s]+14', re.I)
 TOC_END_PATTERN = re.compile(r'(?:item[.:)?\s]+14).*?(?=\n\s*item[.:)?\s]+1\b)', re.I | re.DOTALL)
 
+# Mapping of items to their respective parts
+ITEM_TO_PART = {
+    '1': 'I', '1A': 'I', '1B': 'I', '2': 'I', '3': 'I', '4': 'I',
+    '5': 'II', '6': 'II', '7': 'II', '7A': 'II', '8': 'II', '9': 'II', '9A': 'II', '9B': 'II', '9C': 'II',
+    '10': 'III', '11': 'III', '12': 'III', '13': 'III', '14': 'III',
+    '15': 'IV', '16': 'IV'
+}
+
 def load_file_content(filename):
     path = Path(filename)
     with open(path, 'r', encoding='utf-8') as file:
@@ -47,6 +55,14 @@ def extract_sections(content, anchors, filename):
         "content": []
     }
     
+    # Initialize structure with parts
+    parts = {
+        'I': {'title': 'PART I', 'items': []},
+        'II': {'title': 'PART II', 'items': []},
+        'III': {'title': 'PART III', 'items': []},
+        'IV': {'title': 'PART IV', 'items': []}
+    }
+    
     last_item = None
     current_text = None
     current_title = None
@@ -59,8 +75,9 @@ def extract_sections(content, anchors, filename):
             if current[1] == last_item:  # Sequential match - merge
                 current_text += "\n\n" + text
             else:  # New item - save previous if exists and start new
-                if last_item is not None:
-                    result["content"].append({
+                if last_item is not None and last_item in ITEM_TO_PART:
+                    part = ITEM_TO_PART[last_item]
+                    parts[part]['items'].append({
                         "title": current_title,
                         "text": current_text
                     })
@@ -69,11 +86,15 @@ def extract_sections(content, anchors, filename):
                 last_item = current[1]
     
     # Don't forget to add the last section
-    if last_item is not None:
-        result["content"].append({
+    if last_item is not None and last_item in ITEM_TO_PART:
+        part = ITEM_TO_PART[last_item]
+        parts[part]['items'].append({
             "title": current_title,
             "text": current_text
         })
+    
+    # Add only non-empty parts to the result
+    result["content"] = [part_data for part_data in parts.values() if part_data['items']]
     
     return result
 
