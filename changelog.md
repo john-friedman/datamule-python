@@ -1,4 +1,7 @@
 # Changelog
+## v0.364
+- added 10-K, 10-Q parsing. 
+
 ## v0.363
 - added dataset_builder
 - made 8-k parsing more robust

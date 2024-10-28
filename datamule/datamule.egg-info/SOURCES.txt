@@ -44,5 +44,7 @@ datamule/mulebot/mulebot_server/static/scripts/tableArtifacts.js
 datamule/mulebot/mulebot_server/static/scripts/utils.js
 datamule/mulebot/mulebot_server/templates/chat-minimalist.html
 datamule/parser/__init__.py
-datamule/parser/basic_textual_parser.py
+datamule/parser/basic_10k_parser.py
+datamule/parser/basic_10q_parser.py
+datamule/parser/basic_8k_parser.py
 datamule/parser/sec_parser.py

@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: datamule
-Version: 0.363
+Version: 0.365
 Summary: Making it easier to use SEC filings.
 Home-page: https://github.com/john-friedman/datamule-python
 Author: John Friedman
@@ -13,13 +13,15 @@ Provides-Extra: all
 
 # datamule
 
-![PyPI - Downloads](https://img.shields.io/pypi/dm/datamule)
+[![Downloads](https://static.pepy.tech/badge/datamule)](https://pepy.tech/project/datamule)
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fjohn-friedman%2Fdatamule-python&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 ![GitHub](https://img.shields.io/github/stars/john-friedman/datamule-python)
 
-A Python package for working with SEC filings at scale. Includes [Mulebot](https://chat.datamule.xyz/), an open-source chatbot for SEC data with no storage requirements.
+A Python package for working with SEC filings at scale. Includes [Mulebot](https://chat.datamule.xyz/), an open-source chatbot for SEC data with no storage requirements. 📚 [Full Documentation](https://john-friedman.github.io/datamule-python/) | 🌐 [Website](https://datamule.xyz/)
 
-📚 [Full Documentation](https://john-friedman.github.io/datamule-python/) | 🌐 [Website](https://datamule.xyz/) | 📝 [Article: Deploy a Financial Chatbot in 5 Minutes](https://medium.com/@jgfriedman99/how-to-deploy-a-financial-chatbot-in-5-minutes-ef5eec973d4c)
+Articles:
+- [Article: Creating Structured Datasets from SEC filings](https://medium.com/@jgfriedman99/how-to-create-alternative-datasets-using-datamule-d3a0192da8f6)
+- [Article: Deploy a Financial Chatbot in 5 Minutes](https://medium.com/@jgfriedman99/how-to-deploy-a-financial-chatbot-in-5-minutes-ef5eec973d4c)
 
 ## Key Features
 
