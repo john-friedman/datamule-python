@@ -1,6 +1,6 @@
 from pathlib import Path
-from selectolax.parser import HTMLParser
 import re
+from .helper import load_file_content
 
 PART_PATTERN = re.compile(r'\n\s*part[.:)?\s]+([IVX]+|\d+)', re.I)
 ITEM_PATTERN = re.compile(r'\n\s*item[.:)?\s]+(\d+[A-Z]?)', re.I)
@@ -14,12 +14,6 @@ ITEM_TO_PART = {
     '10': 'III', '11': 'III', '12': 'III', '13': 'III', '14': 'III',
     '15': 'IV', '16': 'IV'
 }
-
-def load_file_content(filename):
-    path = Path(filename)
-    with open(path, 'r', encoding='utf-8') as file:
-        content = file.read()
-        return HTMLParser(content).text() if path.suffix.lower() in {'.html', '.htm'} else content
 
 def clean_title(title):
     return title.strip()

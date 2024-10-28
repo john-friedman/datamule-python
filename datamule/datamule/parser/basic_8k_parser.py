@@ -1,7 +1,6 @@
-from pathlib import Path
-from selectolax.parser import HTMLParser
 import re
 from collections import defaultdict
+from .helper import load_file_content
 
 # Pre-compile regex pattern with flags
 ITEM_PATTERN = re.compile(
@@ -31,13 +30,6 @@ WHITESPACE_PATTERN = re.compile(r'\s+')
 class DuplicateSectionError(Exception):
     """Raised when a section appears multiple times before a different section."""
     pass
-
-def load_file_content(filename: Path) -> str:
-    """Load and parse file content based on extension."""
-    path = Path(filename)
-    with open(path, 'r', encoding='utf-8') as file:
-        content = file.read()
-        return HTMLParser(content).text() if path.suffix.lower() in {'.html', '.htm'} else content
 
 def clean_title(title: str) -> str:
     """Clean up section title by removing newlines and normalizing whitespace."""
