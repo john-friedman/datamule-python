@@ -2,10 +2,10 @@ from pathlib import Path
 from selectolax.parser import HTMLParser
 import re
 
-PART_PATTERN = re.compile(r'\n\s*part\s+([IVX]+|\d+)', re.I)
-ITEM_PATTERN = re.compile(r'\n\s*item\s+(\d+[A-Z]?)', re.I)
-IS_10K_PATTERN = re.compile(r'item\s*14', re.I)
-TOC_END_PATTERN = re.compile(r'(?:item\s*14).*?(?=\n\s*item\s*1\b)', re.I | re.DOTALL)
+PART_PATTERN = re.compile(r'\n\s*part[.:)?\s]+([IVX]+|\d+)', re.I)
+ITEM_PATTERN = re.compile(r'\n\s*item[.:)?\s]+(\d+[A-Z]?)', re.I)
+IS_10K_PATTERN = re.compile(r'item[.:)?\s]+14', re.I)
+TOC_END_PATTERN = re.compile(r'(?:item[.:)?\s]+14).*?(?=\n\s*item[.:)?\s]+1\b)', re.I | re.DOTALL)
 
 def load_file_content(filename):
     path = Path(filename)
