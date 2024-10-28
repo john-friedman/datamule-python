@@ -36,7 +36,8 @@ def find_anchors(content):
     for item_match in ITEM_PATTERN.finditer(content):
         anchors.append(('item', item_match.group(1), item_match.start() + start_pos, item_match.group()))
     
-    return sorted(anchors, key=lambda x: x[2]), (part_ii_pos + start_pos if part_ii_pos else None)
+    # Remove the second addition of start_pos
+    return sorted(anchors, key=lambda x: x[2]), part_ii_pos  # Just return part_ii_pos without adding start_pos again
 
 def extract_sections(content, anchors_and_part2, filename):
     anchors, part2_pos = anchors_and_part2
@@ -56,6 +57,8 @@ def extract_sections(content, anchors_and_part2, filename):
     current_title = None
     
     for i, current in enumerate(anchors):
+        next_pos = anchors[i+1][2] if i < len(anchors)-1 else len(content)
+        
         if current[1] == last_item:  # Sequential match - merge
             current_text += "\n\n" + content[current[2]:next_pos].strip()
         else:  # New item
@@ -64,14 +67,14 @@ def extract_sections(content, anchors_and_part2, filename):
                     "title": current_title,
                     "text": current_text
                 }
-                # Add to Part II if after Part II position, else Part I
-                part_idx = 1 if (part2_pos and current[2] > part2_pos) else 0
+                # Use the CURRENT item's position for classification, not the next one
+                part_idx = 1 if (part2_pos and last_pos >= part2_pos) else 0
                 result["content"][part_idx]["items"].append(item_dict)
             
-            next_pos = anchors[i+1][2] if i < len(anchors)-1 else len(content)
             current_text = content[current[2]:next_pos].strip()
             current_title = clean_title(current[3])
             last_item = current[1]
+            last_pos = current[2]  # Store the current position for next iteration
     
     # Add the last section
     if last_item is not None:
@@ -79,7 +82,8 @@ def extract_sections(content, anchors_and_part2, filename):
             "title": current_title,
             "text": current_text
         }
-        part_idx = 1 if (part2_pos and current[2] > part2_pos) else 0
+        # Use the last stored position
+        part_idx = 1 if (part2_pos and last_pos >= part2_pos) else 0
         result["content"][part_idx]["items"].append(item_dict)
     
     return result
