@@ -16,8 +16,6 @@ Filing Parser
 
 Currently parses 10-Ks, 10-Qs, 8-Ks, 13-F Information Tables using a basic parser. For a more advanced parser see the Textual Filing Parsing below.
 
-Note: 10-K/10-Q basic parsing is not a priority for me, as I'm focusing on a more powerful general SEC textual filing parser based on html. This code has been written quickly using my insights from the more advanced parser using a text only approach due to high demand. I'll likely revisit this after making progress on the more advanced parser.
-Note: For years before 2009, there are 10-KSBs mixed in with 10-Ks. These should be parsed with the 10-K parser.
 
 .. code-block:: python
 

@@ -15,7 +15,8 @@ Downloading Filings
 
 The downloader uses the `EFTS API <https://efts.sec.gov/LATEST/search-index>`_ to retrieve filing locations, and the SEC API to download filings.
 
-Important Note: form is root form type (e.g., '10-K' includes '10-K/A'). To filter use **file_types** set to e.g. '10-K'.
+Note: form is root form type (e.g., '10-K' includes '10-K/A'). To filter use **file_types** set to e.g. '10-K'.
+Note: Current filing system can't distinguish between 10-K and 10-KSB (phased out in 2009). I'm working on a solution for this.
 
 Parameters
 ~~~~~~~~~~

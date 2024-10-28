@@ -47,13 +47,33 @@ def extract_sections(content, anchors, filename):
         "content": []
     }
     
+    last_item = None
+    current_text = None
+    current_title = None
+    
     for i, current in enumerate(anchors):
         if current[0] == 'item':
             next_pos = anchors[i+1][2] if i < len(anchors)-1 else len(content)
-            result["content"].append({
-                "title": clean_title(current[3]),
-                "text": content[current[2]:next_pos].strip()
-            })
+            text = content[current[2]:next_pos].strip()
+            
+            if current[1] == last_item:  # Sequential match - merge
+                current_text += "\n\n" + text
+            else:  # New item - save previous if exists and start new
+                if last_item is not None:
+                    result["content"].append({
+                        "title": current_title,
+                        "text": current_text
+                    })
+                current_text = text
+                current_title = clean_title(current[3])
+                last_item = current[1]
+    
+    # Don't forget to add the last section
+    if last_item is not None:
+        result["content"].append({
+            "title": current_title,
+            "text": current_text
+        })
     
     return result
 
