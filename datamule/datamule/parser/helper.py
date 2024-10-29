@@ -1,20 +1,66 @@
 from selectolax.parser import HTMLParser
-from pathlib import Path
 
-
-def load_file_content(filename):
-    #  ~ 30ms per file
+def load_text_content(filename):
+    with open(filename) as f:
+        return f.read().translate(str.maketrans({
+            '\xa0': ' ', '\u2003': ' ',
+            '\u2018': "'", '\u2019': "'",
+            '\u201c': '"', '\u201d': '"'
+        }))
+    
+def load_html_content(filename):
     parser = HTMLParser(open(filename).read())
-    text = '\n'.join(
-        node.text_content.strip() 
-        for node in parser.root.traverse(include_text=True)
-        if node.text_content and node.text_content.strip()
-    )
+    
+    # Remove hidden elements first
+    hidden_nodes = parser.css('[style*="display: none"], [style*="display:none"], .hidden, .hide, .d-none')
+    for node in hidden_nodes:
+        node.decompose()
+    
+    blocks = {'p', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'article', 'section', 'li', 'td'}
+    lines = []
+    current_line = []
+    
+    def flush_line():
+        if current_line:
+            lines.append(' '.join(current_line))
+            current_line.clear()
+    
+    for node in parser.root.traverse(include_text=True):
+        if node.tag in ('script', 'style', 'css'):
+            continue
+            
+        if node.tag in blocks:
+            flush_line()
+            lines.append('')
+            
+        if node.text_content:
+            text = node.text_content.strip()
+            if text:
+                if node.tag in blocks:
+                    flush_line()
+                    lines.append(text)
+                    lines.append('')
+                else:
+                    current_line.append(text)
+    
+    flush_line()
+    
+    text = '\n'.join(lines)
+    while '\n\n\n' in text:
+        text = text.replace('\n\n\n', '\n\n')
+    
     return text.translate(str.maketrans({
         '\xa0': ' ', '\u2003': ' ',
         '\u2018': "'", '\u2019': "'",
         '\u201c': '"', '\u201d': '"'
     }))
+def load_file_content(filename):
+    if filename.endswith('.txt'):
+        return load_text_content(filename)
+    elif filename.endswith('.html') or filename.endswith('.htm'):
+        return load_html_content(filename)
+    else:
+        raise ValueError(f"Unsupported file type: {filename}")
 
 def clean_title(title: str) -> str:
     """Clean up section title by removing newlines, periods, and all whitespace, converting to lowercase."""
