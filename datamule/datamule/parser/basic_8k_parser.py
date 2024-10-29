@@ -1,6 +1,7 @@
 import re
 from collections import defaultdict
 from .helper import load_file_content
+from pathlib import Path
 
 # Pre-compile regex pattern with flags
 ITEM_PATTERN = re.compile(
