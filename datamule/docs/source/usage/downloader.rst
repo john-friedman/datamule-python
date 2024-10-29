@@ -63,11 +63,13 @@ Examples
 Rate Limits
 ----------
 
-The default rate limit is set to 10 requests/second. You can modify this:
+The default rate limit is set to 10 requests/second. For downloading more than 5,000 filings I advise setting a lower rate limit to avoid being limited by the SEC.
+This is because there is a hidden, undocumented rate limit per ten minutes that limits you to ~5/second.
 
 .. code-block:: python
 
     downloader.set_limiter('www.sec.gov', 5)
+    downloader.set_limiter('efts.sec.gov', 5) # This is likely unnecessary as EFTS API does not appear to have rate limits
 
 Monitoring New Filings
 --------------------

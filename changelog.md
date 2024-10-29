@@ -1,4 +1,6 @@
 # Changelog
+## v0.372 (2024-10-29)
+- made importing the package take ~ 400 milliseconds. This is about right for now, in the future I'll clean up dependencies to speed this up.
 ## v0.368 (2024-10-28)
 - made 10-k, 10-q, 8-k parsing more robust by centralizing load file content and clean title into helper script
 ## v0.364 (2024-10-28)
