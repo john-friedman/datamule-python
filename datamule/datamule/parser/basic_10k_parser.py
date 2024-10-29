@@ -1,6 +1,6 @@
 from pathlib import Path
 import re
-from .helper import load_file_content
+from .helper import load_file_content, clean_title
 
 PART_PATTERN = re.compile(r'\n\s*part[.:)?\s]+([IVX]+|\d+)', re.I)
 ITEM_PATTERN = re.compile(r'\n\s*item[.:)?\s]+(\d+[A-Z]?)', re.I)
@@ -8,15 +8,41 @@ IS_10K_PATTERN = re.compile(r'item[.:)?\s]+14', re.I)
 TOC_END_PATTERN = re.compile(r'(?:item[.:)?\s]+14).*?(?=\n\s*item[.:)?\s]+1\b)', re.I | re.DOTALL)
 
 # Mapping of items to their respective parts
+# Mapping of SEC Form 10-K items to their respective parts
 ITEM_TO_PART = {
-    '1': 'I', '1A': 'I', '1B': 'I', '2': 'I', '3': 'I', '4': 'I',
-    '5': 'II', '6': 'II', '7': 'II', '7A': 'II', '8': 'II', '9': 'II', '9A': 'II', '9B': 'II', '9C': 'II',
-    '10': 'III', '11': 'III', '12': 'III', '13': 'III', '14': 'III',
-    '15': 'IV', '16': 'IV'
+    # Part I
+    '1': 'I',      # Business
+    '1A': 'I',     # Risk Factors
+    '1B': 'I',     # Unresolved Staff Comments
+    '1C': 'I',     # Cybersecurity
+    '2': 'I',      # Properties
+    '3': 'I',      # Legal Proceedings
+    '4': 'I',      # Mine Safety Disclosures
+    
+    # Part II
+    '5': 'II',     # Market for Registrant's Common Equity, Related Stockholder Matters and Issuer Purchases of Equity Securities
+    '6': 'II',     # [Reserved]
+    '7': 'II',     # Management's Discussion and Analysis of Financial Condition and Results of Operations
+    '7A': 'II',    # Quantitative and Qualitative Disclosures About Market Risk
+    '8': 'II',     # Financial Statements and Supplementary Data
+    '9': 'II',     # Changes in and Disagreements with Accountants on Accounting and Financial Disclosure
+    '9A': 'II',    # Controls and Procedures
+    '9B': 'II',    # Other Information
+    '9C': 'II',    # Disclosure Regarding Foreign Jurisdictions that Prevent Inspections
+    
+    # Part III
+    '10': 'III',   # Directors, Executive Officers and Corporate Governance
+    '11': 'III',   # Executive Compensation
+    '12': 'III',   # Security Ownership of Certain Beneficial Owners and Management and Related Stockholder Matters
+    '13': 'III',   # Certain Relationships and Related Transactions, and Director Independence
+    '14': 'III',   # Principal Accountant Fees and Services
+    
+    # Part IV
+    '15': 'IV',    # Exhibit and Financial Statement Schedules
+    '16': 'IV',    # Form 10-K Summary
+    '16A': 'IV',   # Disclosure Regarding Foreign Jurisdictions that Prevent Inspections
 }
 
-def clean_title(title):
-    return title.strip()
 
 def find_content_start(content):
     toc_match = TOC_END_PATTERN.search(content)

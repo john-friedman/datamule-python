@@ -1,19 +1,10 @@
 from pathlib import Path
-from selectolax.parser import HTMLParser
+from .helper import load_file_content, clean_title
 import re
 
 PART_II_PATTERN = re.compile(r'\n\s*part\s+II\.?(?:[:\s\.]|$)', re.I)
 ITEM_PATTERN = re.compile(r'\n\s*item\s+(\d+[A-Z]?)\.?(?:[:\s\.]|$)', re.I)
 TOC_END_PATTERN = re.compile(r'(?:item\s*6\.?).*?(?=\n\s*item\s*1\.?\b)', re.I | re.DOTALL)
-
-def load_file_content(filename):
-    path = Path(filename)
-    with open(path, 'r', encoding='utf-8') as file:
-        content = file.read()
-        return HTMLParser(content).text() if path.suffix.lower() in {'.html', '.htm'} else content
-
-def clean_title(title):
-    return title.strip()
 
 def find_content_start(content):
     toc_match = TOC_END_PATTERN.search(content)

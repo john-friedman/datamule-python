@@ -1,4 +1,6 @@
 # Changelog
+## v0.368 (2024-10-28)
+- made 10-k, 10-q, 8-k parsing more robust by centralizing load file content and clean title into helper script
 ## v0.364 (2024-10-28)
 - added 10-K, 10-Q parsing. 
 

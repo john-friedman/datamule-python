@@ -1,6 +1,6 @@
 import re
 from collections import defaultdict
-from .helper import load_file_content
+from .helper import load_file_content, clean_title
 from pathlib import Path
 
 # Pre-compile regex pattern with flags
@@ -32,9 +32,6 @@ class DuplicateSectionError(Exception):
     """Raised when a section appears multiple times before a different section."""
     pass
 
-def clean_title(title: str) -> str:
-    """Clean up section title by removing newlines and normalizing whitespace."""
-    return ' '.join(title.replace('\n', ' ').split())
 
 def parse_section(text: str, start: int, end: int) -> str:
     """Parse and clean a section of text."""
