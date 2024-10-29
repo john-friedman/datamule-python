@@ -1,4 +1,7 @@
 # Changelog
+## v0.373 (2024-10-29)
+- made parsed filing structure for 8k, 10k, 10q more intuitive.
+
 ## v0.372 (2024-10-29)
 - made importing the package take ~ 400 milliseconds. This is about right for now, in the future I'll clean up dependencies to speed this up.
 ## v0.368 (2024-10-28)

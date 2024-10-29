@@ -19,7 +19,6 @@ def find_anchors(content):
     start_pos = find_content_start(content)
     content = '\n' + content[start_pos:]
     
-    # Find Part II position after TOC
     part_ii_match = PART_II_PATTERN.search(content)
     part_ii_pos = part_ii_match.start() + start_pos if part_ii_match else None
 
@@ -27,8 +26,7 @@ def find_anchors(content):
     for item_match in ITEM_PATTERN.finditer(content):
         anchors.append(('item', item_match.group(1), item_match.start() + start_pos, item_match.group()))
     
-    # Remove the second addition of start_pos
-    return sorted(anchors, key=lambda x: x[2]), part_ii_pos  # Just return part_ii_pos without adding start_pos again
+    return sorted(anchors, key=lambda x: x[2]), part_ii_pos
 
 def extract_sections(content, anchors_and_part2, filename):
     anchors, part2_pos = anchors_and_part2
@@ -36,47 +34,37 @@ def extract_sections(content, anchors_and_part2, filename):
         return {}
         
     result = {
-        "document_name": Path(filename).stem,
-        "content": [
-            {"title": "PART I", "items": []},
-            {"title": "PART II", "items": []}
-        ]
+        "metadata": {"document_name": Path(filename).stem},
+        "document": {
+            "part1": {},
+            "part2": {}
+        }
     }
     
     last_item = None
     current_text = None
-    current_title = None
+    last_pos = None
     
     for i, current in enumerate(anchors):
         next_pos = anchors[i+1][2] if i < len(anchors)-1 else len(content)
         
-        if current[1] == last_item:  # Sequential match - merge
+        if current[1] == last_item:
             current_text += "\n\n" + content[current[2]:next_pos].strip()
-        else:  # New item
+        else:
             if last_item is not None:
-                item_dict = {
-                    "title": current_title,
-                    "text": current_text
-                }
-                # Use the CURRENT item's position for classification, not the next one
-                part_idx = 1 if (part2_pos and last_pos >= part2_pos) else 0
-                result["content"][part_idx]["items"].append(item_dict)
+                part_key = "part2" if (part2_pos and last_pos >= part2_pos) else "part1"
+                result["document"][part_key][f"item{last_item.lower()}"] = current_text
             
             current_text = content[current[2]:next_pos].strip()
-            current_title = clean_title(current[3])
             last_item = current[1]
-            last_pos = current[2]  # Store the current position for next iteration
+            last_pos = current[2]
     
-    # Add the last section
     if last_item is not None:
-        item_dict = {
-            "title": current_title,
-            "text": current_text
-        }
-        # Use the last stored position
-        part_idx = 1 if (part2_pos and last_pos >= part2_pos) else 0
-        result["content"][part_idx]["items"].append(item_dict)
+        part_key = "part2" if (part2_pos and last_pos >= part2_pos) else "part1"
+        result["document"][part_key][f"item{last_item.lower()}"] = current_text
     
+    # Clean empty parts
+    result["document"] = {k:v for k,v in result["document"].items() if v}
     return result
 
 def parse_10q(filename):
