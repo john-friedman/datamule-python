@@ -1,7 +1,7 @@
 Parsing
 =======
 
-SEC XBRL Parsing
+SEC XBRL Parsing 
 ---------------
 
 Parse XBRL data in JSON format to tables:
