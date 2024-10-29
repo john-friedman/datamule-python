@@ -1,6 +1,11 @@
 # Ignore __pycache__ directories
 __pycache__/
 
+# Ignore build artifacts
+build/
+dist/
+*.egg-info/
+
 # Ignore Secrets directory
 Secrets/
 
