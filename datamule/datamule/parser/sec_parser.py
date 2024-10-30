@@ -4,6 +4,7 @@ from .basic_8k_parser import parse_8k
 from .basic_10k_parser import parse_10k
 from .basic_10q_parser import parse_10q
 from .information_table_parser_13fhr import parse_13f_hr_information_table_xml
+from .insider_trading_parser import parse_form345
 
 class Parser:
 
@@ -21,6 +22,8 @@ class Parser:
             return parse_10k(filename)
         elif filing_type == '10-Q':
             return parse_10q(filename)
+        elif filing_type in ['3', '4', '5']:
+            return parse_form345(filename)
         else:
             data = parse_textual_filing(url=filename, return_type='json')
         return data 

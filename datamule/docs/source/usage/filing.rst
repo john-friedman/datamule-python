@@ -11,6 +11,16 @@ Parse and write SEC filings (8-K, 10-Q, 10-K, 13F-HR-INFORMATIONTABLE) to JSON o
    * **filepath** (*str*) -- Path to the filing file
    * **filing_type** (*str*) -- Filing type ('8-K', '10-Q', '10-K', '13F-HR-INFORMATIONTABLE')
 
+Note that a filing's tabular data can be accessed directly.
+
+.. code-block:: python
+
+   from datamule import Filing
+   import pandas as pd
+   
+   pd.DataFrame(filing)
+
+
 Data Structure
 -------------
 * **10-K/10-Q/8-K**: Nested document structure
@@ -40,8 +50,23 @@ write_csv(output_filename=None, accession_number=None)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Write data to CSV. Flattens nested documents or writes tabular data directly. If opening in Excel make sure to use From Text/CSV option otherwise the columns will not be separated correctly.
 
-Example
+Examples
 -------
+
+.. code-block:: python
+
+   from datamule import Downloader, Filing
+   from pathlib import Path
+   import pandas as pd
+   downloader = Downloader()
+   downloader.download(form='4',output_dir='4',date=('2021-01-07','2021-01-07'))
+   dfs = []
+   for file in Path('4').iterdir():
+      filing = Filing(str(file), '4')
+      dfs.append(pd.DataFrame(filing))
+
+   df = pd.concat(dfs)
+   df.to_csv('4.csv', index=False)
 
 .. code-block:: python
 
