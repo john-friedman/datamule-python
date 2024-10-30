@@ -47,5 +47,7 @@ datamule/parser/__init__.py
 datamule/parser/basic_10k_parser.py
 datamule/parser/basic_10q_parser.py
 datamule/parser/basic_8k_parser.py
+datamule/parser/company_concepts_parser.py
 datamule/parser/helper.py
+datamule/parser/information_table_parser_13fhr.py
 datamule/parser/sec_parser.py

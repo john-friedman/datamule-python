@@ -494,35 +494,6 @@ class Downloader:
 
 
     def download_dataset(self, dataset, dataset_path='datasets'):
-        """
-        Download and process pre-packaged SEC filing datasets.
-
-        Downloads various SEC filing datasets including 10-K/Q filings,
-        13F holdings data, and fails-to-deliver records.
-
-        Args:
-            dataset (str): Type of dataset to download. Supported formats:
-                - "10k_YYYY": 10-K filings for specified year (e.g., "10k_2023") 
-                - "10q_YYYY": 10-Q filings for specified year (e.g., "10q_2023")
-                - "ftd": Fails-to-deliver data for all securities
-                - "13f_information_table": Investment manager holdings from 13F filings
-
-            dataset_path (str, optional): Base directory for storing downloaded data.
-                Defaults to 'datasets'.
-
-        Examples:
-            Download parsed 10-K filings from 2023:
-            >>> downloader.download_dataset("10k_2023")
-
-            Get fails-to-deliver data:
-            >>> downloader.download_dataset("ftd")
-
-            Download 13F holdings:
-            >>> downloader.download_dataset("13f_information_table")
-
-            Get Q1 filings from 2022:
-            >>> downloader.download_dataset("10q_2022")
-        """
         if not os.path.exists(dataset_path):
             os.makedirs(dataset_path)
 

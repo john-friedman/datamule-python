@@ -8,7 +8,9 @@ This section provides detailed information about using datamule's features.
    :caption: Components:
 
    downloader
+   filing
    parsing
    dataset_builder
    filing_viewer
    mulebot
+   

@@ -1,4 +1,7 @@
 # Changelog
+## v0.374 (2024-10-19)
+- added filing.write_json, filing.write_csv
+
 ## v0.373 (2024-10-29)
 - made parsed filing structure for 8k, 10k, 10q more intuitive.
 
