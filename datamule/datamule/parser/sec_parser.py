@@ -6,6 +6,9 @@ from .basic_10q_parser import parse_10q
 from .information_table_parser_13fhr import parse_13f_hr_information_table_xml
 from .insider_trading_parser import parse_form345
 from .form_d_parser import parse_form_d
+from .n_port_p_parser import parse_nport_p
+from .basic_13d_parser import parse_13d
+from .basic_13g_parser import parse_13g
 
 class Parser:
 
@@ -27,6 +30,12 @@ class Parser:
             return parse_form345(filename)
         elif filing_type == 'D':
             return parse_form_d(filename)
+        elif filing_type == 'NPORT-P':
+            return parse_nport_p(filename)
+        elif filing_type == 'SC 13D':
+            return parse_13d(filename)
+        elif filing_type == 'SC 13G':
+            return parse_13g(filename)
         else:
             data = parse_textual_filing(url=filename, return_type='json')
         return data 

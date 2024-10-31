@@ -61,19 +61,22 @@ def parse_8k(filename: Path) -> dict:
    for i, (current_match, start_pos) in enumerate(matches[:-1]):
        section_text = parse_section(text, start_pos, matches[i + 1][1])
        if section_text:
-           # Special case for signatures
-           key = ("signatures" if "signatures" in current_match.lower() 
-                 else f"item{current_match.lower().replace('item', '').strip()}")
-           result["document"][key] = section_text
+            if "signature" in current_match.lower():
+                key = "signatures" 
+            else:
+                key = f"item{current_match.lower().replace('item', '').strip()}"
+            result["document"][key] = section_text
    
    # Process last section
    last_match, last_pos = matches[-1]
    section_text = parse_section(text, last_pos, len(text))
    if section_text:
-       key = ("signatures" if "signatures" in last_match.lower()
-             else f"item{last_match.lower().replace('item', '').strip()}")
-       result["document"][key] = section_text
-   
+        if "signature" in last_match.lower():
+            key = "signatures" 
+        else:
+            key = f"item{last_match.lower().replace('item', '').strip()}"
+        result["document"][key] = section_text
+    
    return result
 
 class DuplicateSectionError(Exception):
