@@ -87,16 +87,19 @@ class Filing:
         return items
 
     def _flatten_dict(self, d, parent_key=''):
+        items = {}
+        
         if isinstance(d, list):
             return [self._flatten_dict(item) for item in d]
-            
-        items = {}
+                
         for k, v in d.items():
             new_key = f"{parent_key}_{k}" if parent_key else k
+            
             if isinstance(v, dict):
                 items.update(self._flatten_dict(v, new_key))
             else:
-                items[new_key] = v
+                items[new_key] = str(v)
+                    
         return items
    
     def __iter__(self):
@@ -114,7 +117,7 @@ class Filing:
         elif self.filing_type in ['3', '4', '5']:
             return iter(self._flatten_dict(self.data['holdings']))
         elif self.filing_type == 'D':
-            return iter(self.data['document']['relatedPersonsList']['relatedPersonInfo'])
+            return iter(self._flatten_dict(self.data['document']['relatedPersonsList']['relatedPersonInfo']))
         elif self.filing_type == 'NPORT-P':
             return iter(self._flatten_dict(self.data['document']['formData']['invstOrSecs']['invstOrSec']))
         elif self.filing_type == 'SC 13D':
