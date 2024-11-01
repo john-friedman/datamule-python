@@ -55,6 +55,36 @@ class Filing:
                     writer.writerow(row)
 
         return output_filename
+    
+    def _document_to_section_text(self, document_data, parent_key=''):
+        items = []
+        
+        if isinstance(document_data, dict):
+            for key, value in document_data.items():
+                # Build the section name
+                section = f"{parent_key}_{key}" if parent_key else key
+                
+                # If the value is a dict, recurse
+                if isinstance(value, dict):
+                    items.extend(self._document_to_section_text(value, section))
+                # If it's a list, handle each item
+                elif isinstance(value, list):
+                    for i, item in enumerate(value):
+                        if isinstance(item, dict):
+                            items.extend(self._document_to_section_text(item, f"{section}_{i+1}"))
+                        else:
+                            items.append({
+                                'section': f"{section}_{i+1}",
+                                'text': str(item)
+                            })
+                # Base case - add the item
+                else:
+                    items.append({
+                        'section': section,
+                        'text': str(value)
+                    })
+        
+        return items
 
     def _flatten_dict(self, d, parent_key=''):
         if isinstance(d, list):
@@ -73,12 +103,21 @@ class Filing:
         if not self.data:
             self.parse_filing()
 
-        if 'metadata' in self.data.keys():
-            if 'document' in self.data.keys():
-                return iter(self._flatten_dict(self.data['document']))
-            elif 'holdings' in self.data.keys():
-                return iter(self._flatten_dict(self.data['holdings']))
-            else:
-                return iter(self.data)
-
-        return iter(self.data)
+        if self.filing_type == '13F-HR-INFORMATIONTABLE':
+            return iter(self.data)
+        elif self.filing_type == '8-K':
+            return iter(self._document_to_section_text(self.data['document']))
+        elif self.filing_type == '10-K':
+            return iter(self._document_to_section_text(self.data['document']))
+        elif self.filing_type == '10-Q':
+            return iter(self._document_to_section_text(self.data['document']))
+        elif self.filing_type in ['3', '4', '5']:
+            return iter(self._flatten_dict(self.data['holdings']))
+        elif self.filing_type == 'D':
+            return iter(self.data['document']['relatedPersonsList']['relatedPersonInfo'])
+        elif self.filing_type == 'NPORT-P':
+            return iter(self._flatten_dict(self.data['document']['formData']['invstOrSecs']['invstOrSec']))
+        elif self.filing_type == 'SC 13D':
+            return iter(self._document_to_section_text(self.data['document']))
+        elif self.filing_type == 'SC 13G':
+            return iter(self._document_to_section_text(self.data['document']))

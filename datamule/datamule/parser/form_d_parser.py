@@ -1,75 +1,70 @@
 from xml.etree import ElementTree as ET
 
+def element_to_dict(elem):
+    """Convert an XML element to dict preserving structure."""
+    result = {}
+    
+    # Add attributes directly to result
+    if elem.attrib:
+        result.update(elem.attrib)
+        
+    # Add text content if present and no children
+    if elem.text and elem.text.strip():
+        text = elem.text.strip()
+        if not len(elem):  # No children
+            return text
+        else:
+            result['text'] = text
+            
+    # Process children
+    for child in elem:
+        child_data = element_to_dict(child)
+        child_tag = child.tag.split('}')[-1]  # Remove namespace
+        
+        if child_tag in result:
+            # Convert to list if multiple elements
+            if not isinstance(result[child_tag], list):
+                result[child_tag] = [result[child_tag]]
+            result[child_tag].append(child_data)
+        else:
+            result[child_tag] = child_data
+            
+    return result
+
 def parse_form_d(filepath):
-   root = ET.parse(filepath).getroot()
-   
-   result = {
-       'metadata': {
-           'schemaVersion': root.findtext('schemaVersion'),
-           'submissionType': root.findtext('submissionType'), 
-           'testOrLive': root.findtext('testOrLive'),
-           'issuer': {
-               'cik': root.findtext('.//primaryIssuer/cik'),
-               'name': root.findtext('.//primaryIssuer/entityName'),
-               'entityType': root.findtext('.//primaryIssuer/entityType'),
-               'jurisdiction': root.findtext('.//primaryIssuer/jurisdictionOfInc'),
-               'phone': root.findtext('.//primaryIssuer/issuerPhoneNumber'),
-               'previousNames': [n.text for n in root.findall('.//issuerPreviousNameList/value')],
-               'edgarNames': [n.text for n in root.findall('.//edgarPreviousNameList/value')],
-               'overFiveYears': root.findtext('.//yearOfInc/overFiveYears') == 'true',
-               'address': {
-                   'street': root.findtext('.//primaryIssuer/issuerAddress/street1'),
-                   'city': root.findtext('.//primaryIssuer/issuerAddress/city'),
-                   'state': root.findtext('.//primaryIssuer/issuerAddress/stateOrCountry'),
-                   'zip': root.findtext('.//primaryIssuer/issuerAddress/zipCode')
-               }
-           }
-       },
-       'document': {
-           'relatedPersons': [
-               {
-                   'name': f"{person.findtext('.//firstName') or ''} {person.findtext('.//middleName') or ''} {person.findtext('.//lastName') or ''}".strip(),
-                   'relationships': [r.text for r in person.findall('.//relationship')]
-               }
-               for person in root.findall('.//relatedPersonInfo')
-           ],
-           'offering': {
-               'industry': root.findtext('.//industryGroup/industryGroupType'),
-               'revenueRange': root.findtext('.//issuerSize/revenueRange'),
-               'exemptions': [e.text for e in root.findall('.//federalExemptionsExclusions/item')],
-               'isNewFiling': not root.findtext('.//isAmendment') == 'true',
-               'saleDate': root.findtext('.//dateOfFirstSale/value'),
-               'moreThanOneYear': root.findtext('.//durationOfOffering/moreThanOneYear') == 'true',
-               'isEquityType': root.findtext('.//typesOfSecuritiesOffered/isEquityType') == 'true',
-               'businessCombination': {
-                   'isBusinessCombo': root.findtext('.//businessCombinationTransaction/isBusinessCombinationTransaction') == 'true',
-                   'clarification': root.findtext('.//businessCombinationTransaction/clarificationOfResponse')
-               },
-               'minimumInvestment': root.findtext('.//minimumInvestmentAccepted'),
-               'amounts': {
-                   'total': root.findtext('.//totalOfferingAmount'),
-                   'sold': root.findtext('.//totalAmountSold'),
-                   'remaining': root.findtext('.//totalRemaining')
-               },
-               'investors': {
-                   'count': root.findtext('.//totalNumberAlreadyInvested'),
-                   'hasNonAccredited': root.findtext('.//hasNonAccreditedInvestors') == 'true'
-               },
-               'fees': {
-                   'salesCommissions': root.findtext('.//salesCommissions/dollarAmount'),
-                   'findersFees': root.findtext('.//findersFees/dollarAmount'),
-                   'clarification': root.findtext('.//salesCommissionsFindersFees/clarificationOfResponse')
-               },
-               'proceeds': {
-                   'used': root.findtext('.//useOfProceeds/grossProceedsUsed/dollarAmount'),
-                   'clarification': root.findtext('.//useOfProceeds/clarificationOfResponse')
-               },
-               'signature': {
-                   'name': root.findtext('.//nameOfSigner'),
-                   'title': root.findtext('.//signatureTitle'),
-                   'date': root.findtext('.//signatureDate')
-               }
-           }
-       }
-   }
-   return result
+    """Parse Form D XML file into metadata and document sections."""
+    # Parse XML
+    tree = ET.parse(filepath)
+    root = tree.getroot()
+    
+    # Remove namespaces for cleaner processing
+    for elem in root.iter():
+        if '}' in elem.tag:
+            elem.tag = elem.tag.split('}')[-1]
+    
+    # Convert entire document to dict
+    full_dict = element_to_dict(root)
+    
+    # Separate metadata and document content
+    result = {
+        'metadata': {},
+        'document': {}
+    }
+    
+    # Extract metadata
+    metadata_fields = {
+        'schemaVersion',
+        'submissionType',
+        'testOrLive',
+        'primaryIssuer'  # Including all issuer information in metadata
+    }
+    
+    for field in metadata_fields:
+        if field in full_dict:
+            result['metadata'][field] = full_dict[field]
+            del full_dict[field]  # Remove from full_dict to avoid duplication
+    
+    # Everything else goes to document
+    result['document'] = full_dict
+    
+    return result
