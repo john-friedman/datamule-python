@@ -1,5 +1,8 @@
 # Changelog
-## v0.374 (2024-10-19)
+## v0.376 (2024-11-01)
+- added parsing and iterable objects for form 3, 13F-HR, NPORT-P, SC 13D, SC 13G, 10-Q, 10-K, 8-K, D
+
+## v0.374 (2024-10-29)
 - added filing.write_json, filing.write_csv
 
 ## v0.373 (2024-10-29)

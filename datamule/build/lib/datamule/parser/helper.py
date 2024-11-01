@@ -1,5 +1,7 @@
 from selectolax.parser import HTMLParser
 
+
+# This will be modified in the future to remove SEC specific code such as <PAGE> tags
 def load_text_content(filename):
     with open(filename) as f:
         return f.read().translate(str.maketrans({

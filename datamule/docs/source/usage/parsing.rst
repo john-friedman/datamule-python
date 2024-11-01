@@ -14,7 +14,9 @@ Parse XBRL data in JSON format to tables:
 Filing Parser
 ------------
 
-Currently parses 10-Ks, 10-Qs, 8-Ks, 13-F Information Tables using a basic parser. For a more advanced parser see the Textual Filing Parsing below.
+Currently parses Forms 3, 13F-HR, NPORT-P, SC 13D, SC 13G, 10-Q, 10-K, 8-K, and D using a basic parser. 
+
+For a more advanced parser see the Textual Filing Parsing below.
 `Example <https://github.com/john-friedman/datamule-python/issues/4#issuecomment-2443299869>`_
 
 TODO: 10-KSB etc
@@ -29,6 +31,10 @@ TODO: 10-KSB etc
     
     # Parse the filing, using the declared filing type
     parsed_data = filing.parse_filing()
+
+    # Or access the data as iterable e.g.
+    import pandas as pd 
+    df = pd.DataFrame(filing)
 
 Example: accessing 10-K item 1c text:
 
