@@ -3,27 +3,27 @@ from pathlib import Path
 from .helper import load_file_content, clean_title
 
 ITEM_PATTERN_13G = re.compile(
-   r"(?:^[ \t]*)"
-   r"(?:"
-   r"(?:Item|ITEM)\s*"
-   r"(?:"
-   r"1|"
-   r"2|"
-   r"3|"
-   r"4|"
-   r"5|"
-   r"6|"
-   r"7|"
-   r"8|"
-   r"9|"
-   r"10|"
-   r"11|"
-   r"12"
-   r")"
-   r"|"
-   r"SIGNATURES?"
-   r")",
-   re.IGNORECASE | re.MULTILINE
+    r"(?:^[ \t]*)"
+    r"(?:"
+    r"(?:Item|ITEM)\s*"
+    r"(?:"
+    r"10|"  # Move 10 to the start so it's matched before 1
+    r"11|"  # Similarly with 11 and 12
+    r"12|"
+    r"1|"
+    r"2|"
+    r"3|"
+    r"4|"
+    r"5|"
+    r"6|"
+    r"7|"
+    r"8|"
+    r"9"
+    r")"
+    r"|"
+    r"SIGNATURES?"
+    r")",
+    re.IGNORECASE | re.MULTILINE
 )
 
 def parse_13g(filename: Path) -> dict:

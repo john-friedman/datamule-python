@@ -1,4 +1,6 @@
 # Changelog
+## v0.377 (2024-11-01)
+- fixed SC 13G Item 10 being detected as Item 1
 ## v0.376 (2024-11-01)
 - added parsing and iterable objects for form 3, 13F-HR, NPORT-P, SC 13D, SC 13G, 10-Q, 10-K, 8-K, D
 
