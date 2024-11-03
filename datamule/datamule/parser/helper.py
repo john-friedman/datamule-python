@@ -18,7 +18,7 @@ def load_html_content(filename):
     for node in hidden_nodes:
         node.decompose()
     
-    blocks = {'p', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'article', 'section', 'li', 'td'}
+    blocks = {'p', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'article', 'section', 'li', 'td','a'}
     lines = []
     current_line = []
     

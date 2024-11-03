@@ -124,3 +124,5 @@ class Filing:
             return iter(self._document_to_section_text(self.data['document']))
         elif self.filing_type == 'SC 13G':
             return iter(self._document_to_section_text(self.data['document']))
+        elif self.filing_type == '10-D/A':
+            return iter(self._document_to_section_text(self.data['document']))

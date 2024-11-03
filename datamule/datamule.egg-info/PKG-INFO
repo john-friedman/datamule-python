@@ -5,11 +5,32 @@ Summary: Making it easier to use SEC filings.
 Home-page: https://github.com/john-friedman/datamule-python
 Author: John Friedman
 Description-Content-Type: text/markdown
-Provides-Extra: filing_viewer
+Requires-Dist: aiohttp
+Requires-Dist: aiolimiter
+Requires-Dist: tqdm
+Requires-Dist: requests
+Requires-Dist: nest_asyncio
+Requires-Dist: aiofiles
+Requires-Dist: polars
+Requires-Dist: setuptools
+Requires-Dist: selectolax
+Provides-Extra: filing-viewer
+Requires-Dist: lxml; extra == "filing-viewer"
 Provides-Extra: mulebot
-Provides-Extra: mulebot_server
-Provides-Extra: dataset_builder
+Requires-Dist: openai; extra == "mulebot"
+Provides-Extra: mulebot-server
+Requires-Dist: flask; extra == "mulebot-server"
+Provides-Extra: dataset-builder
+Requires-Dist: pandas; extra == "dataset-builder"
+Requires-Dist: google-generativeai; extra == "dataset-builder"
+Requires-Dist: psutil; extra == "dataset-builder"
 Provides-Extra: all
+Requires-Dist: flask; extra == "all"
+Requires-Dist: pandas; extra == "all"
+Requires-Dist: lxml; extra == "all"
+Requires-Dist: openai; extra == "all"
+Requires-Dist: psutil; extra == "all"
+Requires-Dist: google-generativeai; extra == "all"
 
 # datamule
 

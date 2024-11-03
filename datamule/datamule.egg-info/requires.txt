@@ -10,10 +10,10 @@ selectolax
 
 [all]
 flask
-psutil
 pandas
 lxml
 openai
+psutil
 google-generativeai
 
 [dataset_builder]
