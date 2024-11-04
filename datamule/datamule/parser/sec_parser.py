@@ -9,7 +9,6 @@ from .form_d_parser import parse_form_d
 from .n_port_p_parser import parse_nport_p
 from .basic_13d_parser import parse_13d
 from .basic_13g_parser import parse_13g
-from .basic_10da_parser import parse_10da
 
 class Parser:
 
@@ -37,8 +36,6 @@ class Parser:
             return parse_13d(filename)
         elif filing_type == 'SC 13G':
             return parse_13g(filename)
-        elif filing_type == '10-D/A':
-            return parse_10da(filename)
         else:
             data = parse_textual_filing(url=filename, return_type='json')
         return data 
