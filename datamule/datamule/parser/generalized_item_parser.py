@@ -1,17 +1,10 @@
 # Parses e.g. 10-K, 10-Q,..... any form with items and/or parts
-from .helper import load_file_content, clean_title
+from .helper import load_file_content, clean_title, clean_text
 from pathlib import Path
 import re
 
-# example
-mapping_dict_10k = {
-   'part1': {'item1', 'item1a', 'item1b', 'item1c', 'item2', 'item3', 'item4'},
-   'part2': {'item5', 'item6', 'item7', 'item7a', 'item8', 'item9', 'item9a', 'item9b', 'item9c'},
-   'part3': {'item10', 'item11', 'item12', 'item13', 'item14'},
-   'part4': {'item15', 'item16'}
-}
 
-pattern = re.compile(r'^\s*(item|signature(?:\.?s)?)\s+\d+', re.I | re.M)
+pattern = re.compile(r'^\s*(item|signature(?:\.?s)?)\s+\d+(?:[\.a-z])?', re.I | re.M)
 
 def find_anchors(content):
    anchors = []
@@ -28,43 +21,54 @@ def find_anchors(content):
    return anchors
 
 # I think this works, but I haven't tested it yet. Test with 10k and 10ksb
-def map_sections(content, anchors, mapping_dict):
-    result = {}
+def map_sections(content, anchors):
     positions = anchors + [('end', len(content))]
     
+    result = {}
     for i, (title, start) in enumerate(positions[:-1]):
         _, next_start = positions[i + 1]
         section_text = content[start:next_start].strip()
+        result[title.lower()] = clean_text(section_text)
+    
+    def sort_key(x):
+        match = re.search(r'item\s+(\d+)(?:[\.a-z])?', x[0], re.I)
+        if not match:
+            return float('inf')
+        num = match.group(0).lower()
+        # This will sort 1, 1a, 1b, 2, 2a etc
+        return float(re.findall(r'\d+', num)[0]) + (ord(num[-1]) - ord('a') + 1) / 100 if num[-1].isalpha() else float(re.findall(r'\d+', num)[0])
         
-        # Find which part contains this item
-        for part, items in mapping_dict.items():
-            if title.lower() in items:
-                if part not in result:
-                    result[part] = {}
-                result[part][title] = section_text
-                break
+    return dict(sorted(result.items(), key=sort_key))
 
-    return result
+# def find_content_start(anchors):
+#     def find_first_non_repeating(seq):
+#         for i in range(len(seq)):
+#             remaining = seq[i:]
+#             # Get same length subsequence from the next position
+#             next_seq = seq[i + 1:i + 1 + len(remaining)]
+#             if remaining != next_seq and len(next_seq) > 0:
+#                 return i
+#         return 0  # Default to start if no pattern found
+    
+#     return find_first_non_repeating([title for title, _ in anchors])
 
-# TODO, I think we can start where a mostly complete sequence starts.
-# I would like to generalize for 8-K structure as well...
-def find_content_start(content):
-    pass
-
-def generalized_parser(filename,mapping_dict):
+def generalized_parser(filename):
     # load content
     content = load_file_content(filename)
 
-    # Skip tables of contents
-    content_start = find_content_start(content)
-
-    content = content[content_start:]
-
-    # extract sections, assign text based on mapping_dict
+    # find anchors
     anchors = find_anchors(content)
-    result = map_sections(content, anchors, mapping_dict)
 
+    # Skip tables of contents. Not implemented yet, since we overwrite the keys anyway.
+    # content_start = find_content_start(anchors)
+    # print(content_start)
+
+    result = {}
     # assign metadata
     result["metadata"] = {"document_name": Path(filename).stem}
+
+    # extract sections, assign text based on mapping_dict
+    result['document'] = map_sections(content, anchors)
+
     return result
 

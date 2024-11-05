@@ -1,5 +1,5 @@
 from selectolax.parser import HTMLParser
-
+import re
 
 # This will be modified in the future to remove SEC specific code such as <PAGE> tags
 def load_text_content(filename):
@@ -67,3 +67,7 @@ def load_file_content(filename):
 def clean_title(title: str) -> str:
     """Clean up section title by removing newlines, periods, and all whitespace, converting to lowercase."""
     return ''.join(title.replace('\n', '').replace('.', '').split()).lower()
+
+def clean_text(text):
+    text = text.strip()
+    return re.sub(r'\s*PART\s+[IVX]+\s*$', '', text, flags=re.I)

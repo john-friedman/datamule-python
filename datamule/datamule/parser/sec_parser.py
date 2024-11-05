@@ -9,6 +9,8 @@ from .form_d_parser import parse_form_d
 from .n_port_p_parser import parse_nport_p
 from .basic_13d_parser import parse_13d
 from .basic_13g_parser import parse_13g
+from .generalized_item_parser import generalized_parser
+from .mappings import *
 
 class Parser:
 
@@ -22,8 +24,8 @@ class Parser:
             return parse_13f_hr_information_table_xml(filename)
         elif filing_type == '8-K':
             return parse_8k(filename)
-        elif filing_type == '10-K':
-            return parse_10k(filename)
+        elif filing_type in ['10-K','10KSB']:
+            return generalized_parser(filename)
         elif filing_type == '10-Q':
             return parse_10q(filename)
         elif filing_type in ['3', '4', '5']:
