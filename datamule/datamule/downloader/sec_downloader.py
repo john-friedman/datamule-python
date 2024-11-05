@@ -54,6 +54,9 @@ class Downloader:
             'data.sec.gov': AsyncLimiter(10, 1),
             'default': AsyncLimiter(10, 1)
         }
+        self.tickers = "all"
+        self.forms = ""
+        self.metadata_list = []
 
     def set_limiter(self, domain, rate_limit):
         """
@@ -106,6 +109,10 @@ class Downloader:
             except Exception as e:
                 print(f"Error downloading {url}: {str(e)}")
                 raise
+    
+    def add_metadata(self, metadata):
+        self.metadata_list.append(metadata)
+
 
     async def write_content_to_file(self, content, filepath):
         """Write content to a file asynchronously."""
@@ -196,21 +203,39 @@ class Downloader:
     def run_download_urls(self, urls, filenames, output_dir='filings'):
         """Download a list of URLs to a specified directory"""
         return asyncio.run(self._download_urls(urls, filenames, output_dir))
+    
+    def run_save_metadata(self):
+        """Saves the EFTS API Response to a file"""
+        tickers = self.tickers
+        forms = self.forms
+        metadata = self.metadata_list
+        timestamp = str(datetime.now().strftime("%Y-%m-%d_%H-%M-%S"))
 
-    async def _get_filing_urls_from_efts(self, base_url, sics=None, items=None, file_types=None):
+        filename = f"{tickers}_{forms}_{timestamp}.json"
+
+        os.makedirs('metadata', exist_ok=True)
+
+        with open(f"metadata/{filename}",'w+') as fp:
+            json.dump(metadata,fp)
+
+
+
+    async def _get_filing_urls_from_efts(self, base_url,save_metadata, sics=None, items=None, file_types=None):
         """Asynchronously fetch all filing URLs from a given EFTS URL."""
         full_urls = []
         file_dates = []
+        
         start, page_size = 0, 100
         async with aiohttp.ClientSession() as session:
             while True:
                 tasks = [self._fetch_json_from_url(session, f"{base_url}&from={start + i * page_size}") for i in range(10)]
                 results = await atqdm.gather(*tasks, desc="Fetching URLs")
+
                 for data in results:
                     if data and 'hits' in data:
                         hits = data['hits']['hits']
                         if not hits:
-                            return full_urls
+                            return full_urls,file_dates
                         
                         for hit in hits:
                             # Check SIC filter
@@ -227,7 +252,7 @@ class Downloader:
                                 filing_date = hit['_source']['file_date']
                                 full_urls.append(url)
                                 file_dates.append(filing_date)
-                                
+                                self.add_metadata(hit['_source'])                                
                         
                         if start + page_size > data['hits']['total']['value']:
                             return full_urls,file_dates
@@ -289,7 +314,7 @@ class Downloader:
 
         return urls[::-1]
 
-    async def _conductor(self, efts_url, return_urls, output_dir, sics, items, file_types):
+    async def _conductor(self, efts_url, return_urls, output_dir, sics, items, file_types, save_metadata):
         """Conduct the download process based on the number of filings."""
         async with aiohttp.ClientSession() as session:
             try:
@@ -302,7 +327,7 @@ class Downloader:
         all_primary_doc_urls = []
         
         if total_filings < 10000:
-            primary_doc_urls, file_dates = await self._get_filing_urls_from_efts(efts_url, sics=sics, items=items, file_types=file_types)
+            primary_doc_urls, file_dates = await self._get_filing_urls_from_efts(efts_url, sics=sics, items=items, file_types=file_types, save_metadata=save_metadata)
             primary_doc_urls = [fix_filing_url(url) for url in primary_doc_urls]
             print(f"{efts_url}\nTotal filings: {len(primary_doc_urls)}")
             
@@ -314,17 +339,17 @@ class Downloader:
                 return None
         
         for subset_url in self._subset_urls(efts_url, total_filings):
-            sub_primary_doc_urls = await self._conductor(efts_url=subset_url, return_urls=True, output_dir=output_dir, sics=sics, items=items, file_types=file_types)
+            sub_primary_doc_urls = await self._conductor(efts_url=subset_url, return_urls=True, output_dir=output_dir, sics=sics, items=items, file_types=file_types,save_metadata=save_metadata)
             
             if return_urls:
                 all_primary_doc_urls.extend(sub_primary_doc_urls)
             else:
-                filenames = [f"{url.split('/')[7]}_{url.split('/')[-1]}" for url in sub_primary_doc_urls]
+                filenames = [f"{url.split('/')[7]}.htm" for url in sub_primary_doc_urls]
                 await self._download_urls(urls=sub_primary_doc_urls, filenames=filenames, output_dir=output_dir)
         
         return all_primary_doc_urls if return_urls else None
 
-    def download(self, output_dir='filings', return_urls=False, cik=None, ticker=None, 
+    def download(self, output_dir='filings', return_urls=False, save_metadata=False, cik=None, ticker=None, 
                 form=None, date=None, sics=None, items=None, file_types=None):
         """
         Download SEC filings based on specified criteria and filters.
@@ -337,6 +362,8 @@ class Downloader:
                 Defaults to 'filings'.
             return_urls (bool, optional): If True, returns list of filing URLs instead of
                 downloading them. Defaults to False.
+            save_metadata (bool,optional): If True, Saves the metadata from the EFTS API for each
+                request in the 'metadata' folder. Defaults to False
             cik (str|list, optional): Central Index Key(s) of companies. Can be single CIK
                 or list of CIKs. Will be zero-padded to 10 digits.
             ticker (str, optional): Stock ticker symbol. Will be converted to CIK.
@@ -405,10 +432,14 @@ class Downloader:
         base_url = "https://efts.sec.gov/LATEST/search-index"
         params = {}
 
+        "refreshing in memory metadata for each request"
+        self.metadata_list = []
+
         if sum(x is not None for x in [cik, ticker]) > 1:
             raise ValueError('Please provide no more than one identifier: cik or ticker')
         
         if ticker is not None:
+            self.tickers=ticker
             cik = identifier_to_cik(ticker)
                 
         if cik:
@@ -417,8 +448,12 @@ class Downloader:
             else:
                 formatted_ciks = str(cik).zfill(10)
             params['ciks'] = formatted_ciks
-        
+
+            self.tickers=formatted_ciks
+
         params['forms'] = ','.join(form) if isinstance(form, list) else form if form else "-0"
+
+        self.forms = params['forms']
         
         if file_types:
             params['q'] = '-'
@@ -427,6 +462,7 @@ class Downloader:
             else:
                 params['file_type'] = file_types
         
+
         if isinstance(date, list):
             efts_url_list = [self.generate_url(base_url, {**params, 'startdt': d, 'enddt': d}) for d in date]
         elif isinstance(date, tuple):
@@ -438,10 +474,13 @@ class Downloader:
         all_primary_doc_urls = []
         for efts_url in efts_url_list:
             if return_urls:
-                all_primary_doc_urls.extend(asyncio.run(self._conductor(efts_url=efts_url, return_urls=True, output_dir=output_dir, sics=sics, items=items, file_types=file_types)))
+                all_primary_doc_urls.extend(asyncio.run(self._conductor(efts_url=efts_url, return_urls=True, output_dir=output_dir, sics=sics, items=items, file_types=file_types, save_metadata=save_metadata)))
             else:
-                asyncio.run(self._conductor(efts_url=efts_url, return_urls=False, output_dir=output_dir, sics=sics, items=items, file_types=file_types))
+                asyncio.run(self._conductor(efts_url=efts_url, return_urls=False, output_dir=output_dir, sics=sics, items=items, file_types=file_types,save_metadata=save_metadata))
         
+        if save_metadata:
+            self.run_save_metadata()
+
         return all_primary_doc_urls if return_urls else None
 
     def download_company_concepts(self, output_dir='company_concepts', cik=None, ticker=None):
@@ -793,3 +832,26 @@ class Downloader:
             >>> downloader.update_company_tickers()
         """
         asyncio.run(self._download_company_tickers())
+
+    def get_metadata(self,key=None,value=None):
+
+        """
+        Prints the metadata accompanied with a request
+        1. In memory - gets the metadata for the current request
+        2. In memory with key and value - gets the metadata for a particular entry using any key and value
+        """
+        if not key and not value:
+
+            return self.metadata_list
+
+        if not any(isinstance(entry, dict) and key in entry for entry in self.metadata_list):
+            raise ValueError(f"Key '{key}' does not exist in any of the metadata entries.")
+    
+        filtered_data = []
+        for entry in self.metadata_list:
+            entry_value = entry.get(key)
+            
+            if entry_value == value or (isinstance(entry_value, list) and value in entry_value):
+                filtered_data.append(entry)
+        
+        return filtered_data
