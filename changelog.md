@@ -1,4 +1,6 @@
 # Changelog
+## v0.377 (2024-11-04)
+- changed default output filepath to accession number _ YYYY-MM-DD. Thank you Anirudh.
 ## v0.376 (2024-11-01)
 - added parsing and iterable objects for form 3, 13F-HR, NPORT-P, SC 13D, SC 13G, 10-Q, 10-K, 8-K, D
 

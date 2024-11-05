@@ -200,6 +200,7 @@ class Downloader:
     async def _get_filing_urls_from_efts(self, base_url, sics=None, items=None, file_types=None):
         """Asynchronously fetch all filing URLs from a given EFTS URL."""
         full_urls = []
+        file_dates = []
         start, page_size = 0, 100
         async with aiohttp.ClientSession() as session:
             while True:
@@ -223,12 +224,15 @@ class Downloader:
                             
                             if sic_match and item_match and file_type_match:
                                 url = f"https://www.sec.gov/Archives/edgar/data/{hit['_source']['ciks'][0]}/{hit['_id'].split(':')[0].replace('-', '')}/{hit['_id'].split(':')[1]}"
+                                filing_date = hit['_source']['file_date']
                                 full_urls.append(url)
+                                file_dates.append(filing_date)
+                                
                         
                         if start + page_size > data['hits']['total']['value']:
-                            return full_urls
+                            return full_urls,file_dates
                 start += 10 * page_size
-        return full_urls
+        return full_urls,file_dates
 
     async def _number_of_efts_filings(self, session, url):
         """Get the number of filings from a given EFTS URL asynchronously."""
@@ -298,14 +302,14 @@ class Downloader:
         all_primary_doc_urls = []
         
         if total_filings < 10000:
-            primary_doc_urls = await self._get_filing_urls_from_efts(efts_url, sics=sics, items=items, file_types=file_types)
+            primary_doc_urls, file_dates = await self._get_filing_urls_from_efts(efts_url, sics=sics, items=items, file_types=file_types)
             primary_doc_urls = [fix_filing_url(url) for url in primary_doc_urls]
             print(f"{efts_url}\nTotal filings: {len(primary_doc_urls)}")
             
             if return_urls:
                 return primary_doc_urls
             else:
-                filenames = [f"{url.split('/')[7]}_{url.split('/')[-1]}" for url in primary_doc_urls]
+                filenames = [f"{url.split('/')[7]}_{filing_date}.htm" for url,filing_date in zip(primary_doc_urls,file_dates)]
                 await self._download_urls(urls=primary_doc_urls, filenames=filenames, output_dir=output_dir)
                 return None
         
