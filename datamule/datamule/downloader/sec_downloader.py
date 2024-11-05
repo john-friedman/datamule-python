@@ -833,25 +833,11 @@ class Downloader:
         """
         asyncio.run(self._download_company_tickers())
 
-    def get_metadata(self,key=None,value=None):
+    def get_metadata(self,adsh):
 
         """
-        Prints the metadata accompanied with a request
-        1. In memory - gets the metadata for the current request
-        2. In memory with key and value - gets the metadata for a particular entry using any key and value
+        Prints the metadata accompanied with a request - gets the metadata for a particular accesision number          
         """
-        if not key and not value:
-
-            return self.metadata_list
-
-        if not any(isinstance(entry, dict) and key in entry for entry in self.metadata_list):
-            raise ValueError(f"Key '{key}' does not exist in any of the metadata entries.")
-    
-        filtered_data = []
-        for entry in self.metadata_list:
-            entry_value = entry.get(key)
-            
-            if entry_value == value or (isinstance(entry_value, list) and value in entry_value):
-                filtered_data.append(entry)
         
-        return filtered_data
+    
+        return [entry for entry in self.metadata_list if entry.get('adsh') == adsh]
