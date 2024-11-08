@@ -3,8 +3,12 @@ from .helper import load_file_content, clean_title, clean_text
 from pathlib import Path
 import re
 
+# OK figured out general pattern
+# find toc
+# figure out mapping. we do need it
+# just do mapping tonight
 
-pattern = re.compile(r'^\s*(item|signature(?:\.?s)?)\s+\d+(?:[\.a-z])?', re.I | re.M)
+pattern = re.compile(r'^\s*(?:item\s+\d+(?:\.\d+)?(?:[a-z])?|signature(?:\.?s)?)\s*', re.I | re.M)
 
 def find_anchors(content):
    anchors = []
@@ -20,7 +24,7 @@ def find_anchors(content):
    
    return anchors
 
-# I think this works, but I haven't tested it yet. Test with 10k and 10ksb
+# I think this works, but I haven't tested it extensively.
 def map_sections(content, anchors):
     positions = anchors + [('end', len(content))]
     

@@ -68,6 +68,8 @@ def clean_title(title: str) -> str:
     """Clean up section title by removing newlines, periods, and all whitespace, converting to lowercase."""
     return ''.join(title.replace('\n', '').replace('.', '').split()).lower()
 
+# This is a bit hacky, removes PART IV, PART V etc from the end of the text
+# we do this to avoid having to map for general cases
 def clean_text(text):
     text = text.strip()
     return re.sub(r'\s*PART\s+[IVX]+\s*$', '', text, flags=re.I)
