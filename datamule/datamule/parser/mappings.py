@@ -1,60 +1,95 @@
-# I will likely move/change this file.
+# I will liekely move this file to a more appropriate location in the future
 
 mapping_dict_10k = {
-    'part1': {  # General Company Information and Risk Assessment
-        'item1',    # Business
-        'item1a',   # Risk Factors
-        'item1b',   # Unresolved Staff Comments
-        'item1c',   # Cybersecurity
-        'item2',    # Properties
-        'item3',    # Legal Proceedings
-        'item4'     # Mine Safety Disclosures
+    'filing_summary': 'Annual report providing comprehensive overview of company business, financial performance, risks, and operations. Contains audited financial statements, business description, risk analysis, and detailed operational metrics.',
+    
+    'structure': {
+        'part1': {
+            'summary': 'Overview of company operations, risks, and material business information. Contains key business strategy, market position, competitive landscape, and significant challenges.',
+            'item1': {
+                'summary': 'Detailed description of business operations including primary products/services, markets served, distribution methods, competitive conditions, regulatory environment, and business segments'
+            },
+            'item1a': {
+                'summary': 'Comprehensive list and explanation of significant risks and uncertainties that could affect business performance, financial condition, and stock value'
+            },
+            'item1b': {
+                'summary': 'Disclosure of any unresolved comments or issues raised by SEC staff regarding company filings'
+            },
+            'item1c': {
+                'summary': 'Information about cybersecurity risks, incidents, risk management, governance, and strategy'
+            },
+            'item2': {
+                'summary': 'Description of principal physical properties, including manufacturing facilities, offices, warehouses, and other significant real estate'
+            },
+            'item3': {
+                'summary': 'Description of material pending legal proceedings, including potential impacts on business'
+            },
+            'item4': {
+                'summary': 'Disclosure of mine safety violations, citations, and orders received under the Mine Act'
+            }
+        },
+        'part2': {
+            'summary': 'Detailed financial performance analysis, including management insights, market risks, and complete audited financial statements.',
+            'item5': {
+                'summary': 'Information about company stock, including market data, price history, dividends, share repurchases, and securities offerings'
+            },
+            'item6': {
+                'summary': 'Selected historical financial data showing trends in financial condition and results over past 5 years'
+            },
+            'item7': {
+                'summary': 'Management\'s analysis of financial condition, operations results, liquidity, capital resources, and future outlook'
+            },
+            'item7a': {
+                'summary': 'Discussion of exposure to market risk including interest rates, foreign exchange, commodities, and hedging activities'
+            },
+            'item8': {
+                'summary': 'Audited financial statements, including balance sheets, income statements, cash flows, and comprehensive notes'
+            },
+            'item9': {
+                'summary': 'Information about changes in independent auditors and any disagreements with them'
+            },
+            'item9a': {
+                'summary': 'Management\'s assessment of internal control effectiveness over financial reporting'
+            },
+            'item9b': {
+                'summary': 'Other significant information not reported elsewhere in the filing'
+            }
+        },
+        'part3': {
+            'summary': 'Information about company leadership, compensation structures, and corporate governance practices.',
+            'item10': {
+                'summary': 'Information about directors and executive officers, including their experience, qualifications, and corporate governance practices'
+            },
+            'item11': {
+                'summary': 'Detailed information about executive compensation, including salary, bonuses, stock awards, and compensation policies'
+            },
+            'item12': {
+                'summary': 'Information about beneficial ownership of securities by management and major shareholders, equity compensation plans'
+            },
+            'item13': {
+                'summary': 'Description of transactions with related parties and potential conflicts of interest'
+            },
+            'item14': {
+                'summary': 'Disclosure of fees paid for audit and non-audit services provided by independent accountants'
+            }
+        },
+        'part4': {
+            'summary': 'Supporting documentation and additional required disclosures.',
+            'item15': {
+                'summary': 'List of all exhibits, including material contracts, corporate documents, and supplementary financial information'
+            },
+            'item16': {
+                'summary': 'Optional summary of key information from the entire Form 10-K filing'
+            }
+        }
     },
-    'part2': {  # Financial Information and Management Analysis
-        'item5',    # Market for Registrant's Common Equity
-        'item6',    # Selected Financial Data
-        'item7',    # Management Discussion & Analysis (MD&A)
-        'item7a',   # Quantitative and Qualitative Disclosures About Market Risk
-        'item8',    # Financial Statements
-        'item9',    # Changes in and Disagreements with Accountants
-        'item9a',   # Controls and Procedures
-        'item9b'    # Other Information
-    },
-    'part3': {  # Management and Corporate Governance
-        'item10',   # Directors and Executive Officers
-        'item11',   # Executive Compensation
-        'item12',   # Security Ownership
-        'item13',   # Certain Relationships and Related Transactions
-        'item14'    # Principal Accountant Fees and Services
-    },
-    'part4': {  # Supplemental Information and Exhibits
-        'item15',   # Exhibits and Financial Statement Schedules
-        'item16'    # Form 10-K Summary (Optional)
-    }
-}
-
-mapping_dict_10ksb = {
-    'part1': {  # General Business Information
-        'item1',    # Description of Business
-        'item2',    # Properties
-        'item3',    # Legal Proceedings
-        'item4'     # Submission of Matters to a Vote of Security Holders
-    },
-    'part2': {  # Financial Information
-        'item5',    # Market for Common Equity and Related Stockholder Matters
-        'item6',    # Management's Plan of Operation
-        'item7',    # Financial Statements
-        'item8',    # Changes In and Disagreements With Accountants on Accounting and Financial Disclosure
-        'item8a',   # Controls and Procedures
-        'item8b'    # Other Information
-    },
-    'part3': {  # Management and Control
-        'item9',    # Directors, Executive Officers, Promoters and Control Persons
-        'item10',   # Executive Compensation
-        'item11',   # Security Ownership of Certain Beneficial Owners and Management
-        'item12'    # Certain Relationships and Related Transactions
-    },
-    'part4': {  # Additional Information
-        'item13'    # Exhibits and Reports on Form 8-K
+    
+    'search_hints': {
+        'financial_metrics': ['item6', 'item7', 'item8'],
+        'risk_assessment': ['item1a', 'item1c', 'item7a'],
+        'business_overview': ['item1', 'item2'],
+        'leadership_info': ['item10', 'item11'],
+        'material_events': ['item3', 'item9', 'item13'],
+        'operational_data': ['item1', 'item7', 'item2']
     }
 }
