@@ -36,14 +36,17 @@ def UUdecoder(text):
     return bytes(result)
 
 def read_line(line):
-    key = line.split('<')[1].split('>')[0]
-    value = ''
-    if key.startswith('/'):
-        return None
-    if line.endswith('>'):
-        return {key: {}}
-    value = line.split('>', 1)[1].strip()
-    return {key: value}
+    try:
+        key = line.split('<')[1].split('>')[0]
+        value = ''
+        if key.startswith('/'):
+            return None
+        if line.endswith('>'):
+            return {key: {}}
+        value = line.split('>', 1)[1].strip()
+        return {key: value}
+    except:
+        raise ValueError(f"Could not parse line: {line}")
 
 def parse_submission(filepath, output_dir):
     shutil.rmtree(output_dir, ignore_errors=True)
@@ -114,6 +117,9 @@ def parse_submission(filepath, output_dir):
             elif line == '</TEXT>':
                 in_text = False
                 tag_stack.pop()
+
+            elif line == '':
+                pass
                 
             elif in_text:
                 text_content.append(line)
