@@ -48,6 +48,7 @@ def get_dataset_builder():
 from .datamule_api import parse_textual_filing
 from .helper import load_package_csv, load_package_dataset
 from .global_vars import *
+from .parser.sgml_parser import parse_submission
 
 # Define classes with delayed initialization
 class Downloader:

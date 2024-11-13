@@ -82,13 +82,19 @@ def parse_submission(filepath, output_dir):
                 if current_document and text_content and 'FILENAME' in current_document:
                     output_path = os.path.join(output_dir, current_document['FILENAME'])
                     
-                    # Check if content is UUencoded
-                    if text_content and text_content[0].startswith('begin 644'):
-                        # Join with newlines and decode
-                        content = UUdecoder('\n'.join(text_content))
-                        # Write binary content
-                        with open(output_path, 'wb') as f:
-                            f.write(content)
+                    # Find UUencoded content within text
+                    begin_idx = next((i for i, line in enumerate(text_content) if line.startswith('begin')), -1)
+                    if begin_idx != -1:
+                        # Find matching end
+                        end_idx = next((i for i, line in enumerate(text_content[begin_idx:]) if line == 'end'), -1)
+                        if end_idx != -1:
+                            end_idx = begin_idx + end_idx + 1  # Adjust index relative to full text
+                            # Extract and decode UU content
+                            uu_content = text_content[begin_idx:end_idx]
+                            content = UUdecoder('\n'.join(uu_content))
+                            # Write binary content
+                            with open(output_path, 'wb') as f:
+                                f.write(content)
                     else:
                         # Write normal text content
                         with open(output_path, 'w', encoding='utf-8') as f:
@@ -134,4 +140,3 @@ def parse_submission(filepath, output_dir):
     metadata_path = os.path.join(output_dir, 'metadata.json')
     with open(metadata_path, 'w') as f:
         json.dump(metadata, f, indent=4)
-    
