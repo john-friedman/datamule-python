@@ -63,6 +63,7 @@ def parse_submission(filepath, output_dir):
     text_content = []
     in_text = False
     doc_sequence = 1
+    last_key = None  # Track most recent key
     
     with open(filepath, 'r') as file:
         for line in file:
@@ -79,6 +80,7 @@ def parse_submission(filepath, output_dir):
                 metadata['documents'].append(current_document)
                 path_stack = [current_document]
                 tag_stack.append('DOCUMENT')
+                last_key = None  # Reset last_key for new document
                 
             elif line == '</DOCUMENT>':
                 if current_document and text_content:
@@ -108,16 +110,18 @@ def parse_submission(filepath, output_dir):
                 current_document = None
                 path_stack = [metadata['submission']]
                 tag_stack.pop()
+                last_key = None  # Reset last_key after document ends
                 
             elif line == '<TEXT>':
                 in_text = True
                 text_content = []
                 tag_stack.append('TEXT')
+                last_key = None  # Reset last_key in text section
                 
             elif line == '</TEXT>':
                 in_text = False
                 tag_stack.pop()
-
+                
             elif line == '':
                 pass
                 
@@ -125,24 +129,31 @@ def parse_submission(filepath, output_dir):
                 text_content.append(line)
                 
             else:
-                parsed = read_line(line)
-                if parsed is None:  # Closing tag
-                    if tag_stack:
-                        tag_stack.pop()
-                        if len(path_stack) > 1:  # Don't pop the root stack
-                            path_stack.pop()
-                else:  # Opening tag or value
-                    key = list(parsed.keys())[0]
-                    value = parsed[key]
-                    
-                    if isinstance(value, dict):  # Opening tag
-                        current_dict = path_stack[-1]
-                        current_dict[key] = {}
-                        path_stack.append(current_dict[key])
-                        tag_stack.append(key)
-                    else:  # Value tag
-                        current_dict = path_stack[-1]
-                        current_dict[key] = value
+                if line.startswith('<'):
+                    parsed = read_line(line)
+                    if parsed is None:  # Closing tag
+                        if tag_stack:
+                            tag_stack.pop()
+                            if len(path_stack) > 1:  # Don't pop the root stack
+                                path_stack.pop()
+                            last_key = None  # Reset last_key after closing tag
+                    else:  # Opening tag or value
+                        key = list(parsed.keys())[0]
+                        value = parsed[key]
+                        
+                        if isinstance(value, dict):  # Opening tag
+                            current_dict = path_stack[-1]
+                            current_dict[key] = {}
+                            path_stack.append(current_dict[key])
+                            tag_stack.append(key)
+                            last_key = None  # Reset last_key for new nested section
+                        else:  # Value tag
+                            current_dict = path_stack[-1]
+                            current_dict[key] = value
+                            last_key = key  # Track this key for potential multi-line values
+                elif last_key:  # Line without < - append to previous value
+                    current_dict = path_stack[-1]
+                    current_dict[last_key] += ' ' + line.strip()
     
     metadata_path = os.path.join(output_dir, 'metadata.json')
     with open(metadata_path, 'w') as f:
