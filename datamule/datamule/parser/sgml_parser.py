@@ -1,7 +1,6 @@
 import shutil
 import os
 import json
-from time import time
 
 def UUdecoder(text):
     # skip first and last line
@@ -46,7 +45,6 @@ def read_line(line):
     value = line.split('>', 1)[1].strip()
     return {key: value}
 
-# Parses a submission file in SGML format (e.g. nc)
 def parse_submission(filepath, output_dir):
     shutil.rmtree(output_dir, ignore_errors=True)
     os.makedirs(output_dir, exist_ok=True)
@@ -61,6 +59,7 @@ def parse_submission(filepath, output_dir):
     current_document = None
     text_content = []
     in_text = False
+    doc_sequence = 1
     
     with open(filepath, 'r') as file:
         for line in file:
@@ -79,8 +78,10 @@ def parse_submission(filepath, output_dir):
                 tag_stack.append('DOCUMENT')
                 
             elif line == '</DOCUMENT>':
-                if current_document and text_content and 'FILENAME' in current_document:
-                    output_path = os.path.join(output_dir, current_document['FILENAME'])
+                if current_document and text_content:
+                    # Use sequence number for filename
+                    output_path = os.path.join(output_dir, f"doc_{doc_sequence}.txt")
+                    doc_sequence += 1
                     
                     # Find UUencoded content within text
                     begin_idx = next((i for i, line in enumerate(text_content) if line.startswith('begin')), -1)
