@@ -2,8 +2,20 @@ import shutil
 import os
 import json
 
+# We should simplify.
+
+# metadata and document makes sense
+
+# we send text to another function
+# it goes line by line to find if uuencoded (e.g. begin)
+# if uuencoded decode until end
+# if not, write text to file starting with first nonempty line.
+
+class UUEncodeError(Exception):
+    pass
+
+
 def UUdecoder(text):
-    # skip first and last line
     text = text.split('\n')[1:-1]
     result = bytearray()
     
@@ -61,9 +73,11 @@ def parse_submission(filepath, output_dir):
     path_stack = [metadata['submission']]
     current_document = None
     text_content = []
+    last_key = None
+
     in_text = False
-    doc_sequence = 1
-    last_key = None  # Track most recent key
+    is_uuencoded = False
+    
     
     with open(filepath, 'r') as file:
         for line in file:
@@ -80,29 +94,22 @@ def parse_submission(filepath, output_dir):
                 metadata['documents'].append(current_document)
                 path_stack = [current_document]
                 tag_stack.append('DOCUMENT')
-                last_key = None  # Reset last_key for new document
+                last_key = None
                 
             elif line == '</DOCUMENT>':
                 if current_document and text_content:
-                    # Use sequence number for filename
-                    output_path = os.path.join(output_dir, f"doc_{doc_sequence}.txt")
-                    doc_sequence += 1
-                    
-                    # Find UUencoded content within text
-                    begin_idx = next((i for i, line in enumerate(text_content) if line.startswith('begin')), -1)
-                    if begin_idx != -1:
-                        # Find matching end
-                        end_idx = next((i for i, line in enumerate(text_content[begin_idx:]) if line == 'end'), -1)
-                        if end_idx != -1:
-                            end_idx = begin_idx + end_idx + 1  # Adjust index relative to full text
-                            # Extract and decode UU content
-                            uu_content = text_content[begin_idx:end_idx]
-                            content = UUdecoder('\n'.join(uu_content))
-                            # Write binary content
-                            with open(output_path, 'wb') as f:
-                                f.write(content)
+                    if 'FILENAME' in current_document:
+                        output_path = os.path.join(output_dir, current_document['FILENAME'])
+                    elif 'SEQUENCE' in current_document:
+                        output_path = os.path.join(output_dir, f'{current_document["SEQUENCE"]}.txt')
                     else:
-                        # Write normal text content
+                        raise ValueError("Document does not have a FILENAME or SEQUENCE")
+                    
+                    if is_uuencoded:
+                        content = UUdecoder('\n'.join(text_content))
+                        with open(output_path, 'wb') as f:
+                            f.write(content)
+                    else:
                         with open(output_path, 'w', encoding='utf-8') as f:
                             f.write('\n'.join(text_content))
                             
@@ -110,13 +117,13 @@ def parse_submission(filepath, output_dir):
                 current_document = None
                 path_stack = [metadata['submission']]
                 tag_stack.pop()
-                last_key = None  # Reset last_key after document ends
+                last_key = None
                 
             elif line == '<TEXT>':
                 in_text = True
                 text_content = []
                 tag_stack.append('TEXT')
-                last_key = None  # Reset last_key in text section
+                last_key = None
                 
             elif line == '</TEXT>':
                 in_text = False
@@ -126,32 +133,38 @@ def parse_submission(filepath, output_dir):
                 pass
                 
             elif in_text:
-                text_content.append(line)
+                # where we target uuencode
+                if line:
+                    if not text_content:  # First non-empty line
+                        if line.startswith('begin 644'):
+                            is_uuencoded = True
+
+                    text_content.append(line)
                 
             else:
                 if line.startswith('<'):
                     parsed = read_line(line)
-                    if parsed is None:  # Closing tag
+                    if parsed is None:
                         if tag_stack:
                             tag_stack.pop()
-                            if len(path_stack) > 1:  # Don't pop the root stack
+                            if len(path_stack) > 1:
                                 path_stack.pop()
-                            last_key = None  # Reset last_key after closing tag
-                    else:  # Opening tag or value
+                            last_key = None
+                    else:
                         key = list(parsed.keys())[0]
                         value = parsed[key]
                         
-                        if isinstance(value, dict):  # Opening tag
+                        if isinstance(value, dict):
                             current_dict = path_stack[-1]
                             current_dict[key] = {}
                             path_stack.append(current_dict[key])
                             tag_stack.append(key)
-                            last_key = None  # Reset last_key for new nested section
-                        else:  # Value tag
+                            last_key = None
+                        else:
                             current_dict = path_stack[-1]
                             current_dict[key] = value
-                            last_key = key  # Track this key for potential multi-line values
-                elif last_key:  # Line without < - append to previous value
+                            last_key = key
+                elif last_key:
                     current_dict = path_stack[-1]
                     current_dict[last_key] += ' ' + line.strip()
     
