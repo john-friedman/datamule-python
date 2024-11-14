@@ -2,14 +2,9 @@ import shutil
 import os
 import json
 
-# We should simplify.
+# fix uudecoder
+# test for jpg / pdf
 
-# metadata and document makes sense
-
-# we send text to another function
-# it goes line by line to find if uuencoded (e.g. begin)
-# if uuencoded decode until end
-# if not, write text to file starting with first nonempty line.
 
 class UUEncodeError(Exception):
     pass
