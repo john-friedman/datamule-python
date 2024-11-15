@@ -4,14 +4,18 @@ import json
 
 # fix uudecoder
 # test for jpg / pdf
+# i think we just want to find beg and end maybe?
+# we use begin 644 and for end either end or ``
 
+
+# probably change output name to accension number _ sequence
 
 class UUEncodeError(Exception):
     pass
 
 
 def UUdecoder(text):
-    text = text.split('\n')[1:-1]
+    text = text.split('\n')
     result = bytearray()
     
     for line in text:
@@ -72,6 +76,8 @@ def parse_submission(filepath, output_dir):
 
     in_text = False
     is_uuencoded = False
+    start_text = False
+    end_text = False
     
     
     with open(filepath, 'r') as file:
@@ -101,6 +107,7 @@ def parse_submission(filepath, output_dir):
                         raise ValueError("Document does not have a FILENAME or SEQUENCE")
                     
                     if is_uuencoded:
+                        is_uuencoded = False
                         content = UUdecoder('\n'.join(text_content))
                         with open(output_path, 'wb') as f:
                             f.write(content)
@@ -122,19 +129,36 @@ def parse_submission(filepath, output_dir):
                 
             elif line == '</TEXT>':
                 in_text = False
+                start_text = False
+                end_text = False
                 tag_stack.pop()
                 
             elif line == '':
                 pass
                 
+            # FIX - esp end
             elif in_text:
+                if end_text:
+                    continue
                 # where we target uuencode
-                if line:
-                    if not text_content:  # First non-empty line
+                # we need to add only do if we have not found text
+                if start_text:
+                    if line in ['end','`']:
+                        end_text = True
+                    else:
+                        text_content.append(line)
+                else:
+                    if line:
                         if line.startswith('begin 644'):
                             is_uuencoded = True
+                        # this is a kind of sloppy way to check for e.g. <PDF>
+                        # probably hard code this to pdf, etc
+                        elif line.startswith('<PDF>'):
+                            pass
+                        else:
+                            start_text = True
 
-                    text_content.append(line)
+                    
                 
             else:
                 if line.startswith('<'):
