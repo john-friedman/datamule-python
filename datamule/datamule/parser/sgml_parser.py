@@ -2,24 +2,19 @@ import shutil
 import os
 import json
 
-# fix uudecoder
-# test for jpg / pdf
-# i think we just want to find beg and end maybe?
-# we use begin 644 and for end either end or ``
 
-
-# probably change output name to accension number _ sequence
+# jpg is broken rn
+# need to rename accc no _ seq
 
 class UUEncodeError(Exception):
     pass
-
 
 def UUdecoder(text):
     text = text.split('\n')
     result = bytearray()
     
     for line in text:
-        if not line: 
+        if not line or line in ['end', '`']: 
             continue
             
         length = (ord(line[0]) - 32) & 63
@@ -76,13 +71,12 @@ def parse_submission(filepath, output_dir):
 
     in_text = False
     is_uuencoded = False
-    start_text = False
-    end_text = False
-    
+    collecting_binary = False
+    lines_since_text_start = 0  # Track lines since <TEXT>
     
     with open(filepath, 'r') as file:
         for line in file:
-            line = line.strip()
+            line = line.rstrip('\n')  # Preserve spaces but remove newline
             
             if line == '<SUBMISSION>':
                 tag_stack.append('SUBMISSION')
@@ -107,7 +101,6 @@ def parse_submission(filepath, output_dir):
                         raise ValueError("Document does not have a FILENAME or SEQUENCE")
                     
                     if is_uuencoded:
-                        is_uuencoded = False
                         content = UUdecoder('\n'.join(text_content))
                         with open(output_path, 'wb') as f:
                             f.write(content)
@@ -120,45 +113,44 @@ def parse_submission(filepath, output_dir):
                 path_stack = [metadata['submission']]
                 tag_stack.pop()
                 last_key = None
+                is_uuencoded = False
+                collecting_binary = False
+                lines_since_text_start = 0
                 
             elif line == '<TEXT>':
                 in_text = True
                 text_content = []
                 tag_stack.append('TEXT')
                 last_key = None
+                lines_since_text_start = 0
                 
             elif line == '</TEXT>':
                 in_text = False
-                start_text = False
-                end_text = False
                 tag_stack.pop()
                 
-            elif line == '':
-                pass
-                
-            # FIX - esp end
             elif in_text:
-                if end_text:
-                    continue
-                # where we target uuencode
-                # we need to add only do if we have not found text
-                if start_text:
-                    if line in ['end','`']:
-                        end_text = True
+                if collecting_binary:
+                    if line in ['end', '`']:
+                        collecting_binary = False
                     else:
                         text_content.append(line)
                 else:
-                    if line:
-                        if line.startswith('begin 644'):
-                            is_uuencoded = True
-                        # this is a kind of sloppy way to check for e.g. <PDF>
-                        # probably hard code this to pdf, etc
-                        elif line.startswith('<PDF>'):
-                            pass
-                        else:
-                            start_text = True
-
-                    
+                    stripped_line = line.strip()
+                    if stripped_line == '<PDF>':
+                        lines_since_text_start = 0  # Reset counter after PDF marker
+                        continue
+                        
+                    if lines_since_text_start == 0 and not stripped_line:
+                        # Skip empty lines right after <TEXT> or <PDF>
+                        continue
+                        
+                    if lines_since_text_start == 0 and stripped_line.startswith('begin 644'):
+                        is_uuencoded = True
+                        collecting_binary = True
+                    else:
+                        if not is_uuencoded:
+                            text_content.append(line)
+                        lines_since_text_start += 1
                 
             else:
                 if line.startswith('<'):
