@@ -9,12 +9,12 @@ setuptools
 selectolax
 
 [all]
-openai
-flask
-lxml
-google-generativeai
 pandas
+lxml
+openai
+google-generativeai
 psutil
+flask
 
 [dataset_builder]
 pandas
