@@ -12,7 +12,6 @@ import aiofiles
 import json
 import csv
 from pkg_resources import resource_filename
-import glob
 
 
 from ..global_vars import headers, dataset_10q_url_list,dataset_10k_url_list
@@ -20,31 +19,12 @@ from ..helper import identifier_to_cik, load_package_csv, fix_filing_url
 from .ftd import get_all_ftd_urls, process_all_ftd_zips
 from .dropbox_downloader import DropboxDownloader
 from .information_table_13f import download_and_process_13f_data
-from ..sec_filing import Filing
-
 class RetryException(Exception):
     def __init__(self, url, retry_after=601):
         self.url = url
         self.retry_after = retry_after
 
 class Downloader:
-    """
-    A class for asynchronously downloading and managing SEC filing data.
-
-    This class provides functionality to download various types of SEC filings,
-    company metadata, and other SEC datasets. It handles rate limiting for SEC.gov
-    domains and provides both synchronous and asynchronous interfaces.
-
-    Attributes:
-        headers (dict): HTTP headers used for requests, including User-Agent
-        dataset_path (str): Default path for storing downloaded datasets
-        domain_limiters (dict): Rate limiters for different SEC.gov domains
-
-    Example:
-        >>> downloader = Downloader()
-        >>> downloader.set_headers("Your Name your@email.com")
-        >>> downloader.download(form="10-K", ticker="AAPL", date="2023-01-01")
-    """
     def __init__(self):
         self.headers = headers
         self.dataset_path = 'datasets'
@@ -54,36 +34,16 @@ class Downloader:
             'data.sec.gov': AsyncLimiter(10, 1),
             'default': AsyncLimiter(10, 1)
         }
+        self.metadata = None
 
     def set_limiter(self, domain, rate_limit):
-        """
-        Set a custom rate limit for a specific domain.
-
-        Args:
-            domain (str): The domain to set the rate limit for
-            rate_limit (int): Number of requests allowed per second
-
-        Example:
-            >>> downloader.set_limiter('www.sec.gov', 5)
-        """
         self.domain_limiters[domain] = AsyncLimiter(rate_limit, 1)
 
     def set_headers(self, user_agent):
-        """
-        Set custom headers for HTTP requests.
-
-        Args:
-            user_agent (str): User agent string for SEC.gov requests
-                Should be in format "Name Email"
-
-        Example:
-            >>> downloader.set_headers("Your Name your@email.com")
-        """
         self.headers = {'User-Agent': user_agent}
 
 
     def get_limiter(self, url):
-        """Get the appropriate rate limiter for a given URL."""
         domain = urlparse(url).netloc
         return self.domain_limiters.get(domain, self.domain_limiters['default'])
     
@@ -114,20 +74,6 @@ class Downloader:
             await f.write(content)
 
     def generate_url(self, base_url, params):
-        """
-        Generate a complete URL by combining base URL with query parameters.
-
-        Args:
-            base_url (str): Base URL (e.g., 'https://efts.sec.gov/search')
-            params (dict): Query parameters to append
-
-        Returns:
-            str: Complete URL with encoded parameters
-
-        Example:
-            >>> generate_url('https://api.sec.gov', {'form': '10-K'})
-            'https://api.sec.gov?form=10-K'
-        """
         return f"{base_url}?{urlencode(params)}"
 
     async def download_file(self, session, url, output_path):
@@ -197,38 +143,6 @@ class Downloader:
         """Download a list of URLs to a specified directory"""
         return asyncio.run(self._download_urls(urls, filenames, output_dir))
 
-    async def _get_filing_urls_from_efts(self, base_url, sics=None, items=None, file_types=None):
-        """Asynchronously fetch all filing URLs from a given EFTS URL."""
-        full_urls = []
-        start, page_size = 0, 100
-        async with aiohttp.ClientSession() as session:
-            while True:
-                tasks = [self._fetch_json_from_url(session, f"{base_url}&from={start + i * page_size}") for i in range(10)]
-                results = await atqdm.gather(*tasks, desc="Fetching URLs")
-                for data in results:
-                    if data and 'hits' in data:
-                        hits = data['hits']['hits']
-                        if not hits:
-                            return full_urls
-                        
-                        for hit in hits:
-                            # Check SIC filter
-                            sic_match = sics is None or any(int(sic) in sics for sic in hit['_source'].get('sics', []))
-                            
-                            # Check item filter
-                            item_match = items is None or any(item in items for item in hit['_source'].get('items', []))
-                            
-                            # Check file type filter
-                            file_type_match = file_types is None or hit['_source'].get('file_type') in (file_types if isinstance(file_types, list) else [file_types])
-                            
-                            if sic_match and item_match and file_type_match:
-                                url = f"https://www.sec.gov/Archives/edgar/data/{hit['_source']['ciks'][0]}/{hit['_id'].split(':')[0].replace('-', '')}/{hit['_id'].split(':')[1]}"
-                                full_urls.append(url)
-                        
-                        if start + page_size > data['hits']['total']['value']:
-                            return full_urls
-                start += 10 * page_size
-        return full_urls
 
     async def _number_of_efts_filings(self, session, url):
         """Get the number of filings from a given EFTS URL asynchronously."""
@@ -284,8 +198,52 @@ class Downloader:
             current_start = current_end + timedelta(days=1)
 
         return urls[::-1]
-
-    async def _conductor(self, efts_url, return_urls, output_dir, sics, items, file_types):
+    
+    async def _get_filing_urls_from_efts(self, base_url, sics=None, items=None, file_types=None, save_metadata=False, output_dir=None):
+        """Asynchronously fetch all filing URLs from a given EFTS URL."""
+        urls = []
+        start, page_size = 0, 100
+        
+        if save_metadata:
+            metadata_file = os.path.join(output_dir, 'metadata.jsonl')
+            os.makedirs(output_dir, exist_ok=True)
+            
+        async with aiohttp.ClientSession() as session:
+            while True:
+                tasks = [self._fetch_json_from_url(session, f"{base_url}&from={start + i * page_size}") for i in range(10)]
+                results = await atqdm.gather(*tasks, desc="Fetching URLs")
+                for data in results:
+                    if data and 'hits' in data:
+                        hits = data['hits']['hits']
+                        if not hits:
+                            return urls
+                        
+                        for hit in hits:
+                            # Check SIC filter
+                            sic_match = sics is None or any(int(sic) in sics for sic in hit['_source'].get('sics', []))
+                            
+                            # Check item filter
+                            item_match = items is None or any(item in items for item in hit['_source'].get('items', []))
+                            
+                            # Check file type filter
+                            file_type_match = file_types is None or hit['_source'].get('file_type') in (file_types if isinstance(file_types, list) else [file_types])
+                            
+                            if sic_match and item_match and file_type_match:
+                                url = f"https://www.sec.gov/Archives/edgar/data/{hit['_source']['ciks'][0]}/{hit['_id'].split(':')[0].replace('-', '')}/{hit['_id'].split(':')[1]}"
+                                urls.append(url)
+                                
+                                if save_metadata:
+                                    accession_num = hit['_id'].split(':')[0].replace('-', '')
+                                    metadata = {accession_num: hit}
+                                    async with aiofiles.open(metadata_file, 'a') as f:
+                                        await f.write(json.dumps(metadata) + '\n')
+                        
+                        if start + page_size > data['hits']['total']['value']:
+                            return urls
+                start += 10 * page_size
+        return urls
+    
+    async def _conductor(self, efts_url, output_dir, sics, items, file_types, save_metadata=False):
         """Conduct the download process based on the number of filings."""
         async with aiohttp.ClientSession() as session:
             try:
@@ -293,111 +251,20 @@ class Downloader:
             except RetryException as e:
                 print(f"Rate limited when fetching number of filings. Retrying after {e.retry_after} seconds.")
                 await asyncio.sleep(e.retry_after)
-                return await self._conductor(efts_url, return_urls, output_dir, sics, items, file_types)
+                return await self._conductor(efts_url, output_dir, sics, items, file_types, save_metadata)
 
-        all_primary_doc_urls = []
-        
         if total_filings < 10000:
-            primary_doc_urls = await self._get_filing_urls_from_efts(efts_url, sics=sics, items=items, file_types=file_types)
-            primary_doc_urls = [fix_filing_url(url) for url in primary_doc_urls]
-            print(f"{efts_url}\nTotal filings: {len(primary_doc_urls)}")
-            
-            if return_urls:
-                return primary_doc_urls
-            else:
-                filenames = [f"{url.split('/')[7]}_{url.split('/')[-1]}" for url in primary_doc_urls]
-                await self._download_urls(urls=primary_doc_urls, filenames=filenames, output_dir=output_dir)
-                return None
-        
-        for subset_url in self._subset_urls(efts_url, total_filings):
-            sub_primary_doc_urls = await self._conductor(efts_url=subset_url, return_urls=True, output_dir=output_dir, sics=sics, items=items, file_types=file_types)
-            
-            if return_urls:
-                all_primary_doc_urls.extend(sub_primary_doc_urls)
-            else:
-                filenames = [f"{url.split('/')[7]}_{url.split('/')[-1]}" for url in sub_primary_doc_urls]
-                await self._download_urls(urls=sub_primary_doc_urls, filenames=filenames, output_dir=output_dir)
-        
-        return all_primary_doc_urls if return_urls else None
+            urls = await self._get_filing_urls_from_efts(efts_url, sics=sics, items=items, file_types=file_types, save_metadata=save_metadata, output_dir=output_dir)
+            print(f"{efts_url}\nTotal filings: {len(urls)}")
+            filenames = [f"{url.split('/')[7]}_{url.split('/')[-1]}" for url in urls]
+            await self._download_urls(urls=urls, filenames=filenames, output_dir=output_dir)
+        else:
+            for subset_url in self._subset_urls(efts_url, total_filings):
+                await self._conductor(efts_url=subset_url, output_dir=output_dir, sics=sics, items=items, file_types=file_types, save_metadata=save_metadata)
 
-    def download(self, output_dir='filings', return_urls=False, cik=None, ticker=None, 
-                form=None, date=None, sics=None, items=None, file_types=None):
-        """
-        Download SEC filings based on specified criteria and filters.
 
-        This method queries the SEC EFTS API to download filings matching the provided criteria.
-        It handles rate limiting, pagination, and supports various filtering options.
-
-        Args:
-            output_dir (str, optional): Directory where downloaded filings will be saved.
-                Defaults to 'filings'.
-            return_urls (bool, optional): If True, returns list of filing URLs instead of
-                downloading them. Defaults to False.
-            cik (str|list, optional): Central Index Key(s) of companies. Can be single CIK
-                or list of CIKs. Will be zero-padded to 10 digits.
-            ticker (str, optional): Stock ticker symbol. Will be converted to CIK.
-                Mutually exclusive with cik parameter.
-            form (str|list, optional): SEC form type(s) to download. Examples:
-                - Single form: "10-K", "10-Q", "8-K"
-                - Multiple forms: ["10-K", "10-Q"]
-                - Defaults to "-0" (all forms)
-            date (str|tuple|list, optional): Filing date criteria. Can be:
-                - Single date: "2023-01-01"
-                - Date range tuple: ("2023-01-01", "2023-12-31")
-                - List of dates: ["2023-01-01", "2023-02-01"]
-                - Defaults to all dates from 2001-01-01 to present
-            sics (list, optional): Standard Industrial Classification codes to filter by.
-                Example: [1311, 2834]
-            items (list, optional): Form-specific item numbers to filter by.
-                Example: ["1.01", "2.01"] for 8-K items
-            file_types (str|list, optional): Types of files to download.
-                Examples: "EX-10", ["EX-10", "EX-21"]
-
-        Returns:
-            list|None: If return_urls=True, returns list of filing URLs.
-                Otherwise returns None.
-
-        Raises:
-            ValueError: If both cik and ticker are provided
-            aiohttp.ClientError: For HTTP request failures
-            RetryException: When SEC rate limit is hit
-
-        Examples:
-            Download Apple's 10-K filings from 2023:
-            >>> downloader = Downloader()
-            >>> downloader.download(
-            ...     ticker="AAPL",
-            ...     form="10-K",
-            ...     date=("2023-01-01", "2023-12-31")
-            ... )
-
-            Get URLs for multiple companies' 8-Ks:
-            >>> urls = downloader.download(
-            ...     cik=["320193", "789019"],
-            ...     form="8-K",
-            ...     return_urls=True
-            ... )
-
-            Download specific exhibits for a date range:
-            >>> downloader.download(
-            ...     ticker="MSFT",
-            ...     file_types=["EX-99.1"],
-            ...     date=("2022-01-01", "2022-12-31")
-            ... )
-
-            Download filings for specific SIC codes:
-            >>> downloader.download(
-            ...     form="10-Q",
-            ...     sics=[1311, 2834],  # Oil/Gas, Pharmaceutical
-            ...     date="2023-01-01"
-            ... )
-
-        Notes:
-            - The method handles SEC.gov rate limiting automatically
-            - Large date ranges are automatically split into smaller chunks
-            - Downloaded files are named as: {cik}_{filename}
-            - Use return_urls=True to get URLs without downloading
-        """
+    def download(self, output_dir='filings', cik=None, ticker=None, form=None, 
+                date=None, sics=None, items=None, file_types=None, save_metadata=False):
         base_url = "https://efts.sec.gov/LATEST/search-index"
         params = {}
 
@@ -431,44 +298,10 @@ class Downloader:
             date_str = date if date else f"2001-01-01,{datetime.now().strftime('%Y-%m-%d')}"
             efts_url_list = [self.generate_url(base_url, {**params, 'startdt': date_str.split(',')[0], 'enddt': date_str.split(',')[1]})]
         
-        all_primary_doc_urls = []
         for efts_url in efts_url_list:
-            if return_urls:
-                all_primary_doc_urls.extend(asyncio.run(self._conductor(efts_url=efts_url, return_urls=True, output_dir=output_dir, sics=sics, items=items, file_types=file_types)))
-            else:
-                asyncio.run(self._conductor(efts_url=efts_url, return_urls=False, output_dir=output_dir, sics=sics, items=items, file_types=file_types))
-        
-        return all_primary_doc_urls if return_urls else None
+            asyncio.run(self._conductor(efts_url=efts_url, output_dir=output_dir, sics=sics, items=items, file_types=file_types, save_metadata=save_metadata))
 
     def download_company_concepts(self, output_dir='company_concepts', cik=None, ticker=None):
-        """
-        Download XBRL company concepts and facts data from SEC's API.
-
-        Retrieves company financial facts in structured XBRL format, including historical values
-        for balance sheet, income statement, and other disclosure concepts.
-
-        Args:
-            output_dir (str, optional): Directory to save downloaded files.
-                Defaults to 'company_concepts'.
-            cik (str|list, optional): Central Index Key(s). Can be:
-                - Single CIK: "320193" 
-                - List of CIKs: ["320193", "789019"]
-                - If neither cik nor ticker provided, downloads all companies
-            ticker (str, optional): Stock ticker symbol. Will be converted to CIK.
-                Mutually exclusive with cik parameter.
-
-        Raises:
-            ValueError: If both cik and ticker are provided
-
-        Examples:
-            Download Apple's XBRL facts:
-            >>> downloader.download_company_concepts(ticker="AAPL")
-
-            Download multiple specific companies:
-            >>> downloader.download_company_concepts(
-            ...     cik=["320193", "789019"]  # Apple and Microsoft
-            ... )
-        """
         if sum(x is not None for x in [cik, ticker]) > 1:
             raise ValueError('Please provide no more than one identifier: cik or ticker')
         
@@ -592,23 +425,6 @@ class Downloader:
                 await asyncio.sleep(interval)
 
     def watch(self, interval=1, silent=True, form=None, cik=None, ticker=None, callback=None):
-        """
-        Monitor SEC EFTS API for new filings in real-time.
-
-        Args:
-            interval (int): Seconds between checks. Defaults to 1.
-            silent (bool): Suppress progress messages. Defaults to True.
-            form (str|list): Form type(s) to watch (e.g., "8-K", ["10-K", "10-Q"])
-            cik (str|list): CIK(s) to monitor
-            ticker (str): Ticker symbol to monitor (alternative to CIK)
-            callback (callable): Function called when new filings detected
-
-        Raises:
-            ValueError: If both cik and ticker provided
-
-        Example:
-            >>> downloader.watch(form="8-K", ticker="AAPL", callback=lambda x: print(f"New filings: {x}"))
-        """
         if sum(x is not None for x in [cik, ticker]) > 1:
             raise ValueError('Please provide no more than one identifier: cik or ticker')
         
@@ -707,20 +523,9 @@ class Downloader:
                     print(f"Warning: Could not remove temporary file {temp_file}: {str(e)}")
 
     def update_company_metadata(self):
-        """
-        Update local company metadata files with latest SEC data.
-
-        Downloads current company information including addresses, SIC codes,
-        and historical names. Creates/updates CSV files: company_metadata.csv
-        and company_former_names.csv.
-
-        Example:
-            >>> downloader.update_company_metadata()
-        """
         return asyncio.run(self._download_company_metadata())
     
     async def _download_company_tickers(self):
-        """Download and process the company tickers JSON file from the SEC."""
         url = 'https://www.sec.gov/files/company_tickers.json'
         
         # Define file paths
@@ -779,13 +584,52 @@ class Downloader:
                             print(f"Warning: Could not remove temporary file {temp_file}: {str(e)}")
 
     def update_company_tickers(self):
-        """
-        Update local CIK-to-ticker mapping files.
-
-        Downloads latest company tickers from SEC and updates company_tickers.csv
-        with current CIK, ticker, and company name data.
-
-        Example:
-            >>> downloader.update_company_tickers()
-        """
         asyncio.run(self._download_company_tickers())
+
+    def load_metadata(self, filepath):
+        metadata = []
+        with open(f"{filepath}/metadata.jsonl", 'r') as f:
+            for line in f:
+                if line.strip():  # Skip empty lines
+                    entry = json.loads(line)
+                    accession_num = next(iter(entry))
+                    doc_id = entry[accession_num]['_id']
+                    acc, filename = doc_id.split(':')
+                    row = {'accession_number': accession_num}
+                    row.update(entry[accession_num]['_source'])
+                    # Create primary doc URL using _id and cik
+                    cik = row['ciks'][0] if row.get('ciks') else ''
+                    acc_clean = acc.replace('-', '')
+                    row['primary_doc_url'] = f"https://www.sec.gov/Archives/edgar/data/{cik}/{acc_clean.zfill(18)}/{filename}"
+                    metadata.append(row)
+        self.metadata = metadata
+
+    def save_metadata_to_csv(self, output_filepath):
+        if not hasattr(self, 'metadata'):
+            return
+                
+        fieldnames = {'accession_number', 'primary_doc_url'}  # Start with both required fields
+        max_lengths = {}
+        
+        for item in self.metadata:
+            for key, value in item.items():
+                if key not in ['accession_number', 'primary_doc_url'] and isinstance(value, list):
+                    max_lengths[key] = max(max_lengths.get(key, 0), len(value))
+                    fieldnames.update(f"{key}_{i+1}" for i in range(len(value)))
+                else:
+                    fieldnames.add(key)
+        
+        with open(output_filepath, 'w', newline='') as f:
+            writer = csv.DictWriter(f, sorted(fieldnames))
+            writer.writeheader()
+            
+            for item in self.metadata:
+                row = {'accession_number': item['accession_number'], 'primary_doc_url': item['primary_doc_url']}
+                for key, value in item.items():
+                    if key not in ['accession_number', 'primary_doc_url']:
+                        if isinstance(value, list):
+                            for i, v in enumerate(value):
+                                row[f"{key}_{i+1}"] = v
+                        else:
+                            row[key] = value
+                writer.writerow(row)

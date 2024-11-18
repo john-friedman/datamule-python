@@ -13,6 +13,7 @@ datamule.egg-info/top_level.txt
 datamule/data/company_former_names.csv
 datamule/data/company_metadata.csv
 datamule/data/company_tickers.csv
+datamule/data/filing_types.csv
 datamule/data/ftd_locations.csv
 datamule/data/sec-glossary.csv
 datamule/data/xbrl_descriptions.csv
@@ -43,17 +44,3 @@ datamule/mulebot/mulebot_server/static/scripts/suggestions.js
 datamule/mulebot/mulebot_server/static/scripts/tableArtifacts.js
 datamule/mulebot/mulebot_server/static/scripts/utils.js
 datamule/mulebot/mulebot_server/templates/chat-minimalist.html
-datamule/parser/__init__.py
-datamule/parser/basic_10d_parser.py
-datamule/parser/basic_10k_parser.py
-datamule/parser/basic_10q_parser.py
-datamule/parser/basic_13d_parser.py
-datamule/parser/basic_13g_parser.py
-datamule/parser/basic_8k_parser.py
-datamule/parser/company_concepts_parser.py
-datamule/parser/form_d_parser.py
-datamule/parser/helper.py
-datamule/parser/information_table_parser_13fhr.py
-datamule/parser/insider_trading_parser.py
-datamule/parser/n_port_p_parser.py
-datamule/parser/sec_parser.py

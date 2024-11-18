@@ -16,7 +16,7 @@ extras["all"] = list(all_dependencies)
 setup(
     name="datamule",
     author="John Friedman",
-    version="0.377",
+    version="0.379",
     description="Making it easier to use SEC filings.",
     long_description=long_description,
     long_description_content_type='text/markdown',
