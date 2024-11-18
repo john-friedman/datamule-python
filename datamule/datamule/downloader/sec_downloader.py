@@ -34,6 +34,7 @@ class Downloader:
             'data.sec.gov': AsyncLimiter(10, 1),
             'default': AsyncLimiter(10, 1)
         }
+        self.metadata = None
 
     def set_limiter(self, domain, rate_limit):
         self.domain_limiters[domain] = AsyncLimiter(rate_limit, 1)
@@ -204,7 +205,7 @@ class Downloader:
         start, page_size = 0, 100
         
         if save_metadata:
-            metadata_file = os.path.join(output_dir, 'metadata.json')
+            metadata_file = os.path.join(output_dir, 'metadata.jsonl')
             os.makedirs(output_dir, exist_ok=True)
             
         async with aiohttp.ClientSession() as session:
@@ -584,3 +585,45 @@ class Downloader:
 
     def update_company_tickers(self):
         asyncio.run(self._download_company_tickers())
+
+    def load_metadata(self, filepath):
+        metadata = []
+        with open(f"{filepath}/metadata.jsonl", 'r') as f:
+            for line in f:
+                if line.strip():  # Skip empty lines
+                    entry = json.loads(line)
+                    accession_num = next(iter(entry))
+                    row = {'accession_number': accession_num}
+                    row.update(entry[accession_num]['_source'])
+                    metadata.append(row)
+        self.metadata = metadata
+
+    def save_metadata_to_csv(self, output_filepath):
+        if not hasattr(self, 'metadata'):
+            return
+                
+        fieldnames = {'accession_number'}  # Start with accession_number
+        max_lengths = {}
+        
+        for item in self.metadata:
+            for key, value in item.items():
+                if key != 'accession_number' and isinstance(value, list):
+                    max_lengths[key] = max(max_lengths.get(key, 0), len(value))
+                    fieldnames.update(f"{key}_{i+1}" for i in range(len(value)))
+                else:
+                    fieldnames.add(key)
+        
+        with open(output_filepath, 'w', newline='') as f:
+            writer = csv.DictWriter(f, sorted(fieldnames))
+            writer.writeheader()
+            
+            for item in self.metadata:
+                row = {'accession_number': item['accession_number']}
+                for key, value in item.items():
+                    if key != 'accession_number':
+                        if isinstance(value, list):
+                            for i, v in enumerate(value):
+                                row[f"{key}_{i+1}"] = v
+                        else:
+                            row[key] = value
+                writer.writerow(row)

@@ -39,6 +39,7 @@ The ``download()`` method accepts the following parameters:
 - **sics** (list, optional): Standard Industrial Classification codes to filter by. Example: [1311, 2834]
 - **items** (list, optional): Form-specific item numbers to filter by. Example: ["1.01", "2.01"] for 8-K items
 - **file_types** (str|list, optional): Types of files to download, such as exhibits. Examples: "EX-10", ["EX-10", "EX-21"]
+- **save_metadata** (bool, optional): If True, saves metadata to a jsonl file. Defaults to False.
 
 Examples
 ~~~~~~~~
@@ -80,7 +81,10 @@ You can watch for new filings:
 
     downloader.watch(interval=1, form='8-K', ticker='AAPL')
 
-Misc Information
-------------------
+Metadata
+--------
 
-The downloader can not distinguish between 10-K and 10-KSB (phased out in 2009).
+.. code-block:: python
+    downloader.download(form='10-K',output_dir='10-K',date=('2010-01-01','2010-01-31'),save_metadata=True)
+    downloader.load_metadata('10-K/')
+    downloader.save_metadata_to_csv('metadata.csv') # write metadata to csv
