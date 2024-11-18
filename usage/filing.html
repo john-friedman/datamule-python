@@ -1,0 +1,227 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Filing &mdash; datamule  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Parsing" href="parsing.html" />
+    <link rel="prev" title="Downloader" href="downloader.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            datamule
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Usage Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="downloader.html">Downloader</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Filing</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#data-structure">Data Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#methods">Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#parse-filing">parse_filing()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#write-json-output-filename-none">write_json(output_filename=None)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#write-csv-output-filename-none-accession-number-none">write_csv(output_filename=None, accession_number=None)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#notes">Notes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html">Parsing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_builder.html">Dataset Builder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filing_viewer.html">Filing Viewer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mulebot.html">MuleBot</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../datasets.html">Datasets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../known_issues.html">Known Issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/index.html">API Reference</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">datamule</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Usage Guide</a></li>
+      <li class="breadcrumb-item active">Filing</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/usage/filing.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="filing">
+<h1>Filing<a class="headerlink" href="#filing" title="Link to this heading"></a></h1>
+<p>Parse and write SEC filings (8-K, 10-Q, 10-K, 13F-HR-INFORMATIONTABLE) to JSON or CSV formats.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Filing</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">filing_type</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>str</em>) – Path to the filing file</p></li>
+<li><p><strong>filing_type</strong> (<em>str</em>) – Filing type (‘8-K’, ‘10-Q’, ‘10-K’, ‘13F-HR-INFORMATIONTABLE’)</p></li>
+</ul>
+</dd>
+</dl>
+<p>Note that a filing’s tabular data can be accessed directly.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datamule</span> <span class="kn">import</span> <span class="n">Filing</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">filing</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="data-structure">
+<h2>Data Structure<a class="headerlink" href="#data-structure" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt><strong>10-K/10-Q/8-K</strong>: Nested document structure</dt><dd><ul>
+<li><p>Contains hierarchical sections (document -&gt; item1 -&gt; subitem1a, etc.)</p></li>
+<li><p>CSV output flattens hierarchy with section paths (e.g., “document_item1_subitem1a”)</p></li>
+<li><p>Text content preserved in nested format for JSON output</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt><strong>13F-HR-INFORMATIONTABLE</strong>: Tabular structure</dt><dd><ul>
+<li><p>Each row represents a holding</p></li>
+<li><p>Direct mapping to CSV columns</p></li>
+<li><p>No nested flattening required</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Link to this heading"></a></h2>
+<section id="parse-filing">
+<h3>parse_filing()<a class="headerlink" href="#parse-filing" title="Link to this heading"></a></h3>
+<p>Parse the filing based on its type (nested or tabular).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Parsed filing data (dict)</p>
+</dd>
+</dl>
+</section>
+<section id="write-json-output-filename-none">
+<h3>write_json(output_filename=None)<a class="headerlink" href="#write-json-output-filename-none" title="Link to this heading"></a></h3>
+<p>Write data to JSON. Preserves nested structure for 10-K/10-Q/8-K filings.</p>
+</section>
+<section id="write-csv-output-filename-none-accession-number-none">
+<h3>write_csv(output_filename=None, accession_number=None)<a class="headerlink" href="#write-csv-output-filename-none-accession-number-none" title="Link to this heading"></a></h3>
+<p>Write data to CSV. Flattens nested documents or writes tabular data directly. If opening in Excel make sure to use From Text/CSV option otherwise the columns will not be separated correctly.</p>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datamule</span> <span class="kn">import</span> <span class="n">Downloader</span><span class="p">,</span> <span class="n">Filing</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">downloader</span> <span class="o">=</span> <span class="n">Downloader</span><span class="p">()</span>
+<span class="n">downloader</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="n">form</span><span class="o">=</span><span class="s1">&#39;4&#39;</span><span class="p">,</span><span class="n">output_dir</span><span class="o">=</span><span class="s1">&#39;4&#39;</span><span class="p">,</span><span class="n">date</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;2021-01-07&#39;</span><span class="p">,</span><span class="s1">&#39;2021-01-07&#39;</span><span class="p">))</span>
+<span class="n">dfs</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">file</span> <span class="ow">in</span> <span class="n">Path</span><span class="p">(</span><span class="s1">&#39;4&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">iterdir</span><span class="p">():</span>
+   <span class="n">filing</span> <span class="o">=</span> <span class="n">Filing</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">file</span><span class="p">),</span> <span class="s1">&#39;4&#39;</span><span class="p">)</span>
+   <span class="n">dfs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">filing</span><span class="p">))</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">dfs</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="s1">&#39;4.csv&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">filing</span> <span class="o">=</span> <span class="n">Filing</span><span class="p">(</span><span class="s2">&quot;myfile.txt&quot;</span><span class="p">,</span> <span class="s2">&quot;13F-HR-INFORMATIONTABLE&quot;</span><span class="p">)</span>
+<span class="n">filing</span><span class="o">.</span><span class="n">parse_filing</span><span class="p">()</span>
+<span class="n">filing</span><span class="o">.</span><span class="n">write_csv</span><span class="p">(</span><span class="s2">&quot;output.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>Document filings (10-K/10-Q/8-K) create section/text columns in CSV</p></li>
+<li><p>Information table (13F-HR-INFORMATIONTABLE) preserves original columns</p></li>
+<li><p>Optional accession number added as extra column in CSV output</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="downloader.html" class="btn btn-neutral float-left" title="Downloader" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="parsing.html" class="btn btn-neutral float-right" title="Parsing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
