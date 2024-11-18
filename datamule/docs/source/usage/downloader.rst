@@ -85,6 +85,8 @@ Metadata
 --------
 
 .. code-block:: python
+    
     downloader.download(form='10-K',output_dir='10-K',date=('2010-01-01','2010-01-31'),save_metadata=True)
     downloader.load_metadata('10-K/')
     downloader.save_metadata_to_csv('metadata.csv') # write metadata to csv
+
