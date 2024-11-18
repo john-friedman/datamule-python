@@ -22,8 +22,12 @@ class Parser:
         # api will handle filing type detection
         if filing_type == '13F-HR-INFORMATIONTABLE':
             return parse_13f_hr_information_table_xml(filename)
-        elif filing_type in ['10-K','10KSB','8-K']:
-            return generalized_parser(filename)
+        # elif filing_type in ['10-K','10KSB','8-K']:
+        #     return generalized_parser(filename)
+        elif filing_type == '8-K':
+            return parse_8k(filename)
+        elif filing_type == '10-K':
+            return parse_10k(filename)
         elif filing_type == '10-Q':
             return parse_10q(filename)
         elif filing_type in ['3', '4', '5']:
