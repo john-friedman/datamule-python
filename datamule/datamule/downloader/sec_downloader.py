@@ -593,8 +593,14 @@ class Downloader:
                 if line.strip():  # Skip empty lines
                     entry = json.loads(line)
                     accession_num = next(iter(entry))
+                    doc_id = entry[accession_num]['_id']
+                    acc, filename = doc_id.split(':')
                     row = {'accession_number': accession_num}
                     row.update(entry[accession_num]['_source'])
+                    # Create primary doc URL using _id and cik
+                    cik = row['ciks'][0] if row.get('ciks') else ''
+                    acc_clean = acc.replace('-', '')
+                    row['primary_doc_url'] = f"https://www.sec.gov/Archives/edgar/data/{cik}/{acc_clean.zfill(18)}/{filename}"
                     metadata.append(row)
         self.metadata = metadata
 
@@ -602,12 +608,12 @@ class Downloader:
         if not hasattr(self, 'metadata'):
             return
                 
-        fieldnames = {'accession_number'}  # Start with accession_number
+        fieldnames = {'accession_number', 'primary_doc_url'}  # Start with both required fields
         max_lengths = {}
         
         for item in self.metadata:
             for key, value in item.items():
-                if key != 'accession_number' and isinstance(value, list):
+                if key not in ['accession_number', 'primary_doc_url'] and isinstance(value, list):
                     max_lengths[key] = max(max_lengths.get(key, 0), len(value))
                     fieldnames.update(f"{key}_{i+1}" for i in range(len(value)))
                 else:
@@ -618,9 +624,9 @@ class Downloader:
             writer.writeheader()
             
             for item in self.metadata:
-                row = {'accession_number': item['accession_number']}
+                row = {'accession_number': item['accession_number'], 'primary_doc_url': item['primary_doc_url']}
                 for key, value in item.items():
-                    if key != 'accession_number':
+                    if key not in ['accession_number', 'primary_doc_url']:
                         if isinstance(value, list):
                             for i, v in enumerate(value):
                                 row[f"{key}_{i+1}"] = v
