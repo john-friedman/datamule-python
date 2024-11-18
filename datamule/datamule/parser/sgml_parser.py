@@ -2,10 +2,6 @@ import shutil
 import os
 import json
 
-
-# jpg is broken rn
-# need to rename accc no _ seq
-
 class UUEncodeError(Exception):
     pass
 
