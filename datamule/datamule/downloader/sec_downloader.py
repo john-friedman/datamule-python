@@ -16,6 +16,7 @@ from pkg_resources import resource_filename
 
 from ..global_vars import headers, dataset_10q_url_list,dataset_10k_url_list
 from ..helper import identifier_to_cik, load_package_csv, fix_filing_url
+
 from .ftd import get_all_ftd_urls, process_all_ftd_zips
 from .dropbox_downloader import DropboxDownloader
 from .information_table_13f import download_and_process_13f_data
@@ -49,6 +50,7 @@ class Downloader:
     
     async def _fetch_content_from_url(self, session, url):
         limiter = self.get_limiter(url)
+        url = fix_filing_url(url)
         async with limiter:
             try:
                 async with session.get(url, headers=self.headers) as response:

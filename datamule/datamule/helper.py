@@ -95,31 +95,16 @@ def identifier_to_cik(ticker):
 
 
 def fix_filing_url(url):
-    """Some Filings URLs have the wrong path. This is an issue with EFTS, that is solved in SEC.gov index page, but SEC.gov still has links to broken url."""
-    # Check if the URL ends with '/0001.txt'
-    if url.endswith('/0001.txt'):
-        # Extract the accession number from the URL
-        match = re.search(r'/(\d{18})/', url)
-        if match:
-            accession_number = match.group(1)
-            # Add dashes to the accession number
+    match_suffix = re.search(r'/(\d{4})\.(.+?)$', url)
+    if match_suffix:
+        suffix_number = match_suffix.group(1)
+        file_ext = match_suffix.group(2)
+        match_accession = re.search(r'/(\d{18})/', url)
+        if match_accession:
+            accession_number = match_accession.group(1)
             formatted_accession_number = f"{accession_number[:10]}-{accession_number[10:12]}-{accession_number[12:]}"
-            # Construct the new URL
-            new_url = url.rsplit('/', 1)[0] + f'/{formatted_accession_number}-0001.txt'
+            new_url = url.rsplit('/', 1)[0] + f'/{formatted_accession_number}-{suffix_number}.{file_ext}'
             return new_url
-    elif url.endswith('/0001.htm'):
-        # Extract the accession number from the URL
-        match = re.search(r'/(\d{18})/', url)
-        if match:
-            accession_number = match.group(1)
-            # Add dashes to the accession number
-            formatted_accession_number = f"{accession_number[:10]}-{accession_number[10:12]}-{accession_number[12:]}"
-            # Construct the new URL
-            new_url = url.rsplit('/', 1)[0] + f'/{formatted_accession_number}-0001.htm'
-            return new_url
-    
-    # If the URL doesn't end with '/0001.txt' or doesn't contain a valid accession number,
-    # return the original URL
     return url
 
 def convert_to_dashed_accession(accession):

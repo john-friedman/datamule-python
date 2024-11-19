@@ -1,4 +1,6 @@
 # Changelog
+## v0.382 (2024-11-19)
+- fixed issue where SEC recorded primary doc url as 0001.extension, while true location was acc no - 0001. e.g. https://www.sec.gov/Archives/edgar/data/1102262/000110226201000003/0001102262-01-000003-0001.txt
 ## v0.379 (2024-11-18)
 - added metadata
 - moved return urls to metadata
