@@ -1,1 +1,1 @@
-from .sgml_parser import parse_submission
+from .sgml_parser import parse_submission_from_feed

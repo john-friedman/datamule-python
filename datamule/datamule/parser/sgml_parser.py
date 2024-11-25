@@ -1,41 +1,8 @@
 import shutil
 import os
 import json
-
-class UUEncodeError(Exception):
-    pass
-
-def UUdecoder(text):
-    text = text.split('\n')
-    result = bytearray()
-    
-    for line in text:
-        if not line or line in ['end', '`']: 
-            continue
-            
-        length = (ord(line[0]) - 32) & 63
-        chars = line[1:]
-        
-        for i in range(0, len(chars), 4):
-            group = chars[i:i+4]
-            if len(group) < 4:
-                break
-                
-            n = 0
-            for c in group:
-                n = n * 64 + ((ord(c) - 32) & 63)
-            
-            result.append((n >> 16) & 0xFF)
-            if length > 1:
-                result.append((n >> 8) & 0xFF)
-            if length > 2:
-                result.append(n & 0xFF)
-            
-            length -= 3
-            if length <= 0:
-                break
-                
-    return bytes(result)
+import io
+import uu
 
 def read_line(line):
     try:
@@ -50,7 +17,7 @@ def read_line(line):
     except:
         raise ValueError(f"Could not parse line: {line}")
 
-def parse_submission(filepath, output_dir):
+def parse_submission_from_feed(filepath, output_dir):
     shutil.rmtree(output_dir, ignore_errors=True)
     os.makedirs(output_dir, exist_ok=True)
 
@@ -64,30 +31,28 @@ def parse_submission(filepath, output_dir):
     current_document = None
     text_content = []
     last_key = None
-
     in_text = False
-    is_uuencoded = False
-    collecting_binary = False
-    lines_since_text_start = 0  # Track lines since <TEXT>
     
     with open(filepath, 'r') as file:
         for line in file:
-            line = line.rstrip('\n')  # Preserve spaces but remove newline
+            # Keep original line for writing, but strip for comparisons
+            original_line = line.rstrip('\n')
+            stripped_line = original_line.strip()
             
-            if line == '<SUBMISSION>':
+            if stripped_line == '<SUBMISSION>':
                 tag_stack.append('SUBMISSION')
                 
-            elif line == '</SUBMISSION>':
+            elif stripped_line == '</SUBMISSION>':
                 tag_stack.pop()
                 
-            elif line == '<DOCUMENT>':
+            elif stripped_line == '<DOCUMENT>':
                 current_document = {}
                 metadata['documents'].append(current_document)
                 path_stack = [current_document]
                 tag_stack.append('DOCUMENT')
                 last_key = None
                 
-            elif line == '</DOCUMENT>':
+            elif stripped_line == '</DOCUMENT>':
                 if current_document and text_content:
                     if 'FILENAME' in current_document:
                         output_path = os.path.join(output_dir, current_document['FILENAME'])
@@ -96,61 +61,43 @@ def parse_submission(filepath, output_dir):
                     else:
                         raise ValueError("Document does not have a FILENAME or SEQUENCE")
                     
-                    if is_uuencoded:
-                        content = UUdecoder('\n'.join(text_content))
-                        with open(output_path, 'wb') as f:
-                            f.write(content)
+                    # Join content and check first non-empty line
+                    content = '\n'.join(text_content)
+                    first_line = next((line for line in content.split('\n') if line.strip()), '')
+                    
+                    if first_line.startswith('begin '):
+                        # UUencoded - decode using BytesIO
+                        input_file = io.BytesIO(content.encode())
+                        uu.decode(input_file, output_path,quiet=True)
                     else:
+                        # Regular text - write normally
                         with open(output_path, 'w', encoding='utf-8') as f:
-                            f.write('\n'.join(text_content))
+                            f.write(content)
                             
                 text_content = []
                 current_document = None
                 path_stack = [metadata['submission']]
                 tag_stack.pop()
                 last_key = None
-                is_uuencoded = False
-                collecting_binary = False
-                lines_since_text_start = 0
                 
-            elif line == '<TEXT>':
+            elif stripped_line == '<TEXT>':
                 in_text = True
                 text_content = []
                 tag_stack.append('TEXT')
                 last_key = None
-                lines_since_text_start = 0
                 
-            elif line == '</TEXT>':
+            elif stripped_line == '</TEXT>':
                 in_text = False
                 tag_stack.pop()
                 
             elif in_text:
-                if collecting_binary:
-                    if line in ['end', '`']:
-                        collecting_binary = False
-                    else:
-                        text_content.append(line)
-                else:
-                    stripped_line = line.strip()
-                    if stripped_line == '<PDF>':
-                        lines_since_text_start = 0  # Reset counter after PDF marker
-                        continue
-                        
-                    if lines_since_text_start == 0 and not stripped_line:
-                        # Skip empty lines right after <TEXT> or <PDF>
-                        continue
-                        
-                    if lines_since_text_start == 0 and stripped_line.startswith('begin 644'):
-                        is_uuencoded = True
-                        collecting_binary = True
-                    else:
-                        if not is_uuencoded:
-                            text_content.append(line)
-                        lines_since_text_start += 1
+                # Skip PDF tags but preserve all other content with original spacing
+                if stripped_line not in ['<PDF>', '</PDF>']:
+                    text_content.append(original_line)
                 
             else:
-                if line.startswith('<'):
-                    parsed = read_line(line)
+                if stripped_line.startswith('<'):
+                    parsed = read_line(stripped_line)
                     if parsed is None:
                         if tag_stack:
                             tag_stack.pop()
@@ -173,7 +120,7 @@ def parse_submission(filepath, output_dir):
                             last_key = key
                 elif last_key:
                     current_dict = path_stack[-1]
-                    current_dict[last_key] += ' ' + line.strip()
+                    current_dict[last_key] += ' ' + stripped_line
     
     metadata_path = os.path.join(output_dir, 'metadata.json')
     with open(metadata_path, 'w') as f:
