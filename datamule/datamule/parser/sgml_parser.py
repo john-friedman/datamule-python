@@ -17,13 +17,14 @@ def read_line(line):
     except:
         raise ValueError(f"Could not parse line: {line}")
 
-def parse_submission_from_feed(filepath, output_dir):
-    shutil.rmtree(output_dir, ignore_errors=True)
-    os.makedirs(output_dir, exist_ok=True)
+def parse_submission_from_feed(filepath, output_dir=None, header_only=False):
+    if not header_only and output_dir:
+        shutil.rmtree(output_dir, ignore_errors=True)
+        os.makedirs(output_dir, exist_ok=True)
 
     metadata = {
         'submission': {},
-        'documents': []
+        'documents': [] if not header_only else None
     }
     
     tag_stack = []
@@ -35,17 +36,12 @@ def parse_submission_from_feed(filepath, output_dir):
     
     with open(filepath, 'r') as file:
         for line in file:
-            # Keep original line for writing, but strip for comparisons
             original_line = line.rstrip('\n')
             stripped_line = original_line.strip()
             
-            if stripped_line == '<SUBMISSION>':
-                tag_stack.append('SUBMISSION')
-                
-            elif stripped_line == '</SUBMISSION>':
-                tag_stack.pop()
-                
-            elif stripped_line == '<DOCUMENT>':
+            if stripped_line == '<DOCUMENT>':
+                if header_only:
+                    return metadata['submission']
                 current_document = {}
                 metadata['documents'].append(current_document)
                 path_stack = [current_document]
@@ -61,16 +57,13 @@ def parse_submission_from_feed(filepath, output_dir):
                     else:
                         raise ValueError("Document does not have a FILENAME or SEQUENCE")
                     
-                    # Join content and check first non-empty line
                     content = '\n'.join(text_content)
                     first_line = next((line for line in content.split('\n') if line.strip()), '')
                     
                     if first_line.startswith('begin '):
-                        # UUencoded - decode using BytesIO
                         input_file = io.BytesIO(content.encode())
-                        uu.decode(input_file, output_path,quiet=True)
+                        uu.decode(input_file, output_path, quiet=True)
                     else:
-                        # Regular text - write normally
                         with open(output_path, 'w', encoding='utf-8') as f:
                             f.write(content)
                             
@@ -91,7 +84,6 @@ def parse_submission_from_feed(filepath, output_dir):
                 tag_stack.pop()
                 
             elif in_text:
-                # Skip PDF tags but preserve all other content with original spacing
                 if stripped_line not in ['<PDF>', '</PDF>']:
                     text_content.append(original_line)
                 
@@ -122,6 +114,11 @@ def parse_submission_from_feed(filepath, output_dir):
                     current_dict = path_stack[-1]
                     current_dict[last_key] += ' ' + stripped_line
     
+    if header_only:
+        return metadata['submission']
+        
     metadata_path = os.path.join(output_dir, 'metadata.json')
     with open(metadata_path, 'w') as f:
         json.dump(metadata, f, indent=4)
+    
+    return metadata
