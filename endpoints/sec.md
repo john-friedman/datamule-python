@@ -20,6 +20,7 @@ It also has interesting data in the archives:
 * The official SEC rate limit is 10 requests / second. In practice, the rate limit is less than 10 requests / second, and they will block your session within 5-20 minutes.
 * If you create a new session, the rate limit is often lifted.
 * I'm not sure why this is. Maybe there is an rate limit per ten minutes that is unlisted.
+* Might be issue with 10r/s and maximum 30mb/s egress average
 
 ## Solution
 * 9 requests / second
