@@ -18,7 +18,7 @@ def read_line(line):
     except:
         raise ValueError(f"Could not parse line: {line}")
 
-def parse_submission_from_feed(filepath, output_dir=None, header_only=False):
+def parse_sgml_submission(filepath, output_dir=None, header_only=False):
     if not header_only and output_dir:
         shutil.rmtree(output_dir, ignore_errors=True)
         os.makedirs(output_dir, exist_ok=True)
@@ -34,9 +34,15 @@ def parse_submission_from_feed(filepath, output_dir=None, header_only=False):
     text_content = []
     last_key = None
     in_text = False
+    in_header = False
     
     with open(filepath, 'rb') as file:
         with mmap.mmap(file.fileno(), 0, access=mmap.ACCESS_READ) as mm:
+            # Read first line to determine type
+            first_line = mm.readline().decode('utf-8').rstrip('\n')
+            is_submission = '<SEC-DOCUMENT>' in first_line
+            mm.seek(0)  # Reset to start
+            
             while True:
                 line = mm.readline()
                 if not line:  # EOF
@@ -48,6 +54,23 @@ def parse_submission_from_feed(filepath, output_dir=None, header_only=False):
                     continue  # Skip lines that can't be decoded
                     
                 stripped_line = original_line.strip()
+                
+                # Handle SEC-HEADER section for submission files
+                if is_submission:
+                    if stripped_line == '<SEC-HEADER>':
+                        in_header = True
+                        continue
+                    elif stripped_line == '</SEC-HEADER>':
+                        in_header = False
+                        continue
+                    elif in_header:
+                        # Parse header content into submission metadata
+                        if stripped_line.startswith('<'):
+                            parsed = read_line(stripped_line)
+                            if parsed:
+                                key = list(parsed.keys())[0]
+                                metadata['submission'][key] = parsed[key]
+                        continue
                 
                 if stripped_line == '<DOCUMENT>':
                     if header_only:
@@ -62,20 +85,21 @@ def parse_submission_from_feed(filepath, output_dir=None, header_only=False):
                     if current_document and text_content:
                         if 'FILENAME' in current_document:
                             output_path = os.path.join(output_dir, current_document['FILENAME'])
-                        elif 'SEQUENCE' in current_document:
-                            output_path = os.path.join(output_dir, f'{current_document["SEQUENCE"]}.txt')
-                        else:
-                            raise ValueError("Document does not have a FILENAME or SEQUENCE")
-                        
-                        content = '\n'.join(text_content)
-                        first_line = next((line for line in content.split('\n') if line.strip()), '')
-                        
-                        if first_line.startswith('begin '):
-                            input_file = io.BytesIO(content.encode())
-                            uu.decode(input_file, output_path, quiet=True)
-                        else:
+                            content = '\n'.join(text_content)
+                            
+                            # For XML files, check and strip XML wrapper tags if present
+                            if (current_document['FILENAME'].lower().endswith('.xml') and 
+                                content.strip().startswith('<XML>') and content.strip().endswith('</XML>')):
+                                content = '\n'.join(content.split('\n')[1:-1])
+                                
                             with open(output_path, 'w', encoding='utf-8') as f:
                                 f.write(content)
+                        elif 'SEQUENCE' in current_document:
+                            output_path = os.path.join(output_dir, f'{current_document["SEQUENCE"]}.txt')
+                            with open(output_path, 'w', encoding='utf-8') as f:
+                                f.write('\n'.join(text_content))
+                        else:
+                            raise ValueError("Document does not have a FILENAME or SEQUENCE")
                                 
                     text_content = []
                     current_document = None
