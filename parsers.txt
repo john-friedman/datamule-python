@@ -1,9 +1,0 @@
-1. XML parser + pass in dict - needs to be flexible for dict / list issue
-
-2. Generalized 10K parser - pass in parts mapping via dict
-- use this to setup most varieties of item parsers.
-- should also work for 8-k etc
-
-TOC END issue - need to find more robust TOC finding
-- can always use with parts mapping - probably bandaid fix
-
