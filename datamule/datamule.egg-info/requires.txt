@@ -7,14 +7,15 @@ aiofiles
 polars
 setuptools
 selectolax
+cython
 
 [all]
-pandas
-lxml
-openai
 google-generativeai
 psutil
+pandas
 flask
+openai
+lxml
 
 [dataset_builder]
 pandas
