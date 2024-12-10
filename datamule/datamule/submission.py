@@ -1,5 +1,6 @@
 from pathlib import Path
 import json
+from .document import Document
 
 class Submission:
     def __init__(self, path):
@@ -10,10 +11,6 @@ class Submission:
         metadata_path = self.path / 'metadata.json'
         with metadata_path.open('r') as f:
             self.metadata = json.load(f)
-
-    def _load_document(self, filepath):
-        with filepath.open('r') as f:
-            return f.read()
             
     def keep(self, document_types):
         """Keep files of specified document types, delete others
@@ -52,3 +49,13 @@ class Submission:
             # Delete if document type is in our drop list
             if doc['TYPE'] in document_types and filepath.exists():
                 filepath.unlink()
+
+    def document_type(self, document_type):
+        for doc in self.metadata['documents']:
+            if doc['TYPE'] == document_type:
+                filename = doc.get('FILENAME')
+                if filename is None:
+                    continue
+                    
+                document_path = self.path / filename
+                yield Document(doc['TYPE'], document_path)

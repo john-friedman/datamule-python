@@ -3,15 +3,19 @@ import csv
 from .parser.sec_parser import Parser
 from .helper import convert_to_dashed_accession
 
-class Filing:
-    def __init__(self, filename, filing_type):
-        self.filename = filename
-        self.parser = Parser()
-        self.data = None
-        self.filing_type = filing_type
+# we need to modify parse filing to take option in memory
 
-    def parse_filing(self):
-        self.data = self.parser.parse_filing(self.filename, self.filing_type)
+parser = Parser()
+
+class Document:
+    def __init__(self, type, filename):
+        self.type = type
+        self.filename = filename
+
+        self.data = None
+
+    def parse(self):
+        self.data = parser.parse_filing(self.filename, self.type)
         return self.data
     
     def write_json(self, output_filename=None):

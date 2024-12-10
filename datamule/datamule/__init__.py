@@ -30,11 +30,6 @@ def get_parser():
     return Parser
 
 @lru_cache(None)
-def get_filing():
-    from .sec_filing import Filing
-    return Filing
-
-@lru_cache(None)
 def get_dataset_builder():
     if find_spec('pandas') is not None:
         try:
@@ -45,10 +40,9 @@ def get_dataset_builder():
     return None
 
 # Helper functions that can be imported directly
-from .datamule_api import parse_textual_filing
 from .helper import load_package_csv, load_package_dataset
-from .global_vars import *
 from .parser.sgml_parser import parse_sgml_submission
+from .submission import Submission
 
 # Define classes with delayed initialization
 class Downloader:

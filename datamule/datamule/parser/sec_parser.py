@@ -1,5 +1,4 @@
 import xml.etree.ElementTree as ET
-from ..datamule_api import parse_textual_filing
 from .basic_8k_parser import parse_8k
 from .basic_10k_parser import parse_10k
 from .basic_10q_parser import parse_10q
@@ -18,12 +17,8 @@ class Parser:
         pass
 
     def parse_filing(self, filename, filing_type):
-        # add handling for url vs file
-        # api will handle filing type detection
         if filing_type == '13F-HR-INFORMATIONTABLE':
             return parse_13f_hr_information_table_xml(filename)
-        # elif filing_type in ['10-K','10KSB','8-K']:
-        #     return generalized_parser(filename)
         elif filing_type == '8-K':
             return parse_8k(filename)
         elif filing_type == '10-K':
@@ -41,8 +36,7 @@ class Parser:
         elif filing_type == 'SC 13G':
             return parse_13g(filename)
         else:
-            data = parse_textual_filing(url=filename, return_type='json')
-        return data 
+            raise ValueError(f'Filing type {filing_type} not supported')
 
 
     def parse_company_concepts(self, data):

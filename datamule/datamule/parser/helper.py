@@ -57,9 +57,9 @@ def load_html_content(filename):
         '\u201c': '"', '\u201d': '"'
     }))
 def load_file_content(filename):
-    if filename.endswith('.txt'):
+    if filename.suffix =='.txt':
         return load_text_content(filename)
-    elif filename.endswith('.html') or filename.endswith('.htm'):
+    elif filename.suffix in ['.html','.htm']:
         return load_html_content(filename)
     else:
         raise ValueError(f"Unsupported file type: {filename}")
