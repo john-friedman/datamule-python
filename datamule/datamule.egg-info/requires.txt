@@ -10,12 +10,12 @@ selectolax
 cython
 
 [all]
-google-generativeai
-psutil
-pandas
-flask
-openai
 lxml
+pandas
+psutil
+google-generativeai
+openai
+flask
 
 [dataset_builder]
 pandas

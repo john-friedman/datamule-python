@@ -1,47 +1,56 @@
+# sgml_parser.pyx
 import os
 import json
 import uu
 from io import BytesIO
+from cpython cimport PyBytes_FromString
+from libc.string cimport strlen, strncmp
 
-class SimpleSGMLParser:
-    def _extract_tag_content(self, line: str) -> tuple[str, str] | None:
-        if not (line.startswith('<') and '>' in line):
-            return None
+cdef class CySGMLParser:
+    cdef public str output_dir
+    
+    cdef bint _is_tag(self, const char* line, size_t length):
+        return line[0] == b'<' and line[length-1] == b'>'
+    
+    cdef tuple _extract_tag_content(self, str line):
+        cdef:
+            size_t tag_end = line.index('>')
+            str tag = line[1:tag_end]
+            str content
             
-        tag_end = line.index('>')
-        tag = line[1:tag_end]
-        
         if tag.startswith('/'):
             return None
-        
+            
         content = line[tag_end + 1:].strip()
         return (tag, content)
 
-    def _write_document(self, content: str, document_info: dict, output_dir: str) -> None:
+    cdef void _write_document(self, str content, dict document_info):
+        cdef str output_path, first_line
+        
         if not content:
             return
 
-        output_path = os.path.join(output_dir, document_info.get('FILENAME', f"{document_info.get('SEQUENCE', 'unknown')}.txt"))
-        
+        output_path = os.path.join(self.output_dir, document_info.get('FILENAME', f"{document_info.get('SEQUENCE', 'unknown')}.txt"))
         first_line = content.partition('\n')[0].strip()
+        
         if first_line.startswith('begin '):
             with BytesIO(content.encode()) as input_file:
-                uu.decode(input_file, output_path,quiet=True)
+                uu.decode(input_file, output_path, quiet=True)
         else:
             with open(output_path, 'w', encoding='utf-8') as f:
                 f.write(content)
 
-    def parse_file(self, filepath: str, output_dir: str) -> None:
-        os.makedirs(output_dir, exist_ok=True)
-        
-        submission_data = {}
-        documents = []
-        current_document = {}
-        text_buffer = []
-        
-        in_document = False
-        in_text = False
-        in_submission = True
+    cpdef parse_file(self, str filepath):
+        cdef:
+            dict submission_data = {}
+            list documents = []
+            dict current_document = {}
+            list text_buffer = []
+            bint in_document = False
+            bint in_text = False
+            bint in_submission = True
+            str line, stripped
+            tuple tag_content
         
         with open(filepath, 'r', encoding='utf-8') as file:
             for line in file:
@@ -54,7 +63,7 @@ class SimpleSGMLParser:
                     
                 elif stripped == '</DOCUMENT>':
                     documents.append(current_document)
-                    self._write_document(''.join(text_buffer), current_document, output_dir)
+                    self._write_document(''.join(text_buffer), current_document)
                     text_buffer = []
                     in_document = False
                     
@@ -83,12 +92,15 @@ class SimpleSGMLParser:
             'documents': documents
         }
         
-        with open(os.path.join(output_dir, 'metadata.json'), 'w', encoding='utf-8') as f:
+        with open(os.path.join(self.output_dir, 'metadata.json'), 'w', encoding='utf-8') as f:
             json.dump(metadata, f, indent=4)
 
 def parse_sgml_submission(filepath: str, output_dir: str | None = None) -> None:
     if output_dir is None:
         output_dir = os.path.splitext(filepath)[0] + '_output'
-        
-    parser = SimpleSGMLParser()
-    parser.parse_file(filepath, output_dir)
+    
+    os.makedirs(output_dir, exist_ok=True)
+    
+    parser = CySGMLParser()
+    parser.output_dir = output_dir
+    parser.parse_file(filepath)

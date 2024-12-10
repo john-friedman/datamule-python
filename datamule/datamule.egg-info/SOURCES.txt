@@ -10,7 +10,7 @@ datamule.egg-info/SOURCES.txt
 datamule.egg-info/dependency_links.txt
 datamule.egg-info/requires.txt
 datamule.egg-info/top_level.txt
-datamule/rewrite/parse_sgml_cy.c
+datamule/rewrite/sgml_parser_cy.c
 datamule/data/company_former_names.csv
 datamule/data/company_metadata.csv
 datamule/data/company_tickers.csv
@@ -62,4 +62,3 @@ datamule/parser/mappings.py
 datamule/parser/n_port_p_parser.py
 datamule/parser/sec_parser.py
 datamule/parser/sgml_parser.py
-datamule/rewrite/parse_sgml_cy.c

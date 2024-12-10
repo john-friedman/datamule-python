@@ -21,8 +21,8 @@ library_dirs = [path for path in sdk_lib_dirs if os.path.exists(path)]
 
 extensions = [
     Extension(
-        "datamule.rewrite.parse_sgml_cy",
-        ["datamule/rewrite/parse_sgml_cy.pyx"],
+        "datamule.rewrite.sgml_parser_cy",
+        ["datamule/rewrite/sgml_parser_cy.pyx"],
         include_dirs=include_dirs,
         library_dirs=library_dirs,
     )
