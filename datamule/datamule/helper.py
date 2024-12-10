@@ -119,3 +119,5 @@ def convert_to_dashed_accession(accession):
     dashed = f"{cleaned[:10]}-{cleaned[10:12]}-{cleaned[12:]}"
     
     return dashed
+
+headers = {'User-Agent': 'John Smith johnsmith@gmail.com'}

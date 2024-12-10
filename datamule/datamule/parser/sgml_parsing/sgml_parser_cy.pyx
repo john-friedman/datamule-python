@@ -2,11 +2,12 @@
 import os
 import json
 import uu
-from io import BytesIO, StringIO
+from io import BytesIO
 from cpython cimport PyBytes_FromString
 from libc.string cimport strlen, strncmp
 
-cdef class CySGMLParser:
+cdef class BaseParser:
+    """Base parser with common functionality"""
     cdef public str output_dir
     
     cdef bint _is_tag(self, const char* line, size_t length):
@@ -40,8 +41,10 @@ cdef class CySGMLParser:
             with open(output_path, 'w', encoding='utf-8') as f:
                 f.write(content)
 
+cdef class SubmissionParser(BaseParser):
+    """Parser for <SUBMISSION> type documents"""
+    
     cpdef parse_content(self, str content):
-        """Parse SGML content directly from a string."""
         cdef:
             dict submission_data = {}
             list documents = []
@@ -53,8 +56,7 @@ cdef class CySGMLParser:
             str line, stripped
             tuple tag_content
         
-        # Pre-split content into lines
-        lines = content.splitlines(keepends=True)  # keepends=True to maintain original formatting
+        lines = content.splitlines(keepends=True)
         
         for line in lines:
             stripped = line.strip()
@@ -63,7 +65,7 @@ cdef class CySGMLParser:
                 in_document = True
                 in_submission = False
                 current_document = {}
-                text_buffer = []  # Reset buffer at start of document
+                text_buffer = []
                 
             elif stripped == '</DOCUMENT>':
                 documents.append(current_document)
@@ -99,11 +101,84 @@ cdef class CySGMLParser:
         with open(os.path.join(self.output_dir, 'metadata.json'), 'w', encoding='utf-8') as f:
             json.dump(metadata, f, indent=4)
 
-    cpdef parse_file(self, str filepath):
-        """Legacy method to maintain compatibility."""
-        with open(filepath, 'r', encoding='utf-8') as f:
-            content = f.read()
-        self.parse_content(content)
+cdef class SECDocumentParser(BaseParser):
+    """Parser for <SEC-DOCUMENT> type documents"""
+    
+    cpdef parse_content(self, str content):
+        cdef:
+            dict header_data = {}
+            list documents = []
+            dict current_document = {}
+            list text_buffer = []
+            bint in_document = False
+            bint in_text = False
+            bint in_header = False
+            str line, stripped
+            tuple tag_content
+        
+        lines = content.splitlines(keepends=True)
+        
+        for line in lines:
+            stripped = line.strip()
+            
+            if stripped.startswith('<SEC-HEADER>'):
+                in_header = True
+                continue
+                
+            elif stripped == '</SEC-HEADER>':
+                in_header = False
+                continue
+                
+            elif stripped == '<DOCUMENT>':
+                in_document = True
+                current_document = {}
+                text_buffer = []
+                
+            elif stripped == '</DOCUMENT>':
+                documents.append(current_document)
+                self._write_document(''.join(text_buffer), current_document)
+                text_buffer = []
+                in_document = False
+                
+            elif stripped == '<TEXT>':
+                in_text = True
+                text_buffer = []
+                
+            elif stripped == '</TEXT>':
+                in_text = False
+                
+            elif in_text:
+                if stripped not in ['<PDF>', '</PDF>']:
+                    text_buffer.append(line)
+                    
+            elif in_header:
+                # Special handling for SEC header format
+                if ':' in stripped:
+                    key, value = stripped.split(':', 1)
+                    header_data[key.strip()] = value.strip()
+            else:
+                tag_content = self._extract_tag_content(stripped)
+                if tag_content:
+                    key, value = tag_content
+                    if in_document:
+                        current_document[key] = value
+        
+        metadata = {
+            'header': header_data,
+            'documents': documents
+        }
+        
+        with open(os.path.join(self.output_dir, 'metadata.json'), 'w', encoding='utf-8') as f:
+            json.dump(metadata, f, indent=4)
+
+def detect_document_type(content: str) -> str:
+    """Detect the type of SGML document"""
+    content = content.strip()
+    if content.startswith('<SUBMISSION>'):
+        return 'SUBMISSION'
+    elif content.startswith('<SEC-DOCUMENT>'):
+        return 'SEC-DOCUMENT'
+    raise ValueError("Unknown document type")
 
 def parse_sgml_submission(filepath: str | None = None, output_dir: str | None = None, content: str | None = None) -> None:
     """
@@ -124,10 +199,18 @@ def parse_sgml_submission(filepath: str | None = None, output_dir: str | None = 
     
     os.makedirs(output_dir, exist_ok=True)
     
-    parser = CySGMLParser()
-    parser.output_dir = output_dir
+    # If content not provided, read from file
+    if content is None:
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
     
-    if content is not None:
-        parser.parse_content(content)
-    else:
-        parser.parse_file(filepath)
+    # Detect document type and use appropriate parser
+    doc_type = detect_document_type(content)
+    
+    if doc_type == 'SUBMISSION':
+        parser = SubmissionParser()
+    else:  # SEC-DOCUMENT
+        parser = SECDocumentParser()
+    
+    parser.output_dir = output_dir
+    parser.parse_content(content)

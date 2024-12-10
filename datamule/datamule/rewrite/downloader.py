@@ -1,27 +1,68 @@
-from aiolimiter import AsyncLimiter
+import asyncio
+import aiohttp
+import time
+from collections import deque
+from ..parser.sgml_parsing.sgml_parser_cy import parse_sgml_submission
+from ..helper import headers
 
-# Note: We are removing some functionality temporarily from the original Downloader class such as filter by sics.
-# if people complain, we will add it back sooner
-# main reason is to simplify / add additional features to the class that are more important.
 class Downloader:
     def __init__(self):
-        self.headers = {'User-Agent': 'First Last firstlast@gmail.com'}
-        self.domain_limiters = {
-            'www.sec.gov': AsyncLimiter(10, 1),
-            'efts.sec.gov': AsyncLimiter(10, 1),
-            'data.sec.gov': AsyncLimiter(10, 1),
-            'default': AsyncLimiter(10, 1),
-            'library.datamule.xyz': AsyncLimiter(1000, 1),
-        }
+        self.semaphore = asyncio.Semaphore(5)
+        self.rate_limit_window = deque()
+        self.session = None
 
-    def set_headers(self, user_agent):
-        self.headers = {'User-Agent': user_agent}
+    async def __aenter__(self):
+        await self._init_session()
+        return self
 
-    def set_limiter(self, domain, rate_limit):
-        self.domain_limiters[domain] = AsyncLimiter(rate_limit, 1)
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
+        await self._close()
 
-    def download(self, output_dir='filings', cik=None, ticker=None, submission_type=None, document_type=None,
-                date=None):
-        """"""
-        pass
+    async def _init_session(self):
+        if not self.session:
+            self.session = aiohttp.ClientSession(headers=headers)
 
+    async def _close(self):
+        if self.session:
+            await self.session.close()
+            self.session = None
+
+    async def _rate_limit(self):
+        current_time = time.time()
+        while self.rate_limit_window and current_time - self.rate_limit_window[0] > 1:
+            self.rate_limit_window.popleft()
+        
+        if len(self.rate_limit_window) >= 10:
+            await asyncio.sleep(1)
+        self.rate_limit_window.append(current_time)
+
+    async def _fetch(self, url):
+        if not self.session:
+            raise RuntimeError("Session not initialized. Use async with Downloader() as downloader:")
+        
+        async with self.semaphore:
+            await self._rate_limit()
+            async with self.session.get(url) as response:
+                if response.status != 200:
+                    raise aiohttp.ClientError(f"HTTP {response.status}: {response.reason}")
+                return await response.text()
+
+    async def download_async(self, url, output_dir=None):
+        try:
+            content = await self._fetch(url)
+            return parse_sgml_submission(content=content, output_dir=output_dir)
+        except Exception as e:
+            print(f"Error processing URL {url}: {str(e)}")
+            raise
+
+    @classmethod
+    async def download_urls(cls, urls, output_dir=None):
+        async with cls() as downloader:
+            tasks = [downloader.download_async(url, output_dir) for url in urls]
+            return await asyncio.gather(*tasks, return_exceptions=True)
+
+    @classmethod
+    def download(cls, urls, output_dir=None):
+        if isinstance(urls, str):
+            urls = [urls]
+        return asyncio.run(cls.download_urls(urls, output_dir))

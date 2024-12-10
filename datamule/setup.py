@@ -22,8 +22,8 @@ library_dirs = [path for path in sdk_lib_dirs if os.path.exists(path)]
 # Define Cython extension with compiler directives
 extensions = [
     Extension(
-        "datamule.rewrite.sgml_parser_cy",
-        ["datamule/rewrite/sgml_parser_cy.pyx"],
+        "datamule.parser.sgml_parsing.sgml_parser_cy",
+        ["datamule/parser/sgml_parsing/sgml_parser_cy.pyx"],
         include_dirs=include_dirs,
         library_dirs=library_dirs,
     )
