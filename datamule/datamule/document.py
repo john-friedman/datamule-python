@@ -1,6 +1,6 @@
 import json
 import csv
-from .parser.sec_parser import Parser
+from .parser.document_parsing.sec_parser import Parser
 from .helper import convert_to_dashed_accession
 
 # we need to modify parse filing to take option in memory

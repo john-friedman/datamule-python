@@ -18,57 +18,18 @@ def _is_jupyter():
     except NameError:
         return False
 
-# Lazy loading for main components
-@lru_cache(None)
-def get_downloader():
-    from .downloader.sec_downloader import Downloader
-    return Downloader
-
-@lru_cache(None)
-def get_parser():
-    from .parser.sec_parser import Parser
-    return Parser
-
-@lru_cache(None)
-def get_dataset_builder():
-    if find_spec('pandas') is not None:
-        try:
-            from .dataset_builder.dataset_builder import DatasetBuilder
-            return DatasetBuilder
-        except ImportError:
-            return None
-    return None
-
-# Helper functions that can be imported directly
+# Rework imports, we also need to setup lazy loading
 from .helper import load_package_csv, load_package_dataset
-from .parser.sgml_parser import parse_sgml_submission
+from .parser.sgml_parsing.sgml_parser_cy import parse_sgml_submission
 from .submission import Submission
+from .document import Document
+from .parser.document_parsing.sec_parser import Parser
 
-# Define classes with delayed initialization
-class Downloader:
-    def __new__(cls, *args, **kwargs):
-        return get_downloader()(*args, **kwargs)
-
-class Parser:
-    def __new__(cls, *args, **kwargs):
-        return get_parser()(*args, **kwargs)
-
-class Filing:
-    def __new__(cls, *args, **kwargs):
-        return get_filing()(*args, **kwargs)
-
-class DatasetBuilder:
-    def __new__(cls, *args, **kwargs):
-        builder_cls = get_dataset_builder()
-        if builder_cls is None:
-            raise ImportError(
-                "DatasetBuilder requires pandas. "
-                "Install with: pip install datamule[dataset_builder]"
-            )
-        return builder_cls(*args, **kwargs)
 
 # Set up Jupyter support only when imported
 _setup_jupyter()
+
+# reminder to setup google colab
 
 __all__ = [
     'Downloader',
