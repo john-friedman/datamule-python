@@ -13,15 +13,15 @@ from functools import partial
 import pandas as pd
 from queue import Queue, Empty
 from threading import Thread
-#from .parse_sgml_cy import parse_sgml_submission
-from datamule import parse_sgml_submission
+from datamule.rewrite.sgml_parser_cy import parse_sgml_submission
+
 class PremiumDownloader:
     def __init__(self):
         self.BASE_URL = "https://library.datamule.xyz/original/nc/"
         self.CHUNK_SIZE = 2 * 1024 * 1024  # 2MB chunks
-        self.MAX_CONCURRENT_DOWNLOADS = 200
+        self.MAX_CONCURRENT_DOWNLOADS = 100
         self.MAX_DECOMPRESSION_WORKERS = 16
-        self.MAX_PROCESSING_WORKERS = 8
+        self.MAX_PROCESSING_WORKERS = 16
         self.QUEUE_SIZE = 100
 
     async def _fetch_premium_files(self, file_path):
@@ -45,43 +45,36 @@ class PremiumDownloader:
                 worker.start()
                 self.processing_workers.append(worker)
 
-        def _process_file(self, path):
-            filename = Path(path).stem
-            output_path = os.path.join(self.output_dir, filename)
+        def _process_file(self, item):
+            filename, content = item  # Now receiving (filename, content) tuple
+            output_path = os.path.join(self.output_dir, Path(filename).stem)
             try:
-                parse_sgml_submission(str(path), output_dir=output_path)
-                try:
-                    os.remove(path)
-                    self.pbar.update(1)
-                except Exception as del_e:
-                    print(f"Error deleting file {path}: {str(del_e)}")
+                # Pass None as filepath since we're using content
+                parse_sgml_submission(None, output_dir=output_path, content=content)
+                self.pbar.update(1)
             except Exception as e:
                 print(f"Error processing {filename}: {str(e)}")
-                try:
-                    os.remove(path)
-                except Exception as del_e:
-                    print(f"Error deleting file {path}: {str(del_e)}")
 
         def _processing_worker(self):
             batch = []
             while not self.should_stop:
                 try:
-                    filepath = self.processing_queue.get(timeout=1)
-                    if filepath is None:
+                    item = self.processing_queue.get(timeout=1)
+                    if item is None:
                         break
 
-                    batch.append(filepath)
+                    batch.append(item)
 
                     if len(batch) >= self.batch_size or self.processing_queue.empty():
-                        for path in batch:
-                            self._process_file(path)
+                        for item in batch:
+                            self._process_file(item)
                             self.processing_queue.task_done()
                         batch = []
 
                 except Empty:
                     if batch:
-                        for path in batch:
-                            self._process_file(path)
+                        for item in batch:
+                            self._process_file(item)
                             self.processing_queue.task_done()
                         batch = []
 
@@ -94,48 +87,36 @@ class PremiumDownloader:
 
     def decompress_stream(self, compressed_chunks, filename, output_dir, processor):
         dctx = zstd.ZstdDecompressor()
-        save_path = Path(output_dir) / filename.replace('.zst', '')
-        
         try:
             input_buffer = io.BytesIO(b''.join(compressed_chunks))
-            with open(save_path, 'wb') as f_out:
-                with dctx.stream_reader(input_buffer) as reader:
-                    shutil.copyfileobj(reader, f_out, length=self.CHUNK_SIZE)
+            decompressed_content = io.BytesIO()
             
-            processor.processing_queue.put(save_path)
+            with dctx.stream_reader(input_buffer) as reader:
+                shutil.copyfileobj(reader, decompressed_content)
+                
+            # Get decoded content and send to processor
+            content = decompressed_content.getvalue().decode('utf-8')
+            processor.processing_queue.put((filename, content))
             return True
-            
+                
         except Exception as e:
             print(f"Decompression error for {filename}: {str(e)}")
-            if save_path.exists():
-                try:
-                    save_path.unlink()
-                except Exception as del_e:
-                    print(f"Error cleaning up {filename}: {str(del_e)}")
             return False
         finally:
             try:
                 input_buffer.close()
+                decompressed_content.close()
             except:
                 pass
 
     def save_regular_file(self, chunks, filename, output_dir, processor):
-        save_path = Path(output_dir) / filename
         try:
-            with open(save_path, 'wb') as f_out:
-                for chunk in chunks:
-                    f_out.write(chunk)
-            
-            processor.processing_queue.put(save_path)
+            content = b''.join(chunks).decode('utf-8')
+            processor.processing_queue.put((filename, content))
             return True
-            
+                
         except Exception as e:
             print(f"Error saving {filename}: {str(e)}")
-            if save_path.exists():
-                try:
-                    save_path.unlink()
-                except Exception as del_e:
-                    print(f"Error cleaning up {filename}: {str(del_e)}")
             return False
 
     async def download_and_process(self, session, filename, semaphore, decompression_pool, output_dir, processor):

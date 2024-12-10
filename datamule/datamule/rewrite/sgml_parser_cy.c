@@ -1574,6 +1574,7 @@ struct __pyx_vtabstruct_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser {
   int (*_is_tag)(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *, char const *, size_t);
   PyObject *(*_extract_tag_content)(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *, PyObject *);
   void (*_write_document)(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *, PyObject *, PyObject *);
+  PyObject *(*parse_content)(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *, PyObject *, int __pyx_skip_dispatch);
   PyObject *(*parse_file)(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *, PyObject *, int __pyx_skip_dispatch);
 };
 static struct __pyx_vtabstruct_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_vtabptr_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser;
@@ -1747,19 +1748,13 @@ static CYTHON_INLINE PyObject* __Pyx_CallUnboundCMethod1(__Pyx_CachedCFunction* 
 #define __Pyx_CallUnboundCMethod1(cfunc, self, arg)  __Pyx__CallUnboundCMethod1(cfunc, self, arg)
 #endif
 
-/* bytes_tailmatch.proto */
-static int __Pyx_PyBytes_SingleTailmatch(PyObject* self, PyObject* arg,
-                                         Py_ssize_t start, Py_ssize_t end, int direction);
-static int __Pyx_PyBytes_Tailmatch(PyObject* self, PyObject* substr,
-                                   Py_ssize_t start, Py_ssize_t end, int direction);
+/* PyUnicode_Substring.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyUnicode_Substring(
+            PyObject* text, Py_ssize_t start, Py_ssize_t stop);
 
 /* unicode_tailmatch.proto */
 static int __Pyx_PyUnicode_Tailmatch(
     PyObject* s, PyObject* substr, Py_ssize_t start, Py_ssize_t end, int direction);
-
-/* str_tailmatch.proto */
-static CYTHON_INLINE int __Pyx_PyStr_Tailmatch(PyObject* self, PyObject* arg, Py_ssize_t start,
-                                               Py_ssize_t end, int direction);
 
 /* PyFunctionFastCall.proto */
 #if CYTHON_FAST_PYCALL
@@ -1928,26 +1923,6 @@ static PyObject *__Pyx_GetItemInt_Generic(PyObject *o, PyObject* j);
 static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i,
                                                      int is_list, int wraparound, int boundscheck);
 
-/* CallUnboundCMethod0.proto */
-static PyObject* __Pyx__CallUnboundCMethod0(__Pyx_CachedCFunction* cfunc, PyObject* self);
-#if CYTHON_COMPILING_IN_CPYTHON
-#define __Pyx_CallUnboundCMethod0(cfunc, self)\
-    (likely((cfunc)->func) ?\
-        (likely((cfunc)->flag == METH_NOARGS) ?  (*((cfunc)->func))(self, NULL) :\
-         (PY_VERSION_HEX >= 0x030600B1 && likely((cfunc)->flag == METH_FASTCALL) ?\
-            (PY_VERSION_HEX >= 0x030700A0 ?\
-                (*(__Pyx_PyCFunctionFast)(void*)(PyCFunction)(cfunc)->func)(self, &__pyx_empty_tuple, 0) :\
-                (*(__Pyx_PyCFunctionFastWithKeywords)(void*)(PyCFunction)(cfunc)->func)(self, &__pyx_empty_tuple, 0, NULL)) :\
-          (PY_VERSION_HEX >= 0x030700A0 && (cfunc)->flag == (METH_FASTCALL | METH_KEYWORDS) ?\
-            (*(__Pyx_PyCFunctionFastWithKeywords)(void*)(PyCFunction)(cfunc)->func)(self, &__pyx_empty_tuple, 0, NULL) :\
-            (likely((cfunc)->flag == (METH_VARARGS | METH_KEYWORDS)) ?  ((*(PyCFunctionWithKeywords)(void*)(PyCFunction)(cfunc)->func)(self, __pyx_empty_tuple, NULL)) :\
-               ((cfunc)->flag == METH_VARARGS ?  (*((cfunc)->func))(self, __pyx_empty_tuple) :\
-               __Pyx__CallUnboundCMethod0(cfunc, self)))))) :\
-        __Pyx__CallUnboundCMethod0(cfunc, self))
-#else
-#define __Pyx_CallUnboundCMethod0(cfunc, self)  __Pyx__CallUnboundCMethod0(cfunc, self)
-#endif
-
 /* PyObjectLookupSpecial.proto */
 #if CYTHON_USE_PYTYPE_LOOKUP && CYTHON_USE_TYPE_SLOTS
 #define __Pyx_PyObject_LookupSpecialNoError(obj, attr_name)  __Pyx__PyObject_LookupSpecial(obj, attr_name, 0)
@@ -1982,6 +1957,26 @@ static int __Pyx__GetException(PyThreadState *tstate, PyObject **type, PyObject 
 static int __Pyx_GetException(PyObject **type, PyObject **value, PyObject **tb);
 #endif
 
+/* CallUnboundCMethod0.proto */
+static PyObject* __Pyx__CallUnboundCMethod0(__Pyx_CachedCFunction* cfunc, PyObject* self);
+#if CYTHON_COMPILING_IN_CPYTHON
+#define __Pyx_CallUnboundCMethod0(cfunc, self)\
+    (likely((cfunc)->func) ?\
+        (likely((cfunc)->flag == METH_NOARGS) ?  (*((cfunc)->func))(self, NULL) :\
+         (PY_VERSION_HEX >= 0x030600B1 && likely((cfunc)->flag == METH_FASTCALL) ?\
+            (PY_VERSION_HEX >= 0x030700A0 ?\
+                (*(__Pyx_PyCFunctionFast)(void*)(PyCFunction)(cfunc)->func)(self, &__pyx_empty_tuple, 0) :\
+                (*(__Pyx_PyCFunctionFastWithKeywords)(void*)(PyCFunction)(cfunc)->func)(self, &__pyx_empty_tuple, 0, NULL)) :\
+          (PY_VERSION_HEX >= 0x030700A0 && (cfunc)->flag == (METH_FASTCALL | METH_KEYWORDS) ?\
+            (*(__Pyx_PyCFunctionFastWithKeywords)(void*)(PyCFunction)(cfunc)->func)(self, &__pyx_empty_tuple, 0, NULL) :\
+            (likely((cfunc)->flag == (METH_VARARGS | METH_KEYWORDS)) ?  ((*(PyCFunctionWithKeywords)(void*)(PyCFunction)(cfunc)->func)(self, __pyx_empty_tuple, NULL)) :\
+               ((cfunc)->flag == METH_VARARGS ?  (*((cfunc)->func))(self, __pyx_empty_tuple) :\
+               __Pyx__CallUnboundCMethod0(cfunc, self)))))) :\
+        __Pyx__CallUnboundCMethod0(cfunc, self))
+#else
+#define __Pyx_CallUnboundCMethod0(cfunc, self)  __Pyx__CallUnboundCMethod0(cfunc, self)
+#endif
+
 /* IncludeStringH.proto */
 #include <string.h>
 
@@ -1990,13 +1985,6 @@ static CYTHON_INLINE int __Pyx_PyBytes_Equals(PyObject* s1, PyObject* s2, int eq
 
 /* UnicodeEquals.proto */
 static CYTHON_INLINE int __Pyx_PyUnicode_Equals(PyObject* s1, PyObject* s2, int equals);
-
-/* StrEquals.proto */
-#if PY_MAJOR_VERSION >= 3
-#define __Pyx_PyString_Equals __Pyx_PyUnicode_Equals
-#else
-#define __Pyx_PyString_Equals __Pyx_PyBytes_Equals
-#endif
 
 /* ListAppend.proto */
 #if CYTHON_USE_PYLIST_INTERNALS && CYTHON_ASSUME_SAFE_MACROS
@@ -2018,28 +2006,6 @@ static CYTHON_INLINE int __Pyx_PyList_Append(PyObject* list, PyObject* x) {
 #else
 #define __Pyx_PyList_Append(L,x) PyList_Append(L,x)
 #endif
-
-/* PyObjectCall2Args.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2);
-
-/* PyObjectCallOneArg.proto */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg);
-
-/* PyObjectGetMethod.proto */
-static int __Pyx_PyObject_GetMethod(PyObject *obj, PyObject *name, PyObject **method);
-
-/* PyObjectCallMethod1.proto */
-static PyObject* __Pyx_PyObject_CallMethod1(PyObject* obj, PyObject* method_name, PyObject* arg);
-
-/* StringJoin.proto */
-#if PY_MAJOR_VERSION < 3
-#define __Pyx_PyString_Join __Pyx_PyBytes_Join
-#define __Pyx_PyBaseString_Join(s, v) (PyUnicode_CheckExact(s) ? PyUnicode_Join(s, v) : __Pyx_PyBytes_Join(s, v))
-#else
-#define __Pyx_PyString_Join PyUnicode_Join
-#define __Pyx_PyBaseString_Join PyUnicode_Join
-#endif
-static CYTHON_INLINE PyObject* __Pyx_PyBytes_Join(PyObject* sep, PyObject* values);
 
 /* RaiseTooManyValuesToUnpack.proto */
 static CYTHON_INLINE void __Pyx_RaiseTooManyValuesError(Py_ssize_t expected);
@@ -2124,11 +2090,17 @@ static void __Pyx_RaiseArgtupleInvalid(const char* func_name, int exact,
         __Pyx__ArgTypeTest(obj, type, name, exact))
 static int __Pyx__ArgTypeTest(PyObject *obj, PyTypeObject *type, const char *name, int exact);
 
+/* RaiseUnboundLocalError.proto */
+static CYTHON_INLINE void __Pyx_RaiseUnboundLocalError(const char *varname);
+
 /* KeywordStringCheck.proto */
 static int __Pyx_CheckKeywordStrings(PyObject *kw, const char* function_name, int kw_allowed);
 
 /* GetAttr3.proto */
 static CYTHON_INLINE PyObject *__Pyx_GetAttr3(PyObject *, PyObject *, PyObject *);
+
+/* RaiseException.proto */
+static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb, PyObject *cause);
 
 /* PyObjectCallNoArg.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func);
@@ -2145,9 +2117,6 @@ static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level);
 /* ImportFrom.proto */
 static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name);
 
-/* RaiseException.proto */
-static void __Pyx_Raise(PyObject *type, PyObject *value, PyObject *tb, PyObject *cause);
-
 /* GetAttr.proto */
 static CYTHON_INLINE PyObject *__Pyx_GetAttr(PyObject *, PyObject *);
 
@@ -2161,6 +2130,12 @@ static CYTHON_INLINE int __Pyx_HasAttr(PyObject *, PyObject *);
 #if CYTHON_USE_TYPE_SPECS
 static int __Pyx_fix_up_extension_type_from_spec(PyType_Spec *spec, PyTypeObject *type);
 #endif
+
+/* PyObjectCallOneArg.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg);
+
+/* PyObjectGetMethod.proto */
+static int __Pyx_PyObject_GetMethod(PyObject *obj, PyObject *name, PyObject **method);
 
 /* PyObjectCallMethod0.proto */
 static PyObject* __Pyx_PyObject_CallMethod0(PyObject* obj, PyObject* method_name);
@@ -2456,6 +2431,7 @@ static CYTHON_INLINE double __pyx_f_7cpython_7complex_7complex_4imag_imag(PyComp
 static int __pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser__is_tag(CYTHON_UNUSED struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_self, char const *__pyx_v_line, size_t __pyx_v_length); /* proto*/
 static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser__extract_tag_content(CYTHON_UNUSED struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_self, PyObject *__pyx_v_line); /* proto*/
 static void __pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser__write_document(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_self, PyObject *__pyx_v_content, PyObject *__pyx_v_document_info); /* proto*/
+static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_parse_content(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_self, PyObject *__pyx_v_content, int __pyx_skip_dispatch); /* proto*/
 static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_parse_file(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_self, PyObject *__pyx_v_filepath, int __pyx_skip_dispatch); /* proto*/
 
 /* Module declarations from "cpython.version" */
@@ -2555,6 +2531,7 @@ int __pyx_module_is_main_datamule__rewrite__sgml_parser_cy = 0;
 /* Implementation of "datamule.rewrite.sgml_parser_cy" */
 /* #### Code section: global_var ### */
 static PyObject *__pyx_builtin_open;
+static PyObject *__pyx_builtin_ValueError;
 /* #### Code section: string_decls ### */
 static const char __pyx_k_[] = ">";
 static const char __pyx_k_r[] = "r";
@@ -2562,17 +2539,16 @@ static const char __pyx_k_w[] = "w";
 static const char __pyx_k__2[] = "/";
 static const char __pyx_k__3[] = "\n";
 static const char __pyx_k__5[] = "";
-static const char __pyx_k__7[] = ".";
-static const char __pyx_k__8[] = "*";
+static const char __pyx_k__9[] = ".";
 static const char __pyx_k_gc[] = "gc";
 static const char __pyx_k_io[] = "io";
 static const char __pyx_k_os[] = "os";
 static const char __pyx_k_uu[] = "uu";
 static const char __pyx_k_PDF[] = "<PDF>";
-static const char __pyx_k__20[] = "?";
+static const char __pyx_k__10[] = "*";
+static const char __pyx_k__23[] = "?";
 static const char __pyx_k_get[] = "get";
 static const char __pyx_k_new[] = "__new__";
-static const char __pyx_k_str[] = "str";
 static const char __pyx_k_txt[] = ".txt";
 static const char __pyx_k_None[] = "None";
 static const char __pyx_k_TEXT[] = "<TEXT>";
@@ -2585,6 +2561,7 @@ static const char __pyx_k_main[] = "__main__";
 static const char __pyx_k_name[] = "__name__";
 static const char __pyx_k_open[] = "open";
 static const char __pyx_k_path[] = "path";
+static const char __pyx_k_read[] = "read";
 static const char __pyx_k_self[] = "self";
 static const char __pyx_k_spec[] = "__spec__";
 static const char __pyx_k_test[] = "__test__";
@@ -2601,7 +2578,6 @@ static const char __pyx_k_TEXT_2[] = "</TEXT>";
 static const char __pyx_k_decode[] = "decode";
 static const char __pyx_k_dict_2[] = "_dict";
 static const char __pyx_k_enable[] = "enable";
-static const char __pyx_k_encode[] = "encode";
 static const char __pyx_k_import[] = "__import__";
 static const char __pyx_k_indent[] = "indent";
 static const char __pyx_k_output[] = "_output";
@@ -2611,15 +2587,18 @@ static const char __pyx_k_reduce[] = "__reduce__";
 static const char __pyx_k_return[] = "return";
 static const char __pyx_k_update[] = "update";
 static const char __pyx_k_BytesIO[] = "BytesIO";
+static const char __pyx_k_content[] = "content";
 static const char __pyx_k_disable[] = "disable";
 static const char __pyx_k_unknown[] = "unknown";
 static const char __pyx_k_DOCUMENT[] = "<DOCUMENT>";
 static const char __pyx_k_FILENAME[] = "FILENAME";
 static const char __pyx_k_SEQUENCE[] = "SEQUENCE";
+static const char __pyx_k_StringIO[] = "StringIO";
 static const char __pyx_k_encoding[] = "encoding";
 static const char __pyx_k_exist_ok[] = "exist_ok";
 static const char __pyx_k_filepath[] = "filepath";
 static const char __pyx_k_getstate[] = "__getstate__";
+static const char __pyx_k_keepends[] = "keepends";
 static const char __pyx_k_makedirs[] = "makedirs";
 static const char __pyx_k_pyx_type[] = "__pyx_type";
 static const char __pyx_k_setstate[] = "__setstate__";
@@ -2631,10 +2610,12 @@ static const char __pyx_k_partition[] = "partition";
 static const char __pyx_k_pyx_state[] = "__pyx_state";
 static const char __pyx_k_reduce_ex[] = "__reduce_ex__";
 static const char __pyx_k_DOCUMENT_2[] = "</DOCUMENT>";
+static const char __pyx_k_ValueError[] = "ValueError";
 static const char __pyx_k_output_dir[] = "output_dir";
 static const char __pyx_k_parse_file[] = "parse_file";
 static const char __pyx_k_pyx_result[] = "__pyx_result";
 static const char __pyx_k_pyx_vtable[] = "__pyx_vtable__";
+static const char __pyx_k_splitlines[] = "splitlines";
 static const char __pyx_k_submission[] = "submission";
 static const char __pyx_k_PickleError[] = "PickleError";
 static const char __pyx_k_CySGMLParser[] = "CySGMLParser";
@@ -2644,6 +2625,7 @@ static const char __pyx_k_pyx_checksum[] = "__pyx_checksum";
 static const char __pyx_k_stringsource[] = "<stringsource>";
 static const char __pyx_k_use_setstate[] = "use_setstate";
 static const char __pyx_k_metadata_json[] = "metadata.json";
+static const char __pyx_k_parse_content[] = "parse_content";
 static const char __pyx_k_reduce_cython[] = "__reduce_cython__";
 static const char __pyx_k_pyx_PickleError[] = "__pyx_PickleError";
 static const char __pyx_k_setstate_cython[] = "__setstate_cython__";
@@ -2652,26 +2634,29 @@ static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_parse_sgml_submission[] = "parse_sgml_submission";
 static const char __pyx_k_CySGMLParser_parse_file[] = "CySGMLParser.parse_file";
 static const char __pyx_k_pyx_unpickle_CySGMLParser[] = "__pyx_unpickle_CySGMLParser";
+static const char __pyx_k_CySGMLParser_parse_content[] = "CySGMLParser.parse_content";
 static const char __pyx_k_CySGMLParser___reduce_cython[] = "CySGMLParser.__reduce_cython__";
 static const char __pyx_k_CySGMLParser___setstate_cython[] = "CySGMLParser.__setstate_cython__";
+static const char __pyx_k_Either_filepath_or_content_must[] = "Either filepath or content must be provided";
 static const char __pyx_k_datamule_rewrite_sgml_parser_cy[] = "datamule\\rewrite\\sgml_parser_cy.pyx";
 static const char __pyx_k_Incompatible_checksums_0x_x_vs_0[] = "Incompatible checksums (0x%x vs (0xafde399, 0x9b29b76, 0x6befcab) = (output_dir))";
+static const char __pyx_k_output_dir_must_be_provided_when[] = "output_dir must be provided when parsing from content";
 static const char __pyx_k_datamule_rewrite_sgml_parser_cy_2[] = "datamule.rewrite.sgml_parser_cy";
 /* #### Code section: decls ### */
-static PyObject *__pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_parse_file(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_self, PyObject *__pyx_v_filepath); /* proto */
+static PyObject *__pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_parse_content(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_self, PyObject *__pyx_v_content); /* proto */
+static PyObject *__pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_2parse_file(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_self, PyObject *__pyx_v_filepath); /* proto */
 static PyObject *__pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_10output_dir___get__(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_self); /* proto */
 static int __pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_10output_dir_2__set__(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
 static int __pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_10output_dir_4__del__(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_2__reduce_cython__(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_4__setstate_cython__(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
-static PyObject *__pyx_pf_8datamule_7rewrite_14sgml_parser_cy_parse_sgml_submission(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_filepath, PyObject *__pyx_v_output_dir); /* proto */
+static PyObject *__pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_4__reduce_cython__(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_6__setstate_cython__(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_self, PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_8datamule_7rewrite_14sgml_parser_cy_parse_sgml_submission(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_filepath, PyObject *__pyx_v_output_dir, PyObject *__pyx_v_content); /* proto */
 static PyObject *__pyx_pf_8datamule_7rewrite_14sgml_parser_cy_2__pyx_unpickle_CySGMLParser(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v___pyx_type, long __pyx_v___pyx_checksum, PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_get = {0, 0, 0, 0, 0};
-static __Pyx_CachedCFunction __pyx_umethod_PyString_Type_encode = {0, 0, 0, 0, 0};
-static __Pyx_CachedCFunction __pyx_umethod_PyString_Type_index = {0, 0, 0, 0, 0};
-static __Pyx_CachedCFunction __pyx_umethod_PyString_Type_partition = {0, 0, 0, 0, 0};
-static __Pyx_CachedCFunction __pyx_umethod_PyString_Type_strip = {0, 0, 0, 0, 0};
+static __Pyx_CachedCFunction __pyx_umethod_PyUnicode_Type_index = {0, 0, 0, 0, 0};
+static __Pyx_CachedCFunction __pyx_umethod_PyUnicode_Type_partition = {0, 0, 0, 0, 0};
+static __Pyx_CachedCFunction __pyx_umethod_PyUnicode_Type_strip = {0, 0, 0, 0, 0};
 /* #### Code section: late_includes ### */
 /* #### Code section: module_state ### */
 typedef struct {
@@ -2792,42 +2777,46 @@ typedef struct {
   PyObject *__pyx_type_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser;
   #endif
   PyTypeObject *__pyx_ptype_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser;
-  PyObject *__pyx_kp_s_;
+  PyObject *__pyx_kp_u_;
   PyObject *__pyx_n_s_BytesIO;
   PyObject *__pyx_n_s_CySGMLParser;
   PyObject *__pyx_n_s_CySGMLParser___reduce_cython;
   PyObject *__pyx_n_s_CySGMLParser___setstate_cython;
+  PyObject *__pyx_n_s_CySGMLParser_parse_content;
   PyObject *__pyx_n_s_CySGMLParser_parse_file;
-  PyObject *__pyx_kp_s_DOCUMENT;
-  PyObject *__pyx_kp_s_DOCUMENT_2;
-  PyObject *__pyx_n_s_FILENAME;
+  PyObject *__pyx_kp_u_DOCUMENT;
+  PyObject *__pyx_kp_u_DOCUMENT_2;
+  PyObject *__pyx_kp_u_Either_filepath_or_content_must;
+  PyObject *__pyx_n_u_FILENAME;
   PyObject *__pyx_kp_s_Incompatible_checksums_0x_x_vs_0;
   PyObject *__pyx_n_s_None;
-  PyObject *__pyx_kp_s_PDF;
-  PyObject *__pyx_kp_s_PDF_2;
+  PyObject *__pyx_kp_u_PDF;
+  PyObject *__pyx_kp_u_PDF_2;
   PyObject *__pyx_n_s_PickleError;
-  PyObject *__pyx_n_s_SEQUENCE;
-  PyObject *__pyx_kp_s_TEXT;
-  PyObject *__pyx_kp_s_TEXT_2;
-  PyObject *__pyx_kp_s__2;
-  PyObject *__pyx_n_s__20;
-  PyObject *__pyx_kp_s__3;
-  PyObject *__pyx_kp_s__5;
-  PyObject *__pyx_kp_u__7;
-  PyObject *__pyx_n_s__8;
+  PyObject *__pyx_n_u_SEQUENCE;
+  PyObject *__pyx_n_s_StringIO;
+  PyObject *__pyx_kp_u_TEXT;
+  PyObject *__pyx_kp_u_TEXT_2;
+  PyObject *__pyx_n_s_ValueError;
+  PyObject *__pyx_n_s__10;
+  PyObject *__pyx_kp_u__2;
+  PyObject *__pyx_n_s__23;
+  PyObject *__pyx_kp_u__3;
+  PyObject *__pyx_kp_u__5;
+  PyObject *__pyx_kp_u__9;
   PyObject *__pyx_n_s_asyncio_coroutines;
-  PyObject *__pyx_kp_s_begin;
+  PyObject *__pyx_kp_u_begin;
   PyObject *__pyx_n_s_cline_in_traceback;
+  PyObject *__pyx_n_s_content;
   PyObject *__pyx_kp_s_datamule_rewrite_sgml_parser_cy;
   PyObject *__pyx_n_s_datamule_rewrite_sgml_parser_cy_2;
   PyObject *__pyx_n_s_decode;
   PyObject *__pyx_n_s_dict;
   PyObject *__pyx_n_s_dict_2;
   PyObject *__pyx_kp_u_disable;
-  PyObject *__pyx_n_s_documents;
+  PyObject *__pyx_n_u_documents;
   PyObject *__pyx_n_s_dump;
   PyObject *__pyx_kp_u_enable;
-  PyObject *__pyx_n_s_encode;
   PyObject *__pyx_n_s_encoding;
   PyObject *__pyx_n_s_enter;
   PyObject *__pyx_n_s_exist_ok;
@@ -2845,15 +2834,18 @@ typedef struct {
   PyObject *__pyx_kp_u_isenabled;
   PyObject *__pyx_n_s_join;
   PyObject *__pyx_n_s_json;
+  PyObject *__pyx_n_s_keepends;
   PyObject *__pyx_n_s_main;
   PyObject *__pyx_n_s_makedirs;
-  PyObject *__pyx_kp_s_metadata_json;
+  PyObject *__pyx_kp_u_metadata_json;
   PyObject *__pyx_n_s_name;
   PyObject *__pyx_n_s_new;
   PyObject *__pyx_n_s_open;
   PyObject *__pyx_n_s_os;
-  PyObject *__pyx_n_s_output;
+  PyObject *__pyx_n_u_output;
   PyObject *__pyx_n_s_output_dir;
+  PyObject *__pyx_kp_u_output_dir_must_be_provided_when;
+  PyObject *__pyx_n_s_parse_content;
   PyObject *__pyx_n_s_parse_file;
   PyObject *__pyx_n_s_parse_sgml_submission;
   PyObject *__pyx_n_s_parser;
@@ -2868,7 +2860,8 @@ typedef struct {
   PyObject *__pyx_n_s_pyx_unpickle_CySGMLParser;
   PyObject *__pyx_n_s_pyx_vtable;
   PyObject *__pyx_n_s_quiet;
-  PyObject *__pyx_n_s_r;
+  PyObject *__pyx_n_u_r;
+  PyObject *__pyx_n_s_read;
   PyObject *__pyx_n_s_reduce;
   PyObject *__pyx_n_s_reduce_cython;
   PyObject *__pyx_n_s_reduce_ex;
@@ -2878,20 +2871,20 @@ typedef struct {
   PyObject *__pyx_n_s_setstate_cython;
   PyObject *__pyx_n_s_spec;
   PyObject *__pyx_n_s_splitext;
+  PyObject *__pyx_n_s_splitlines;
   PyObject *__pyx_n_s_state;
-  PyObject *__pyx_n_s_str;
   PyObject *__pyx_kp_s_str_None;
   PyObject *__pyx_kp_s_stringsource;
   PyObject *__pyx_n_s_strip;
-  PyObject *__pyx_n_s_submission;
+  PyObject *__pyx_n_u_submission;
   PyObject *__pyx_n_s_test;
   PyObject *__pyx_kp_u_txt;
-  PyObject *__pyx_n_s_unknown;
+  PyObject *__pyx_n_u_unknown;
   PyObject *__pyx_n_s_update;
   PyObject *__pyx_n_s_use_setstate;
-  PyObject *__pyx_kp_s_utf_8;
+  PyObject *__pyx_kp_u_utf_8;
   PyObject *__pyx_n_s_uu;
-  PyObject *__pyx_n_s_w;
+  PyObject *__pyx_n_u_w;
   PyObject *__pyx_n_s_write;
   PyObject *__pyx_int_4;
   PyObject *__pyx_int_113179819;
@@ -2899,17 +2892,20 @@ typedef struct {
   PyObject *__pyx_int_184411033;
   PyObject *__pyx_tuple__4;
   PyObject *__pyx_tuple__6;
-  PyObject *__pyx_tuple__9;
+  PyObject *__pyx_tuple__7;
+  PyObject *__pyx_tuple__8;
   PyObject *__pyx_tuple__11;
   PyObject *__pyx_tuple__13;
   PyObject *__pyx_tuple__15;
   PyObject *__pyx_tuple__17;
-  PyObject *__pyx_tuple__18;
-  PyObject *__pyx_codeobj__10;
+  PyObject *__pyx_tuple__19;
+  PyObject *__pyx_tuple__21;
   PyObject *__pyx_codeobj__12;
   PyObject *__pyx_codeobj__14;
   PyObject *__pyx_codeobj__16;
-  PyObject *__pyx_codeobj__19;
+  PyObject *__pyx_codeobj__18;
+  PyObject *__pyx_codeobj__20;
+  PyObject *__pyx_codeobj__22;
 } __pyx_mstate;
 
 #if CYTHON_USE_MODULE_STATE
@@ -2957,42 +2953,46 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_ptype_7cpython_7complex_complex);
   Py_CLEAR(clear_module_state->__pyx_ptype_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser);
   Py_CLEAR(clear_module_state->__pyx_type_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_);
   Py_CLEAR(clear_module_state->__pyx_n_s_BytesIO);
   Py_CLEAR(clear_module_state->__pyx_n_s_CySGMLParser);
   Py_CLEAR(clear_module_state->__pyx_n_s_CySGMLParser___reduce_cython);
   Py_CLEAR(clear_module_state->__pyx_n_s_CySGMLParser___setstate_cython);
+  Py_CLEAR(clear_module_state->__pyx_n_s_CySGMLParser_parse_content);
   Py_CLEAR(clear_module_state->__pyx_n_s_CySGMLParser_parse_file);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_DOCUMENT);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_DOCUMENT_2);
-  Py_CLEAR(clear_module_state->__pyx_n_s_FILENAME);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_DOCUMENT);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_DOCUMENT_2);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_Either_filepath_or_content_must);
+  Py_CLEAR(clear_module_state->__pyx_n_u_FILENAME);
   Py_CLEAR(clear_module_state->__pyx_kp_s_Incompatible_checksums_0x_x_vs_0);
   Py_CLEAR(clear_module_state->__pyx_n_s_None);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_PDF);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_PDF_2);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_PDF);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_PDF_2);
   Py_CLEAR(clear_module_state->__pyx_n_s_PickleError);
-  Py_CLEAR(clear_module_state->__pyx_n_s_SEQUENCE);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_TEXT);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_TEXT_2);
-  Py_CLEAR(clear_module_state->__pyx_kp_s__2);
-  Py_CLEAR(clear_module_state->__pyx_n_s__20);
-  Py_CLEAR(clear_module_state->__pyx_kp_s__3);
-  Py_CLEAR(clear_module_state->__pyx_kp_s__5);
-  Py_CLEAR(clear_module_state->__pyx_kp_u__7);
-  Py_CLEAR(clear_module_state->__pyx_n_s__8);
+  Py_CLEAR(clear_module_state->__pyx_n_u_SEQUENCE);
+  Py_CLEAR(clear_module_state->__pyx_n_s_StringIO);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_TEXT);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_TEXT_2);
+  Py_CLEAR(clear_module_state->__pyx_n_s_ValueError);
+  Py_CLEAR(clear_module_state->__pyx_n_s__10);
+  Py_CLEAR(clear_module_state->__pyx_kp_u__2);
+  Py_CLEAR(clear_module_state->__pyx_n_s__23);
+  Py_CLEAR(clear_module_state->__pyx_kp_u__3);
+  Py_CLEAR(clear_module_state->__pyx_kp_u__5);
+  Py_CLEAR(clear_module_state->__pyx_kp_u__9);
   Py_CLEAR(clear_module_state->__pyx_n_s_asyncio_coroutines);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_begin);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_begin);
   Py_CLEAR(clear_module_state->__pyx_n_s_cline_in_traceback);
+  Py_CLEAR(clear_module_state->__pyx_n_s_content);
   Py_CLEAR(clear_module_state->__pyx_kp_s_datamule_rewrite_sgml_parser_cy);
   Py_CLEAR(clear_module_state->__pyx_n_s_datamule_rewrite_sgml_parser_cy_2);
   Py_CLEAR(clear_module_state->__pyx_n_s_decode);
   Py_CLEAR(clear_module_state->__pyx_n_s_dict);
   Py_CLEAR(clear_module_state->__pyx_n_s_dict_2);
   Py_CLEAR(clear_module_state->__pyx_kp_u_disable);
-  Py_CLEAR(clear_module_state->__pyx_n_s_documents);
+  Py_CLEAR(clear_module_state->__pyx_n_u_documents);
   Py_CLEAR(clear_module_state->__pyx_n_s_dump);
   Py_CLEAR(clear_module_state->__pyx_kp_u_enable);
-  Py_CLEAR(clear_module_state->__pyx_n_s_encode);
   Py_CLEAR(clear_module_state->__pyx_n_s_encoding);
   Py_CLEAR(clear_module_state->__pyx_n_s_enter);
   Py_CLEAR(clear_module_state->__pyx_n_s_exist_ok);
@@ -3010,15 +3010,18 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_kp_u_isenabled);
   Py_CLEAR(clear_module_state->__pyx_n_s_join);
   Py_CLEAR(clear_module_state->__pyx_n_s_json);
+  Py_CLEAR(clear_module_state->__pyx_n_s_keepends);
   Py_CLEAR(clear_module_state->__pyx_n_s_main);
   Py_CLEAR(clear_module_state->__pyx_n_s_makedirs);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_metadata_json);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_metadata_json);
   Py_CLEAR(clear_module_state->__pyx_n_s_name);
   Py_CLEAR(clear_module_state->__pyx_n_s_new);
   Py_CLEAR(clear_module_state->__pyx_n_s_open);
   Py_CLEAR(clear_module_state->__pyx_n_s_os);
-  Py_CLEAR(clear_module_state->__pyx_n_s_output);
+  Py_CLEAR(clear_module_state->__pyx_n_u_output);
   Py_CLEAR(clear_module_state->__pyx_n_s_output_dir);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_output_dir_must_be_provided_when);
+  Py_CLEAR(clear_module_state->__pyx_n_s_parse_content);
   Py_CLEAR(clear_module_state->__pyx_n_s_parse_file);
   Py_CLEAR(clear_module_state->__pyx_n_s_parse_sgml_submission);
   Py_CLEAR(clear_module_state->__pyx_n_s_parser);
@@ -3033,7 +3036,8 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_pyx_unpickle_CySGMLParser);
   Py_CLEAR(clear_module_state->__pyx_n_s_pyx_vtable);
   Py_CLEAR(clear_module_state->__pyx_n_s_quiet);
-  Py_CLEAR(clear_module_state->__pyx_n_s_r);
+  Py_CLEAR(clear_module_state->__pyx_n_u_r);
+  Py_CLEAR(clear_module_state->__pyx_n_s_read);
   Py_CLEAR(clear_module_state->__pyx_n_s_reduce);
   Py_CLEAR(clear_module_state->__pyx_n_s_reduce_cython);
   Py_CLEAR(clear_module_state->__pyx_n_s_reduce_ex);
@@ -3043,20 +3047,20 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_setstate_cython);
   Py_CLEAR(clear_module_state->__pyx_n_s_spec);
   Py_CLEAR(clear_module_state->__pyx_n_s_splitext);
+  Py_CLEAR(clear_module_state->__pyx_n_s_splitlines);
   Py_CLEAR(clear_module_state->__pyx_n_s_state);
-  Py_CLEAR(clear_module_state->__pyx_n_s_str);
   Py_CLEAR(clear_module_state->__pyx_kp_s_str_None);
   Py_CLEAR(clear_module_state->__pyx_kp_s_stringsource);
   Py_CLEAR(clear_module_state->__pyx_n_s_strip);
-  Py_CLEAR(clear_module_state->__pyx_n_s_submission);
+  Py_CLEAR(clear_module_state->__pyx_n_u_submission);
   Py_CLEAR(clear_module_state->__pyx_n_s_test);
   Py_CLEAR(clear_module_state->__pyx_kp_u_txt);
-  Py_CLEAR(clear_module_state->__pyx_n_s_unknown);
+  Py_CLEAR(clear_module_state->__pyx_n_u_unknown);
   Py_CLEAR(clear_module_state->__pyx_n_s_update);
   Py_CLEAR(clear_module_state->__pyx_n_s_use_setstate);
-  Py_CLEAR(clear_module_state->__pyx_kp_s_utf_8);
+  Py_CLEAR(clear_module_state->__pyx_kp_u_utf_8);
   Py_CLEAR(clear_module_state->__pyx_n_s_uu);
-  Py_CLEAR(clear_module_state->__pyx_n_s_w);
+  Py_CLEAR(clear_module_state->__pyx_n_u_w);
   Py_CLEAR(clear_module_state->__pyx_n_s_write);
   Py_CLEAR(clear_module_state->__pyx_int_4);
   Py_CLEAR(clear_module_state->__pyx_int_113179819);
@@ -3064,17 +3068,20 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_int_184411033);
   Py_CLEAR(clear_module_state->__pyx_tuple__4);
   Py_CLEAR(clear_module_state->__pyx_tuple__6);
-  Py_CLEAR(clear_module_state->__pyx_tuple__9);
+  Py_CLEAR(clear_module_state->__pyx_tuple__7);
+  Py_CLEAR(clear_module_state->__pyx_tuple__8);
   Py_CLEAR(clear_module_state->__pyx_tuple__11);
   Py_CLEAR(clear_module_state->__pyx_tuple__13);
   Py_CLEAR(clear_module_state->__pyx_tuple__15);
   Py_CLEAR(clear_module_state->__pyx_tuple__17);
-  Py_CLEAR(clear_module_state->__pyx_tuple__18);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__10);
+  Py_CLEAR(clear_module_state->__pyx_tuple__19);
+  Py_CLEAR(clear_module_state->__pyx_tuple__21);
   Py_CLEAR(clear_module_state->__pyx_codeobj__12);
   Py_CLEAR(clear_module_state->__pyx_codeobj__14);
   Py_CLEAR(clear_module_state->__pyx_codeobj__16);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__19);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__18);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__20);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__22);
   return 0;
 }
 #endif
@@ -3100,42 +3107,46 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_ptype_7cpython_7complex_complex);
   Py_VISIT(traverse_module_state->__pyx_ptype_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser);
   Py_VISIT(traverse_module_state->__pyx_type_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_);
   Py_VISIT(traverse_module_state->__pyx_n_s_BytesIO);
   Py_VISIT(traverse_module_state->__pyx_n_s_CySGMLParser);
   Py_VISIT(traverse_module_state->__pyx_n_s_CySGMLParser___reduce_cython);
   Py_VISIT(traverse_module_state->__pyx_n_s_CySGMLParser___setstate_cython);
+  Py_VISIT(traverse_module_state->__pyx_n_s_CySGMLParser_parse_content);
   Py_VISIT(traverse_module_state->__pyx_n_s_CySGMLParser_parse_file);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_DOCUMENT);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_DOCUMENT_2);
-  Py_VISIT(traverse_module_state->__pyx_n_s_FILENAME);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_DOCUMENT);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_DOCUMENT_2);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_Either_filepath_or_content_must);
+  Py_VISIT(traverse_module_state->__pyx_n_u_FILENAME);
   Py_VISIT(traverse_module_state->__pyx_kp_s_Incompatible_checksums_0x_x_vs_0);
   Py_VISIT(traverse_module_state->__pyx_n_s_None);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_PDF);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_PDF_2);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_PDF);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_PDF_2);
   Py_VISIT(traverse_module_state->__pyx_n_s_PickleError);
-  Py_VISIT(traverse_module_state->__pyx_n_s_SEQUENCE);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_TEXT);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_TEXT_2);
-  Py_VISIT(traverse_module_state->__pyx_kp_s__2);
-  Py_VISIT(traverse_module_state->__pyx_n_s__20);
-  Py_VISIT(traverse_module_state->__pyx_kp_s__3);
-  Py_VISIT(traverse_module_state->__pyx_kp_s__5);
-  Py_VISIT(traverse_module_state->__pyx_kp_u__7);
-  Py_VISIT(traverse_module_state->__pyx_n_s__8);
+  Py_VISIT(traverse_module_state->__pyx_n_u_SEQUENCE);
+  Py_VISIT(traverse_module_state->__pyx_n_s_StringIO);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_TEXT);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_TEXT_2);
+  Py_VISIT(traverse_module_state->__pyx_n_s_ValueError);
+  Py_VISIT(traverse_module_state->__pyx_n_s__10);
+  Py_VISIT(traverse_module_state->__pyx_kp_u__2);
+  Py_VISIT(traverse_module_state->__pyx_n_s__23);
+  Py_VISIT(traverse_module_state->__pyx_kp_u__3);
+  Py_VISIT(traverse_module_state->__pyx_kp_u__5);
+  Py_VISIT(traverse_module_state->__pyx_kp_u__9);
   Py_VISIT(traverse_module_state->__pyx_n_s_asyncio_coroutines);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_begin);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_begin);
   Py_VISIT(traverse_module_state->__pyx_n_s_cline_in_traceback);
+  Py_VISIT(traverse_module_state->__pyx_n_s_content);
   Py_VISIT(traverse_module_state->__pyx_kp_s_datamule_rewrite_sgml_parser_cy);
   Py_VISIT(traverse_module_state->__pyx_n_s_datamule_rewrite_sgml_parser_cy_2);
   Py_VISIT(traverse_module_state->__pyx_n_s_decode);
   Py_VISIT(traverse_module_state->__pyx_n_s_dict);
   Py_VISIT(traverse_module_state->__pyx_n_s_dict_2);
   Py_VISIT(traverse_module_state->__pyx_kp_u_disable);
-  Py_VISIT(traverse_module_state->__pyx_n_s_documents);
+  Py_VISIT(traverse_module_state->__pyx_n_u_documents);
   Py_VISIT(traverse_module_state->__pyx_n_s_dump);
   Py_VISIT(traverse_module_state->__pyx_kp_u_enable);
-  Py_VISIT(traverse_module_state->__pyx_n_s_encode);
   Py_VISIT(traverse_module_state->__pyx_n_s_encoding);
   Py_VISIT(traverse_module_state->__pyx_n_s_enter);
   Py_VISIT(traverse_module_state->__pyx_n_s_exist_ok);
@@ -3153,15 +3164,18 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_kp_u_isenabled);
   Py_VISIT(traverse_module_state->__pyx_n_s_join);
   Py_VISIT(traverse_module_state->__pyx_n_s_json);
+  Py_VISIT(traverse_module_state->__pyx_n_s_keepends);
   Py_VISIT(traverse_module_state->__pyx_n_s_main);
   Py_VISIT(traverse_module_state->__pyx_n_s_makedirs);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_metadata_json);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_metadata_json);
   Py_VISIT(traverse_module_state->__pyx_n_s_name);
   Py_VISIT(traverse_module_state->__pyx_n_s_new);
   Py_VISIT(traverse_module_state->__pyx_n_s_open);
   Py_VISIT(traverse_module_state->__pyx_n_s_os);
-  Py_VISIT(traverse_module_state->__pyx_n_s_output);
+  Py_VISIT(traverse_module_state->__pyx_n_u_output);
   Py_VISIT(traverse_module_state->__pyx_n_s_output_dir);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_output_dir_must_be_provided_when);
+  Py_VISIT(traverse_module_state->__pyx_n_s_parse_content);
   Py_VISIT(traverse_module_state->__pyx_n_s_parse_file);
   Py_VISIT(traverse_module_state->__pyx_n_s_parse_sgml_submission);
   Py_VISIT(traverse_module_state->__pyx_n_s_parser);
@@ -3176,7 +3190,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_pyx_unpickle_CySGMLParser);
   Py_VISIT(traverse_module_state->__pyx_n_s_pyx_vtable);
   Py_VISIT(traverse_module_state->__pyx_n_s_quiet);
-  Py_VISIT(traverse_module_state->__pyx_n_s_r);
+  Py_VISIT(traverse_module_state->__pyx_n_u_r);
+  Py_VISIT(traverse_module_state->__pyx_n_s_read);
   Py_VISIT(traverse_module_state->__pyx_n_s_reduce);
   Py_VISIT(traverse_module_state->__pyx_n_s_reduce_cython);
   Py_VISIT(traverse_module_state->__pyx_n_s_reduce_ex);
@@ -3186,20 +3201,20 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_setstate_cython);
   Py_VISIT(traverse_module_state->__pyx_n_s_spec);
   Py_VISIT(traverse_module_state->__pyx_n_s_splitext);
+  Py_VISIT(traverse_module_state->__pyx_n_s_splitlines);
   Py_VISIT(traverse_module_state->__pyx_n_s_state);
-  Py_VISIT(traverse_module_state->__pyx_n_s_str);
   Py_VISIT(traverse_module_state->__pyx_kp_s_str_None);
   Py_VISIT(traverse_module_state->__pyx_kp_s_stringsource);
   Py_VISIT(traverse_module_state->__pyx_n_s_strip);
-  Py_VISIT(traverse_module_state->__pyx_n_s_submission);
+  Py_VISIT(traverse_module_state->__pyx_n_u_submission);
   Py_VISIT(traverse_module_state->__pyx_n_s_test);
   Py_VISIT(traverse_module_state->__pyx_kp_u_txt);
-  Py_VISIT(traverse_module_state->__pyx_n_s_unknown);
+  Py_VISIT(traverse_module_state->__pyx_n_u_unknown);
   Py_VISIT(traverse_module_state->__pyx_n_s_update);
   Py_VISIT(traverse_module_state->__pyx_n_s_use_setstate);
-  Py_VISIT(traverse_module_state->__pyx_kp_s_utf_8);
+  Py_VISIT(traverse_module_state->__pyx_kp_u_utf_8);
   Py_VISIT(traverse_module_state->__pyx_n_s_uu);
-  Py_VISIT(traverse_module_state->__pyx_n_s_w);
+  Py_VISIT(traverse_module_state->__pyx_n_u_w);
   Py_VISIT(traverse_module_state->__pyx_n_s_write);
   Py_VISIT(traverse_module_state->__pyx_int_4);
   Py_VISIT(traverse_module_state->__pyx_int_113179819);
@@ -3207,17 +3222,20 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_int_184411033);
   Py_VISIT(traverse_module_state->__pyx_tuple__4);
   Py_VISIT(traverse_module_state->__pyx_tuple__6);
-  Py_VISIT(traverse_module_state->__pyx_tuple__9);
+  Py_VISIT(traverse_module_state->__pyx_tuple__7);
+  Py_VISIT(traverse_module_state->__pyx_tuple__8);
   Py_VISIT(traverse_module_state->__pyx_tuple__11);
   Py_VISIT(traverse_module_state->__pyx_tuple__13);
   Py_VISIT(traverse_module_state->__pyx_tuple__15);
   Py_VISIT(traverse_module_state->__pyx_tuple__17);
-  Py_VISIT(traverse_module_state->__pyx_tuple__18);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__10);
+  Py_VISIT(traverse_module_state->__pyx_tuple__19);
+  Py_VISIT(traverse_module_state->__pyx_tuple__21);
   Py_VISIT(traverse_module_state->__pyx_codeobj__12);
   Py_VISIT(traverse_module_state->__pyx_codeobj__14);
   Py_VISIT(traverse_module_state->__pyx_codeobj__16);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__19);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__18);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__20);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__22);
   return 0;
 }
 #endif
@@ -3339,42 +3357,46 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_type_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser __pyx_mstate_global->__pyx_type_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser
 #endif
 #define __pyx_ptype_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser __pyx_mstate_global->__pyx_ptype_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser
-#define __pyx_kp_s_ __pyx_mstate_global->__pyx_kp_s_
+#define __pyx_kp_u_ __pyx_mstate_global->__pyx_kp_u_
 #define __pyx_n_s_BytesIO __pyx_mstate_global->__pyx_n_s_BytesIO
 #define __pyx_n_s_CySGMLParser __pyx_mstate_global->__pyx_n_s_CySGMLParser
 #define __pyx_n_s_CySGMLParser___reduce_cython __pyx_mstate_global->__pyx_n_s_CySGMLParser___reduce_cython
 #define __pyx_n_s_CySGMLParser___setstate_cython __pyx_mstate_global->__pyx_n_s_CySGMLParser___setstate_cython
+#define __pyx_n_s_CySGMLParser_parse_content __pyx_mstate_global->__pyx_n_s_CySGMLParser_parse_content
 #define __pyx_n_s_CySGMLParser_parse_file __pyx_mstate_global->__pyx_n_s_CySGMLParser_parse_file
-#define __pyx_kp_s_DOCUMENT __pyx_mstate_global->__pyx_kp_s_DOCUMENT
-#define __pyx_kp_s_DOCUMENT_2 __pyx_mstate_global->__pyx_kp_s_DOCUMENT_2
-#define __pyx_n_s_FILENAME __pyx_mstate_global->__pyx_n_s_FILENAME
+#define __pyx_kp_u_DOCUMENT __pyx_mstate_global->__pyx_kp_u_DOCUMENT
+#define __pyx_kp_u_DOCUMENT_2 __pyx_mstate_global->__pyx_kp_u_DOCUMENT_2
+#define __pyx_kp_u_Either_filepath_or_content_must __pyx_mstate_global->__pyx_kp_u_Either_filepath_or_content_must
+#define __pyx_n_u_FILENAME __pyx_mstate_global->__pyx_n_u_FILENAME
 #define __pyx_kp_s_Incompatible_checksums_0x_x_vs_0 __pyx_mstate_global->__pyx_kp_s_Incompatible_checksums_0x_x_vs_0
 #define __pyx_n_s_None __pyx_mstate_global->__pyx_n_s_None
-#define __pyx_kp_s_PDF __pyx_mstate_global->__pyx_kp_s_PDF
-#define __pyx_kp_s_PDF_2 __pyx_mstate_global->__pyx_kp_s_PDF_2
+#define __pyx_kp_u_PDF __pyx_mstate_global->__pyx_kp_u_PDF
+#define __pyx_kp_u_PDF_2 __pyx_mstate_global->__pyx_kp_u_PDF_2
 #define __pyx_n_s_PickleError __pyx_mstate_global->__pyx_n_s_PickleError
-#define __pyx_n_s_SEQUENCE __pyx_mstate_global->__pyx_n_s_SEQUENCE
-#define __pyx_kp_s_TEXT __pyx_mstate_global->__pyx_kp_s_TEXT
-#define __pyx_kp_s_TEXT_2 __pyx_mstate_global->__pyx_kp_s_TEXT_2
-#define __pyx_kp_s__2 __pyx_mstate_global->__pyx_kp_s__2
-#define __pyx_n_s__20 __pyx_mstate_global->__pyx_n_s__20
-#define __pyx_kp_s__3 __pyx_mstate_global->__pyx_kp_s__3
-#define __pyx_kp_s__5 __pyx_mstate_global->__pyx_kp_s__5
-#define __pyx_kp_u__7 __pyx_mstate_global->__pyx_kp_u__7
-#define __pyx_n_s__8 __pyx_mstate_global->__pyx_n_s__8
+#define __pyx_n_u_SEQUENCE __pyx_mstate_global->__pyx_n_u_SEQUENCE
+#define __pyx_n_s_StringIO __pyx_mstate_global->__pyx_n_s_StringIO
+#define __pyx_kp_u_TEXT __pyx_mstate_global->__pyx_kp_u_TEXT
+#define __pyx_kp_u_TEXT_2 __pyx_mstate_global->__pyx_kp_u_TEXT_2
+#define __pyx_n_s_ValueError __pyx_mstate_global->__pyx_n_s_ValueError
+#define __pyx_n_s__10 __pyx_mstate_global->__pyx_n_s__10
+#define __pyx_kp_u__2 __pyx_mstate_global->__pyx_kp_u__2
+#define __pyx_n_s__23 __pyx_mstate_global->__pyx_n_s__23
+#define __pyx_kp_u__3 __pyx_mstate_global->__pyx_kp_u__3
+#define __pyx_kp_u__5 __pyx_mstate_global->__pyx_kp_u__5
+#define __pyx_kp_u__9 __pyx_mstate_global->__pyx_kp_u__9
 #define __pyx_n_s_asyncio_coroutines __pyx_mstate_global->__pyx_n_s_asyncio_coroutines
-#define __pyx_kp_s_begin __pyx_mstate_global->__pyx_kp_s_begin
+#define __pyx_kp_u_begin __pyx_mstate_global->__pyx_kp_u_begin
 #define __pyx_n_s_cline_in_traceback __pyx_mstate_global->__pyx_n_s_cline_in_traceback
+#define __pyx_n_s_content __pyx_mstate_global->__pyx_n_s_content
 #define __pyx_kp_s_datamule_rewrite_sgml_parser_cy __pyx_mstate_global->__pyx_kp_s_datamule_rewrite_sgml_parser_cy
 #define __pyx_n_s_datamule_rewrite_sgml_parser_cy_2 __pyx_mstate_global->__pyx_n_s_datamule_rewrite_sgml_parser_cy_2
 #define __pyx_n_s_decode __pyx_mstate_global->__pyx_n_s_decode
 #define __pyx_n_s_dict __pyx_mstate_global->__pyx_n_s_dict
 #define __pyx_n_s_dict_2 __pyx_mstate_global->__pyx_n_s_dict_2
 #define __pyx_kp_u_disable __pyx_mstate_global->__pyx_kp_u_disable
-#define __pyx_n_s_documents __pyx_mstate_global->__pyx_n_s_documents
+#define __pyx_n_u_documents __pyx_mstate_global->__pyx_n_u_documents
 #define __pyx_n_s_dump __pyx_mstate_global->__pyx_n_s_dump
 #define __pyx_kp_u_enable __pyx_mstate_global->__pyx_kp_u_enable
-#define __pyx_n_s_encode __pyx_mstate_global->__pyx_n_s_encode
 #define __pyx_n_s_encoding __pyx_mstate_global->__pyx_n_s_encoding
 #define __pyx_n_s_enter __pyx_mstate_global->__pyx_n_s_enter
 #define __pyx_n_s_exist_ok __pyx_mstate_global->__pyx_n_s_exist_ok
@@ -3392,15 +3414,18 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_kp_u_isenabled __pyx_mstate_global->__pyx_kp_u_isenabled
 #define __pyx_n_s_join __pyx_mstate_global->__pyx_n_s_join
 #define __pyx_n_s_json __pyx_mstate_global->__pyx_n_s_json
+#define __pyx_n_s_keepends __pyx_mstate_global->__pyx_n_s_keepends
 #define __pyx_n_s_main __pyx_mstate_global->__pyx_n_s_main
 #define __pyx_n_s_makedirs __pyx_mstate_global->__pyx_n_s_makedirs
-#define __pyx_kp_s_metadata_json __pyx_mstate_global->__pyx_kp_s_metadata_json
+#define __pyx_kp_u_metadata_json __pyx_mstate_global->__pyx_kp_u_metadata_json
 #define __pyx_n_s_name __pyx_mstate_global->__pyx_n_s_name
 #define __pyx_n_s_new __pyx_mstate_global->__pyx_n_s_new
 #define __pyx_n_s_open __pyx_mstate_global->__pyx_n_s_open
 #define __pyx_n_s_os __pyx_mstate_global->__pyx_n_s_os
-#define __pyx_n_s_output __pyx_mstate_global->__pyx_n_s_output
+#define __pyx_n_u_output __pyx_mstate_global->__pyx_n_u_output
 #define __pyx_n_s_output_dir __pyx_mstate_global->__pyx_n_s_output_dir
+#define __pyx_kp_u_output_dir_must_be_provided_when __pyx_mstate_global->__pyx_kp_u_output_dir_must_be_provided_when
+#define __pyx_n_s_parse_content __pyx_mstate_global->__pyx_n_s_parse_content
 #define __pyx_n_s_parse_file __pyx_mstate_global->__pyx_n_s_parse_file
 #define __pyx_n_s_parse_sgml_submission __pyx_mstate_global->__pyx_n_s_parse_sgml_submission
 #define __pyx_n_s_parser __pyx_mstate_global->__pyx_n_s_parser
@@ -3415,7 +3440,8 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_pyx_unpickle_CySGMLParser __pyx_mstate_global->__pyx_n_s_pyx_unpickle_CySGMLParser
 #define __pyx_n_s_pyx_vtable __pyx_mstate_global->__pyx_n_s_pyx_vtable
 #define __pyx_n_s_quiet __pyx_mstate_global->__pyx_n_s_quiet
-#define __pyx_n_s_r __pyx_mstate_global->__pyx_n_s_r
+#define __pyx_n_u_r __pyx_mstate_global->__pyx_n_u_r
+#define __pyx_n_s_read __pyx_mstate_global->__pyx_n_s_read
 #define __pyx_n_s_reduce __pyx_mstate_global->__pyx_n_s_reduce
 #define __pyx_n_s_reduce_cython __pyx_mstate_global->__pyx_n_s_reduce_cython
 #define __pyx_n_s_reduce_ex __pyx_mstate_global->__pyx_n_s_reduce_ex
@@ -3425,20 +3451,20 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_setstate_cython __pyx_mstate_global->__pyx_n_s_setstate_cython
 #define __pyx_n_s_spec __pyx_mstate_global->__pyx_n_s_spec
 #define __pyx_n_s_splitext __pyx_mstate_global->__pyx_n_s_splitext
+#define __pyx_n_s_splitlines __pyx_mstate_global->__pyx_n_s_splitlines
 #define __pyx_n_s_state __pyx_mstate_global->__pyx_n_s_state
-#define __pyx_n_s_str __pyx_mstate_global->__pyx_n_s_str
 #define __pyx_kp_s_str_None __pyx_mstate_global->__pyx_kp_s_str_None
 #define __pyx_kp_s_stringsource __pyx_mstate_global->__pyx_kp_s_stringsource
 #define __pyx_n_s_strip __pyx_mstate_global->__pyx_n_s_strip
-#define __pyx_n_s_submission __pyx_mstate_global->__pyx_n_s_submission
+#define __pyx_n_u_submission __pyx_mstate_global->__pyx_n_u_submission
 #define __pyx_n_s_test __pyx_mstate_global->__pyx_n_s_test
 #define __pyx_kp_u_txt __pyx_mstate_global->__pyx_kp_u_txt
-#define __pyx_n_s_unknown __pyx_mstate_global->__pyx_n_s_unknown
+#define __pyx_n_u_unknown __pyx_mstate_global->__pyx_n_u_unknown
 #define __pyx_n_s_update __pyx_mstate_global->__pyx_n_s_update
 #define __pyx_n_s_use_setstate __pyx_mstate_global->__pyx_n_s_use_setstate
-#define __pyx_kp_s_utf_8 __pyx_mstate_global->__pyx_kp_s_utf_8
+#define __pyx_kp_u_utf_8 __pyx_mstate_global->__pyx_kp_u_utf_8
 #define __pyx_n_s_uu __pyx_mstate_global->__pyx_n_s_uu
-#define __pyx_n_s_w __pyx_mstate_global->__pyx_n_s_w
+#define __pyx_n_u_w __pyx_mstate_global->__pyx_n_u_w
 #define __pyx_n_s_write __pyx_mstate_global->__pyx_n_s_write
 #define __pyx_int_4 __pyx_mstate_global->__pyx_int_4
 #define __pyx_int_113179819 __pyx_mstate_global->__pyx_int_113179819
@@ -3446,17 +3472,20 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_int_184411033 __pyx_mstate_global->__pyx_int_184411033
 #define __pyx_tuple__4 __pyx_mstate_global->__pyx_tuple__4
 #define __pyx_tuple__6 __pyx_mstate_global->__pyx_tuple__6
-#define __pyx_tuple__9 __pyx_mstate_global->__pyx_tuple__9
+#define __pyx_tuple__7 __pyx_mstate_global->__pyx_tuple__7
+#define __pyx_tuple__8 __pyx_mstate_global->__pyx_tuple__8
 #define __pyx_tuple__11 __pyx_mstate_global->__pyx_tuple__11
 #define __pyx_tuple__13 __pyx_mstate_global->__pyx_tuple__13
 #define __pyx_tuple__15 __pyx_mstate_global->__pyx_tuple__15
 #define __pyx_tuple__17 __pyx_mstate_global->__pyx_tuple__17
-#define __pyx_tuple__18 __pyx_mstate_global->__pyx_tuple__18
-#define __pyx_codeobj__10 __pyx_mstate_global->__pyx_codeobj__10
+#define __pyx_tuple__19 __pyx_mstate_global->__pyx_tuple__19
+#define __pyx_tuple__21 __pyx_mstate_global->__pyx_tuple__21
 #define __pyx_codeobj__12 __pyx_mstate_global->__pyx_codeobj__12
 #define __pyx_codeobj__14 __pyx_mstate_global->__pyx_codeobj__14
 #define __pyx_codeobj__16 __pyx_mstate_global->__pyx_codeobj__16
-#define __pyx_codeobj__19 __pyx_mstate_global->__pyx_codeobj__19
+#define __pyx_codeobj__18 __pyx_mstate_global->__pyx_codeobj__18
+#define __pyx_codeobj__20 __pyx_mstate_global->__pyx_codeobj__20
+#define __pyx_codeobj__22 __pyx_mstate_global->__pyx_codeobj__22
 /* #### Code section: module_code ### */
 
 /* "cpython/complex.pxd":19
@@ -3829,7 +3858,7 @@ static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser__ext
  *             str tag = line[1:tag_end]
  *             str content
  */
-  __pyx_t_1 = __Pyx_CallUnboundCMethod1(&__pyx_umethod_PyString_Type_index, __pyx_v_line, __pyx_kp_s_); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 17, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CallUnboundCMethod1(&__pyx_umethod_PyUnicode_Type_index, __pyx_v_line, __pyx_kp_u_); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 17, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_t_2 = __Pyx_PyInt_As_size_t(__pyx_t_1); if (unlikely((__pyx_t_2 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 17, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
@@ -3846,7 +3875,7 @@ static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser__ext
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
     __PYX_ERR(0, 18, __pyx_L1_error)
   }
-  __pyx_t_1 = PySequence_GetSlice(__pyx_v_line, 1, __pyx_v_tag_end); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyUnicode_Substring(__pyx_v_line, 1, __pyx_v_tag_end); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 18, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_tag = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
@@ -3858,7 +3887,7 @@ static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser__ext
  *             return None
  * 
  */
-  __pyx_t_3 = __Pyx_PyStr_Tailmatch(__pyx_v_tag, __pyx_kp_s__2, 0, PY_SSIZE_T_MAX, -1); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 21, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyUnicode_Tailmatch(__pyx_v_tag, __pyx_kp_u__2, 0, PY_SSIZE_T_MAX, -1); if (unlikely(__pyx_t_3 == ((int)-1))) __PYX_ERR(0, 21, __pyx_L1_error)
   if (__pyx_t_3) {
 
     /* "datamule/rewrite/sgml_parser_cy.pyx":22
@@ -3892,7 +3921,7 @@ static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser__ext
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
     __PYX_ERR(0, 24, __pyx_L1_error)
   }
-  __pyx_t_4 = PySequence_GetSlice(__pyx_v_line, (__pyx_v_tag_end + 1), PY_SSIZE_T_MAX); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 24, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyUnicode_Substring(__pyx_v_line, (__pyx_v_tag_end + 1), PY_SSIZE_T_MAX); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_strip); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 24, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
@@ -3919,7 +3948,7 @@ static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser__ext
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   }
-  if (!(likely(PyString_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("str", __pyx_t_1))) __PYX_ERR(0, 24, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("unicode", __pyx_t_1))) __PYX_ERR(0, 24, __pyx_L1_error)
   __pyx_v_content = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
@@ -4004,7 +4033,7 @@ static void __pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser__write_do
  *             return
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_content); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 30, __pyx_L1_error)
+  __pyx_t_1 = (__pyx_v_content != Py_None)&&(__Pyx_PyUnicode_IS_TRUE(__pyx_v_content) != 0);
   __pyx_t_2 = (!__pyx_t_1);
   if (__pyx_t_2) {
 
@@ -4049,7 +4078,7 @@ static void __pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser__write_do
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "get");
     __PYX_ERR(0, 33, __pyx_L1_error)
   }
-  __pyx_t_5 = __Pyx_PyDict_GetItemDefault(__pyx_v_document_info, __pyx_n_s_SEQUENCE, __pyx_n_s_unknown); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyDict_GetItemDefault(__pyx_v_document_info, __pyx_n_u_SEQUENCE, __pyx_n_u_unknown); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 33, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __pyx_t_6 = __Pyx_PyObject_FormatSimple(__pyx_t_5, __pyx_empty_unicode); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 33, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
@@ -4057,7 +4086,7 @@ static void __pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser__write_do
   __pyx_t_5 = __Pyx_PyUnicode_ConcatInPlace(__pyx_t_6, __pyx_kp_u_txt); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 33, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_6 = __Pyx_PyDict_GetItemDefault(__pyx_v_document_info, __pyx_n_s_FILENAME, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 33, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_PyDict_GetItemDefault(__pyx_v_document_info, __pyx_n_u_FILENAME, __pyx_t_5); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 33, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __pyx_t_5 = NULL;
@@ -4083,7 +4112,7 @@ static void __pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser__write_do
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
-  if (!(likely(PyString_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None) || __Pyx_RaiseUnexpectedTypeError("str", __pyx_t_3))) __PYX_ERR(0, 33, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None) || __Pyx_RaiseUnexpectedTypeError("unicode", __pyx_t_3))) __PYX_ERR(0, 33, __pyx_L1_error)
   __pyx_v_output_path = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
@@ -4094,9 +4123,9 @@ static void __pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser__write_do
  * 
  *         if first_line.startswith('begin '):
  */
-  __pyx_t_4 = __Pyx_CallUnboundCMethod1(&__pyx_umethod_PyString_Type_partition, __pyx_v_content, __pyx_kp_s__3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_CallUnboundCMethod1(&__pyx_umethod_PyUnicode_Type_partition, __pyx_v_content, __pyx_kp_u__3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 34, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 34, __pyx_L1_error)
+  __pyx_t_6 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 34, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_strip); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 34, __pyx_L1_error)
@@ -4124,7 +4153,7 @@ static void __pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser__write_do
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
-  if (!(likely(PyString_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None) || __Pyx_RaiseUnexpectedTypeError("str", __pyx_t_3))) __PYX_ERR(0, 34, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None) || __Pyx_RaiseUnexpectedTypeError("unicode", __pyx_t_3))) __PYX_ERR(0, 34, __pyx_L1_error)
   __pyx_v_first_line = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
@@ -4139,7 +4168,7 @@ static void __pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser__write_do
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "startswith");
     __PYX_ERR(0, 36, __pyx_L1_error)
   }
-  __pyx_t_2 = __Pyx_PyStr_Tailmatch(__pyx_v_first_line, __pyx_kp_s_begin, 0, PY_SSIZE_T_MAX, -1); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 36, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyUnicode_Tailmatch(__pyx_v_first_line, __pyx_kp_u_begin, 0, PY_SSIZE_T_MAX, -1); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 36, __pyx_L1_error)
   if (__pyx_t_2) {
 
     /* "datamule/rewrite/sgml_parser_cy.pyx":37
@@ -4152,7 +4181,11 @@ static void __pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser__write_do
     /*with:*/ {
       __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_BytesIO); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 37, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      __pyx_t_6 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PyString_Type_encode, __pyx_v_content); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 37, __pyx_L1_error)
+      if (unlikely(__pyx_v_content == Py_None)) {
+        PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "encode");
+        __PYX_ERR(0, 37, __pyx_L1_error)
+      }
+      __pyx_t_6 = PyUnicode_AsEncodedString(__pyx_v_content, NULL, NULL); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 37, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __pyx_t_5 = NULL;
       __pyx_t_7 = 0;
@@ -4353,12 +4386,12 @@ static void __pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser__write_do
       __Pyx_INCREF(__pyx_v_output_path);
       __Pyx_GIVEREF(__pyx_v_output_path);
       if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 0, __pyx_v_output_path)) __PYX_ERR(0, 40, __pyx_L1_error);
-      __Pyx_INCREF(__pyx_n_s_w);
-      __Pyx_GIVEREF(__pyx_n_s_w);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_n_s_w)) __PYX_ERR(0, 40, __pyx_L1_error);
+      __Pyx_INCREF(__pyx_n_u_w);
+      __Pyx_GIVEREF(__pyx_n_u_w);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_6, 1, __pyx_n_u_w)) __PYX_ERR(0, 40, __pyx_L1_error);
       __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 40, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
-      if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_encoding, __pyx_kp_s_utf_8) < 0) __PYX_ERR(0, 40, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_encoding, __pyx_kp_u_utf_8) < 0) __PYX_ERR(0, 40, __pyx_L1_error)
       __pyx_t_5 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_t_6, __pyx_t_4); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 40, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_5);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -4409,7 +4442,7 @@ static void __pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser__write_do
  *             with open(output_path, 'w', encoding='utf-8') as f:
  *                 f.write(content)             # <<<<<<<<<<<<<<
  * 
- *     cpdef parse_file(self, str filepath):
+ *     cpdef parse_content(self, str content):
  */
             __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_v_f, __pyx_n_s_write); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 41, __pyx_L23_error)
             __Pyx_GOTREF(__pyx_t_5);
@@ -4547,19 +4580,19 @@ static void __pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser__write_do
 /* "datamule/rewrite/sgml_parser_cy.pyx":43
  *                 f.write(content)
  * 
- *     cpdef parse_file(self, str filepath):             # <<<<<<<<<<<<<<
+ *     cpdef parse_content(self, str content):             # <<<<<<<<<<<<<<
+ *         """Parse SGML content directly from a string."""
  *         cdef:
- *             dict submission_data = {}
  */
 
-static PyObject *__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_1parse_file(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_1parse_content(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_parse_file(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_self, PyObject *__pyx_v_filepath, int __pyx_skip_dispatch) {
+static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_parse_content(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_self, PyObject *__pyx_v_content, int __pyx_skip_dispatch) {
   PyObject *__pyx_v_submission_data = 0;
   PyObject *__pyx_v_documents = 0;
   PyObject *__pyx_v_current_document = 0;
@@ -4570,7 +4603,7 @@ static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_pars
   PyObject *__pyx_v_line = 0;
   PyObject *__pyx_v_stripped = 0;
   PyObject *__pyx_v_tag_content = 0;
-  PyObject *__pyx_v_file = NULL;
+  PyObject *__pyx_v_lines = NULL;
   PyObject *__pyx_v_key = NULL;
   PyObject *__pyx_v_value = NULL;
   PyObject *__pyx_v_metadata = NULL;
@@ -4582,21 +4615,21 @@ static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_pars
   PyObject *__pyx_t_3 = NULL;
   PyObject *__pyx_t_4 = NULL;
   unsigned int __pyx_t_5;
-  PyObject *__pyx_t_6 = NULL;
-  PyObject *__pyx_t_7 = NULL;
-  PyObject *__pyx_t_8 = NULL;
-  PyObject *__pyx_t_9 = NULL;
-  Py_ssize_t __pyx_t_10;
-  PyObject *(*__pyx_t_11)(PyObject *);
-  int __pyx_t_12;
-  int __pyx_t_13;
+  Py_ssize_t __pyx_t_6;
+  PyObject *(*__pyx_t_7)(PyObject *);
+  int __pyx_t_8;
+  int __pyx_t_9;
+  PyObject *__pyx_t_10 = NULL;
+  int __pyx_t_11;
+  PyObject *__pyx_t_12 = NULL;
+  PyObject *__pyx_t_13 = NULL;
   PyObject *__pyx_t_14 = NULL;
-  int __pyx_t_15;
+  PyObject *__pyx_t_15 = NULL;
   PyObject *__pyx_t_16 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("parse_file", 1);
+  __Pyx_RefNannySetupContext("parse_content", 1);
   /* Check if called by wrapper */
   if (unlikely(__pyx_skip_dispatch)) ;
   /* Check if overridden in Python */
@@ -4606,9 +4639,9 @@ static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_pars
     if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
       PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
       #endif
-      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_parse_file); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 43, __pyx_L1_error)
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_parse_content); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 43, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_1parse_file)) {
+      if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_1parse_content)) {
         __Pyx_XDECREF(__pyx_r);
         __Pyx_INCREF(__pyx_t_1);
         __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
@@ -4626,7 +4659,7 @@ static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_pars
         }
         #endif
         {
-          PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_v_filepath};
+          PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_v_content};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
           if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 43, __pyx_L1_error)
@@ -4651,55 +4684,55 @@ static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_pars
     #endif
   }
 
-  /* "datamule/rewrite/sgml_parser_cy.pyx":45
- *     cpdef parse_file(self, str filepath):
+  /* "datamule/rewrite/sgml_parser_cy.pyx":46
+ *         """Parse SGML content directly from a string."""
  *         cdef:
  *             dict submission_data = {}             # <<<<<<<<<<<<<<
  *             list documents = []
  *             dict current_document = {}
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_submission_data = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "datamule/rewrite/sgml_parser_cy.pyx":46
+  /* "datamule/rewrite/sgml_parser_cy.pyx":47
  *         cdef:
  *             dict submission_data = {}
  *             list documents = []             # <<<<<<<<<<<<<<
  *             dict current_document = {}
  *             list text_buffer = []
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 46, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_documents = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "datamule/rewrite/sgml_parser_cy.pyx":47
+  /* "datamule/rewrite/sgml_parser_cy.pyx":48
  *             dict submission_data = {}
  *             list documents = []
  *             dict current_document = {}             # <<<<<<<<<<<<<<
  *             list text_buffer = []
  *             bint in_document = False
  */
-  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 47, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_current_document = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "datamule/rewrite/sgml_parser_cy.pyx":48
+  /* "datamule/rewrite/sgml_parser_cy.pyx":49
  *             list documents = []
  *             dict current_document = {}
  *             list text_buffer = []             # <<<<<<<<<<<<<<
  *             bint in_document = False
  *             bint in_text = False
  */
-  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 48, __pyx_L1_error)
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 49, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_text_buffer = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "datamule/rewrite/sgml_parser_cy.pyx":49
+  /* "datamule/rewrite/sgml_parser_cy.pyx":50
  *             dict current_document = {}
  *             list text_buffer = []
  *             bint in_document = False             # <<<<<<<<<<<<<<
@@ -4708,7 +4741,7 @@ static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_pars
  */
   __pyx_v_in_document = 0;
 
-  /* "datamule/rewrite/sgml_parser_cy.pyx":50
+  /* "datamule/rewrite/sgml_parser_cy.pyx":51
  *             list text_buffer = []
  *             bint in_document = False
  *             bint in_text = False             # <<<<<<<<<<<<<<
@@ -4717,7 +4750,7 @@ static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_pars
  */
   __pyx_v_in_text = 0;
 
-  /* "datamule/rewrite/sgml_parser_cy.pyx":51
+  /* "datamule/rewrite/sgml_parser_cy.pyx":52
  *             bint in_document = False
  *             bint in_text = False
  *             bint in_submission = True             # <<<<<<<<<<<<<<
@@ -4726,32 +4759,997 @@ static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_pars
  */
   __pyx_v_in_submission = 1;
 
-  /* "datamule/rewrite/sgml_parser_cy.pyx":55
- *             tuple tag_content
+  /* "datamule/rewrite/sgml_parser_cy.pyx":57
  * 
- *         with open(filepath, 'r', encoding='utf-8') as file:             # <<<<<<<<<<<<<<
- *             for line in file:
- *                 stripped = line.strip()
+ *         # Pre-split content into lines
+ *         lines = content.splitlines(keepends=True)  # keepends=True to maintain original formatting             # <<<<<<<<<<<<<<
+ * 
+ *         for line in lines:
+ */
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_content, __pyx_n_s_splitlines); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_keepends, Py_True) < 0) __PYX_ERR(0, 57, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 57, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_v_lines = __pyx_t_3;
+  __pyx_t_3 = 0;
+
+  /* "datamule/rewrite/sgml_parser_cy.pyx":59
+ *         lines = content.splitlines(keepends=True)  # keepends=True to maintain original formatting
+ * 
+ *         for line in lines:             # <<<<<<<<<<<<<<
+ *             stripped = line.strip()
+ * 
+ */
+  if (likely(PyList_CheckExact(__pyx_v_lines)) || PyTuple_CheckExact(__pyx_v_lines)) {
+    __pyx_t_3 = __pyx_v_lines; __Pyx_INCREF(__pyx_t_3);
+    __pyx_t_6 = 0;
+    __pyx_t_7 = NULL;
+  } else {
+    __pyx_t_6 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_lines); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 59, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    __pyx_t_7 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 59, __pyx_L1_error)
+  }
+  for (;;) {
+    if (likely(!__pyx_t_7)) {
+      if (likely(PyList_CheckExact(__pyx_t_3))) {
+        {
+          Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_3);
+          #if !CYTHON_ASSUME_SAFE_MACROS
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 59, __pyx_L1_error)
+          #endif
+          if (__pyx_t_6 >= __pyx_temp) break;
+        }
+        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_2); __pyx_t_6++; if (unlikely((0 < 0))) __PYX_ERR(0, 59, __pyx_L1_error)
+        #else
+        __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 59, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        #endif
+      } else {
+        {
+          Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_3);
+          #if !CYTHON_ASSUME_SAFE_MACROS
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 59, __pyx_L1_error)
+          #endif
+          if (__pyx_t_6 >= __pyx_temp) break;
+        }
+        #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_2); __pyx_t_6++; if (unlikely((0 < 0))) __PYX_ERR(0, 59, __pyx_L1_error)
+        #else
+        __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 59, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        #endif
+      }
+    } else {
+      __pyx_t_2 = __pyx_t_7(__pyx_t_3);
+      if (unlikely(!__pyx_t_2)) {
+        PyObject* exc_type = PyErr_Occurred();
+        if (exc_type) {
+          if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
+          else __PYX_ERR(0, 59, __pyx_L1_error)
+        }
+        break;
+      }
+      __Pyx_GOTREF(__pyx_t_2);
+    }
+    if (!(likely(PyUnicode_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("unicode", __pyx_t_2))) __PYX_ERR(0, 59, __pyx_L1_error)
+    __Pyx_XDECREF_SET(__pyx_v_line, ((PyObject*)__pyx_t_2));
+    __pyx_t_2 = 0;
+
+    /* "datamule/rewrite/sgml_parser_cy.pyx":60
+ * 
+ *         for line in lines:
+ *             stripped = line.strip()             # <<<<<<<<<<<<<<
+ * 
+ *             if stripped == '<DOCUMENT>':
+ */
+    __pyx_t_2 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PyUnicode_Type_strip, __pyx_v_line); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 60, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    if (!(likely(PyUnicode_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("unicode", __pyx_t_2))) __PYX_ERR(0, 60, __pyx_L1_error)
+    __Pyx_XDECREF_SET(__pyx_v_stripped, ((PyObject*)__pyx_t_2));
+    __pyx_t_2 = 0;
+
+    /* "datamule/rewrite/sgml_parser_cy.pyx":62
+ *             stripped = line.strip()
+ * 
+ *             if stripped == '<DOCUMENT>':             # <<<<<<<<<<<<<<
+ *                 in_document = True
+ *                 in_submission = False
+ */
+    __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_v_stripped, __pyx_kp_u_DOCUMENT, Py_EQ)); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 62, __pyx_L1_error)
+    if (__pyx_t_8) {
+
+      /* "datamule/rewrite/sgml_parser_cy.pyx":63
+ * 
+ *             if stripped == '<DOCUMENT>':
+ *                 in_document = True             # <<<<<<<<<<<<<<
+ *                 in_submission = False
+ *                 current_document = {}
+ */
+      __pyx_v_in_document = 1;
+
+      /* "datamule/rewrite/sgml_parser_cy.pyx":64
+ *             if stripped == '<DOCUMENT>':
+ *                 in_document = True
+ *                 in_submission = False             # <<<<<<<<<<<<<<
+ *                 current_document = {}
+ *                 text_buffer = []  # Reset buffer at start of document
+ */
+      __pyx_v_in_submission = 0;
+
+      /* "datamule/rewrite/sgml_parser_cy.pyx":65
+ *                 in_document = True
+ *                 in_submission = False
+ *                 current_document = {}             # <<<<<<<<<<<<<<
+ *                 text_buffer = []  # Reset buffer at start of document
+ * 
+ */
+      __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 65, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_DECREF_SET(__pyx_v_current_document, ((PyObject*)__pyx_t_2));
+      __pyx_t_2 = 0;
+
+      /* "datamule/rewrite/sgml_parser_cy.pyx":66
+ *                 in_submission = False
+ *                 current_document = {}
+ *                 text_buffer = []  # Reset buffer at start of document             # <<<<<<<<<<<<<<
+ * 
+ *             elif stripped == '</DOCUMENT>':
+ */
+      __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 66, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_DECREF_SET(__pyx_v_text_buffer, ((PyObject*)__pyx_t_2));
+      __pyx_t_2 = 0;
+
+      /* "datamule/rewrite/sgml_parser_cy.pyx":62
+ *             stripped = line.strip()
+ * 
+ *             if stripped == '<DOCUMENT>':             # <<<<<<<<<<<<<<
+ *                 in_document = True
+ *                 in_submission = False
+ */
+      goto __pyx_L5;
+    }
+
+    /* "datamule/rewrite/sgml_parser_cy.pyx":68
+ *                 text_buffer = []  # Reset buffer at start of document
+ * 
+ *             elif stripped == '</DOCUMENT>':             # <<<<<<<<<<<<<<
+ *                 documents.append(current_document)
+ *                 self._write_document(''.join(text_buffer), current_document)
+ */
+    __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_v_stripped, __pyx_kp_u_DOCUMENT_2, Py_EQ)); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 68, __pyx_L1_error)
+    if (__pyx_t_8) {
+
+      /* "datamule/rewrite/sgml_parser_cy.pyx":69
+ * 
+ *             elif stripped == '</DOCUMENT>':
+ *                 documents.append(current_document)             # <<<<<<<<<<<<<<
+ *                 self._write_document(''.join(text_buffer), current_document)
+ *                 text_buffer = []
+ */
+      __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_documents, __pyx_v_current_document); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 69, __pyx_L1_error)
+
+      /* "datamule/rewrite/sgml_parser_cy.pyx":70
+ *             elif stripped == '</DOCUMENT>':
+ *                 documents.append(current_document)
+ *                 self._write_document(''.join(text_buffer), current_document)             # <<<<<<<<<<<<<<
+ *                 text_buffer = []
+ *                 in_document = False
+ */
+      __pyx_t_2 = PyUnicode_Join(__pyx_kp_u__5, __pyx_v_text_buffer); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 70, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      ((struct __pyx_vtabstruct_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *)__pyx_v_self->__pyx_vtab)->_write_document(__pyx_v_self, ((PyObject*)__pyx_t_2), __pyx_v_current_document); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 70, __pyx_L1_error)
+      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+      /* "datamule/rewrite/sgml_parser_cy.pyx":71
+ *                 documents.append(current_document)
+ *                 self._write_document(''.join(text_buffer), current_document)
+ *                 text_buffer = []             # <<<<<<<<<<<<<<
+ *                 in_document = False
+ * 
+ */
+      __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 71, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_DECREF_SET(__pyx_v_text_buffer, ((PyObject*)__pyx_t_2));
+      __pyx_t_2 = 0;
+
+      /* "datamule/rewrite/sgml_parser_cy.pyx":72
+ *                 self._write_document(''.join(text_buffer), current_document)
+ *                 text_buffer = []
+ *                 in_document = False             # <<<<<<<<<<<<<<
+ * 
+ *             elif stripped == '<TEXT>':
+ */
+      __pyx_v_in_document = 0;
+
+      /* "datamule/rewrite/sgml_parser_cy.pyx":68
+ *                 text_buffer = []  # Reset buffer at start of document
+ * 
+ *             elif stripped == '</DOCUMENT>':             # <<<<<<<<<<<<<<
+ *                 documents.append(current_document)
+ *                 self._write_document(''.join(text_buffer), current_document)
+ */
+      goto __pyx_L5;
+    }
+
+    /* "datamule/rewrite/sgml_parser_cy.pyx":74
+ *                 in_document = False
+ * 
+ *             elif stripped == '<TEXT>':             # <<<<<<<<<<<<<<
+ *                 in_text = True
+ *                 text_buffer = []
+ */
+    __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_v_stripped, __pyx_kp_u_TEXT, Py_EQ)); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 74, __pyx_L1_error)
+    if (__pyx_t_8) {
+
+      /* "datamule/rewrite/sgml_parser_cy.pyx":75
+ * 
+ *             elif stripped == '<TEXT>':
+ *                 in_text = True             # <<<<<<<<<<<<<<
+ *                 text_buffer = []
+ * 
+ */
+      __pyx_v_in_text = 1;
+
+      /* "datamule/rewrite/sgml_parser_cy.pyx":76
+ *             elif stripped == '<TEXT>':
+ *                 in_text = True
+ *                 text_buffer = []             # <<<<<<<<<<<<<<
+ * 
+ *             elif stripped == '</TEXT>':
+ */
+      __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 76, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_DECREF_SET(__pyx_v_text_buffer, ((PyObject*)__pyx_t_2));
+      __pyx_t_2 = 0;
+
+      /* "datamule/rewrite/sgml_parser_cy.pyx":74
+ *                 in_document = False
+ * 
+ *             elif stripped == '<TEXT>':             # <<<<<<<<<<<<<<
+ *                 in_text = True
+ *                 text_buffer = []
+ */
+      goto __pyx_L5;
+    }
+
+    /* "datamule/rewrite/sgml_parser_cy.pyx":78
+ *                 text_buffer = []
+ * 
+ *             elif stripped == '</TEXT>':             # <<<<<<<<<<<<<<
+ *                 in_text = False
+ * 
+ */
+    __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_v_stripped, __pyx_kp_u_TEXT_2, Py_EQ)); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 78, __pyx_L1_error)
+    if (__pyx_t_8) {
+
+      /* "datamule/rewrite/sgml_parser_cy.pyx":79
+ * 
+ *             elif stripped == '</TEXT>':
+ *                 in_text = False             # <<<<<<<<<<<<<<
+ * 
+ *             elif in_text:
+ */
+      __pyx_v_in_text = 0;
+
+      /* "datamule/rewrite/sgml_parser_cy.pyx":78
+ *                 text_buffer = []
+ * 
+ *             elif stripped == '</TEXT>':             # <<<<<<<<<<<<<<
+ *                 in_text = False
+ * 
+ */
+      goto __pyx_L5;
+    }
+
+    /* "datamule/rewrite/sgml_parser_cy.pyx":81
+ *                 in_text = False
+ * 
+ *             elif in_text:             # <<<<<<<<<<<<<<
+ *                 if stripped not in ['<PDF>', '</PDF>']:
+ *                     text_buffer.append(line)
+ */
+    if (__pyx_v_in_text) {
+
+      /* "datamule/rewrite/sgml_parser_cy.pyx":82
+ * 
+ *             elif in_text:
+ *                 if stripped not in ['<PDF>', '</PDF>']:             # <<<<<<<<<<<<<<
+ *                     text_buffer.append(line)
+ * 
+ */
+      __Pyx_INCREF(__pyx_v_stripped);
+      __pyx_t_10 = __pyx_v_stripped;
+      __pyx_t_11 = (__Pyx_PyUnicode_Equals(__pyx_t_10, __pyx_kp_u_PDF, Py_NE)); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 82, __pyx_L1_error)
+      if (__pyx_t_11) {
+      } else {
+        __pyx_t_8 = __pyx_t_11;
+        goto __pyx_L7_bool_binop_done;
+      }
+      __pyx_t_11 = (__Pyx_PyUnicode_Equals(__pyx_t_10, __pyx_kp_u_PDF_2, Py_NE)); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 82, __pyx_L1_error)
+      __pyx_t_8 = __pyx_t_11;
+      __pyx_L7_bool_binop_done:;
+      __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+      __pyx_t_11 = __pyx_t_8;
+      if (__pyx_t_11) {
+
+        /* "datamule/rewrite/sgml_parser_cy.pyx":83
+ *             elif in_text:
+ *                 if stripped not in ['<PDF>', '</PDF>']:
+ *                     text_buffer.append(line)             # <<<<<<<<<<<<<<
+ * 
+ *             else:
+ */
+        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_text_buffer, __pyx_v_line); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 83, __pyx_L1_error)
+
+        /* "datamule/rewrite/sgml_parser_cy.pyx":82
+ * 
+ *             elif in_text:
+ *                 if stripped not in ['<PDF>', '</PDF>']:             # <<<<<<<<<<<<<<
+ *                     text_buffer.append(line)
+ * 
+ */
+      }
+
+      /* "datamule/rewrite/sgml_parser_cy.pyx":81
+ *                 in_text = False
+ * 
+ *             elif in_text:             # <<<<<<<<<<<<<<
+ *                 if stripped not in ['<PDF>', '</PDF>']:
+ *                     text_buffer.append(line)
+ */
+      goto __pyx_L5;
+    }
+
+    /* "datamule/rewrite/sgml_parser_cy.pyx":86
+ * 
+ *             else:
+ *                 tag_content = self._extract_tag_content(stripped)             # <<<<<<<<<<<<<<
+ *                 if tag_content:
+ *                     key, value = tag_content
+ */
+    /*else*/ {
+      __pyx_t_2 = ((struct __pyx_vtabstruct_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *)__pyx_v_self->__pyx_vtab)->_extract_tag_content(__pyx_v_self, __pyx_v_stripped); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 86, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      __Pyx_XDECREF_SET(__pyx_v_tag_content, ((PyObject*)__pyx_t_2));
+      __pyx_t_2 = 0;
+
+      /* "datamule/rewrite/sgml_parser_cy.pyx":87
+ *             else:
+ *                 tag_content = self._extract_tag_content(stripped)
+ *                 if tag_content:             # <<<<<<<<<<<<<<
+ *                     key, value = tag_content
+ *                     if in_submission:
+ */
+      __pyx_t_11 = (__pyx_v_tag_content != Py_None)&&(PyTuple_GET_SIZE(__pyx_v_tag_content) != 0);
+      if (__pyx_t_11) {
+
+        /* "datamule/rewrite/sgml_parser_cy.pyx":88
+ *                 tag_content = self._extract_tag_content(stripped)
+ *                 if tag_content:
+ *                     key, value = tag_content             # <<<<<<<<<<<<<<
+ *                     if in_submission:
+ *                         submission_data[key] = value
+ */
+        if (likely(__pyx_v_tag_content != Py_None)) {
+          PyObject* sequence = __pyx_v_tag_content;
+          Py_ssize_t size = __Pyx_PySequence_SIZE(sequence);
+          if (unlikely(size != 2)) {
+            if (size > 2) __Pyx_RaiseTooManyValuesError(2);
+            else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
+            __PYX_ERR(0, 88, __pyx_L1_error)
+          }
+          #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+          __pyx_t_2 = PyTuple_GET_ITEM(sequence, 0); 
+          __pyx_t_1 = PyTuple_GET_ITEM(sequence, 1); 
+          __Pyx_INCREF(__pyx_t_2);
+          __Pyx_INCREF(__pyx_t_1);
+          #else
+          __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 88, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __pyx_t_1 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 88, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_1);
+          #endif
+        } else {
+          __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 88, __pyx_L1_error)
+        }
+        __Pyx_XDECREF_SET(__pyx_v_key, __pyx_t_2);
+        __pyx_t_2 = 0;
+        __Pyx_XDECREF_SET(__pyx_v_value, __pyx_t_1);
+        __pyx_t_1 = 0;
+
+        /* "datamule/rewrite/sgml_parser_cy.pyx":89
+ *                 if tag_content:
+ *                     key, value = tag_content
+ *                     if in_submission:             # <<<<<<<<<<<<<<
+ *                         submission_data[key] = value
+ *                     elif in_document:
+ */
+        if (__pyx_v_in_submission) {
+
+          /* "datamule/rewrite/sgml_parser_cy.pyx":90
+ *                     key, value = tag_content
+ *                     if in_submission:
+ *                         submission_data[key] = value             # <<<<<<<<<<<<<<
+ *                     elif in_document:
+ *                         current_document[key] = value
+ */
+          if (unlikely((PyDict_SetItem(__pyx_v_submission_data, __pyx_v_key, __pyx_v_value) < 0))) __PYX_ERR(0, 90, __pyx_L1_error)
+
+          /* "datamule/rewrite/sgml_parser_cy.pyx":89
+ *                 if tag_content:
+ *                     key, value = tag_content
+ *                     if in_submission:             # <<<<<<<<<<<<<<
+ *                         submission_data[key] = value
+ *                     elif in_document:
+ */
+          goto __pyx_L10;
+        }
+
+        /* "datamule/rewrite/sgml_parser_cy.pyx":91
+ *                     if in_submission:
+ *                         submission_data[key] = value
+ *                     elif in_document:             # <<<<<<<<<<<<<<
+ *                         current_document[key] = value
+ * 
+ */
+        if (__pyx_v_in_document) {
+
+          /* "datamule/rewrite/sgml_parser_cy.pyx":92
+ *                         submission_data[key] = value
+ *                     elif in_document:
+ *                         current_document[key] = value             # <<<<<<<<<<<<<<
+ * 
+ *         metadata = {
+ */
+          if (unlikely((PyDict_SetItem(__pyx_v_current_document, __pyx_v_key, __pyx_v_value) < 0))) __PYX_ERR(0, 92, __pyx_L1_error)
+
+          /* "datamule/rewrite/sgml_parser_cy.pyx":91
+ *                     if in_submission:
+ *                         submission_data[key] = value
+ *                     elif in_document:             # <<<<<<<<<<<<<<
+ *                         current_document[key] = value
+ * 
+ */
+        }
+        __pyx_L10:;
+
+        /* "datamule/rewrite/sgml_parser_cy.pyx":87
+ *             else:
+ *                 tag_content = self._extract_tag_content(stripped)
+ *                 if tag_content:             # <<<<<<<<<<<<<<
+ *                     key, value = tag_content
+ *                     if in_submission:
+ */
+      }
+    }
+    __pyx_L5:;
+
+    /* "datamule/rewrite/sgml_parser_cy.pyx":59
+ *         lines = content.splitlines(keepends=True)  # keepends=True to maintain original formatting
+ * 
+ *         for line in lines:             # <<<<<<<<<<<<<<
+ *             stripped = line.strip()
+ * 
+ */
+  }
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+
+  /* "datamule/rewrite/sgml_parser_cy.pyx":95
+ * 
+ *         metadata = {
+ *             'submission': submission_data,             # <<<<<<<<<<<<<<
+ *             'documents': documents
+ *         }
+ */
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 95, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_u_submission, __pyx_v_submission_data) < 0) __PYX_ERR(0, 95, __pyx_L1_error)
+
+  /* "datamule/rewrite/sgml_parser_cy.pyx":96
+ *         metadata = {
+ *             'submission': submission_data,
+ *             'documents': documents             # <<<<<<<<<<<<<<
+ *         }
+ * 
+ */
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_u_documents, __pyx_v_documents) < 0) __PYX_ERR(0, 95, __pyx_L1_error)
+  __pyx_v_metadata = ((PyObject*)__pyx_t_3);
+  __pyx_t_3 = 0;
+
+  /* "datamule/rewrite/sgml_parser_cy.pyx":99
+ *         }
+ * 
+ *         with open(os.path.join(self.output_dir, 'metadata.json'), 'w', encoding='utf-8') as f:             # <<<<<<<<<<<<<<
+ *             json.dump(metadata, f, indent=4)
+ * 
  */
   /*with:*/ {
-    __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_os); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 99, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_path); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 99, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_join); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 99, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    __pyx_t_2 = NULL;
+    __pyx_t_5 = 0;
+    #if CYTHON_UNPACK_METHODS
+    if (likely(PyMethod_Check(__pyx_t_1))) {
+      __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_1);
+      if (likely(__pyx_t_2)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+        __Pyx_INCREF(__pyx_t_2);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_1, function);
+        __pyx_t_5 = 1;
+      }
+    }
+    #endif
+    {
+      PyObject *__pyx_callargs[3] = {__pyx_t_2, __pyx_v_self->output_dir, __pyx_kp_u_metadata_json};
+      __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_5, 2+__pyx_t_5);
+      __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 99, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    }
+    __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 99, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __Pyx_GIVEREF(__pyx_t_3);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_t_3)) __PYX_ERR(0, 99, __pyx_L1_error);
+    __Pyx_INCREF(__pyx_n_u_w);
+    __Pyx_GIVEREF(__pyx_n_u_w);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_n_u_w)) __PYX_ERR(0, 99, __pyx_L1_error);
+    __pyx_t_3 = 0;
+    __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 99, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_3);
+    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_encoding, __pyx_kp_u_utf_8) < 0) __PYX_ERR(0, 99, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 99, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+    __pyx_t_12 = __Pyx_PyObject_LookupSpecial(__pyx_t_2, __pyx_n_s_exit); if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 99, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_12);
+    __pyx_t_1 = __Pyx_PyObject_LookupSpecial(__pyx_t_2, __pyx_n_s_enter); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 99, __pyx_L12_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_4 = NULL;
+    __pyx_t_5 = 0;
+    #if CYTHON_UNPACK_METHODS
+    if (likely(PyMethod_Check(__pyx_t_1))) {
+      __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_1);
+      if (likely(__pyx_t_4)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
+        __Pyx_INCREF(__pyx_t_4);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_1, function);
+        __pyx_t_5 = 1;
+      }
+    }
+    #endif
+    {
+      PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
+      __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
+      __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 99, __pyx_L12_error)
+      __Pyx_GOTREF(__pyx_t_3);
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    }
+    __pyx_t_1 = __pyx_t_3;
+    __pyx_t_3 = 0;
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    /*try:*/ {
+      {
+        __Pyx_PyThreadState_declare
+        __Pyx_PyThreadState_assign
+        __Pyx_ExceptionSave(&__pyx_t_13, &__pyx_t_14, &__pyx_t_15);
+        __Pyx_XGOTREF(__pyx_t_13);
+        __Pyx_XGOTREF(__pyx_t_14);
+        __Pyx_XGOTREF(__pyx_t_15);
+        /*try:*/ {
+          __pyx_v_f = __pyx_t_1;
+          __pyx_t_1 = 0;
+
+          /* "datamule/rewrite/sgml_parser_cy.pyx":100
+ * 
+ *         with open(os.path.join(self.output_dir, 'metadata.json'), 'w', encoding='utf-8') as f:
+ *             json.dump(metadata, f, indent=4)             # <<<<<<<<<<<<<<
+ * 
+ *     cpdef parse_file(self, str filepath):
+ */
+          __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_json); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L16_error)
+          __Pyx_GOTREF(__pyx_t_1);
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_dump); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L16_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+          __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 100, __pyx_L16_error)
+          __Pyx_GOTREF(__pyx_t_1);
+          __Pyx_INCREF(__pyx_v_metadata);
+          __Pyx_GIVEREF(__pyx_v_metadata);
+          if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_metadata)) __PYX_ERR(0, 100, __pyx_L16_error);
+          __Pyx_INCREF(__pyx_v_f);
+          __Pyx_GIVEREF(__pyx_v_f);
+          if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_v_f)) __PYX_ERR(0, 100, __pyx_L16_error);
+          __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 100, __pyx_L16_error)
+          __Pyx_GOTREF(__pyx_t_3);
+          if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_indent, __pyx_int_4) < 0) __PYX_ERR(0, 100, __pyx_L16_error)
+          __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_1, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 100, __pyx_L16_error)
+          __Pyx_GOTREF(__pyx_t_4);
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+          __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+
+          /* "datamule/rewrite/sgml_parser_cy.pyx":99
+ *         }
+ * 
+ *         with open(os.path.join(self.output_dir, 'metadata.json'), 'w', encoding='utf-8') as f:             # <<<<<<<<<<<<<<
+ *             json.dump(metadata, f, indent=4)
+ * 
+ */
+        }
+        __Pyx_XDECREF(__pyx_t_13); __pyx_t_13 = 0;
+        __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
+        __Pyx_XDECREF(__pyx_t_15); __pyx_t_15 = 0;
+        goto __pyx_L21_try_end;
+        __pyx_L16_error:;
+        __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+        __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
+        __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+        __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+        __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+        /*except:*/ {
+          __Pyx_AddTraceback("datamule.rewrite.sgml_parser_cy.CySGMLParser.parse_content", __pyx_clineno, __pyx_lineno, __pyx_filename);
+          if (__Pyx_GetException(&__pyx_t_4, &__pyx_t_3, &__pyx_t_1) < 0) __PYX_ERR(0, 99, __pyx_L18_except_error)
+          __Pyx_XGOTREF(__pyx_t_4);
+          __Pyx_XGOTREF(__pyx_t_3);
+          __Pyx_XGOTREF(__pyx_t_1);
+          __pyx_t_2 = PyTuple_Pack(3, __pyx_t_4, __pyx_t_3, __pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 99, __pyx_L18_except_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __pyx_t_16 = __Pyx_PyObject_Call(__pyx_t_12, __pyx_t_2, NULL);
+          __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+          if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 99, __pyx_L18_except_error)
+          __Pyx_GOTREF(__pyx_t_16);
+          __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_16);
+          __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
+          if (__pyx_t_11 < 0) __PYX_ERR(0, 99, __pyx_L18_except_error)
+          __pyx_t_8 = (!__pyx_t_11);
+          if (unlikely(__pyx_t_8)) {
+            __Pyx_GIVEREF(__pyx_t_4);
+            __Pyx_GIVEREF(__pyx_t_3);
+            __Pyx_XGIVEREF(__pyx_t_1);
+            __Pyx_ErrRestoreWithState(__pyx_t_4, __pyx_t_3, __pyx_t_1);
+            __pyx_t_4 = 0; __pyx_t_3 = 0; __pyx_t_1 = 0; 
+            __PYX_ERR(0, 99, __pyx_L18_except_error)
+          }
+          __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+          __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+          __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+          goto __pyx_L17_exception_handled;
+        }
+        __pyx_L18_except_error:;
+        __Pyx_XGIVEREF(__pyx_t_13);
+        __Pyx_XGIVEREF(__pyx_t_14);
+        __Pyx_XGIVEREF(__pyx_t_15);
+        __Pyx_ExceptionReset(__pyx_t_13, __pyx_t_14, __pyx_t_15);
+        goto __pyx_L1_error;
+        __pyx_L17_exception_handled:;
+        __Pyx_XGIVEREF(__pyx_t_13);
+        __Pyx_XGIVEREF(__pyx_t_14);
+        __Pyx_XGIVEREF(__pyx_t_15);
+        __Pyx_ExceptionReset(__pyx_t_13, __pyx_t_14, __pyx_t_15);
+        __pyx_L21_try_end:;
+      }
+    }
+    /*finally:*/ {
+      /*normal exit:*/{
+        if (__pyx_t_12) {
+          __pyx_t_15 = __Pyx_PyObject_Call(__pyx_t_12, __pyx_tuple__4, NULL);
+          __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+          if (unlikely(!__pyx_t_15)) __PYX_ERR(0, 99, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_15);
+          __Pyx_DECREF(__pyx_t_15); __pyx_t_15 = 0;
+        }
+        goto __pyx_L15;
+      }
+      __pyx_L15:;
+    }
+    goto __pyx_L25;
+    __pyx_L12_error:;
+    __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
+    goto __pyx_L1_error;
+    __pyx_L25:;
+  }
+
+  /* "datamule/rewrite/sgml_parser_cy.pyx":43
+ *                 f.write(content)
+ * 
+ *     cpdef parse_content(self, str content):             # <<<<<<<<<<<<<<
+ *         """Parse SGML content directly from a string."""
+ *         cdef:
+ */
+
+  /* function exit code */
+  __pyx_r = Py_None; __Pyx_INCREF(Py_None);
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_10);
+  __Pyx_AddTraceback("datamule.rewrite.sgml_parser_cy.CySGMLParser.parse_content", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = 0;
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_v_submission_data);
+  __Pyx_XDECREF(__pyx_v_documents);
+  __Pyx_XDECREF(__pyx_v_current_document);
+  __Pyx_XDECREF(__pyx_v_text_buffer);
+  __Pyx_XDECREF(__pyx_v_line);
+  __Pyx_XDECREF(__pyx_v_stripped);
+  __Pyx_XDECREF(__pyx_v_tag_content);
+  __Pyx_XDECREF(__pyx_v_lines);
+  __Pyx_XDECREF(__pyx_v_key);
+  __Pyx_XDECREF(__pyx_v_value);
+  __Pyx_XDECREF(__pyx_v_metadata);
+  __Pyx_XDECREF(__pyx_v_f);
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* Python wrapper */
+static PyObject *__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_1parse_content(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+PyDoc_STRVAR(__pyx_doc_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_parse_content, "Parse SGML content directly from a string.");
+static PyMethodDef __pyx_mdef_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_1parse_content = {"parse_content", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_1parse_content, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_parse_content};
+static PyObject *__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_1parse_content(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+) {
+  PyObject *__pyx_v_content = 0;
+  #if !CYTHON_METH_FASTCALL
+  CYTHON_UNUSED Py_ssize_t __pyx_nargs;
+  #endif
+  CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
+  PyObject* values[1] = {0};
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  PyObject *__pyx_r = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("parse_content (wrapper)", 0);
+  #if !CYTHON_METH_FASTCALL
+  #if CYTHON_ASSUME_SAFE_MACROS
+  __pyx_nargs = PyTuple_GET_SIZE(__pyx_args);
+  #else
+  __pyx_nargs = PyTuple_Size(__pyx_args); if (unlikely(__pyx_nargs < 0)) return NULL;
+  #endif
+  #endif
+  __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
+  {
+    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_content,0};
+    if (__pyx_kwds) {
+      Py_ssize_t kw_args;
+      switch (__pyx_nargs) {
+        case  1: values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
+        CYTHON_FALLTHROUGH;
+        case  0: break;
+        default: goto __pyx_L5_argtuple_error;
+      }
+      kw_args = __Pyx_NumKwargs_FASTCALL(__pyx_kwds);
+      switch (__pyx_nargs) {
+        case  0:
+        if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_content)) != 0)) {
+          (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
+          kw_args--;
+        }
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 43, __pyx_L3_error)
+        else goto __pyx_L5_argtuple_error;
+      }
+      if (unlikely(kw_args > 0)) {
+        const Py_ssize_t kwd_pos_args = __pyx_nargs;
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "parse_content") < 0)) __PYX_ERR(0, 43, __pyx_L3_error)
+      }
+    } else if (unlikely(__pyx_nargs != 1)) {
+      goto __pyx_L5_argtuple_error;
+    } else {
+      values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
+    }
+    __pyx_v_content = ((PyObject*)values[0]);
+  }
+  goto __pyx_L6_skip;
+  __pyx_L5_argtuple_error:;
+  __Pyx_RaiseArgtupleInvalid("parse_content", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 43, __pyx_L3_error)
+  __pyx_L6_skip:;
+  goto __pyx_L4_argument_unpacking_done;
+  __pyx_L3_error:;
+  {
+    Py_ssize_t __pyx_temp;
+    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
+    }
+  }
+  __Pyx_AddTraceback("datamule.rewrite.sgml_parser_cy.CySGMLParser.parse_content", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __Pyx_RefNannyFinishContext();
+  return NULL;
+  __pyx_L4_argument_unpacking_done:;
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_content), (&PyUnicode_Type), 1, "content", 1))) __PYX_ERR(0, 43, __pyx_L1_error)
+  __pyx_r = __pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_parse_content(((struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *)__pyx_v_self), __pyx_v_content);
+
+  /* function exit code */
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __pyx_r = NULL;
+  __pyx_L0:;
+  {
+    Py_ssize_t __pyx_temp;
+    for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
+      __Pyx_Arg_XDECREF_FASTCALL(values[__pyx_temp]);
+    }
+  }
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_parse_content(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_self, PyObject *__pyx_v_content) {
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("parse_content", 1);
+  __Pyx_XDECREF(__pyx_r);
+  __pyx_t_1 = __pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_parse_content(__pyx_v_self, __pyx_v_content, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_r = __pyx_t_1;
+  __pyx_t_1 = 0;
+  goto __pyx_L0;
+
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_AddTraceback("datamule.rewrite.sgml_parser_cy.CySGMLParser.parse_content", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __pyx_L0:;
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "datamule/rewrite/sgml_parser_cy.pyx":102
+ *             json.dump(metadata, f, indent=4)
+ * 
+ *     cpdef parse_file(self, str filepath):             # <<<<<<<<<<<<<<
+ *         """Legacy method to maintain compatibility."""
+ *         with open(filepath, 'r', encoding='utf-8') as f:
+ */
+
+static PyObject *__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_3parse_file(PyObject *__pyx_v_self, 
+#if CYTHON_METH_FASTCALL
+PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
+#else
+PyObject *__pyx_args, PyObject *__pyx_kwds
+#endif
+); /*proto*/
+static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_parse_file(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_self, PyObject *__pyx_v_filepath, int __pyx_skip_dispatch) {
+  PyObject *__pyx_v_f = NULL;
+  PyObject *__pyx_v_content = NULL;
+  PyObject *__pyx_r = NULL;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  PyObject *__pyx_t_4 = NULL;
+  unsigned int __pyx_t_5;
+  PyObject *__pyx_t_6 = NULL;
+  PyObject *__pyx_t_7 = NULL;
+  PyObject *__pyx_t_8 = NULL;
+  PyObject *__pyx_t_9 = NULL;
+  PyObject *__pyx_t_10 = NULL;
+  int __pyx_t_11;
+  int __pyx_t_12;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("parse_file", 1);
+  /* Check if called by wrapper */
+  if (unlikely(__pyx_skip_dispatch)) ;
+  /* Check if overridden in Python */
+  else if (unlikely((Py_TYPE(((PyObject *)__pyx_v_self))->tp_dictoffset != 0) || __Pyx_PyType_HasFeature(Py_TYPE(((PyObject *)__pyx_v_self)), (Py_TPFLAGS_IS_ABSTRACT | Py_TPFLAGS_HEAPTYPE)))) {
+    #if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_PYTYPE_LOOKUP && CYTHON_USE_TYPE_SLOTS
+    static PY_UINT64_T __pyx_tp_dict_version = __PYX_DICT_VERSION_INIT, __pyx_obj_dict_version = __PYX_DICT_VERSION_INIT;
+    if (unlikely(!__Pyx_object_dict_version_matches(((PyObject *)__pyx_v_self), __pyx_tp_dict_version, __pyx_obj_dict_version))) {
+      PY_UINT64_T __pyx_typedict_guard = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
+      #endif
+      __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_parse_file); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 102, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      if (!__Pyx_IsSameCFunction(__pyx_t_1, (void*) __pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_3parse_file)) {
+        __Pyx_XDECREF(__pyx_r);
+        __Pyx_INCREF(__pyx_t_1);
+        __pyx_t_3 = __pyx_t_1; __pyx_t_4 = NULL;
+        __pyx_t_5 = 0;
+        #if CYTHON_UNPACK_METHODS
+        if (unlikely(PyMethod_Check(__pyx_t_3))) {
+          __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
+          if (likely(__pyx_t_4)) {
+            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+            __Pyx_INCREF(__pyx_t_4);
+            __Pyx_INCREF(function);
+            __Pyx_DECREF_SET(__pyx_t_3, function);
+            __pyx_t_5 = 1;
+          }
+        }
+        #endif
+        {
+          PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_v_filepath};
+          __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
+          __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 102, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+        }
+        __pyx_r = __pyx_t_2;
+        __pyx_t_2 = 0;
+        __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+        goto __pyx_L0;
+      }
+      #if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_PYTYPE_LOOKUP && CYTHON_USE_TYPE_SLOTS
+      __pyx_tp_dict_version = __Pyx_get_tp_dict_version(((PyObject *)__pyx_v_self));
+      __pyx_obj_dict_version = __Pyx_get_object_dict_version(((PyObject *)__pyx_v_self));
+      if (unlikely(__pyx_typedict_guard != __pyx_tp_dict_version)) {
+        __pyx_tp_dict_version = __pyx_obj_dict_version = __PYX_DICT_VERSION_INIT;
+      }
+      #endif
+      __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+      #if CYTHON_USE_DICT_VERSIONS && CYTHON_USE_PYTYPE_LOOKUP && CYTHON_USE_TYPE_SLOTS
+    }
+    #endif
+  }
+
+  /* "datamule/rewrite/sgml_parser_cy.pyx":104
+ *     cpdef parse_file(self, str filepath):
+ *         """Legacy method to maintain compatibility."""
+ *         with open(filepath, 'r', encoding='utf-8') as f:             # <<<<<<<<<<<<<<
+ *             content = f.read()
+ *         self.parse_content(content)
+ */
+  /*with:*/ {
+    __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 104, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_INCREF(__pyx_v_filepath);
     __Pyx_GIVEREF(__pyx_v_filepath);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_filepath)) __PYX_ERR(0, 55, __pyx_L1_error);
-    __Pyx_INCREF(__pyx_n_s_r);
-    __Pyx_GIVEREF(__pyx_n_s_r);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_n_s_r)) __PYX_ERR(0, 55, __pyx_L1_error);
-    __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 55, __pyx_L1_error)
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_v_filepath)) __PYX_ERR(0, 104, __pyx_L1_error);
+    __Pyx_INCREF(__pyx_n_u_r);
+    __Pyx_GIVEREF(__pyx_n_u_r);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_n_u_r)) __PYX_ERR(0, 104, __pyx_L1_error);
+    __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 104, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_encoding, __pyx_kp_s_utf_8) < 0) __PYX_ERR(0, 55, __pyx_L1_error)
-    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 55, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_encoding, __pyx_kp_u_utf_8) < 0) __PYX_ERR(0, 104, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_t_1, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 104, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_6 = __Pyx_PyObject_LookupSpecial(__pyx_t_3, __pyx_n_s_exit); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 55, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_LookupSpecial(__pyx_t_3, __pyx_n_s_exit); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 104, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_1 = __Pyx_PyObject_LookupSpecial(__pyx_t_3, __pyx_n_s_enter); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 55, __pyx_L3_error)
+    __pyx_t_1 = __Pyx_PyObject_LookupSpecial(__pyx_t_3, __pyx_n_s_enter); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 104, __pyx_L3_error)
     __Pyx_GOTREF(__pyx_t_1);
     __pyx_t_4 = NULL;
     __pyx_t_5 = 0;
@@ -4771,7 +5769,7 @@ static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_pars
       PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
       __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
       __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 55, __pyx_L3_error)
+      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 104, __pyx_L3_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     }
@@ -4787,467 +5785,49 @@ static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_pars
         __Pyx_XGOTREF(__pyx_t_8);
         __Pyx_XGOTREF(__pyx_t_9);
         /*try:*/ {
-          __pyx_v_file = __pyx_t_1;
+          __pyx_v_f = __pyx_t_1;
           __pyx_t_1 = 0;
 
-          /* "datamule/rewrite/sgml_parser_cy.pyx":56
- * 
- *         with open(filepath, 'r', encoding='utf-8') as file:
- *             for line in file:             # <<<<<<<<<<<<<<
- *                 stripped = line.strip()
+          /* "datamule/rewrite/sgml_parser_cy.pyx":105
+ *         """Legacy method to maintain compatibility."""
+ *         with open(filepath, 'r', encoding='utf-8') as f:
+ *             content = f.read()             # <<<<<<<<<<<<<<
+ *         self.parse_content(content)
  * 
  */
-          if (likely(PyList_CheckExact(__pyx_v_file)) || PyTuple_CheckExact(__pyx_v_file)) {
-            __pyx_t_1 = __pyx_v_file; __Pyx_INCREF(__pyx_t_1);
-            __pyx_t_10 = 0;
-            __pyx_t_11 = NULL;
-          } else {
-            __pyx_t_10 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_v_file); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 56, __pyx_L7_error)
+          __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_v_f, __pyx_n_s_read); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 105, __pyx_L7_error)
+          __Pyx_GOTREF(__pyx_t_3);
+          __pyx_t_2 = NULL;
+          __pyx_t_5 = 0;
+          #if CYTHON_UNPACK_METHODS
+          if (likely(PyMethod_Check(__pyx_t_3))) {
+            __pyx_t_2 = PyMethod_GET_SELF(__pyx_t_3);
+            if (likely(__pyx_t_2)) {
+              PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
+              __Pyx_INCREF(__pyx_t_2);
+              __Pyx_INCREF(function);
+              __Pyx_DECREF_SET(__pyx_t_3, function);
+              __pyx_t_5 = 1;
+            }
+          }
+          #endif
+          {
+            PyObject *__pyx_callargs[2] = {__pyx_t_2, NULL};
+            __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
+            __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
+            if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 105, __pyx_L7_error)
             __Pyx_GOTREF(__pyx_t_1);
-            __pyx_t_11 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_1); if (unlikely(!__pyx_t_11)) __PYX_ERR(0, 56, __pyx_L7_error)
+            __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           }
-          for (;;) {
-            if (likely(!__pyx_t_11)) {
-              if (likely(PyList_CheckExact(__pyx_t_1))) {
-                {
-                  Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_1);
-                  #if !CYTHON_ASSUME_SAFE_MACROS
-                  if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 56, __pyx_L7_error)
-                  #endif
-                  if (__pyx_t_10 >= __pyx_temp) break;
-                }
-                #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                __pyx_t_3 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_10); __Pyx_INCREF(__pyx_t_3); __pyx_t_10++; if (unlikely((0 < 0))) __PYX_ERR(0, 56, __pyx_L7_error)
-                #else
-                __pyx_t_3 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_10); __pyx_t_10++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 56, __pyx_L7_error)
-                __Pyx_GOTREF(__pyx_t_3);
-                #endif
-              } else {
-                {
-                  Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_1);
-                  #if !CYTHON_ASSUME_SAFE_MACROS
-                  if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 56, __pyx_L7_error)
-                  #endif
-                  if (__pyx_t_10 >= __pyx_temp) break;
-                }
-                #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                __pyx_t_3 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_10); __Pyx_INCREF(__pyx_t_3); __pyx_t_10++; if (unlikely((0 < 0))) __PYX_ERR(0, 56, __pyx_L7_error)
-                #else
-                __pyx_t_3 = __Pyx_PySequence_ITEM(__pyx_t_1, __pyx_t_10); __pyx_t_10++; if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 56, __pyx_L7_error)
-                __Pyx_GOTREF(__pyx_t_3);
-                #endif
-              }
-            } else {
-              __pyx_t_3 = __pyx_t_11(__pyx_t_1);
-              if (unlikely(!__pyx_t_3)) {
-                PyObject* exc_type = PyErr_Occurred();
-                if (exc_type) {
-                  if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-                  else __PYX_ERR(0, 56, __pyx_L7_error)
-                }
-                break;
-              }
-              __Pyx_GOTREF(__pyx_t_3);
-            }
-            if (!(likely(PyString_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None) || __Pyx_RaiseUnexpectedTypeError("str", __pyx_t_3))) __PYX_ERR(0, 56, __pyx_L7_error)
-            __Pyx_XDECREF_SET(__pyx_v_line, ((PyObject*)__pyx_t_3));
-            __pyx_t_3 = 0;
+          __pyx_v_content = __pyx_t_1;
+          __pyx_t_1 = 0;
 
-            /* "datamule/rewrite/sgml_parser_cy.pyx":57
- *         with open(filepath, 'r', encoding='utf-8') as file:
- *             for line in file:
- *                 stripped = line.strip()             # <<<<<<<<<<<<<<
- * 
- *                 if stripped == '<DOCUMENT>':
- */
-            __pyx_t_3 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PyString_Type_strip, __pyx_v_line); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 57, __pyx_L7_error)
-            __Pyx_GOTREF(__pyx_t_3);
-            if (!(likely(PyString_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None) || __Pyx_RaiseUnexpectedTypeError("str", __pyx_t_3))) __PYX_ERR(0, 57, __pyx_L7_error)
-            __Pyx_XDECREF_SET(__pyx_v_stripped, ((PyObject*)__pyx_t_3));
-            __pyx_t_3 = 0;
-
-            /* "datamule/rewrite/sgml_parser_cy.pyx":59
- *                 stripped = line.strip()
- * 
- *                 if stripped == '<DOCUMENT>':             # <<<<<<<<<<<<<<
- *                     in_document = True
- *                     in_submission = False
- */
-            __pyx_t_12 = (__Pyx_PyString_Equals(__pyx_v_stripped, __pyx_kp_s_DOCUMENT, Py_EQ)); if (unlikely((__pyx_t_12 < 0))) __PYX_ERR(0, 59, __pyx_L7_error)
-            if (__pyx_t_12) {
-
-              /* "datamule/rewrite/sgml_parser_cy.pyx":60
- * 
- *                 if stripped == '<DOCUMENT>':
- *                     in_document = True             # <<<<<<<<<<<<<<
- *                     in_submission = False
- *                     current_document = {}
- */
-              __pyx_v_in_document = 1;
-
-              /* "datamule/rewrite/sgml_parser_cy.pyx":61
- *                 if stripped == '<DOCUMENT>':
- *                     in_document = True
- *                     in_submission = False             # <<<<<<<<<<<<<<
- *                     current_document = {}
- * 
- */
-              __pyx_v_in_submission = 0;
-
-              /* "datamule/rewrite/sgml_parser_cy.pyx":62
- *                     in_document = True
- *                     in_submission = False
- *                     current_document = {}             # <<<<<<<<<<<<<<
- * 
- *                 elif stripped == '</DOCUMENT>':
- */
-              __pyx_t_3 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 62, __pyx_L7_error)
-              __Pyx_GOTREF(__pyx_t_3);
-              __Pyx_DECREF_SET(__pyx_v_current_document, ((PyObject*)__pyx_t_3));
-              __pyx_t_3 = 0;
-
-              /* "datamule/rewrite/sgml_parser_cy.pyx":59
- *                 stripped = line.strip()
- * 
- *                 if stripped == '<DOCUMENT>':             # <<<<<<<<<<<<<<
- *                     in_document = True
- *                     in_submission = False
- */
-              goto __pyx_L15;
-            }
-
-            /* "datamule/rewrite/sgml_parser_cy.pyx":64
- *                     current_document = {}
- * 
- *                 elif stripped == '</DOCUMENT>':             # <<<<<<<<<<<<<<
- *                     documents.append(current_document)
- *                     self._write_document(''.join(text_buffer), current_document)
- */
-            __pyx_t_12 = (__Pyx_PyString_Equals(__pyx_v_stripped, __pyx_kp_s_DOCUMENT_2, Py_EQ)); if (unlikely((__pyx_t_12 < 0))) __PYX_ERR(0, 64, __pyx_L7_error)
-            if (__pyx_t_12) {
-
-              /* "datamule/rewrite/sgml_parser_cy.pyx":65
- * 
- *                 elif stripped == '</DOCUMENT>':
- *                     documents.append(current_document)             # <<<<<<<<<<<<<<
- *                     self._write_document(''.join(text_buffer), current_document)
- *                     text_buffer = []
- */
-              __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_documents, __pyx_v_current_document); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 65, __pyx_L7_error)
-
-              /* "datamule/rewrite/sgml_parser_cy.pyx":66
- *                 elif stripped == '</DOCUMENT>':
- *                     documents.append(current_document)
- *                     self._write_document(''.join(text_buffer), current_document)             # <<<<<<<<<<<<<<
- *                     text_buffer = []
- *                     in_document = False
- */
-              __pyx_t_3 = __Pyx_PyString_Join(__pyx_kp_s__5, __pyx_v_text_buffer); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 66, __pyx_L7_error)
-              __Pyx_GOTREF(__pyx_t_3);
-              if (!(likely(PyString_CheckExact(__pyx_t_3))||((__pyx_t_3) == Py_None) || __Pyx_RaiseUnexpectedTypeError("str", __pyx_t_3))) __PYX_ERR(0, 66, __pyx_L7_error)
-              ((struct __pyx_vtabstruct_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *)__pyx_v_self->__pyx_vtab)->_write_document(__pyx_v_self, ((PyObject*)__pyx_t_3), __pyx_v_current_document); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 66, __pyx_L7_error)
-              __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-
-              /* "datamule/rewrite/sgml_parser_cy.pyx":67
- *                     documents.append(current_document)
- *                     self._write_document(''.join(text_buffer), current_document)
- *                     text_buffer = []             # <<<<<<<<<<<<<<
- *                     in_document = False
- * 
- */
-              __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 67, __pyx_L7_error)
-              __Pyx_GOTREF(__pyx_t_3);
-              __Pyx_DECREF_SET(__pyx_v_text_buffer, ((PyObject*)__pyx_t_3));
-              __pyx_t_3 = 0;
-
-              /* "datamule/rewrite/sgml_parser_cy.pyx":68
- *                     self._write_document(''.join(text_buffer), current_document)
- *                     text_buffer = []
- *                     in_document = False             # <<<<<<<<<<<<<<
- * 
- *                 elif stripped == '<TEXT>':
- */
-              __pyx_v_in_document = 0;
-
-              /* "datamule/rewrite/sgml_parser_cy.pyx":64
- *                     current_document = {}
- * 
- *                 elif stripped == '</DOCUMENT>':             # <<<<<<<<<<<<<<
- *                     documents.append(current_document)
- *                     self._write_document(''.join(text_buffer), current_document)
- */
-              goto __pyx_L15;
-            }
-
-            /* "datamule/rewrite/sgml_parser_cy.pyx":70
- *                     in_document = False
- * 
- *                 elif stripped == '<TEXT>':             # <<<<<<<<<<<<<<
- *                     in_text = True
- *                     text_buffer = []
- */
-            __pyx_t_12 = (__Pyx_PyString_Equals(__pyx_v_stripped, __pyx_kp_s_TEXT, Py_EQ)); if (unlikely((__pyx_t_12 < 0))) __PYX_ERR(0, 70, __pyx_L7_error)
-            if (__pyx_t_12) {
-
-              /* "datamule/rewrite/sgml_parser_cy.pyx":71
- * 
- *                 elif stripped == '<TEXT>':
- *                     in_text = True             # <<<<<<<<<<<<<<
- *                     text_buffer = []
- * 
- */
-              __pyx_v_in_text = 1;
-
-              /* "datamule/rewrite/sgml_parser_cy.pyx":72
- *                 elif stripped == '<TEXT>':
- *                     in_text = True
- *                     text_buffer = []             # <<<<<<<<<<<<<<
- * 
- *                 elif stripped == '</TEXT>':
- */
-              __pyx_t_3 = PyList_New(0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 72, __pyx_L7_error)
-              __Pyx_GOTREF(__pyx_t_3);
-              __Pyx_DECREF_SET(__pyx_v_text_buffer, ((PyObject*)__pyx_t_3));
-              __pyx_t_3 = 0;
-
-              /* "datamule/rewrite/sgml_parser_cy.pyx":70
- *                     in_document = False
- * 
- *                 elif stripped == '<TEXT>':             # <<<<<<<<<<<<<<
- *                     in_text = True
- *                     text_buffer = []
- */
-              goto __pyx_L15;
-            }
-
-            /* "datamule/rewrite/sgml_parser_cy.pyx":74
- *                     text_buffer = []
- * 
- *                 elif stripped == '</TEXT>':             # <<<<<<<<<<<<<<
- *                     in_text = False
- * 
- */
-            __pyx_t_12 = (__Pyx_PyString_Equals(__pyx_v_stripped, __pyx_kp_s_TEXT_2, Py_EQ)); if (unlikely((__pyx_t_12 < 0))) __PYX_ERR(0, 74, __pyx_L7_error)
-            if (__pyx_t_12) {
-
-              /* "datamule/rewrite/sgml_parser_cy.pyx":75
- * 
- *                 elif stripped == '</TEXT>':
- *                     in_text = False             # <<<<<<<<<<<<<<
- * 
- *                 elif in_text:
- */
-              __pyx_v_in_text = 0;
-
-              /* "datamule/rewrite/sgml_parser_cy.pyx":74
- *                     text_buffer = []
- * 
- *                 elif stripped == '</TEXT>':             # <<<<<<<<<<<<<<
- *                     in_text = False
- * 
- */
-              goto __pyx_L15;
-            }
-
-            /* "datamule/rewrite/sgml_parser_cy.pyx":77
- *                     in_text = False
- * 
- *                 elif in_text:             # <<<<<<<<<<<<<<
- *                     if stripped not in ['<PDF>', '</PDF>']:
- *                         text_buffer.append(line)
- */
-            if (__pyx_v_in_text) {
-
-              /* "datamule/rewrite/sgml_parser_cy.pyx":78
- * 
- *                 elif in_text:
- *                     if stripped not in ['<PDF>', '</PDF>']:             # <<<<<<<<<<<<<<
- *                         text_buffer.append(line)
- * 
- */
-              __Pyx_INCREF(__pyx_v_stripped);
-              __pyx_t_14 = __pyx_v_stripped;
-              __pyx_t_15 = (__Pyx_PyString_Equals(__pyx_t_14, __pyx_kp_s_PDF, Py_NE)); if (unlikely((__pyx_t_15 < 0))) __PYX_ERR(0, 78, __pyx_L7_error)
-              if (__pyx_t_15) {
-              } else {
-                __pyx_t_12 = __pyx_t_15;
-                goto __pyx_L17_bool_binop_done;
-              }
-              __pyx_t_15 = (__Pyx_PyString_Equals(__pyx_t_14, __pyx_kp_s_PDF_2, Py_NE)); if (unlikely((__pyx_t_15 < 0))) __PYX_ERR(0, 78, __pyx_L7_error)
-              __pyx_t_12 = __pyx_t_15;
-              __pyx_L17_bool_binop_done:;
-              __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-              __pyx_t_15 = __pyx_t_12;
-              if (__pyx_t_15) {
-
-                /* "datamule/rewrite/sgml_parser_cy.pyx":79
- *                 elif in_text:
- *                     if stripped not in ['<PDF>', '</PDF>']:
- *                         text_buffer.append(line)             # <<<<<<<<<<<<<<
- * 
- *                 else:
- */
-                __pyx_t_13 = __Pyx_PyList_Append(__pyx_v_text_buffer, __pyx_v_line); if (unlikely(__pyx_t_13 == ((int)-1))) __PYX_ERR(0, 79, __pyx_L7_error)
-
-                /* "datamule/rewrite/sgml_parser_cy.pyx":78
- * 
- *                 elif in_text:
- *                     if stripped not in ['<PDF>', '</PDF>']:             # <<<<<<<<<<<<<<
- *                         text_buffer.append(line)
- * 
- */
-              }
-
-              /* "datamule/rewrite/sgml_parser_cy.pyx":77
- *                     in_text = False
- * 
- *                 elif in_text:             # <<<<<<<<<<<<<<
- *                     if stripped not in ['<PDF>', '</PDF>']:
- *                         text_buffer.append(line)
- */
-              goto __pyx_L15;
-            }
-
-            /* "datamule/rewrite/sgml_parser_cy.pyx":82
- * 
- *                 else:
- *                     tag_content = self._extract_tag_content(stripped)             # <<<<<<<<<<<<<<
- *                     if tag_content:
- *                         key, value = tag_content
- */
-            /*else*/ {
-              __pyx_t_3 = ((struct __pyx_vtabstruct_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *)__pyx_v_self->__pyx_vtab)->_extract_tag_content(__pyx_v_self, __pyx_v_stripped); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 82, __pyx_L7_error)
-              __Pyx_GOTREF(__pyx_t_3);
-              __Pyx_XDECREF_SET(__pyx_v_tag_content, ((PyObject*)__pyx_t_3));
-              __pyx_t_3 = 0;
-
-              /* "datamule/rewrite/sgml_parser_cy.pyx":83
- *                 else:
- *                     tag_content = self._extract_tag_content(stripped)
- *                     if tag_content:             # <<<<<<<<<<<<<<
- *                         key, value = tag_content
- *                         if in_submission:
- */
-              __pyx_t_15 = (__pyx_v_tag_content != Py_None)&&(PyTuple_GET_SIZE(__pyx_v_tag_content) != 0);
-              if (__pyx_t_15) {
-
-                /* "datamule/rewrite/sgml_parser_cy.pyx":84
- *                     tag_content = self._extract_tag_content(stripped)
- *                     if tag_content:
- *                         key, value = tag_content             # <<<<<<<<<<<<<<
- *                         if in_submission:
- *                             submission_data[key] = value
- */
-                if (likely(__pyx_v_tag_content != Py_None)) {
-                  PyObject* sequence = __pyx_v_tag_content;
-                  Py_ssize_t size = __Pyx_PySequence_SIZE(sequence);
-                  if (unlikely(size != 2)) {
-                    if (size > 2) __Pyx_RaiseTooManyValuesError(2);
-                    else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-                    __PYX_ERR(0, 84, __pyx_L7_error)
-                  }
-                  #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-                  __pyx_t_3 = PyTuple_GET_ITEM(sequence, 0); 
-                  __pyx_t_2 = PyTuple_GET_ITEM(sequence, 1); 
-                  __Pyx_INCREF(__pyx_t_3);
-                  __Pyx_INCREF(__pyx_t_2);
-                  #else
-                  __pyx_t_3 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 84, __pyx_L7_error)
-                  __Pyx_GOTREF(__pyx_t_3);
-                  __pyx_t_2 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 84, __pyx_L7_error)
-                  __Pyx_GOTREF(__pyx_t_2);
-                  #endif
-                } else {
-                  __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 84, __pyx_L7_error)
-                }
-                __Pyx_XDECREF_SET(__pyx_v_key, __pyx_t_3);
-                __pyx_t_3 = 0;
-                __Pyx_XDECREF_SET(__pyx_v_value, __pyx_t_2);
-                __pyx_t_2 = 0;
-
-                /* "datamule/rewrite/sgml_parser_cy.pyx":85
- *                     if tag_content:
- *                         key, value = tag_content
- *                         if in_submission:             # <<<<<<<<<<<<<<
- *                             submission_data[key] = value
- *                         elif in_document:
- */
-                if (__pyx_v_in_submission) {
-
-                  /* "datamule/rewrite/sgml_parser_cy.pyx":86
- *                         key, value = tag_content
- *                         if in_submission:
- *                             submission_data[key] = value             # <<<<<<<<<<<<<<
- *                         elif in_document:
- *                             current_document[key] = value
- */
-                  if (unlikely((PyDict_SetItem(__pyx_v_submission_data, __pyx_v_key, __pyx_v_value) < 0))) __PYX_ERR(0, 86, __pyx_L7_error)
-
-                  /* "datamule/rewrite/sgml_parser_cy.pyx":85
- *                     if tag_content:
- *                         key, value = tag_content
- *                         if in_submission:             # <<<<<<<<<<<<<<
- *                             submission_data[key] = value
- *                         elif in_document:
- */
-                  goto __pyx_L20;
-                }
-
-                /* "datamule/rewrite/sgml_parser_cy.pyx":87
- *                         if in_submission:
- *                             submission_data[key] = value
- *                         elif in_document:             # <<<<<<<<<<<<<<
- *                             current_document[key] = value
- * 
- */
-                if (__pyx_v_in_document) {
-
-                  /* "datamule/rewrite/sgml_parser_cy.pyx":88
- *                             submission_data[key] = value
- *                         elif in_document:
- *                             current_document[key] = value             # <<<<<<<<<<<<<<
- * 
- *         metadata = {
- */
-                  if (unlikely((PyDict_SetItem(__pyx_v_current_document, __pyx_v_key, __pyx_v_value) < 0))) __PYX_ERR(0, 88, __pyx_L7_error)
-
-                  /* "datamule/rewrite/sgml_parser_cy.pyx":87
- *                         if in_submission:
- *                             submission_data[key] = value
- *                         elif in_document:             # <<<<<<<<<<<<<<
- *                             current_document[key] = value
- * 
- */
-                }
-                __pyx_L20:;
-
-                /* "datamule/rewrite/sgml_parser_cy.pyx":83
- *                 else:
- *                     tag_content = self._extract_tag_content(stripped)
- *                     if tag_content:             # <<<<<<<<<<<<<<
- *                         key, value = tag_content
- *                         if in_submission:
- */
-              }
-            }
-            __pyx_L15:;
-
-            /* "datamule/rewrite/sgml_parser_cy.pyx":56
- * 
- *         with open(filepath, 'r', encoding='utf-8') as file:
- *             for line in file:             # <<<<<<<<<<<<<<
- *                 stripped = line.strip()
- * 
- */
-          }
-          __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-
-          /* "datamule/rewrite/sgml_parser_cy.pyx":55
- *             tuple tag_content
- * 
- *         with open(filepath, 'r', encoding='utf-8') as file:             # <<<<<<<<<<<<<<
- *             for line in file:
- *                 stripped = line.strip()
+          /* "datamule/rewrite/sgml_parser_cy.pyx":104
+ *     cpdef parse_file(self, str filepath):
+ *         """Legacy method to maintain compatibility."""
+ *         with open(filepath, 'r', encoding='utf-8') as f:             # <<<<<<<<<<<<<<
+ *             content = f.read()
+ *         self.parse_content(content)
  */
         }
         __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
@@ -5256,38 +5836,37 @@ static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_pars
         goto __pyx_L12_try_end;
         __pyx_L7_error:;
         __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
         __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
         /*except:*/ {
           __Pyx_AddTraceback("datamule.rewrite.sgml_parser_cy.CySGMLParser.parse_file", __pyx_clineno, __pyx_lineno, __pyx_filename);
-          if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_2, &__pyx_t_3) < 0) __PYX_ERR(0, 55, __pyx_L9_except_error)
+          if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_3, &__pyx_t_2) < 0) __PYX_ERR(0, 104, __pyx_L9_except_error)
           __Pyx_XGOTREF(__pyx_t_1);
-          __Pyx_XGOTREF(__pyx_t_2);
           __Pyx_XGOTREF(__pyx_t_3);
-          __pyx_t_4 = PyTuple_Pack(3, __pyx_t_1, __pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 55, __pyx_L9_except_error)
+          __Pyx_XGOTREF(__pyx_t_2);
+          __pyx_t_4 = PyTuple_Pack(3, __pyx_t_1, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 104, __pyx_L9_except_error)
           __Pyx_GOTREF(__pyx_t_4);
-          __pyx_t_16 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_4, NULL);
+          __pyx_t_10 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_4, NULL);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-          if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 55, __pyx_L9_except_error)
-          __Pyx_GOTREF(__pyx_t_16);
-          __pyx_t_15 = __Pyx_PyObject_IsTrue(__pyx_t_16);
-          __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-          if (__pyx_t_15 < 0) __PYX_ERR(0, 55, __pyx_L9_except_error)
-          __pyx_t_12 = (!__pyx_t_15);
+          if (unlikely(!__pyx_t_10)) __PYX_ERR(0, 104, __pyx_L9_except_error)
+          __Pyx_GOTREF(__pyx_t_10);
+          __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_10);
+          __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
+          if (__pyx_t_11 < 0) __PYX_ERR(0, 104, __pyx_L9_except_error)
+          __pyx_t_12 = (!__pyx_t_11);
           if (unlikely(__pyx_t_12)) {
             __Pyx_GIVEREF(__pyx_t_1);
-            __Pyx_GIVEREF(__pyx_t_2);
-            __Pyx_XGIVEREF(__pyx_t_3);
-            __Pyx_ErrRestoreWithState(__pyx_t_1, __pyx_t_2, __pyx_t_3);
-            __pyx_t_1 = 0; __pyx_t_2 = 0; __pyx_t_3 = 0; 
-            __PYX_ERR(0, 55, __pyx_L9_except_error)
+            __Pyx_GIVEREF(__pyx_t_3);
+            __Pyx_XGIVEREF(__pyx_t_2);
+            __Pyx_ErrRestoreWithState(__pyx_t_1, __pyx_t_3, __pyx_t_2);
+            __pyx_t_1 = 0; __pyx_t_3 = 0; __pyx_t_2 = 0; 
+            __PYX_ERR(0, 104, __pyx_L9_except_error)
           }
           __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-          __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
           __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+          __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
           goto __pyx_L8_exception_handled;
         }
         __pyx_L9_except_error:;
@@ -5309,7 +5888,7 @@ static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_pars
         if (__pyx_t_6) {
           __pyx_t_9 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__4, NULL);
           __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 55, __pyx_L1_error)
+          if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 104, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_9);
           __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
         }
@@ -5317,247 +5896,32 @@ static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_pars
       }
       __pyx_L6:;
     }
-    goto __pyx_L25;
+    goto __pyx_L16;
     __pyx_L3_error:;
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     goto __pyx_L1_error;
-    __pyx_L25:;
+    __pyx_L16:;
   }
 
-  /* "datamule/rewrite/sgml_parser_cy.pyx":91
+  /* "datamule/rewrite/sgml_parser_cy.pyx":106
+ *         with open(filepath, 'r', encoding='utf-8') as f:
+ *             content = f.read()
+ *         self.parse_content(content)             # <<<<<<<<<<<<<<
  * 
- *         metadata = {
- *             'submission': submission_data,             # <<<<<<<<<<<<<<
- *             'documents': documents
- *         }
+ * def parse_sgml_submission(filepath: str | None = None, output_dir: str | None = None, content: str | None = None) -> None:
  */
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 91, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_submission, __pyx_v_submission_data) < 0) __PYX_ERR(0, 91, __pyx_L1_error)
+  if (unlikely(!__pyx_v_content)) { __Pyx_RaiseUnboundLocalError("content"); __PYX_ERR(0, 106, __pyx_L1_error) }
+  if (!(likely(PyUnicode_CheckExact(__pyx_v_content))||((__pyx_v_content) == Py_None) || __Pyx_RaiseUnexpectedTypeError("unicode", __pyx_v_content))) __PYX_ERR(0, 106, __pyx_L1_error)
+  __pyx_t_2 = ((struct __pyx_vtabstruct_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *)__pyx_v_self->__pyx_vtab)->parse_content(__pyx_v_self, ((PyObject*)__pyx_v_content), 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 106, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "datamule/rewrite/sgml_parser_cy.pyx":92
- *         metadata = {
- *             'submission': submission_data,
- *             'documents': documents             # <<<<<<<<<<<<<<
- *         }
- * 
- */
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_documents, __pyx_v_documents) < 0) __PYX_ERR(0, 91, __pyx_L1_error)
-  __pyx_v_metadata = ((PyObject*)__pyx_t_3);
-  __pyx_t_3 = 0;
-
-  /* "datamule/rewrite/sgml_parser_cy.pyx":95
- *         }
- * 
- *         with open(os.path.join(self.output_dir, 'metadata.json'), 'w', encoding='utf-8') as f:             # <<<<<<<<<<<<<<
+  /* "datamule/rewrite/sgml_parser_cy.pyx":102
  *             json.dump(metadata, f, indent=4)
- * 
- */
-  /*with:*/ {
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_os); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 95, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_path); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 95, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_join); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 95, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = NULL;
-    __pyx_t_5 = 0;
-    #if CYTHON_UNPACK_METHODS
-    if (likely(PyMethod_Check(__pyx_t_2))) {
-      __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_2);
-      if (likely(__pyx_t_1)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-        __Pyx_INCREF(__pyx_t_1);
-        __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_2, function);
-        __pyx_t_5 = 1;
-      }
-    }
-    #endif
-    {
-      PyObject *__pyx_callargs[3] = {__pyx_t_1, __pyx_v_self->output_dir, __pyx_kp_s_metadata_json};
-      __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_5, 2+__pyx_t_5);
-      __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 95, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    }
-    __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 95, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_GIVEREF(__pyx_t_3);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_t_3)) __PYX_ERR(0, 95, __pyx_L1_error);
-    __Pyx_INCREF(__pyx_n_s_w);
-    __Pyx_GIVEREF(__pyx_n_s_w);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_n_s_w)) __PYX_ERR(0, 95, __pyx_L1_error);
-    __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 95, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_encoding, __pyx_kp_s_utf_8) < 0) __PYX_ERR(0, 95, __pyx_L1_error)
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 95, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_6 = __Pyx_PyObject_LookupSpecial(__pyx_t_1, __pyx_n_s_exit); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 95, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_6);
-    __pyx_t_2 = __Pyx_PyObject_LookupSpecial(__pyx_t_1, __pyx_n_s_enter); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 95, __pyx_L26_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_4 = NULL;
-    __pyx_t_5 = 0;
-    #if CYTHON_UNPACK_METHODS
-    if (likely(PyMethod_Check(__pyx_t_2))) {
-      __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_2);
-      if (likely(__pyx_t_4)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
-        __Pyx_INCREF(__pyx_t_4);
-        __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_2, function);
-        __pyx_t_5 = 1;
-      }
-    }
-    #endif
-    {
-      PyObject *__pyx_callargs[2] = {__pyx_t_4, NULL};
-      __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_2, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
-      __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 95, __pyx_L26_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    }
-    __pyx_t_2 = __pyx_t_3;
-    __pyx_t_3 = 0;
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    /*try:*/ {
-      {
-        __Pyx_PyThreadState_declare
-        __Pyx_PyThreadState_assign
-        __Pyx_ExceptionSave(&__pyx_t_9, &__pyx_t_8, &__pyx_t_7);
-        __Pyx_XGOTREF(__pyx_t_9);
-        __Pyx_XGOTREF(__pyx_t_8);
-        __Pyx_XGOTREF(__pyx_t_7);
-        /*try:*/ {
-          __pyx_v_f = __pyx_t_2;
-          __pyx_t_2 = 0;
-
-          /* "datamule/rewrite/sgml_parser_cy.pyx":96
- * 
- *         with open(os.path.join(self.output_dir, 'metadata.json'), 'w', encoding='utf-8') as f:
- *             json.dump(metadata, f, indent=4)             # <<<<<<<<<<<<<<
- * 
- * def parse_sgml_submission(filepath: str, output_dir: str | None = None) -> None:
- */
-          __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_json); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 96, __pyx_L30_error)
-          __Pyx_GOTREF(__pyx_t_2);
-          __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_dump); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 96, __pyx_L30_error)
-          __Pyx_GOTREF(__pyx_t_1);
-          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-          __pyx_t_2 = PyTuple_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 96, __pyx_L30_error)
-          __Pyx_GOTREF(__pyx_t_2);
-          __Pyx_INCREF(__pyx_v_metadata);
-          __Pyx_GIVEREF(__pyx_v_metadata);
-          if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_metadata)) __PYX_ERR(0, 96, __pyx_L30_error);
-          __Pyx_INCREF(__pyx_v_f);
-          __Pyx_GIVEREF(__pyx_v_f);
-          if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 1, __pyx_v_f)) __PYX_ERR(0, 96, __pyx_L30_error);
-          __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 96, __pyx_L30_error)
-          __Pyx_GOTREF(__pyx_t_3);
-          if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_indent, __pyx_int_4) < 0) __PYX_ERR(0, 96, __pyx_L30_error)
-          __pyx_t_4 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_2, __pyx_t_3); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 96, __pyx_L30_error)
-          __Pyx_GOTREF(__pyx_t_4);
-          __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-          __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-
-          /* "datamule/rewrite/sgml_parser_cy.pyx":95
- *         }
- * 
- *         with open(os.path.join(self.output_dir, 'metadata.json'), 'w', encoding='utf-8') as f:             # <<<<<<<<<<<<<<
- *             json.dump(metadata, f, indent=4)
- * 
- */
-        }
-        __Pyx_XDECREF(__pyx_t_9); __pyx_t_9 = 0;
-        __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-        __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-        goto __pyx_L35_try_end;
-        __pyx_L30_error:;
-        __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-        __Pyx_XDECREF(__pyx_t_14); __pyx_t_14 = 0;
-        __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-        __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-        __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        /*except:*/ {
-          __Pyx_AddTraceback("datamule.rewrite.sgml_parser_cy.CySGMLParser.parse_file", __pyx_clineno, __pyx_lineno, __pyx_filename);
-          if (__Pyx_GetException(&__pyx_t_4, &__pyx_t_3, &__pyx_t_2) < 0) __PYX_ERR(0, 95, __pyx_L32_except_error)
-          __Pyx_XGOTREF(__pyx_t_4);
-          __Pyx_XGOTREF(__pyx_t_3);
-          __Pyx_XGOTREF(__pyx_t_2);
-          __pyx_t_1 = PyTuple_Pack(3, __pyx_t_4, __pyx_t_3, __pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 95, __pyx_L32_except_error)
-          __Pyx_GOTREF(__pyx_t_1);
-          __pyx_t_16 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_t_1, NULL);
-          __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-          if (unlikely(!__pyx_t_16)) __PYX_ERR(0, 95, __pyx_L32_except_error)
-          __Pyx_GOTREF(__pyx_t_16);
-          __pyx_t_12 = __Pyx_PyObject_IsTrue(__pyx_t_16);
-          __Pyx_DECREF(__pyx_t_16); __pyx_t_16 = 0;
-          if (__pyx_t_12 < 0) __PYX_ERR(0, 95, __pyx_L32_except_error)
-          __pyx_t_15 = (!__pyx_t_12);
-          if (unlikely(__pyx_t_15)) {
-            __Pyx_GIVEREF(__pyx_t_4);
-            __Pyx_GIVEREF(__pyx_t_3);
-            __Pyx_XGIVEREF(__pyx_t_2);
-            __Pyx_ErrRestoreWithState(__pyx_t_4, __pyx_t_3, __pyx_t_2);
-            __pyx_t_4 = 0; __pyx_t_3 = 0; __pyx_t_2 = 0; 
-            __PYX_ERR(0, 95, __pyx_L32_except_error)
-          }
-          __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-          __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-          goto __pyx_L31_exception_handled;
-        }
-        __pyx_L32_except_error:;
-        __Pyx_XGIVEREF(__pyx_t_9);
-        __Pyx_XGIVEREF(__pyx_t_8);
-        __Pyx_XGIVEREF(__pyx_t_7);
-        __Pyx_ExceptionReset(__pyx_t_9, __pyx_t_8, __pyx_t_7);
-        goto __pyx_L1_error;
-        __pyx_L31_exception_handled:;
-        __Pyx_XGIVEREF(__pyx_t_9);
-        __Pyx_XGIVEREF(__pyx_t_8);
-        __Pyx_XGIVEREF(__pyx_t_7);
-        __Pyx_ExceptionReset(__pyx_t_9, __pyx_t_8, __pyx_t_7);
-        __pyx_L35_try_end:;
-      }
-    }
-    /*finally:*/ {
-      /*normal exit:*/{
-        if (__pyx_t_6) {
-          __pyx_t_7 = __Pyx_PyObject_Call(__pyx_t_6, __pyx_tuple__4, NULL);
-          __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-          if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 95, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_7);
-          __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
-        }
-        goto __pyx_L29;
-      }
-      __pyx_L29:;
-    }
-    goto __pyx_L39;
-    __pyx_L26_error:;
-    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-    goto __pyx_L1_error;
-    __pyx_L39:;
-  }
-
-  /* "datamule/rewrite/sgml_parser_cy.pyx":43
- *                 f.write(content)
  * 
  *     cpdef parse_file(self, str filepath):             # <<<<<<<<<<<<<<
- *         cdef:
- *             dict submission_data = {}
+ *         """Legacy method to maintain compatibility."""
+ *         with open(filepath, 'r', encoding='utf-8') as f:
  */
 
   /* function exit code */
@@ -5568,37 +5932,27 @@ static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_pars
   __Pyx_XDECREF(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
-  __Pyx_XDECREF(__pyx_t_14);
   __Pyx_AddTraceback("datamule.rewrite.sgml_parser_cy.CySGMLParser.parse_file", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_submission_data);
-  __Pyx_XDECREF(__pyx_v_documents);
-  __Pyx_XDECREF(__pyx_v_current_document);
-  __Pyx_XDECREF(__pyx_v_text_buffer);
-  __Pyx_XDECREF(__pyx_v_line);
-  __Pyx_XDECREF(__pyx_v_stripped);
-  __Pyx_XDECREF(__pyx_v_tag_content);
-  __Pyx_XDECREF(__pyx_v_file);
-  __Pyx_XDECREF(__pyx_v_key);
-  __Pyx_XDECREF(__pyx_v_value);
-  __Pyx_XDECREF(__pyx_v_metadata);
   __Pyx_XDECREF(__pyx_v_f);
+  __Pyx_XDECREF(__pyx_v_content);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_1parse_file(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_3parse_file(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_1parse_file = {"parse_file", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_1parse_file, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_1parse_file(PyObject *__pyx_v_self, 
+PyDoc_STRVAR(__pyx_doc_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_2parse_file, "Legacy method to maintain compatibility.");
+static PyMethodDef __pyx_mdef_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_3parse_file = {"parse_file", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_3parse_file, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_2parse_file};
+static PyObject *__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_3parse_file(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -5642,12 +5996,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 43, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 102, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "parse_file") < 0)) __PYX_ERR(0, 43, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "parse_file") < 0)) __PYX_ERR(0, 102, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -5658,7 +6012,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("parse_file", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 43, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("parse_file", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 102, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -5672,8 +6026,8 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_filepath), (&PyString_Type), 1, "filepath", 1))) __PYX_ERR(0, 43, __pyx_L1_error)
-  __pyx_r = __pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_parse_file(((struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *)__pyx_v_self), __pyx_v_filepath);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_filepath), (&PyUnicode_Type), 1, "filepath", 1))) __PYX_ERR(0, 102, __pyx_L1_error)
+  __pyx_r = __pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_2parse_file(((struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *)__pyx_v_self), __pyx_v_filepath);
 
   /* function exit code */
   goto __pyx_L0;
@@ -5690,7 +6044,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_parse_file(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_self, PyObject *__pyx_v_filepath) {
+static PyObject *__pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_2parse_file(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_self, PyObject *__pyx_v_filepath) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5699,7 +6053,7 @@ static PyObject *__pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_par
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("parse_file", 1);
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_1 = __pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_parse_file(__pyx_v_self, __pyx_v_filepath, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __pyx_t_1 = __pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_parse_file(__pyx_v_self, __pyx_v_filepath, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 102, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_r = __pyx_t_1;
   __pyx_t_1 = 0;
@@ -5778,7 +6132,7 @@ static int __pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_10output_
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__set__", 1);
-  if (!(likely(PyString_CheckExact(__pyx_v_value))||((__pyx_v_value) == Py_None) || __Pyx_RaiseUnexpectedTypeError("str", __pyx_v_value))) __PYX_ERR(0, 10, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_v_value))||((__pyx_v_value) == Py_None) || __Pyx_RaiseUnexpectedTypeError("unicode", __pyx_v_value))) __PYX_ERR(0, 10, __pyx_L1_error)
   __pyx_t_1 = __pyx_v_value;
   __Pyx_INCREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
@@ -5837,15 +6191,15 @@ static int __pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_10output_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_3__reduce_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_5__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_3__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_3__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_3__reduce_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_5__reduce_cython__ = {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_5__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_5__reduce_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -5870,14 +6224,14 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   if (unlikely(__pyx_nargs > 0)) {
     __Pyx_RaiseArgtupleInvalid("__reduce_cython__", 1, 0, 0, __pyx_nargs); return NULL;}
   if (unlikely(__pyx_kwds) && __Pyx_NumKwargs_FASTCALL(__pyx_kwds) && unlikely(!__Pyx_CheckKeywordStrings(__pyx_kwds, "__reduce_cython__", 0))) return NULL;
-  __pyx_r = __pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_2__reduce_cython__(((struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *)__pyx_v_self));
+  __pyx_r = __pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_4__reduce_cython__(((struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_2__reduce_cython__(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_self) {
+static PyObject *__pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_4__reduce_cython__(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_self) {
   PyObject *__pyx_v_state = 0;
   PyObject *__pyx_v__dict = 0;
   int __pyx_v_use_setstate;
@@ -6097,15 +6451,15 @@ static PyObject *__pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_2__
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_5__setstate_cython__(PyObject *__pyx_v_self, 
+static PyObject *__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_7__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_5__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_5__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
-static PyObject *__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_5__setstate_cython__(PyObject *__pyx_v_self, 
+static PyMethodDef __pyx_mdef_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_7__setstate_cython__ = {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_7__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+static PyObject *__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_7__setstate_cython__(PyObject *__pyx_v_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 #else
@@ -6179,7 +6533,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  __pyx_r = __pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_4__setstate_cython__(((struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *)__pyx_v_self), __pyx_v___pyx_state);
+  __pyx_r = __pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_6__setstate_cython__(((struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *)__pyx_v_self), __pyx_v___pyx_state);
 
   /* function exit code */
   {
@@ -6192,7 +6546,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_4__setstate_cython__(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_6__setstate_cython__(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -6231,12 +6585,12 @@ static PyObject *__pyx_pf_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_4__
   return __pyx_r;
 }
 
-/* "datamule/rewrite/sgml_parser_cy.pyx":98
- *             json.dump(metadata, f, indent=4)
+/* "datamule/rewrite/sgml_parser_cy.pyx":108
+ *         self.parse_content(content)
  * 
- * def parse_sgml_submission(filepath: str, output_dir: str | None = None) -> None:             # <<<<<<<<<<<<<<
- *     if output_dir is None:
- *         output_dir = os.path.splitext(filepath)[0] + '_output'
+ * def parse_sgml_submission(filepath: str | None = None, output_dir: str | None = None, content: str | None = None) -> None:             # <<<<<<<<<<<<<<
+ *     """
+ *     Parse an SGML submission from either a file or content string.
  */
 
 /* Python wrapper */
@@ -6247,7 +6601,8 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
-static PyMethodDef __pyx_mdef_8datamule_7rewrite_14sgml_parser_cy_1parse_sgml_submission = {"parse_sgml_submission", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_1parse_sgml_submission, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0};
+PyDoc_STRVAR(__pyx_doc_8datamule_7rewrite_14sgml_parser_cy_parse_sgml_submission, "\n    Parse an SGML submission from either a file or content string.\n    \n    Args:\n        filepath: Path to SGML file (optional if content provided)\n        output_dir: Directory for output files\n        content: SGML content string (optional if filepath provided)\n    ");
+static PyMethodDef __pyx_mdef_8datamule_7rewrite_14sgml_parser_cy_1parse_sgml_submission = {"parse_sgml_submission", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_1parse_sgml_submission, __Pyx_METH_FASTCALL|METH_KEYWORDS, __pyx_doc_8datamule_7rewrite_14sgml_parser_cy_parse_sgml_submission};
 static PyObject *__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_1parse_sgml_submission(PyObject *__pyx_self, 
 #if CYTHON_METH_FASTCALL
 PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
@@ -6257,11 +6612,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 ) {
   PyObject *__pyx_v_filepath = 0;
   PyObject *__pyx_v_output_dir = 0;
+  PyObject *__pyx_v_content = 0;
   #if !CYTHON_METH_FASTCALL
   CYTHON_UNUSED Py_ssize_t __pyx_nargs;
   #endif
   CYTHON_UNUSED PyObject *const *__pyx_kwvalues;
-  PyObject* values[2] = {0,0};
+  PyObject* values[3] = {0,0,0};
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -6277,11 +6633,15 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   #endif
   __pyx_kwvalues = __Pyx_KwValues_FASTCALL(__pyx_args, __pyx_nargs);
   {
-    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_filepath,&__pyx_n_s_output_dir,0};
+    PyObject **__pyx_pyargnames[] = {&__pyx_n_s_filepath,&__pyx_n_s_output_dir,&__pyx_n_s_content,0};
+    values[0] = __Pyx_Arg_NewRef_FASTCALL(((PyObject *)Py_None));
     values[1] = __Pyx_Arg_NewRef_FASTCALL(((PyObject *)Py_None));
+    values[2] = __Pyx_Arg_NewRef_FASTCALL(((PyObject *)Py_None));
     if (__pyx_kwds) {
       Py_ssize_t kw_args;
       switch (__pyx_nargs) {
+        case  3: values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
+        CYTHON_FALLTHROUGH;
         case  2: values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
         CYTHON_FALLTHROUGH;
         case  1: values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
@@ -6292,39 +6652,49 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       kw_args = __Pyx_NumKwargs_FASTCALL(__pyx_kwds);
       switch (__pyx_nargs) {
         case  0:
-        if (likely((values[0] = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_filepath)) != 0)) {
-          (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
-          kw_args--;
+        if (kw_args > 0) {
+          PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_filepath);
+          if (value) { values[0] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 108, __pyx_L3_error)
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 98, __pyx_L3_error)
-        else goto __pyx_L5_argtuple_error;
         CYTHON_FALLTHROUGH;
         case  1:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_output_dir);
           if (value) { values[1] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 98, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 108, __pyx_L3_error)
+        }
+        CYTHON_FALLTHROUGH;
+        case  2:
+        if (kw_args > 0) {
+          PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_content);
+          if (value) { values[2] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 108, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "parse_sgml_submission") < 0)) __PYX_ERR(0, 98, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "parse_sgml_submission") < 0)) __PYX_ERR(0, 108, __pyx_L3_error)
       }
     } else {
       switch (__pyx_nargs) {
+        case  3: values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
+        CYTHON_FALLTHROUGH;
         case  2: values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
         CYTHON_FALLTHROUGH;
         case  1: values[0] = __Pyx_Arg_FASTCALL(__pyx_args, 0);
-        break;
+        CYTHON_FALLTHROUGH;
+        case  0: break;
         default: goto __pyx_L5_argtuple_error;
       }
     }
-    __pyx_v_filepath = ((PyObject*)values[0]);
+    __pyx_v_filepath = values[0];
     __pyx_v_output_dir = values[1];
+    __pyx_v_content = values[2];
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("parse_sgml_submission", 0, 1, 2, __pyx_nargs); __PYX_ERR(0, 98, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("parse_sgml_submission", 0, 0, 3, __pyx_nargs); __PYX_ERR(0, 108, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -6338,14 +6708,9 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_filepath), (&PyString_Type), 0, "filepath", 1))) __PYX_ERR(0, 98, __pyx_L1_error)
-  __pyx_r = __pyx_pf_8datamule_7rewrite_14sgml_parser_cy_parse_sgml_submission(__pyx_self, __pyx_v_filepath, __pyx_v_output_dir);
+  __pyx_r = __pyx_pf_8datamule_7rewrite_14sgml_parser_cy_parse_sgml_submission(__pyx_self, __pyx_v_filepath, __pyx_v_output_dir, __pyx_v_content);
 
   /* function exit code */
-  goto __pyx_L0;
-  __pyx_L1_error:;
-  __pyx_r = NULL;
-  __pyx_L0:;
   {
     Py_ssize_t __pyx_temp;
     for (__pyx_temp=0; __pyx_temp < (Py_ssize_t)(sizeof(values)/sizeof(values[0])); ++__pyx_temp) {
@@ -6356,166 +6721,291 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_8datamule_7rewrite_14sgml_parser_cy_parse_sgml_submission(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_filepath, PyObject *__pyx_v_output_dir) {
+static PyObject *__pyx_pf_8datamule_7rewrite_14sgml_parser_cy_parse_sgml_submission(CYTHON_UNUSED PyObject *__pyx_self, PyObject *__pyx_v_filepath, PyObject *__pyx_v_output_dir, PyObject *__pyx_v_content) {
   struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *__pyx_v_parser = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_t_1;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
+  int __pyx_t_2;
+  int __pyx_t_3;
   PyObject *__pyx_t_4 = NULL;
-  unsigned int __pyx_t_5;
+  PyObject *__pyx_t_5 = NULL;
   PyObject *__pyx_t_6 = NULL;
+  unsigned int __pyx_t_7;
+  PyObject *__pyx_t_8 = NULL;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("parse_sgml_submission", 0);
   __Pyx_INCREF(__pyx_v_output_dir);
 
-  /* "datamule/rewrite/sgml_parser_cy.pyx":99
- * 
- * def parse_sgml_submission(filepath: str, output_dir: str | None = None) -> None:
- *     if output_dir is None:             # <<<<<<<<<<<<<<
- *         output_dir = os.path.splitext(filepath)[0] + '_output'
+  /* "datamule/rewrite/sgml_parser_cy.pyx":117
+ *         content: SGML content string (optional if filepath provided)
+ *     """
+ *     if not filepath and not content:             # <<<<<<<<<<<<<<
+ *         raise ValueError("Either filepath or content must be provided")
  * 
  */
-  __pyx_t_1 = (__pyx_v_output_dir == Py_None);
-  if (__pyx_t_1) {
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_filepath); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_t_3 = (!__pyx_t_2);
+  if (__pyx_t_3) {
+  } else {
+    __pyx_t_1 = __pyx_t_3;
+    goto __pyx_L4_bool_binop_done;
+  }
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_v_content); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 117, __pyx_L1_error)
+  __pyx_t_2 = (!__pyx_t_3);
+  __pyx_t_1 = __pyx_t_2;
+  __pyx_L4_bool_binop_done:;
+  if (unlikely(__pyx_t_1)) {
 
-    /* "datamule/rewrite/sgml_parser_cy.pyx":100
- * def parse_sgml_submission(filepath: str, output_dir: str | None = None) -> None:
- *     if output_dir is None:
- *         output_dir = os.path.splitext(filepath)[0] + '_output'             # <<<<<<<<<<<<<<
+    /* "datamule/rewrite/sgml_parser_cy.pyx":118
+ *     """
+ *     if not filepath and not content:
+ *         raise ValueError("Either filepath or content must be provided")             # <<<<<<<<<<<<<<
  * 
- *     os.makedirs(output_dir, exist_ok=True)
+ *     if not output_dir and filepath:
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_3, __pyx_n_s_os); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 100, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_path); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 100, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__6, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 118, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_splitext); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 100, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
+    __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = NULL;
-    __pyx_t_5 = 0;
-    #if CYTHON_UNPACK_METHODS
-    if (likely(PyMethod_Check(__pyx_t_3))) {
-      __pyx_t_4 = PyMethod_GET_SELF(__pyx_t_3);
-      if (likely(__pyx_t_4)) {
-        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_3);
-        __Pyx_INCREF(__pyx_t_4);
-        __Pyx_INCREF(function);
-        __Pyx_DECREF_SET(__pyx_t_3, function);
-        __pyx_t_5 = 1;
-      }
-    }
-    #endif
-    {
-      PyObject *__pyx_callargs[2] = {__pyx_t_4, __pyx_v_filepath};
-      __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_3, __pyx_callargs+1-__pyx_t_5, 1+__pyx_t_5);
-      __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-      if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    }
-    __pyx_t_3 = __Pyx_GetItemInt(__pyx_t_2, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 100, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_3);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PyNumber_Add(__pyx_t_3, __pyx_n_s_output); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 100, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __Pyx_DECREF_SET(__pyx_v_output_dir, __pyx_t_2);
-    __pyx_t_2 = 0;
+    __PYX_ERR(0, 118, __pyx_L1_error)
 
-    /* "datamule/rewrite/sgml_parser_cy.pyx":99
- * 
- * def parse_sgml_submission(filepath: str, output_dir: str | None = None) -> None:
- *     if output_dir is None:             # <<<<<<<<<<<<<<
- *         output_dir = os.path.splitext(filepath)[0] + '_output'
+    /* "datamule/rewrite/sgml_parser_cy.pyx":117
+ *         content: SGML content string (optional if filepath provided)
+ *     """
+ *     if not filepath and not content:             # <<<<<<<<<<<<<<
+ *         raise ValueError("Either filepath or content must be provided")
  * 
  */
   }
 
-  /* "datamule/rewrite/sgml_parser_cy.pyx":102
+  /* "datamule/rewrite/sgml_parser_cy.pyx":120
+ *         raise ValueError("Either filepath or content must be provided")
+ * 
+ *     if not output_dir and filepath:             # <<<<<<<<<<<<<<
  *         output_dir = os.path.splitext(filepath)[0] + '_output'
+ *     elif not output_dir:
+ */
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_output_dir); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_t_3 = (!__pyx_t_2);
+  if (__pyx_t_3) {
+  } else {
+    __pyx_t_1 = __pyx_t_3;
+    goto __pyx_L7_bool_binop_done;
+  }
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_v_filepath); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 120, __pyx_L1_error)
+  __pyx_t_1 = __pyx_t_3;
+  __pyx_L7_bool_binop_done:;
+  if (__pyx_t_1) {
+
+    /* "datamule/rewrite/sgml_parser_cy.pyx":121
+ * 
+ *     if not output_dir and filepath:
+ *         output_dir = os.path.splitext(filepath)[0] + '_output'             # <<<<<<<<<<<<<<
+ *     elif not output_dir:
+ *         raise ValueError("output_dir must be provided when parsing from content")
+ */
+    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_os); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 121, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_path); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 121, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_6);
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_splitext); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 121, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+    __pyx_t_6 = NULL;
+    __pyx_t_7 = 0;
+    #if CYTHON_UNPACK_METHODS
+    if (likely(PyMethod_Check(__pyx_t_5))) {
+      __pyx_t_6 = PyMethod_GET_SELF(__pyx_t_5);
+      if (likely(__pyx_t_6)) {
+        PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_5);
+        __Pyx_INCREF(__pyx_t_6);
+        __Pyx_INCREF(function);
+        __Pyx_DECREF_SET(__pyx_t_5, function);
+        __pyx_t_7 = 1;
+      }
+    }
+    #endif
+    {
+      PyObject *__pyx_callargs[2] = {__pyx_t_6, __pyx_v_filepath};
+      __pyx_t_4 = __Pyx_PyObject_FastCall(__pyx_t_5, __pyx_callargs+1-__pyx_t_7, 1+__pyx_t_7);
+      __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
+      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 121, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_4);
+      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    }
+    __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 121, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_5);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __pyx_t_4 = PyNumber_Add(__pyx_t_5, __pyx_n_u_output); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 121, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+    __Pyx_DECREF_SET(__pyx_v_output_dir, __pyx_t_4);
+    __pyx_t_4 = 0;
+
+    /* "datamule/rewrite/sgml_parser_cy.pyx":120
+ *         raise ValueError("Either filepath or content must be provided")
+ * 
+ *     if not output_dir and filepath:             # <<<<<<<<<<<<<<
+ *         output_dir = os.path.splitext(filepath)[0] + '_output'
+ *     elif not output_dir:
+ */
+    goto __pyx_L6;
+  }
+
+  /* "datamule/rewrite/sgml_parser_cy.pyx":122
+ *     if not output_dir and filepath:
+ *         output_dir = os.path.splitext(filepath)[0] + '_output'
+ *     elif not output_dir:             # <<<<<<<<<<<<<<
+ *         raise ValueError("output_dir must be provided when parsing from content")
+ * 
+ */
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_output_dir); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 122, __pyx_L1_error)
+  __pyx_t_3 = (!__pyx_t_1);
+  if (unlikely(__pyx_t_3)) {
+
+    /* "datamule/rewrite/sgml_parser_cy.pyx":123
+ *         output_dir = os.path.splitext(filepath)[0] + '_output'
+ *     elif not output_dir:
+ *         raise ValueError("output_dir must be provided when parsing from content")             # <<<<<<<<<<<<<<
+ * 
+ *     os.makedirs(output_dir, exist_ok=True)
+ */
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__7, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 123, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_4);
+    __Pyx_Raise(__pyx_t_4, 0, 0, 0);
+    __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+    __PYX_ERR(0, 123, __pyx_L1_error)
+
+    /* "datamule/rewrite/sgml_parser_cy.pyx":122
+ *     if not output_dir and filepath:
+ *         output_dir = os.path.splitext(filepath)[0] + '_output'
+ *     elif not output_dir:             # <<<<<<<<<<<<<<
+ *         raise ValueError("output_dir must be provided when parsing from content")
+ * 
+ */
+  }
+  __pyx_L6:;
+
+  /* "datamule/rewrite/sgml_parser_cy.pyx":125
+ *         raise ValueError("output_dir must be provided when parsing from content")
  * 
  *     os.makedirs(output_dir, exist_ok=True)             # <<<<<<<<<<<<<<
  * 
  *     parser = CySGMLParser()
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_os); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 102, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_makedirs); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 102, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_3);
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_2 = PyTuple_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 102, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_os); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 125, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_makedirs); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 125, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_5);
+  __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 125, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_4);
   __Pyx_INCREF(__pyx_v_output_dir);
   __Pyx_GIVEREF(__pyx_v_output_dir);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_2, 0, __pyx_v_output_dir)) __PYX_ERR(0, 102, __pyx_L1_error);
-  __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 102, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_4);
-  if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_exist_ok, Py_True) < 0) __PYX_ERR(0, 102, __pyx_L1_error)
-  __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_3, __pyx_t_2, __pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 102, __pyx_L1_error)
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_v_output_dir)) __PYX_ERR(0, 125, __pyx_L1_error);
+  __pyx_t_6 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 125, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_exist_ok, Py_True) < 0) __PYX_ERR(0, 125, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_4, __pyx_t_6); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 125, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
+  __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-  /* "datamule/rewrite/sgml_parser_cy.pyx":104
+  /* "datamule/rewrite/sgml_parser_cy.pyx":127
  *     os.makedirs(output_dir, exist_ok=True)
  * 
  *     parser = CySGMLParser()             # <<<<<<<<<<<<<<
  *     parser.output_dir = output_dir
- *     parser.parse_file(filepath)
+ * 
  */
-  __pyx_t_6 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 104, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __pyx_v_parser = ((struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *)__pyx_t_6);
-  __pyx_t_6 = 0;
+  __pyx_t_8 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser)); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 127, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_8);
+  __pyx_v_parser = ((struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *)__pyx_t_8);
+  __pyx_t_8 = 0;
 
-  /* "datamule/rewrite/sgml_parser_cy.pyx":105
+  /* "datamule/rewrite/sgml_parser_cy.pyx":128
  * 
  *     parser = CySGMLParser()
  *     parser.output_dir = output_dir             # <<<<<<<<<<<<<<
- *     parser.parse_file(filepath)
+ * 
+ *     if content is not None:
  */
-  if (!(likely(PyString_CheckExact(__pyx_v_output_dir))||((__pyx_v_output_dir) == Py_None) || __Pyx_RaiseUnexpectedTypeError("str", __pyx_v_output_dir))) __PYX_ERR(0, 105, __pyx_L1_error)
-  __pyx_t_6 = __pyx_v_output_dir;
-  __Pyx_INCREF(__pyx_t_6);
-  __Pyx_GIVEREF(__pyx_t_6);
+  if (!(likely(PyUnicode_CheckExact(__pyx_v_output_dir))||((__pyx_v_output_dir) == Py_None) || __Pyx_RaiseUnexpectedTypeError("unicode", __pyx_v_output_dir))) __PYX_ERR(0, 128, __pyx_L1_error)
+  __pyx_t_8 = __pyx_v_output_dir;
+  __Pyx_INCREF(__pyx_t_8);
+  __Pyx_GIVEREF(__pyx_t_8);
   __Pyx_GOTREF(__pyx_v_parser->output_dir);
   __Pyx_DECREF(__pyx_v_parser->output_dir);
-  __pyx_v_parser->output_dir = ((PyObject*)__pyx_t_6);
-  __pyx_t_6 = 0;
+  __pyx_v_parser->output_dir = ((PyObject*)__pyx_t_8);
+  __pyx_t_8 = 0;
 
-  /* "datamule/rewrite/sgml_parser_cy.pyx":106
- *     parser = CySGMLParser()
+  /* "datamule/rewrite/sgml_parser_cy.pyx":130
  *     parser.output_dir = output_dir
- *     parser.parse_file(filepath)             # <<<<<<<<<<<<<<
- */
-  __pyx_t_6 = ((struct __pyx_vtabstruct_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *)__pyx_v_parser->__pyx_vtab)->parse_file(__pyx_v_parser, __pyx_v_filepath, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 106, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_6);
-  __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-
-  /* "datamule/rewrite/sgml_parser_cy.pyx":98
- *             json.dump(metadata, f, indent=4)
  * 
- * def parse_sgml_submission(filepath: str, output_dir: str | None = None) -> None:             # <<<<<<<<<<<<<<
- *     if output_dir is None:
- *         output_dir = os.path.splitext(filepath)[0] + '_output'
+ *     if content is not None:             # <<<<<<<<<<<<<<
+ *         parser.parse_content(content)
+ *     else:
+ */
+  __pyx_t_3 = (__pyx_v_content != Py_None);
+  if (__pyx_t_3) {
+
+    /* "datamule/rewrite/sgml_parser_cy.pyx":131
+ * 
+ *     if content is not None:
+ *         parser.parse_content(content)             # <<<<<<<<<<<<<<
+ *     else:
+ *         parser.parse_file(filepath)
+ */
+    if (!(likely(PyUnicode_CheckExact(__pyx_v_content))||((__pyx_v_content) == Py_None) || __Pyx_RaiseUnexpectedTypeError("unicode", __pyx_v_content))) __PYX_ERR(0, 131, __pyx_L1_error)
+    __pyx_t_8 = ((struct __pyx_vtabstruct_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *)__pyx_v_parser->__pyx_vtab)->parse_content(__pyx_v_parser, ((PyObject*)__pyx_v_content), 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 131, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_8);
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+
+    /* "datamule/rewrite/sgml_parser_cy.pyx":130
+ *     parser.output_dir = output_dir
+ * 
+ *     if content is not None:             # <<<<<<<<<<<<<<
+ *         parser.parse_content(content)
+ *     else:
+ */
+    goto __pyx_L9;
+  }
+
+  /* "datamule/rewrite/sgml_parser_cy.pyx":133
+ *         parser.parse_content(content)
+ *     else:
+ *         parser.parse_file(filepath)             # <<<<<<<<<<<<<<
+ */
+  /*else*/ {
+    if (!(likely(PyUnicode_CheckExact(__pyx_v_filepath))||((__pyx_v_filepath) == Py_None) || __Pyx_RaiseUnexpectedTypeError("unicode", __pyx_v_filepath))) __PYX_ERR(0, 133, __pyx_L1_error)
+    __pyx_t_8 = ((struct __pyx_vtabstruct_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *)__pyx_v_parser->__pyx_vtab)->parse_file(__pyx_v_parser, ((PyObject*)__pyx_v_filepath), 0); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 133, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_8);
+    __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
+  }
+  __pyx_L9:;
+
+  /* "datamule/rewrite/sgml_parser_cy.pyx":108
+ *         self.parse_content(content)
+ * 
+ * def parse_sgml_submission(filepath: str | None = None, output_dir: str | None = None, content: str | None = None) -> None:             # <<<<<<<<<<<<<<
+ *     """
+ *     Parse an SGML submission from either a file or content string.
  */
 
   /* function exit code */
   __pyx_r = Py_None; __Pyx_INCREF(Py_None);
   goto __pyx_L0;
   __pyx_L1_error:;
-  __Pyx_XDECREF(__pyx_t_2);
-  __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
+  __Pyx_XDECREF(__pyx_t_8);
   __Pyx_AddTraceback("datamule.rewrite.sgml_parser_cy.parse_sgml_submission", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
@@ -6682,7 +7172,7 @@ static PyObject *__pyx_pf_8datamule_7rewrite_14sgml_parser_cy_2__pyx_unpickle_Cy
  */
   __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v___pyx_checksum); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_t_1, __pyx_tuple__6, Py_NE)); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(2, 4, __pyx_L1_error)
+  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_t_1, __pyx_tuple__8, Py_NE)); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(2, 4, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_2) {
 
@@ -6848,8 +7338,7 @@ static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy___pyx_unpickle_CySG
   int __pyx_t_4;
   PyObject *__pyx_t_5 = NULL;
   PyObject *__pyx_t_6 = NULL;
-  PyObject *__pyx_t_7 = NULL;
-  unsigned int __pyx_t_8;
+  unsigned int __pyx_t_7;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -6866,9 +7355,9 @@ static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy___pyx_unpickle_CySG
     PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
     __PYX_ERR(2, 12, __pyx_L1_error)
   }
-  __pyx_t_1 = __Pyx_GetItemInt_Tuple(__pyx_v___pyx_state, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 12, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(PyString_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("str", __pyx_t_1))) __PYX_ERR(2, 12, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(PyTuple_GET_ITEM(__pyx_v___pyx_state, 0)))||((PyTuple_GET_ITEM(__pyx_v___pyx_state, 0)) == Py_None) || __Pyx_RaiseUnexpectedTypeError("unicode", PyTuple_GET_ITEM(__pyx_v___pyx_state, 0)))) __PYX_ERR(2, 12, __pyx_L1_error)
+  __pyx_t_1 = PyTuple_GET_ITEM(__pyx_v___pyx_state, 0);
+  __Pyx_INCREF(__pyx_t_1);
   __Pyx_GIVEREF(__pyx_t_1);
   __Pyx_GOTREF(__pyx_v___pyx_result->output_dir);
   __Pyx_DECREF(__pyx_v___pyx_result->output_dir);
@@ -6911,27 +7400,24 @@ static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy___pyx_unpickle_CySG
       PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
       __PYX_ERR(2, 14, __pyx_L1_error)
     }
-    __pyx_t_5 = __Pyx_GetItemInt_Tuple(__pyx_v___pyx_state, 1, long, 1, __Pyx_PyInt_From_long, 0, 0, 1); if (unlikely(!__pyx_t_5)) __PYX_ERR(2, 14, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_7 = NULL;
-    __pyx_t_8 = 0;
+    __pyx_t_5 = NULL;
+    __pyx_t_7 = 0;
     #if CYTHON_UNPACK_METHODS
     if (likely(PyMethod_Check(__pyx_t_6))) {
-      __pyx_t_7 = PyMethod_GET_SELF(__pyx_t_6);
-      if (likely(__pyx_t_7)) {
+      __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_6);
+      if (likely(__pyx_t_5)) {
         PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
-        __Pyx_INCREF(__pyx_t_7);
+        __Pyx_INCREF(__pyx_t_5);
         __Pyx_INCREF(function);
         __Pyx_DECREF_SET(__pyx_t_6, function);
-        __pyx_t_8 = 1;
+        __pyx_t_7 = 1;
       }
     }
     #endif
     {
-      PyObject *__pyx_callargs[2] = {__pyx_t_7, __pyx_t_5};
-      __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_6, __pyx_callargs+1-__pyx_t_8, 1+__pyx_t_8);
-      __Pyx_XDECREF(__pyx_t_7); __pyx_t_7 = 0;
-      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+      PyObject *__pyx_callargs[2] = {__pyx_t_5, PyTuple_GET_ITEM(__pyx_v___pyx_state, 1)};
+      __pyx_t_1 = __Pyx_PyObject_FastCall(__pyx_t_6, __pyx_callargs+1-__pyx_t_7, 1+__pyx_t_7);
+      __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
       if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 14, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
@@ -6961,7 +7447,6 @@ static PyObject *__pyx_f_8datamule_7rewrite_14sgml_parser_cy___pyx_unpickle_CySG
   __Pyx_XDECREF(__pyx_t_1);
   __Pyx_XDECREF(__pyx_t_5);
   __Pyx_XDECREF(__pyx_t_6);
-  __Pyx_XDECREF(__pyx_t_7);
   __Pyx_AddTraceback("datamule.rewrite.sgml_parser_cy.__pyx_unpickle_CySGMLParser__set_state", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
@@ -7025,8 +7510,8 @@ static int __pyx_setprop_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_outp
 }
 
 static PyMethodDef __pyx_methods_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser[] = {
-  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_3__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
-  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_5__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__reduce_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_5__reduce_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
+  {"__setstate_cython__", (PyCFunction)(void*)(__Pyx_PyCFunction_FastCallWithKeywords)__pyx_pw_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_7__setstate_cython__, __Pyx_METH_FASTCALL|METH_KEYWORDS, 0},
   {0, 0, 0, 0}
 };
 
@@ -7152,42 +7637,46 @@ static PyMethodDef __pyx_methods[] = {
 
 static int __Pyx_CreateStringTabAndInitStrings(void) {
   __Pyx_StringTabEntry __pyx_string_tab[] = {
-    {&__pyx_kp_s_, __pyx_k_, sizeof(__pyx_k_), 0, 0, 1, 0},
+    {&__pyx_kp_u_, __pyx_k_, sizeof(__pyx_k_), 0, 1, 0, 0},
     {&__pyx_n_s_BytesIO, __pyx_k_BytesIO, sizeof(__pyx_k_BytesIO), 0, 0, 1, 1},
     {&__pyx_n_s_CySGMLParser, __pyx_k_CySGMLParser, sizeof(__pyx_k_CySGMLParser), 0, 0, 1, 1},
     {&__pyx_n_s_CySGMLParser___reduce_cython, __pyx_k_CySGMLParser___reduce_cython, sizeof(__pyx_k_CySGMLParser___reduce_cython), 0, 0, 1, 1},
     {&__pyx_n_s_CySGMLParser___setstate_cython, __pyx_k_CySGMLParser___setstate_cython, sizeof(__pyx_k_CySGMLParser___setstate_cython), 0, 0, 1, 1},
+    {&__pyx_n_s_CySGMLParser_parse_content, __pyx_k_CySGMLParser_parse_content, sizeof(__pyx_k_CySGMLParser_parse_content), 0, 0, 1, 1},
     {&__pyx_n_s_CySGMLParser_parse_file, __pyx_k_CySGMLParser_parse_file, sizeof(__pyx_k_CySGMLParser_parse_file), 0, 0, 1, 1},
-    {&__pyx_kp_s_DOCUMENT, __pyx_k_DOCUMENT, sizeof(__pyx_k_DOCUMENT), 0, 0, 1, 0},
-    {&__pyx_kp_s_DOCUMENT_2, __pyx_k_DOCUMENT_2, sizeof(__pyx_k_DOCUMENT_2), 0, 0, 1, 0},
-    {&__pyx_n_s_FILENAME, __pyx_k_FILENAME, sizeof(__pyx_k_FILENAME), 0, 0, 1, 1},
+    {&__pyx_kp_u_DOCUMENT, __pyx_k_DOCUMENT, sizeof(__pyx_k_DOCUMENT), 0, 1, 0, 0},
+    {&__pyx_kp_u_DOCUMENT_2, __pyx_k_DOCUMENT_2, sizeof(__pyx_k_DOCUMENT_2), 0, 1, 0, 0},
+    {&__pyx_kp_u_Either_filepath_or_content_must, __pyx_k_Either_filepath_or_content_must, sizeof(__pyx_k_Either_filepath_or_content_must), 0, 1, 0, 0},
+    {&__pyx_n_u_FILENAME, __pyx_k_FILENAME, sizeof(__pyx_k_FILENAME), 0, 1, 0, 1},
     {&__pyx_kp_s_Incompatible_checksums_0x_x_vs_0, __pyx_k_Incompatible_checksums_0x_x_vs_0, sizeof(__pyx_k_Incompatible_checksums_0x_x_vs_0), 0, 0, 1, 0},
     {&__pyx_n_s_None, __pyx_k_None, sizeof(__pyx_k_None), 0, 0, 1, 1},
-    {&__pyx_kp_s_PDF, __pyx_k_PDF, sizeof(__pyx_k_PDF), 0, 0, 1, 0},
-    {&__pyx_kp_s_PDF_2, __pyx_k_PDF_2, sizeof(__pyx_k_PDF_2), 0, 0, 1, 0},
+    {&__pyx_kp_u_PDF, __pyx_k_PDF, sizeof(__pyx_k_PDF), 0, 1, 0, 0},
+    {&__pyx_kp_u_PDF_2, __pyx_k_PDF_2, sizeof(__pyx_k_PDF_2), 0, 1, 0, 0},
     {&__pyx_n_s_PickleError, __pyx_k_PickleError, sizeof(__pyx_k_PickleError), 0, 0, 1, 1},
-    {&__pyx_n_s_SEQUENCE, __pyx_k_SEQUENCE, sizeof(__pyx_k_SEQUENCE), 0, 0, 1, 1},
-    {&__pyx_kp_s_TEXT, __pyx_k_TEXT, sizeof(__pyx_k_TEXT), 0, 0, 1, 0},
-    {&__pyx_kp_s_TEXT_2, __pyx_k_TEXT_2, sizeof(__pyx_k_TEXT_2), 0, 0, 1, 0},
-    {&__pyx_kp_s__2, __pyx_k__2, sizeof(__pyx_k__2), 0, 0, 1, 0},
-    {&__pyx_n_s__20, __pyx_k__20, sizeof(__pyx_k__20), 0, 0, 1, 1},
-    {&__pyx_kp_s__3, __pyx_k__3, sizeof(__pyx_k__3), 0, 0, 1, 0},
-    {&__pyx_kp_s__5, __pyx_k__5, sizeof(__pyx_k__5), 0, 0, 1, 0},
-    {&__pyx_kp_u__7, __pyx_k__7, sizeof(__pyx_k__7), 0, 1, 0, 0},
-    {&__pyx_n_s__8, __pyx_k__8, sizeof(__pyx_k__8), 0, 0, 1, 1},
+    {&__pyx_n_u_SEQUENCE, __pyx_k_SEQUENCE, sizeof(__pyx_k_SEQUENCE), 0, 1, 0, 1},
+    {&__pyx_n_s_StringIO, __pyx_k_StringIO, sizeof(__pyx_k_StringIO), 0, 0, 1, 1},
+    {&__pyx_kp_u_TEXT, __pyx_k_TEXT, sizeof(__pyx_k_TEXT), 0, 1, 0, 0},
+    {&__pyx_kp_u_TEXT_2, __pyx_k_TEXT_2, sizeof(__pyx_k_TEXT_2), 0, 1, 0, 0},
+    {&__pyx_n_s_ValueError, __pyx_k_ValueError, sizeof(__pyx_k_ValueError), 0, 0, 1, 1},
+    {&__pyx_n_s__10, __pyx_k__10, sizeof(__pyx_k__10), 0, 0, 1, 1},
+    {&__pyx_kp_u__2, __pyx_k__2, sizeof(__pyx_k__2), 0, 1, 0, 0},
+    {&__pyx_n_s__23, __pyx_k__23, sizeof(__pyx_k__23), 0, 0, 1, 1},
+    {&__pyx_kp_u__3, __pyx_k__3, sizeof(__pyx_k__3), 0, 1, 0, 0},
+    {&__pyx_kp_u__5, __pyx_k__5, sizeof(__pyx_k__5), 0, 1, 0, 0},
+    {&__pyx_kp_u__9, __pyx_k__9, sizeof(__pyx_k__9), 0, 1, 0, 0},
     {&__pyx_n_s_asyncio_coroutines, __pyx_k_asyncio_coroutines, sizeof(__pyx_k_asyncio_coroutines), 0, 0, 1, 1},
-    {&__pyx_kp_s_begin, __pyx_k_begin, sizeof(__pyx_k_begin), 0, 0, 1, 0},
+    {&__pyx_kp_u_begin, __pyx_k_begin, sizeof(__pyx_k_begin), 0, 1, 0, 0},
     {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
+    {&__pyx_n_s_content, __pyx_k_content, sizeof(__pyx_k_content), 0, 0, 1, 1},
     {&__pyx_kp_s_datamule_rewrite_sgml_parser_cy, __pyx_k_datamule_rewrite_sgml_parser_cy, sizeof(__pyx_k_datamule_rewrite_sgml_parser_cy), 0, 0, 1, 0},
     {&__pyx_n_s_datamule_rewrite_sgml_parser_cy_2, __pyx_k_datamule_rewrite_sgml_parser_cy_2, sizeof(__pyx_k_datamule_rewrite_sgml_parser_cy_2), 0, 0, 1, 1},
     {&__pyx_n_s_decode, __pyx_k_decode, sizeof(__pyx_k_decode), 0, 0, 1, 1},
     {&__pyx_n_s_dict, __pyx_k_dict, sizeof(__pyx_k_dict), 0, 0, 1, 1},
     {&__pyx_n_s_dict_2, __pyx_k_dict_2, sizeof(__pyx_k_dict_2), 0, 0, 1, 1},
     {&__pyx_kp_u_disable, __pyx_k_disable, sizeof(__pyx_k_disable), 0, 1, 0, 0},
-    {&__pyx_n_s_documents, __pyx_k_documents, sizeof(__pyx_k_documents), 0, 0, 1, 1},
+    {&__pyx_n_u_documents, __pyx_k_documents, sizeof(__pyx_k_documents), 0, 1, 0, 1},
     {&__pyx_n_s_dump, __pyx_k_dump, sizeof(__pyx_k_dump), 0, 0, 1, 1},
     {&__pyx_kp_u_enable, __pyx_k_enable, sizeof(__pyx_k_enable), 0, 1, 0, 0},
-    {&__pyx_n_s_encode, __pyx_k_encode, sizeof(__pyx_k_encode), 0, 0, 1, 1},
     {&__pyx_n_s_encoding, __pyx_k_encoding, sizeof(__pyx_k_encoding), 0, 0, 1, 1},
     {&__pyx_n_s_enter, __pyx_k_enter, sizeof(__pyx_k_enter), 0, 0, 1, 1},
     {&__pyx_n_s_exist_ok, __pyx_k_exist_ok, sizeof(__pyx_k_exist_ok), 0, 0, 1, 1},
@@ -7205,15 +7694,18 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_kp_u_isenabled, __pyx_k_isenabled, sizeof(__pyx_k_isenabled), 0, 1, 0, 0},
     {&__pyx_n_s_join, __pyx_k_join, sizeof(__pyx_k_join), 0, 0, 1, 1},
     {&__pyx_n_s_json, __pyx_k_json, sizeof(__pyx_k_json), 0, 0, 1, 1},
+    {&__pyx_n_s_keepends, __pyx_k_keepends, sizeof(__pyx_k_keepends), 0, 0, 1, 1},
     {&__pyx_n_s_main, __pyx_k_main, sizeof(__pyx_k_main), 0, 0, 1, 1},
     {&__pyx_n_s_makedirs, __pyx_k_makedirs, sizeof(__pyx_k_makedirs), 0, 0, 1, 1},
-    {&__pyx_kp_s_metadata_json, __pyx_k_metadata_json, sizeof(__pyx_k_metadata_json), 0, 0, 1, 0},
+    {&__pyx_kp_u_metadata_json, __pyx_k_metadata_json, sizeof(__pyx_k_metadata_json), 0, 1, 0, 0},
     {&__pyx_n_s_name, __pyx_k_name, sizeof(__pyx_k_name), 0, 0, 1, 1},
     {&__pyx_n_s_new, __pyx_k_new, sizeof(__pyx_k_new), 0, 0, 1, 1},
     {&__pyx_n_s_open, __pyx_k_open, sizeof(__pyx_k_open), 0, 0, 1, 1},
     {&__pyx_n_s_os, __pyx_k_os, sizeof(__pyx_k_os), 0, 0, 1, 1},
-    {&__pyx_n_s_output, __pyx_k_output, sizeof(__pyx_k_output), 0, 0, 1, 1},
+    {&__pyx_n_u_output, __pyx_k_output, sizeof(__pyx_k_output), 0, 1, 0, 1},
     {&__pyx_n_s_output_dir, __pyx_k_output_dir, sizeof(__pyx_k_output_dir), 0, 0, 1, 1},
+    {&__pyx_kp_u_output_dir_must_be_provided_when, __pyx_k_output_dir_must_be_provided_when, sizeof(__pyx_k_output_dir_must_be_provided_when), 0, 1, 0, 0},
+    {&__pyx_n_s_parse_content, __pyx_k_parse_content, sizeof(__pyx_k_parse_content), 0, 0, 1, 1},
     {&__pyx_n_s_parse_file, __pyx_k_parse_file, sizeof(__pyx_k_parse_file), 0, 0, 1, 1},
     {&__pyx_n_s_parse_sgml_submission, __pyx_k_parse_sgml_submission, sizeof(__pyx_k_parse_sgml_submission), 0, 0, 1, 1},
     {&__pyx_n_s_parser, __pyx_k_parser, sizeof(__pyx_k_parser), 0, 0, 1, 1},
@@ -7228,7 +7720,8 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_pyx_unpickle_CySGMLParser, __pyx_k_pyx_unpickle_CySGMLParser, sizeof(__pyx_k_pyx_unpickle_CySGMLParser), 0, 0, 1, 1},
     {&__pyx_n_s_pyx_vtable, __pyx_k_pyx_vtable, sizeof(__pyx_k_pyx_vtable), 0, 0, 1, 1},
     {&__pyx_n_s_quiet, __pyx_k_quiet, sizeof(__pyx_k_quiet), 0, 0, 1, 1},
-    {&__pyx_n_s_r, __pyx_k_r, sizeof(__pyx_k_r), 0, 0, 1, 1},
+    {&__pyx_n_u_r, __pyx_k_r, sizeof(__pyx_k_r), 0, 1, 0, 1},
+    {&__pyx_n_s_read, __pyx_k_read, sizeof(__pyx_k_read), 0, 0, 1, 1},
     {&__pyx_n_s_reduce, __pyx_k_reduce, sizeof(__pyx_k_reduce), 0, 0, 1, 1},
     {&__pyx_n_s_reduce_cython, __pyx_k_reduce_cython, sizeof(__pyx_k_reduce_cython), 0, 0, 1, 1},
     {&__pyx_n_s_reduce_ex, __pyx_k_reduce_ex, sizeof(__pyx_k_reduce_ex), 0, 0, 1, 1},
@@ -7238,20 +7731,20 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_setstate_cython, __pyx_k_setstate_cython, sizeof(__pyx_k_setstate_cython), 0, 0, 1, 1},
     {&__pyx_n_s_spec, __pyx_k_spec, sizeof(__pyx_k_spec), 0, 0, 1, 1},
     {&__pyx_n_s_splitext, __pyx_k_splitext, sizeof(__pyx_k_splitext), 0, 0, 1, 1},
+    {&__pyx_n_s_splitlines, __pyx_k_splitlines, sizeof(__pyx_k_splitlines), 0, 0, 1, 1},
     {&__pyx_n_s_state, __pyx_k_state, sizeof(__pyx_k_state), 0, 0, 1, 1},
-    {&__pyx_n_s_str, __pyx_k_str, sizeof(__pyx_k_str), 0, 0, 1, 1},
     {&__pyx_kp_s_str_None, __pyx_k_str_None, sizeof(__pyx_k_str_None), 0, 0, 1, 0},
     {&__pyx_kp_s_stringsource, __pyx_k_stringsource, sizeof(__pyx_k_stringsource), 0, 0, 1, 0},
     {&__pyx_n_s_strip, __pyx_k_strip, sizeof(__pyx_k_strip), 0, 0, 1, 1},
-    {&__pyx_n_s_submission, __pyx_k_submission, sizeof(__pyx_k_submission), 0, 0, 1, 1},
+    {&__pyx_n_u_submission, __pyx_k_submission, sizeof(__pyx_k_submission), 0, 1, 0, 1},
     {&__pyx_n_s_test, __pyx_k_test, sizeof(__pyx_k_test), 0, 0, 1, 1},
     {&__pyx_kp_u_txt, __pyx_k_txt, sizeof(__pyx_k_txt), 0, 1, 0, 0},
-    {&__pyx_n_s_unknown, __pyx_k_unknown, sizeof(__pyx_k_unknown), 0, 0, 1, 1},
+    {&__pyx_n_u_unknown, __pyx_k_unknown, sizeof(__pyx_k_unknown), 0, 1, 0, 1},
     {&__pyx_n_s_update, __pyx_k_update, sizeof(__pyx_k_update), 0, 0, 1, 1},
     {&__pyx_n_s_use_setstate, __pyx_k_use_setstate, sizeof(__pyx_k_use_setstate), 0, 0, 1, 1},
-    {&__pyx_kp_s_utf_8, __pyx_k_utf_8, sizeof(__pyx_k_utf_8), 0, 0, 1, 0},
+    {&__pyx_kp_u_utf_8, __pyx_k_utf_8, sizeof(__pyx_k_utf_8), 0, 1, 0, 0},
     {&__pyx_n_s_uu, __pyx_k_uu, sizeof(__pyx_k_uu), 0, 0, 1, 1},
-    {&__pyx_n_s_w, __pyx_k_w, sizeof(__pyx_k_w), 0, 0, 1, 1},
+    {&__pyx_n_u_w, __pyx_k_w, sizeof(__pyx_k_w), 0, 1, 0, 1},
     {&__pyx_n_s_write, __pyx_k_write, sizeof(__pyx_k_write), 0, 0, 1, 1},
     {0, 0, 0, 0, 0, 0, 0}
   };
@@ -7260,6 +7753,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
 /* #### Code section: cached_builtins ### */
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
   __pyx_builtin_open = __Pyx_GetBuiltinName(__pyx_n_s_open); if (!__pyx_builtin_open) __PYX_ERR(0, 40, __pyx_L1_error)
+  __pyx_builtin_ValueError = __Pyx_GetBuiltinName(__pyx_n_s_ValueError); if (!__pyx_builtin_ValueError) __PYX_ERR(0, 118, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
   return -1;
@@ -7281,6 +7775,28 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__4);
   __Pyx_GIVEREF(__pyx_tuple__4);
 
+  /* "datamule/rewrite/sgml_parser_cy.pyx":118
+ *     """
+ *     if not filepath and not content:
+ *         raise ValueError("Either filepath or content must be provided")             # <<<<<<<<<<<<<<
+ * 
+ *     if not output_dir and filepath:
+ */
+  __pyx_tuple__6 = PyTuple_Pack(1, __pyx_kp_u_Either_filepath_or_content_must); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(0, 118, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__6);
+  __Pyx_GIVEREF(__pyx_tuple__6);
+
+  /* "datamule/rewrite/sgml_parser_cy.pyx":123
+ *         output_dir = os.path.splitext(filepath)[0] + '_output'
+ *     elif not output_dir:
+ *         raise ValueError("output_dir must be provided when parsing from content")             # <<<<<<<<<<<<<<
+ * 
+ *     os.makedirs(output_dir, exist_ok=True)
+ */
+  __pyx_tuple__7 = PyTuple_Pack(1, __pyx_kp_u_output_dir_must_be_provided_when); if (unlikely(!__pyx_tuple__7)) __PYX_ERR(0, 123, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__7);
+  __Pyx_GIVEREF(__pyx_tuple__7);
+
   /* "(tree fragment)":4
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
@@ -7288,31 +7804,43 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         from pickle import PickleError as __pyx_PickleError
  *         raise __pyx_PickleError, "Incompatible checksums (0x%x vs (0xafde399, 0x9b29b76, 0x6befcab) = (output_dir))" % __pyx_checksum
  */
-  __pyx_tuple__6 = PyTuple_Pack(3, __pyx_int_184411033, __pyx_int_162700150, __pyx_int_113179819); if (unlikely(!__pyx_tuple__6)) __PYX_ERR(2, 4, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__6);
-  __Pyx_GIVEREF(__pyx_tuple__6);
+  __pyx_tuple__8 = PyTuple_Pack(3, __pyx_int_184411033, __pyx_int_162700150, __pyx_int_113179819); if (unlikely(!__pyx_tuple__8)) __PYX_ERR(2, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__8);
+  __Pyx_GIVEREF(__pyx_tuple__8);
 
   /* "datamule/rewrite/sgml_parser_cy.pyx":43
  *                 f.write(content)
  * 
- *     cpdef parse_file(self, str filepath):             # <<<<<<<<<<<<<<
+ *     cpdef parse_content(self, str content):             # <<<<<<<<<<<<<<
+ *         """Parse SGML content directly from a string."""
  *         cdef:
- *             dict submission_data = {}
  */
-  __pyx_tuple__9 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_filepath); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 43, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__9);
-  __Pyx_GIVEREF(__pyx_tuple__9);
-  __pyx_codeobj__10 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__9, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_datamule_rewrite_sgml_parser_cy, __pyx_n_s_parse_file, 43, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__10)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __pyx_tuple__11 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_content); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__11);
+  __Pyx_GIVEREF(__pyx_tuple__11);
+  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_datamule_rewrite_sgml_parser_cy, __pyx_n_s_parse_content, 43, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(0, 43, __pyx_L1_error)
+
+  /* "datamule/rewrite/sgml_parser_cy.pyx":102
+ *             json.dump(metadata, f, indent=4)
+ * 
+ *     cpdef parse_file(self, str filepath):             # <<<<<<<<<<<<<<
+ *         """Legacy method to maintain compatibility."""
+ *         with open(filepath, 'r', encoding='utf-8') as f:
+ */
+  __pyx_tuple__13 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_filepath); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__13);
+  __Pyx_GIVEREF(__pyx_tuple__13);
+  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__13, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_datamule_rewrite_sgml_parser_cy, __pyx_n_s_parse_file, 102, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(0, 102, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     cdef tuple state
  *     cdef object _dict
  */
-  __pyx_tuple__11 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_state, __pyx_n_s_dict_2, __pyx_n_s_use_setstate); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(2, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__11);
-  __Pyx_GIVEREF(__pyx_tuple__11);
-  __pyx_codeobj__12 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__11, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_reduce_cython, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__12)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __pyx_tuple__15 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_state, __pyx_n_s_dict_2, __pyx_n_s_use_setstate); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__15);
+  __Pyx_GIVEREF(__pyx_tuple__15);
+  __pyx_codeobj__16 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__15, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_reduce_cython, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__16)) __PYX_ERR(2, 1, __pyx_L1_error)
 
   /* "(tree fragment)":16
  *     else:
@@ -7320,35 +7848,32 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_CySGMLParser__set_state(self, __pyx_state)
  */
-  __pyx_tuple__13 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_pyx_state); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(2, 16, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__13);
-  __Pyx_GIVEREF(__pyx_tuple__13);
-  __pyx_codeobj__14 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__13, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__14)) __PYX_ERR(2, 16, __pyx_L1_error)
-
-  /* "datamule/rewrite/sgml_parser_cy.pyx":98
- *             json.dump(metadata, f, indent=4)
- * 
- * def parse_sgml_submission(filepath: str, output_dir: str | None = None) -> None:             # <<<<<<<<<<<<<<
- *     if output_dir is None:
- *         output_dir = os.path.splitext(filepath)[0] + '_output'
- */
-  __pyx_tuple__15 = PyTuple_Pack(3, __pyx_n_s_filepath, __pyx_n_s_output_dir, __pyx_n_s_parser); if (unlikely(!__pyx_tuple__15)) __PYX_ERR(0, 98, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__15);
-  __Pyx_GIVEREF(__pyx_tuple__15);
-  __pyx_codeobj__16 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 3, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__15, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_datamule_rewrite_sgml_parser_cy, __pyx_n_s_parse_sgml_submission, 98, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__16)) __PYX_ERR(0, 98, __pyx_L1_error)
-  __pyx_tuple__17 = PyTuple_Pack(1, Py_None); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __pyx_tuple__17 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_pyx_state); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(2, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__17);
   __Pyx_GIVEREF(__pyx_tuple__17);
+  __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(2, 16, __pyx_L1_error)
+
+  /* "datamule/rewrite/sgml_parser_cy.pyx":108
+ *         self.parse_content(content)
+ * 
+ * def parse_sgml_submission(filepath: str | None = None, output_dir: str | None = None, content: str | None = None) -> None:             # <<<<<<<<<<<<<<
+ *     """
+ *     Parse an SGML submission from either a file or content string.
+ */
+  __pyx_tuple__19 = PyTuple_Pack(4, __pyx_n_s_filepath, __pyx_n_s_output_dir, __pyx_n_s_content, __pyx_n_s_parser); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(0, 108, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__19);
+  __Pyx_GIVEREF(__pyx_tuple__19);
+  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_datamule_rewrite_sgml_parser_cy, __pyx_n_s_parse_sgml_submission, 108, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(0, 108, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __pyx_unpickle_CySGMLParser(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_tuple__18 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(2, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__18);
-  __Pyx_GIVEREF(__pyx_tuple__18);
-  __pyx_codeobj__19 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__18, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_CySGMLParser, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__19)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __pyx_tuple__21 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__21);
+  __Pyx_GIVEREF(__pyx_tuple__21);
+  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_CySGMLParser, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -7360,14 +7885,12 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
 static CYTHON_SMALL_CODE int __Pyx_InitConstants(void) {
   __pyx_umethod_PyDict_Type_get.type = (PyObject*)&PyDict_Type;
   __pyx_umethod_PyDict_Type_get.method_name = &__pyx_n_s_get;
-  __pyx_umethod_PyString_Type_encode.type = (PyObject*)&PyString_Type;
-  __pyx_umethod_PyString_Type_encode.method_name = &__pyx_n_s_encode;
-  __pyx_umethod_PyString_Type_index.type = (PyObject*)&PyString_Type;
-  __pyx_umethod_PyString_Type_index.method_name = &__pyx_n_s_index;
-  __pyx_umethod_PyString_Type_partition.type = (PyObject*)&PyString_Type;
-  __pyx_umethod_PyString_Type_partition.method_name = &__pyx_n_s_partition;
-  __pyx_umethod_PyString_Type_strip.type = (PyObject*)&PyString_Type;
-  __pyx_umethod_PyString_Type_strip.method_name = &__pyx_n_s_strip;
+  __pyx_umethod_PyUnicode_Type_index.type = (PyObject*)&PyUnicode_Type;
+  __pyx_umethod_PyUnicode_Type_index.method_name = &__pyx_n_s_index;
+  __pyx_umethod_PyUnicode_Type_partition.type = (PyObject*)&PyUnicode_Type;
+  __pyx_umethod_PyUnicode_Type_partition.method_name = &__pyx_n_s_partition;
+  __pyx_umethod_PyUnicode_Type_strip.type = (PyObject*)&PyUnicode_Type;
+  __pyx_umethod_PyUnicode_Type_strip.method_name = &__pyx_n_s_strip;
   if (__Pyx_CreateStringTabAndInitStrings() < 0) __PYX_ERR(0, 1, __pyx_L1_error);
   __pyx_int_4 = PyInt_FromLong(4); if (unlikely(!__pyx_int_4)) __PYX_ERR(0, 1, __pyx_L1_error)
   __pyx_int_113179819 = PyInt_FromLong(113179819L); if (unlikely(!__pyx_int_113179819)) __PYX_ERR(0, 1, __pyx_L1_error)
@@ -7427,6 +7950,7 @@ static int __Pyx_modinit_type_init_code(void) {
   __pyx_vtable_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser._is_tag = (int (*)(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *, char const *, size_t))__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser__is_tag;
   __pyx_vtable_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser._extract_tag_content = (PyObject *(*)(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *, PyObject *))__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser__extract_tag_content;
   __pyx_vtable_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser._write_document = (void (*)(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *, PyObject *, PyObject *))__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser__write_document;
+  __pyx_vtable_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser.parse_content = (PyObject *(*)(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *, PyObject *, int __pyx_skip_dispatch))__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_parse_content;
   __pyx_vtable_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser.parse_file = (PyObject *(*)(struct __pyx_obj_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser *, PyObject *, int __pyx_skip_dispatch))__pyx_f_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_parse_file;
   #if CYTHON_USE_TYPE_SPECS
   __pyx_ptype_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser_spec, NULL); if (unlikely(!__pyx_ptype_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser)) __PYX_ERR(0, 9, __pyx_L1_error)
@@ -7809,7 +8333,7 @@ if (!__Pyx_RefNanny) {
  * import os
  * import json             # <<<<<<<<<<<<<<
  * import uu
- * from io import BytesIO
+ * from io import BytesIO, StringIO
  */
   __pyx_t_2 = __Pyx_ImportDottedModule(__pyx_n_s_json, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 3, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -7820,7 +8344,7 @@ if (!__Pyx_RefNanny) {
  * import os
  * import json
  * import uu             # <<<<<<<<<<<<<<
- * from io import BytesIO
+ * from io import BytesIO, StringIO
  * from cpython cimport PyBytes_FromString
  */
   __pyx_t_2 = __Pyx_ImportDottedModule(__pyx_n_s_uu, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 4, __pyx_L1_error)
@@ -7831,15 +8355,18 @@ if (!__Pyx_RefNanny) {
   /* "datamule/rewrite/sgml_parser_cy.pyx":5
  * import json
  * import uu
- * from io import BytesIO             # <<<<<<<<<<<<<<
+ * from io import BytesIO, StringIO             # <<<<<<<<<<<<<<
  * from cpython cimport PyBytes_FromString
  * from libc.string cimport strlen, strncmp
  */
-  __pyx_t_2 = PyList_New(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 5, __pyx_L1_error)
+  __pyx_t_2 = PyList_New(2); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_INCREF(__pyx_n_s_BytesIO);
   __Pyx_GIVEREF(__pyx_n_s_BytesIO);
   if (__Pyx_PyList_SET_ITEM(__pyx_t_2, 0, __pyx_n_s_BytesIO)) __PYX_ERR(0, 5, __pyx_L1_error);
+  __Pyx_INCREF(__pyx_n_s_StringIO);
+  __Pyx_GIVEREF(__pyx_n_s_StringIO);
+  if (__Pyx_PyList_SET_ITEM(__pyx_t_2, 1, __pyx_n_s_StringIO)) __PYX_ERR(0, 5, __pyx_L1_error);
   __pyx_t_3 = __Pyx_Import(__pyx_n_s_io, __pyx_t_2, 0); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -7847,18 +8374,35 @@ if (!__Pyx_RefNanny) {
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_BytesIO, __pyx_t_2) < 0) __PYX_ERR(0, 5, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = __Pyx_ImportFrom(__pyx_t_3, __pyx_n_s_StringIO); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 5, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_StringIO, __pyx_t_2) < 0) __PYX_ERR(0, 5, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "datamule/rewrite/sgml_parser_cy.pyx":43
  *                 f.write(content)
  * 
- *     cpdef parse_file(self, str filepath):             # <<<<<<<<<<<<<<
+ *     cpdef parse_content(self, str content):             # <<<<<<<<<<<<<<
+ *         """Parse SGML content directly from a string."""
  *         cdef:
- *             dict submission_data = {}
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_1parse_file, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CySGMLParser_parse_file, NULL, __pyx_n_s_datamule_rewrite_sgml_parser_cy_2, __pyx_d, ((PyObject *)__pyx_codeobj__10)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 43, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_1parse_content, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CySGMLParser_parse_content, NULL, __pyx_n_s_datamule_rewrite_sgml_parser_cy_2, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 43, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser, __pyx_n_s_parse_file, __pyx_t_3) < 0) __PYX_ERR(0, 43, __pyx_L1_error)
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser, __pyx_n_s_parse_content, __pyx_t_3) < 0) __PYX_ERR(0, 43, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
+  PyType_Modified(__pyx_ptype_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser);
+
+  /* "datamule/rewrite/sgml_parser_cy.pyx":102
+ *             json.dump(metadata, f, indent=4)
+ * 
+ *     cpdef parse_file(self, str filepath):             # <<<<<<<<<<<<<<
+ *         """Legacy method to maintain compatibility."""
+ *         with open(filepath, 'r', encoding='utf-8') as f:
+ */
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_3parse_file, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CySGMLParser_parse_file, NULL, __pyx_n_s_datamule_rewrite_sgml_parser_cy_2, __pyx_d, ((PyObject *)__pyx_codeobj__14)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 102, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_3);
+  if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser, __pyx_n_s_parse_file, __pyx_t_3) < 0) __PYX_ERR(0, 102, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser);
 
@@ -7867,7 +8411,7 @@ if (!__Pyx_RefNanny) {
  *     cdef tuple state
  *     cdef object _dict
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_3__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CySGMLParser___reduce_cython, NULL, __pyx_n_s_datamule_rewrite_sgml_parser_cy_2, __pyx_d, ((PyObject *)__pyx_codeobj__12)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_5__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CySGMLParser___reduce_cython, NULL, __pyx_n_s_datamule_rewrite_sgml_parser_cy_2, __pyx_d, ((PyObject *)__pyx_codeobj__16)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser, __pyx_n_s_reduce_cython, __pyx_t_3) < 0) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -7879,30 +8423,31 @@ if (!__Pyx_RefNanny) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_CySGMLParser__set_state(self, __pyx_state)
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_5__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CySGMLParser___setstate_cython, NULL, __pyx_n_s_datamule_rewrite_sgml_parser_cy_2, __pyx_d, ((PyObject *)__pyx_codeobj__14)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 16, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_7rewrite_14sgml_parser_cy_12CySGMLParser_7__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_CySGMLParser___setstate_cython, NULL, __pyx_n_s_datamule_rewrite_sgml_parser_cy_2, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser, __pyx_n_s_setstate_cython, __pyx_t_3) < 0) __PYX_ERR(2, 16, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_8datamule_7rewrite_14sgml_parser_cy_CySGMLParser);
 
-  /* "datamule/rewrite/sgml_parser_cy.pyx":98
- *             json.dump(metadata, f, indent=4)
+  /* "datamule/rewrite/sgml_parser_cy.pyx":108
+ *         self.parse_content(content)
  * 
- * def parse_sgml_submission(filepath: str, output_dir: str | None = None) -> None:             # <<<<<<<<<<<<<<
- *     if output_dir is None:
- *         output_dir = os.path.splitext(filepath)[0] + '_output'
+ * def parse_sgml_submission(filepath: str | None = None, output_dir: str | None = None, content: str | None = None) -> None:             # <<<<<<<<<<<<<<
+ *     """
+ *     Parse an SGML submission from either a file or content string.
  */
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 98, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 108, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_filepath, __pyx_n_s_str) < 0) __PYX_ERR(0, 98, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_output_dir, __pyx_kp_s_str_None) < 0) __PYX_ERR(0, 98, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_return, __pyx_n_s_None) < 0) __PYX_ERR(0, 98, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_7rewrite_14sgml_parser_cy_1parse_sgml_submission, 0, __pyx_n_s_parse_sgml_submission, NULL, __pyx_n_s_datamule_rewrite_sgml_parser_cy_2, __pyx_d, ((PyObject *)__pyx_codeobj__16)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 98, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_filepath, __pyx_kp_s_str_None) < 0) __PYX_ERR(0, 108, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_output_dir, __pyx_kp_s_str_None) < 0) __PYX_ERR(0, 108, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_content, __pyx_kp_s_str_None) < 0) __PYX_ERR(0, 108, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_return, __pyx_n_s_None) < 0) __PYX_ERR(0, 108, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_7rewrite_14sgml_parser_cy_1parse_sgml_submission, 0, __pyx_n_s_parse_sgml_submission, NULL, __pyx_n_s_datamule_rewrite_sgml_parser_cy_2, __pyx_d, ((PyObject *)__pyx_codeobj__20)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 108, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_2, __pyx_tuple__17);
+  __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_2, __pyx_tuple__4);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_2, __pyx_t_3);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_parse_sgml_submission, __pyx_t_2) < 0) __PYX_ERR(0, 98, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_parse_sgml_submission, __pyx_t_2) < 0) __PYX_ERR(0, 108, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "(tree fragment)":1
@@ -7910,7 +8455,7 @@ if (!__Pyx_RefNanny) {
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_7rewrite_14sgml_parser_cy_3__pyx_unpickle_CySGMLParser, 0, __pyx_n_s_pyx_unpickle_CySGMLParser, NULL, __pyx_n_s_datamule_rewrite_sgml_parser_cy_2, __pyx_d, ((PyObject *)__pyx_codeobj__19)); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_7rewrite_14sgml_parser_cy_3__pyx_unpickle_CySGMLParser, 0, __pyx_n_s_pyx_unpickle_CySGMLParser, NULL, __pyx_n_s_datamule_rewrite_sgml_parser_cy_2, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_2)) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_CySGMLParser, __pyx_t_2) < 0) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -8292,79 +8837,31 @@ bad:
     return result;
 }
 
-/* bytes_tailmatch */
-static int __Pyx_PyBytes_SingleTailmatch(PyObject* self, PyObject* arg,
-                                         Py_ssize_t start, Py_ssize_t end, int direction) {
-    const char* self_ptr = PyBytes_AS_STRING(self);
-    Py_ssize_t self_len = PyBytes_GET_SIZE(self);
-    const char* sub_ptr;
-    Py_ssize_t sub_len;
-    int retval;
-    Py_buffer view;
-    view.obj = NULL;
-    if ( PyBytes_Check(arg) ) {
-        sub_ptr = PyBytes_AS_STRING(arg);
-        sub_len = PyBytes_GET_SIZE(arg);
+/* PyUnicode_Substring */
+static CYTHON_INLINE PyObject* __Pyx_PyUnicode_Substring(
+            PyObject* text, Py_ssize_t start, Py_ssize_t stop) {
+    Py_ssize_t length;
+    if (unlikely(__Pyx_PyUnicode_READY(text) == -1)) return NULL;
+    length = __Pyx_PyUnicode_GET_LENGTH(text);
+    if (start < 0) {
+        start += length;
+        if (start < 0)
+            start = 0;
     }
-#if PY_MAJOR_VERSION < 3
-    else if ( PyUnicode_Check(arg) ) {
-        return (int) PyUnicode_Tailmatch(self, arg, start, end, direction);
-    }
-#endif
-    else {
-        if (unlikely(PyObject_GetBuffer(arg, &view, PyBUF_SIMPLE) == -1))
-            return -1;
-        sub_ptr = (const char*) view.buf;
-        sub_len = view.len;
-    }
-    if (end > self_len)
-        end = self_len;
-    else if (end < 0)
-        end += self_len;
-    if (end < 0)
-        end = 0;
-    if (start < 0)
-        start += self_len;
-    if (start < 0)
-        start = 0;
-    if (direction > 0) {
-        if (end-sub_len > start)
-            start = end - sub_len;
-    }
-    if (start + sub_len <= end)
-        retval = !memcmp(self_ptr+start, sub_ptr, (size_t)sub_len);
-    else
-        retval = 0;
-    if (view.obj)
-        PyBuffer_Release(&view);
-    return retval;
-}
-static int __Pyx_PyBytes_TailmatchTuple(PyObject* self, PyObject* substrings,
-                                        Py_ssize_t start, Py_ssize_t end, int direction) {
-    Py_ssize_t i, count = PyTuple_GET_SIZE(substrings);
-    for (i = 0; i < count; i++) {
-        int result;
-#if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        result = __Pyx_PyBytes_SingleTailmatch(self, PyTuple_GET_ITEM(substrings, i),
-                                               start, end, direction);
+    if (stop < 0)
+        stop += length;
+    else if (stop > length)
+        stop = length;
+    if (stop <= start)
+        return __Pyx_NewRef(__pyx_empty_unicode);
+    if (start == 0 && stop == length)
+        return __Pyx_NewRef(text);
+#if CYTHON_PEP393_ENABLED
+    return PyUnicode_FromKindAndData(PyUnicode_KIND(text),
+        PyUnicode_1BYTE_DATA(text) + start*PyUnicode_KIND(text), stop-start);
 #else
-        PyObject* sub = PySequence_ITEM(substrings, i);
-        if (unlikely(!sub)) return -1;
-        result = __Pyx_PyBytes_SingleTailmatch(self, sub, start, end, direction);
-        Py_DECREF(sub);
+    return PyUnicode_FromUnicode(PyUnicode_AS_UNICODE(text)+start, stop-start);
 #endif
-        if (result) {
-            return result;
-        }
-    }
-    return 0;
-}
-static int __Pyx_PyBytes_Tailmatch(PyObject* self, PyObject* substr,
-                                   Py_ssize_t start, Py_ssize_t end, int direction) {
-    if (unlikely(PyTuple_Check(substr))) {
-        return __Pyx_PyBytes_TailmatchTuple(self, substr, start, end, direction);
-    }
-    return __Pyx_PyBytes_SingleTailmatch(self, substr, start, end, direction);
 }
 
 /* unicode_tailmatch */
@@ -8394,16 +8891,6 @@ static int __Pyx_PyUnicode_Tailmatch(PyObject* s, PyObject* substr,
         return __Pyx_PyUnicode_TailmatchTuple(s, substr, start, end, direction);
     }
     return (int) PyUnicode_Tailmatch(s, substr, start, end, direction);
-}
-
-/* str_tailmatch */
-static CYTHON_INLINE int __Pyx_PyStr_Tailmatch(PyObject* self, PyObject* arg, Py_ssize_t start,
-                                               Py_ssize_t end, int direction)
-{
-    if (PY_MAJOR_VERSION < 3)
-        return __Pyx_PyBytes_Tailmatch(self, arg, start, end, direction);
-    else
-        return __Pyx_PyUnicode_Tailmatch(self, arg, start, end, direction);
 }
 
 /* PyFunctionFastCall */
@@ -8957,25 +9444,6 @@ static CYTHON_INLINE PyObject *__Pyx_GetItemInt_Fast(PyObject *o, Py_ssize_t i, 
     return __Pyx_GetItemInt_Generic(o, PyInt_FromSsize_t(i));
 }
 
-/* CallUnboundCMethod0 */
-static PyObject* __Pyx__CallUnboundCMethod0(__Pyx_CachedCFunction* cfunc, PyObject* self) {
-    PyObject *args, *result = NULL;
-    if (unlikely(!cfunc->method) && unlikely(__Pyx_TryUnpackUnboundCMethod(cfunc) < 0)) return NULL;
-#if CYTHON_ASSUME_SAFE_MACROS
-    args = PyTuple_New(1);
-    if (unlikely(!args)) goto bad;
-    Py_INCREF(self);
-    PyTuple_SET_ITEM(args, 0, self);
-#else
-    args = PyTuple_Pack(1, self);
-    if (unlikely(!args)) goto bad;
-#endif
-    result = __Pyx_PyObject_Call(cfunc->method, args, NULL);
-    Py_DECREF(args);
-bad:
-    return result;
-}
-
 /* PyObjectLookupSpecial */
 #if CYTHON_USE_PYTYPE_LOOKUP && CYTHON_USE_TYPE_SLOTS
 static CYTHON_INLINE PyObject* __Pyx__PyObject_LookupSpecial(PyObject* obj, PyObject* attr_name, int with_error) {
@@ -9177,6 +9645,25 @@ bad:
     return -1;
 }
 
+/* CallUnboundCMethod0 */
+static PyObject* __Pyx__CallUnboundCMethod0(__Pyx_CachedCFunction* cfunc, PyObject* self) {
+    PyObject *args, *result = NULL;
+    if (unlikely(!cfunc->method) && unlikely(__Pyx_TryUnpackUnboundCMethod(cfunc) < 0)) return NULL;
+#if CYTHON_ASSUME_SAFE_MACROS
+    args = PyTuple_New(1);
+    if (unlikely(!args)) goto bad;
+    Py_INCREF(self);
+    PyTuple_SET_ITEM(args, 0, self);
+#else
+    args = PyTuple_Pack(1, self);
+    if (unlikely(!args)) goto bad;
+#endif
+    result = __Pyx_PyObject_Call(cfunc->method, args, NULL);
+    Py_DECREF(args);
+bad:
+    return result;
+}
+
 /* BytesEquals */
 static CYTHON_INLINE int __Pyx_PyBytes_Equals(PyObject* s1, PyObject* s2, int equals) {
 #if CYTHON_COMPILING_IN_PYPY || CYTHON_COMPILING_IN_LIMITED_API
@@ -9323,159 +9810,6 @@ return_ne:
     Py_XDECREF(owned_ref);
     #endif
     return (equals == Py_NE);
-#endif
-}
-
-/* PyObjectCall2Args */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_Call2Args(PyObject* function, PyObject* arg1, PyObject* arg2) {
-    PyObject *args[3] = {NULL, arg1, arg2};
-    return __Pyx_PyObject_FastCall(function, args+1, 2 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET);
-}
-
-/* PyObjectCallOneArg */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg) {
-    PyObject *args[2] = {NULL, arg};
-    return __Pyx_PyObject_FastCall(func, args+1, 1 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET);
-}
-
-/* PyObjectGetMethod */
-static int __Pyx_PyObject_GetMethod(PyObject *obj, PyObject *name, PyObject **method) {
-    PyObject *attr;
-#if CYTHON_UNPACK_METHODS && CYTHON_COMPILING_IN_CPYTHON && CYTHON_USE_PYTYPE_LOOKUP
-    __Pyx_TypeName type_name;
-    PyTypeObject *tp = Py_TYPE(obj);
-    PyObject *descr;
-    descrgetfunc f = NULL;
-    PyObject **dictptr, *dict;
-    int meth_found = 0;
-    assert (*method == NULL);
-    if (unlikely(tp->tp_getattro != PyObject_GenericGetAttr)) {
-        attr = __Pyx_PyObject_GetAttrStr(obj, name);
-        goto try_unpack;
-    }
-    if (unlikely(tp->tp_dict == NULL) && unlikely(PyType_Ready(tp) < 0)) {
-        return 0;
-    }
-    descr = _PyType_Lookup(tp, name);
-    if (likely(descr != NULL)) {
-        Py_INCREF(descr);
-#if defined(Py_TPFLAGS_METHOD_DESCRIPTOR) && Py_TPFLAGS_METHOD_DESCRIPTOR
-        if (__Pyx_PyType_HasFeature(Py_TYPE(descr), Py_TPFLAGS_METHOD_DESCRIPTOR))
-#elif PY_MAJOR_VERSION >= 3
-        #ifdef __Pyx_CyFunction_USED
-        if (likely(PyFunction_Check(descr) || __Pyx_IS_TYPE(descr, &PyMethodDescr_Type) || __Pyx_CyFunction_Check(descr)))
-        #else
-        if (likely(PyFunction_Check(descr) || __Pyx_IS_TYPE(descr, &PyMethodDescr_Type)))
-        #endif
-#else
-        #ifdef __Pyx_CyFunction_USED
-        if (likely(PyFunction_Check(descr) || __Pyx_CyFunction_Check(descr)))
-        #else
-        if (likely(PyFunction_Check(descr)))
-        #endif
-#endif
-        {
-            meth_found = 1;
-        } else {
-            f = Py_TYPE(descr)->tp_descr_get;
-            if (f != NULL && PyDescr_IsData(descr)) {
-                attr = f(descr, obj, (PyObject *)Py_TYPE(obj));
-                Py_DECREF(descr);
-                goto try_unpack;
-            }
-        }
-    }
-    dictptr = _PyObject_GetDictPtr(obj);
-    if (dictptr != NULL && (dict = *dictptr) != NULL) {
-        Py_INCREF(dict);
-        attr = __Pyx_PyDict_GetItemStr(dict, name);
-        if (attr != NULL) {
-            Py_INCREF(attr);
-            Py_DECREF(dict);
-            Py_XDECREF(descr);
-            goto try_unpack;
-        }
-        Py_DECREF(dict);
-    }
-    if (meth_found) {
-        *method = descr;
-        return 1;
-    }
-    if (f != NULL) {
-        attr = f(descr, obj, (PyObject *)Py_TYPE(obj));
-        Py_DECREF(descr);
-        goto try_unpack;
-    }
-    if (likely(descr != NULL)) {
-        *method = descr;
-        return 0;
-    }
-    type_name = __Pyx_PyType_GetName(tp);
-    PyErr_Format(PyExc_AttributeError,
-#if PY_MAJOR_VERSION >= 3
-                 "'" __Pyx_FMT_TYPENAME "' object has no attribute '%U'",
-                 type_name, name);
-#else
-                 "'" __Pyx_FMT_TYPENAME "' object has no attribute '%.400s'",
-                 type_name, PyString_AS_STRING(name));
-#endif
-    __Pyx_DECREF_TypeName(type_name);
-    return 0;
-#else
-    attr = __Pyx_PyObject_GetAttrStr(obj, name);
-    goto try_unpack;
-#endif
-try_unpack:
-#if CYTHON_UNPACK_METHODS
-    if (likely(attr) && PyMethod_Check(attr) && likely(PyMethod_GET_SELF(attr) == obj)) {
-        PyObject *function = PyMethod_GET_FUNCTION(attr);
-        Py_INCREF(function);
-        Py_DECREF(attr);
-        *method = function;
-        return 1;
-    }
-#endif
-    *method = attr;
-    return 0;
-}
-
-/* PyObjectCallMethod1 */
-#if !(CYTHON_VECTORCALL && __PYX_LIMITED_VERSION_HEX >= 0x030C00A2)
-static PyObject* __Pyx__PyObject_CallMethod1(PyObject* method, PyObject* arg) {
-    PyObject *result = __Pyx_PyObject_CallOneArg(method, arg);
-    Py_DECREF(method);
-    return result;
-}
-#endif
-static PyObject* __Pyx_PyObject_CallMethod1(PyObject* obj, PyObject* method_name, PyObject* arg) {
-#if CYTHON_VECTORCALL && __PYX_LIMITED_VERSION_HEX >= 0x030C00A2
-    PyObject *args[2] = {obj, arg};
-    (void) __Pyx_PyObject_GetMethod;
-    (void) __Pyx_PyObject_CallOneArg;
-    (void) __Pyx_PyObject_Call2Args;
-    return PyObject_VectorcallMethod(method_name, args, 2 | PY_VECTORCALL_ARGUMENTS_OFFSET, NULL);
-#else
-    PyObject *method = NULL, *result;
-    int is_method = __Pyx_PyObject_GetMethod(obj, method_name, &method);
-    if (likely(is_method)) {
-        result = __Pyx_PyObject_Call2Args(method, obj, arg);
-        Py_DECREF(method);
-        return result;
-    }
-    if (unlikely(!method)) return NULL;
-    return __Pyx__PyObject_CallMethod1(method, arg);
-#endif
-}
-
-/* StringJoin */
-static CYTHON_INLINE PyObject* __Pyx_PyBytes_Join(PyObject* sep, PyObject* values) {
-    (void) __Pyx_PyObject_CallMethod1;
-#if CYTHON_COMPILING_IN_CPYTHON && PY_MAJOR_VERSION < 3
-    return _PyString_Join(sep, values);
-#elif CYTHON_COMPILING_IN_CPYTHON && PY_VERSION_HEX < 0x030d0000
-    return _PyBytes_Join(sep, values);
-#else
-    return __Pyx_PyObject_CallMethod1(sep, __pyx_n_s_join, values);
 #endif
 }
 
@@ -9796,6 +10130,11 @@ static int __Pyx__ArgTypeTest(PyObject *obj, PyTypeObject *type, const char *nam
     return 0;
 }
 
+/* RaiseUnboundLocalError */
+static CYTHON_INLINE void __Pyx_RaiseUnboundLocalError(const char *varname) {
+    PyErr_Format(PyExc_UnboundLocalError, "local variable '%s' referenced before assignment", varname);
+}
+
 /* KeywordStringCheck */
 static int __Pyx_CheckKeywordStrings(
     PyObject *kw,
@@ -9900,113 +10239,6 @@ static CYTHON_INLINE PyObject *__Pyx_GetAttr3(PyObject *o, PyObject *n, PyObject
     r = PyObject_GetAttr(o, n);
     return (likely(r)) ? r : __Pyx_GetAttr3Default(d);
 #endif
-}
-
-/* PyObjectCallNoArg */
-static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
-    PyObject *arg[2] = {NULL, NULL};
-    return __Pyx_PyObject_FastCall(func, arg + 1, 0 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET);
-}
-
-/* Import */
-static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level) {
-    PyObject *module = 0;
-    PyObject *empty_dict = 0;
-    PyObject *empty_list = 0;
-    #if PY_MAJOR_VERSION < 3
-    PyObject *py_import;
-    py_import = __Pyx_PyObject_GetAttrStr(__pyx_b, __pyx_n_s_import);
-    if (unlikely(!py_import))
-        goto bad;
-    if (!from_list) {
-        empty_list = PyList_New(0);
-        if (unlikely(!empty_list))
-            goto bad;
-        from_list = empty_list;
-    }
-    #endif
-    empty_dict = PyDict_New();
-    if (unlikely(!empty_dict))
-        goto bad;
-    {
-        #if PY_MAJOR_VERSION >= 3
-        if (level == -1) {
-            if (strchr(__Pyx_MODULE_NAME, '.') != NULL) {
-                module = PyImport_ImportModuleLevelObject(
-                    name, __pyx_d, empty_dict, from_list, 1);
-                if (unlikely(!module)) {
-                    if (unlikely(!PyErr_ExceptionMatches(PyExc_ImportError)))
-                        goto bad;
-                    PyErr_Clear();
-                }
-            }
-            level = 0;
-        }
-        #endif
-        if (!module) {
-            #if PY_MAJOR_VERSION < 3
-            PyObject *py_level = PyInt_FromLong(level);
-            if (unlikely(!py_level))
-                goto bad;
-            module = PyObject_CallFunctionObjArgs(py_import,
-                name, __pyx_d, empty_dict, from_list, py_level, (PyObject *)NULL);
-            Py_DECREF(py_level);
-            #else
-            module = PyImport_ImportModuleLevelObject(
-                name, __pyx_d, empty_dict, from_list, level);
-            #endif
-        }
-    }
-bad:
-    Py_XDECREF(empty_dict);
-    Py_XDECREF(empty_list);
-    #if PY_MAJOR_VERSION < 3
-    Py_XDECREF(py_import);
-    #endif
-    return module;
-}
-
-/* ImportFrom */
-static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name) {
-    PyObject* value = __Pyx_PyObject_GetAttrStr(module, name);
-    if (unlikely(!value) && PyErr_ExceptionMatches(PyExc_AttributeError)) {
-        const char* module_name_str = 0;
-        PyObject* module_name = 0;
-        PyObject* module_dot = 0;
-        PyObject* full_name = 0;
-        PyErr_Clear();
-        module_name_str = PyModule_GetName(module);
-        if (unlikely(!module_name_str)) { goto modbad; }
-        module_name = PyUnicode_FromString(module_name_str);
-        if (unlikely(!module_name)) { goto modbad; }
-        module_dot = PyUnicode_Concat(module_name, __pyx_kp_u__7);
-        if (unlikely(!module_dot)) { goto modbad; }
-        full_name = PyUnicode_Concat(module_dot, name);
-        if (unlikely(!full_name)) { goto modbad; }
-        #if PY_VERSION_HEX < 0x030700A1 || (CYTHON_COMPILING_IN_PYPY && PYPY_VERSION_NUM  < 0x07030400)
-        {
-            PyObject *modules = PyImport_GetModuleDict();
-            if (unlikely(!modules))
-                goto modbad;
-            value = PyObject_GetItem(modules, full_name);
-        }
-        #else
-        value = PyImport_GetModule(full_name);
-        #endif
-      modbad:
-        Py_XDECREF(full_name);
-        Py_XDECREF(module_dot);
-        Py_XDECREF(module_name);
-    }
-    if (unlikely(!value)) {
-        PyErr_Format(PyExc_ImportError,
-        #if PY_MAJOR_VERSION < 3
-            "cannot import name %.230s", PyString_AS_STRING(name));
-        #else
-            "cannot import name %S", name);
-        #endif
-    }
-    return value;
 }
 
 /* RaiseException */
@@ -10170,6 +10402,113 @@ bad:
 }
 #endif
 
+/* PyObjectCallNoArg */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallNoArg(PyObject *func) {
+    PyObject *arg[2] = {NULL, NULL};
+    return __Pyx_PyObject_FastCall(func, arg + 1, 0 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET);
+}
+
+/* Import */
+static PyObject *__Pyx_Import(PyObject *name, PyObject *from_list, int level) {
+    PyObject *module = 0;
+    PyObject *empty_dict = 0;
+    PyObject *empty_list = 0;
+    #if PY_MAJOR_VERSION < 3
+    PyObject *py_import;
+    py_import = __Pyx_PyObject_GetAttrStr(__pyx_b, __pyx_n_s_import);
+    if (unlikely(!py_import))
+        goto bad;
+    if (!from_list) {
+        empty_list = PyList_New(0);
+        if (unlikely(!empty_list))
+            goto bad;
+        from_list = empty_list;
+    }
+    #endif
+    empty_dict = PyDict_New();
+    if (unlikely(!empty_dict))
+        goto bad;
+    {
+        #if PY_MAJOR_VERSION >= 3
+        if (level == -1) {
+            if (strchr(__Pyx_MODULE_NAME, '.') != NULL) {
+                module = PyImport_ImportModuleLevelObject(
+                    name, __pyx_d, empty_dict, from_list, 1);
+                if (unlikely(!module)) {
+                    if (unlikely(!PyErr_ExceptionMatches(PyExc_ImportError)))
+                        goto bad;
+                    PyErr_Clear();
+                }
+            }
+            level = 0;
+        }
+        #endif
+        if (!module) {
+            #if PY_MAJOR_VERSION < 3
+            PyObject *py_level = PyInt_FromLong(level);
+            if (unlikely(!py_level))
+                goto bad;
+            module = PyObject_CallFunctionObjArgs(py_import,
+                name, __pyx_d, empty_dict, from_list, py_level, (PyObject *)NULL);
+            Py_DECREF(py_level);
+            #else
+            module = PyImport_ImportModuleLevelObject(
+                name, __pyx_d, empty_dict, from_list, level);
+            #endif
+        }
+    }
+bad:
+    Py_XDECREF(empty_dict);
+    Py_XDECREF(empty_list);
+    #if PY_MAJOR_VERSION < 3
+    Py_XDECREF(py_import);
+    #endif
+    return module;
+}
+
+/* ImportFrom */
+static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name) {
+    PyObject* value = __Pyx_PyObject_GetAttrStr(module, name);
+    if (unlikely(!value) && PyErr_ExceptionMatches(PyExc_AttributeError)) {
+        const char* module_name_str = 0;
+        PyObject* module_name = 0;
+        PyObject* module_dot = 0;
+        PyObject* full_name = 0;
+        PyErr_Clear();
+        module_name_str = PyModule_GetName(module);
+        if (unlikely(!module_name_str)) { goto modbad; }
+        module_name = PyUnicode_FromString(module_name_str);
+        if (unlikely(!module_name)) { goto modbad; }
+        module_dot = PyUnicode_Concat(module_name, __pyx_kp_u__9);
+        if (unlikely(!module_dot)) { goto modbad; }
+        full_name = PyUnicode_Concat(module_dot, name);
+        if (unlikely(!full_name)) { goto modbad; }
+        #if PY_VERSION_HEX < 0x030700A1 || (CYTHON_COMPILING_IN_PYPY && PYPY_VERSION_NUM  < 0x07030400)
+        {
+            PyObject *modules = PyImport_GetModuleDict();
+            if (unlikely(!modules))
+                goto modbad;
+            value = PyObject_GetItem(modules, full_name);
+        }
+        #else
+        value = PyImport_GetModule(full_name);
+        #endif
+      modbad:
+        Py_XDECREF(full_name);
+        Py_XDECREF(module_dot);
+        Py_XDECREF(module_name);
+    }
+    if (unlikely(!value)) {
+        PyErr_Format(PyExc_ImportError,
+        #if PY_MAJOR_VERSION < 3
+            "cannot import name %.230s", PyString_AS_STRING(name));
+        #else
+            "cannot import name %S", name);
+        #endif
+    }
+    return value;
+}
+
 /* GetAttr */
 static CYTHON_INLINE PyObject *__Pyx_GetAttr(PyObject *o, PyObject *n) {
 #if CYTHON_USE_TYPE_SLOTS
@@ -10273,6 +10612,113 @@ static int __Pyx_fix_up_extension_type_from_spec(PyType_Spec *spec, PyTypeObject
     return 0;
 }
 #endif
+
+/* PyObjectCallOneArg */
+static CYTHON_INLINE PyObject* __Pyx_PyObject_CallOneArg(PyObject *func, PyObject *arg) {
+    PyObject *args[2] = {NULL, arg};
+    return __Pyx_PyObject_FastCall(func, args+1, 1 | __Pyx_PY_VECTORCALL_ARGUMENTS_OFFSET);
+}
+
+/* PyObjectGetMethod */
+static int __Pyx_PyObject_GetMethod(PyObject *obj, PyObject *name, PyObject **method) {
+    PyObject *attr;
+#if CYTHON_UNPACK_METHODS && CYTHON_COMPILING_IN_CPYTHON && CYTHON_USE_PYTYPE_LOOKUP
+    __Pyx_TypeName type_name;
+    PyTypeObject *tp = Py_TYPE(obj);
+    PyObject *descr;
+    descrgetfunc f = NULL;
+    PyObject **dictptr, *dict;
+    int meth_found = 0;
+    assert (*method == NULL);
+    if (unlikely(tp->tp_getattro != PyObject_GenericGetAttr)) {
+        attr = __Pyx_PyObject_GetAttrStr(obj, name);
+        goto try_unpack;
+    }
+    if (unlikely(tp->tp_dict == NULL) && unlikely(PyType_Ready(tp) < 0)) {
+        return 0;
+    }
+    descr = _PyType_Lookup(tp, name);
+    if (likely(descr != NULL)) {
+        Py_INCREF(descr);
+#if defined(Py_TPFLAGS_METHOD_DESCRIPTOR) && Py_TPFLAGS_METHOD_DESCRIPTOR
+        if (__Pyx_PyType_HasFeature(Py_TYPE(descr), Py_TPFLAGS_METHOD_DESCRIPTOR))
+#elif PY_MAJOR_VERSION >= 3
+        #ifdef __Pyx_CyFunction_USED
+        if (likely(PyFunction_Check(descr) || __Pyx_IS_TYPE(descr, &PyMethodDescr_Type) || __Pyx_CyFunction_Check(descr)))
+        #else
+        if (likely(PyFunction_Check(descr) || __Pyx_IS_TYPE(descr, &PyMethodDescr_Type)))
+        #endif
+#else
+        #ifdef __Pyx_CyFunction_USED
+        if (likely(PyFunction_Check(descr) || __Pyx_CyFunction_Check(descr)))
+        #else
+        if (likely(PyFunction_Check(descr)))
+        #endif
+#endif
+        {
+            meth_found = 1;
+        } else {
+            f = Py_TYPE(descr)->tp_descr_get;
+            if (f != NULL && PyDescr_IsData(descr)) {
+                attr = f(descr, obj, (PyObject *)Py_TYPE(obj));
+                Py_DECREF(descr);
+                goto try_unpack;
+            }
+        }
+    }
+    dictptr = _PyObject_GetDictPtr(obj);
+    if (dictptr != NULL && (dict = *dictptr) != NULL) {
+        Py_INCREF(dict);
+        attr = __Pyx_PyDict_GetItemStr(dict, name);
+        if (attr != NULL) {
+            Py_INCREF(attr);
+            Py_DECREF(dict);
+            Py_XDECREF(descr);
+            goto try_unpack;
+        }
+        Py_DECREF(dict);
+    }
+    if (meth_found) {
+        *method = descr;
+        return 1;
+    }
+    if (f != NULL) {
+        attr = f(descr, obj, (PyObject *)Py_TYPE(obj));
+        Py_DECREF(descr);
+        goto try_unpack;
+    }
+    if (likely(descr != NULL)) {
+        *method = descr;
+        return 0;
+    }
+    type_name = __Pyx_PyType_GetName(tp);
+    PyErr_Format(PyExc_AttributeError,
+#if PY_MAJOR_VERSION >= 3
+                 "'" __Pyx_FMT_TYPENAME "' object has no attribute '%U'",
+                 type_name, name);
+#else
+                 "'" __Pyx_FMT_TYPENAME "' object has no attribute '%.400s'",
+                 type_name, PyString_AS_STRING(name));
+#endif
+    __Pyx_DECREF_TypeName(type_name);
+    return 0;
+#else
+    attr = __Pyx_PyObject_GetAttrStr(obj, name);
+    goto try_unpack;
+#endif
+try_unpack:
+#if CYTHON_UNPACK_METHODS
+    if (likely(attr) && PyMethod_Check(attr) && likely(PyMethod_GET_SELF(attr) == obj)) {
+        PyObject *function = PyMethod_GET_FUNCTION(attr);
+        Py_INCREF(function);
+        Py_DECREF(attr);
+        *method = function;
+        return 1;
+    }
+#endif
+    *method = attr;
+    return 0;
+}
 
 /* PyObjectCallMethod0 */
 static PyObject* __Pyx_PyObject_CallMethod0(PyObject* obj, PyObject* method_name) {
@@ -10869,7 +11315,7 @@ static PyObject *__Pyx_ImportDottedModule_WalkParts(PyObject *module, PyObject *
 #endif
 static PyObject *__Pyx__ImportDottedModule(PyObject *name, PyObject *parts_tuple) {
 #if PY_MAJOR_VERSION < 3
-    PyObject *module, *from_list, *star = __pyx_n_s__8;
+    PyObject *module, *from_list, *star = __pyx_n_s__10;
     CYTHON_UNUSED_VAR(parts_tuple);
     from_list = PyList_New(1);
     if (unlikely(!from_list))
@@ -13053,7 +13499,7 @@ __Pyx_PyType_GetName(PyTypeObject* tp)
     if (unlikely(name == NULL) || unlikely(!PyUnicode_Check(name))) {
         PyErr_Clear();
         Py_XDECREF(name);
-        name = __Pyx_NewRef(__pyx_n_s__20);
+        name = __Pyx_NewRef(__pyx_n_s__23);
     }
     return name;
 }

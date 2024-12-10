@@ -19,6 +19,7 @@ sdk_lib_dirs = [
 include_dirs = [path for path in sdk_include_dirs if os.path.exists(path)]
 library_dirs = [path for path in sdk_lib_dirs if os.path.exists(path)]
 
+# Define Cython extension with compiler directives
 extensions = [
     Extension(
         "datamule.rewrite.sgml_parser_cy",
@@ -27,6 +28,15 @@ extensions = [
         library_dirs=library_dirs,
     )
 ]
+
+# Cython compiler directives
+cython_directives = {
+    'language_level': "3",
+    'boundscheck': False,
+    'wraparound': False,
+    'initializedcheck': False,
+    'cdivision': True,
+}
 
 long_description = Path("../readme.md").read_text(encoding='utf-8')
 license_text = Path("../LICENSE").read_text(encoding='utf-8')
@@ -63,7 +73,11 @@ setup(
         'selectolax',
         'cython'
     ],
-    ext_modules=cythonize(extensions),
+    ext_modules=cythonize(
+        extensions,
+        compiler_directives=cython_directives,
+        annotate=True  # Generates HTML annotation of Python interaction
+    ),
     extras_require=extras,
     package_data={
         "datamule": ["data/*.csv"],
