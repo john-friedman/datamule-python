@@ -47,7 +47,9 @@ class PremiumDownloader:
 
         def _process_file(self, item):
             filename, content = item  # Now receiving (filename, content) tuple
-            output_path = os.path.join(self.output_dir, Path(filename).stem)
+            # First remove .zst if it exists, then get the directory name
+            clean_name = filename[:-4] if filename.endswith('.zst') else filename
+            output_path = os.path.join(self.output_dir, Path(clean_name).stem)
             try:
                 # Pass None as filepath since we're using content
                 parse_sgml_submission(None, output_dir=output_path, content=content)
