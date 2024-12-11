@@ -1,8 +1,13 @@
 import asyncio
 import aiohttp
-from datetime import timedelta
+from datetime import timedelta, datetime
+import pytz
 
-from .downloader_utils import _fetch, _get_current_eastern_date
+def _get_current_eastern_date():
+    """Get current date in US Eastern timezone (automatically handles DST) """
+    eastern = pytz.timezone('America/New_York')
+    return datetime.now(eastern)
+
 class Monitor:
     def __init__(self):
         self.last_total = 0

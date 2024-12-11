@@ -268,7 +268,7 @@ class Downloader:
         self.current_pbar = None
         return results, parsed_results
 
-    def download_filings(self, output_dir='filings', cik=None, ticker=None, form=None, date=None, parse=True):
+    def download_submissions(self, output_dir='filings', cik=None, ticker=None, form=None, date=None, parse=True):
         """Main method to download SEC filings."""
         self.parse_filings = parse
         
