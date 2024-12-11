@@ -4,7 +4,7 @@ from datetime import timedelta, datetime
 import pytz
 from collections import deque
 import time
-from ..helper import headers
+from ..helper import headers, identifier_to_cik
 
 def _get_current_eastern_date():
     """Get current date in US Eastern timezone (automatically handles DST) """
@@ -108,6 +108,7 @@ class Monitor:
                 if data:
                     current_total = data['hits']['total']['value']
                     if current_total > self.last_total:
+                        print(f"Found {current_total - self.last_total} new submissions")
                         self.last_total = current_total
                         return current_total, data, poll_url
                     self.last_total = current_total
@@ -173,17 +174,31 @@ class Monitor:
         
         return submissions
 
-    async def _monitor(self, callback, form=None, poll_interval=1000, quiet=True):
+    async def _monitor(self, callback, form=None, cik=None, ticker=None, poll_interval=1000, quiet=True):
         """Main monitoring loop with parallel processing."""
         if poll_interval < 100:
             raise ValueError("SEC rate limit is 10 requests per second, set poll_interval to 100ms or higher")
 
+        # Handle form parameter
         if form is None:
             form = ['-0']
         elif isinstance(form, str):
             form = [form]
+        
+        # Handle CIK/ticker parameter
+        cik_param = None
+        if ticker is not None:
+            cik_param = identifier_to_cik(ticker)
+        elif cik is not None:
+            cik_param = cik if isinstance(cik, list) else [cik]
 
+        # Construct base URL
         base_url = 'https://efts.sec.gov/LATEST/search-index?forms=' + ','.join(form)
+        
+        # Add CIK parameter if specified
+        if cik_param:
+            cik_list = ','.join(str(c).zfill(10) for c in cik_param)
+            base_url += f"&ciks={cik_list}"
         
         async with aiohttp.ClientSession(headers=self.headers) as session:
             while True:
@@ -216,6 +231,6 @@ class Monitor:
                 
                 await asyncio.sleep(poll_interval / 1000)
 
-    def monitor_submissions(self, callback=None, form=None, poll_interval=1000, quiet=True):
+    def monitor_submissions(self, callback=None, form=None, cik=None, ticker=None, poll_interval=1000, quiet=True):
         """Start the monitoring process."""
-        asyncio.run(self._monitor(callback, form, poll_interval, quiet))
+        asyncio.run(self._monitor(callback, form, cik, ticker, poll_interval, quiet))
