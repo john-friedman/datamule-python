@@ -61,6 +61,10 @@ cdef class SubmissionParser(BaseParser):
         for line in lines:
             stripped = line.strip()
             
+            if stripped == '</SUBMISSION>':
+                in_submission = False
+                continue
+                
             if stripped == '<DOCUMENT>':
                 in_document = True
                 in_submission = False
@@ -113,6 +117,7 @@ cdef class SECDocumentParser(BaseParser):
             bint in_document = False
             bint in_text = False
             bint in_header = False
+            bint in_sec_document = True
             str line, stripped
             tuple tag_content
         
@@ -121,6 +126,13 @@ cdef class SECDocumentParser(BaseParser):
         for line in lines:
             stripped = line.strip()
             
+            if stripped == '</SEC-DOCUMENT>':
+                in_sec_document = False
+                continue
+                
+            if not in_sec_document:
+                continue
+                
             if stripped.startswith('<SEC-HEADER>'):
                 in_header = True
                 continue
@@ -174,10 +186,18 @@ cdef class SECDocumentParser(BaseParser):
 def detect_document_type(content: str) -> str:
     """Detect the type of SGML document"""
     content = content.strip()
+    
+    # Fast path - check if it starts cleanly
     if content.startswith('<SUBMISSION>'):
         return 'SUBMISSION'
     elif content.startswith('<SEC-DOCUMENT>'):
         return 'SEC-DOCUMENT'
+        
+    # If not at start, try finding first SEC-DOCUMENT tag
+    sec_index = content.find('<SEC-DOCUMENT>')
+    if sec_index >= 0:
+        return 'SEC-DOCUMENT'
+        
     raise ValueError("Unknown document type")
 
 def parse_sgml_submission(filepath: str | None = None, output_dir: str | None = None, content: str | None = None) -> None:
@@ -203,6 +223,12 @@ def parse_sgml_submission(filepath: str | None = None, output_dir: str | None = 
     if content is None:
         with open(filepath, 'r', encoding='utf-8') as f:
             content = f.read()
+            
+    # Handle documents with garbage at start
+    if not content.startswith(('<SUBMISSION>', '<SEC-DOCUMENT>')):
+        sec_index = content.find('<SEC-DOCUMENT>')
+        if sec_index >= 0:
+            content = content[sec_index:]
     
     # Detect document type and use appropriate parser
     doc_type = detect_document_type(content)
