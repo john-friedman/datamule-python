@@ -13,7 +13,7 @@ from functools import partial
 import pandas as pd
 from queue import Queue, Empty
 from threading import Thread
-from datamule.rewrite.sgml_parser_cy import parse_sgml_submission
+from datamule.parser.sgml_parsing.sgml_parser_cy import parse_sgml_submission
 
 class PremiumDownloader:
     def __init__(self):

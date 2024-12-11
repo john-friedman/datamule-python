@@ -13,7 +13,7 @@ import json
 import csv
 from pkg_resources import resource_filename
 
-from ..helper import identifier_to_cik, load_package_csv, fix_filing_url
+from ..helper import identifier_to_cik, load_package_csv, fix_filing_url, headers
 
 class RetryException(Exception):
     def __init__(self, url, retry_after=601):
