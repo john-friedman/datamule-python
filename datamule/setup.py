@@ -42,7 +42,6 @@ long_description = Path("../readme.md").read_text(encoding='utf-8')
 license_text = Path("../LICENSE").read_text(encoding='utf-8')
 
 extras = {
-    "filing_viewer": ["lxml"],
     "mulebot": ['openai'],
     "mulebot_server": ['flask'],
     "dataset_builder": ['pandas', 'google-generativeai', 'psutil']
@@ -71,7 +70,9 @@ setup(
         'polars',
         'setuptools',
         'selectolax',
-        'cython'
+        'cython',
+        'pytz',
+        'zstandard'
     ],
     ext_modules=cythonize(
         extensions,
