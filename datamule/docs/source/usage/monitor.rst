@@ -7,11 +7,10 @@ monitor_submissions
 -------------------
 - **callback** (`Optional[Callable]`): A function to be called with each new submission. If `None`, no callback will be executed. Default is `None`.
 - **form** (`Optional[str]`): The specific form type to monitor (e.g., '10-K', '8-K'). If `None`, all forms will be monitored. Default is `None`.
-- **poll_interval** (`int`): The interval (in milliseconds) between each poll for new submissions. Default is `1000` ms (1 second).
+- **cik** (`Optional[str]`): The CIK of the company to monitor. If `None`, all companies will be monitored. Default is `None`.
+- **ticker** (`Optional[str]`): The ticker of the company to monitor. If `None`, all companies will be monitored. Default is `None`.
+- **poll_interval** (`int`): The interval (in milliseconds) between each poll for new submissions. Default is `1000` ms (1 second)..
 - **quiet** (`bool`): If `True`, suppresses output. If `False`, outputs monitoring information. Default is `True`.
-
-
-
 
 example
 -------
