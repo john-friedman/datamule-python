@@ -10,6 +10,7 @@ This section provides detailed information about using datamule's features.
    downloader
    monitor
    submission
+   document
    parsing
    datasets
    dataset_builder
