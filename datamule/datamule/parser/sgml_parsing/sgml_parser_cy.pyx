@@ -15,10 +15,19 @@ cdef class BaseParser:
     
     cdef tuple _extract_tag_content(self, str line):
         cdef:
-            size_t tag_end = line.index('>')
-            str tag = line[1:tag_end]
+            size_t tag_end
+            str tag
             str content
+        
+        if not line:  # Guard against empty lines
+            raise ValueError(f"Attempted to parse empty line as tag")
             
+        try:
+            tag_end = line.index('>')
+        except ValueError:
+            raise ValueError(f"Missing closing '>' in line: '{line}' (length: {len(line)})")
+            
+        tag = line[1:tag_end]
         if tag.startswith('/'):
             return None
             
@@ -89,13 +98,14 @@ cdef class SubmissionParser(BaseParser):
                     text_buffer.append(line)
                     
             else:
-                tag_content = self._extract_tag_content(stripped)
-                if tag_content:
-                    key, value = tag_content
-                    if in_submission:
-                        submission_data[key] = value
-                    elif in_document:
-                        current_document[key] = value
+                if stripped and stripped[0] == '<':  # Only try to extract if non-empty and starts with <
+                    tag_content = self._extract_tag_content(stripped)
+                    if tag_content:
+                        key, value = tag_content
+                        if in_submission:
+                            submission_data[key] = value
+                        elif in_document:
+                            current_document[key] = value
         
         metadata = {
             'submission': submission_data,
@@ -169,11 +179,12 @@ cdef class SECDocumentParser(BaseParser):
                     key, value = stripped.split(':', 1)
                     header_data[key.strip()] = value.strip()
             else:
-                tag_content = self._extract_tag_content(stripped)
-                if tag_content:
-                    key, value = tag_content
-                    if in_document:
-                        current_document[key] = value
+                if stripped and stripped[0] == '<':  # Only try to extract if non-empty and starts with <
+                    tag_content = self._extract_tag_content(stripped)
+                    if tag_content:
+                        key, value = tag_content
+                        if in_document:
+                            current_document[key] = value
         
         metadata = {
             'header': header_data,

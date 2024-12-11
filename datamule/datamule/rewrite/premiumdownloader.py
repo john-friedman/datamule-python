@@ -22,7 +22,7 @@ class PremiumDownloader:
         self.MAX_CONCURRENT_DOWNLOADS = 100
         self.MAX_DECOMPRESSION_WORKERS = 16
         self.MAX_PROCESSING_WORKERS = 16
-        self.QUEUE_SIZE = 100
+        self.QUEUE_SIZE = 10
 
     async def _fetch_premium_files(self, file_path):
         df = pd.read_csv(file_path)

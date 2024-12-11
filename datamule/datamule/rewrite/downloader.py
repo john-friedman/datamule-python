@@ -1,22 +1,27 @@
 import asyncio
 import aiohttp
-import time
+from aiolimiter import AsyncLimiter
 import os
-import json
+from tqdm import tqdm
 from datetime import datetime
 from urllib.parse import urlencode
-from tqdm import tqdm
-from aiolimiter import AsyncLimiter
+import aiofiles
+import json
 
 from ..helper import identifier_to_cik, load_package_csv, fix_filing_url, headers
 from ..parser.sgml_parsing.sgml_parser_cy import parse_sgml_submission
 
+class RetryException(Exception):
+    def __init__(self, url, retry_after=601):
+        self.url = url
+        self.retry_after = retry_after
+
 class Downloader:
     def __init__(self):
-        self.semaphore = asyncio.Semaphore(5)
-        self.limiter = AsyncLimiter(10, 1)
-        self.session = None
         self.headers = headers
+        self.limiter = AsyncLimiter(10, 1)  # 10 requests per second
+        self.session = None
+        self.parse_filings = True  # Flag to control parsing
 
     async def __aenter__(self):
         await self._init_session()
@@ -34,75 +39,179 @@ class Downloader:
             await self.session.close()
             self.session = None
 
-    async def _fetch(self, url):
-        if not self.session:
-            raise RuntimeError("Session not initialized. Use async with Downloader() as downloader:")
-        
-        async with self.semaphore:
-            async with self.limiter:
+    async def _fetch_json(self, url):
+        """Fetch JSON with rate limiting and retries."""
+        async with self.limiter:
+            try:
                 url = fix_filing_url(url)
                 async with self.session.get(url) as response:
-                    if response.status != 200:
-                        raise aiohttp.ClientError(f"HTTP {response.status}: {response.reason}")
-                    return await response.text()
-
-    async def _fetch_json(self, url):
-        content = await self._fetch(url)
-        return json.loads(content)
+                    if response.status == 429:
+                        raise RetryException(url)
+                    response.raise_for_status()
+                    return await response.json()
+            except aiohttp.ClientResponseError as e:
+                if e.status == 429:
+                    raise RetryException(url)
+                raise
 
     async def _get_filing_urls_from_efts(self, base_url):
-        """Fetch all filing URLs from EFTS asynchronously."""
+        """Fetch filing URLs from EFTS in batches with progress tracking."""
+        start = 0
+        page_size = 100
         urls = []
-        start, page_size = 0, 100
+        
+        # Get total number first
+        data = await self._fetch_json(f"{base_url}&from=0&size=1")
+        if not data or 'hits' not in data:
+            return []
+            
+        total_hits = data['hits']['total']['value']
+        if not total_hits:
+            return []
 
-        while True:
+        # Create progress bar
+        pbar = tqdm(total=total_hits, desc="Fetching filing URLs")
+        
+        while start < total_hits:
             try:
-                data = await self._fetch_json(f"{base_url}&from={start}")
-                if not data or 'hits' not in data:
-                    break
+                # Create 10 tasks at once
+                tasks = [
+                    self._fetch_json(f"{base_url}&from={start + i * page_size}&size={page_size}") 
+                    for i in range(10)
+                ]
+                
+                # Run all 10 tasks concurrently
+                results = await asyncio.gather(*tasks)
+                
+                # Process results
+                for data in results:
+                    if data and 'hits' in data:
+                        hits = data['hits']['hits']
+                        if hits:
+                            batch_urls = [
+                                f"https://www.sec.gov/Archives/edgar/data/{hit['_source']['ciks'][0]}/{hit['_id'].split(':')[0]}.txt" 
+                                for hit in hits
+                            ]
+                            urls.extend(batch_urls)
+                            pbar.update(len(hits))
+                
+                # Move forward by 1000 (10 tasks × 100 per page)
+                start += 10 * page_size
 
-                hits = data['hits']['hits']
-                if not hits:
-                    break
-
-                for hit in hits:
-                    url = f"https://www.sec.gov/Archives/edgar/data/{hit['_source']['ciks'][0]}/{hit['_id'].split(':')[0]}.txt"
-                    urls.append(url)
-
-                if start + page_size > data['hits']['total']['value']:
-                    break
-                    
-                start += page_size
-
+            except RetryException as e:
+                print(f"\nRate limited. Sleeping for {e.retry_after} seconds...")
+                await asyncio.sleep(e.retry_after)
+                continue
             except Exception as e:
-                print(f"Error fetching URLs: {str(e)}")
+                print(f"\nError fetching URLs batch at {start}: {str(e)}")
                 break
 
+        pbar.close()
         return urls
-
-    async def _download_and_parse(self, urls, output_dir):
-        """Download and parse multiple filings with progress tracking."""
-        async def process_single(url):
+    
+    async def _download_file(self, url, filepath):
+        """Download single file with rate limiting and parse SGML content."""
+        async with self.limiter:
             try:
-                content = await self._fetch(url)
-                submission_dir = output_dir + "/" + url.split('/')[-1].split('.')[0].replace('-', '')
-                return parse_sgml_submission(content=content, output_dir=submission_dir)
+                url = fix_filing_url(url)
+                async with self.session.get(url) as response:
+                    if response.status == 429:
+                        raise RetryException(url)
+                    response.raise_for_status()
+                    content = await response.read()
+                    
+                    # Parse SGML content in memory if enabled
+                    parsed_data = None
+                    if self.parse_filings:
+                        try:
+                            # Save content temporarily
+                            os.makedirs(os.path.dirname(filepath), exist_ok=True)
+                            async with aiofiles.open(filepath, 'wb') as f:
+                                await f.write(content)
+
+                            # Try to parse
+                            parsed_data = parse_sgml_submission(
+                                content=content.decode(), 
+                                output_dir=os.path.dirname(filepath) + f'/{url.split("/")[-1].split(".")[0].replace("-", "")}'
+                            )
+                            
+                            # If we get here, parsing was successful, delete original file
+                            try:
+                                os.remove(filepath)
+                            except Exception as e:
+                                print(f"\nError deleting original file {filepath}: {str(e)}")
+                                
+                        except Exception as e:
+                            print(f"\nError parsing {url}: {str(e)}")
+                            # Parsing failed, delete both original and any partial parsed files
+                            try:
+                                os.remove(filepath)  # Delete original
+                                parsed_dir = os.path.dirname(filepath) + f'/{url.split("/")[-1].split(".")[0].replace("-", "")}'
+                                if os.path.exists(parsed_dir):
+                                    import shutil
+                                    shutil.rmtree(parsed_dir)  # Delete any partial parsed files
+                            except Exception as e:
+                                print(f"\nError cleaning up files for {url}: {str(e)}")
+                    else:
+                        # Parsing disabled, just save the file
+                        os.makedirs(os.path.dirname(filepath), exist_ok=True)
+                        async with aiofiles.open(filepath, 'wb') as f:
+                            await f.write(content)
+                    
+                    return filepath, parsed_data
+
             except Exception as e:
-                print(f"\nError processing {url}: {str(e)}")
+                print(f"\nError downloading {url}: {str(e)}")
                 return None
+    
 
-        tasks = [process_single(url) for url in urls]
+    async def _download_and_process(self, urls, output_dir):
+        """Download files with progress tracking. Max 5 concurrent downloads."""
         results = []
+        parsed_results = []
+        semaphore = asyncio.Semaphore(5)  # Limit concurrent downloads to 5
         
-        for task in tqdm(asyncio.as_completed(tasks), total=len(urls), desc="Processing filings"):
-            result = await task
-            if result is not None:
-                results.append(result)
+        async def download_with_sem(url, filepath):
+            async with semaphore:
+                return await self._download_file(url, filepath)
         
-        return results
+        with tqdm(total=len(urls), desc="Downloading filings") as pbar:
+            for i in range(0, len(urls), 5):
+                chunk = urls[i:i+5]
+                tasks = []
+                
+                # Create tasks for this chunk
+                for url in chunk:
+                    filename = url.split('/')[-1]
+                    filepath = os.path.join(output_dir, filename)
+                    tasks.append(asyncio.create_task(download_with_sem(url, filepath)))
+                
+                # Process chunk with rate limiting
+                try:
+                    chunk_results = await asyncio.gather(*tasks)
+                    for result in chunk_results:
+                        if result:
+                            filepath, parsed_data = result
+                            results.append(filepath)
+                            if parsed_data:
+                                parsed_results.append(parsed_data)
+                            pbar.update(1)
+                except RetryException as e:
+                    print(f"\nRate limited. Sleeping for {e.retry_after} seconds...")
+                    await asyncio.sleep(e.retry_after)
+                    # Failed URLs will need to be retried
+                    failed_urls = chunk[len(results) - i:]
+                    urls.extend(failed_urls)
+                except Exception as e:
+                    print(f"\nError in chunk: {str(e)}")
+                    pbar.update(len(chunk))
 
-    def download(self, output_dir='filings', cik=None, ticker=None, form=None, date=None):
-        """Main method to download and parse SEC filings."""
+        return results, parsed_results
+
+    def download_filings(self, output_dir='filings', cik=None, ticker=None, form=None, date=None, parse=True):
+        """Main method to download SEC filings."""
+        self.parse_filings = parse
+        
         async def _download():
             async with self as downloader:
                 # Handle identifiers
@@ -131,20 +240,23 @@ class Downloader:
                     start, end = date_str.split(',')
                     dates = [(start, end)]
 
-                all_results = []
+                all_filepaths = []
+                all_parsed_data = []
+                
                 for start_date, end_date in dates:
                     params['startdt'] = start_date
                     params['enddt'] = end_date
                     base_url = "https://efts.sec.gov/LATEST/search-index"
                     efts_url = f"{base_url}?{urlencode(params, doseq=True)}"
                     
+                    # Get URLs and download in batches
                     urls = await self._get_filing_urls_from_efts(efts_url)
-                    
                     if urls:
-                        results = await self._download_and_parse(urls, output_dir)
-                        all_results.extend(results)
+                        filepaths, parsed_data = await self._download_and_process(urls, output_dir)
+                        all_filepaths.extend(filepaths)
+                        all_parsed_data.extend(parsed_data)
 
-                return all_results
+                return all_filepaths, all_parsed_data
 
         return asyncio.run(_download())
 
@@ -160,20 +272,38 @@ class Downloader:
                     company_tickers = load_package_csv('company_tickers')
                     ciks = [company['cik'] for company in company_tickers]
 
+                os.makedirs(output_dir, exist_ok=True)
                 urls = [f'https://data.sec.gov/api/xbrl/companyfacts/CIK{str(cik).zfill(10)}.json' for cik in ciks]
-                results = []
                 
-                for url in tqdm(urls, desc="Downloading company concepts"):
-                    try:
-                        content = await downloader._fetch(url)
-                        if output_dir:
-                            os.makedirs(output_dir, exist_ok=True)
-                            filename = url.split('/')[-1]
-                            with open(os.path.join(output_dir, filename), 'w') as f:
-                                f.write(content)
-                        results.append(json.loads(content))
-                    except Exception as e:
-                        print(f"\nError downloading {url}: {str(e)}")
+                results = []
+                semaphore = asyncio.Semaphore(5)
+                
+                async def download_with_sem(url):
+                    async with semaphore:
+                        filename = url.split('/')[-1]
+                        filepath = os.path.join(output_dir, filename)
+                        result, _ = await self._download_file(url, filepath)
+                        return result
+                
+                with tqdm(total=len(urls), desc="Downloading company concepts") as pbar:
+                    for i in range(0, len(urls), 5):
+                        chunk = urls[i:i+5]
+                        tasks = [asyncio.create_task(download_with_sem(url)) for url in chunk]
+                        
+                        try:
+                            chunk_results = await asyncio.gather(*tasks)
+                            for result in chunk_results:
+                                if result:
+                                    results.append(result)
+                                    pbar.update(1)
+                        except RetryException as e:
+                            print(f"\nRate limited. Sleeping for {e.retry_after} seconds...")
+                            await asyncio.sleep(e.retry_after)
+                            failed_urls = chunk[len(results) - i:]
+                            urls.extend(failed_urls)
+                        except Exception as e:
+                            print(f"\nError in chunk: {str(e)}")
+                            pbar.update(len(chunk))
 
                 return results
 
