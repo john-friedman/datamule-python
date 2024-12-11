@@ -24,6 +24,8 @@ from .parser.sgml_parsing.sgml_parser_cy import parse_sgml_submission
 from .submission import Submission
 from .document import Document
 from .parser.document_parsing.sec_parser import Parser
+from .downloader.downloader import Downloader
+from .downloader.premiumdownloader import PremiumDownloader
 
 
 # Set up notebook environment

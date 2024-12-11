@@ -187,7 +187,7 @@ class PremiumDownloader:
             processor.stop_workers()
             decompression_pool.shutdown()
 
-    def download(self, file_path, output_dir="download"):
+    def download_submissions(self, file_path, output_dir="download"):
         if not file_path:
             raise ValueError("file_path parameter is required")
 

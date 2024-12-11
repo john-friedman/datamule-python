@@ -21,22 +21,6 @@ Features
    I built MuleBot in a day to learn how tool-calling chatbots with artifacts work. I'm planning to make it useful in the future. Still fun to play with!
 
 
-Benchmarks
-----------
-
-+---------------+--------------------+--------------------+--------------------+
-| File Size     | Examples          | Downloader         | Premium Downloader |
-+===============+====================+====================+====================+
-| Small Files   | 3, 4, 5           | 5/s                | 300/s              |
-+---------------+--------------------+--------------------+--------------------+
-| Medium Files  | 8-K               | 5/s                | 60/s               |
-+---------------+--------------------+--------------------+--------------------+
-| Large Files   | 10-K              | 3/s                | 5/s                |
-+---------------+--------------------+--------------------+--------------------+
-
-Note 1: Premium Downloader may be much faster depending on your laptop's specs and internet connection.
-Note 2: Premium Downloader will be updated soon to be 10-100x faster.
-
 .. toctree::
    :maxdepth: 2
    :caption: Contents:

@@ -4,7 +4,7 @@ from datetime import timedelta, datetime
 import pytz
 from collections import deque
 import time
-from ..helper import headers, identifier_to_cik
+from .helper import headers, identifier_to_cik
 
 def _get_current_eastern_date():
     """Get current date in US Eastern timezone (automatically handles DST) """

@@ -4,7 +4,7 @@ import json
 import csv
 import os
 from pkg_resources import resource_filename
-from ..helper import headers
+from .helper import headers
 from .downloader import PreciseRateLimiter, RateMonitor
 
 class PackageUpdater:
