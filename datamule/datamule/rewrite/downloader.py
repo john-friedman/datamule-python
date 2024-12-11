@@ -73,7 +73,7 @@ class RateMonitor:
 class Downloader:
     def __init__(self):
         self.headers = headers
-        self.limiter = PreciseRateLimiter(8)  # 10 requests per second
+        self.limiter = PreciseRateLimiter(5)  # 10 requests per second
         self.session = None
         self.parse_filings = True
         self.download_queue = asyncio.Queue()
