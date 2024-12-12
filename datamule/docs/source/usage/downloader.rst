@@ -8,6 +8,9 @@ Note: Premium Downloader currently costs $1/100,000 downloads.
 Downloader
 ----------
 .. code-block:: python
+    
+    from datamule import Downloader
+    downloader = Downloader()
 
     # Download SEC filings
     download_submissions(
@@ -34,6 +37,9 @@ Downloader
 Premium Downloader
 ----------------
 .. code-block:: python
+
+    from datamuler import PremiumDownloader as Downloader
+    downloader = Downloader(api_key='your-api-key') # will automatically use the environment variable DATAMULE_API_KEY
 
     # Download SEC filings
     download_submissions(

@@ -16,13 +16,27 @@ from threading import Thread
 from datamule.parser.sgml_parsing.sgml_parser_cy import parse_sgml_submission
 
 class PremiumDownloader:
-    def __init__(self):
+    def __init__(self, api_key=None):
         self.BASE_URL = "https://library.datamule.xyz/original/nc/"
         self.CHUNK_SIZE = 2 * 1024 * 1024  # 2MB chunks
         self.MAX_CONCURRENT_DOWNLOADS = 100
         self.MAX_DECOMPRESSION_WORKERS = 16
         self.MAX_PROCESSING_WORKERS = 16
         self.QUEUE_SIZE = 10
+        # Only set api_key if explicitly provided
+        if api_key is not None:
+            self._api_key = api_key
+
+    @property
+    def api_key(self):
+        # First try instance variable, then environment variable
+        return getattr(self, '_api_key', None) or os.getenv('DATAMULE_API_KEY')
+
+    @api_key.setter
+    def api_key(self, value):
+        if not value:
+            raise ValueError("API key cannot be empty")
+        self._api_key = value
 
     async def _fetch_premium_files(self, file_path):
         df = pd.read_csv(file_path)
@@ -46,12 +60,10 @@ class PremiumDownloader:
                 self.processing_workers.append(worker)
 
         def _process_file(self, item):
-            filename, content = item  # Now receiving (filename, content) tuple
-            # First remove .zst if it exists, then get the directory name
+            filename, content = item
             clean_name = filename[:-4] if filename.endswith('.zst') else filename
             output_path = os.path.join(self.output_dir, Path(clean_name).stem)
             try:
-                # Pass None as filepath since we're using content
                 parse_sgml_submission(None, output_dir=output_path, content=content)
                 self.pbar.update(1)
             except Exception as e:
@@ -96,7 +108,6 @@ class PremiumDownloader:
             with dctx.stream_reader(input_buffer) as reader:
                 shutil.copyfileobj(reader, decompressed_content)
                 
-            # Get decoded content and send to processor
             content = decompressed_content.getvalue().decode('utf-8')
             processor.processing_queue.put((filename, content))
             return True
@@ -126,8 +137,19 @@ class PremiumDownloader:
             url = self.BASE_URL + filename
             chunks = []
 
+            # Get API key at request time
+            api_key = self.api_key
+            if not api_key:
+                raise ValueError("No API key found. Please set DATAMULE_API_KEY environment variable or provide api_key in constructor")
+
             try:
-                async with session.get(url) as response:
+                headers = {
+                    'Connection': 'keep-alive',
+                    'Accept-Encoding': 'gzip, deflate, br',
+                    'Authorization': f'Bearer {api_key}'
+                }
+                
+                async with session.get(url, headers=headers) as response:
                     if response.status == 200:
                         async for chunk in response.content.iter_chunked(self.CHUNK_SIZE):
                             chunks.append(chunk)
@@ -146,6 +168,9 @@ class PremiumDownloader:
 
                         if not success:
                             print(f"Failed to process {filename}")
+                    elif response.status == 401:
+                        print(f"Authentication failed: Invalid API key")
+                        raise ValueError("Invalid API key")
                     else:
                         print(f"Failed to download {filename}: Status {response.status}")
             except Exception as e:
@@ -171,8 +196,7 @@ class PremiumDownloader:
 
             async with aiohttp.ClientSession(
                 connector=connector,
-                timeout=aiohttp.ClientTimeout(total=3600),
-                headers={'Connection': 'keep-alive', 'Accept-Encoding': 'gzip, deflate, br'}
+                timeout=aiohttp.ClientTimeout(total=3600)
             ) as session:
                 tasks = [
                     self.download_and_process(
