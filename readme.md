@@ -1,11 +1,12 @@
 # datamule
 
+## 🔄 Major Update 
+**Datamule has undergone a significant rework and is no longer backwards compatible. If this has affected your workflow please post on the github issues megathread. Sorry for the inconvenience.**
+
 [![Downloads](https://static.pepy.tech/badge/datamule)](https://pepy.tech/project/datamule)
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fjohn-friedman%2Fdatamule-python&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 ![GitHub](https://img.shields.io/github/stars/john-friedman/datamule-python)
 
-## 🔄 Major Update 
-**Datamule has undergone a significant rework and is no longer backwards compatible. If this has affected your workflow please post on the github issues megathread. Sorry for the inconvenience.**
 
 A Python package for working with SEC filings at scale. 📚 [Full Documentation](https://john-friedman.github.io/datamule-python/) | 🌐 [Website](https://datamule.xyz/)
 
