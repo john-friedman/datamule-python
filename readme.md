@@ -4,6 +4,9 @@
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fjohn-friedman%2Fdatamule-python&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 ![GitHub](https://img.shields.io/github/stars/john-friedman/datamule-python)
 
+## 🔄 Major Update 
+**Datamule has undergone a significant rework and is no longer backwards compatible. If this has affected your workflow please post on the github issues megathread. Sorry for the inconvenience.**
+
 A Python package for working with SEC filings at scale. 📚 [Full Documentation](https://john-friedman.github.io/datamule-python/) | 🌐 [Website](https://datamule.xyz/)
 
 
@@ -18,18 +21,23 @@ A Python package for working with SEC filings at scale. 📚 [Full Documentation
 
 ## Quick Start
 
-```bash
-# Basic installation
-pip install datamule
+### Basic Installation
 
-# Install with all features
+```bash
+pip install datamule
+```
+
+### Installation with all extras
+```bash
 pip install datamule[all]
 ```
+
+
+### Download submissions example
 
 ```python
 from datamule import Downloader
 
-# Download filings
 downloader = Downloader()
 downloader.download_submissions(form='10-K', ticker='AAPL')
 ```
