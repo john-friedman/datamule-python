@@ -3,7 +3,7 @@ Core Classes
 
 Portfolio
 ---------
-Container for managing SEC submissions. Takes the output_dir from the Downloader or PremiumDownloader as input.
+Container for managing SEC submissions. Takes the ``output_dir`` from the Downloader or PremiumDownloader as input.
 
 Methods::
 

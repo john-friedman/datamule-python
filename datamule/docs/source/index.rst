@@ -1,25 +1,48 @@
-Welcome to datamule's documentation!  
-====================================  
+====================================
+Welcome to datamule's documentation!
+====================================
 
-A Python package to work with SEC submissions at scale. Integrated with `datamule <https://datamule.xyz/>`_'s APIs and datasets.  
+A Python package to work with SEC submissions at scale. Integrated with `datamule's <https://datamule.xyz/>`_ APIs and datasets.
 
-Features  
---------  
-- Download SEC submissions quickly and easily using the `Downloader <usage/downloader>`_ or `Premium Downloader <usage/premium_downloader>`_.  
-- Monitor EDGAR for new submissions using `Monitor <usage/monitor>`_. 
-- Parse 13F-HR-INFORMATIONTABLE, 8-K, 10-K, 10-Q, 3, 4, 5, D, NPORT-P, SC 13D, and SC 13G. Will be updated soon to include almost all SEC form types and attachments `Parser <usage/parser>`_.
-- Create alternate datasets directly from SEC submissions' unstructured text using `DatasetBuilder <usage/dataset_builder>`_. 
-- Access datasets such as:  
-  - **Company Metadata (includes SIC Codes)**: `https://raw.githubusercontent.com/john-friedman/datamule-python/refs/heads/main/datamule/datamule/data/company_metadata.csv`_.  
-  - **Company Former Names**: `https://raw.githubusercontent.com/john-friedman/datamule-python/refs/heads/main/datamule/datamule/data/company_former_names.csv`_.  
-  - **Company Tickers**: `https://raw.githubusercontent.com/john-friedman/datamule-python/refs/heads/main/datamule/datamule/data/company_tickers.csv`_.  
-  - **Glossary of SEC Submission Types**: `https://raw.githubusercontent.com/john-friedman/datamule-python/refs/heads/main/datamule/datamule/data/sec-glossary.csv`_.  
-  - **XBRL Descriptions**: `https://raw.githubusercontent.com/john-friedman/datamule-python/refs/heads/main/datamule/datamule/data/xbrl_descriptions.csv`_.  
-- Interact with SEC data using MuleBot.  `MuleBot <usage/mulebot>`_.
+Features
+========
 
-.. note::  
+Core Functionality
+----------------
+
+* **Fast SEC Downloads**: Utilize the `Downloader <usage/downloader/downloader>`_ or `Premium Downloader <usage/downloader/premium_downloader>`_ to download SEC filings.
+
+* **Real-time Monitoring**: Keep track of new EDGAR submissions using `Monitor <usage/monitor>`_.
+
+* **Interact with SEC Submissions**: Access, parse, and interact with SEC submissions using `Portfolio <usage/core_classes/portfolio>`, `Submission <usage/core_classes/submission>`, and `Document <usage/core_classes/document>`_.
+
+* **Custom Dataset Creation**: Build specialized datasets from unstructured SEC submission text using `DatasetBuilder <usage/dataset_builder>`_.
+
+Available Datasets
+------------------
+
+Access SEC-related datasets:
+
+* `Company Metadata`_ (including SIC Codes)
+* `Company Former Names`_
+* `Company Tickers`_
+* `SEC Submission Types Glossary`_
+* `XBRL Descriptions`_
+
+.. _Company Metadata: https://raw.githubusercontent.com/john-friedman/datamule-python/refs/heads/main/datamule/datamule/data/company_metadata.csv
+.. _Company Former Names: https://raw.githubusercontent.com/john-friedman/datamule-python/refs/heads/main/datamule/datamule/data/company_former_names.csv
+.. _Company Tickers: https://raw.githubusercontent.com/john-friedman/datamule-python/refs/heads/main/datamule/datamule/data/company_tickers.csv
+.. _SEC Submission Types Glossary: https://raw.githubusercontent.com/john-friedman/datamule-python/refs/heads/main/datamule/datamule/data/sec-glossary.csv
+.. _XBRL Descriptions: https://raw.githubusercontent.com/john-friedman/datamule-python/refs/heads/main/datamule/datamule/data/xbrl_descriptions.csv
+
+MuleBot Integration
+-------------------
+
+.. note::
    I built MuleBot in a day to learn how tool-calling chatbots with artifacts work. I'm planning to make it useful in the future. Still fun to play with!
 
+Navigation
+=========
 
 .. toctree::
    :maxdepth: 2
@@ -29,5 +52,4 @@ Features
    quickstart
    usage/index
    examples
-   known_issues
    changelog

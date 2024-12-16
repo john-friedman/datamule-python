@@ -13,6 +13,7 @@ The package includes several useful CSV datasets:
 - ``xbrl_descriptions.csv``: Category fact descriptions
 
 Usage Example
+^^^^^^^^^^^^^
 
 .. code-block:: python
     

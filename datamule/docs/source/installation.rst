@@ -23,7 +23,6 @@ To install with specific features:
 Available Extras
 --------------
 
-- ``filing_viewer``: Includes dependencies for the filing viewer module
 - ``mulebot``: Includes MuleBot for interacting with SEC data
 - ``mulebot_server``: Includes Flask server for running MuleBot
 - ``all``: Installs all available extras
