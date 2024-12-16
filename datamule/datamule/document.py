@@ -108,7 +108,7 @@ class Document:
    
     def __iter__(self):
         if not self.data:
-            self.parse_filing()
+            self.parse()
 
         if self.filing_type == '13F-HR-INFORMATIONTABLE':
             return iter(self.data)

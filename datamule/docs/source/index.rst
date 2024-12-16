@@ -28,5 +28,6 @@ Features
    installation
    quickstart
    usage/index
+   examples
    known_issues
    changelog

@@ -8,22 +8,20 @@ polars
 setuptools
 selectolax
 cython
+pytz
+zstandard
 
 [all]
 pandas
 google-generativeai
-psutil
 openai
+psutil
 flask
-lxml
 
 [dataset_builder]
 pandas
 google-generativeai
 psutil
-
-[filing_viewer]
-lxml
 
 [mulebot]
 openai

@@ -268,7 +268,7 @@ class Downloader:
         self.current_pbar = None
         return results, parsed_results
 
-    def download_submissions(self, output_dir='filings', cik=None, ticker=None, form=None, date=None, parse=True):
+    def download_submissions(self, output_dir='filings', cik=None, ticker=None, submission_type=None, date=None, parse=True):
         """Main method to download SEC filings."""
         self.parse_filings = parse
         
@@ -286,7 +286,7 @@ class Downloader:
                     else:
                         params['ciks'] = str(cik_value).zfill(10)
 
-                params['forms'] = ','.join(form) if isinstance(form, list) else form if form else "-0"
+                params['forms'] = ','.join(submission_type) if isinstance(submission_type, list) else submission_type if submission_type else "-0"
 
                 if isinstance(date, list):
                     dates = [(d, d) for d in date]

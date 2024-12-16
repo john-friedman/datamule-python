@@ -35,13 +35,22 @@ cdef class BaseParser:
         return (tag, content)
 
     cdef void _write_document(self, str content, dict document_info):
-        cdef str output_path, first_line
-        
+        cdef:
+            str output_path, first_line
+            str filename = document_info.get('FILENAME', '')
+            
         if not content:
             return
 
-        output_path = os.path.join(self.output_dir, document_info.get('FILENAME', f"{document_info.get('SEQUENCE', 'unknown')}.txt"))
+        output_path = os.path.join(self.output_dir, filename or f"{document_info.get('SEQUENCE', 'unknown')}.txt")
         first_line = content.partition('\n')[0].strip()
+        
+        # Fast path - avoid string operations if not XML
+        if filename.upper().endswith('.XML'):
+            # Remove outer XML tags if present
+            content = content.strip()
+            if content.startswith('<XML>') and content.endswith('</XML>'):
+                content = content[5:-6].strip()  # 5 for '<XML>', 6 for '</XML>'
         
         if first_line.startswith('begin '):
             with BytesIO(content.encode()) as input_file:

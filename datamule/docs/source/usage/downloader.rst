@@ -3,8 +3,6 @@ Downloader & Premium Downloader
 
 Downloader is free, but constrained by SEC rate limits. Premium Downloader uses the `datamule api <https://datamule.xyz/products>`_ which is constrained by your internet speed and hardware.
 
-Note: Premium Downloader currently costs $1/100,000 downloads.
-
 Downloader
 ----------
 .. code-block:: python
@@ -18,8 +16,8 @@ Downloader
         output_dir='filings',  # Where to save files
         cik=None,             # CIK number, list of CIKs, or None for all
         ticker=None,          # Stock symbol, list of symbols, or None
-        form=None,            # Form types: '10-K', ['10-K', '10-Q', '8-K']
-        date=None            # Filing dates:
+        submission_type=None,            # Submission types: '10-K', ['10-K', '10-Q', '8-K']
+        filing_date=None            # Filing dates:
                             # * Single date: "2023-01-01"
                             # * Date range tuple: ("2023-01-01", "2023-12-31")
                             # * List of dates: ["2023-01-01", "2023-02-01"]
@@ -47,15 +45,39 @@ Premium Downloader
         output_dir='filings',  # Where to save files
         cik=None,             # CIK number, list of CIKs, or None for all
         ticker=None,          # Stock symbol, list of symbols, or None
-        form=None,            # Form types: '10-K', ['10-K', '10-Q', '8-K']
-        date=None            # Filing dates:
+        submission_type=None,            # Submission types: '10-K', ['10-K', '10-Q', '8-K']
+        filing_date=None            # Filing dates:
                             # * Single date: "2023-01-01"
                             # * Date range tuple: ("2023-01-01", "2023-12-31")
                             # * List of dates: ["2023-01-01", "2023-02-01"]
                             # * Defaults to all dates from 2001-01-01 to present
     )
 
-Performance Tuning
+Pricing
+=======
+
+* **Free**: Basic Downloader
+* **Premium Tier**: $1/100,000 filings + $1/billion rows read (the database is 16 million rows total, so max read cost is about 1.6 cents).
+
+Query Optimization
+==================
+The database uses a composite index (submission_type, filing_date, cik). For optimal performance and lower costs:
+
+* Use columns in left-to-right order:
+  * ``submission_type``
+  * ``submission_type + filing_date``
+  * ``submission_type + filing_date + cik``
+
+.. note::
+   Queries using only ``filing_date`` or ``cik`` will not leverage the index efficiently.
+
+.. note:: 
+   In the future, I'll add more indexes that will remove the need for this optimization. I would do it now, but it would cost me $50. Waiting for next month, when my write quota resets.
+
+.. note::
+    API returns up to 25,000 results per page.
+
+Performance Tuning for Premium Downloader
 ----------------
 You can adjust these parameters to optimize for your hardware:
 
@@ -76,12 +98,6 @@ PowerShell
 .. code-block:: powershell
 
     [System.Environment]::SetEnvironmentVariable('DATAMULE_API_KEY', 'your-api-key', 'User')
-
-Command Prompt
-~~~~~~~~~~~~~
-.. code-block:: batch
-
-    setx DATAMULE_API_KEY "your-api-key"
 
 Bash
 ~~~~

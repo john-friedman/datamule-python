@@ -1,4 +1,3 @@
-# datamule/__init__.py
 import sys
 from importlib.util import find_spec
 from functools import lru_cache
@@ -7,15 +6,21 @@ def __getattr__(name):
     if name == 'Downloader':
         from .downloader.downloader import Downloader
         return Downloader
-    elif name == 'parse_textual_filing':
-        from .parser.sgml_parsing.sgml_parser_cy import parse_sgml_submission
-        return parse_sgml_submission
+    elif name == 'PremiumDownloader':
+        from .downloader.premiumdownloader import PremiumDownloader
+        return PremiumDownloader
     elif name == 'Parser':
         from .parser.document_parsing.sec_parser import Parser
         return Parser
-    elif name == 'Filing':
+    elif name == 'Submission':
         from .submission import Submission
         return Submission
+    elif name == 'Portfolio':
+        from .portfolio import Portfolio
+        return Portfolio
+    elif name == "parse_sgml_submission":
+        from .parser.sgml_parsing.sgml_parser_cy import parse_sgml_submission
+        return parse_sgml_submission
     elif name == 'DatasetBuilder':
         from .dataset_builder import DatasetBuilder
         return DatasetBuilder
@@ -48,6 +53,7 @@ _setup_notebook_env()
 
 __all__ = [
     'Downloader',
+    'PremiumDownloader',
     'load_package_csv',
     'load_package_dataset',
     'Parser',
