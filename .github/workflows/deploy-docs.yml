@@ -29,7 +29,7 @@ jobs:
 
       - name: Clean and Build Documentation
         run: |
-          cd datamule/docs
+          cd datamule-python/datamule/docs
           rm -rf _build/
           rm -rf build/
           make clean
@@ -48,7 +48,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./datamule/docs/build/html
+          publish_dir: ./datamule-python/datamule/docs/build/html
           force_orphan: true
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
