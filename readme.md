@@ -10,7 +10,7 @@
 
 A Python package for working with SEC filings at scale. 📚 [Full Documentation](https://john-friedman.github.io/datamule-python/) | 🌐 [Website](https://datamule.xyz/)
 
-
+ 
 ## Features
 
 - 📥 [Download SEC filings quickly and efficiently](https://john-friedman.github.io/datamule-python/usage/downloader.html)
