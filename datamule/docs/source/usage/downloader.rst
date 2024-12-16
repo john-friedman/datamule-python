@@ -54,15 +54,39 @@ Premium Downloader
     )
 
 
+Benchmarks
+----------
+
+.. list-table:: Benchmarks
+   :widths: 20 20 20 40
+   :header-rows: 1
+
+   * - File Size
+     - Examples
+     - Downloader
+     - Premium Downloader
+   * - Small Files
+     - 3, 4, 5
+     - 5/s
+     - 300/s
+   * - Medium Files
+     - 8-K
+     - 5/s
+     - 60/s
+   * - Large Files
+     - 10-K
+     - 3/s
+     - 5/s
+
 
 Pricing
-=======
+-------
 
 * **Free**: Basic Downloader
 * **Premium Tier**: $1/100,000 filings + $1/billion rows read (the database is 16 million rows total, so max read cost is about 1.6 cents).
 
 Query Optimization
-==================
+------------------
 The database uses a composite index (submission_type, filing_date, cik). For optimal performance and lower costs:
 
 * Use columns in left-to-right order:
@@ -115,30 +139,8 @@ Zsh (macOS default)
     echo 'export DATAMULE_API_KEY="your-api-key"' >> ~/.zshrc
     source ~/.zshrc
 
-Note: after setting the environment variable, you may need to restart your terminal/shell for the changes to take effect.
-
-
-.. list-table:: Benchmarks
-   :widths: 20 20 20 40
-   :header-rows: 1
-
-   * - File Size
-     - Examples
-     - Downloader
-     - Premium Downloader
-   * - Small Files
-     - 3, 4, 5
-     - 5/s
-     - 300/s
-   * - Medium Files
-     - 8-K
-     - 5/s
-     - 60/s
-   * - Large Files
-     - 10-K
-     - 3/s
-     - 5/s
-
+.. note::
+    After setting the environment variable, you may need to restart your terminal/shell for the changes to take effect.
 
 .. note::
     Premium Downloader may be much faster depending on your laptop's specs and internet connection.
