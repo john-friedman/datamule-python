@@ -110,21 +110,21 @@ class Document:
         if not self.data:
             self.parse()
 
-        if self.filing_type == '13F-HR-INFORMATIONTABLE':
+        if self.type == 'INFORMATION TABLE':
             return iter(self.data)
-        elif self.filing_type == '8-K':
+        elif self.type == '8-K':
             return iter(self._document_to_section_text(self.data['document']))
-        elif self.filing_type == '10-K':
+        elif self.type == '10-K':
             return iter(self._document_to_section_text(self.data['document']))
-        elif self.filing_type == '10-Q':
+        elif self.type == '10-Q':
             return iter(self._document_to_section_text(self.data['document']))
-        elif self.filing_type in ['3', '4', '5']:
+        elif self.type in ['3', '4', '5']:
             return iter(self._flatten_dict(self.data['holdings']))
-        elif self.filing_type == 'D':
+        elif self.type == 'D':
             return iter(self._flatten_dict(self.data['document']['relatedPersonsList']['relatedPersonInfo']))
-        elif self.filing_type == 'NPORT-P':
+        elif self.type == 'NPORT-P':
             return iter(self._flatten_dict(self.data['document']['formData']['invstOrSecs']['invstOrSec']))
-        elif self.filing_type == 'SC 13D':
+        elif self.type == 'SC 13D':
             return iter(self._document_to_section_text(self.data['document']))
-        elif self.filing_type == 'SC 13G':
+        elif self.type == 'SC 13G':
             return iter(self._document_to_section_text(self.data['document']))

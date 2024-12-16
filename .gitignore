@@ -30,3 +30,6 @@ Secrets/
 # Ignore data directories, except the specific one we want to allow
 *data/
 !/datamule/datamule/data/
+
+datamule/examples/*
+!datamule/examples/*.ipynb

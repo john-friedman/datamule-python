@@ -17,7 +17,7 @@ class Parser:
         pass
 
     def parse_filing(self, filename, filing_type):
-        if filing_type == '13F-HR-INFORMATIONTABLE':
+        if filing_type == 'INFORMATION TABLE':
             return parse_13f_hr_information_table_xml(filename)
         elif filing_type == '8-K':
             return parse_8k(filename)
