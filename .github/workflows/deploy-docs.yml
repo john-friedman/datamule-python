@@ -30,6 +30,12 @@ jobs:
       - name: Clean and Build Documentation
         run: |
           cd datamule/docs
+          # More aggressive cleaning
+          rm -rf build/
+          rm -rf source/_build/
+          rm -rf _build/
+          git rm -rf --cached build/ || true
+          git rm -rf --cached _build/ || true
           make clean
           make html
           ls -la
@@ -45,7 +51,13 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./datamule/docs/build/html
-          force_orphan: true
+          force_orphan: true  # This ensures a fresh history
+          enable_jekyll: false
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
-          commit_message: 'Deploy Sphinx documentation'
+          commit_message: 'Deploy Sphinx documentation [skip ci]'
+          full_commit_message: |
+            Deploy Sphinx documentation
+            
+            Build from ${{ github.sha }}
+            Triggered by ${{ github.event_name }}

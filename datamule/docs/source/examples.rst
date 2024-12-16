@@ -1,4 +1,4 @@
-examples
+Examples
 ========
 
-See `examples <https://github.com/john-friedman/datamule-python/tree/main/examples>`_.
+See the examples on `GitHub <https://github.com/john-friedman/datamule-python/tree/main/examples>`_.
