@@ -117,18 +117,27 @@ Zsh (macOS default)
 
 Note: after setting the environment variable, you may need to restart your terminal/shell for the changes to take effect.
 
-Benchmarks
-----------
 
-+---------------+--------------------+--------------------+----------------------+
-| File Size     | Examples          | Downloader         | Premium Downloader   |
-+===============+====================+====================+======================+
-| Small Files   | 3, 4, 5           | 5/s                | 300/s               |
-+---------------+--------------------+--------------------+----------------------+
-| Medium Files  | 8-K               | 5/s                | 60/s                |
-+---------------+--------------------+--------------------+----------------------+
-| Large Files   | 10-K              | 3/s                | 5/s                 |
-+---------------+--------------------+--------------------+----------------------+
+.. list-table:: Benchmarks
+   :widths: 20 20 20 40
+   :header-rows: 1
+
+   * - File Size
+     - Examples
+     - Downloader
+     - Premium Downloader
+   * - Small Files
+     - 3, 4, 5
+     - 5/s
+     - 300/s
+   * - Medium Files
+     - 8-K
+     - 5/s
+     - 60/s
+   * - Large Files
+     - 10-K
+     - 3/s
+     - 5/s
 
 
 .. note::
