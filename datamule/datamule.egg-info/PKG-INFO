@@ -78,8 +78,9 @@ downloader.download_submissions(form='10-K', ticker='AAPL')
 ```
 
 ## Articles:
-- [Article: Creating Structured Datasets from SEC filings](https://medium.com/@jgfriedman99/how-to-create-alternative-datasets-using-datamule-d3a0192da8f6)
-- [Article: Deploy a Financial Chatbot in 5 Minutes](https://medium.com/@jgfriedman99/how-to-deploy-a-financial-chatbot-in-5-minutes-ef5eec973d4c)
+- [How to host the SEC Archive for $20/month ](https://medium.com/@jgfriedman99/how-to-host-the-sec-archive-for-20-month-da374cc3c3fb)
+- [Creating Structured Datasets from SEC filings](https://medium.com/@jgfriedman99/how-to-create-alternative-datasets-using-datamule-d3a0192da8f6)
+- [Deploy a Financial Chatbot in 5 Minutes](https://medium.com/@jgfriedman99/how-to-deploy-a-financial-chatbot-in-5-minutes-ef5eec973d4c)
 
 ## Contributing
 

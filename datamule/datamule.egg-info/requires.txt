@@ -12,10 +12,10 @@ pytz
 zstandard
 
 [all]
-pandas
-google-generativeai
 openai
 psutil
+pandas
+google-generativeai
 flask
 
 [dataset_builder]

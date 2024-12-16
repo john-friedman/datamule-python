@@ -53,6 +53,8 @@ Premium Downloader
                             # * Defaults to all dates from 2001-01-01 to present
     )
 
+
+
 Pricing
 =======
 
@@ -128,6 +130,11 @@ Benchmarks
 | Large Files   | 10-K              | 3/s                | 5/s               |
 +---------------+--------------------+--------------------+--------------------+
 
-Note 1: Premium Downloader may be much faster depending on your laptop's specs and internet connection.
+.. note::
+    Premium Downloader may be much faster depending on your laptop's specs and internet connection.
 
-Note 2: Premium Downloader will be updated soon to be 10-100x faster.
+.. note::
+    Premium Downloader is in beta and may have bugs. To check for errors go to output_dir/errors.json
+
+.. note::
+    Premium Downloader will be updated soon to be 10-100x faster.
