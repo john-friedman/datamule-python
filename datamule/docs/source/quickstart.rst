@@ -5,6 +5,7 @@ Downloading submissions (Free)
 ------------------------------
 
 .. code-block:: python
+
     from datamule import Downloader
     downloader = Downloader()
     downloader.download_filings(
@@ -18,6 +19,7 @@ Downloading submissions (Premium)
 ---------------------------------
 
 .. code-block:: python
+
     from datamule import PremiumDownloader
     downloader = PremiumDownloader(api_key="dm....")
     downloader.download_filings(
@@ -29,6 +31,7 @@ Downloading submissions (Premium)
 Parsing submissions
 -------------------
 .. code-block:: python
+    
     from datamule import Portfolio
     import pandas as pd
 

@@ -14,7 +14,7 @@ Core Functionality
 
 * **Real-time Monitoring**: Keep track of new EDGAR submissions using `Monitor <usage/monitor>`_.
 
-* **Interact with SEC Submissions**: Access, parse, and interact with SEC submissions using `Portfolio <usage/core_classes/portfolio>`, `Submission <usage/core_classes/submission>`, and `Document <usage/core_classes/document>`_.
+* **Interact with SEC Submissions**: Access, parse, and interact with SEC submissions using `Portfolio <usage/core_classes#portfolio>`_, `Submission <usage/core_classes#submission>`_, and `Document <usage/core_classes#document>`_.
 
 * **Custom Dataset Creation**: Build specialized datasets from unstructured SEC submission text using `DatasetBuilder <usage/dataset_builder>`_.
 
