@@ -29,26 +29,22 @@ jobs:
 
       - name: Clean and Build Documentation
         run: |
-          cd datamule-python/datamule/docs
-          rm -rf _build/
-          rm -rf build/
+          cd datamule/docs
           make clean
           make html
           ls -la
-          ls -la _build/ || true
           ls -la build/ || true
           
       - name: Check Build Directory
         run: |
           pwd
-          ls -la datamule/docs/_build/html || true
           ls -la datamule/docs/build/html || true
           
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./datamule-python/datamule/docs/build/html
+          publish_dir: ./datamule/docs/build/html
           force_orphan: true
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
