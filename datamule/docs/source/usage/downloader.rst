@@ -78,6 +78,9 @@ Benchmarks
      - 3/s
      - 5/s
 
+.. note::
+    Premium Downloader will be updated soon to be 10-100x faster.
+
 
 Pricing
 -------
@@ -148,5 +151,3 @@ Zsh (macOS default)
 .. note::
     Premium Downloader is in beta and may have bugs. To check for errors go to output_dir/errors.json
 
-.. note::
-    Premium Downloader will be updated soon to be 10-100x faster.
