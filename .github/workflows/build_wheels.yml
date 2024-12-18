@@ -86,4 +86,4 @@ jobs:
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
       working-directory: ./datamule
       run: |
-        twine upload dist/*
+        twine upload --verbose dist/*
