@@ -41,9 +41,6 @@ cython_directives = {
     'cdivision': True,
 }
 
-long_description = Path("../readme.rst").read_text(encoding='utf-8')
-license_text = Path("../LICENSE").read_text(encoding='utf-8')
-
 extras = {
     "mulebot": ['openai'],
     "mulebot_server": ['flask'],
@@ -56,11 +53,8 @@ extras["all"] = list(all_dependencies)
 setup(
     name="datamule",
     author="John Friedman",
-    version="0.414",
+    version="0.415",
     description="Making it easier to use SEC filings.",
-    long_description=long_description,
-    license=license_text,
-    long_description_content_type='text/x-rst',
     packages=find_packages(include=['datamule*']) + ['datamule.dataset_builder'],
     url="https://github.com/john-friedman/datamule-python",
     install_requires=[
