@@ -50,6 +50,11 @@ jobs:
       with:
         python-version: '3.11'
     
+    - name: Install dependencies  # Added this step
+      run: |
+        python -m pip install --upgrade pip
+        pip install wheel setuptools cython twine
+    
     - name: Download all wheels
       uses: actions/download-artifact@v3
       with:
