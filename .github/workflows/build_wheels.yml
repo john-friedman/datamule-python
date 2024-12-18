@@ -22,21 +22,22 @@ jobs:
       with:
         python-version: ${{ matrix.python-version }}
     
-    - name: Install dependencies
+    - name: Install cibuildwheel
       run: |
         python -m pip install --upgrade pip
-        pip install wheel setuptools cython twine
+        pip install cibuildwheel
     
-    - name: Build wheel
-      working-directory: ./datamule
+    - name: Build wheels
       run: |
-        python setup.py bdist_wheel
+        python -m cibuildwheel --output-dir wheelhouse datamule
+      env:
+        CIBW_BUILD: "cp38-* cp39-* cp310-* cp311-*"
     
-    - name: Store wheels
+    - name: Upload wheels
       uses: actions/upload-artifact@v3
       with:
         name: wheels
-        path: datamule/dist/*.whl
+        path: ./wheelhouse/*.whl
 
   upload_pypi:
     needs: build_wheels
@@ -50,16 +51,16 @@ jobs:
       with:
         python-version: '3.11'
     
-    - name: Install dependencies  # Added this step
+    - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install wheel setuptools cython twine
+        pip install setuptools wheel cython twine
     
-    - name: Download all wheels
+    - name: Download wheels
       uses: actions/download-artifact@v3
       with:
         name: wheels
-        path: datamule/dist
+        path: dist
     
     - name: Build source distribution
       working-directory: ./datamule
