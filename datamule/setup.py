@@ -41,8 +41,8 @@ cython_directives = {
     'cdivision': True,
 }
 
-long_description = Path("../readme.md").read_text(encoding='utf-8')
-license_text = Path("../LICENSE").read_text(encoding='utf-8')
+long_description = Path("../../readme.md").read_text(encoding='utf-8')
+license_text = Path("../../LICENSE").read_text(encoding='utf-8')
 
 extras = {
     "mulebot": ['openai'],
@@ -56,7 +56,7 @@ extras["all"] = list(all_dependencies)
 setup(
     name="datamule",
     author="John Friedman",
-    version="0.405",
+    version="0.406",
     description="Making it easier to use SEC filings.",
     long_description=long_description,
     license=license_text,
