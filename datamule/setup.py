@@ -1,8 +1,10 @@
-from setuptools import setup, find_packages, Extension
+from setuptools import setup, Extension
 from Cython.Build import cythonize
 from pathlib import Path
 import platform
 import os
+from setuptools import find_namespace_packages  # Add this import
+
 
 # Platform-specific settings
 include_dirs = []
@@ -53,9 +55,9 @@ extras["all"] = list(all_dependencies)
 setup(
     name="datamule",
     author="John Friedman",
-    version="0.416",
+    version="0.417",
     description="Making it easier to use SEC filings.",
-    packages=find_packages(where=".", exclude=["tests*"]),
+    packages=find_namespace_packages(include=['datamule*']),
     url="https://github.com/john-friedman/datamule-python",
     install_requires=[
         'aiohttp',

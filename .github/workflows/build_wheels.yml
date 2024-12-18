@@ -30,7 +30,11 @@ jobs:
     - name: Build wheel
       working-directory: ./datamule
       run: |
+        echo "Current directory contents:"
+        ls -R
         python setup.py bdist_wheel
+        echo "Wheel contents:"
+        unzip -l dist/*.whl
     
     - name: Store wheels
       uses: actions/upload-artifact@v3
