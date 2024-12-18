@@ -1,11 +1,14 @@
 Changelog
 =========
 
+v0.417 (2024-12-17)
+- Fixed bug preventing installation on linux/macOS.
+
 Related update
 --------------
 - SEC Library cache resets every month. Unfortunately, some files were accessed before uploaded, causing a cache miss. This will be fixed on the next cache reset.
 
-v0.400 (2024-12-17)
+v0.400 (2024-12-16)
 --------------------
 - Major update. Reworked/removed some functions to improve performance and usability.
 - If functionality removed was critical to your workflow, please post an issue on GitHub. Apologies.
