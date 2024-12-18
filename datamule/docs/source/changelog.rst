@@ -1,5 +1,10 @@
 Changelog
 =========
+
+Related update
+--------------
+- SEC Library cache resets every month. Unfortunately, some files were accessed before uploaded, causing a cache miss. This will be fixed on the next cache reset.
+
 v0.400 (2024-12-17)
 --------------------
 - Major update. Reworked/removed some functions to improve performance and usability.

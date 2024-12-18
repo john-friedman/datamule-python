@@ -7,14 +7,13 @@ aiofiles
 polars
 setuptools
 selectolax
-cython
 pytz
 zstandard
 
 [all]
+pandas
 openai
 psutil
-pandas
 google-generativeai
 flask
 

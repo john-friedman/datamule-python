@@ -1,23 +1,26 @@
 from setuptools import setup, find_packages, Extension
 from Cython.Build import cythonize
 from pathlib import Path
+import platform
 import os
 
-# Add Windows SDK paths
-sdk_include_dirs = [
-    r"C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\ucrt",
-    r"C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared"
-]
+# Platform-specific settings
+include_dirs = []
+library_dirs = []
 
-# Add Windows SDK and UCRT lib paths
-sdk_lib_dirs = [
-    r"C:\Program Files (x86)\Windows Kits\10\Lib\10.0.22621.0\um\x64",    # For Windows SDK libs
-    r"C:\Program Files (x86)\Windows Kits\10\Lib\10.0.22621.0\ucrt\x64"   # For UCRT libs
-]
-
-# Add all existing SDK paths
-include_dirs = [path for path in sdk_include_dirs if os.path.exists(path)]
-library_dirs = [path for path in sdk_lib_dirs if os.path.exists(path)]
+# Only add Windows paths if on Windows
+if platform.system() == "Windows":
+    sdk_paths = [
+        r"C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\ucrt",
+        r"C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\shared",
+        r"C:\Program Files (x86)\Windows Kits\10\Include\10.0.22621.0\um"  # Added this for basetsd.h
+    ]
+    lib_paths = [
+        r"C:\Program Files (x86)\Windows Kits\10\Lib\10.0.22621.0\um\x64",
+        r"C:\Program Files (x86)\Windows Kits\10\Lib\10.0.22621.0\ucrt\x64"
+    ]
+    include_dirs = [path for path in sdk_paths if os.path.exists(path)]
+    library_dirs = [path for path in lib_paths if os.path.exists(path)]
 
 # Define Cython extension with compiler directives
 extensions = [
@@ -53,7 +56,7 @@ extras["all"] = list(all_dependencies)
 setup(
     name="datamule",
     author="John Friedman",
-    version="0.400",
+    version="0.401",
     description="Making it easier to use SEC filings.",
     long_description=long_description,
     license=license_text,
@@ -70,14 +73,16 @@ setup(
         'polars',
         'setuptools',
         'selectolax',
-        'cython',
         'pytz',
         'zstandard'
+    ],
+    setup_requires=[
+        'cython',
     ],
     ext_modules=cythonize(
         extensions,
         compiler_directives=cython_directives,
-        annotate=True  # Generates HTML annotation of Python interaction
+        annotate=True
     ),
     extras_require=extras,
     package_data={
