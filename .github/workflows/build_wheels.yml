@@ -3,7 +3,7 @@ name: Build and Upload to PyPI
 on:
   push:
     tags:
-      - 'v*'  # Triggers on version tags
+      - 'v*'
 
 jobs:
   build_wheels:
@@ -28,6 +28,7 @@ jobs:
         pip install wheel setuptools cython twine
     
     - name: Build wheel
+      working-directory: ./datamule
       run: |
         python setup.py bdist_wheel
     
@@ -35,7 +36,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: wheels
-        path: dist/*.whl
+        path: datamule/dist/*.whl
 
   upload_pypi:
     needs: build_wheels
@@ -53,14 +54,16 @@ jobs:
       uses: actions/download-artifact@v3
       with:
         name: wheels
-        path: dist
+        path: datamule/dist
     
     - name: Build source distribution
+      working-directory: ./datamule
       run: python setup.py sdist
     
     - name: Upload to PyPI
       env:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+      working-directory: ./datamule
       run: |
         twine upload dist/*
