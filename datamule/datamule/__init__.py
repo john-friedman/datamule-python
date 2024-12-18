@@ -12,12 +12,21 @@ def __getattr__(name):
     elif name == 'Parser':
         from .parser.document_parsing.sec_parser import Parser
         return Parser
+    elif name == 'Monitor':
+        from .monitor import Monitor
+        return Monitor
+    elif name == 'PackageUpdater':
+        from .packageupdater import PackageUpdater
+        return PackageUpdater
     elif name == 'Submission':
         from .submission import Submission
         return Submission
     elif name == 'Portfolio':
         from .portfolio import Portfolio
         return Portfolio
+    elif name == 'Document':
+        from .document import Document
+        return Document
     elif name == "parse_sgml_submission":
         from .parser.sgml_parsing.sgml_parser_cy import parse_sgml_submission
         return parse_sgml_submission

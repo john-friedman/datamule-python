@@ -1,6 +1,9 @@
 Changelog
 =========
 
+v0.418 (2024-12-17)
+- improved imports
+
 v0.417 (2024-12-17)
 - Fixed bug preventing installation on linux/macOS.
 
