@@ -42,7 +42,7 @@ MuleBot Integration
    I built MuleBot in a day to learn how tool-calling chatbots with artifacts work. I'm planning to make it useful in the future. Still fun to play with!
 
 Navigation
-=========
+==========
 
 .. toctree::
    :maxdepth: 2
@@ -53,3 +53,4 @@ Navigation
    usage/index
    examples
    changelog
+   api_key

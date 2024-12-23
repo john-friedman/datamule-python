@@ -1,10 +1,6 @@
 Datamule
 ========
 
-Major Update
-------------
-**Datamule has undergone a significant rework and is no longer backwards compatible. If this has affected your workflow please post on the github issues megathread. Sorry for the inconvenience.**
-
 .. image:: https://static.pepy.tech/badge/datamule
    :target: https://pepy.tech/project/datamule
    :alt: Downloads
@@ -40,14 +36,7 @@ Basic Installation
 
     pip install datamule
 
-Installation with all extras
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-.. code-block:: bash
-
-    pip install datamule[all]
-
-Download submissions example
+Basic Usage
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: python
@@ -57,22 +46,18 @@ Download submissions example
     downloader = Downloader()
     downloader.download_submissions(form='10-K', ticker='AAPL')
 
+API Key
+~~~~~~~
+
+You can get an API Key for `PremiumDownloader()` `here <https://datamule.xyz/dashboard>`_.
+
 Articles
 --------
 * `How to host the SEC Archive for $20/month <https://medium.com/@jgfriedman99/how-to-host-the-sec-archive-for-20-month-da374cc3c3fb>`_
 * `Creating Structured Datasets from SEC filings <https://medium.com/@jgfriedman99/how-to-create-alternative-datasets-using-datamule-d3a0192da8f6>`_
 * `Deploy a Financial Chatbot in 5 Minutes <https://medium.com/@jgfriedman99/how-to-deploy-a-financial-chatbot-in-5-minutes-ef5eec973d4c>`_
 
-Contributing
-------------
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
 License
 -------
 
 `MIT License <LICENSE>`_
-
-----
-
-For detailed usage examples, API reference, and advanced features, please visit our `documentation <https://john-friedman.github.io/datamule-python/>`_.
