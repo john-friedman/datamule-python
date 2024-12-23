@@ -1,36 +1,28 @@
-# Ignore __pycache__ directories
+# Python artifacts
 __pycache__/
-
-# Ignore build artifacts
 build/
 dist/
 *.egg-info/
 
-# Ignore Secrets directory
+# Environment and secrets
+*.venv
+*.env
 Secrets/
 
-# Ignore filings directories
+# Data directories
 *filings/
+*data/
 
-# Ignore CSV files, except company_tickers.csv
+# CSV files
 *.csv
 !*company_tickers.csv
 
-# Ignore examples, but allow .ipynb files
-/examples/*
-!/examples/*.ipynb
+# Explicitly allow datamule data directory and contents
+!datamule/datamule/data/
+!datamule/datamule/data/**
 
-# Ignore .venv and .env files
-*.venv
-*.env
-
-# Allow all files in \datamule\datamule\data
-!/datamule/datamule/data/**
-
-# Ignore data directories, except the specific one we want to allow
-*data/
-!/datamule/datamule/data/
-
+# Examples directory handling
 datamule/examples/*
 !datamule/examples/*.ipynb
-!datamule/examples/static/*
+!datamule/examples/static/
+!datamule/examples/static/**/*
