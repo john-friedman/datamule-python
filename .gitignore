@@ -33,3 +33,4 @@ Secrets/
 
 datamule/examples/*
 !datamule/examples/*.ipynb
+!datamule/examples/static/*
