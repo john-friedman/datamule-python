@@ -51,8 +51,14 @@ class Submission:
                 filepath.unlink()
 
     def document_type(self, document_type):
+        # Convert single document type to list for consistent handling
+        if isinstance(document_type, str):
+            document_types = [document_type]
+        else:
+            document_types = document_type
+
         for doc in self.metadata['documents']:
-            if doc['TYPE'] == document_type:
+            if doc['TYPE'] in document_types:
                 filename = doc.get('FILENAME')
                 if filename is None:
                     continue
