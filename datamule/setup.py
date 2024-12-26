@@ -3,15 +3,7 @@ from pathlib import Path
 import platform
 import os
 from setuptools import find_namespace_packages  # Add this import
-
-
-# First, try to install Cython if it's not available
-try:
-    from Cython.Build import cythonize
-except ImportError:
-    from setuptools import dist
-    dist.Distribution().fetch_build_eggs(['Cython'])
-    from Cython.Build import cythonize
+from Cython.Build import cythonize
 
 
 # Platform-specific settings
@@ -63,7 +55,7 @@ extras["all"] = list(all_dependencies)
 setup(
     name="datamule",
     author="John Friedman",
-    version="0.421",
+    version="0.422",
     description="Making it easier to use SEC filings.",
     packages=find_namespace_packages(include=['datamule*']),
     url="https://github.com/john-friedman/datamule-python",

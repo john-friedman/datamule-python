@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: ['3.8', '3.9', '3.10', '3.11']
+        python-version: ['3.8', '3.9', '3.10', '3.11', '3.12','3.13']
 
     steps:
     - uses: actions/checkout@v4
@@ -25,7 +25,9 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install wheel setuptools cython twine
+        python -m pip install --upgrade setuptools wheel
+        python -m pip install cython --no-build-isolation
+        pip install twine
     
     - name: Build wheel
       working-directory: ./datamule
@@ -57,7 +59,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install auditwheel wheel setuptools cython twine
+        python -m pip install auditwheel wheel setuptools cython twine
     
     - name: Download all wheels
       uses: actions/download-artifact@v3
