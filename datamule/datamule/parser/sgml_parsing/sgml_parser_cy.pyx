@@ -144,7 +144,7 @@ cdef class SECDocumentParser(BaseParser):
     
     cpdef parse_content(self, str content):
         cdef:
-            dict header_data = {}
+            dict submission_data = {}
             list documents = []
             dict current_document = {}
             list text_buffer = []
@@ -154,11 +154,17 @@ cdef class SECDocumentParser(BaseParser):
             bint in_sec_document = True
             str line, stripped
             tuple tag_content
+
+            list tag_stack = []  # Stack to track nested tags
+            dict current_dict = submission_data  # Reference to current nesting level
         
         lines = content.splitlines(keepends=True)
         
         for line in lines:
-            stripped = line.strip()
+            if in_header:
+                stripped = line.rstrip()
+            else:
+                stripped = line.strip()
             
             if stripped == '</SEC-DOCUMENT>':
                 in_sec_document = False
@@ -198,10 +204,26 @@ cdef class SECDocumentParser(BaseParser):
                     text_buffer.append(line)
                     
             elif in_header:
-                # Special handling for SEC header format
                 if ':' in stripped:
                     key, value = stripped.split(':', 1)
-                    header_data[key.strip()] = value.strip()
+                    value = value.strip()
+                    key = key.strip()
+                    current_tabs = stripped.count('\t')
+                    
+                    if not value:  # Empty value indicates a tag
+                        # If we have more tags than our current tab level, we need to close them
+                        while len(tag_stack) > current_tabs:
+                            tag_stack.pop()
+                            
+                        # Add new tag
+                        tag_stack.append(key)
+                        current_dict = submission_data
+                        for tag in tag_stack[:-1]:  # Navigate to parent
+                            current_dict = current_dict[tag]
+                        current_dict[key] = {}
+                        current_dict = current_dict[key]
+                    else:  # Normal key-value pair
+                        current_dict[key] = value
             else:
                 if stripped and stripped[0] == '<':  # Only try to extract if non-empty and starts with <
                     tag_content = self._extract_tag_content(stripped)
@@ -211,7 +233,7 @@ cdef class SECDocumentParser(BaseParser):
                             current_document[key] = value
         
         metadata = {
-            'header': header_data,
+            'submission': submission_data,
             'documents': documents
         }
         

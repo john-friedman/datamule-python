@@ -2235,6 +2235,15 @@ static CYTHON_INLINE int __Pyx_PyUnicode_ContainsTF(PyObject* substring, PyObjec
     return unlikely(result < 0) ? result : (result == (eq == Py_EQ));
 }
 
+/* SliceTupleAndList.proto */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE PyObject* __Pyx_PyList_GetSlice(PyObject* src, Py_ssize_t start, Py_ssize_t stop);
+static CYTHON_INLINE PyObject* __Pyx_PyTuple_GetSlice(PyObject* src, Py_ssize_t start, Py_ssize_t stop);
+#else
+#define __Pyx_PyList_GetSlice(seq, start, stop)   PySequence_GetSlice(seq, start, stop)
+#define __Pyx_PyTuple_GetSlice(seq, start, stop)  PySequence_GetSlice(seq, start, stop)
+#endif
+
 /* SliceObject.proto */
 static CYTHON_INLINE PyObject* __Pyx_PyObject_GetSlice(
         PyObject* obj, Py_ssize_t cstart, Py_ssize_t cstop,
@@ -2660,15 +2669,16 @@ static const char __pyx_k__4[] = "/";
 static const char __pyx_k__5[] = "";
 static const char __pyx_k__6[] = "\n";
 static const char __pyx_k__8[] = ":";
+static const char __pyx_k__9[] = "\t";
 static const char __pyx_k_gc[] = "gc";
 static const char __pyx_k_io[] = "io";
 static const char __pyx_k_os[] = "os";
 static const char __pyx_k_uu[] = "uu";
 static const char __pyx_k_PDF[] = "<PDF>";
 static const char __pyx_k_XML[] = ".XML";
-static const char __pyx_k__14[] = ".";
-static const char __pyx_k__15[] = "*";
-static const char __pyx_k__35[] = "?";
+static const char __pyx_k__15[] = ".";
+static const char __pyx_k__16[] = "*";
+static const char __pyx_k__36[] = "?";
 static const char __pyx_k_get[] = "get";
 static const char __pyx_k_new[] = "__new__";
 static const char __pyx_k_pop[] = "pop";
@@ -2706,7 +2716,6 @@ static const char __pyx_k_TEXT_2[] = "</TEXT>";
 static const char __pyx_k_decode[] = "decode";
 static const char __pyx_k_dict_2[] = "_dict";
 static const char __pyx_k_enable[] = "enable";
-static const char __pyx_k_header[] = "header";
 static const char __pyx_k_import[] = "__import__";
 static const char __pyx_k_indent[] = "indent";
 static const char __pyx_k_length[] = "' (length: ";
@@ -2715,6 +2724,7 @@ static const char __pyx_k_parser[] = "parser";
 static const char __pyx_k_pickle[] = "pickle";
 static const char __pyx_k_reduce[] = "__reduce__";
 static const char __pyx_k_return[] = "return";
+static const char __pyx_k_rstrip[] = "rstrip";
 static const char __pyx_k_update[] = "update";
 static const char __pyx_k_BytesIO[] = "BytesIO";
 static const char __pyx_k_content[] = "content";
@@ -2818,6 +2828,7 @@ static __Pyx_CachedCFunction __pyx_umethod_PyDict_Type_get = {0, 0, 0, 0, 0};
 static __Pyx_CachedCFunction __pyx_umethod_PyList_Type_pop = {0, 0, 0, 0, 0};
 static __Pyx_CachedCFunction __pyx_umethod_PyUnicode_Type_index = {0, 0, 0, 0, 0};
 static __Pyx_CachedCFunction __pyx_umethod_PyUnicode_Type_partition = {0, 0, 0, 0, 0};
+static __Pyx_CachedCFunction __pyx_umethod_PyUnicode_Type_rstrip = {0, 0, 0, 0, 0};
 static __Pyx_CachedCFunction __pyx_umethod_PyUnicode_Type_strip = {0, 0, 0, 0, 0};
 static __Pyx_CachedCFunction __pyx_umethod_PyUnicode_Type_upper = {0, 0, 0, 0, 0};
 /* #### Code section: late_includes ### */
@@ -2984,15 +2995,16 @@ typedef struct {
   PyObject *__pyx_kp_u_XML;
   PyObject *__pyx_kp_u_XML_2;
   PyObject *__pyx_kp_u_XML_3;
-  PyObject *__pyx_kp_u__14;
-  PyObject *__pyx_n_s__15;
+  PyObject *__pyx_kp_u__15;
+  PyObject *__pyx_n_s__16;
   PyObject *__pyx_kp_u__2;
   PyObject *__pyx_kp_u__3;
-  PyObject *__pyx_n_s__35;
+  PyObject *__pyx_n_s__36;
   PyObject *__pyx_kp_u__4;
   PyObject *__pyx_kp_u__5;
   PyObject *__pyx_kp_u__6;
   PyObject *__pyx_kp_u__8;
+  PyObject *__pyx_kp_u__9;
   PyObject *__pyx_n_s_asyncio_coroutines;
   PyObject *__pyx_kp_u_begin;
   PyObject *__pyx_n_s_cline_in_traceback;
@@ -3019,7 +3031,6 @@ typedef struct {
   PyObject *__pyx_kp_u_gc;
   PyObject *__pyx_n_s_get;
   PyObject *__pyx_n_s_getstate;
-  PyObject *__pyx_n_u_header;
   PyObject *__pyx_n_s_import;
   PyObject *__pyx_n_s_indent;
   PyObject *__pyx_n_s_index;
@@ -3064,6 +3075,7 @@ typedef struct {
   PyObject *__pyx_n_s_reduce_cython;
   PyObject *__pyx_n_s_reduce_ex;
   PyObject *__pyx_n_s_return;
+  PyObject *__pyx_n_s_rstrip;
   PyObject *__pyx_n_s_sec_index;
   PyObject *__pyx_n_s_self;
   PyObject *__pyx_n_s_setstate;
@@ -3095,30 +3107,30 @@ typedef struct {
   PyObject *__pyx_int_184411033;
   PyObject *__pyx_tuple_;
   PyObject *__pyx_tuple__7;
-  PyObject *__pyx_tuple__9;
   PyObject *__pyx_tuple__10;
   PyObject *__pyx_tuple__11;
   PyObject *__pyx_tuple__12;
   PyObject *__pyx_tuple__13;
-  PyObject *__pyx_tuple__16;
-  PyObject *__pyx_tuple__18;
-  PyObject *__pyx_tuple__20;
-  PyObject *__pyx_tuple__27;
-  PyObject *__pyx_tuple__29;
-  PyObject *__pyx_tuple__31;
-  PyObject *__pyx_codeobj__17;
-  PyObject *__pyx_codeobj__19;
-  PyObject *__pyx_codeobj__21;
+  PyObject *__pyx_tuple__14;
+  PyObject *__pyx_tuple__17;
+  PyObject *__pyx_tuple__19;
+  PyObject *__pyx_tuple__21;
+  PyObject *__pyx_tuple__28;
+  PyObject *__pyx_tuple__30;
+  PyObject *__pyx_tuple__32;
+  PyObject *__pyx_codeobj__18;
+  PyObject *__pyx_codeobj__20;
   PyObject *__pyx_codeobj__22;
   PyObject *__pyx_codeobj__23;
   PyObject *__pyx_codeobj__24;
   PyObject *__pyx_codeobj__25;
   PyObject *__pyx_codeobj__26;
-  PyObject *__pyx_codeobj__28;
-  PyObject *__pyx_codeobj__30;
-  PyObject *__pyx_codeobj__32;
+  PyObject *__pyx_codeobj__27;
+  PyObject *__pyx_codeobj__29;
+  PyObject *__pyx_codeobj__31;
   PyObject *__pyx_codeobj__33;
   PyObject *__pyx_codeobj__34;
+  PyObject *__pyx_codeobj__35;
 } __pyx_mstate;
 
 #if CYTHON_USE_MODULE_STATE
@@ -3210,15 +3222,16 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_kp_u_XML);
   Py_CLEAR(clear_module_state->__pyx_kp_u_XML_2);
   Py_CLEAR(clear_module_state->__pyx_kp_u_XML_3);
-  Py_CLEAR(clear_module_state->__pyx_kp_u__14);
-  Py_CLEAR(clear_module_state->__pyx_n_s__15);
+  Py_CLEAR(clear_module_state->__pyx_kp_u__15);
+  Py_CLEAR(clear_module_state->__pyx_n_s__16);
   Py_CLEAR(clear_module_state->__pyx_kp_u__2);
   Py_CLEAR(clear_module_state->__pyx_kp_u__3);
-  Py_CLEAR(clear_module_state->__pyx_n_s__35);
+  Py_CLEAR(clear_module_state->__pyx_n_s__36);
   Py_CLEAR(clear_module_state->__pyx_kp_u__4);
   Py_CLEAR(clear_module_state->__pyx_kp_u__5);
   Py_CLEAR(clear_module_state->__pyx_kp_u__6);
   Py_CLEAR(clear_module_state->__pyx_kp_u__8);
+  Py_CLEAR(clear_module_state->__pyx_kp_u__9);
   Py_CLEAR(clear_module_state->__pyx_n_s_asyncio_coroutines);
   Py_CLEAR(clear_module_state->__pyx_kp_u_begin);
   Py_CLEAR(clear_module_state->__pyx_n_s_cline_in_traceback);
@@ -3245,7 +3258,6 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_kp_u_gc);
   Py_CLEAR(clear_module_state->__pyx_n_s_get);
   Py_CLEAR(clear_module_state->__pyx_n_s_getstate);
-  Py_CLEAR(clear_module_state->__pyx_n_u_header);
   Py_CLEAR(clear_module_state->__pyx_n_s_import);
   Py_CLEAR(clear_module_state->__pyx_n_s_indent);
   Py_CLEAR(clear_module_state->__pyx_n_s_index);
@@ -3290,6 +3302,7 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_n_s_reduce_cython);
   Py_CLEAR(clear_module_state->__pyx_n_s_reduce_ex);
   Py_CLEAR(clear_module_state->__pyx_n_s_return);
+  Py_CLEAR(clear_module_state->__pyx_n_s_rstrip);
   Py_CLEAR(clear_module_state->__pyx_n_s_sec_index);
   Py_CLEAR(clear_module_state->__pyx_n_s_self);
   Py_CLEAR(clear_module_state->__pyx_n_s_setstate);
@@ -3321,30 +3334,30 @@ static int __pyx_m_clear(PyObject *m) {
   Py_CLEAR(clear_module_state->__pyx_int_184411033);
   Py_CLEAR(clear_module_state->__pyx_tuple_);
   Py_CLEAR(clear_module_state->__pyx_tuple__7);
-  Py_CLEAR(clear_module_state->__pyx_tuple__9);
   Py_CLEAR(clear_module_state->__pyx_tuple__10);
   Py_CLEAR(clear_module_state->__pyx_tuple__11);
   Py_CLEAR(clear_module_state->__pyx_tuple__12);
   Py_CLEAR(clear_module_state->__pyx_tuple__13);
-  Py_CLEAR(clear_module_state->__pyx_tuple__16);
-  Py_CLEAR(clear_module_state->__pyx_tuple__18);
-  Py_CLEAR(clear_module_state->__pyx_tuple__20);
-  Py_CLEAR(clear_module_state->__pyx_tuple__27);
-  Py_CLEAR(clear_module_state->__pyx_tuple__29);
-  Py_CLEAR(clear_module_state->__pyx_tuple__31);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__17);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__19);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__21);
+  Py_CLEAR(clear_module_state->__pyx_tuple__14);
+  Py_CLEAR(clear_module_state->__pyx_tuple__17);
+  Py_CLEAR(clear_module_state->__pyx_tuple__19);
+  Py_CLEAR(clear_module_state->__pyx_tuple__21);
+  Py_CLEAR(clear_module_state->__pyx_tuple__28);
+  Py_CLEAR(clear_module_state->__pyx_tuple__30);
+  Py_CLEAR(clear_module_state->__pyx_tuple__32);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__18);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__20);
   Py_CLEAR(clear_module_state->__pyx_codeobj__22);
   Py_CLEAR(clear_module_state->__pyx_codeobj__23);
   Py_CLEAR(clear_module_state->__pyx_codeobj__24);
   Py_CLEAR(clear_module_state->__pyx_codeobj__25);
   Py_CLEAR(clear_module_state->__pyx_codeobj__26);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__28);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__30);
-  Py_CLEAR(clear_module_state->__pyx_codeobj__32);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__27);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__29);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__31);
   Py_CLEAR(clear_module_state->__pyx_codeobj__33);
   Py_CLEAR(clear_module_state->__pyx_codeobj__34);
+  Py_CLEAR(clear_module_state->__pyx_codeobj__35);
   return 0;
 }
 #endif
@@ -3414,15 +3427,16 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_kp_u_XML);
   Py_VISIT(traverse_module_state->__pyx_kp_u_XML_2);
   Py_VISIT(traverse_module_state->__pyx_kp_u_XML_3);
-  Py_VISIT(traverse_module_state->__pyx_kp_u__14);
-  Py_VISIT(traverse_module_state->__pyx_n_s__15);
+  Py_VISIT(traverse_module_state->__pyx_kp_u__15);
+  Py_VISIT(traverse_module_state->__pyx_n_s__16);
   Py_VISIT(traverse_module_state->__pyx_kp_u__2);
   Py_VISIT(traverse_module_state->__pyx_kp_u__3);
-  Py_VISIT(traverse_module_state->__pyx_n_s__35);
+  Py_VISIT(traverse_module_state->__pyx_n_s__36);
   Py_VISIT(traverse_module_state->__pyx_kp_u__4);
   Py_VISIT(traverse_module_state->__pyx_kp_u__5);
   Py_VISIT(traverse_module_state->__pyx_kp_u__6);
   Py_VISIT(traverse_module_state->__pyx_kp_u__8);
+  Py_VISIT(traverse_module_state->__pyx_kp_u__9);
   Py_VISIT(traverse_module_state->__pyx_n_s_asyncio_coroutines);
   Py_VISIT(traverse_module_state->__pyx_kp_u_begin);
   Py_VISIT(traverse_module_state->__pyx_n_s_cline_in_traceback);
@@ -3449,7 +3463,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_kp_u_gc);
   Py_VISIT(traverse_module_state->__pyx_n_s_get);
   Py_VISIT(traverse_module_state->__pyx_n_s_getstate);
-  Py_VISIT(traverse_module_state->__pyx_n_u_header);
   Py_VISIT(traverse_module_state->__pyx_n_s_import);
   Py_VISIT(traverse_module_state->__pyx_n_s_indent);
   Py_VISIT(traverse_module_state->__pyx_n_s_index);
@@ -3494,6 +3507,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_n_s_reduce_cython);
   Py_VISIT(traverse_module_state->__pyx_n_s_reduce_ex);
   Py_VISIT(traverse_module_state->__pyx_n_s_return);
+  Py_VISIT(traverse_module_state->__pyx_n_s_rstrip);
   Py_VISIT(traverse_module_state->__pyx_n_s_sec_index);
   Py_VISIT(traverse_module_state->__pyx_n_s_self);
   Py_VISIT(traverse_module_state->__pyx_n_s_setstate);
@@ -3525,30 +3539,30 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   Py_VISIT(traverse_module_state->__pyx_int_184411033);
   Py_VISIT(traverse_module_state->__pyx_tuple_);
   Py_VISIT(traverse_module_state->__pyx_tuple__7);
-  Py_VISIT(traverse_module_state->__pyx_tuple__9);
   Py_VISIT(traverse_module_state->__pyx_tuple__10);
   Py_VISIT(traverse_module_state->__pyx_tuple__11);
   Py_VISIT(traverse_module_state->__pyx_tuple__12);
   Py_VISIT(traverse_module_state->__pyx_tuple__13);
-  Py_VISIT(traverse_module_state->__pyx_tuple__16);
-  Py_VISIT(traverse_module_state->__pyx_tuple__18);
-  Py_VISIT(traverse_module_state->__pyx_tuple__20);
-  Py_VISIT(traverse_module_state->__pyx_tuple__27);
-  Py_VISIT(traverse_module_state->__pyx_tuple__29);
-  Py_VISIT(traverse_module_state->__pyx_tuple__31);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__17);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__19);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__21);
+  Py_VISIT(traverse_module_state->__pyx_tuple__14);
+  Py_VISIT(traverse_module_state->__pyx_tuple__17);
+  Py_VISIT(traverse_module_state->__pyx_tuple__19);
+  Py_VISIT(traverse_module_state->__pyx_tuple__21);
+  Py_VISIT(traverse_module_state->__pyx_tuple__28);
+  Py_VISIT(traverse_module_state->__pyx_tuple__30);
+  Py_VISIT(traverse_module_state->__pyx_tuple__32);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__18);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__20);
   Py_VISIT(traverse_module_state->__pyx_codeobj__22);
   Py_VISIT(traverse_module_state->__pyx_codeobj__23);
   Py_VISIT(traverse_module_state->__pyx_codeobj__24);
   Py_VISIT(traverse_module_state->__pyx_codeobj__25);
   Py_VISIT(traverse_module_state->__pyx_codeobj__26);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__28);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__30);
-  Py_VISIT(traverse_module_state->__pyx_codeobj__32);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__27);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__29);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__31);
   Py_VISIT(traverse_module_state->__pyx_codeobj__33);
   Py_VISIT(traverse_module_state->__pyx_codeobj__34);
+  Py_VISIT(traverse_module_state->__pyx_codeobj__35);
   return 0;
 }
 #endif
@@ -3714,15 +3728,16 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_kp_u_XML __pyx_mstate_global->__pyx_kp_u_XML
 #define __pyx_kp_u_XML_2 __pyx_mstate_global->__pyx_kp_u_XML_2
 #define __pyx_kp_u_XML_3 __pyx_mstate_global->__pyx_kp_u_XML_3
-#define __pyx_kp_u__14 __pyx_mstate_global->__pyx_kp_u__14
-#define __pyx_n_s__15 __pyx_mstate_global->__pyx_n_s__15
+#define __pyx_kp_u__15 __pyx_mstate_global->__pyx_kp_u__15
+#define __pyx_n_s__16 __pyx_mstate_global->__pyx_n_s__16
 #define __pyx_kp_u__2 __pyx_mstate_global->__pyx_kp_u__2
 #define __pyx_kp_u__3 __pyx_mstate_global->__pyx_kp_u__3
-#define __pyx_n_s__35 __pyx_mstate_global->__pyx_n_s__35
+#define __pyx_n_s__36 __pyx_mstate_global->__pyx_n_s__36
 #define __pyx_kp_u__4 __pyx_mstate_global->__pyx_kp_u__4
 #define __pyx_kp_u__5 __pyx_mstate_global->__pyx_kp_u__5
 #define __pyx_kp_u__6 __pyx_mstate_global->__pyx_kp_u__6
 #define __pyx_kp_u__8 __pyx_mstate_global->__pyx_kp_u__8
+#define __pyx_kp_u__9 __pyx_mstate_global->__pyx_kp_u__9
 #define __pyx_n_s_asyncio_coroutines __pyx_mstate_global->__pyx_n_s_asyncio_coroutines
 #define __pyx_kp_u_begin __pyx_mstate_global->__pyx_kp_u_begin
 #define __pyx_n_s_cline_in_traceback __pyx_mstate_global->__pyx_n_s_cline_in_traceback
@@ -3749,7 +3764,6 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_kp_u_gc __pyx_mstate_global->__pyx_kp_u_gc
 #define __pyx_n_s_get __pyx_mstate_global->__pyx_n_s_get
 #define __pyx_n_s_getstate __pyx_mstate_global->__pyx_n_s_getstate
-#define __pyx_n_u_header __pyx_mstate_global->__pyx_n_u_header
 #define __pyx_n_s_import __pyx_mstate_global->__pyx_n_s_import
 #define __pyx_n_s_indent __pyx_mstate_global->__pyx_n_s_indent
 #define __pyx_n_s_index __pyx_mstate_global->__pyx_n_s_index
@@ -3794,6 +3808,7 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_n_s_reduce_cython __pyx_mstate_global->__pyx_n_s_reduce_cython
 #define __pyx_n_s_reduce_ex __pyx_mstate_global->__pyx_n_s_reduce_ex
 #define __pyx_n_s_return __pyx_mstate_global->__pyx_n_s_return
+#define __pyx_n_s_rstrip __pyx_mstate_global->__pyx_n_s_rstrip
 #define __pyx_n_s_sec_index __pyx_mstate_global->__pyx_n_s_sec_index
 #define __pyx_n_s_self __pyx_mstate_global->__pyx_n_s_self
 #define __pyx_n_s_setstate __pyx_mstate_global->__pyx_n_s_setstate
@@ -3825,30 +3840,30 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #define __pyx_int_184411033 __pyx_mstate_global->__pyx_int_184411033
 #define __pyx_tuple_ __pyx_mstate_global->__pyx_tuple_
 #define __pyx_tuple__7 __pyx_mstate_global->__pyx_tuple__7
-#define __pyx_tuple__9 __pyx_mstate_global->__pyx_tuple__9
 #define __pyx_tuple__10 __pyx_mstate_global->__pyx_tuple__10
 #define __pyx_tuple__11 __pyx_mstate_global->__pyx_tuple__11
 #define __pyx_tuple__12 __pyx_mstate_global->__pyx_tuple__12
 #define __pyx_tuple__13 __pyx_mstate_global->__pyx_tuple__13
-#define __pyx_tuple__16 __pyx_mstate_global->__pyx_tuple__16
-#define __pyx_tuple__18 __pyx_mstate_global->__pyx_tuple__18
-#define __pyx_tuple__20 __pyx_mstate_global->__pyx_tuple__20
-#define __pyx_tuple__27 __pyx_mstate_global->__pyx_tuple__27
-#define __pyx_tuple__29 __pyx_mstate_global->__pyx_tuple__29
-#define __pyx_tuple__31 __pyx_mstate_global->__pyx_tuple__31
-#define __pyx_codeobj__17 __pyx_mstate_global->__pyx_codeobj__17
-#define __pyx_codeobj__19 __pyx_mstate_global->__pyx_codeobj__19
-#define __pyx_codeobj__21 __pyx_mstate_global->__pyx_codeobj__21
+#define __pyx_tuple__14 __pyx_mstate_global->__pyx_tuple__14
+#define __pyx_tuple__17 __pyx_mstate_global->__pyx_tuple__17
+#define __pyx_tuple__19 __pyx_mstate_global->__pyx_tuple__19
+#define __pyx_tuple__21 __pyx_mstate_global->__pyx_tuple__21
+#define __pyx_tuple__28 __pyx_mstate_global->__pyx_tuple__28
+#define __pyx_tuple__30 __pyx_mstate_global->__pyx_tuple__30
+#define __pyx_tuple__32 __pyx_mstate_global->__pyx_tuple__32
+#define __pyx_codeobj__18 __pyx_mstate_global->__pyx_codeobj__18
+#define __pyx_codeobj__20 __pyx_mstate_global->__pyx_codeobj__20
 #define __pyx_codeobj__22 __pyx_mstate_global->__pyx_codeobj__22
 #define __pyx_codeobj__23 __pyx_mstate_global->__pyx_codeobj__23
 #define __pyx_codeobj__24 __pyx_mstate_global->__pyx_codeobj__24
 #define __pyx_codeobj__25 __pyx_mstate_global->__pyx_codeobj__25
 #define __pyx_codeobj__26 __pyx_mstate_global->__pyx_codeobj__26
-#define __pyx_codeobj__28 __pyx_mstate_global->__pyx_codeobj__28
-#define __pyx_codeobj__30 __pyx_mstate_global->__pyx_codeobj__30
-#define __pyx_codeobj__32 __pyx_mstate_global->__pyx_codeobj__32
+#define __pyx_codeobj__27 __pyx_mstate_global->__pyx_codeobj__27
+#define __pyx_codeobj__29 __pyx_mstate_global->__pyx_codeobj__29
+#define __pyx_codeobj__31 __pyx_mstate_global->__pyx_codeobj__31
 #define __pyx_codeobj__33 __pyx_mstate_global->__pyx_codeobj__33
 #define __pyx_codeobj__34 __pyx_mstate_global->__pyx_codeobj__34
+#define __pyx_codeobj__35 __pyx_mstate_global->__pyx_codeobj__35
 /* #### Code section: module_code ### */
 
 /* "cpython/complex.pxd":19
@@ -7525,7 +7540,7 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_16Su
  * 
  *     cpdef parse_content(self, str content):             # <<<<<<<<<<<<<<
  *         cdef:
- *             dict header_data = {}
+ *             dict submission_data = {}
  */
 
 static PyObject *__pyx_pw_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SECDocumentParser_1parse_content(PyObject *__pyx_v_self, 
@@ -7536,7 +7551,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ); /*proto*/
 static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SECDocumentParser_parse_content(struct __pyx_obj_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_SECDocumentParser *__pyx_v_self, PyObject *__pyx_v_content, int __pyx_skip_dispatch) {
-  PyObject *__pyx_v_header_data = 0;
+  PyObject *__pyx_v_submission_data = 0;
   PyObject *__pyx_v_documents = 0;
   PyObject *__pyx_v_current_document = 0;
   PyObject *__pyx_v_text_buffer = 0;
@@ -7547,9 +7562,13 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
   PyObject *__pyx_v_line = 0;
   PyObject *__pyx_v_stripped = 0;
   PyObject *__pyx_v_tag_content = 0;
+  PyObject *__pyx_v_tag_stack = 0;
+  PyObject *__pyx_v_current_dict = 0;
   PyObject *__pyx_v_lines = NULL;
   PyObject *__pyx_v_key = NULL;
   PyObject *__pyx_v_value = NULL;
+  PyObject *__pyx_v_current_tabs = NULL;
+  PyObject *__pyx_v_tag = NULL;
   PyObject *__pyx_v_metadata = NULL;
   PyObject *__pyx_v_f = NULL;
   PyObject *__pyx_r = NULL;
@@ -7565,7 +7584,7 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
   int __pyx_t_9;
   PyObject *__pyx_t_10 = NULL;
   int __pyx_t_11;
-  PyObject *__pyx_t_12 = NULL;
+  Py_ssize_t __pyx_t_12;
   Py_UCS4 __pyx_t_13;
   PyObject *__pyx_t_14 = NULL;
   PyObject *__pyx_t_15 = NULL;
@@ -7633,18 +7652,18 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
   /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":147
  *     cpdef parse_content(self, str content):
  *         cdef:
- *             dict header_data = {}             # <<<<<<<<<<<<<<
+ *             dict submission_data = {}             # <<<<<<<<<<<<<<
  *             list documents = []
  *             dict current_document = {}
  */
   __pyx_t_1 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 147, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_v_header_data = ((PyObject*)__pyx_t_1);
+  __pyx_v_submission_data = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
   /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":148
  *         cdef:
- *             dict header_data = {}
+ *             dict submission_data = {}
  *             list documents = []             # <<<<<<<<<<<<<<
  *             dict current_document = {}
  *             list text_buffer = []
@@ -7655,7 +7674,7 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
   __pyx_t_1 = 0;
 
   /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":149
- *             dict header_data = {}
+ *             dict submission_data = {}
  *             list documents = []
  *             dict current_document = {}             # <<<<<<<<<<<<<<
  *             list text_buffer = []
@@ -7717,37 +7736,59 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
   /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":158
  *             tuple tag_content
  * 
+ *             list tag_stack = []  # Stack to track nested tags             # <<<<<<<<<<<<<<
+ *             dict current_dict = submission_data  # Reference to current nesting level
+ * 
+ */
+  __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 158, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_v_tag_stack = ((PyObject*)__pyx_t_1);
+  __pyx_t_1 = 0;
+
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":159
+ * 
+ *             list tag_stack = []  # Stack to track nested tags
+ *             dict current_dict = submission_data  # Reference to current nesting level             # <<<<<<<<<<<<<<
+ * 
+ *         lines = content.splitlines(keepends=True)
+ */
+  __Pyx_INCREF(__pyx_v_submission_data);
+  __pyx_v_current_dict = __pyx_v_submission_data;
+
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":161
+ *             dict current_dict = submission_data  # Reference to current nesting level
+ * 
  *         lines = content.splitlines(keepends=True)             # <<<<<<<<<<<<<<
  * 
  *         for line in lines:
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_content, __pyx_n_s_splitlines); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 158, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_content, __pyx_n_s_splitlines); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 161, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 158, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 161, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_keepends, Py_True) < 0) __PYX_ERR(0, 158, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 158, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_keepends, Py_True) < 0) __PYX_ERR(0, 161, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 161, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_v_lines = __pyx_t_3;
   __pyx_t_3 = 0;
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":160
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":163
  *         lines = content.splitlines(keepends=True)
  * 
  *         for line in lines:             # <<<<<<<<<<<<<<
- *             stripped = line.strip()
- * 
+ *             if in_header:
+ *                 stripped = line.rstrip()
  */
   if (likely(PyList_CheckExact(__pyx_v_lines)) || PyTuple_CheckExact(__pyx_v_lines)) {
     __pyx_t_3 = __pyx_v_lines; __Pyx_INCREF(__pyx_t_3);
     __pyx_t_6 = 0;
     __pyx_t_7 = NULL;
   } else {
-    __pyx_t_6 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_lines); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 160, __pyx_L1_error)
+    __pyx_t_6 = -1; __pyx_t_3 = PyObject_GetIter(__pyx_v_lines); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 163, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    __pyx_t_7 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 160, __pyx_L1_error)
+    __pyx_t_7 = __Pyx_PyObject_GetIterNextFunc(__pyx_t_3); if (unlikely(!__pyx_t_7)) __PYX_ERR(0, 163, __pyx_L1_error)
   }
   for (;;) {
     if (likely(!__pyx_t_7)) {
@@ -7755,28 +7796,28 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
         {
           Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_3);
           #if !CYTHON_ASSUME_SAFE_MACROS
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 160, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 163, __pyx_L1_error)
           #endif
           if (__pyx_t_6 >= __pyx_temp) break;
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_2); __pyx_t_6++; if (unlikely((0 < 0))) __PYX_ERR(0, 160, __pyx_L1_error)
+        __pyx_t_2 = PyList_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_2); __pyx_t_6++; if (unlikely((0 < 0))) __PYX_ERR(0, 163, __pyx_L1_error)
         #else
-        __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 160, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 163, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       } else {
         {
           Py_ssize_t __pyx_temp = __Pyx_PyTuple_GET_SIZE(__pyx_t_3);
           #if !CYTHON_ASSUME_SAFE_MACROS
-          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 160, __pyx_L1_error)
+          if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 163, __pyx_L1_error)
           #endif
           if (__pyx_t_6 >= __pyx_temp) break;
         }
         #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_2); __pyx_t_6++; if (unlikely((0 < 0))) __PYX_ERR(0, 160, __pyx_L1_error)
+        __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_3, __pyx_t_6); __Pyx_INCREF(__pyx_t_2); __pyx_t_6++; if (unlikely((0 < 0))) __PYX_ERR(0, 163, __pyx_L1_error)
         #else
-        __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 160, __pyx_L1_error)
+        __pyx_t_2 = __Pyx_PySequence_ITEM(__pyx_t_3, __pyx_t_6); __pyx_t_6++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 163, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         #endif
       }
@@ -7786,40 +7827,75 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
         PyObject* exc_type = PyErr_Occurred();
         if (exc_type) {
           if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-          else __PYX_ERR(0, 160, __pyx_L1_error)
+          else __PYX_ERR(0, 163, __pyx_L1_error)
         }
         break;
       }
       __Pyx_GOTREF(__pyx_t_2);
     }
-    if (!(likely(PyUnicode_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("unicode", __pyx_t_2))) __PYX_ERR(0, 160, __pyx_L1_error)
+    if (!(likely(PyUnicode_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("unicode", __pyx_t_2))) __PYX_ERR(0, 163, __pyx_L1_error)
     __Pyx_XDECREF_SET(__pyx_v_line, ((PyObject*)__pyx_t_2));
     __pyx_t_2 = 0;
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":161
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":164
  * 
  *         for line in lines:
- *             stripped = line.strip()             # <<<<<<<<<<<<<<
+ *             if in_header:             # <<<<<<<<<<<<<<
+ *                 stripped = line.rstrip()
+ *             else:
+ */
+    if (__pyx_v_in_header) {
+
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":165
+ *         for line in lines:
+ *             if in_header:
+ *                 stripped = line.rstrip()             # <<<<<<<<<<<<<<
+ *             else:
+ *                 stripped = line.strip()
+ */
+      __pyx_t_2 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PyUnicode_Type_rstrip, __pyx_v_line); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 165, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      if (!(likely(PyUnicode_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("unicode", __pyx_t_2))) __PYX_ERR(0, 165, __pyx_L1_error)
+      __Pyx_XDECREF_SET(__pyx_v_stripped, ((PyObject*)__pyx_t_2));
+      __pyx_t_2 = 0;
+
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":164
+ * 
+ *         for line in lines:
+ *             if in_header:             # <<<<<<<<<<<<<<
+ *                 stripped = line.rstrip()
+ *             else:
+ */
+      goto __pyx_L5;
+    }
+
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":167
+ *                 stripped = line.rstrip()
+ *             else:
+ *                 stripped = line.strip()             # <<<<<<<<<<<<<<
  * 
  *             if stripped == '</SEC-DOCUMENT>':
  */
-    __pyx_t_2 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PyUnicode_Type_strip, __pyx_v_line); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 161, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    if (!(likely(PyUnicode_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("unicode", __pyx_t_2))) __PYX_ERR(0, 161, __pyx_L1_error)
-    __Pyx_XDECREF_SET(__pyx_v_stripped, ((PyObject*)__pyx_t_2));
-    __pyx_t_2 = 0;
+    /*else*/ {
+      __pyx_t_2 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PyUnicode_Type_strip, __pyx_v_line); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 167, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_2);
+      if (!(likely(PyUnicode_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("unicode", __pyx_t_2))) __PYX_ERR(0, 167, __pyx_L1_error)
+      __Pyx_XDECREF_SET(__pyx_v_stripped, ((PyObject*)__pyx_t_2));
+      __pyx_t_2 = 0;
+    }
+    __pyx_L5:;
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":163
- *             stripped = line.strip()
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":169
+ *                 stripped = line.strip()
  * 
  *             if stripped == '</SEC-DOCUMENT>':             # <<<<<<<<<<<<<<
  *                 in_sec_document = False
  *                 continue
  */
-    __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_v_stripped, __pyx_kp_u_SEC_DOCUMENT, Py_EQ)); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 163, __pyx_L1_error)
+    __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_v_stripped, __pyx_kp_u_SEC_DOCUMENT, Py_EQ)); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 169, __pyx_L1_error)
     if (__pyx_t_8) {
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":164
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":170
  * 
  *             if stripped == '</SEC-DOCUMENT>':
  *                 in_sec_document = False             # <<<<<<<<<<<<<<
@@ -7828,7 +7904,7 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
  */
       __pyx_v_in_sec_document = 0;
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":165
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":171
  *             if stripped == '</SEC-DOCUMENT>':
  *                 in_sec_document = False
  *                 continue             # <<<<<<<<<<<<<<
@@ -7837,8 +7913,8 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
  */
       goto __pyx_L3_continue;
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":163
- *             stripped = line.strip()
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":169
+ *                 stripped = line.strip()
  * 
  *             if stripped == '</SEC-DOCUMENT>':             # <<<<<<<<<<<<<<
  *                 in_sec_document = False
@@ -7846,7 +7922,7 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
  */
     }
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":167
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":173
  *                 continue
  * 
  *             if not in_sec_document:             # <<<<<<<<<<<<<<
@@ -7856,7 +7932,7 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
     __pyx_t_8 = (!__pyx_v_in_sec_document);
     if (__pyx_t_8) {
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":168
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":174
  * 
  *             if not in_sec_document:
  *                 continue             # <<<<<<<<<<<<<<
@@ -7865,7 +7941,7 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
  */
       goto __pyx_L3_continue;
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":167
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":173
  *                 continue
  * 
  *             if not in_sec_document:             # <<<<<<<<<<<<<<
@@ -7874,7 +7950,7 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
  */
     }
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":170
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":176
  *                 continue
  * 
  *             if stripped.startswith('<SEC-HEADER>'):             # <<<<<<<<<<<<<<
@@ -7883,12 +7959,12 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
  */
     if (unlikely(__pyx_v_stripped == Py_None)) {
       PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "startswith");
-      __PYX_ERR(0, 170, __pyx_L1_error)
+      __PYX_ERR(0, 176, __pyx_L1_error)
     }
-    __pyx_t_8 = __Pyx_PyUnicode_Tailmatch(__pyx_v_stripped, __pyx_kp_u_SEC_HEADER, 0, PY_SSIZE_T_MAX, -1); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 170, __pyx_L1_error)
+    __pyx_t_8 = __Pyx_PyUnicode_Tailmatch(__pyx_v_stripped, __pyx_kp_u_SEC_HEADER, 0, PY_SSIZE_T_MAX, -1); if (unlikely(__pyx_t_8 == ((int)-1))) __PYX_ERR(0, 176, __pyx_L1_error)
     if (__pyx_t_8) {
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":171
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":177
  * 
  *             if stripped.startswith('<SEC-HEADER>'):
  *                 in_header = True             # <<<<<<<<<<<<<<
@@ -7897,7 +7973,7 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
  */
       __pyx_v_in_header = 1;
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":172
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":178
  *             if stripped.startswith('<SEC-HEADER>'):
  *                 in_header = True
  *                 continue             # <<<<<<<<<<<<<<
@@ -7906,7 +7982,7 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
  */
       goto __pyx_L3_continue;
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":170
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":176
  *                 continue
  * 
  *             if stripped.startswith('<SEC-HEADER>'):             # <<<<<<<<<<<<<<
@@ -7915,17 +7991,17 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
  */
     }
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":174
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":180
  *                 continue
  * 
  *             elif stripped == '</SEC-HEADER>':             # <<<<<<<<<<<<<<
  *                 in_header = False
  *                 continue
  */
-    __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_v_stripped, __pyx_kp_u_SEC_HEADER_2, Py_EQ)); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 174, __pyx_L1_error)
+    __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_v_stripped, __pyx_kp_u_SEC_HEADER_2, Py_EQ)); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 180, __pyx_L1_error)
     if (__pyx_t_8) {
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":175
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":181
  * 
  *             elif stripped == '</SEC-HEADER>':
  *                 in_header = False             # <<<<<<<<<<<<<<
@@ -7934,7 +8010,7 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
  */
       __pyx_v_in_header = 0;
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":176
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":182
  *             elif stripped == '</SEC-HEADER>':
  *                 in_header = False
  *                 continue             # <<<<<<<<<<<<<<
@@ -7943,7 +8019,7 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
  */
       goto __pyx_L3_continue;
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":174
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":180
  *                 continue
  * 
  *             elif stripped == '</SEC-HEADER>':             # <<<<<<<<<<<<<<
@@ -7952,17 +8028,17 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
  */
     }
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":178
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":184
  *                 continue
  * 
  *             elif stripped == '<DOCUMENT>':             # <<<<<<<<<<<<<<
  *                 in_document = True
  *                 current_document = {}
  */
-    __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_v_stripped, __pyx_kp_u_DOCUMENT, Py_EQ)); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 178, __pyx_L1_error)
+    __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_v_stripped, __pyx_kp_u_DOCUMENT, Py_EQ)); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 184, __pyx_L1_error)
     if (__pyx_t_8) {
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":179
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":185
  * 
  *             elif stripped == '<DOCUMENT>':
  *                 in_document = True             # <<<<<<<<<<<<<<
@@ -7971,84 +8047,84 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
  */
       __pyx_v_in_document = 1;
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":180
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":186
  *             elif stripped == '<DOCUMENT>':
  *                 in_document = True
  *                 current_document = {}             # <<<<<<<<<<<<<<
  *                 text_buffer = []
  * 
  */
-      __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 180, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 186, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF_SET(__pyx_v_current_document, ((PyObject*)__pyx_t_2));
       __pyx_t_2 = 0;
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":181
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":187
  *                 in_document = True
  *                 current_document = {}
  *                 text_buffer = []             # <<<<<<<<<<<<<<
  * 
  *             elif stripped == '</DOCUMENT>':
  */
-      __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 181, __pyx_L1_error)
+      __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 187, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF_SET(__pyx_v_text_buffer, ((PyObject*)__pyx_t_2));
       __pyx_t_2 = 0;
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":178
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":184
  *                 continue
  * 
  *             elif stripped == '<DOCUMENT>':             # <<<<<<<<<<<<<<
  *                 in_document = True
  *                 current_document = {}
  */
-      goto __pyx_L7;
+      goto __pyx_L8;
     }
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":183
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":189
  *                 text_buffer = []
  * 
  *             elif stripped == '</DOCUMENT>':             # <<<<<<<<<<<<<<
  *                 documents.append(current_document)
  *                 self._write_document(''.join(text_buffer), current_document)
  */
-    __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_v_stripped, __pyx_kp_u_DOCUMENT_2, Py_EQ)); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 183, __pyx_L1_error)
+    __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_v_stripped, __pyx_kp_u_DOCUMENT_2, Py_EQ)); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 189, __pyx_L1_error)
     if (__pyx_t_8) {
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":184
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":190
  * 
  *             elif stripped == '</DOCUMENT>':
  *                 documents.append(current_document)             # <<<<<<<<<<<<<<
  *                 self._write_document(''.join(text_buffer), current_document)
  *                 text_buffer = []
  */
-      __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_documents, __pyx_v_current_document); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 184, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_documents, __pyx_v_current_document); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 190, __pyx_L1_error)
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":185
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":191
  *             elif stripped == '</DOCUMENT>':
  *                 documents.append(current_document)
  *                 self._write_document(''.join(text_buffer), current_document)             # <<<<<<<<<<<<<<
  *                 text_buffer = []
  *                 in_document = False
  */
-      __pyx_t_2 = PyUnicode_Join(__pyx_kp_u__5, __pyx_v_text_buffer); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 185, __pyx_L1_error)
+      __pyx_t_2 = PyUnicode_Join(__pyx_kp_u__5, __pyx_v_text_buffer); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 191, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
-      ((struct __pyx_vtabstruct_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_SECDocumentParser *)__pyx_v_self->__pyx_base.__pyx_vtab)->__pyx_base._write_document(((struct __pyx_obj_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_BaseParser *)__pyx_v_self), ((PyObject*)__pyx_t_2), __pyx_v_current_document); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 185, __pyx_L1_error)
+      ((struct __pyx_vtabstruct_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_SECDocumentParser *)__pyx_v_self->__pyx_base.__pyx_vtab)->__pyx_base._write_document(((struct __pyx_obj_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_BaseParser *)__pyx_v_self), ((PyObject*)__pyx_t_2), __pyx_v_current_document); if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 191, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":186
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":192
  *                 documents.append(current_document)
  *                 self._write_document(''.join(text_buffer), current_document)
  *                 text_buffer = []             # <<<<<<<<<<<<<<
  *                 in_document = False
  * 
  */
-      __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 186, __pyx_L1_error)
+      __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 192, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF_SET(__pyx_v_text_buffer, ((PyObject*)__pyx_t_2));
       __pyx_t_2 = 0;
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":187
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":193
  *                 self._write_document(''.join(text_buffer), current_document)
  *                 text_buffer = []
  *                 in_document = False             # <<<<<<<<<<<<<<
@@ -8057,27 +8133,27 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
  */
       __pyx_v_in_document = 0;
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":183
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":189
  *                 text_buffer = []
  * 
  *             elif stripped == '</DOCUMENT>':             # <<<<<<<<<<<<<<
  *                 documents.append(current_document)
  *                 self._write_document(''.join(text_buffer), current_document)
  */
-      goto __pyx_L7;
+      goto __pyx_L8;
     }
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":189
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":195
  *                 in_document = False
  * 
  *             elif stripped == '<TEXT>':             # <<<<<<<<<<<<<<
  *                 in_text = True
  *                 text_buffer = []
  */
-    __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_v_stripped, __pyx_kp_u_TEXT, Py_EQ)); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 189, __pyx_L1_error)
+    __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_v_stripped, __pyx_kp_u_TEXT, Py_EQ)); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 195, __pyx_L1_error)
     if (__pyx_t_8) {
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":190
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":196
  * 
  *             elif stripped == '<TEXT>':
  *                 in_text = True             # <<<<<<<<<<<<<<
@@ -8086,39 +8162,39 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
  */
       __pyx_v_in_text = 1;
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":191
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":197
  *             elif stripped == '<TEXT>':
  *                 in_text = True
  *                 text_buffer = []             # <<<<<<<<<<<<<<
  * 
  *             elif stripped == '</TEXT>':
  */
-      __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 191, __pyx_L1_error)
+      __pyx_t_2 = PyList_New(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 197, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_2);
       __Pyx_DECREF_SET(__pyx_v_text_buffer, ((PyObject*)__pyx_t_2));
       __pyx_t_2 = 0;
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":189
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":195
  *                 in_document = False
  * 
  *             elif stripped == '<TEXT>':             # <<<<<<<<<<<<<<
  *                 in_text = True
  *                 text_buffer = []
  */
-      goto __pyx_L7;
+      goto __pyx_L8;
     }
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":193
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":199
  *                 text_buffer = []
  * 
  *             elif stripped == '</TEXT>':             # <<<<<<<<<<<<<<
  *                 in_text = False
  * 
  */
-    __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_v_stripped, __pyx_kp_u_TEXT_2, Py_EQ)); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 193, __pyx_L1_error)
+    __pyx_t_8 = (__Pyx_PyUnicode_Equals(__pyx_v_stripped, __pyx_kp_u_TEXT_2, Py_EQ)); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 199, __pyx_L1_error)
     if (__pyx_t_8) {
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":194
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":200
  * 
  *             elif stripped == '</TEXT>':
  *                 in_text = False             # <<<<<<<<<<<<<<
@@ -8127,17 +8203,17 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
  */
       __pyx_v_in_text = 0;
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":193
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":199
  *                 text_buffer = []
  * 
  *             elif stripped == '</TEXT>':             # <<<<<<<<<<<<<<
  *                 in_text = False
  * 
  */
-      goto __pyx_L7;
+      goto __pyx_L8;
     }
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":196
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":202
  *                 in_text = False
  * 
  *             elif in_text:             # <<<<<<<<<<<<<<
@@ -8146,7 +8222,7 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
  */
     if (__pyx_v_in_text) {
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":197
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":203
  * 
  *             elif in_text:
  *                 if stripped not in ['<PDF>', '</PDF>']:             # <<<<<<<<<<<<<<
@@ -8155,29 +8231,29 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
  */
       __Pyx_INCREF(__pyx_v_stripped);
       __pyx_t_10 = __pyx_v_stripped;
-      __pyx_t_11 = (__Pyx_PyUnicode_Equals(__pyx_t_10, __pyx_kp_u_PDF, Py_NE)); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 197, __pyx_L1_error)
+      __pyx_t_11 = (__Pyx_PyUnicode_Equals(__pyx_t_10, __pyx_kp_u_PDF, Py_NE)); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 203, __pyx_L1_error)
       if (__pyx_t_11) {
       } else {
         __pyx_t_8 = __pyx_t_11;
-        goto __pyx_L9_bool_binop_done;
+        goto __pyx_L10_bool_binop_done;
       }
-      __pyx_t_11 = (__Pyx_PyUnicode_Equals(__pyx_t_10, __pyx_kp_u_PDF_2, Py_NE)); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 197, __pyx_L1_error)
+      __pyx_t_11 = (__Pyx_PyUnicode_Equals(__pyx_t_10, __pyx_kp_u_PDF_2, Py_NE)); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 203, __pyx_L1_error)
       __pyx_t_8 = __pyx_t_11;
-      __pyx_L9_bool_binop_done:;
+      __pyx_L10_bool_binop_done:;
       __Pyx_DECREF(__pyx_t_10); __pyx_t_10 = 0;
       __pyx_t_11 = __pyx_t_8;
       if (__pyx_t_11) {
 
-        /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":198
+        /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":204
  *             elif in_text:
  *                 if stripped not in ['<PDF>', '</PDF>']:
  *                     text_buffer.append(line)             # <<<<<<<<<<<<<<
  * 
  *             elif in_header:
  */
-        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_text_buffer, __pyx_v_line); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 198, __pyx_L1_error)
+        __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_text_buffer, __pyx_v_line); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 204, __pyx_L1_error)
 
-        /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":197
+        /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":203
  * 
  *             elif in_text:
  *                 if stripped not in ['<PDF>', '</PDF>']:             # <<<<<<<<<<<<<<
@@ -8186,51 +8262,51 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
  */
       }
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":196
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":202
  *                 in_text = False
  * 
  *             elif in_text:             # <<<<<<<<<<<<<<
  *                 if stripped not in ['<PDF>', '</PDF>']:
  *                     text_buffer.append(line)
  */
-      goto __pyx_L7;
+      goto __pyx_L8;
     }
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":200
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":206
  *                     text_buffer.append(line)
  * 
  *             elif in_header:             # <<<<<<<<<<<<<<
- *                 # Special handling for SEC header format
  *                 if ':' in stripped:
+ *                     key, value = stripped.split(':', 1)
  */
     if (__pyx_v_in_header) {
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":202
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":207
+ * 
  *             elif in_header:
- *                 # Special handling for SEC header format
  *                 if ':' in stripped:             # <<<<<<<<<<<<<<
  *                     key, value = stripped.split(':', 1)
- *                     header_data[key.strip()] = value.strip()
+ *                     value = value.strip()
  */
       if (unlikely(__pyx_v_stripped == Py_None)) {
         PyErr_SetString(PyExc_TypeError, "'NoneType' object is not iterable");
-        __PYX_ERR(0, 202, __pyx_L1_error)
+        __PYX_ERR(0, 207, __pyx_L1_error)
       }
-      __pyx_t_11 = (__Pyx_PyUnicode_ContainsTF(__pyx_kp_u__8, __pyx_v_stripped, Py_EQ)); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 202, __pyx_L1_error)
+      __pyx_t_11 = (__Pyx_PyUnicode_ContainsTF(__pyx_kp_u__8, __pyx_v_stripped, Py_EQ)); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 207, __pyx_L1_error)
       if (__pyx_t_11) {
 
-        /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":203
- *                 # Special handling for SEC header format
+        /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":208
+ *             elif in_header:
  *                 if ':' in stripped:
  *                     key, value = stripped.split(':', 1)             # <<<<<<<<<<<<<<
- *                     header_data[key.strip()] = value.strip()
- *             else:
+ *                     value = value.strip()
+ *                     key = key.strip()
  */
         if (unlikely(__pyx_v_stripped == Py_None)) {
           PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "split");
-          __PYX_ERR(0, 203, __pyx_L1_error)
+          __PYX_ERR(0, 208, __pyx_L1_error)
         }
-        __pyx_t_2 = PyUnicode_Split(__pyx_v_stripped, __Pyx_NoneAsNull(__pyx_kp_u__8), 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 203, __pyx_L1_error)
+        __pyx_t_2 = PyUnicode_Split(__pyx_v_stripped, __Pyx_NoneAsNull(__pyx_kp_u__8), 1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 208, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         if (1) {
           PyObject* sequence = __pyx_t_2;
@@ -8238,7 +8314,7 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
           if (unlikely(size != 2)) {
             if (size > 2) __Pyx_RaiseTooManyValuesError(2);
             else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-            __PYX_ERR(0, 203, __pyx_L1_error)
+            __PYX_ERR(0, 208, __pyx_L1_error)
           }
           #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
           __pyx_t_1 = PyList_GET_ITEM(sequence, 0); 
@@ -8246,9 +8322,9 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
           __Pyx_INCREF(__pyx_t_1);
           __Pyx_INCREF(__pyx_t_4);
           #else
-          __pyx_t_1 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 203, __pyx_L1_error)
+          __pyx_t_1 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 208, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_1);
-          __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 203, __pyx_L1_error)
+          __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 208, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_4);
           #endif
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -8258,14 +8334,14 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
         __Pyx_XDECREF_SET(__pyx_v_value, __pyx_t_4);
         __pyx_t_4 = 0;
 
-        /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":204
+        /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":209
  *                 if ':' in stripped:
  *                     key, value = stripped.split(':', 1)
- *                     header_data[key.strip()] = value.strip()             # <<<<<<<<<<<<<<
- *             else:
- *                 if stripped and stripped[0] == '<':  # Only try to extract if non-empty and starts with <
+ *                     value = value.strip()             # <<<<<<<<<<<<<<
+ *                     key = key.strip()
+ *                     current_tabs = stripped.count('\t')
  */
-        __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_value, __pyx_n_s_strip); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 204, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_value, __pyx_n_s_strip); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 209, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __pyx_t_1 = NULL;
         __pyx_t_5 = 0;
@@ -8285,100 +8361,300 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
           PyObject *__pyx_callargs[2] = {__pyx_t_1, NULL};
           __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
           __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 204, __pyx_L1_error)
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 209, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         }
-        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_v_key, __pyx_n_s_strip); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 204, __pyx_L1_error)
-        __Pyx_GOTREF(__pyx_t_1);
-        __pyx_t_12 = NULL;
+        __Pyx_DECREF_SET(__pyx_v_value, __pyx_t_2);
+        __pyx_t_2 = 0;
+
+        /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":210
+ *                     key, value = stripped.split(':', 1)
+ *                     value = value.strip()
+ *                     key = key.strip()             # <<<<<<<<<<<<<<
+ *                     current_tabs = stripped.count('\t')
+ * 
+ */
+        __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_key, __pyx_n_s_strip); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 210, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_4);
+        __pyx_t_1 = NULL;
         __pyx_t_5 = 0;
         #if CYTHON_UNPACK_METHODS
-        if (likely(PyMethod_Check(__pyx_t_1))) {
-          __pyx_t_12 = PyMethod_GET_SELF(__pyx_t_1);
-          if (likely(__pyx_t_12)) {
-            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_1);
-            __Pyx_INCREF(__pyx_t_12);
+        if (likely(PyMethod_Check(__pyx_t_4))) {
+          __pyx_t_1 = PyMethod_GET_SELF(__pyx_t_4);
+          if (likely(__pyx_t_1)) {
+            PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
+            __Pyx_INCREF(__pyx_t_1);
             __Pyx_INCREF(function);
-            __Pyx_DECREF_SET(__pyx_t_1, function);
+            __Pyx_DECREF_SET(__pyx_t_4, function);
             __pyx_t_5 = 1;
           }
         }
         #endif
         {
-          PyObject *__pyx_callargs[2] = {__pyx_t_12, NULL};
-          __pyx_t_4 = __Pyx_PyObject_FastCall(__pyx_t_1, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
-          __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
-          if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 204, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_4);
-          __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+          PyObject *__pyx_callargs[2] = {__pyx_t_1, NULL};
+          __pyx_t_2 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
+          __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
+          if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 210, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         }
-        if (unlikely((PyDict_SetItem(__pyx_v_header_data, __pyx_t_4, __pyx_t_2) < 0))) __PYX_ERR(0, 204, __pyx_L1_error)
-        __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-        __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+        __Pyx_DECREF_SET(__pyx_v_key, __pyx_t_2);
+        __pyx_t_2 = 0;
 
-        /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":202
+        /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":211
+ *                     value = value.strip()
+ *                     key = key.strip()
+ *                     current_tabs = stripped.count('\t')             # <<<<<<<<<<<<<<
+ * 
+ *                     if not value:  # Empty value indicates a tag
+ */
+        if (unlikely(__pyx_v_stripped == Py_None)) {
+          PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "count");
+          __PYX_ERR(0, 211, __pyx_L1_error)
+        }
+        __pyx_t_12 = PyUnicode_Count(__pyx_v_stripped, __pyx_kp_u__9, 0, PY_SSIZE_T_MAX); if (unlikely(__pyx_t_12 == ((Py_ssize_t)-1))) __PYX_ERR(0, 211, __pyx_L1_error)
+        __pyx_t_2 = PyInt_FromSsize_t(__pyx_t_12); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 211, __pyx_L1_error)
+        __Pyx_GOTREF(__pyx_t_2);
+        __Pyx_XDECREF_SET(__pyx_v_current_tabs, __pyx_t_2);
+        __pyx_t_2 = 0;
+
+        /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":213
+ *                     current_tabs = stripped.count('\t')
+ * 
+ *                     if not value:  # Empty value indicates a tag             # <<<<<<<<<<<<<<
+ *                         # If we have more tags than our current tab level, we need to close them
+ *                         while len(tag_stack) > current_tabs:
+ */
+        __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_v_value); if (unlikely((__pyx_t_11 < 0))) __PYX_ERR(0, 213, __pyx_L1_error)
+        __pyx_t_8 = (!__pyx_t_11);
+        if (__pyx_t_8) {
+
+          /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":215
+ *                     if not value:  # Empty value indicates a tag
+ *                         # If we have more tags than our current tab level, we need to close them
+ *                         while len(tag_stack) > current_tabs:             # <<<<<<<<<<<<<<
+ *                             tag_stack.pop()
+ * 
+ */
+          while (1) {
+            __pyx_t_12 = __Pyx_PyList_GET_SIZE(__pyx_v_tag_stack); if (unlikely(__pyx_t_12 == ((Py_ssize_t)-1))) __PYX_ERR(0, 215, __pyx_L1_error)
+            __pyx_t_2 = PyInt_FromSsize_t(__pyx_t_12); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 215, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_2);
+            __pyx_t_4 = PyObject_RichCompare(__pyx_t_2, __pyx_v_current_tabs, Py_GT); __Pyx_XGOTREF(__pyx_t_4); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 215, __pyx_L1_error)
+            __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+            __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_4); if (unlikely((__pyx_t_8 < 0))) __PYX_ERR(0, 215, __pyx_L1_error)
+            __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+            if (!__pyx_t_8) break;
+
+            /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":216
+ *                         # If we have more tags than our current tab level, we need to close them
+ *                         while len(tag_stack) > current_tabs:
+ *                             tag_stack.pop()             # <<<<<<<<<<<<<<
+ * 
+ *                         # Add new tag
+ */
+            __pyx_t_4 = __Pyx_PyList_Pop(__pyx_v_tag_stack); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 216, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_4);
+            __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+          }
+
+          /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":219
+ * 
+ *                         # Add new tag
+ *                         tag_stack.append(key)             # <<<<<<<<<<<<<<
+ *                         current_dict = submission_data
+ *                         for tag in tag_stack[:-1]:  # Navigate to parent
+ */
+          __pyx_t_9 = __Pyx_PyList_Append(__pyx_v_tag_stack, __pyx_v_key); if (unlikely(__pyx_t_9 == ((int)-1))) __PYX_ERR(0, 219, __pyx_L1_error)
+
+          /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":220
+ *                         # Add new tag
+ *                         tag_stack.append(key)
+ *                         current_dict = submission_data             # <<<<<<<<<<<<<<
+ *                         for tag in tag_stack[:-1]:  # Navigate to parent
+ *                             current_dict = current_dict[tag]
+ */
+          __Pyx_INCREF(__pyx_v_submission_data);
+          __Pyx_DECREF_SET(__pyx_v_current_dict, __pyx_v_submission_data);
+
+          /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":221
+ *                         tag_stack.append(key)
+ *                         current_dict = submission_data
+ *                         for tag in tag_stack[:-1]:  # Navigate to parent             # <<<<<<<<<<<<<<
+ *                             current_dict = current_dict[tag]
+ *                         current_dict[key] = {}
+ */
+          __pyx_t_4 = __Pyx_PyList_GetSlice(__pyx_v_tag_stack, 0, -1L); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 221, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_4);
+          __pyx_t_2 = __pyx_t_4; __Pyx_INCREF(__pyx_t_2);
+          __pyx_t_12 = 0;
+          __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+          for (;;) {
+            {
+              Py_ssize_t __pyx_temp = __Pyx_PyList_GET_SIZE(__pyx_t_2);
+              #if !CYTHON_ASSUME_SAFE_MACROS
+              if (unlikely((__pyx_temp < 0))) __PYX_ERR(0, 221, __pyx_L1_error)
+              #endif
+              if (__pyx_t_12 >= __pyx_temp) break;
+            }
+            #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+            __pyx_t_4 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_12); __Pyx_INCREF(__pyx_t_4); __pyx_t_12++; if (unlikely((0 < 0))) __PYX_ERR(0, 221, __pyx_L1_error)
+            #else
+            __pyx_t_4 = __Pyx_PySequence_ITEM(__pyx_t_2, __pyx_t_12); __pyx_t_12++; if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 221, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_4);
+            #endif
+            __Pyx_XDECREF_SET(__pyx_v_tag, __pyx_t_4);
+            __pyx_t_4 = 0;
+
+            /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":222
+ *                         current_dict = submission_data
+ *                         for tag in tag_stack[:-1]:  # Navigate to parent
+ *                             current_dict = current_dict[tag]             # <<<<<<<<<<<<<<
+ *                         current_dict[key] = {}
+ *                         current_dict = current_dict[key]
+ */
+            if (unlikely(__pyx_v_current_dict == Py_None)) {
+              PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+              __PYX_ERR(0, 222, __pyx_L1_error)
+            }
+            __pyx_t_4 = __Pyx_PyDict_GetItem(__pyx_v_current_dict, __pyx_v_tag); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 222, __pyx_L1_error)
+            __Pyx_GOTREF(__pyx_t_4);
+            if (!(likely(PyDict_CheckExact(__pyx_t_4))||((__pyx_t_4) == Py_None) || __Pyx_RaiseUnexpectedTypeError("dict", __pyx_t_4))) __PYX_ERR(0, 222, __pyx_L1_error)
+            __Pyx_DECREF_SET(__pyx_v_current_dict, ((PyObject*)__pyx_t_4));
+            __pyx_t_4 = 0;
+
+            /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":221
+ *                         tag_stack.append(key)
+ *                         current_dict = submission_data
+ *                         for tag in tag_stack[:-1]:  # Navigate to parent             # <<<<<<<<<<<<<<
+ *                             current_dict = current_dict[tag]
+ *                         current_dict[key] = {}
+ */
+          }
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+          /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":223
+ *                         for tag in tag_stack[:-1]:  # Navigate to parent
+ *                             current_dict = current_dict[tag]
+ *                         current_dict[key] = {}             # <<<<<<<<<<<<<<
+ *                         current_dict = current_dict[key]
+ *                     else:  # Normal key-value pair
+ */
+          __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 223, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          if (unlikely(__pyx_v_current_dict == Py_None)) {
+            PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+            __PYX_ERR(0, 223, __pyx_L1_error)
+          }
+          if (unlikely((PyDict_SetItem(__pyx_v_current_dict, __pyx_v_key, __pyx_t_2) < 0))) __PYX_ERR(0, 223, __pyx_L1_error)
+          __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+
+          /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":224
+ *                             current_dict = current_dict[tag]
+ *                         current_dict[key] = {}
+ *                         current_dict = current_dict[key]             # <<<<<<<<<<<<<<
+ *                     else:  # Normal key-value pair
+ *                         current_dict[key] = value
+ */
+          if (unlikely(__pyx_v_current_dict == Py_None)) {
+            PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+            __PYX_ERR(0, 224, __pyx_L1_error)
+          }
+          __pyx_t_2 = __Pyx_PyDict_GetItem(__pyx_v_current_dict, __pyx_v_key); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 224, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          if (!(likely(PyDict_CheckExact(__pyx_t_2))||((__pyx_t_2) == Py_None) || __Pyx_RaiseUnexpectedTypeError("dict", __pyx_t_2))) __PYX_ERR(0, 224, __pyx_L1_error)
+          __Pyx_DECREF_SET(__pyx_v_current_dict, ((PyObject*)__pyx_t_2));
+          __pyx_t_2 = 0;
+
+          /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":213
+ *                     current_tabs = stripped.count('\t')
+ * 
+ *                     if not value:  # Empty value indicates a tag             # <<<<<<<<<<<<<<
+ *                         # If we have more tags than our current tab level, we need to close them
+ *                         while len(tag_stack) > current_tabs:
+ */
+          goto __pyx_L13;
+        }
+
+        /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":226
+ *                         current_dict = current_dict[key]
+ *                     else:  # Normal key-value pair
+ *                         current_dict[key] = value             # <<<<<<<<<<<<<<
+ *             else:
+ *                 if stripped and stripped[0] == '<':  # Only try to extract if non-empty and starts with <
+ */
+        /*else*/ {
+          if (unlikely(__pyx_v_current_dict == Py_None)) {
+            PyErr_SetString(PyExc_TypeError, "'NoneType' object is not subscriptable");
+            __PYX_ERR(0, 226, __pyx_L1_error)
+          }
+          if (unlikely((PyDict_SetItem(__pyx_v_current_dict, __pyx_v_key, __pyx_v_value) < 0))) __PYX_ERR(0, 226, __pyx_L1_error)
+        }
+        __pyx_L13:;
+
+        /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":207
+ * 
  *             elif in_header:
- *                 # Special handling for SEC header format
  *                 if ':' in stripped:             # <<<<<<<<<<<<<<
  *                     key, value = stripped.split(':', 1)
- *                     header_data[key.strip()] = value.strip()
+ *                     value = value.strip()
  */
       }
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":200
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":206
  *                     text_buffer.append(line)
  * 
  *             elif in_header:             # <<<<<<<<<<<<<<
- *                 # Special handling for SEC header format
  *                 if ':' in stripped:
+ *                     key, value = stripped.split(':', 1)
  */
-      goto __pyx_L7;
+      goto __pyx_L8;
     }
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":206
- *                     header_data[key.strip()] = value.strip()
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":228
+ *                         current_dict[key] = value
  *             else:
  *                 if stripped and stripped[0] == '<':  # Only try to extract if non-empty and starts with <             # <<<<<<<<<<<<<<
  *                     tag_content = self._extract_tag_content(stripped)
  *                     if tag_content:
  */
     /*else*/ {
-      __pyx_t_8 = (__pyx_v_stripped != Py_None)&&(__Pyx_PyUnicode_IS_TRUE(__pyx_v_stripped) != 0);
-      if (__pyx_t_8) {
-      } else {
-        __pyx_t_11 = __pyx_t_8;
-        goto __pyx_L13_bool_binop_done;
-      }
-      __pyx_t_13 = __Pyx_GetItemInt_Unicode(__pyx_v_stripped, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_13 == (Py_UCS4)-1)) __PYX_ERR(0, 206, __pyx_L1_error)
-      __pyx_t_8 = (__pyx_t_13 == 60);
-      __pyx_t_11 = __pyx_t_8;
-      __pyx_L13_bool_binop_done:;
+      __pyx_t_11 = (__pyx_v_stripped != Py_None)&&(__Pyx_PyUnicode_IS_TRUE(__pyx_v_stripped) != 0);
       if (__pyx_t_11) {
+      } else {
+        __pyx_t_8 = __pyx_t_11;
+        goto __pyx_L20_bool_binop_done;
+      }
+      __pyx_t_13 = __Pyx_GetItemInt_Unicode(__pyx_v_stripped, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(__pyx_t_13 == (Py_UCS4)-1)) __PYX_ERR(0, 228, __pyx_L1_error)
+      __pyx_t_11 = (__pyx_t_13 == 60);
+      __pyx_t_8 = __pyx_t_11;
+      __pyx_L20_bool_binop_done:;
+      if (__pyx_t_8) {
 
-        /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":207
+        /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":229
  *             else:
  *                 if stripped and stripped[0] == '<':  # Only try to extract if non-empty and starts with <
  *                     tag_content = self._extract_tag_content(stripped)             # <<<<<<<<<<<<<<
  *                     if tag_content:
  *                         key, value = tag_content
  */
-        __pyx_t_2 = ((struct __pyx_vtabstruct_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_SECDocumentParser *)__pyx_v_self->__pyx_base.__pyx_vtab)->__pyx_base._extract_tag_content(((struct __pyx_obj_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_BaseParser *)__pyx_v_self), __pyx_v_stripped); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 207, __pyx_L1_error)
+        __pyx_t_2 = ((struct __pyx_vtabstruct_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_SECDocumentParser *)__pyx_v_self->__pyx_base.__pyx_vtab)->__pyx_base._extract_tag_content(((struct __pyx_obj_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_BaseParser *)__pyx_v_self), __pyx_v_stripped); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 229, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_2);
         __Pyx_XDECREF_SET(__pyx_v_tag_content, ((PyObject*)__pyx_t_2));
         __pyx_t_2 = 0;
 
-        /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":208
+        /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":230
  *                 if stripped and stripped[0] == '<':  # Only try to extract if non-empty and starts with <
  *                     tag_content = self._extract_tag_content(stripped)
  *                     if tag_content:             # <<<<<<<<<<<<<<
  *                         key, value = tag_content
  *                         if in_document:
  */
-        __pyx_t_11 = (__pyx_v_tag_content != Py_None)&&(PyTuple_GET_SIZE(__pyx_v_tag_content) != 0);
-        if (__pyx_t_11) {
+        __pyx_t_8 = (__pyx_v_tag_content != Py_None)&&(PyTuple_GET_SIZE(__pyx_v_tag_content) != 0);
+        if (__pyx_t_8) {
 
-          /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":209
+          /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":231
  *                     tag_content = self._extract_tag_content(stripped)
  *                     if tag_content:
  *                         key, value = tag_content             # <<<<<<<<<<<<<<
@@ -8391,7 +8667,7 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
             if (unlikely(size != 2)) {
               if (size > 2) __Pyx_RaiseTooManyValuesError(2);
               else if (size >= 0) __Pyx_RaiseNeedMoreValuesError(size);
-              __PYX_ERR(0, 209, __pyx_L1_error)
+              __PYX_ERR(0, 231, __pyx_L1_error)
             }
             #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
             __pyx_t_2 = PyTuple_GET_ITEM(sequence, 0); 
@@ -8399,20 +8675,20 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
             __Pyx_INCREF(__pyx_t_2);
             __Pyx_INCREF(__pyx_t_4);
             #else
-            __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 209, __pyx_L1_error)
+            __pyx_t_2 = PySequence_ITEM(sequence, 0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 231, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_2);
-            __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 209, __pyx_L1_error)
+            __pyx_t_4 = PySequence_ITEM(sequence, 1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 231, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_4);
             #endif
           } else {
-            __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 209, __pyx_L1_error)
+            __Pyx_RaiseNoneNotIterableError(); __PYX_ERR(0, 231, __pyx_L1_error)
           }
           __Pyx_XDECREF_SET(__pyx_v_key, __pyx_t_2);
           __pyx_t_2 = 0;
           __Pyx_XDECREF_SET(__pyx_v_value, __pyx_t_4);
           __pyx_t_4 = 0;
 
-          /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":210
+          /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":232
  *                     if tag_content:
  *                         key, value = tag_content
  *                         if in_document:             # <<<<<<<<<<<<<<
@@ -8421,16 +8697,16 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
  */
           if (__pyx_v_in_document) {
 
-            /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":211
+            /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":233
  *                         key, value = tag_content
  *                         if in_document:
  *                             current_document[key] = value             # <<<<<<<<<<<<<<
  * 
  *         metadata = {
  */
-            if (unlikely((PyDict_SetItem(__pyx_v_current_document, __pyx_v_key, __pyx_v_value) < 0))) __PYX_ERR(0, 211, __pyx_L1_error)
+            if (unlikely((PyDict_SetItem(__pyx_v_current_document, __pyx_v_key, __pyx_v_value) < 0))) __PYX_ERR(0, 233, __pyx_L1_error)
 
-            /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":210
+            /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":232
  *                     if tag_content:
  *                         key, value = tag_content
  *                         if in_document:             # <<<<<<<<<<<<<<
@@ -8439,7 +8715,7 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
  */
           }
 
-          /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":208
+          /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":230
  *                 if stripped and stripped[0] == '<':  # Only try to extract if non-empty and starts with <
  *                     tag_content = self._extract_tag_content(stripped)
  *                     if tag_content:             # <<<<<<<<<<<<<<
@@ -8448,8 +8724,8 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
  */
         }
 
-        /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":206
- *                     header_data[key.strip()] = value.strip()
+        /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":228
+ *                         current_dict[key] = value
  *             else:
  *                 if stripped and stripped[0] == '<':  # Only try to extract if non-empty and starts with <             # <<<<<<<<<<<<<<
  *                     tag_content = self._extract_tag_content(stripped)
@@ -8457,42 +8733,42 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
  */
       }
     }
-    __pyx_L7:;
+    __pyx_L8:;
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":160
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":163
  *         lines = content.splitlines(keepends=True)
  * 
  *         for line in lines:             # <<<<<<<<<<<<<<
- *             stripped = line.strip()
- * 
+ *             if in_header:
+ *                 stripped = line.rstrip()
  */
     __pyx_L3_continue:;
   }
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":214
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":236
  * 
  *         metadata = {
- *             'header': header_data,             # <<<<<<<<<<<<<<
+ *             'submission': submission_data,             # <<<<<<<<<<<<<<
  *             'documents': documents
  *         }
  */
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 214, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 236, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_u_header, __pyx_v_header_data) < 0) __PYX_ERR(0, 214, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_u_submission, __pyx_v_submission_data) < 0) __PYX_ERR(0, 236, __pyx_L1_error)
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":215
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":237
  *         metadata = {
- *             'header': header_data,
+ *             'submission': submission_data,
  *             'documents': documents             # <<<<<<<<<<<<<<
  *         }
  * 
  */
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_u_documents, __pyx_v_documents) < 0) __PYX_ERR(0, 214, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_u_documents, __pyx_v_documents) < 0) __PYX_ERR(0, 236, __pyx_L1_error)
   __pyx_v_metadata = ((PyObject*)__pyx_t_3);
   __pyx_t_3 = 0;
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":218
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":240
  *         }
  * 
  *         with open(os.path.join(self.output_dir, 'metadata.json'), 'w', encoding='utf-8') as f:             # <<<<<<<<<<<<<<
@@ -8500,12 +8776,12 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
  * 
  */
   /*with:*/ {
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_os); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 218, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_os); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 240, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_path); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 218, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_path); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 240, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_join); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 218, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_join); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 240, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_2 = NULL;
@@ -8526,28 +8802,28 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
       PyObject *__pyx_callargs[3] = {__pyx_t_2, __pyx_v_self->__pyx_base.output_dir, __pyx_kp_u_metadata_json};
       __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_5, 2+__pyx_t_5);
       __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 218, __pyx_L1_error)
+      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 240, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
-    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 218, __pyx_L1_error)
+    __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 240, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_GIVEREF(__pyx_t_3);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3)) __PYX_ERR(0, 218, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_t_3)) __PYX_ERR(0, 240, __pyx_L1_error);
     __Pyx_INCREF(__pyx_n_u_w);
     __Pyx_GIVEREF(__pyx_n_u_w);
-    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_n_u_w)) __PYX_ERR(0, 218, __pyx_L1_error);
+    if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_n_u_w)) __PYX_ERR(0, 240, __pyx_L1_error);
     __pyx_t_3 = 0;
-    __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 218, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 240, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
-    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_encoding, __pyx_kp_u_utf_8) < 0) __PYX_ERR(0, 218, __pyx_L1_error)
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 218, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_encoding, __pyx_kp_u_utf_8) < 0) __PYX_ERR(0, 240, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 240, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-    __pyx_t_14 = __Pyx_PyObject_LookupSpecial(__pyx_t_2, __pyx_n_s_exit); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 218, __pyx_L1_error)
+    __pyx_t_14 = __Pyx_PyObject_LookupSpecial(__pyx_t_2, __pyx_n_s_exit); if (unlikely(!__pyx_t_14)) __PYX_ERR(0, 240, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_14);
-    __pyx_t_4 = __Pyx_PyObject_LookupSpecial(__pyx_t_2, __pyx_n_s_enter); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 218, __pyx_L18_error)
+    __pyx_t_4 = __Pyx_PyObject_LookupSpecial(__pyx_t_2, __pyx_n_s_enter); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 240, __pyx_L25_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_1 = NULL;
     __pyx_t_5 = 0;
@@ -8567,7 +8843,7 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
       PyObject *__pyx_callargs[2] = {__pyx_t_1, NULL};
       __pyx_t_3 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_5, 0+__pyx_t_5);
       __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
-      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 218, __pyx_L18_error)
+      if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 240, __pyx_L25_error)
       __Pyx_GOTREF(__pyx_t_3);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
@@ -8586,37 +8862,37 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
           __pyx_v_f = __pyx_t_4;
           __pyx_t_4 = 0;
 
-          /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":219
+          /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":241
  * 
  *         with open(os.path.join(self.output_dir, 'metadata.json'), 'w', encoding='utf-8') as f:
  *             json.dump(metadata, f, indent=4)             # <<<<<<<<<<<<<<
  * 
  * def detect_document_type(content: str) -> str:
  */
-          __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_json); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 219, __pyx_L22_error)
+          __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_json); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 241, __pyx_L29_error)
           __Pyx_GOTREF(__pyx_t_4);
-          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_dump); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 219, __pyx_L22_error)
+          __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_dump); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 241, __pyx_L29_error)
           __Pyx_GOTREF(__pyx_t_2);
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-          __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 219, __pyx_L22_error)
+          __pyx_t_4 = PyTuple_New(2); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 241, __pyx_L29_error)
           __Pyx_GOTREF(__pyx_t_4);
           __Pyx_INCREF(__pyx_v_metadata);
           __Pyx_GIVEREF(__pyx_v_metadata);
-          if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_v_metadata)) __PYX_ERR(0, 219, __pyx_L22_error);
+          if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_v_metadata)) __PYX_ERR(0, 241, __pyx_L29_error);
           __Pyx_INCREF(__pyx_v_f);
           __Pyx_GIVEREF(__pyx_v_f);
-          if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_v_f)) __PYX_ERR(0, 219, __pyx_L22_error);
-          __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 219, __pyx_L22_error)
+          if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 1, __pyx_v_f)) __PYX_ERR(0, 241, __pyx_L29_error);
+          __pyx_t_3 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 241, __pyx_L29_error)
           __Pyx_GOTREF(__pyx_t_3);
-          if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_indent, __pyx_int_4) < 0) __PYX_ERR(0, 219, __pyx_L22_error)
-          __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 219, __pyx_L22_error)
+          if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_indent, __pyx_int_4) < 0) __PYX_ERR(0, 241, __pyx_L29_error)
+          __pyx_t_1 = __Pyx_PyObject_Call(__pyx_t_2, __pyx_t_4, __pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 241, __pyx_L29_error)
           __Pyx_GOTREF(__pyx_t_1);
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
           __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
           __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
           __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
-          /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":218
+          /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":240
  *         }
  * 
  *         with open(os.path.join(self.output_dir, 'metadata.json'), 'w', encoding='utf-8') as f:             # <<<<<<<<<<<<<<
@@ -8627,56 +8903,55 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
         __Pyx_XDECREF(__pyx_t_15); __pyx_t_15 = 0;
         __Pyx_XDECREF(__pyx_t_16); __pyx_t_16 = 0;
         __Pyx_XDECREF(__pyx_t_17); __pyx_t_17 = 0;
-        goto __pyx_L27_try_end;
-        __pyx_L22_error:;
+        goto __pyx_L34_try_end;
+        __pyx_L29_error:;
         __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
         __Pyx_XDECREF(__pyx_t_10); __pyx_t_10 = 0;
-        __Pyx_XDECREF(__pyx_t_12); __pyx_t_12 = 0;
         __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
         __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
         /*except:*/ {
           __Pyx_AddTraceback("datamule.parser.sgml_parsing.sgml_parser_cy.SECDocumentParser.parse_content", __pyx_clineno, __pyx_lineno, __pyx_filename);
-          if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_3, &__pyx_t_4) < 0) __PYX_ERR(0, 218, __pyx_L24_except_error)
+          if (__Pyx_GetException(&__pyx_t_1, &__pyx_t_3, &__pyx_t_4) < 0) __PYX_ERR(0, 240, __pyx_L31_except_error)
           __Pyx_XGOTREF(__pyx_t_1);
           __Pyx_XGOTREF(__pyx_t_3);
           __Pyx_XGOTREF(__pyx_t_4);
-          __pyx_t_2 = PyTuple_Pack(3, __pyx_t_1, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 218, __pyx_L24_except_error)
+          __pyx_t_2 = PyTuple_Pack(3, __pyx_t_1, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 240, __pyx_L31_except_error)
           __Pyx_GOTREF(__pyx_t_2);
           __pyx_t_18 = __Pyx_PyObject_Call(__pyx_t_14, __pyx_t_2, NULL);
           __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
           __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-          if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 218, __pyx_L24_except_error)
+          if (unlikely(!__pyx_t_18)) __PYX_ERR(0, 240, __pyx_L31_except_error)
           __Pyx_GOTREF(__pyx_t_18);
-          __pyx_t_11 = __Pyx_PyObject_IsTrue(__pyx_t_18);
+          __pyx_t_8 = __Pyx_PyObject_IsTrue(__pyx_t_18);
           __Pyx_DECREF(__pyx_t_18); __pyx_t_18 = 0;
-          if (__pyx_t_11 < 0) __PYX_ERR(0, 218, __pyx_L24_except_error)
-          __pyx_t_8 = (!__pyx_t_11);
-          if (unlikely(__pyx_t_8)) {
+          if (__pyx_t_8 < 0) __PYX_ERR(0, 240, __pyx_L31_except_error)
+          __pyx_t_11 = (!__pyx_t_8);
+          if (unlikely(__pyx_t_11)) {
             __Pyx_GIVEREF(__pyx_t_1);
             __Pyx_GIVEREF(__pyx_t_3);
             __Pyx_XGIVEREF(__pyx_t_4);
             __Pyx_ErrRestoreWithState(__pyx_t_1, __pyx_t_3, __pyx_t_4);
             __pyx_t_1 = 0; __pyx_t_3 = 0; __pyx_t_4 = 0; 
-            __PYX_ERR(0, 218, __pyx_L24_except_error)
+            __PYX_ERR(0, 240, __pyx_L31_except_error)
           }
           __Pyx_XDECREF(__pyx_t_1); __pyx_t_1 = 0;
           __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
           __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-          goto __pyx_L23_exception_handled;
+          goto __pyx_L30_exception_handled;
         }
-        __pyx_L24_except_error:;
+        __pyx_L31_except_error:;
         __Pyx_XGIVEREF(__pyx_t_15);
         __Pyx_XGIVEREF(__pyx_t_16);
         __Pyx_XGIVEREF(__pyx_t_17);
         __Pyx_ExceptionReset(__pyx_t_15, __pyx_t_16, __pyx_t_17);
         goto __pyx_L1_error;
-        __pyx_L23_exception_handled:;
+        __pyx_L30_exception_handled:;
         __Pyx_XGIVEREF(__pyx_t_15);
         __Pyx_XGIVEREF(__pyx_t_16);
         __Pyx_XGIVEREF(__pyx_t_17);
         __Pyx_ExceptionReset(__pyx_t_15, __pyx_t_16, __pyx_t_17);
-        __pyx_L27_try_end:;
+        __pyx_L34_try_end:;
       }
     }
     /*finally:*/ {
@@ -8684,19 +8959,19 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
         if (__pyx_t_14) {
           __pyx_t_17 = __Pyx_PyObject_Call(__pyx_t_14, __pyx_tuple__7, NULL);
           __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
-          if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 218, __pyx_L1_error)
+          if (unlikely(!__pyx_t_17)) __PYX_ERR(0, 240, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_17);
           __Pyx_DECREF(__pyx_t_17); __pyx_t_17 = 0;
         }
-        goto __pyx_L21;
+        goto __pyx_L28;
       }
-      __pyx_L21:;
+      __pyx_L28:;
     }
-    goto __pyx_L31;
-    __pyx_L18_error:;
+    goto __pyx_L38;
+    __pyx_L25_error:;
     __Pyx_DECREF(__pyx_t_14); __pyx_t_14 = 0;
     goto __pyx_L1_error;
-    __pyx_L31:;
+    __pyx_L38:;
   }
 
   /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":145
@@ -8704,7 +8979,7 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
  * 
  *     cpdef parse_content(self, str content):             # <<<<<<<<<<<<<<
  *         cdef:
- *             dict header_data = {}
+ *             dict submission_data = {}
  */
 
   /* function exit code */
@@ -8716,20 +8991,23 @@ static PyObject *__pyx_f_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SEC
   __Pyx_XDECREF(__pyx_t_3);
   __Pyx_XDECREF(__pyx_t_4);
   __Pyx_XDECREF(__pyx_t_10);
-  __Pyx_XDECREF(__pyx_t_12);
   __Pyx_AddTraceback("datamule.parser.sgml_parsing.sgml_parser_cy.SECDocumentParser.parse_content", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = 0;
   __pyx_L0:;
-  __Pyx_XDECREF(__pyx_v_header_data);
+  __Pyx_XDECREF(__pyx_v_submission_data);
   __Pyx_XDECREF(__pyx_v_documents);
   __Pyx_XDECREF(__pyx_v_current_document);
   __Pyx_XDECREF(__pyx_v_text_buffer);
   __Pyx_XDECREF(__pyx_v_line);
   __Pyx_XDECREF(__pyx_v_stripped);
   __Pyx_XDECREF(__pyx_v_tag_content);
+  __Pyx_XDECREF(__pyx_v_tag_stack);
+  __Pyx_XDECREF(__pyx_v_current_dict);
   __Pyx_XDECREF(__pyx_v_lines);
   __Pyx_XDECREF(__pyx_v_key);
   __Pyx_XDECREF(__pyx_v_value);
+  __Pyx_XDECREF(__pyx_v_current_tabs);
+  __Pyx_XDECREF(__pyx_v_tag);
   __Pyx_XDECREF(__pyx_v_metadata);
   __Pyx_XDECREF(__pyx_v_f);
   __Pyx_XGIVEREF(__pyx_r);
@@ -9265,7 +9543,7 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SE
   return __pyx_r;
 }
 
-/* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":221
+/* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":243
  *             json.dump(metadata, f, indent=4)
  * 
  * def detect_document_type(content: str) -> str:             # <<<<<<<<<<<<<<
@@ -9327,12 +9605,12 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
           (void)__Pyx_Arg_NewRef_FASTCALL(values[0]);
           kw_args--;
         }
-        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 221, __pyx_L3_error)
+        else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 243, __pyx_L3_error)
         else goto __pyx_L5_argtuple_error;
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "detect_document_type") < 0)) __PYX_ERR(0, 221, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "detect_document_type") < 0)) __PYX_ERR(0, 243, __pyx_L3_error)
       }
     } else if (unlikely(__pyx_nargs != 1)) {
       goto __pyx_L5_argtuple_error;
@@ -9343,7 +9621,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("detect_document_type", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 221, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("detect_document_type", 1, 1, 1, __pyx_nargs); __PYX_ERR(0, 243, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -9357,7 +9635,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_content), (&PyUnicode_Type), 0, "content", 1))) __PYX_ERR(0, 221, __pyx_L1_error)
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_content), (&PyUnicode_Type), 0, "content", 1))) __PYX_ERR(0, 243, __pyx_L1_error)
   __pyx_r = __pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_detect_document_type(__pyx_self, __pyx_v_content);
 
   /* function exit code */
@@ -9388,20 +9666,20 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_dete
   __Pyx_RefNannySetupContext("detect_document_type", 0);
   __Pyx_INCREF(__pyx_v_content);
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":223
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":245
  * def detect_document_type(content: str) -> str:
  *     """Detect the type of SGML document"""
  *     content = content.strip()             # <<<<<<<<<<<<<<
  * 
  *     # Fast path - check if it starts cleanly
  */
-  __pyx_t_1 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PyUnicode_Type_strip, __pyx_v_content); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 223, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_CallUnboundCMethod0(&__pyx_umethod_PyUnicode_Type_strip, __pyx_v_content); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 245, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  if (!(likely(PyUnicode_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("unicode", __pyx_t_1))) __PYX_ERR(0, 223, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None) || __Pyx_RaiseUnexpectedTypeError("unicode", __pyx_t_1))) __PYX_ERR(0, 245, __pyx_L1_error)
   __Pyx_DECREF_SET(__pyx_v_content, ((PyObject*)__pyx_t_1));
   __pyx_t_1 = 0;
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":226
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":248
  * 
  *     # Fast path - check if it starts cleanly
  *     if content.startswith('<SUBMISSION>'):             # <<<<<<<<<<<<<<
@@ -9410,12 +9688,12 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_dete
  */
   if (unlikely(__pyx_v_content == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "startswith");
-    __PYX_ERR(0, 226, __pyx_L1_error)
+    __PYX_ERR(0, 248, __pyx_L1_error)
   }
-  __pyx_t_2 = __Pyx_PyUnicode_Tailmatch(__pyx_v_content, __pyx_kp_u_SUBMISSION_2, 0, PY_SSIZE_T_MAX, -1); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 226, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyUnicode_Tailmatch(__pyx_v_content, __pyx_kp_u_SUBMISSION_2, 0, PY_SSIZE_T_MAX, -1); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 248, __pyx_L1_error)
   if (__pyx_t_2) {
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":227
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":249
  *     # Fast path - check if it starts cleanly
  *     if content.startswith('<SUBMISSION>'):
  *         return 'SUBMISSION'             # <<<<<<<<<<<<<<
@@ -9427,7 +9705,7 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_dete
     __pyx_r = __pyx_n_u_SUBMISSION_3;
     goto __pyx_L0;
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":226
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":248
  * 
  *     # Fast path - check if it starts cleanly
  *     if content.startswith('<SUBMISSION>'):             # <<<<<<<<<<<<<<
@@ -9436,7 +9714,7 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_dete
  */
   }
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":228
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":250
  *     if content.startswith('<SUBMISSION>'):
  *         return 'SUBMISSION'
  *     elif content.startswith('<SEC-DOCUMENT>'):             # <<<<<<<<<<<<<<
@@ -9445,12 +9723,12 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_dete
  */
   if (unlikely(__pyx_v_content == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "startswith");
-    __PYX_ERR(0, 228, __pyx_L1_error)
+    __PYX_ERR(0, 250, __pyx_L1_error)
   }
-  __pyx_t_2 = __Pyx_PyUnicode_Tailmatch(__pyx_v_content, __pyx_kp_u_SEC_DOCUMENT_2, 0, PY_SSIZE_T_MAX, -1); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 228, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyUnicode_Tailmatch(__pyx_v_content, __pyx_kp_u_SEC_DOCUMENT_2, 0, PY_SSIZE_T_MAX, -1); if (unlikely(__pyx_t_2 == ((int)-1))) __PYX_ERR(0, 250, __pyx_L1_error)
   if (__pyx_t_2) {
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":229
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":251
  *         return 'SUBMISSION'
  *     elif content.startswith('<SEC-DOCUMENT>'):
  *         return 'SEC-DOCUMENT'             # <<<<<<<<<<<<<<
@@ -9462,7 +9740,7 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_dete
     __pyx_r = __pyx_kp_u_SEC_DOCUMENT_3;
     goto __pyx_L0;
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":228
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":250
  *     if content.startswith('<SUBMISSION>'):
  *         return 'SUBMISSION'
  *     elif content.startswith('<SEC-DOCUMENT>'):             # <<<<<<<<<<<<<<
@@ -9471,7 +9749,7 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_dete
  */
   }
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":232
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":254
  * 
  *     # If not at start, try finding first SEC-DOCUMENT tag
  *     sec_index = content.find('<SEC-DOCUMENT>')             # <<<<<<<<<<<<<<
@@ -9480,27 +9758,27 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_dete
  */
   if (unlikely(__pyx_v_content == Py_None)) {
     PyErr_Format(PyExc_AttributeError, "'NoneType' object has no attribute '%.30s'", "find");
-    __PYX_ERR(0, 232, __pyx_L1_error)
+    __PYX_ERR(0, 254, __pyx_L1_error)
   }
-  __pyx_t_3 = PyUnicode_Find(__pyx_v_content, __pyx_kp_u_SEC_DOCUMENT_2, 0, PY_SSIZE_T_MAX, 1); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-2))) __PYX_ERR(0, 232, __pyx_L1_error)
-  __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 232, __pyx_L1_error)
+  __pyx_t_3 = PyUnicode_Find(__pyx_v_content, __pyx_kp_u_SEC_DOCUMENT_2, 0, PY_SSIZE_T_MAX, 1); if (unlikely(__pyx_t_3 == ((Py_ssize_t)-2))) __PYX_ERR(0, 254, __pyx_L1_error)
+  __pyx_t_1 = PyInt_FromSsize_t(__pyx_t_3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 254, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_v_sec_index = __pyx_t_1;
   __pyx_t_1 = 0;
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":233
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":255
  *     # If not at start, try finding first SEC-DOCUMENT tag
  *     sec_index = content.find('<SEC-DOCUMENT>')
  *     if sec_index >= 0:             # <<<<<<<<<<<<<<
  *         return 'SEC-DOCUMENT'
  * 
  */
-  __pyx_t_1 = PyObject_RichCompare(__pyx_v_sec_index, __pyx_int_0, Py_GE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 233, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 233, __pyx_L1_error)
+  __pyx_t_1 = PyObject_RichCompare(__pyx_v_sec_index, __pyx_int_0, Py_GE); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 255, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 255, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_2) {
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":234
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":256
  *     sec_index = content.find('<SEC-DOCUMENT>')
  *     if sec_index >= 0:
  *         return 'SEC-DOCUMENT'             # <<<<<<<<<<<<<<
@@ -9512,7 +9790,7 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_dete
     __pyx_r = __pyx_kp_u_SEC_DOCUMENT_3;
     goto __pyx_L0;
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":233
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":255
  *     # If not at start, try finding first SEC-DOCUMENT tag
  *     sec_index = content.find('<SEC-DOCUMENT>')
  *     if sec_index >= 0:             # <<<<<<<<<<<<<<
@@ -9521,20 +9799,20 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_dete
  */
   }
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":236
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":258
  *         return 'SEC-DOCUMENT'
  * 
  *     raise ValueError("Unknown document type")             # <<<<<<<<<<<<<<
  * 
  * def parse_sgml_submission(filepath: str | None = None, output_dir: str | None = None, content: str | None = None) -> None:
  */
-  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__9, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 236, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 258, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_Raise(__pyx_t_1, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __PYX_ERR(0, 236, __pyx_L1_error)
+  __PYX_ERR(0, 258, __pyx_L1_error)
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":221
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":243
  *             json.dump(metadata, f, indent=4)
  * 
  * def detect_document_type(content: str) -> str:             # <<<<<<<<<<<<<<
@@ -9555,7 +9833,7 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_dete
   return __pyx_r;
 }
 
-/* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":238
+/* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":260
  *     raise ValueError("Unknown document type")
  * 
  * def parse_sgml_submission(filepath: str | None = None, output_dir: str | None = None, content: str | None = None) -> None:             # <<<<<<<<<<<<<<
@@ -9625,26 +9903,26 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_filepath);
           if (value) { values[0] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 238, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 260, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  1:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_output_dir);
           if (value) { values[1] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 238, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 260, __pyx_L3_error)
         }
         CYTHON_FALLTHROUGH;
         case  2:
         if (kw_args > 0) {
           PyObject* value = __Pyx_GetKwValue_FASTCALL(__pyx_kwds, __pyx_kwvalues, __pyx_n_s_content);
           if (value) { values[2] = __Pyx_Arg_NewRef_FASTCALL(value); kw_args--; }
-          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 238, __pyx_L3_error)
+          else if (unlikely(PyErr_Occurred())) __PYX_ERR(0, 260, __pyx_L3_error)
         }
       }
       if (unlikely(kw_args > 0)) {
         const Py_ssize_t kwd_pos_args = __pyx_nargs;
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "parse_sgml_submission") < 0)) __PYX_ERR(0, 238, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_kwvalues, __pyx_pyargnames, 0, values + 0, kwd_pos_args, "parse_sgml_submission") < 0)) __PYX_ERR(0, 260, __pyx_L3_error)
       }
     } else {
       switch (__pyx_nargs) {
@@ -9664,7 +9942,7 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   }
   goto __pyx_L6_skip;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("parse_sgml_submission", 0, 0, 3, __pyx_nargs); __PYX_ERR(0, 238, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("parse_sgml_submission", 0, 0, 3, __pyx_nargs); __PYX_ERR(0, 260, __pyx_L3_error)
   __pyx_L6_skip:;
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L3_error:;
@@ -9718,40 +9996,40 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_2par
   __Pyx_INCREF(__pyx_v_output_dir);
   __Pyx_INCREF(__pyx_v_content);
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":247
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":269
  *         content: SGML content string (optional if filepath provided)
  *     """
  *     if not filepath and not content:             # <<<<<<<<<<<<<<
  *         raise ValueError("Either filepath or content must be provided")
  * 
  */
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_filepath); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 247, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_filepath); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 269, __pyx_L1_error)
   __pyx_t_3 = (!__pyx_t_2);
   if (__pyx_t_3) {
   } else {
     __pyx_t_1 = __pyx_t_3;
     goto __pyx_L4_bool_binop_done;
   }
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_v_content); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 247, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_v_content); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 269, __pyx_L1_error)
   __pyx_t_2 = (!__pyx_t_3);
   __pyx_t_1 = __pyx_t_2;
   __pyx_L4_bool_binop_done:;
   if (unlikely(__pyx_t_1)) {
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":248
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":270
  *     """
  *     if not filepath and not content:
  *         raise ValueError("Either filepath or content must be provided")             # <<<<<<<<<<<<<<
  * 
  *     if not output_dir and filepath:
  */
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__10, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 248, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 270, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __PYX_ERR(0, 248, __pyx_L1_error)
+    __PYX_ERR(0, 270, __pyx_L1_error)
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":247
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":269
  *         content: SGML content string (optional if filepath provided)
  *     """
  *     if not filepath and not content:             # <<<<<<<<<<<<<<
@@ -9760,38 +10038,38 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_2par
  */
   }
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":250
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":272
  *         raise ValueError("Either filepath or content must be provided")
  * 
  *     if not output_dir and filepath:             # <<<<<<<<<<<<<<
  *         output_dir = os.path.splitext(filepath)[0] + '_output'
  *     elif not output_dir:
  */
-  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_output_dir); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 250, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_output_dir); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(0, 272, __pyx_L1_error)
   __pyx_t_3 = (!__pyx_t_2);
   if (__pyx_t_3) {
   } else {
     __pyx_t_1 = __pyx_t_3;
     goto __pyx_L7_bool_binop_done;
   }
-  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_v_filepath); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 250, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_v_filepath); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 272, __pyx_L1_error)
   __pyx_t_1 = __pyx_t_3;
   __pyx_L7_bool_binop_done:;
   if (__pyx_t_1) {
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":251
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":273
  * 
  *     if not output_dir and filepath:
  *         output_dir = os.path.splitext(filepath)[0] + '_output'             # <<<<<<<<<<<<<<
  *     elif not output_dir:
  *         raise ValueError("output_dir must be provided when parsing from content")
  */
-    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_os); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 251, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_5, __pyx_n_s_os); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 273, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_path); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 251, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_path); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 273, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_splitext); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 251, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_splitext); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 273, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_t_6 = NULL;
@@ -9812,20 +10090,20 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_2par
       PyObject *__pyx_callargs[2] = {__pyx_t_6, __pyx_v_filepath};
       __pyx_t_4 = __Pyx_PyObject_FastCall(__pyx_t_5, __pyx_callargs+1-__pyx_t_7, 1+__pyx_t_7);
       __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 251, __pyx_L1_error)
+      if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 273, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     }
-    __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 251, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_GetItemInt(__pyx_t_4, 0, long, 1, __Pyx_PyInt_From_long, 0, 0, 0); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 273, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = PyNumber_Add(__pyx_t_5, __pyx_n_u_output); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 251, __pyx_L1_error)
+    __pyx_t_4 = PyNumber_Add(__pyx_t_5, __pyx_n_u_output); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 273, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
     __Pyx_DECREF_SET(__pyx_v_output_dir, __pyx_t_4);
     __pyx_t_4 = 0;
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":250
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":272
  *         raise ValueError("Either filepath or content must be provided")
  * 
  *     if not output_dir and filepath:             # <<<<<<<<<<<<<<
@@ -9835,31 +10113,31 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_2par
     goto __pyx_L6;
   }
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":252
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":274
  *     if not output_dir and filepath:
  *         output_dir = os.path.splitext(filepath)[0] + '_output'
  *     elif not output_dir:             # <<<<<<<<<<<<<<
  *         raise ValueError("output_dir must be provided when parsing from content")
  * 
  */
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_output_dir); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 252, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_output_dir); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 274, __pyx_L1_error)
   __pyx_t_3 = (!__pyx_t_1);
   if (unlikely(__pyx_t_3)) {
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":253
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":275
  *         output_dir = os.path.splitext(filepath)[0] + '_output'
  *     elif not output_dir:
  *         raise ValueError("output_dir must be provided when parsing from content")             # <<<<<<<<<<<<<<
  * 
  *     os.makedirs(output_dir, exist_ok=True)
  */
-    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__11, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 253, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_ValueError, __pyx_tuple__12, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 275, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_Raise(__pyx_t_4, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __PYX_ERR(0, 253, __pyx_L1_error)
+    __PYX_ERR(0, 275, __pyx_L1_error)
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":252
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":274
  *     if not output_dir and filepath:
  *         output_dir = os.path.splitext(filepath)[0] + '_output'
  *     elif not output_dir:             # <<<<<<<<<<<<<<
@@ -9869,34 +10147,34 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_2par
   }
   __pyx_L6:;
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":255
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":277
  *         raise ValueError("output_dir must be provided when parsing from content")
  * 
  *     os.makedirs(output_dir, exist_ok=True)             # <<<<<<<<<<<<<<
  * 
  *     # If content not provided, read from file
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_os); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 255, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_os); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 277, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
-  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_makedirs); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 255, __pyx_L1_error)
+  __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_makedirs); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 277, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_5);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 255, __pyx_L1_error)
+  __pyx_t_4 = PyTuple_New(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 277, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_INCREF(__pyx_v_output_dir);
   __Pyx_GIVEREF(__pyx_v_output_dir);
-  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_v_output_dir)) __PYX_ERR(0, 255, __pyx_L1_error);
-  __pyx_t_6 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 255, __pyx_L1_error)
+  if (__Pyx_PyTuple_SET_ITEM(__pyx_t_4, 0, __pyx_v_output_dir)) __PYX_ERR(0, 277, __pyx_L1_error);
+  __pyx_t_6 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 277, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_exist_ok, Py_True) < 0) __PYX_ERR(0, 255, __pyx_L1_error)
-  __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_4, __pyx_t_6); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 255, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_exist_ok, Py_True) < 0) __PYX_ERR(0, 277, __pyx_L1_error)
+  __pyx_t_8 = __Pyx_PyObject_Call(__pyx_t_5, __pyx_t_4, __pyx_t_6); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 277, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_8);
   __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":258
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":280
  * 
  *     # If content not provided, read from file
  *     if content is None:             # <<<<<<<<<<<<<<
@@ -9906,7 +10184,7 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_2par
   __pyx_t_3 = (__pyx_v_content == Py_None);
   if (__pyx_t_3) {
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":259
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":281
  *     # If content not provided, read from file
  *     if content is None:
  *         with open(filepath, 'r', encoding='utf-8') as f:             # <<<<<<<<<<<<<<
@@ -9914,24 +10192,24 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_2par
  * 
  */
     /*with:*/ {
-      __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 259, __pyx_L1_error)
+      __pyx_t_8 = PyTuple_New(2); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 281, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_8);
       __Pyx_INCREF(__pyx_v_filepath);
       __Pyx_GIVEREF(__pyx_v_filepath);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_v_filepath)) __PYX_ERR(0, 259, __pyx_L1_error);
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 0, __pyx_v_filepath)) __PYX_ERR(0, 281, __pyx_L1_error);
       __Pyx_INCREF(__pyx_n_u_r);
       __Pyx_GIVEREF(__pyx_n_u_r);
-      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_n_u_r)) __PYX_ERR(0, 259, __pyx_L1_error);
-      __pyx_t_6 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 259, __pyx_L1_error)
+      if (__Pyx_PyTuple_SET_ITEM(__pyx_t_8, 1, __pyx_n_u_r)) __PYX_ERR(0, 281, __pyx_L1_error);
+      __pyx_t_6 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 281, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
-      if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_encoding, __pyx_kp_u_utf_8) < 0) __PYX_ERR(0, 259, __pyx_L1_error)
-      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_t_8, __pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 259, __pyx_L1_error)
+      if (PyDict_SetItem(__pyx_t_6, __pyx_n_s_encoding, __pyx_kp_u_utf_8) < 0) __PYX_ERR(0, 281, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_open, __pyx_t_8, __pyx_t_6); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 281, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-      __pyx_t_9 = __Pyx_PyObject_LookupSpecial(__pyx_t_4, __pyx_n_s_exit); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 259, __pyx_L1_error)
+      __pyx_t_9 = __Pyx_PyObject_LookupSpecial(__pyx_t_4, __pyx_n_s_exit); if (unlikely(!__pyx_t_9)) __PYX_ERR(0, 281, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_9);
-      __pyx_t_8 = __Pyx_PyObject_LookupSpecial(__pyx_t_4, __pyx_n_s_enter); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 259, __pyx_L10_error)
+      __pyx_t_8 = __Pyx_PyObject_LookupSpecial(__pyx_t_4, __pyx_n_s_enter); if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 281, __pyx_L10_error)
       __Pyx_GOTREF(__pyx_t_8);
       __pyx_t_5 = NULL;
       __pyx_t_7 = 0;
@@ -9951,7 +10229,7 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_2par
         PyObject *__pyx_callargs[2] = {__pyx_t_5, NULL};
         __pyx_t_6 = __Pyx_PyObject_FastCall(__pyx_t_8, __pyx_callargs+1-__pyx_t_7, 0+__pyx_t_7);
         __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-        if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 259, __pyx_L10_error)
+        if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 281, __pyx_L10_error)
         __Pyx_GOTREF(__pyx_t_6);
         __Pyx_DECREF(__pyx_t_8); __pyx_t_8 = 0;
       }
@@ -9970,14 +10248,14 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_2par
             __pyx_v_f = __pyx_t_8;
             __pyx_t_8 = 0;
 
-            /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":260
+            /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":282
  *     if content is None:
  *         with open(filepath, 'r', encoding='utf-8') as f:
  *             content = f.read()             # <<<<<<<<<<<<<<
  * 
  *     # Handle documents with garbage at start
  */
-            __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_f, __pyx_n_s_read); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 260, __pyx_L14_error)
+            __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_f, __pyx_n_s_read); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 282, __pyx_L14_error)
             __Pyx_GOTREF(__pyx_t_4);
             __pyx_t_6 = NULL;
             __pyx_t_7 = 0;
@@ -9997,14 +10275,14 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_2par
               PyObject *__pyx_callargs[2] = {__pyx_t_6, NULL};
               __pyx_t_8 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_7, 0+__pyx_t_7);
               __Pyx_XDECREF(__pyx_t_6); __pyx_t_6 = 0;
-              if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 260, __pyx_L14_error)
+              if (unlikely(!__pyx_t_8)) __PYX_ERR(0, 282, __pyx_L14_error)
               __Pyx_GOTREF(__pyx_t_8);
               __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
             }
             __Pyx_DECREF_SET(__pyx_v_content, __pyx_t_8);
             __pyx_t_8 = 0;
 
-            /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":259
+            /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":281
  *     # If content not provided, read from file
  *     if content is None:
  *         with open(filepath, 'r', encoding='utf-8') as f:             # <<<<<<<<<<<<<<
@@ -10023,20 +10301,20 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_2par
           __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
           /*except:*/ {
             __Pyx_AddTraceback("datamule.parser.sgml_parsing.sgml_parser_cy.parse_sgml_submission", __pyx_clineno, __pyx_lineno, __pyx_filename);
-            if (__Pyx_GetException(&__pyx_t_8, &__pyx_t_4, &__pyx_t_6) < 0) __PYX_ERR(0, 259, __pyx_L16_except_error)
+            if (__Pyx_GetException(&__pyx_t_8, &__pyx_t_4, &__pyx_t_6) < 0) __PYX_ERR(0, 281, __pyx_L16_except_error)
             __Pyx_XGOTREF(__pyx_t_8);
             __Pyx_XGOTREF(__pyx_t_4);
             __Pyx_XGOTREF(__pyx_t_6);
-            __pyx_t_5 = PyTuple_Pack(3, __pyx_t_8, __pyx_t_4, __pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 259, __pyx_L16_except_error)
+            __pyx_t_5 = PyTuple_Pack(3, __pyx_t_8, __pyx_t_4, __pyx_t_6); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 281, __pyx_L16_except_error)
             __Pyx_GOTREF(__pyx_t_5);
             __pyx_t_13 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_t_5, NULL);
             __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
             __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-            if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 259, __pyx_L16_except_error)
+            if (unlikely(!__pyx_t_13)) __PYX_ERR(0, 281, __pyx_L16_except_error)
             __Pyx_GOTREF(__pyx_t_13);
             __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_13);
             __Pyx_DECREF(__pyx_t_13); __pyx_t_13 = 0;
-            if (__pyx_t_3 < 0) __PYX_ERR(0, 259, __pyx_L16_except_error)
+            if (__pyx_t_3 < 0) __PYX_ERR(0, 281, __pyx_L16_except_error)
             __pyx_t_1 = (!__pyx_t_3);
             if (unlikely(__pyx_t_1)) {
               __Pyx_GIVEREF(__pyx_t_8);
@@ -10044,7 +10322,7 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_2par
               __Pyx_XGIVEREF(__pyx_t_6);
               __Pyx_ErrRestoreWithState(__pyx_t_8, __pyx_t_4, __pyx_t_6);
               __pyx_t_8 = 0; __pyx_t_4 = 0; __pyx_t_6 = 0; 
-              __PYX_ERR(0, 259, __pyx_L16_except_error)
+              __PYX_ERR(0, 281, __pyx_L16_except_error)
             }
             __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
             __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
@@ -10070,7 +10348,7 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_2par
           if (__pyx_t_9) {
             __pyx_t_12 = __Pyx_PyObject_Call(__pyx_t_9, __pyx_tuple__7, NULL);
             __Pyx_DECREF(__pyx_t_9); __pyx_t_9 = 0;
-            if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 259, __pyx_L1_error)
+            if (unlikely(!__pyx_t_12)) __PYX_ERR(0, 281, __pyx_L1_error)
             __Pyx_GOTREF(__pyx_t_12);
             __Pyx_DECREF(__pyx_t_12); __pyx_t_12 = 0;
           }
@@ -10085,7 +10363,7 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_2par
       __pyx_L23:;
     }
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":258
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":280
  * 
  *     # If content not provided, read from file
  *     if content is None:             # <<<<<<<<<<<<<<
@@ -10094,14 +10372,14 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_2par
  */
   }
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":263
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":285
  * 
  *     # Handle documents with garbage at start
  *     if not content.startswith(('<SUBMISSION>', '<SEC-DOCUMENT>')):             # <<<<<<<<<<<<<<
  *         sec_index = content.find('<SEC-DOCUMENT>')
  *         if sec_index >= 0:
  */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_content, __pyx_n_s_startswith); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 263, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_content, __pyx_n_s_startswith); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 285, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_8 = NULL;
   __pyx_t_7 = 0;
@@ -10118,26 +10396,26 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_2par
   }
   #endif
   {
-    PyObject *__pyx_callargs[2] = {__pyx_t_8, __pyx_tuple__12};
+    PyObject *__pyx_callargs[2] = {__pyx_t_8, __pyx_tuple__13};
     __pyx_t_6 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_7, 1+__pyx_t_7);
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 263, __pyx_L1_error)
+    if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 285, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
-  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 263, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely((__pyx_t_1 < 0))) __PYX_ERR(0, 285, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
   __pyx_t_3 = (!__pyx_t_1);
   if (__pyx_t_3) {
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":264
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":286
  *     # Handle documents with garbage at start
  *     if not content.startswith(('<SUBMISSION>', '<SEC-DOCUMENT>')):
  *         sec_index = content.find('<SEC-DOCUMENT>')             # <<<<<<<<<<<<<<
  *         if sec_index >= 0:
  *             content = content[sec_index:]
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_content, __pyx_n_s_find); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 264, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_content, __pyx_n_s_find); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 286, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_8 = NULL;
     __pyx_t_7 = 0;
@@ -10157,38 +10435,38 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_2par
       PyObject *__pyx_callargs[2] = {__pyx_t_8, __pyx_kp_u_SEC_DOCUMENT_2};
       __pyx_t_6 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_7, 1+__pyx_t_7);
       __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 264, __pyx_L1_error)
+      if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 286, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     }
     __pyx_v_sec_index = __pyx_t_6;
     __pyx_t_6 = 0;
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":265
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":287
  *     if not content.startswith(('<SUBMISSION>', '<SEC-DOCUMENT>')):
  *         sec_index = content.find('<SEC-DOCUMENT>')
  *         if sec_index >= 0:             # <<<<<<<<<<<<<<
  *             content = content[sec_index:]
  * 
  */
-    __pyx_t_6 = PyObject_RichCompare(__pyx_v_sec_index, __pyx_int_0, Py_GE); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 265, __pyx_L1_error)
-    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 265, __pyx_L1_error)
+    __pyx_t_6 = PyObject_RichCompare(__pyx_v_sec_index, __pyx_int_0, Py_GE); __Pyx_XGOTREF(__pyx_t_6); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 287, __pyx_L1_error)
+    __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_t_6); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 287, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     if (__pyx_t_3) {
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":266
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":288
  *         sec_index = content.find('<SEC-DOCUMENT>')
  *         if sec_index >= 0:
  *             content = content[sec_index:]             # <<<<<<<<<<<<<<
  * 
  *     # Detect document type and use appropriate parser
  */
-      __pyx_t_6 = __Pyx_PyObject_GetSlice(__pyx_v_content, 0, 0, &__pyx_v_sec_index, NULL, NULL, 0, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 266, __pyx_L1_error)
+      __pyx_t_6 = __Pyx_PyObject_GetSlice(__pyx_v_content, 0, 0, &__pyx_v_sec_index, NULL, NULL, 0, 0, 0); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 288, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_6);
       __Pyx_DECREF_SET(__pyx_v_content, __pyx_t_6);
       __pyx_t_6 = 0;
 
-      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":265
+      /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":287
  *     if not content.startswith(('<SUBMISSION>', '<SEC-DOCUMENT>')):
  *         sec_index = content.find('<SEC-DOCUMENT>')
  *         if sec_index >= 0:             # <<<<<<<<<<<<<<
@@ -10197,7 +10475,7 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_2par
  */
     }
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":263
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":285
  * 
  *     # Handle documents with garbage at start
  *     if not content.startswith(('<SUBMISSION>', '<SEC-DOCUMENT>')):             # <<<<<<<<<<<<<<
@@ -10206,14 +10484,14 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_2par
  */
   }
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":269
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":291
  * 
  *     # Detect document type and use appropriate parser
  *     doc_type = detect_document_type(content)             # <<<<<<<<<<<<<<
  * 
  *     if doc_type == 'SUBMISSION':
  */
-  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_detect_document_type); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 269, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_detect_document_type); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 291, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_8 = NULL;
   __pyx_t_7 = 0;
@@ -10233,36 +10511,36 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_2par
     PyObject *__pyx_callargs[2] = {__pyx_t_8, __pyx_v_content};
     __pyx_t_6 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_7, 1+__pyx_t_7);
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 269, __pyx_L1_error)
+    if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 291, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
   __pyx_v_doc_type = __pyx_t_6;
   __pyx_t_6 = 0;
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":271
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":293
  *     doc_type = detect_document_type(content)
  * 
  *     if doc_type == 'SUBMISSION':             # <<<<<<<<<<<<<<
  *         parser = SubmissionParser()
  *     else:  # SEC-DOCUMENT
  */
-  __pyx_t_3 = (__Pyx_PyUnicode_Equals(__pyx_v_doc_type, __pyx_n_u_SUBMISSION_3, Py_EQ)); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 271, __pyx_L1_error)
+  __pyx_t_3 = (__Pyx_PyUnicode_Equals(__pyx_v_doc_type, __pyx_n_u_SUBMISSION_3, Py_EQ)); if (unlikely((__pyx_t_3 < 0))) __PYX_ERR(0, 293, __pyx_L1_error)
   if (__pyx_t_3) {
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":272
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":294
  * 
  *     if doc_type == 'SUBMISSION':
  *         parser = SubmissionParser()             # <<<<<<<<<<<<<<
  *     else:  # SEC-DOCUMENT
  *         parser = SECDocumentParser()
  */
-    __pyx_t_6 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_SubmissionParser)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 272, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_SubmissionParser)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 294, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_v_parser = ((struct __pyx_obj_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_BaseParser *)__pyx_t_6);
     __pyx_t_6 = 0;
 
-    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":271
+    /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":293
  *     doc_type = detect_document_type(content)
  * 
  *     if doc_type == 'SUBMISSION':             # <<<<<<<<<<<<<<
@@ -10272,7 +10550,7 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_2par
     goto __pyx_L26;
   }
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":274
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":296
  *         parser = SubmissionParser()
  *     else:  # SEC-DOCUMENT
  *         parser = SECDocumentParser()             # <<<<<<<<<<<<<<
@@ -10280,20 +10558,20 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_2par
  *     parser.output_dir = output_dir
  */
   /*else*/ {
-    __pyx_t_6 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_SECDocumentParser)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 274, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_CallNoArg(((PyObject *)__pyx_ptype_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_SECDocumentParser)); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 296, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __pyx_v_parser = ((struct __pyx_obj_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_BaseParser *)__pyx_t_6);
     __pyx_t_6 = 0;
   }
   __pyx_L26:;
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":276
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":298
  *         parser = SECDocumentParser()
  * 
  *     parser.output_dir = output_dir             # <<<<<<<<<<<<<<
  *     parser.parse_content(content)
  */
-  if (!(likely(PyUnicode_CheckExact(__pyx_v_output_dir))||((__pyx_v_output_dir) == Py_None) || __Pyx_RaiseUnexpectedTypeError("unicode", __pyx_v_output_dir))) __PYX_ERR(0, 276, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_v_output_dir))||((__pyx_v_output_dir) == Py_None) || __Pyx_RaiseUnexpectedTypeError("unicode", __pyx_v_output_dir))) __PYX_ERR(0, 298, __pyx_L1_error)
   __pyx_t_6 = __pyx_v_output_dir;
   __Pyx_INCREF(__pyx_t_6);
   __Pyx_GIVEREF(__pyx_t_6);
@@ -10302,12 +10580,12 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_2par
   __pyx_v_parser->output_dir = ((PyObject*)__pyx_t_6);
   __pyx_t_6 = 0;
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":277
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":299
  * 
  *     parser.output_dir = output_dir
  *     parser.parse_content(content)             # <<<<<<<<<<<<<<
  */
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_parser), __pyx_n_s_parse_content); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 277, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_parser), __pyx_n_s_parse_content); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 299, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __pyx_t_8 = NULL;
   __pyx_t_7 = 0;
@@ -10327,13 +10605,13 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_2par
     PyObject *__pyx_callargs[2] = {__pyx_t_8, __pyx_v_content};
     __pyx_t_6 = __Pyx_PyObject_FastCall(__pyx_t_4, __pyx_callargs+1-__pyx_t_7, 1+__pyx_t_7);
     __Pyx_XDECREF(__pyx_t_8); __pyx_t_8 = 0;
-    if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 277, __pyx_L1_error)
+    if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 299, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   }
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":238
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":260
  *     raise ValueError("Unknown document type")
  * 
  * def parse_sgml_submission(filepath: str | None = None, output_dir: str | None = None, content: str | None = None) -> None:             # <<<<<<<<<<<<<<
@@ -10519,7 +10797,7 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_4__p
  */
   __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v___pyx_checksum); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_t_1, __pyx_tuple__13, Py_NE)); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(2, 4, __pyx_L1_error)
+  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_t_1, __pyx_tuple__14, Py_NE)); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(2, 4, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_2) {
 
@@ -10958,7 +11236,7 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_6__p
  */
   __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v___pyx_checksum); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_t_1, __pyx_tuple__13, Py_NE)); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(2, 4, __pyx_L1_error)
+  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_t_1, __pyx_tuple__14, Py_NE)); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(2, 4, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_2) {
 
@@ -11397,7 +11675,7 @@ static PyObject *__pyx_pf_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_8__p
  */
   __pyx_t_1 = __Pyx_PyInt_From_long(__pyx_v___pyx_checksum); if (unlikely(!__pyx_t_1)) __PYX_ERR(2, 4, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_t_1, __pyx_tuple__13, Py_NE)); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(2, 4, __pyx_L1_error)
+  __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_t_1, __pyx_tuple__14, Py_NE)); if (unlikely((__pyx_t_2 < 0))) __PYX_ERR(2, 4, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_2) {
 
@@ -12135,15 +12413,16 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_kp_u_XML, __pyx_k_XML, sizeof(__pyx_k_XML), 0, 1, 0, 0},
     {&__pyx_kp_u_XML_2, __pyx_k_XML_2, sizeof(__pyx_k_XML_2), 0, 1, 0, 0},
     {&__pyx_kp_u_XML_3, __pyx_k_XML_3, sizeof(__pyx_k_XML_3), 0, 1, 0, 0},
-    {&__pyx_kp_u__14, __pyx_k__14, sizeof(__pyx_k__14), 0, 1, 0, 0},
-    {&__pyx_n_s__15, __pyx_k__15, sizeof(__pyx_k__15), 0, 0, 1, 1},
+    {&__pyx_kp_u__15, __pyx_k__15, sizeof(__pyx_k__15), 0, 1, 0, 0},
+    {&__pyx_n_s__16, __pyx_k__16, sizeof(__pyx_k__16), 0, 0, 1, 1},
     {&__pyx_kp_u__2, __pyx_k__2, sizeof(__pyx_k__2), 0, 1, 0, 0},
     {&__pyx_kp_u__3, __pyx_k__3, sizeof(__pyx_k__3), 0, 1, 0, 0},
-    {&__pyx_n_s__35, __pyx_k__35, sizeof(__pyx_k__35), 0, 0, 1, 1},
+    {&__pyx_n_s__36, __pyx_k__36, sizeof(__pyx_k__36), 0, 0, 1, 1},
     {&__pyx_kp_u__4, __pyx_k__4, sizeof(__pyx_k__4), 0, 1, 0, 0},
     {&__pyx_kp_u__5, __pyx_k__5, sizeof(__pyx_k__5), 0, 1, 0, 0},
     {&__pyx_kp_u__6, __pyx_k__6, sizeof(__pyx_k__6), 0, 1, 0, 0},
     {&__pyx_kp_u__8, __pyx_k__8, sizeof(__pyx_k__8), 0, 1, 0, 0},
+    {&__pyx_kp_u__9, __pyx_k__9, sizeof(__pyx_k__9), 0, 1, 0, 0},
     {&__pyx_n_s_asyncio_coroutines, __pyx_k_asyncio_coroutines, sizeof(__pyx_k_asyncio_coroutines), 0, 0, 1, 1},
     {&__pyx_kp_u_begin, __pyx_k_begin, sizeof(__pyx_k_begin), 0, 1, 0, 0},
     {&__pyx_n_s_cline_in_traceback, __pyx_k_cline_in_traceback, sizeof(__pyx_k_cline_in_traceback), 0, 0, 1, 1},
@@ -12170,7 +12449,6 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_kp_u_gc, __pyx_k_gc, sizeof(__pyx_k_gc), 0, 1, 0, 0},
     {&__pyx_n_s_get, __pyx_k_get, sizeof(__pyx_k_get), 0, 0, 1, 1},
     {&__pyx_n_s_getstate, __pyx_k_getstate, sizeof(__pyx_k_getstate), 0, 0, 1, 1},
-    {&__pyx_n_u_header, __pyx_k_header, sizeof(__pyx_k_header), 0, 1, 0, 1},
     {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
     {&__pyx_n_s_indent, __pyx_k_indent, sizeof(__pyx_k_indent), 0, 0, 1, 1},
     {&__pyx_n_s_index, __pyx_k_index, sizeof(__pyx_k_index), 0, 0, 1, 1},
@@ -12215,6 +12493,7 @@ static int __Pyx_CreateStringTabAndInitStrings(void) {
     {&__pyx_n_s_reduce_cython, __pyx_k_reduce_cython, sizeof(__pyx_k_reduce_cython), 0, 0, 1, 1},
     {&__pyx_n_s_reduce_ex, __pyx_k_reduce_ex, sizeof(__pyx_k_reduce_ex), 0, 0, 1, 1},
     {&__pyx_n_s_return, __pyx_k_return, sizeof(__pyx_k_return), 0, 0, 1, 1},
+    {&__pyx_n_s_rstrip, __pyx_k_rstrip, sizeof(__pyx_k_rstrip), 0, 0, 1, 1},
     {&__pyx_n_s_sec_index, __pyx_k_sec_index, sizeof(__pyx_k_sec_index), 0, 0, 1, 1},
     {&__pyx_n_s_self, __pyx_k_self, sizeof(__pyx_k_self), 0, 0, 1, 1},
     {&__pyx_n_s_setstate, __pyx_k_setstate, sizeof(__pyx_k_setstate), 0, 0, 1, 1},
@@ -12279,49 +12558,49 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple__7);
   __Pyx_GIVEREF(__pyx_tuple__7);
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":236
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":258
  *         return 'SEC-DOCUMENT'
  * 
  *     raise ValueError("Unknown document type")             # <<<<<<<<<<<<<<
  * 
  * def parse_sgml_submission(filepath: str | None = None, output_dir: str | None = None, content: str | None = None) -> None:
  */
-  __pyx_tuple__9 = PyTuple_Pack(1, __pyx_kp_u_Unknown_document_type); if (unlikely(!__pyx_tuple__9)) __PYX_ERR(0, 236, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__9);
-  __Pyx_GIVEREF(__pyx_tuple__9);
+  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_u_Unknown_document_type); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 258, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__10);
+  __Pyx_GIVEREF(__pyx_tuple__10);
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":248
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":270
  *     """
  *     if not filepath and not content:
  *         raise ValueError("Either filepath or content must be provided")             # <<<<<<<<<<<<<<
  * 
  *     if not output_dir and filepath:
  */
-  __pyx_tuple__10 = PyTuple_Pack(1, __pyx_kp_u_Either_filepath_or_content_must); if (unlikely(!__pyx_tuple__10)) __PYX_ERR(0, 248, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__10);
-  __Pyx_GIVEREF(__pyx_tuple__10);
+  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_u_Either_filepath_or_content_must); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 270, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__11);
+  __Pyx_GIVEREF(__pyx_tuple__11);
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":253
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":275
  *         output_dir = os.path.splitext(filepath)[0] + '_output'
  *     elif not output_dir:
  *         raise ValueError("output_dir must be provided when parsing from content")             # <<<<<<<<<<<<<<
  * 
  *     os.makedirs(output_dir, exist_ok=True)
  */
-  __pyx_tuple__11 = PyTuple_Pack(1, __pyx_kp_u_output_dir_must_be_provided_when); if (unlikely(!__pyx_tuple__11)) __PYX_ERR(0, 253, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__11);
-  __Pyx_GIVEREF(__pyx_tuple__11);
+  __pyx_tuple__12 = PyTuple_Pack(1, __pyx_kp_u_output_dir_must_be_provided_when); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 275, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__12);
+  __Pyx_GIVEREF(__pyx_tuple__12);
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":263
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":285
  * 
  *     # Handle documents with garbage at start
  *     if not content.startswith(('<SUBMISSION>', '<SEC-DOCUMENT>')):             # <<<<<<<<<<<<<<
  *         sec_index = content.find('<SEC-DOCUMENT>')
  *         if sec_index >= 0:
  */
-  __pyx_tuple__12 = PyTuple_Pack(2, __pyx_kp_u_SUBMISSION_2, __pyx_kp_u_SEC_DOCUMENT_2); if (unlikely(!__pyx_tuple__12)) __PYX_ERR(0, 263, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__12);
-  __Pyx_GIVEREF(__pyx_tuple__12);
+  __pyx_tuple__13 = PyTuple_Pack(2, __pyx_kp_u_SUBMISSION_2, __pyx_kp_u_SEC_DOCUMENT_2); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(0, 285, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__13);
+  __Pyx_GIVEREF(__pyx_tuple__13);
 
   /* "(tree fragment)":4
  *     cdef object __pyx_PickleError
@@ -12330,19 +12609,19 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         from pickle import PickleError as __pyx_PickleError
  *         raise __pyx_PickleError, "Incompatible checksums (0x%x vs (0xafde399, 0x9b29b76, 0x6befcab) = (output_dir))" % __pyx_checksum
  */
-  __pyx_tuple__13 = PyTuple_Pack(3, __pyx_int_184411033, __pyx_int_162700150, __pyx_int_113179819); if (unlikely(!__pyx_tuple__13)) __PYX_ERR(2, 4, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__13);
-  __Pyx_GIVEREF(__pyx_tuple__13);
+  __pyx_tuple__14 = PyTuple_Pack(3, __pyx_int_184411033, __pyx_int_162700150, __pyx_int_113179819); if (unlikely(!__pyx_tuple__14)) __PYX_ERR(2, 4, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__14);
+  __Pyx_GIVEREF(__pyx_tuple__14);
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     cdef tuple state
  *     cdef object _dict
  */
-  __pyx_tuple__16 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_state, __pyx_n_s_dict_2, __pyx_n_s_use_setstate); if (unlikely(!__pyx_tuple__16)) __PYX_ERR(2, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__16);
-  __Pyx_GIVEREF(__pyx_tuple__16);
-  __pyx_codeobj__17 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_reduce_cython, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__17)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __pyx_tuple__17 = PyTuple_Pack(4, __pyx_n_s_self, __pyx_n_s_state, __pyx_n_s_dict_2, __pyx_n_s_use_setstate); if (unlikely(!__pyx_tuple__17)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__17);
+  __Pyx_GIVEREF(__pyx_tuple__17);
+  __pyx_codeobj__18 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_reduce_cython, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__18)) __PYX_ERR(2, 1, __pyx_L1_error)
 
   /* "(tree fragment)":16
  *     else:
@@ -12350,10 +12629,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_BaseParser__set_state(self, __pyx_state)
  */
-  __pyx_tuple__18 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_pyx_state); if (unlikely(!__pyx_tuple__18)) __PYX_ERR(2, 16, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__18);
-  __Pyx_GIVEREF(__pyx_tuple__18);
-  __pyx_codeobj__19 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__18, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__19)) __PYX_ERR(2, 16, __pyx_L1_error)
+  __pyx_tuple__19 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_pyx_state); if (unlikely(!__pyx_tuple__19)) __PYX_ERR(2, 16, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__19);
+  __Pyx_GIVEREF(__pyx_tuple__19);
+  __pyx_codeobj__20 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__20)) __PYX_ERR(2, 16, __pyx_L1_error)
 
   /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":65
  *     """Parser for <SUBMISSION> type documents"""
@@ -12362,17 +12641,17 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  *         cdef:
  *             dict submission_data = {}
  */
-  __pyx_tuple__20 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_content); if (unlikely(!__pyx_tuple__20)) __PYX_ERR(0, 65, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__20);
-  __Pyx_GIVEREF(__pyx_tuple__20);
-  __pyx_codeobj__21 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__20, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_datamule_parser_sgml_parsing_sgm_2, __pyx_n_s_parse_content, 65, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__21)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __pyx_tuple__21 = PyTuple_Pack(2, __pyx_n_s_self, __pyx_n_s_content); if (unlikely(!__pyx_tuple__21)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__21);
+  __Pyx_GIVEREF(__pyx_tuple__21);
+  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_datamule_parser_sgml_parsing_sgm_2, __pyx_n_s_parse_content, 65, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(0, 65, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     cdef tuple state
  *     cdef object _dict
  */
-  __pyx_codeobj__22 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_reduce_cython, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__22)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __pyx_codeobj__23 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_reduce_cython, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__23)) __PYX_ERR(2, 1, __pyx_L1_error)
 
   /* "(tree fragment)":16
  *     else:
@@ -12380,23 +12659,23 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_SubmissionParser__set_state(self, __pyx_state)
  */
-  __pyx_codeobj__23 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__18, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__23)) __PYX_ERR(2, 16, __pyx_L1_error)
+  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) __PYX_ERR(2, 16, __pyx_L1_error)
 
   /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":145
  *     """Parser for <SEC-DOCUMENT> type documents"""
  * 
  *     cpdef parse_content(self, str content):             # <<<<<<<<<<<<<<
  *         cdef:
- *             dict header_data = {}
+ *             dict submission_data = {}
  */
-  __pyx_codeobj__24 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__20, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_datamule_parser_sgml_parsing_sgm_2, __pyx_n_s_parse_content, 145, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__24)) __PYX_ERR(0, 145, __pyx_L1_error)
+  __pyx_codeobj__25 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__21, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_datamule_parser_sgml_parsing_sgm_2, __pyx_n_s_parse_content, 145, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__25)) __PYX_ERR(0, 145, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __reduce_cython__(self):             # <<<<<<<<<<<<<<
  *     cdef tuple state
  *     cdef object _dict
  */
-  __pyx_codeobj__25 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__16, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_reduce_cython, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__25)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __pyx_codeobj__26 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 4, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__17, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_reduce_cython, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__26)) __PYX_ERR(2, 1, __pyx_L1_error)
 
   /* "(tree fragment)":16
  *     else:
@@ -12404,43 +12683,43 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_SECDocumentParser__set_state(self, __pyx_state)
  */
-  __pyx_codeobj__26 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__18, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__26)) __PYX_ERR(2, 16, __pyx_L1_error)
+  __pyx_codeobj__27 = (PyObject*)__Pyx_PyCode_New(2, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__19, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_setstate_cython, 16, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__27)) __PYX_ERR(2, 16, __pyx_L1_error)
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":221
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":243
  *             json.dump(metadata, f, indent=4)
  * 
  * def detect_document_type(content: str) -> str:             # <<<<<<<<<<<<<<
  *     """Detect the type of SGML document"""
  *     content = content.strip()
  */
-  __pyx_tuple__27 = PyTuple_Pack(2, __pyx_n_s_content, __pyx_n_s_sec_index); if (unlikely(!__pyx_tuple__27)) __PYX_ERR(0, 221, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__27);
-  __Pyx_GIVEREF(__pyx_tuple__27);
-  __pyx_codeobj__28 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__27, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_datamule_parser_sgml_parsing_sgm_2, __pyx_n_s_detect_document_type, 221, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__28)) __PYX_ERR(0, 221, __pyx_L1_error)
+  __pyx_tuple__28 = PyTuple_Pack(2, __pyx_n_s_content, __pyx_n_s_sec_index); if (unlikely(!__pyx_tuple__28)) __PYX_ERR(0, 243, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__28);
+  __Pyx_GIVEREF(__pyx_tuple__28);
+  __pyx_codeobj__29 = (PyObject*)__Pyx_PyCode_New(1, 0, 0, 2, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__28, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_datamule_parser_sgml_parsing_sgm_2, __pyx_n_s_detect_document_type, 243, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__29)) __PYX_ERR(0, 243, __pyx_L1_error)
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":238
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":260
  *     raise ValueError("Unknown document type")
  * 
  * def parse_sgml_submission(filepath: str | None = None, output_dir: str | None = None, content: str | None = None) -> None:             # <<<<<<<<<<<<<<
  *     """
  *     Parse an SGML submission from either a file or content string.
  */
-  __pyx_tuple__29 = PyTuple_Pack(7, __pyx_n_s_filepath, __pyx_n_s_output_dir, __pyx_n_s_content, __pyx_n_s_f, __pyx_n_s_sec_index, __pyx_n_s_doc_type, __pyx_n_s_parser); if (unlikely(!__pyx_tuple__29)) __PYX_ERR(0, 238, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__29);
-  __Pyx_GIVEREF(__pyx_tuple__29);
-  __pyx_codeobj__30 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__29, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_datamule_parser_sgml_parsing_sgm_2, __pyx_n_s_parse_sgml_submission, 238, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__30)) __PYX_ERR(0, 238, __pyx_L1_error)
+  __pyx_tuple__30 = PyTuple_Pack(7, __pyx_n_s_filepath, __pyx_n_s_output_dir, __pyx_n_s_content, __pyx_n_s_f, __pyx_n_s_sec_index, __pyx_n_s_doc_type, __pyx_n_s_parser); if (unlikely(!__pyx_tuple__30)) __PYX_ERR(0, 260, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__30);
+  __Pyx_GIVEREF(__pyx_tuple__30);
+  __pyx_codeobj__31 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 7, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__30, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_datamule_parser_sgml_parsing_sgm_2, __pyx_n_s_parse_sgml_submission, 260, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__31)) __PYX_ERR(0, 260, __pyx_L1_error)
 
   /* "(tree fragment)":1
  * def __pyx_unpickle_BaseParser(__pyx_type, long __pyx_checksum, __pyx_state):             # <<<<<<<<<<<<<<
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_tuple__31 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__31)) __PYX_ERR(2, 1, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_tuple__31);
-  __Pyx_GIVEREF(__pyx_tuple__31);
-  __pyx_codeobj__32 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__31, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_BaseParser, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__32)) __PYX_ERR(2, 1, __pyx_L1_error)
-  __pyx_codeobj__33 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__31, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_SubmissionParser, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__33)) __PYX_ERR(2, 1, __pyx_L1_error)
-  __pyx_codeobj__34 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__31, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_SECDocumentParser, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__34)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __pyx_tuple__32 = PyTuple_Pack(5, __pyx_n_s_pyx_type, __pyx_n_s_pyx_checksum, __pyx_n_s_pyx_state, __pyx_n_s_pyx_PickleError, __pyx_n_s_pyx_result); if (unlikely(!__pyx_tuple__32)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_tuple__32);
+  __Pyx_GIVEREF(__pyx_tuple__32);
+  __pyx_codeobj__33 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__32, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_BaseParser, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__33)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __pyx_codeobj__34 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__32, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_SubmissionParser, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__34)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __pyx_codeobj__35 = (PyObject*)__Pyx_PyCode_New(3, 0, 0, 5, 0, CO_OPTIMIZED|CO_NEWLOCALS, __pyx_empty_bytes, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_tuple__32, __pyx_empty_tuple, __pyx_empty_tuple, __pyx_kp_s_stringsource, __pyx_n_s_pyx_unpickle_SECDocumentParser, 1, __pyx_empty_bytes); if (unlikely(!__pyx_codeobj__35)) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -12458,6 +12737,8 @@ static CYTHON_SMALL_CODE int __Pyx_InitConstants(void) {
   __pyx_umethod_PyUnicode_Type_index.method_name = &__pyx_n_s_index;
   __pyx_umethod_PyUnicode_Type_partition.type = (PyObject*)&PyUnicode_Type;
   __pyx_umethod_PyUnicode_Type_partition.method_name = &__pyx_n_s_partition;
+  __pyx_umethod_PyUnicode_Type_rstrip.type = (PyObject*)&PyUnicode_Type;
+  __pyx_umethod_PyUnicode_Type_rstrip.method_name = &__pyx_n_s_rstrip;
   __pyx_umethod_PyUnicode_Type_strip.type = (PyObject*)&PyUnicode_Type;
   __pyx_umethod_PyUnicode_Type_strip.method_name = &__pyx_n_s_strip;
   __pyx_umethod_PyUnicode_Type_upper.type = (PyObject*)&PyUnicode_Type;
@@ -13020,7 +13301,7 @@ if (!__Pyx_RefNanny) {
  *     cdef tuple state
  *     cdef object _dict
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_10BaseParser_1__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_BaseParser___reduce_cython, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__17)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_10BaseParser_1__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_BaseParser___reduce_cython, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__18)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_BaseParser, __pyx_n_s_reduce_cython, __pyx_t_3) < 0) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -13032,7 +13313,7 @@ if (!__Pyx_RefNanny) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_BaseParser__set_state(self, __pyx_state)
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_10BaseParser_3__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_BaseParser___setstate_cython, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__19)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 16, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_10BaseParser_3__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_BaseParser___setstate_cython, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__20)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_BaseParser, __pyx_n_s_setstate_cython, __pyx_t_3) < 0) __PYX_ERR(2, 16, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -13045,7 +13326,7 @@ if (!__Pyx_RefNanny) {
  *         cdef:
  *             dict submission_data = {}
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_16SubmissionParser_1parse_content, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SubmissionParser_parse_content, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__21)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 65, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_16SubmissionParser_1parse_content, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SubmissionParser_parse_content, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_SubmissionParser, __pyx_n_s_parse_content, __pyx_t_3) < 0) __PYX_ERR(0, 65, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -13056,7 +13337,7 @@ if (!__Pyx_RefNanny) {
  *     cdef tuple state
  *     cdef object _dict
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_16SubmissionParser_3__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SubmissionParser___reduce_cython, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__22)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_16SubmissionParser_3__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SubmissionParser___reduce_cython, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__23)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_SubmissionParser, __pyx_n_s_reduce_cython, __pyx_t_3) < 0) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -13068,7 +13349,7 @@ if (!__Pyx_RefNanny) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_SubmissionParser__set_state(self, __pyx_state)
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_16SubmissionParser_5__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SubmissionParser___setstate_cyth, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__23)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 16, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_16SubmissionParser_5__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SubmissionParser___setstate_cyth, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__24)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_SubmissionParser, __pyx_n_s_setstate_cython, __pyx_t_3) < 0) __PYX_ERR(2, 16, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -13079,9 +13360,9 @@ if (!__Pyx_RefNanny) {
  * 
  *     cpdef parse_content(self, str content):             # <<<<<<<<<<<<<<
  *         cdef:
- *             dict header_data = {}
+ *             dict submission_data = {}
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SECDocumentParser_1parse_content, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SECDocumentParser_parse_content, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__24)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 145, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SECDocumentParser_1parse_content, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SECDocumentParser_parse_content, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__25)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_SECDocumentParser, __pyx_n_s_parse_content, __pyx_t_3) < 0) __PYX_ERR(0, 145, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -13092,7 +13373,7 @@ if (!__Pyx_RefNanny) {
  *     cdef tuple state
  *     cdef object _dict
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SECDocumentParser_3__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SECDocumentParser___reduce_cytho, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__25)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SECDocumentParser_3__reduce_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SECDocumentParser___reduce_cytho, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__26)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_SECDocumentParser, __pyx_n_s_reduce_cython, __pyx_t_3) < 0) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -13104,49 +13385,49 @@ if (!__Pyx_RefNanny) {
  * def __setstate_cython__(self, __pyx_state):             # <<<<<<<<<<<<<<
  *     __pyx_unpickle_SECDocumentParser__set_state(self, __pyx_state)
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SECDocumentParser_5__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SECDocumentParser___setstate_cyt, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__26)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 16, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_17SECDocumentParser_5__setstate_cython__, __Pyx_CYFUNCTION_CCLASS, __pyx_n_s_SECDocumentParser___setstate_cyt, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__27)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 16, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (__Pyx_SetItemOnTypeDict((PyObject *)__pyx_ptype_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_SECDocumentParser, __pyx_n_s_setstate_cython, __pyx_t_3) < 0) __PYX_ERR(2, 16, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
   PyType_Modified(__pyx_ptype_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_SECDocumentParser);
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":221
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":243
  *             json.dump(metadata, f, indent=4)
  * 
  * def detect_document_type(content: str) -> str:             # <<<<<<<<<<<<<<
  *     """Detect the type of SGML document"""
  *     content = content.strip()
  */
-  __pyx_t_3 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 221, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyDict_NewPresized(2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 243, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_content, __pyx_n_s_str) < 0) __PYX_ERR(0, 221, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_return, __pyx_n_s_str) < 0) __PYX_ERR(0, 221, __pyx_L1_error)
-  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_1detect_document_type, 0, __pyx_n_s_detect_document_type, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__28)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 221, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_content, __pyx_n_s_str) < 0) __PYX_ERR(0, 243, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_3, __pyx_n_s_return, __pyx_n_s_str) < 0) __PYX_ERR(0, 243, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_1detect_document_type, 0, __pyx_n_s_detect_document_type, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__29)); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 243, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_2, __pyx_t_3);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_detect_document_type, __pyx_t_2) < 0) __PYX_ERR(0, 221, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_detect_document_type, __pyx_t_2) < 0) __PYX_ERR(0, 243, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
-  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":238
+  /* "datamule/parser/sgml_parsing/sgml_parser_cy.pyx":260
  *     raise ValueError("Unknown document type")
  * 
  * def parse_sgml_submission(filepath: str | None = None, output_dir: str | None = None, content: str | None = None) -> None:             # <<<<<<<<<<<<<<
  *     """
  *     Parse an SGML submission from either a file or content string.
  */
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 238, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(4); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 260, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_filepath, __pyx_kp_s_str_None) < 0) __PYX_ERR(0, 238, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_output_dir, __pyx_kp_s_str_None) < 0) __PYX_ERR(0, 238, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_content, __pyx_kp_s_str_None) < 0) __PYX_ERR(0, 238, __pyx_L1_error)
-  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_return, __pyx_n_s_None) < 0) __PYX_ERR(0, 238, __pyx_L1_error)
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_3parse_sgml_submission, 0, __pyx_n_s_parse_sgml_submission, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__30)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 238, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_filepath, __pyx_kp_s_str_None) < 0) __PYX_ERR(0, 260, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_output_dir, __pyx_kp_s_str_None) < 0) __PYX_ERR(0, 260, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_content, __pyx_kp_s_str_None) < 0) __PYX_ERR(0, 260, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_t_2, __pyx_n_s_return, __pyx_n_s_None) < 0) __PYX_ERR(0, 260, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_3parse_sgml_submission, 0, __pyx_n_s_parse_sgml_submission, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__31)); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 260, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_CyFunction_SetDefaultsTuple(__pyx_t_3, __pyx_tuple__7);
   __Pyx_CyFunction_SetAnnotationsDict(__pyx_t_3, __pyx_t_2);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (PyDict_SetItem(__pyx_d, __pyx_n_s_parse_sgml_submission, __pyx_t_3) < 0) __PYX_ERR(0, 238, __pyx_L1_error)
+  if (PyDict_SetItem(__pyx_d, __pyx_n_s_parse_sgml_submission, __pyx_t_3) < 0) __PYX_ERR(0, 260, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "(tree fragment)":1
@@ -13154,7 +13435,7 @@ if (!__Pyx_RefNanny) {
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_5__pyx_unpickle_BaseParser, 0, __pyx_n_s_pyx_unpickle_BaseParser, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__32)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_5__pyx_unpickle_BaseParser, 0, __pyx_n_s_pyx_unpickle_BaseParser, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__33)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_BaseParser, __pyx_t_3) < 0) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -13166,7 +13447,7 @@ if (!__Pyx_RefNanny) {
  *     __pyx_result.output_dir = __pyx_state[0]
  *     if len(__pyx_state) > 1 and hasattr(__pyx_result, '__dict__'):
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_7__pyx_unpickle_SubmissionParser, 0, __pyx_n_s_pyx_unpickle_SubmissionParser, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__33)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_7__pyx_unpickle_SubmissionParser, 0, __pyx_n_s_pyx_unpickle_SubmissionParser, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__34)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_SubmissionParser, __pyx_t_3) < 0) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -13176,7 +13457,7 @@ if (!__Pyx_RefNanny) {
  *     cdef object __pyx_PickleError
  *     cdef object __pyx_result
  */
-  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_9__pyx_unpickle_SECDocumentParser, 0, __pyx_n_s_pyx_unpickle_SECDocumentParser, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__34)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 1, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_CyFunction_New(&__pyx_mdef_8datamule_6parser_12sgml_parsing_14sgml_parser_cy_9__pyx_unpickle_SECDocumentParser, 0, __pyx_n_s_pyx_unpickle_SECDocumentParser, NULL, __pyx_n_s_datamule_parser_sgml_parsing_sgm, __pyx_d, ((PyObject *)__pyx_codeobj__35)); if (unlikely(!__pyx_t_3)) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   if (PyDict_SetItem(__pyx_d, __pyx_n_s_pyx_unpickle_SECDocumentParser, __pyx_t_3) < 0) __PYX_ERR(2, 1, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -15558,6 +15839,40 @@ static int __Pyx__ArgTypeTest(PyObject *obj, PyTypeObject *type, const char *nam
     return 0;
 }
 
+/* SliceTupleAndList */
+#if CYTHON_COMPILING_IN_CPYTHON
+static CYTHON_INLINE void __Pyx_crop_slice(Py_ssize_t* _start, Py_ssize_t* _stop, Py_ssize_t* _length) {
+    Py_ssize_t start = *_start, stop = *_stop, length = *_length;
+    if (start < 0) {
+        start += length;
+        if (start < 0)
+            start = 0;
+    }
+    if (stop < 0)
+        stop += length;
+    else if (stop > length)
+        stop = length;
+    *_length = stop - start;
+    *_start = start;
+    *_stop = stop;
+}
+static CYTHON_INLINE PyObject* __Pyx_PyList_GetSlice(
+            PyObject* src, Py_ssize_t start, Py_ssize_t stop) {
+    Py_ssize_t length = PyList_GET_SIZE(src);
+    __Pyx_crop_slice(&start, &stop, &length);
+    if (length <= 0) {
+        return PyList_New(0);
+    }
+    return __Pyx_PyList_FromArray(((PyListObject*)src)->ob_item + start, length);
+}
+static CYTHON_INLINE PyObject* __Pyx_PyTuple_GetSlice(
+            PyObject* src, Py_ssize_t start, Py_ssize_t stop) {
+    Py_ssize_t length = PyTuple_GET_SIZE(src);
+    __Pyx_crop_slice(&start, &stop, &length);
+    return __Pyx_PyTuple_FromArray(((PyTupleObject*)src)->ob_item + start, length);
+}
+#endif
+
 /* SliceObject */
 static CYTHON_INLINE PyObject* __Pyx_PyObject_GetSlice(PyObject* obj,
         Py_ssize_t cstart, Py_ssize_t cstop,
@@ -15733,7 +16048,7 @@ static PyObject* __Pyx_ImportFrom(PyObject* module, PyObject* name) {
         if (unlikely(!module_name_str)) { goto modbad; }
         module_name = PyUnicode_FromString(module_name_str);
         if (unlikely(!module_name)) { goto modbad; }
-        module_dot = PyUnicode_Concat(module_name, __pyx_kp_u__14);
+        module_dot = PyUnicode_Concat(module_name, __pyx_kp_u__15);
         if (unlikely(!module_dot)) { goto modbad; }
         full_name = PyUnicode_Concat(module_dot, name);
         if (unlikely(!full_name)) { goto modbad; }
@@ -16446,7 +16761,7 @@ static PyObject *__Pyx_ImportDottedModule_WalkParts(PyObject *module, PyObject *
 #endif
 static PyObject *__Pyx__ImportDottedModule(PyObject *name, PyObject *parts_tuple) {
 #if PY_MAJOR_VERSION < 3
-    PyObject *module, *from_list, *star = __pyx_n_s__15;
+    PyObject *module, *from_list, *star = __pyx_n_s__16;
     CYTHON_UNUSED_VAR(parts_tuple);
     from_list = PyList_New(1);
     if (unlikely(!from_list))
@@ -18630,7 +18945,7 @@ __Pyx_PyType_GetName(PyTypeObject* tp)
     if (unlikely(name == NULL) || unlikely(!PyUnicode_Check(name))) {
         PyErr_Clear();
         Py_XDECREF(name);
-        name = __Pyx_NewRef(__pyx_n_s__35);
+        name = __Pyx_NewRef(__pyx_n_s__36);
     }
     return name;
 }
