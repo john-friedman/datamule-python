@@ -29,7 +29,7 @@ cdef class BaseParser:
             
         tag = line[1:tag_end]
         if tag.startswith('/'):
-            return None
+            tag = tag[1:]
             
         content = line[tag_end + 1:].strip()
         return (tag, content)
@@ -114,19 +114,23 @@ cdef class SubmissionParser(BaseParser):
                     tag_content = self._extract_tag_content(stripped)
                     if tag_content:
                         key, value = tag_content
+                        print(f"Key: {key}, Value: {value}")
                         if in_submission:
                             if not value:  # Empty value indicates a tag
                                 if key in tag_stack:  # It's a closing tag
+                                    #print(f"Closing tag: {key}")
                                     tag_stack.pop()
                                     if tag_stack:
                                         current_dict = submission_data
                                         for tag in tag_stack:
                                             current_dict = current_dict[tag]
                                 else:  # It's an opening tag
+                                    #print(f"Opening tag: {key}")
                                     tag_stack.append(key)
                                     current_dict[key] = {}
                                     current_dict = current_dict[key]
                             else:  # Normal key-value pair
+                                #print(f"Key: {key}, Value: {value}")
                                 current_dict[key] = value
                         elif in_document:
                             current_document[key] = value
