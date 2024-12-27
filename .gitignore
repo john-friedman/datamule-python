@@ -26,3 +26,4 @@ datamule/examples/*
 !datamule/examples/*.ipynb
 !datamule/examples/static/
 !datamule/examples/static/**/*
+datamule/examples/ingest/

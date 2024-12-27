@@ -73,6 +73,9 @@ cdef class SubmissionParser(BaseParser):
             bint in_submission = True
             str line, stripped
             tuple tag_content
+            list tag_stack = []  # Stack to track nested tags
+            dict current_dict = submission_data  # Reference to current nesting level
+
         
         lines = content.splitlines(keepends=True)
         
@@ -107,12 +110,24 @@ cdef class SubmissionParser(BaseParser):
                     text_buffer.append(line)
                     
             else:
-                if stripped and stripped[0] == '<':  # Only try to extract if non-empty and starts with <
+                if stripped and stripped[0] == '<':  # Only try to extract if non-empty and starts with 
                     tag_content = self._extract_tag_content(stripped)
                     if tag_content:
                         key, value = tag_content
                         if in_submission:
-                            submission_data[key] = value
+                            if not value:  # Empty value indicates a tag
+                                if key in tag_stack:  # It's a closing tag
+                                    tag_stack.pop()
+                                    if tag_stack:
+                                        current_dict = submission_data
+                                        for tag in tag_stack:
+                                            current_dict = current_dict[tag]
+                                else:  # It's an opening tag
+                                    tag_stack.append(key)
+                                    current_dict[key] = {}
+                                    current_dict = current_dict[key]
+                            else:  # Normal key-value pair
+                                current_dict[key] = value
                         elif in_document:
                             current_document[key] = value
         
