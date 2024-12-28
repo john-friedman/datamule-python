@@ -27,3 +27,5 @@ datamule/examples/*
 !datamule/examples/static/
 !datamule/examples/static/**/*
 datamule/examples/ingest/
+!examples/data/
+!examples/data/*.csv
