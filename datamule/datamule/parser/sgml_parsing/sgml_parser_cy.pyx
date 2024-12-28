@@ -171,6 +171,9 @@ cdef class SECDocumentParser(BaseParser):
 
             list tag_stack = []  # Stack to track nested tags
             dict current_dict = submission_data  # Reference to current nesting level
+
+            list reporting_owner = []
+            list issuer = []
         
         lines = content.splitlines(keepends=True)
         
@@ -236,6 +239,12 @@ cdef class SECDocumentParser(BaseParser):
                             current_dict = current_dict[tag]
                         current_dict[key] = {}
                         current_dict = current_dict[key]
+
+                        # Add pointers when we create new sections
+                        if key == 'REPORTING-OWNER':
+                            reporting_owner.append(current_dict)
+                        elif key == 'ISSUER':
+                            issuer.append(current_dict)
                     else:  # Normal key-value pair
                         current_dict[key] = value
             else:
@@ -245,11 +254,16 @@ cdef class SECDocumentParser(BaseParser):
                         key, value = tag_content
                         if in_document:
                             current_document[key] = value
+
+
+        submission_data['REPORTING-OWNER'] = reporting_owner
+        submission_data['ISSUER'] = issuer
         
         metadata = {
             'submission': submission_data,
             'documents': documents
         }
+
         
         with open(os.path.join(self.output_dir, 'metadata.json'), 'w', encoding='utf-8') as f:
             json.dump(metadata, f, indent=4)
