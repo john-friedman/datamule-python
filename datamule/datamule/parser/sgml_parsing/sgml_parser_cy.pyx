@@ -76,6 +76,9 @@ cdef class SubmissionParser(BaseParser):
             list tag_stack = []  # Stack to track nested tags
             dict current_dict = submission_data  # Reference to current nesting level
 
+            list reporting_owner = []
+            list issuer = []
+
         
         lines = content.splitlines(keepends=True)
         
@@ -114,27 +117,34 @@ cdef class SubmissionParser(BaseParser):
                     tag_content = self._extract_tag_content(stripped)
                     if tag_content:
                         key, value = tag_content
-                        print(f"Key: {key}, Value: {value}")
                         if in_submission:
                             if not value:  # Empty value indicates a tag
                                 if key in tag_stack:  # It's a closing tag
-                                    #print(f"Closing tag: {key}")
                                     tag_stack.pop()
                                     if tag_stack:
                                         current_dict = submission_data
                                         for tag in tag_stack:
+
                                             current_dict = current_dict[tag]
                                 else:  # It's an opening tag
-                                    #print(f"Opening tag: {key}")
                                     tag_stack.append(key)
                                     current_dict[key] = {}
                                     current_dict = current_dict[key]
+
+                                    # add pointers
+                                    if key == 'REPORTING-OWNER':
+                                        reporting_owner.append(current_dict)
+                                    elif key == 'ISSUER':
+                                        issuer.append(current_dict)
                             else:  # Normal key-value pair
-                                #print(f"Key: {key}, Value: {value}")
                                 current_dict[key] = value
                         elif in_document:
                             current_document[key] = value
         
+        # workaround since I do not understand pointers yet
+        submission_data = submission_data['SUBMISSION']
+        submission_data['REPORTING-OWNER'] = reporting_owner
+        submission_data['ISSUER'] = issuer
         metadata = {
             'submission': submission_data,
             'documents': documents

@@ -46,10 +46,16 @@ Basic Usage
     downloader = Downloader()
     downloader.download_submissions(form='10-K', ticker='AAPL')
 
+
+Examples
+~~~~~~~~
+
+Create a discord bot, use insider trading disclosures to map relationships in Silicon Valley, and more in `examples <https://github.com/john-friedman/datamule-python/tree/main/examples>`_.
+
 API Key
 ~~~~~~~
 
-You can get an API Key for `PremiumDownloader()` `here <https://datamule.xyz/dashboard>`_.
+For faster downloads get an `api key <https://datamule.xyz/dashboard>`_ for ``PremiumDownloader()`` .
 
 Articles
 --------
