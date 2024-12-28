@@ -1,0 +1,64 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001181431-12-066021",
+        "TYPE": "4",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "PERIOD": "20121218",
+        "FILING-DATE": "20121219",
+        "DATE-OF-FILING-DATE-CHANGE": "20121219",
+        "REPORTING-OWNER": [
+            {
+                "OWNER-DATA": {
+                    "CONFORMED-NAME": "Musk Elon",
+                    "CIK": "0001494730"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "4",
+                    "ACT": "34",
+                    "FILE-NUMBER": "001-35758",
+                    "FILM-NUMBER": "121275364"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "C/O TESLA MOTORS, INC.",
+                    "STREET2": "3500 DEER CREEK ROAD",
+                    "CITY": "PALO ALTO",
+                    "STATE": "CA",
+                    "ZIP": "94304"
+                }
+            }
+        ],
+        "ISSUER": [
+            {
+                "COMPANY-DATA": {
+                    "CONFORMED-NAME": "SOLARCITY CORP",
+                    "CIK": "0001408356",
+                    "ASSIGNED-SIC": "1700",
+                    "IRS-NUMBER": "020781046",
+                    "STATE-OF-INCORPORATION": "DE",
+                    "FISCAL-YEAR-END": "1231"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "3055 CLEARVIEW WAY",
+                    "CITY": "SAN MATEO",
+                    "STATE": "CA",
+                    "ZIP": "94402",
+                    "PHONE": "650-638-1028"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "3055 CLEARVIEW WAY",
+                    "CITY": "SAN MATEO",
+                    "STATE": "CA",
+                    "ZIP": "94402"
+                }
+            }
+        ]
+    },
+    "documents": [
+        {
+            "TYPE": "4",
+            "SEQUENCE": "1",
+            "FILENAME": "rrd364155.xml",
+            "DESCRIPTION": "FORM 4"
+        }
+    ]
+}

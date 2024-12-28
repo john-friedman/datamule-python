@@ -1,0 +1,70 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000899243-21-017509",
+        "TYPE": "3",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "PERIOD": "20210429",
+        "FILING-DATE": "20210429",
+        "DATE-OF-FILING-DATE-CHANGE": "20210429",
+        "REPORTING-OWNER": [
+            {
+                "OWNER-DATA": {
+                    "CONFORMED-NAME": "Musk Elon",
+                    "CIK": "0001494730"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "3",
+                    "ACT": "34",
+                    "FILE-NUMBER": "001-40373",
+                    "FILM-NUMBER": "21873425"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "C/O TESLA MOTORS, INC.",
+                    "STREET2": "3500 DEER CREEK ROAD",
+                    "CITY": "PALO ALTO",
+                    "STATE": "CA",
+                    "ZIP": "94304"
+                }
+            }
+        ],
+        "ISSUER": [
+            {
+                "COMPANY-DATA": {
+                    "CONFORMED-NAME": "Endeavor Group Holdings, Inc.",
+                    "CIK": "0001766363",
+                    "ASSIGNED-SIC": "7900",
+                    "IRS-NUMBER": "833340169",
+                    "STATE-OF-INCORPORATION": "DE",
+                    "FISCAL-YEAR-END": "1231"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "9601 WILSHIRE BOULEVARD, 3RD FLOOR",
+                    "CITY": "BEVERLY HILLS",
+                    "STATE": "CA",
+                    "ZIP": "90210",
+                    "PHONE": "(310) 285-9000"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "9601 WILSHIRE BOULEVARD, 3RD FLOOR",
+                    "CITY": "BEVERLY HILLS",
+                    "STATE": "CA",
+                    "ZIP": "90210"
+                }
+            }
+        ]
+    },
+    "documents": [
+        {
+            "TYPE": "3",
+            "SEQUENCE": "1",
+            "FILENAME": "doc3.xml",
+            "DESCRIPTION": "FORM 3 SUBMISSION"
+        },
+        {
+            "TYPE": "EX-24",
+            "SEQUENCE": "2",
+            "FILENAME": "attachment1.htm",
+            "DESCRIPTION": "EX-24 DOCUMENT"
+        }
+    ]
+}

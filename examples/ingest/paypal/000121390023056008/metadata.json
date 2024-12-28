@@ -1,0 +1,72 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001213900-23-056008",
+        "TYPE": "3",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "PERIOD": "20230629",
+        "FILING-DATE": "20230710",
+        "DATE-OF-FILING-DATE-CHANGE": "20230710",
+        "REPORTING-OWNER": [
+            {
+                "OWNER-DATA": {
+                    "CONFORMED-NAME": "Sacks David O",
+                    "CIK": "0001891801"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "3",
+                    "ACT": "34",
+                    "FILE-NUMBER": "001-40079",
+                    "FILM-NUMBER": "231081088"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "855 FRONT STREET",
+                    "CITY": "SAN FRANCISCO",
+                    "STATE": "CA",
+                    "ZIP": "94111"
+                }
+            }
+        ],
+        "ISSUER": [
+            {
+                "COMPANY-DATA": {
+                    "CONFORMED-NAME": "Rumble Inc.",
+                    "CIK": "0001830081",
+                    "ASSIGNED-SIC": "7370",
+                    "IRS-NUMBER": "851087461",
+                    "STATE-OF-INCORPORATION": "DE",
+                    "FISCAL-YEAR-END": "1231"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "110 EAST 59TH STREET",
+                    "CITY": "NEW YORK",
+                    "STATE": "NY",
+                    "ZIP": "10022",
+                    "PHONE": "212-938-5000"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "110 EAST 59TH STREET",
+                    "CITY": "NEW YORK",
+                    "STATE": "NY",
+                    "ZIP": "10022"
+                },
+                "FORMER-COMPANY": {
+                    "FORMER-CONFORMED-NAME": "CF Acquisition Corp. VI",
+                    "DATE-CHANGED": "20201027"
+                }
+            }
+        ]
+    },
+    "documents": [
+        {
+            "TYPE": "3",
+            "SEQUENCE": "1",
+            "FILENAME": "ownership.xml"
+        },
+        {
+            "TYPE": "EX-24",
+            "SEQUENCE": "2",
+            "FILENAME": "ea181485ex24_rumble.htm",
+            "DESCRIPTION": "POWER OF ATTORNEY"
+        }
+    ]
+}

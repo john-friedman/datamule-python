@@ -1,0 +1,64 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001628280-22-031378",
+        "TYPE": "4",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "PERIOD": "20221201",
+        "FILING-DATE": "20221205",
+        "DATE-OF-FILING-DATE-CHANGE": "20221205",
+        "REPORTING-OWNER": [
+            {
+                "OWNER-DATA": {
+                    "CONFORMED-NAME": "Rabois Keith",
+                    "CIK": "0001539865"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "4",
+                    "ACT": "34",
+                    "FILE-NUMBER": "001-39888",
+                    "FILM-NUMBER": "221446104"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "C/O YELP! INC.",
+                    "STREET2": "706 MISSION ST.",
+                    "CITY": "SAN FRANCISCO",
+                    "STATE": "CA",
+                    "ZIP": "94103"
+                }
+            }
+        ],
+        "ISSUER": [
+            {
+                "COMPANY-DATA": {
+                    "CONFORMED-NAME": "Affirm Holdings, Inc.",
+                    "CIK": "0001820953",
+                    "ASSIGNED-SIC": "6141",
+                    "IRS-NUMBER": "842224323",
+                    "STATE-OF-INCORPORATION": "DE",
+                    "FISCAL-YEAR-END": "0630"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "650 CALIFORNIA STREET",
+                    "CITY": "SAN FRANCISCO",
+                    "STATE": "CA",
+                    "ZIP": "94108",
+                    "PHONE": "(415) 722-8633"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "650 CALIFORNIA STREET",
+                    "CITY": "SAN FRANCISCO",
+                    "STATE": "CA",
+                    "ZIP": "94108"
+                }
+            }
+        ]
+    },
+    "documents": [
+        {
+            "TYPE": "4",
+            "SEQUENCE": "1",
+            "FILENAME": "wf-form4_167028140144695.xml",
+            "DESCRIPTION": "FORM 4"
+        }
+    ]
+}

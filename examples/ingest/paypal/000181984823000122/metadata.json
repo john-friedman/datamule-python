@@ -1,0 +1,68 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001819848-23-000122",
+        "TYPE": "4",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "PERIOD": "20230405",
+        "FILING-DATE": "20230407",
+        "DATE-OF-FILING-DATE-CHANGE": "20230407",
+        "REPORTING-OWNER": [
+            {
+                "OWNER-DATA": {
+                    "CONFORMED-NAME": "Hoffman Reid",
+                    "CIK": "0001519339"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "4",
+                    "ACT": "34",
+                    "FILE-NUMBER": "001-39524",
+                    "FILM-NUMBER": "23809441"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "C/O LINKEDIN CORPORATION",
+                    "STREET2": "2029 STIERLIN COURT",
+                    "CITY": "MOUNTAIN VIEW",
+                    "STATE": "CA",
+                    "ZIP": "94043"
+                }
+            }
+        ],
+        "ISSUER": [
+            {
+                "COMPANY-DATA": {
+                    "CONFORMED-NAME": "Joby Aviation, Inc.",
+                    "CIK": "0001819848",
+                    "ASSIGNED-SIC": "3721",
+                    "IRS-NUMBER": "981548118",
+                    "STATE-OF-INCORPORATION": "DE",
+                    "FISCAL-YEAR-END": "1231"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "333 ENCINAL STREET",
+                    "CITY": "SANTA CRUZ",
+                    "STATE": "CA",
+                    "ZIP": "95060",
+                    "PHONE": "831-201-6700"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "333 ENCINAL STREET",
+                    "CITY": "SANTA CRUZ",
+                    "STATE": "CA",
+                    "ZIP": "95060"
+                },
+                "FORMER-COMPANY": {
+                    "FORMER-CONFORMED-NAME": "Reinvent Acquisition Corp.",
+                    "DATE-CHANGED": "20200731"
+                }
+            }
+        ]
+    },
+    "documents": [
+        {
+            "TYPE": "4",
+            "SEQUENCE": "1",
+            "FILENAME": "wf-form4_168090600136272.xml",
+            "DESCRIPTION": "FORM 4"
+        }
+    ]
+}

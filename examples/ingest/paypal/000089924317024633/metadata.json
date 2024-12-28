@@ -1,0 +1,69 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000899243-17-024633",
+        "TYPE": "4",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "PERIOD": "20171023",
+        "FILING-DATE": "20171025",
+        "DATE-OF-FILING-DATE-CHANGE": "20171025",
+        "REPORTING-OWNER": [
+            {
+                "OWNER-DATA": {
+                    "CONFORMED-NAME": "BOTHA ROELOF",
+                    "CIK": "0001222287"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "4",
+                    "ACT": "34",
+                    "FILE-NUMBER": "001-38240",
+                    "FILM-NUMBER": "171152283"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "C/O SEQUOIA CAPITAL",
+                    "STREET2": "2800 SAND HILL RD, SUITE 101",
+                    "CITY": "MENLO PARK",
+                    "STATE": "CA",
+                    "ZIP": "94025"
+                }
+            }
+        ],
+        "ISSUER": [
+            {
+                "COMPANY-DATA": {
+                    "CONFORMED-NAME": "MongoDB, Inc.",
+                    "CIK": "0001441816",
+                    "ASSIGNED-SIC": "7372",
+                    "IRS-NUMBER": "000000000",
+                    "STATE-OF-INCORPORATION": "DE"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "229 W. 43RD STREET",
+                    "STREET2": "5TH FLOOR",
+                    "CITY": "NEW YORK",
+                    "STATE": "NY",
+                    "ZIP": "10036",
+                    "PHONE": "866-237-8815"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "229 W. 43RD STREET",
+                    "STREET2": "5TH FLOOR",
+                    "CITY": "NEW YORK",
+                    "STATE": "NY",
+                    "ZIP": "10036"
+                },
+                "FORMER-COMPANY": {
+                    "FORMER-CONFORMED-NAME": "10GEN INC",
+                    "DATE-CHANGED": "20080801"
+                }
+            }
+        ]
+    },
+    "documents": [
+        {
+            "TYPE": "4",
+            "SEQUENCE": "1",
+            "FILENAME": "doc4.xml",
+            "DESCRIPTION": "FORM 4 SUBMISSION"
+        }
+    ]
+}

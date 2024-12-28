@@ -1,0 +1,67 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001209191-23-048801",
+        "TYPE": "4",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "PERIOD": "20230906",
+        "FILING-DATE": "20230908",
+        "DATE-OF-FILING-DATE-CHANGE": "20230908",
+        "REPORTING-OWNER": [
+            {
+                "OWNER-DATA": {
+                    "CONFORMED-NAME": "BOTHA ROELOF",
+                    "CIK": "0001222287"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "4",
+                    "ACT": "34",
+                    "FILE-NUMBER": "001-39587",
+                    "FILM-NUMBER": "231245918"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "C/O SEQUOIA CAPITAL",
+                    "STREET2": "2800 SAND HILL RD, SUITE 101",
+                    "CITY": "MENLO PARK",
+                    "STATE": "CA",
+                    "ZIP": "94025"
+                }
+            }
+        ],
+        "ISSUER": [
+            {
+                "COMPANY-DATA": {
+                    "CONFORMED-NAME": "23andMe Holding Co.",
+                    "CIK": "0001804591",
+                    "ASSIGNED-SIC": "2834",
+                    "IRS-NUMBER": "871240344",
+                    "FISCAL-YEAR-END": "0331"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "349 OYSTER POINT BOULEVARD",
+                    "CITY": "SOUTH SAN FRANCISCO",
+                    "STATE": "CA",
+                    "ZIP": "94080",
+                    "PHONE": "(650) 938-6300"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "349 OYSTER POINT BOULEVARD",
+                    "CITY": "SOUTH SAN FRANCISCO",
+                    "STATE": "CA",
+                    "ZIP": "94080"
+                },
+                "FORMER-COMPANY": {
+                    "FORMER-CONFORMED-NAME": "Bleecker Street Acquisition Corp.",
+                    "DATE-CHANGED": "20200225"
+                }
+            }
+        ]
+    },
+    "documents": [
+        {
+            "TYPE": "4",
+            "SEQUENCE": "1",
+            "FILENAME": "doc4.xml",
+            "DESCRIPTION": "FORM 4 SUBMISSION"
+        }
+    ]
+}

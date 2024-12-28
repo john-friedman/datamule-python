@@ -1,0 +1,63 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001494730-11-000002",
+        "TYPE": "4",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "PERIOD": "20091204",
+        "FILING-DATE": "20110125",
+        "DATE-OF-FILING-DATE-CHANGE": "20110125",
+        "REPORTING-OWNER": [
+            {
+                "OWNER-DATA": {
+                    "CONFORMED-NAME": "Musk Elon",
+                    "CIK": "0001494730"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "4",
+                    "ACT": "34",
+                    "FILE-NUMBER": "001-34756",
+                    "FILM-NUMBER": "11547512"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "C/O TESLA MOTORS, INC.",
+                    "STREET2": "3500 DEER CREEK ROAD",
+                    "CITY": "PALO ALTO",
+                    "STATE": "CA",
+                    "ZIP": "94304"
+                }
+            }
+        ],
+        "ISSUER": [
+            {
+                "COMPANY-DATA": {
+                    "CONFORMED-NAME": "TESLA MOTORS INC",
+                    "CIK": "0001318605",
+                    "ASSIGNED-SIC": "3711",
+                    "IRS-NUMBER": "912197729",
+                    "STATE-OF-INCORPORATION": "DE"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "3500 DEER CREEK RD",
+                    "CITY": "PALO ALTO",
+                    "STATE": "CA",
+                    "ZIP": "94070",
+                    "PHONE": "650-681-5000"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "3500 DEER CREEK RD",
+                    "CITY": "PALO ALTO",
+                    "STATE": "CA",
+                    "ZIP": "94070"
+                }
+            }
+        ]
+    },
+    "documents": [
+        {
+            "TYPE": "4",
+            "SEQUENCE": "1",
+            "FILENAME": "edgardoc.xml",
+            "DESCRIPTION": "PRIMARY DOCUMENT"
+        }
+    ]
+}

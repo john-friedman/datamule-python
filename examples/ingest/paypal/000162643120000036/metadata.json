@@ -1,0 +1,64 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001626431-20-000036",
+        "TYPE": "4",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "PERIOD": "20200604",
+        "FILING-DATE": "20200608",
+        "DATE-OF-FILING-DATE-CHANGE": "20200608",
+        "REPORTING-OWNER": [
+            {
+                "OWNER-DATA": {
+                    "CONFORMED-NAME": "Hoffman Reid",
+                    "CIK": "0001519339"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "4",
+                    "ACT": "34",
+                    "FILE-NUMBER": "001-37845",
+                    "FILM-NUMBER": "20950304"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "C/O LINKEDIN CORPORATION",
+                    "STREET2": "2029 STIERLIN COURT",
+                    "CITY": "MOUNTAIN VIEW",
+                    "STATE": "CA",
+                    "ZIP": "94043"
+                }
+            }
+        ],
+        "ISSUER": [
+            {
+                "COMPANY-DATA": {
+                    "CONFORMED-NAME": "MICROSOFT CORP",
+                    "CIK": "0000789019",
+                    "ASSIGNED-SIC": "7372",
+                    "IRS-NUMBER": "911144442",
+                    "STATE-OF-INCORPORATION": "WA",
+                    "FISCAL-YEAR-END": "0630"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "ONE MICROSOFT WAY",
+                    "CITY": "REDMOND",
+                    "STATE": "WA",
+                    "ZIP": "98052-6399",
+                    "PHONE": "425-882-8080"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "ONE MICROSOFT WAY",
+                    "CITY": "REDMOND",
+                    "STATE": "WA",
+                    "ZIP": "98052-6399"
+                }
+            }
+        ]
+    },
+    "documents": [
+        {
+            "TYPE": "4",
+            "SEQUENCE": "1",
+            "FILENAME": "edgar.xml",
+            "DESCRIPTION": "PRIMARY DOCUMENT"
+        }
+    ]
+}

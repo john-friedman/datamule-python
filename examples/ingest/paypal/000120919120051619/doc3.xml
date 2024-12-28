@@ -1,0 +1,1047 @@
+<?xml version="1.0"?>
+<ownershipDocument>
+
+    <schemaVersion>X0206</schemaVersion>
+
+    <documentType>3</documentType>
+
+    <periodOfReport>2020-09-22</periodOfReport>
+
+    <noSecuritiesOwned>0</noSecuritiesOwned>
+
+    <issuer>
+        <issuerCik>0001321655</issuerCik>
+        <issuerName>Palantir Technologies Inc.</issuerName>
+        <issuerTradingSymbol>PLTR</issuerTradingSymbol>
+    </issuer>
+
+    <reportingOwner>
+        <reportingOwnerId>
+            <rptOwnerCik>0001211060</rptOwnerCik>
+            <rptOwnerName>THIEL PETER</rptOwnerName>
+        </reportingOwnerId>
+        <reportingOwnerAddress>
+            <rptOwnerStreet1>C/O PALANTIR TECHNOLOGIES INC.</rptOwnerStreet1>
+            <rptOwnerStreet2>1555 BLAKE STREET, SUITE 250</rptOwnerStreet2>
+            <rptOwnerCity>DENVER</rptOwnerCity>
+            <rptOwnerState>CO</rptOwnerState>
+            <rptOwnerZipCode>80202</rptOwnerZipCode>
+            <rptOwnerStateDescription></rptOwnerStateDescription>
+        </reportingOwnerAddress>
+        <reportingOwnerRelationship>
+            <isDirector>1</isDirector>
+            <isOfficer>0</isOfficer>
+            <isTenPercentOwner>1</isTenPercentOwner>
+            <isOther>0</isOther>
+        </reportingOwnerRelationship>
+    </reportingOwner>
+
+    <nonDerivativeTable>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>3257826</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>D</value>
+                </directOrIndirectOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>641400</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F1"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>1954631</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F2"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>687512</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F3"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>24029026</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F4"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>740740</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F5"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>1736110</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F6"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>9903394</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F7"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>299389</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F8"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>489716</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F9"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>8053195</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F10"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>147106</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F11"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>2860261</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F12"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>3290216</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F13"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>1056172</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F14"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>1002</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F15"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>43296</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F16"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+    </nonDerivativeTable>
+
+    <derivativeTable>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Class B Common Stock</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <footnoteId id="F17"/>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F17"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F17"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Class A Common Stock</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>13031306</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>D</value>
+                </directOrIndirectOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Class B Common Stock</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <footnoteId id="F17"/>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F17"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F17"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Class A Common Stock</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>2565601</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F1"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Class B Common Stock</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <footnoteId id="F17"/>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F17"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F17"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Class A Common Stock</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>7818526</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F2"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Class B Common Stock</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <footnoteId id="F17"/>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F17"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F17"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Class A Common Stock</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>2750050</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F3"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Class B Common Stock</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <footnoteId id="F17"/>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F17"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F17"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Class A Common Stock</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>96116105</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F4"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Class B Common Stock</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <footnoteId id="F17"/>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F17"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F17"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Class A Common Stock</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>2962961</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F5"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Class B Common Stock</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <footnoteId id="F17"/>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F17"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F17"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Class A Common Stock</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>6944440</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F6"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Class B Common Stock</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <footnoteId id="F17"/>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F17"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F17"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Class A Common Stock</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>39422431</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F7"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Class B Common Stock</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <footnoteId id="F17"/>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F17"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F17"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Class A Common Stock</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>1191775</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F8"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Class B Common Stock</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <footnoteId id="F17"/>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F17"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F17"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Class A Common Stock</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>1949413</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F9"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Class B Common Stock</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <footnoteId id="F17"/>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F17"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F17"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Class A Common Stock</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>32212328</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F10"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Class B Common Stock</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <footnoteId id="F17"/>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F17"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F17"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Class A Common Stock</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>588414</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F11"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Class B Common Stock</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <footnoteId id="F17"/>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F17"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F17"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Class A Common Stock</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>11440882</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F12"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Class B Common Stock</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <footnoteId id="F17"/>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F17"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F17"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Class A Common Stock</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>13160866</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F13"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Class B Common Stock</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <footnoteId id="F17"/>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F17"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F17"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Class A Common Stock</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>4224690</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F14"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Class B Common Stock</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <footnoteId id="F17"/>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F17"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F17"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Class A Common Stock</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>3891</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F15"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Class B Common Stock</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <footnoteId id="F17"/>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F17"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F17"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Class A Common Stock</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>14487124</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F16"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Class F Common Stock</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <footnoteId id="F18"/>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F18"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F18"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Class B Common Stock</value>
+                    <footnoteId id="F17"/>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>335000</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F19"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Class B Common Stock Warrant (Right to buy)</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <value>6.13</value>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F20"/>
+            </exerciseDate>
+            <expirationDate>
+                <value>2022-11-20</value>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Class B Common Stock</value>
+                    <footnoteId id="F17"/>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>4502447</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F21"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Class B Common Stock Warrant (Right to buy)</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <value>6.13</value>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F20"/>
+            </exerciseDate>
+            <expirationDate>
+                <value>2025-01-01</value>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Class B Common Stock</value>
+                    <footnoteId id="F17"/>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>536445</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F22"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Class B Common Stock Warrant (Right to buy)</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <value>6.13</value>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F20"/>
+            </exerciseDate>
+            <expirationDate>
+                <value>2025-01-01</value>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Class B Common Stock</value>
+                    <footnoteId id="F17"/>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>172201</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F23"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+    </derivativeTable>
+
+    <footnotes>
+        <footnote id="F1">These shares are held of record by PT Ventures, LLC (&quot;PTV&quot;), of which the Reporting Person is the Managing Member.  The Reporting Person may be deemed to have beneficial ownership over the securities held by PTV.  The Reporting Person disclaims beneficial ownership of the shares held by PTV except to the extent of his pecuniary interest therein.</footnote>
+        <footnote id="F2">These shares are held of record by Clarium L.P. (&quot;Clarium&quot;).  The Reporting Person is the President of Clarium Capital Management, LLC, which is general partner of Clarium.  The Reporting Person may be deemed to have beneficial ownership over the securities held by Clarium.  The Reporting Person disclaims beneficial ownership of the shares held by Clarium except to the extent of his pecuniary interest therein.</footnote>
+        <footnote id="F3">These shares are held of record by STS Holdings II LLC, of which the Reporting Person is the sole beneficial owner.  The Reporting Person has beneficial ownership over the securities held by STS Holdings II LLC.</footnote>
+        <footnote id="F4">These shares are held of record by Rivendell 7 LLC, of which the Reporting Person is the sole beneficial owner.  The Reporting Person has beneficial ownership over the securities held by Rivendell 7 LLC.</footnote>
+        <footnote id="F5">These shares are held of record by Rivendell 25 LLC, of which the Reporting Person is the sole beneficial owner.  The Reporting Person has beneficial ownership over the securities held by Rivendell 25 LLC.</footnote>
+        <footnote id="F6">These shares are held of record by The Founders Fund, LP (&quot;FF-I&quot;).  The Reporting Person is one of the managing members of The Founders Fund Management, LLC, which is the general partner of FF-I.  The Reporting Person may be deemed to have beneficial ownership over the securities held by FF-I.  The Reporting Person disclaims beneficial ownership over the shares held by FF-I except to the extent of his pecuniary interest therein.</footnote>
+        <footnote id="F7">These shares are held of record by The Founders Fund II, LP (&quot;FF-II&quot;).  The Reporting Person is one of the managing members of The Founders Fund II Management, LLC (&quot;FFIIM&quot;), which is the general partner of FF-II.  The Reporting Person may be deemed to have beneficial ownership over the securities held by FF-II.  The Reporting Person disclaims beneficial ownership over the shares held by FF-II except to the extent of his pecuniary interest therein.</footnote>
+        <footnote id="F8">These shares are held of record by The Founders Fund II Entrepreneurs Fund, LP (&quot;FF-IIE&quot;).  The Reporting Person is one of the managing members of FFIIM, which is the general partner of FF-IIE.  The Reporting Person may be deemed to have beneficial ownership over the securities held by FF-IIE.  The Reporting Person disclaims beneficial ownership over the shares held by FF-IIE except to the extent of his pecuniary interest therein.</footnote>
+        <footnote id="F9">These shares are held of record by The Founders Fund II Principals Fund, LP (&quot;FF-IIP&quot;).  The Reporting Person is one of the managing members of FFIIM, which is the general partner of FF-IIP.  The Reporting Person may be deemed to have beneficial ownership over the securities held by FF-IIP.  The Reporting Person disclaims beneficial ownership over the shares held by FF-IIP except to the extent of his pecuniary interest therein.</footnote>
+        <footnote id="F10">These shares are held of record by The Founders Fund III, LP (&quot;FF-III&quot;).  The Reporting Person is one of the managing members of The Founders Fund III Management, LLC (&quot;FFIIIM&quot;), which is the general partner of FF-III.  The Reporting Person may be deemed to have beneficial ownership over the securities held by FF-III.  The Reporting Person disclaims beneficial ownership over the shares held by FF-III except to the extent of his pecuniary interest therein.</footnote>
+        <footnote id="F11">These shares are held of record by The Founders Fund III Entrepreneurs Fund, LP (&quot;FF-IIIE&quot;).  The Reporting Person is one of the managing members of FFIIIM, which is the general partner of FF-IIIE.  The Reporting Person may be deemed to have beneficial ownership over the securities held by FF-IIIE.  The Reporting Person disclaims beneficial ownership over the shares held by FF-IIIE except to the extent of his pecuniary interest therein.</footnote>
+        <footnote id="F12">These shares are held of record by The Founders Fund III Principals Fund, LP (&quot;FF-IIIP&quot;).  The Reporting Person is one of the managing members of FFIIIM, which is the general partner of FF-IIIP.  The Reporting Person may be deemed to have beneficial ownership over the securities held by FF-IIIP.  The Reporting Person disclaims beneficial ownership over the shares held by FF-IIIP except to the extent of his pecuniary interest therein.</footnote>
+        <footnote id="F13">These shares are held of record by The Founders Fund IV, LP (&quot;FF-IV&quot;).  The Reporting Person is one of the managing members of The Founders Fund IV Management, LLC (&quot;FFIVM&quot;), which is the general partner of FF-IV.  The Reporting Person may be deemed to have beneficial ownership over the securities held by FF-IV.  The Reporting Person disclaims beneficial ownership over the shares held by FF-IV except to the extent of his pecuniary interest therein.</footnote>
+        <footnote id="F14">These shares are held of record by The Founders Fund IV Principals Fund, LP (&quot;FF-IVP&quot;).  The Reporting Person is one of the managing members of FFIVM, which is the general partner of FF-IVP.  The Reporting Person may be deemed to have beneficial ownership over the securities held by FF-IVP.  The Reporting Person disclaims beneficial ownership over the shares held by FF-IVP except to the extent of his pecuniary interest therein.</footnote>
+        <footnote id="F15">These shares are held of record by FF Pathfinder VI, LLC (&quot;FF Pathfinder&quot;).  The Reporting Person is one of the managing members of The Founders Fund VI Management LLC, which is the managing member of FF Pathfinder.  The Reporting Person may be deemed to have beneficial ownership over the securities held by FF Pathfinder.  The Reporting Person disclaims beneficial ownership over the shares held by FF Pathfinder except to the extent of his pecuniary interest therein.</footnote>
+        <footnote id="F16">These shares are held of record by Mithril PAL-SPV 1, LLC (&quot;Mithril&quot;).  The Reporting Person is the Chairman of the Investment Committee of Mithril GP LLC, the General Partner of Mithril LP, which, in turn, owns Mithril.  The Reporting Person may be deemed to have beneficial ownership over the securities held by Mithril.  The Reporting Person disclaims beneficial ownership of the shares held by Mithril except to the extent of his pecuniary interest therein.</footnote>
+        <footnote id="F17">The Class B Common Stock is convertible into the Issuer's Class A Common Stock on a 1-for-1 basis and has no expiration date.</footnote>
+        <footnote id="F18">The Class F Common Stock is convertible into the Issuer's Class B Common Stock on a 1-for-1 basis and has no expiration date. The Class B Common Stock is convertible into the Issuer's Class A Common Stock on a 1-for-1 basis and has no expiration date.</footnote>
+        <footnote id="F19">These shares are held of record by the voting trust established pursuant to the Voting Trust Agreement entered into among Alexander Karp, Stephen Cohen, the Reporting Person and Wilmington Trust, National Association (the &quot;Voting Trust&quot;).  The Reporting Person is a beneficiary of the Voting Trust and may be deemed to have beneficial ownership with respect to 335,000 shares of Class F Common Stock held in the Voting Trust.</footnote>
+        <footnote id="F20">All of the shares underlying the warrant are fully vested and exercisable as of the date hereof.</footnote>
+        <footnote id="F21">This warrant is held by Mithril. The Reporting Person may be deemed to have beneficial ownership over the securities held by Mithril.  The Reporting Person disclaims beneficial ownership of the securities held by Mithril except to the extent of his pecuniary interest therein.</footnote>
+        <footnote id="F22">This warrant is held by FF-IV. The Reporting Person may be deemed to have beneficial ownership over the securities held by FF-IV.  The Reporting Person disclaims beneficial ownership over the securities held by FF-IV except to the extent of his pecuniary interest therein.</footnote>
+        <footnote id="F23">This warrant is held by FF-IVP. The Reporting Person may be deemed to have beneficial ownership over the securities held by FF-IVP.  The Reporting Person disclaims beneficial ownership over the securities held by FF-IVP except to the extent of his pecuniary interest therein.</footnote>
+    </footnotes>
+
+    <remarks>Exhibit 24 - Power of Attorney</remarks>
+
+    <ownerSignature>
+        <signatureName>/s/ Justin V. Laubach, under power of attorney</signatureName>
+        <signatureDate>2020-09-22</signatureDate>
+    </ownerSignature>
+</ownershipDocument>

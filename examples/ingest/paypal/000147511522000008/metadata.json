@@ -1,0 +1,66 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001475115-22-000008",
+        "TYPE": "4",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "PERIOD": "20220112",
+        "FILING-DATE": "20220114",
+        "DATE-OF-FILING-DATE-CHANGE": "20220114",
+        "REPORTING-OWNER": [
+            {
+                "OWNER-DATA": {
+                    "CONFORMED-NAME": "BOTHA ROELOF",
+                    "CIK": "0001222287"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "4",
+                    "ACT": "34",
+                    "FILE-NUMBER": "001-38658",
+                    "FILM-NUMBER": "22532256"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "C/O SEQUOIA CAPITAL",
+                    "STREET2": "2800 SAND HILL RD, SUITE 101",
+                    "CITY": "MENLO PARK",
+                    "STATE": "CA",
+                    "ZIP": "94025"
+                }
+            }
+        ],
+        "ISSUER": [
+            {
+                "COMPANY-DATA": {
+                    "CONFORMED-NAME": "Eventbrite, Inc.",
+                    "CIK": "0001475115",
+                    "ASSIGNED-SIC": "7370",
+                    "IRS-NUMBER": "141888467",
+                    "STATE-OF-INCORPORATION": "DE",
+                    "FISCAL-YEAR-END": "1231"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "535 MISSION STREET",
+                    "STREET2": "8TH FLOOR",
+                    "CITY": "SAN FRANCISCO",
+                    "STATE": "CA",
+                    "ZIP": "94105",
+                    "PHONE": "(888) 414-5119"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "535 MISSION STREET",
+                    "STREET2": "8TH FLOOR",
+                    "CITY": "SAN FRANCISCO",
+                    "STATE": "CA",
+                    "ZIP": "94105"
+                }
+            }
+        ]
+    },
+    "documents": [
+        {
+            "TYPE": "4",
+            "SEQUENCE": "1",
+            "FILENAME": "edgardoc.xml",
+            "DESCRIPTION": "PRIMARY DOCUMENT"
+        }
+    ]
+}

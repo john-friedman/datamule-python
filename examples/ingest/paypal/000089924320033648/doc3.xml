@@ -1,0 +1,300 @@
+<?xml version="1.0"?>
+<ownershipDocument>
+
+    <schemaVersion>X0206</schemaVersion>
+
+    <documentType>3</documentType>
+
+    <periodOfReport>2020-12-11</periodOfReport>
+
+    <noSecuritiesOwned>0</noSecuritiesOwned>
+
+    <issuer>
+        <issuerCik>0001703057</issuerCik>
+        <issuerName>AbCellera Biologics Inc.</issuerName>
+        <issuerTradingSymbol>ABCL</issuerTradingSymbol>
+    </issuer>
+
+    <reportingOwner>
+        <reportingOwnerId>
+            <rptOwnerCik>0001211060</rptOwnerCik>
+            <rptOwnerName>THIEL PETER</rptOwnerName>
+        </reportingOwnerId>
+        <reportingOwnerAddress>
+            <rptOwnerStreet1>C/O ABCELLERA BIOLOGICS INC.</rptOwnerStreet1>
+            <rptOwnerStreet2>2215 YUKON STREET</rptOwnerStreet2>
+            <rptOwnerCity>VANCOUVER</rptOwnerCity>
+            <rptOwnerState>A1</rptOwnerState>
+            <rptOwnerZipCode>V5Y 0A1</rptOwnerZipCode>
+            <rptOwnerStateDescription>BRITISH COLUMBIA, CANADA</rptOwnerStateDescription>
+        </reportingOwnerAddress>
+        <reportingOwnerRelationship>
+            <isDirector>1</isDirector>
+            <isOfficer>0</isOfficer>
+            <isTenPercentOwner>0</isTenPercentOwner>
+            <isOther>0</isOther>
+        </reportingOwnerRelationship>
+    </reportingOwner>
+
+    <nonDerivativeTable>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Common Shares</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>891520</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F1"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+    </nonDerivativeTable>
+
+    <derivativeTable>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Series A2 Preferred Shares</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <footnoteId id="F2"/>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F2"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F2"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Common Shares</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>3811260</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See footnote</value>
+                    <footnoteId id="F1"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Series A2 Preferred Shares</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <footnoteId id="F2"/>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F2"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F2"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Common Shares</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>3343240</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See footnote</value>
+                    <footnoteId id="F3"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Series A2 Preferred Shares</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <footnoteId id="F2"/>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F2"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F2"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Common Shares</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>401050</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See footnote</value>
+                    <footnoteId id="F4"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Series A2 Preferred Shares</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <footnoteId id="F2"/>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F2"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F2"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Common Shares</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>29240</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See footnote</value>
+                    <footnoteId id="F5"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Convertible Note</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <value>17.00</value>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F6"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F6"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Common Shares</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>2477100</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See footnote</value>
+                    <footnoteId id="F1"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Convertible Note</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <value>17.00</value>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F7"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F7"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Common Shares</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>382357</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See footnote</value>
+                    <footnoteId id="F8"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Convertible Note</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <value>17.00</value>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F9"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F9"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Common Shares</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>24660</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See footnote</value>
+                    <footnoteId id="F10"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+    </derivativeTable>
+
+    <footnotes>
+        <footnote id="F1">These shares are held of record by ABE Investments LLC. The Reporting Person is the beneficial owner of ABE Investments LLC and has sole voting and investment power over the securities held by ABE Investments LLC.</footnote>
+        <footnote id="F2">The Series A2 Preferred Shares (the &quot;Preferred Shares&quot;) are convertible into Common Shares at a 1:10 ratio into the number of Common Shares as shown in Column 3 at any time at the holder's election, and automatically upon the closing of the Issuer's initial public offering (&quot;IPO&quot;) without payment of additional consideration. The Preferred Shares have no expiration date.</footnote>
+        <footnote id="F3">These shares are held of record by The Founders Fund VII, LP (&quot;FF-VII&quot;). The Reporting Person is one of the managing members of The Founders Fund VII Management, LLC (&quot;FFVIIM&quot;), which is the general partner of FF-VII. The Reporting Person may be deemed to have beneficial ownership over the securities held by FF-VII. The Reporting Person disclaims beneficial ownership over the shares held by FF-VII except to the extent of his pecuniary interest therein.</footnote>
+        <footnote id="F4">These shares are held of record by The Founders Fund VII Principals Fund, LP (&quot;FF-VIIP&quot;). The Reporting Person is one of the managing members of FFVIIM, which is the general partner of FF-VIIP. The Reporting Person may be deemed to have beneficial ownership over the securities held by FF-VIIP. The Reporting Person disclaims beneficial ownership over the shares held by FF-VIIP except to the extent of his pecuniary interest therein.</footnote>
+        <footnote id="F5">These shares are held of record by The Founders Fund VII Entrepreneurs Fund, LP (&quot;FF-VIIE&quot;). The Reporting Person is one of the managing members of FFVIIM, which is the general partner of FF-VIIE. The Reporting Person may be deemed to have beneficial ownership over the securities held by FF-VIIE. The Reporting Person disclaims beneficial ownership over the shares held by FF-VIIE except to the extent of his pecuniary interest therein.</footnote>
+        <footnote id="F6">The convertible promissory note has a maturity date of October 30, 2025 and the principal amount of the convertible promissory note will convert upon the closing of the IPO into Common Shares at a conversion price equal to $17.00 per Common Share plus 687,100 Common Shares.</footnote>
+        <footnote id="F7">The convertible promissory note has a maturity date of October 30, 2025 and the principal amount of the convertible promissory note will convert upon the closing of the IPO into Common Shares at a conversion price equal to $17.00 per Common Share plus 106,060 Common Shares.</footnote>
+        <footnote id="F8">These shares are held of record by The Founders Fund Growth, LP (&quot;FFG&quot;). The Reporting Person is one of the managing members of The Founders Fund Growth Management, LLC (&quot;FFGM&quot;), which is the general partner of FFG. The Reporting Person may be deemed to have beneficial ownership over the securities held by FFG. The Reporting Person disclaims beneficial ownership over the shares held by FFG except to the extent of his pecuniary interest therein.</footnote>
+        <footnote id="F9">The convertible promissory note has a maturity date of October 30, 2025 and the principal amount of the convertible promissory note will convert upon the closing of the IPO into Common Shares at a conversion price equal $17.00 per Common Share plus 6,840 Common Shares.</footnote>
+        <footnote id="F10">These shares are held of record by The Founders Fund Growth Principals Fund, LP (&quot;FFGP&quot;). The Reporting Person is one of the managing members of FFGM, which is the general partner of FFGP. The Reporting Person may be deemed to have beneficial ownership over the securities held by FFGP. The Reporting Person disclaims beneficial ownership over the shares held by FFGP except to the extent of his pecuniary interest therein.</footnote>
+    </footnotes>
+
+    <remarks>Exhibit 24 - Power of Attorney</remarks>
+
+    <ownerSignature>
+        <signatureName>/s/ Tryn Stimart, attorney-in-fact</signatureName>
+        <signatureDate>2020-12-11</signatureDate>
+    </ownerSignature>
+</ownershipDocument>

@@ -1,0 +1,240 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000899243-21-036608",
+        "TYPE": "3",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "PERIOD": "20210909",
+        "FILING-DATE": "20210920",
+        "DATE-OF-FILING-DATE-CHANGE": "20210920",
+        "REPORTING-OWNER": [
+            {
+                "OWNER-DATA": {
+                    "CONFORMED-NAME": "THIEL PETER",
+                    "CIK": "0001211060"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "3",
+                    "ACT": "34",
+                    "FILE-NUMBER": "001-39113",
+                    "FILM-NUMBER": "211264121"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "9200 SUNSET BOULEVARD",
+                    "STREET2": "SUITE 1110",
+                    "CITY": "WEST HOLLYWOOD",
+                    "STATE": "CA",
+                    "ZIP": "90069",
+                    "PHONE": "323-990-2000"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "9200 SUNSET BOULEVARD",
+                    "STREET2": "SUITE 1110",
+                    "CITY": "WEST HOLLYWOOD",
+                    "STATE": "CA",
+                    "ZIP": "90069"
+                }
+            },
+            {
+                "OWNER-DATA": {
+                    "CONFORMED-NAME": "Mithril LP",
+                    "CIK": "0001552273",
+                    "STATE-OF-INCORPORATION": "DE",
+                    "FISCAL-YEAR-END": "1231"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "3",
+                    "ACT": "34",
+                    "FILE-NUMBER": "001-39113",
+                    "FILM-NUMBER": "211264126"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "ONE LETTERMAN DRIVE",
+                    "STREET2": "BUILDING C SUITE 400",
+                    "CITY": "SAN FRANCISCO",
+                    "STATE": "CA",
+                    "ZIP": "94129",
+                    "PHONE": "415-248-5147"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "ONE LETTERMAN DRIVE",
+                    "STREET2": "BUILDING C SUITE 400",
+                    "CITY": "SAN FRANCISCO",
+                    "STATE": "CA",
+                    "ZIP": "94129"
+                }
+            },
+            {
+                "OWNER-DATA": {
+                    "CONFORMED-NAME": "MITHRIL II LP",
+                    "CIK": "0001669609",
+                    "STATE-OF-INCORPORATION": "DE",
+                    "FISCAL-YEAR-END": "1231"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "3",
+                    "ACT": "34",
+                    "FILE-NUMBER": "001-39113",
+                    "FILM-NUMBER": "211264123"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "ONE LETTERMAN DRIVE, BLDG. A, SUITE 4900",
+                    "CITY": "SAN FRANCISCO",
+                    "STATE": "CA",
+                    "ZIP": "94129",
+                    "PHONE": "(415) 659-8940"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "ONE LETTERMAN DRIVE, BLDG. A, SUITE 4900",
+                    "CITY": "SAN FRANCISCO",
+                    "STATE": "CA",
+                    "ZIP": "94129"
+                }
+            },
+            {
+                "OWNER-DATA": {
+                    "CONFORMED-NAME": "Mithril GP LP",
+                    "CIK": "0001881891",
+                    "STATE-OF-INCORPORATION": "DE",
+                    "FISCAL-YEAR-END": "1231"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "3",
+                    "ACT": "34",
+                    "FILE-NUMBER": "001-39113",
+                    "FILM-NUMBER": "211264127"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "C/O MITHRIL CAPITAL MANAGEMENT LLC",
+                    "STREET2": "600 CONGRESS AVENUE, SUITE 3100",
+                    "CITY": "AUSTIN",
+                    "STATE": "TX",
+                    "ZIP": "78701",
+                    "PHONE": "512-717-3770"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "C/O MITHRIL CAPITAL MANAGEMENT LLC",
+                    "STREET2": "600 CONGRESS AVENUE, SUITE 3100",
+                    "CITY": "AUSTIN",
+                    "STATE": "TX",
+                    "ZIP": "78701"
+                }
+            },
+            {
+                "OWNER-DATA": {
+                    "CONFORMED-NAME": "Royan Ajay",
+                    "CIK": "0001875614"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "3",
+                    "ACT": "34",
+                    "FILE-NUMBER": "001-39113",
+                    "FILM-NUMBER": "211264122"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "303 WYMAN STREET",
+                    "STREET2": "SUITE 300",
+                    "CITY": "WALTHAM",
+                    "STATE": "MA",
+                    "ZIP": "02451"
+                }
+            },
+            {
+                "OWNER-DATA": {
+                    "CONFORMED-NAME": "Mithril II UGP LLC",
+                    "CIK": "0001878230",
+                    "STATE-OF-INCORPORATION": "DE",
+                    "FISCAL-YEAR-END": "1231"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "3",
+                    "ACT": "34",
+                    "FILE-NUMBER": "001-39113",
+                    "FILM-NUMBER": "211264125"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "600 CONGRESS AVENUE",
+                    "STREET2": "SUITE 3100",
+                    "CITY": "AUSTIN",
+                    "STATE": "TX",
+                    "ZIP": "78701",
+                    "PHONE": "512-717-3770"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "600 CONGRESS AVENUE",
+                    "STREET2": "SUITE 3100",
+                    "CITY": "AUSTIN",
+                    "STATE": "TX",
+                    "ZIP": "78701"
+                }
+            },
+            {
+                "OWNER-DATA": {
+                    "CONFORMED-NAME": "Mithril II GP LP",
+                    "CIK": "0001878232",
+                    "STATE-OF-INCORPORATION": "DE",
+                    "FISCAL-YEAR-END": "1231"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "3",
+                    "ACT": "34",
+                    "FILE-NUMBER": "001-39113",
+                    "FILM-NUMBER": "211264124"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "600 CONGRESS AVENUE",
+                    "STREET2": "SUITE 3100",
+                    "CITY": "AUSTIN",
+                    "STATE": "TX",
+                    "ZIP": "78701",
+                    "PHONE": "512-717-3770"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "600 CONGRESS AVENUE",
+                    "STREET2": "SUITE 3100",
+                    "CITY": "AUSTIN",
+                    "STATE": "TX",
+                    "ZIP": "78701"
+                }
+            }
+        ],
+        "ISSUER": [
+            {
+                "COMPANY-DATA": {
+                    "CONFORMED-NAME": "BlackSky Technology Inc.",
+                    "CIK": "0001753539",
+                    "ASSIGNED-SIC": "3663",
+                    "IRS-NUMBER": "831833760",
+                    "STATE-OF-INCORPORATION": "DE",
+                    "FISCAL-YEAR-END": "1231"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "13241 WOODLAND PARK ROAD",
+                    "STREET2": "SUITE 300",
+                    "CITY": "HERNDON",
+                    "STATE": "VA",
+                    "ZIP": "20171",
+                    "PHONE": "571-267-1571"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "13241 WOODLAND PARK ROAD",
+                    "STREET2": "SUITE 300",
+                    "CITY": "HERNDON",
+                    "STATE": "VA",
+                    "ZIP": "20171"
+                },
+                "FORMER-COMPANY": {
+                    "FORMER-CONFORMED-NAME": "Osprey Acquisition Corp. II",
+                    "DATE-CHANGED": "20180918"
+                }
+            }
+        ]
+    },
+    "documents": [
+        {
+            "TYPE": "3",
+            "SEQUENCE": "1",
+            "FILENAME": "doc3.xml",
+            "DESCRIPTION": "FORM 3 SUBMISSION"
+        }
+    ]
+}

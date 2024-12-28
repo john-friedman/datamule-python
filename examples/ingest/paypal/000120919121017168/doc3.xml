@@ -1,0 +1,277 @@
+<?xml version="1.0"?>
+<ownershipDocument>
+
+    <schemaVersion>X0206</schemaVersion>
+
+    <documentType>3</documentType>
+
+    <periodOfReport>2021-03-03</periodOfReport>
+
+    <noSecuritiesOwned>0</noSecuritiesOwned>
+
+    <issuer>
+        <issuerCik>0001568651</issuerCik>
+        <issuerName>Oscar Health, Inc.</issuerName>
+        <issuerTradingSymbol>OSCR</issuerTradingSymbol>
+    </issuer>
+
+    <reportingOwner>
+        <reportingOwnerId>
+            <rptOwnerCik>0001211060</rptOwnerCik>
+            <rptOwnerName>THIEL PETER</rptOwnerName>
+        </reportingOwnerId>
+        <reportingOwnerAddress>
+            <rptOwnerStreet1>ONE LETTERMAN DRIVE, BUILDING D</rptOwnerStreet1>
+            <rptOwnerStreet2>5TH FLOOR</rptOwnerStreet2>
+            <rptOwnerCity>SAN FRANCISCO</rptOwnerCity>
+            <rptOwnerState>CA</rptOwnerState>
+            <rptOwnerZipCode>94129</rptOwnerZipCode>
+            <rptOwnerStateDescription></rptOwnerStateDescription>
+        </reportingOwnerAddress>
+        <reportingOwnerRelationship>
+            <isDirector>0</isDirector>
+            <isOfficer>0</isOfficer>
+            <isTenPercentOwner>1</isTenPercentOwner>
+            <isOther>0</isOther>
+        </reportingOwnerRelationship>
+    </reportingOwner>
+
+    <reportingOwner>
+        <reportingOwnerId>
+            <rptOwnerCik>0001835462</rptOwnerCik>
+            <rptOwnerName>Singerman Brian Aaron</rptOwnerName>
+        </reportingOwnerId>
+        <reportingOwnerAddress>
+            <rptOwnerStreet1>ONE LETTERMAN DRIVE, BUILDING D</rptOwnerStreet1>
+            <rptOwnerStreet2>5TH FLOOR</rptOwnerStreet2>
+            <rptOwnerCity>SAN FRANCISCO</rptOwnerCity>
+            <rptOwnerState>CA</rptOwnerState>
+            <rptOwnerZipCode>94129</rptOwnerZipCode>
+            <rptOwnerStateDescription></rptOwnerStateDescription>
+        </reportingOwnerAddress>
+        <reportingOwnerRelationship>
+            <isDirector>0</isDirector>
+            <isOfficer>0</isOfficer>
+            <isTenPercentOwner>1</isTenPercentOwner>
+            <isOther>0</isOther>
+        </reportingOwnerRelationship>
+    </reportingOwner>
+
+    <nonDerivativeTable>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>7778012</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>By Fund</value>
+                    <footnoteId id="F1"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>2496769</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>By Fund</value>
+                    <footnoteId id="F2"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>4476970</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>By Fund</value>
+                    <footnoteId id="F3"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>1204304</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>By Fund</value>
+                    <footnoteId id="F4"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>63361</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>By Fund</value>
+                    <footnoteId id="F5"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>3755954</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>By Fund</value>
+                    <footnoteId id="F6"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>928720</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>By Fund</value>
+                    <footnoteId id="F7"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>46697</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>By Fund</value>
+                    <footnoteId id="F8"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>799525</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>By Fund</value>
+                    <footnoteId id="F9"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stoc</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>51567</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>By Fund</value>
+                    <footnoteId id="F10"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+    </nonDerivativeTable>
+
+    <footnotes>
+        <footnote id="F1">Shares held by The Founders Fund IV, LP (&quot;FF-IV&quot;). Peter Thiel and Brian Singerman have shared voting and investment power over the shares held by FF-IV and, accordingly, may be deemed to beneficially own the shares held by FF-IV.  Each of Mr. Thiel and Mr. Singerman disclaims beneficial ownership in these shares except to the extent of his respective pecuniary interest therein.</footnote>
+        <footnote id="F2">Shares held by The Founders Fund IV Principals Fund, LP (&quot;FF-IVP&quot;). Peter Thiel and Brian Singerman have shared voting and investment power over the shares held by FF-IVP and, accordingly, may be deemed to beneficially own the shares held by FF-IVP.  Each of Mr. Thiel and Mr. Singerman disclaims beneficial ownership in these shares except to the extent of his respective pecuniary interest therein.</footnote>
+        <footnote id="F3">Shares held by The Founders Fund V, LP (&quot;FF-V&quot;). Peter Thiel and Brian Singerman have shared voting and investment power over the shares held by FF-V and, accordingly, may be deemed to beneficially own the shares held by FF-V.  Each of Mr. Thiel and Mr. Singerman disclaims beneficial ownership in these shares except to the extent of his respective pecuniary interest therein.</footnote>
+        <footnote id="F4">Shares held by The Founders Fund V Principals Fund, LP (&quot;FF-VP&quot;). Peter Thiel and Brian Singerman have shared voting and investment power over the shares held by FF-VP and, accordingly, may be deemed to beneficially own the shares held by FF-VP.  Each of Mr. Thiel and Mr. Singerman disclaims beneficial ownership in these shares except to the extent of his respective pecuniary interest therein.</footnote>
+        <footnote id="F5">Shares held by The Founders Fund V Entrepreneurs Fund, LP (&quot;FF-VE&quot;). Peter Thiel and Brian Singerman have shared voting and investment power over the shares held by FF-VE and, accordingly, may be deemed to beneficially own the shares held by FF-VE.  Each of Mr. Thiel and Mr. Singerman disclaims beneficial ownership in these shares except to the extent of his respective pecuniary interest therein.</footnote>
+        <footnote id="F6">Shares held by The Founders Fund VI, LP (&quot;FF-VI&quot;). Peter Thiel and Brian Singerman have shared voting and investment power over the shares held by FF-VI and, accordingly, may be deemed to beneficially own the shares held by FF-VI.  Each of Mr. Thiel and Mr. Singerman disclaims beneficial ownership in these shares except to the extent of his respective pecuniary interest therein.</footnote>
+        <footnote id="F7">Shares held by The Founders Fund VI Principals Fund, LP (&quot;FF-VIP&quot;). Peter Thiel and Brian Singerman have shared voting and investment power over the shares held by FF-VIP and, accordingly, may be deemed to beneficially own the shares held by FF-VIP.  Each of Mr. Thiel and Mr. Singerman disclaims beneficial ownership in these shares except to the extent of his respective pecuniary interest therein.</footnote>
+        <footnote id="F8">Shares held by The Founders Fund VI Entrepreneurs Fund, LP (&quot;FF-VIE&quot;). Peter Thiel and Brian Singerman have shared voting and investment power over the shares held by FF-VIE and, accordingly, may be deemed to beneficially own the shares held by FF-VIE.  Each of Mr. Thiel and Mr. Singerman disclaims beneficial ownership in these shares except to the extent of his respective pecuniary interest therein.</footnote>
+        <footnote id="F9">Shares held by The Founders Fund Growth, LP (&quot;FF-G&quot;). Peter Thiel and Brian Singerman have shared voting and investment power over the shares held by FF-G and, accordingly, may be deemed to beneficially own the shares held by FF-G.  Each of Mr. Thiel and Mr. Singerman disclaims beneficial ownership in these shares except to the extent of his respective pecuniary interest therein.</footnote>
+        <footnote id="F10">Shares held by The Founders Fund Growth Principals Fund, LP (&quot;FF-GP&quot;). Peter Thiel and Brian Singerman have shared voting and investment power over the shares held by FF-GP and, accordingly, may be deemed to beneficially own the shares held by FF-GP.  Each of Mr. Thiel and Mr. Singerman disclaims beneficial ownership in these shares except to the extent of his respective pecuniary interest therein.</footnote>
+    </footnotes>
+
+    <remarks>The Reporting Persons disclaim group status and neither the fact of this filing nor anything contained herein shall be deemed to be an admission by the Reporting Persons that they have formed a group.</remarks>
+
+    <ownerSignature>
+        <signatureName>/s/ Peter Thiel</signatureName>
+        <signatureDate>2021-03-03</signatureDate>
+    </ownerSignature>
+
+    <ownerSignature>
+        <signatureName>/s/ Brian A. Singerman</signatureName>
+        <signatureDate>2021-03-03</signatureDate>
+    </ownerSignature>
+</ownershipDocument>

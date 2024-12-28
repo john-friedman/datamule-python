@@ -1,0 +1,72 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001213900-20-038084",
+        "TYPE": "3",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "PERIOD": "20201118",
+        "FILING-DATE": "20201118",
+        "DATE-OF-FILING-DATE-CHANGE": "20201118",
+        "REPORTING-OWNER": [
+            {
+                "OWNER-DATA": {
+                    "CONFORMED-NAME": "Hoffman Reid",
+                    "CIK": "0001519339"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "3",
+                    "ACT": "34",
+                    "FILE-NUMBER": "001-39711",
+                    "FILM-NUMBER": "201326549"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "C/O LINKEDIN CORPORATION",
+                    "STREET2": "2029 STIERLIN COURT",
+                    "CITY": "MOUNTAIN VIEW",
+                    "STATE": "CA",
+                    "ZIP": "94043"
+                }
+            }
+        ],
+        "ISSUER": [
+            {
+                "COMPANY-DATA": {
+                    "CONFORMED-NAME": "Reinvent Technology Partners Z",
+                    "CIK": "0001828105",
+                    "ASSIGNED-SIC": "6770",
+                    "IRS-NUMBER": "981562010",
+                    "FISCAL-YEAR-END": "1231"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "215 PARK AVENUE, FLOOR 11",
+                    "CITY": "NEW YORK",
+                    "STATE": "NY",
+                    "ZIP": "10003",
+                    "PHONE": "(917) 697-2796"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "215 PARK AVENUE, FLOOR 11",
+                    "CITY": "NEW YORK",
+                    "STATE": "NY",
+                    "ZIP": "10003"
+                },
+                "FORMER-COMPANY": {
+                    "FORMER-CONFORMED-NAME": "Reinvent Technology Partners B",
+                    "DATE-CHANGED": "20201013"
+                }
+            }
+        ]
+    },
+    "documents": [
+        {
+            "TYPE": "3",
+            "SEQUENCE": "1",
+            "FILENAME": "ownership.xml"
+        },
+        {
+            "TYPE": "EX-24",
+            "SEQUENCE": "2",
+            "FILENAME": "ea129878ex24_reinventtechz.htm",
+            "DESCRIPTION": "POWER OF ATTORNEY"
+        }
+    ]
+}

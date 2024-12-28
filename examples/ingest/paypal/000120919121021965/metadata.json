@@ -1,0 +1,76 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001209191-21-021965",
+        "TYPE": "3",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "PERIOD": "20210316",
+        "FILING-DATE": "20210318",
+        "DATE-OF-FILING-DATE-CHANGE": "20210318",
+        "REPORTING-OWNER": [
+            {
+                "OWNER-DATA": {
+                    "CONFORMED-NAME": "THIEL PETER",
+                    "CIK": "0001211060"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "3",
+                    "ACT": "34",
+                    "FILE-NUMBER": "001-38807",
+                    "FILM-NUMBER": "21756338"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "9200 SUNSET BOULEVARD",
+                    "STREET2": "SUITE 1110",
+                    "CITY": "WEST HOLLYWOOD",
+                    "STATE": "CA",
+                    "ZIP": "90069",
+                    "PHONE": "323-990-2000"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "9200 SUNSET BOULEVARD",
+                    "STREET2": "SUITE 1110",
+                    "CITY": "WEST HOLLYWOOD",
+                    "STATE": "CA",
+                    "ZIP": "90069"
+                }
+            }
+        ],
+        "ISSUER": [
+            {
+                "COMPANY-DATA": {
+                    "CONFORMED-NAME": "Chemomab Therapeutics Ltd.",
+                    "CIK": "0001534248",
+                    "ASSIGNED-SIC": "2834",
+                    "IRS-NUMBER": "000000000",
+                    "STATE-OF-INCORPORATION": "L3",
+                    "FISCAL-YEAR-END": "1231"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "KIRYAT ATIDIM, BUILDING 7",
+                    "CITY": "TEL AVIV",
+                    "STATE": "L3",
+                    "ZIP": "6158002",
+                    "PHONE": "972-77-331-0156"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "KIRYAT ATIDIM, BUILDING 7",
+                    "CITY": "TEL AVIV",
+                    "STATE": "L3",
+                    "ZIP": "6158002"
+                },
+                "FORMER-COMPANY": {
+                    "FORMER-CONFORMED-NAME": "BioCancell Ltd.",
+                    "DATE-CHANGED": "20111104"
+                }
+            }
+        ]
+    },
+    "documents": [
+        {
+            "TYPE": "3",
+            "SEQUENCE": "1",
+            "FILENAME": "doc3.xml",
+            "DESCRIPTION": "FORM 3 SUBMISSION"
+        }
+    ]
+}

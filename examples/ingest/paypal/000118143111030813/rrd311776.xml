@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<ownershipDocument>
+
+    <schemaVersion>X0203</schemaVersion>
+
+    <documentType>3</documentType>
+
+    <periodOfReport>2011-05-18</periodOfReport>
+
+    <noSecuritiesOwned>0</noSecuritiesOwned>
+
+    <issuer>
+        <issuerCik>0001271024</issuerCik>
+        <issuerName>LINKEDIN CORP</issuerName>
+        <issuerTradingSymbol>LNKD</issuerTradingSymbol>
+    </issuer>
+
+    <reportingOwner>
+        <reportingOwnerId>
+            <rptOwnerCik>0001519339</rptOwnerCik>
+            <rptOwnerName>Hoffman Reid</rptOwnerName>
+        </reportingOwnerId>
+        <reportingOwnerAddress>
+            <rptOwnerStreet1>C/O LINKEDIN CORPORATION</rptOwnerStreet1>
+            <rptOwnerStreet2>2029 STIERLIN COURT</rptOwnerStreet2>
+            <rptOwnerCity>MOUNTAIN VIEW</rptOwnerCity>
+            <rptOwnerState>CA</rptOwnerState>
+            <rptOwnerZipCode>94043</rptOwnerZipCode>
+            <rptOwnerStateDescription></rptOwnerStateDescription>
+        </reportingOwnerAddress>
+        <reportingOwnerRelationship>
+            <isDirector>1</isDirector>
+            <isOfficer>0</isOfficer>
+            <isTenPercentOwner>1</isTenPercentOwner>
+            <isOther>0</isOther>
+        </reportingOwnerRelationship>
+    </reportingOwner>
+
+    <reportingOwner>
+        <reportingOwnerId>
+            <rptOwnerCik>0001521103</rptOwnerCik>
+            <rptOwnerName>Reid Hoffman &amp; Michelle Yee Living Trust</rptOwnerName>
+        </reportingOwnerId>
+        <reportingOwnerAddress>
+            <rptOwnerStreet1>C/O LINKEDIN CORPORATION</rptOwnerStreet1>
+            <rptOwnerStreet2>2029 STIERLIN COURT</rptOwnerStreet2>
+            <rptOwnerCity>MOUNTAIN VIEW</rptOwnerCity>
+            <rptOwnerState>CA</rptOwnerState>
+            <rptOwnerZipCode>94043</rptOwnerZipCode>
+            <rptOwnerStateDescription></rptOwnerStateDescription>
+        </reportingOwnerAddress>
+        <reportingOwnerRelationship>
+            <isDirector>0</isDirector>
+            <isOfficer>0</isOfficer>
+            <isTenPercentOwner>1</isTenPercentOwner>
+            <isOther>0</isOther>
+        </reportingOwnerRelationship>
+    </reportingOwner>
+
+    <nonDerivativeTable>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Common Stock</value>
+                <footnoteId id="F1"/>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>17037090</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See footnote</value>
+                    <footnoteId id="F2"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+    </nonDerivativeTable>
+
+    <derivativeTable>
+        <derivativeHolding>
+            <securityTitle>
+                <value>Series A Convertible Preferred Stock</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <footnoteId id="F3"/>
+            </conversionOrExercisePrice>
+            <exerciseDate>
+                <footnoteId id="F3"/>
+            </exerciseDate>
+            <expirationDate>
+                <footnoteId id="F3"/>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Common Stock</value>
+                    <footnoteId id="F1"/>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>2028942</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See footnote</value>
+                    <footnoteId id="F2"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeHolding>
+    </derivativeTable>
+
+    <footnotes>
+        <footnote id="F1">Each share of Common Stock shall be reclassified into one share of Class B Common Stock immediately prior to the completion of the Issuer's initial public offering of Class A Common Stock.</footnote>
+        <footnote id="F2">Shares held directly by the Reid Hoffman and Michelle Yee Living Trust dated October 27, 2009 for which the Mr. Hoffman and his spouse serve as trustees (the &quot;Living Trust&quot;). Mr. Hoffman retains sole voting and dispositive power with respect to the shares held by the Living Trust.</footnote>
+        <footnote id="F3">The Series A Convertible Preferred Stock shall automatically convert into Common Stock on a 1:1 basis immediately prior to the completion of the Issuer's initial public offering of Class A Common Stock and has no expiration date.</footnote>
+    </footnotes>
+
+    <remarks>Exhibit 24.1- Power of Attorney for Reid Hoffman
+Exhibit 24.2- Power of Attorney for the Living Trust</remarks>
+
+    <ownerSignature>
+        <signatureName>/s/ Lora Blum, by power of attorney for Reid Hoffman</signatureName>
+        <signatureDate>2011-05-18</signatureDate>
+    </ownerSignature>
+
+    <ownerSignature>
+        <signatureName>/s/ Lora Blum, by power of attorney for the Reid Hoffman and Michelle Yee Living Trust dated October 27, 2009</signatureName>
+        <signatureDate>2011-05-18</signatureDate>
+    </ownerSignature>
+</ownershipDocument>

@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<ownershipDocument>
+
+    <schemaVersion>X0407</schemaVersion>
+
+    <documentType>4</documentType>
+
+    <periodOfReport>2023-05-26</periodOfReport>
+
+    <notSubjectToSection16>0</notSubjectToSection16>
+
+    <issuer>
+        <issuerCik>0001828108</issuerCik>
+        <issuerName>Aurora Innovation, Inc.</issuerName>
+        <issuerTradingSymbol>AUR</issuerTradingSymbol>
+    </issuer>
+
+    <reportingOwner>
+        <reportingOwnerId>
+            <rptOwnerCik>0001519339</rptOwnerCik>
+            <rptOwnerName>Hoffman Reid</rptOwnerName>
+        </reportingOwnerId>
+        <reportingOwnerAddress>
+            <rptOwnerStreet1>C/O AURORA INNOVATION, INC.</rptOwnerStreet1>
+            <rptOwnerStreet2>1654 SMALLMAN STREET</rptOwnerStreet2>
+            <rptOwnerCity>PITTSBURGH</rptOwnerCity>
+            <rptOwnerState>PA</rptOwnerState>
+            <rptOwnerZipCode>15222</rptOwnerZipCode>
+            <rptOwnerStateDescription></rptOwnerStateDescription>
+        </reportingOwnerAddress>
+        <reportingOwnerRelationship>
+            <isDirector>1</isDirector>
+            <isOfficer>0</isOfficer>
+            <isTenPercentOwner>0</isTenPercentOwner>
+            <isOther>0</isOther>
+        </reportingOwnerRelationship>
+    </reportingOwner>
+
+    <aff10b5One>0</aff10b5One>
+
+    <nonDerivativeTable>
+        <nonDerivativeTransaction>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <transactionDate>
+                <value>2023-05-26</value>
+            </transactionDate>
+            <transactionCoding>
+                <transactionFormType>4</transactionFormType>
+                <transactionCode>A</transactionCode>
+                <equitySwapInvolved>0</equitySwapInvolved>
+            </transactionCoding>
+            <transactionAmounts>
+                <transactionShares>
+                    <value>159180</value>
+                    <footnoteId id="F1"/>
+                </transactionShares>
+                <transactionPricePerShare>
+                    <value>0</value>
+                </transactionPricePerShare>
+                <transactionAcquiredDisposedCode>
+                    <value>A</value>
+                </transactionAcquiredDisposedCode>
+            </transactionAmounts>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>212172</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>D</value>
+                </directOrIndirectOwnership>
+            </ownershipNature>
+        </nonDerivativeTransaction>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>1000000</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F2"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>6883086</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnotes</value>
+                    <footnoteId id="F3"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Class A Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>674719</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>See Footnote</value>
+                    <footnoteId id="F4"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+    </nonDerivativeTable>
+
+    <derivativeTable></derivativeTable>
+
+    <footnotes>
+        <footnote id="F1">The reported securities are represented by restricted stock units (&quot;RSUs&quot;). Each RSU represents a contingent right to receive one share of Class A Common Stock. 100% of the RSUs will vest on the earlier of (i) May 26, 2024 or (ii) the day prior to the date of the Issuer's next annual stockholders meeting following May 26, 2023, in each case, subject to the reporting person's continued service through the applicable vesting date.</footnote>
+        <footnote id="F2">Reflects Issuer Class A common stock acquired by Reprogrammed Interchange LLC (&quot;Reprogrammed&quot;) from the Issuer pursuant to a Subscription Agreement in connection with the business combination of Reinvent Technology Partners Y (the former name of the Issuer) (&quot;RTPY&quot;) and Aurora Innovation, Inc. (the &quot;Business Combination&quot;). The reporting person may be deemed a beneficial owner of securities held by Reprogrammed by virtue of his shared control over and indirect pecuniary interest in Reprogrammed. The reporting person disclaims beneficial ownership of the securities held by Reprogrammed, except to the extent of his pecuniary interest therein.</footnote>
+        <footnote id="F3">Reflects securities held directly by Reinvent Sponsor Y LLC (the &quot;Sponsor&quot;). The reporting person may be deemed a beneficial owner of securities held by the Sponsor by virtue of his shared control over and indirect pecuniary interest in the Sponsor. The reporting person disclaims beneficial ownership of the securities held by the Sponsor, except to the extent of his pecuniary interest therein.</footnote>
+        <footnote id="F4">On November 3, 2021, upon the consummation of the Business Combination, each outstanding share of Aurora Innovation Holdings, Inc. (formerly Aurora Innovation, Inc.) common stock held by Programmable Exchange LLC was cancelled and converted into approximately 2.1708 shares of Class A common stock of the Issuer. The reporting person may be deemed a beneficial owner of securities held by Programmable Exchange LLC by virtue of his voting and investment power over such securities. The reporting person disclaims beneficial ownership of the securities held by Programmable Exchange LLC, except to the extent of his pecuniary interest therein.</footnote>
+    </footnotes>
+
+    <remarks>Exhibit 24 - Power of Attorney</remarks>
+
+    <ownerSignature>
+        <signatureName>/s/ Jessica McBride, Attorney-in-fact for Reid Hoffman</signatureName>
+        <signatureDate>2023-05-30</signatureDate>
+    </ownerSignature>
+</ownershipDocument>

@@ -1,0 +1,62 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-12-512480",
+        "TYPE": "SC 13D",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20121221",
+        "DATE-OF-FILING-DATE-CHANGE": "20121221",
+        "FILED-BY": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Musk Elon",
+                "CIK": "0001494730"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "SC 13D"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "C/O TESLA MOTORS, INC.",
+                "STREET2": "3500 DEER CREEK ROAD",
+                "CITY": "PALO ALTO",
+                "STATE": "CA",
+                "ZIP": "94304"
+            }
+        },
+        "SUBJECT-COMPANY": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "SOLARCITY CORP",
+                "CIK": "0001408356",
+                "ASSIGNED-SIC": "1700",
+                "IRS-NUMBER": "020781046",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "SC 13D",
+                "ACT": "34",
+                "FILE-NUMBER": "005-87106",
+                "FILM-NUMBER": "121280723"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "3055 CLEARVIEW WAY",
+                "CITY": "SAN MATEO",
+                "STATE": "CA",
+                "ZIP": "94402",
+                "PHONE": "650-638-1028"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "3055 CLEARVIEW WAY",
+                "CITY": "SAN MATEO",
+                "STATE": "CA",
+                "ZIP": "94402"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "SC 13D",
+            "SEQUENCE": "1",
+            "FILENAME": "d457434dsc13d.htm",
+            "DESCRIPTION": "SCHEDULE 13D"
+        }
+    ]
+}

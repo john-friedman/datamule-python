@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<ownershipDocument>
+
+    <schemaVersion>X0306</schemaVersion>
+
+    <documentType>4</documentType>
+
+    <periodOfReport>2022-03-28</periodOfReport>
+
+    <notSubjectToSection16>0</notSubjectToSection16>
+
+    <issuer>
+        <issuerCik>0001832038</issuerCik>
+        <issuerName>Adagio Therapeutics, Inc.</issuerName>
+        <issuerTradingSymbol>ADGI</issuerTradingSymbol>
+    </issuer>
+
+    <reportingOwner>
+        <reportingOwnerId>
+            <rptOwnerCik>0001669609</rptOwnerCik>
+            <rptOwnerName>MITHRIL II LP</rptOwnerName>
+        </reportingOwnerId>
+        <reportingOwnerAddress>
+            <rptOwnerStreet1>C/O MITHRIL CAPITAL MANAGEMENT LLC</rptOwnerStreet1>
+            <rptOwnerStreet2>600 CONGRESS AVENUE SUITE 3100</rptOwnerStreet2>
+            <rptOwnerCity>AUSTIN</rptOwnerCity>
+            <rptOwnerState>TX</rptOwnerState>
+            <rptOwnerZipCode>78701</rptOwnerZipCode>
+            <rptOwnerStateDescription></rptOwnerStateDescription>
+        </reportingOwnerAddress>
+        <reportingOwnerRelationship>
+            <isDirector>0</isDirector>
+            <isOfficer>0</isOfficer>
+            <isTenPercentOwner>1</isTenPercentOwner>
+            <isOther>1</isOther>
+            <otherText>See Remarks</otherText>
+        </reportingOwnerRelationship>
+    </reportingOwner>
+
+    <reportingOwner>
+        <reportingOwnerId>
+            <rptOwnerCik>0001878232</rptOwnerCik>
+            <rptOwnerName>Mithril II GP LP</rptOwnerName>
+        </reportingOwnerId>
+        <reportingOwnerAddress>
+            <rptOwnerStreet1>C/O MITHRIL CAPITAL MANAGEMENT LLC</rptOwnerStreet1>
+            <rptOwnerStreet2>600 CONGRESS AVENUE SUITE 3100</rptOwnerStreet2>
+            <rptOwnerCity>AUSTIN</rptOwnerCity>
+            <rptOwnerState>TX</rptOwnerState>
+            <rptOwnerZipCode>78701</rptOwnerZipCode>
+            <rptOwnerStateDescription></rptOwnerStateDescription>
+        </reportingOwnerAddress>
+        <reportingOwnerRelationship>
+            <isDirector>0</isDirector>
+            <isOfficer>0</isOfficer>
+            <isTenPercentOwner>1</isTenPercentOwner>
+            <isOther>1</isOther>
+            <otherText>See Remarks</otherText>
+        </reportingOwnerRelationship>
+    </reportingOwner>
+
+    <reportingOwner>
+        <reportingOwnerId>
+            <rptOwnerCik>0001878230</rptOwnerCik>
+            <rptOwnerName>Mithril II UGP LLC</rptOwnerName>
+        </reportingOwnerId>
+        <reportingOwnerAddress>
+            <rptOwnerStreet1>C/O MITHRIL CAPITAL MANAGEMENT LLC</rptOwnerStreet1>
+            <rptOwnerStreet2>600 CONGRESS AVENUE SUITE 3100</rptOwnerStreet2>
+            <rptOwnerCity>AUSTIN</rptOwnerCity>
+            <rptOwnerState>TX</rptOwnerState>
+            <rptOwnerZipCode>78701</rptOwnerZipCode>
+            <rptOwnerStateDescription></rptOwnerStateDescription>
+        </reportingOwnerAddress>
+        <reportingOwnerRelationship>
+            <isDirector>0</isDirector>
+            <isOfficer>0</isOfficer>
+            <isTenPercentOwner>1</isTenPercentOwner>
+            <isOther>1</isOther>
+            <otherText>See Remarks</otherText>
+        </reportingOwnerRelationship>
+    </reportingOwner>
+
+    <reportingOwner>
+        <reportingOwnerId>
+            <rptOwnerCik>0001211060</rptOwnerCik>
+            <rptOwnerName>THIEL PETER</rptOwnerName>
+        </reportingOwnerId>
+        <reportingOwnerAddress>
+            <rptOwnerStreet1>C/O MITHRIL CAPITAL MANAGEMENT LLC</rptOwnerStreet1>
+            <rptOwnerStreet2>600 CONGRESS AVENUE SUITE 3100</rptOwnerStreet2>
+            <rptOwnerCity>AUSTIN</rptOwnerCity>
+            <rptOwnerState>TX</rptOwnerState>
+            <rptOwnerZipCode>78701</rptOwnerZipCode>
+            <rptOwnerStateDescription></rptOwnerStateDescription>
+        </reportingOwnerAddress>
+        <reportingOwnerRelationship>
+            <isDirector>0</isDirector>
+            <isOfficer>0</isOfficer>
+            <isTenPercentOwner>1</isTenPercentOwner>
+            <isOther>1</isOther>
+            <otherText>See Remarks</otherText>
+        </reportingOwnerRelationship>
+    </reportingOwner>
+
+    <nonDerivativeTable>
+        <nonDerivativeHolding>
+            <securityTitle>
+                <value>Common Stock</value>
+            </securityTitle>
+            <postTransactionAmounts>
+                <sharesOwnedFollowingTransaction>
+                    <value>11241580</value>
+                </sharesOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>D</value>
+                    <footnoteId id="F1"/>
+                </directOrIndirectOwnership>
+            </ownershipNature>
+        </nonDerivativeHolding>
+    </nonDerivativeTable>
+
+    <footnotes>
+        <footnote id="F1">These shares are held of record by II LP. Mithril II UGP LLC (&quot;UGP II&quot;) is the general partner of Mithril II GP LP (&quot;GP II&quot;) and GP II is the general partner of II LP. Ajay Royan (&quot;Royan&quot;), a member of the Issuer's board of directors, is the sole managing member of UGP II and may be deemed to have shared voting, investment and dispositive power with respect to the shares held by II LP. Peter Thiel (&quot;Thiel&quot;) and Royan are the members of the investment committee of GP II. The investment committee makes all investment decisions with respect to shares held by II LP and may be deemed to have shared voting, investment and dispositive power with respect to such shares. Each of UGP II, GP II, Thiel and Royan disclaims beneficial ownership of the shares held by II LP, except to the extent of their respective pecuniary interests therein, if any.  Royan is a director of the Issuer and, accordingly, files separate Section 16 reports.</footnote>
+    </footnotes>
+
+    <remarks>This Form 4 is not being filed in connection with the acquisition or disposition of any securities of the Issuer.
+
+As disclosed by (among others) the Reporting Persons on an amendment to a Report on Schedule 13D filed in respect of the Issuer on the date hereof, on March 28, 2022, Mithril II LP (&quot;II LP&quot;) (one of the Reporting Persons) and (i) M28 Capital Management LP (together with certain of its affiliates, &quot;M28&quot;), (ii) Polaris Venture Partners V, L.P., Polaris Venture Partners Entrepreneurs' Fund V, L.P., Polaris Venture Partners Founders' Fund V, L.P., Polaris Venture Partners Special Founders' Fund V, L.P., Polaris Partners IX, L.P. and Polaris Healthcare Technology Opportunities Fund, L.P. (collectively, &quot;Polaris&quot;), (iii) Adimab, LLC and (iv) Population Health Equity Partners III, L.P., Population Health Equity Partners VII, L.P. and Clive Meanwell (&quot;Population Health&quot;), orally agreed to coordinate and cooperate in certain of their activities with regard to the Issuer, which agreement was subsequently memorialized, also on March 28, 2022,
+in an email circulated among representatives of such persons. That agreement provides that each such person will vote its shares of Common Stock in favor of the election of certain director nominees at the Issuer's 2022 annual meeting. By virtue of such agreement, the Reporting Persons may be deemed to be part of a &quot;group&quot; (within the meaning of Section 13(d)(3) of the Exchange Act) comprised of the Reporting Persons and such other persons.  The Reporting Persons expressly disclaim beneficial ownership over any Common Stock that they may be deemed to beneficially own solely by reason of the agreement reached among II LP, M28, Polaris, Adimab, LLC and Population Health, and beneficial ownership of any securities of the Issuer other than those previously reported by the Reporting Persons on Form 4.</remarks>
+
+    <ownerSignature>
+        <signatureName>/s/ Ajay Royan, Managing Member, Mithril II UGP LLC, General Partner of Mithril II GP LP, the General Partner of Mithril II LP</signatureName>
+        <signatureDate>2022-03-30</signatureDate>
+    </ownerSignature>
+
+    <ownerSignature>
+        <signatureName>/s/ Ajay Royan, Managing Member, Mithril II UGP LLC, General Partner of Mithril II GP LP</signatureName>
+        <signatureDate>2022-03-30</signatureDate>
+    </ownerSignature>
+
+    <ownerSignature>
+        <signatureName>/s/ Ajay Royan, Managing Member, Mithril II UGP LLC</signatureName>
+        <signatureDate>2022-03-30</signatureDate>
+    </ownerSignature>
+
+    <ownerSignature>
+        <signatureName>/s/ Peter Thiel</signatureName>
+        <signatureDate>2022-03-30</signatureDate>
+    </ownerSignature>
+</ownershipDocument>

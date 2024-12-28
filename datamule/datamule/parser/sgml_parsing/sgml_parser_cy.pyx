@@ -143,8 +143,13 @@ cdef class SubmissionParser(BaseParser):
         
         # workaround since I do not understand pointers yet
         submission_data = submission_data['SUBMISSION']
-        submission_data['REPORTING-OWNER'] = reporting_owner
-        submission_data['ISSUER'] = issuer
+
+        if len(reporting_owner) != 0:
+            submission_data['REPORTING-OWNER'] = reporting_owner
+        
+        if len(issuer) != 0:
+            submission_data['ISSUER'] = issuer
+            
         metadata = {
             'submission': submission_data,
             'documents': documents
@@ -255,9 +260,11 @@ cdef class SECDocumentParser(BaseParser):
                         if in_document:
                             current_document[key] = value
 
-
-        submission_data['REPORTING-OWNER'] = reporting_owner
-        submission_data['ISSUER'] = issuer
+        if len(reporting_owner) != 0:
+            submission_data['REPORTING-OWNER'] = reporting_owner
+        
+        if len(issuer) != 0:
+            submission_data['ISSUER'] = issuer
         
         metadata = {
             'submission': submission_data,

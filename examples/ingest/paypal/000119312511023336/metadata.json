@@ -1,0 +1,61 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-11-023336",
+        "TYPE": "SC 13G",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20110203",
+        "DATE-OF-FILING-DATE-CHANGE": "20110203",
+        "FILED-BY": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Musk Elon",
+                "CIK": "0001494730"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "SC 13G"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "C/O TESLA MOTORS, INC.",
+                "STREET2": "3500 DEER CREEK ROAD",
+                "CITY": "PALO ALTO",
+                "STATE": "CA",
+                "ZIP": "94304"
+            }
+        },
+        "SUBJECT-COMPANY": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "TESLA MOTORS INC",
+                "CIK": "0001318605",
+                "ASSIGNED-SIC": "3711",
+                "IRS-NUMBER": "912197729",
+                "STATE-OF-INCORPORATION": "DE"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "SC 13G",
+                "ACT": "34",
+                "FILE-NUMBER": "005-85943",
+                "FILM-NUMBER": "11570934"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "3500 DEER CREEK RD",
+                "CITY": "PALO ALTO",
+                "STATE": "CA",
+                "ZIP": "94070",
+                "PHONE": "650-681-5000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "3500 DEER CREEK RD",
+                "CITY": "PALO ALTO",
+                "STATE": "CA",
+                "ZIP": "94070"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "SC 13G",
+            "SEQUENCE": "1",
+            "FILENAME": "dsc13g.htm",
+            "DESCRIPTION": "SCHEDULE 13G"
+        }
+    ]
+}

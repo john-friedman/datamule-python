@@ -1,0 +1,63 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001181431-10-034759",
+        "TYPE": "3",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "PERIOD": "20100628",
+        "FILING-DATE": "20100625",
+        "DATE-OF-FILING-DATE-CHANGE": "20100625",
+        "REPORTING-OWNER": [
+            {
+                "OWNER-DATA": {
+                    "CONFORMED-NAME": "Musk Elon",
+                    "CIK": "0001494730"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "3",
+                    "ACT": "34",
+                    "FILE-NUMBER": "001-34756",
+                    "FILM-NUMBER": "10917643"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "C/O TESLA MOTORS, INC.",
+                    "STREET2": "3500 DEER CREEK ROAD",
+                    "CITY": "PALO ALTO",
+                    "STATE": "CA",
+                    "ZIP": "94304"
+                }
+            }
+        ],
+        "ISSUER": [
+            {
+                "COMPANY-DATA": {
+                    "CONFORMED-NAME": "TESLA MOTORS INC",
+                    "CIK": "0001318605",
+                    "ASSIGNED-SIC": "3711",
+                    "IRS-NUMBER": "912197729",
+                    "STATE-OF-INCORPORATION": "DE"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "1050 BING STREET",
+                    "CITY": "SAN CARLOS",
+                    "STATE": "CA",
+                    "ZIP": "94070",
+                    "PHONE": "650-413-6222"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "1050 BING STREET",
+                    "CITY": "SAN CARLOS",
+                    "STATE": "CA",
+                    "ZIP": "94070"
+                }
+            }
+        ]
+    },
+    "documents": [
+        {
+            "TYPE": "3",
+            "SEQUENCE": "1",
+            "FILENAME": "rrd279907.xml",
+            "DESCRIPTION": "FORM 3"
+        }
+    ]
+}

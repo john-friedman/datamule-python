@@ -1,0 +1,66 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001062993-22-008150",
+        "TYPE": "4",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "PERIOD": "20220316",
+        "FILING-DATE": "20220318",
+        "DATE-OF-FILING-DATE-CHANGE": "20220318",
+        "REPORTING-OWNER": [
+            {
+                "OWNER-DATA": {
+                    "CONFORMED-NAME": "BOTHA ROELOF",
+                    "CIK": "0001222287"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "4",
+                    "ACT": "34",
+                    "FILE-NUMBER": "001-37478",
+                    "FILM-NUMBER": "22753906"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "C/O SEQUOIA CAPITAL",
+                    "STREET2": "2800 SAND HILL RD, SUITE 101",
+                    "CITY": "MENLO PARK",
+                    "STATE": "CA",
+                    "ZIP": "94025"
+                }
+            }
+        ],
+        "ISSUER": [
+            {
+                "COMPANY-DATA": {
+                    "CONFORMED-NAME": "Natera, Inc.",
+                    "CIK": "0001604821",
+                    "ASSIGNED-SIC": "8071",
+                    "IRS-NUMBER": "010894487",
+                    "STATE-OF-INCORPORATION": "DE",
+                    "FISCAL-YEAR-END": "1231"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "13011 MCCALLEN PASS",
+                    "STREET2": "BUILDING A SUITE 100",
+                    "CITY": "AUSTIN",
+                    "STATE": "TX",
+                    "ZIP": "78753",
+                    "PHONE": "650-249-9090"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "13011 MCCALLEN PASS",
+                    "STREET2": "BUILDING A SUITE 100",
+                    "CITY": "AUSTIN",
+                    "STATE": "TX",
+                    "ZIP": "78753"
+                }
+            }
+        ]
+    },
+    "documents": [
+        {
+            "TYPE": "4",
+            "SEQUENCE": "1",
+            "FILENAME": "form4.xml",
+            "DESCRIPTION": "STATEMENT OF CHANGES IN BENEFICIAL OWNERSHIP OF SECURITIES"
+        }
+    ]
+}

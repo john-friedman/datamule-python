@@ -1,0 +1,70 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001829126-21-012005",
+        "TYPE": "3",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "PERIOD": "20211014",
+        "FILING-DATE": "20211014",
+        "DATE-OF-FILING-DATE-CHANGE": "20211014",
+        "REPORTING-OWNER": [
+            {
+                "OWNER-DATA": {
+                    "CONFORMED-NAME": "Selby Jack",
+                    "CIK": "0001870713"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "3",
+                    "ACT": "34",
+                    "FILE-NUMBER": "001-40910",
+                    "FILM-NUMBER": "211324453"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "C/O FOUNDER SPAC",
+                    "STREET2": "11752 LAKE POTOMAC DRIVE",
+                    "CITY": "ROCKVILLE",
+                    "STATE": "MD",
+                    "ZIP": "20854"
+                }
+            }
+        ],
+        "ISSUER": [
+            {
+                "COMPANY-DATA": {
+                    "CONFORMED-NAME": "Founder SPAC",
+                    "CIK": "0001862068",
+                    "ASSIGNED-SIC": "6770",
+                    "IRS-NUMBER": "000000000",
+                    "STATE-OF-INCORPORATION": "E9",
+                    "FISCAL-YEAR-END": "1231"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "11752 LAKE POTOMAC DRIVE",
+                    "CITY": "ROCKVILLE",
+                    "STATE": "MD",
+                    "ZIP": "20854",
+                    "PHONE": "5087409128"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "11752 LAKE POTOMAC DRIVE",
+                    "CITY": "ROCKVILLE",
+                    "STATE": "MD",
+                    "ZIP": "20854"
+                }
+            }
+        ]
+    },
+    "documents": [
+        {
+            "TYPE": "3",
+            "SEQUENCE": "1",
+            "FILENAME": "ownership.xml",
+            "DESCRIPTION": "3"
+        },
+        {
+            "TYPE": "EX-24",
+            "SEQUENCE": "2",
+            "FILENAME": "poa_jack-selby.htm",
+            "DESCRIPTION": "EXHIBIT 24"
+        }
+    ]
+}

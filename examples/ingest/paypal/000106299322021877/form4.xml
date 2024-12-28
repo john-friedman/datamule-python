@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<ownershipDocument>
+
+    <schemaVersion>X0306</schemaVersion>
+
+    <documentType>4</documentType>
+
+    <periodOfReport>2022-11-08</periodOfReport>
+
+    <issuer>
+        <issuerCik>0001810806</issuerCik>
+        <issuerName>Unity Software Inc.</issuerName>
+        <issuerTradingSymbol>U</issuerTradingSymbol>
+    </issuer>
+
+    <reportingOwner>
+        <reportingOwnerId>
+            <rptOwnerCik>0001222287</rptOwnerCik>
+            <rptOwnerName>BOTHA ROELOF</rptOwnerName>
+        </reportingOwnerId>
+        <reportingOwnerAddress>
+            <rptOwnerStreet1>2800 SAND HILL ROAD, SUITE 101</rptOwnerStreet1>
+            <rptOwnerStreet2></rptOwnerStreet2>
+            <rptOwnerCity>MENLO PARK</rptOwnerCity>
+            <rptOwnerState>CA</rptOwnerState>
+            <rptOwnerZipCode>94025</rptOwnerZipCode>
+            <rptOwnerStateDescription></rptOwnerStateDescription>
+        </reportingOwnerAddress>
+        <reportingOwnerRelationship>
+            <isDirector>1</isDirector>
+            <isOfficer>0</isOfficer>
+            <isTenPercentOwner>1</isTenPercentOwner>
+            <isOther>0</isOther>
+        </reportingOwnerRelationship>
+    </reportingOwner>
+
+    <derivativeTable>
+        <derivativeTransaction>
+            <securityTitle>
+                <value>2.0% Convertible Senior Notes due 2027</value>
+            </securityTitle>
+            <conversionOrExercisePrice>
+                <value>48.8935</value>
+                <footnoteId id="F1"/>
+            </conversionOrExercisePrice>
+            <transactionDate>
+                <value>2022-11-08</value>
+            </transactionDate>
+            <transactionCoding>
+                <transactionFormType>4</transactionFormType>
+                <transactionCode>P</transactionCode>
+                <equitySwapInvolved>0</equitySwapInvolved>
+            </transactionCoding>
+            <transactionAmounts>
+                <transactionTotalValue>
+                    <value>60000000</value>
+                </transactionTotalValue>
+                <transactionPricePerShare>
+                    <value>60000000</value>
+                </transactionPricePerShare>
+                <transactionAcquiredDisposedCode>
+                    <value>A</value>
+                </transactionAcquiredDisposedCode>
+            </transactionAmounts>
+            <exerciseDate>
+                <value>2022-11-08</value>
+            </exerciseDate>
+            <expirationDate>
+                <value>2027-11-15</value>
+            </expirationDate>
+            <underlyingSecurity>
+                <underlyingSecurityTitle>
+                    <value>Common Stock</value>
+                </underlyingSecurityTitle>
+                <underlyingSecurityShares>
+                    <value>1227156</value>
+                </underlyingSecurityShares>
+            </underlyingSecurity>
+            <postTransactionAmounts>
+                <valueOwnedFollowingTransaction>
+                    <value>60000000</value>
+                </valueOwnedFollowingTransaction>
+            </postTransactionAmounts>
+            <ownershipNature>
+                <directOrIndirectOwnership>
+                    <value>I</value>
+                </directOrIndirectOwnership>
+                <natureOfOwnership>
+                    <value>Sequoia Capital Fund, LP</value>
+                    <footnoteId id="F2"/>
+                </natureOfOwnership>
+            </ownershipNature>
+        </derivativeTransaction>
+    </derivativeTable>
+
+    <footnotes>
+        <footnote id="F1">Subject to and upon compliance with the provisions of Article 13 of the Indenture dated November 8, 2022, issued pursuant to the Investment Agreement dated on July 13, 2022, each Holder of a Note shall have the right, at such Holder's option, to convert all or any portion (if the portion to be converted is $1,000 principal amount or an integral multiple thereof) of such Note at any time prior to the close of business on the trading day immediately preceding the maturity date, at an initial conversion rate of 20.4526 shares of Common Stock, subject to adjustment as provided in the Investment Agreement, per $1,000 principal amount of Notes .</footnote>
+        <footnote id="F2">The Reporting Person is a director and stockholder of SC US (TTGP), Ltd. SC US (TTGP), Ltd. is (i) the general partner of Sequoia Capital Fund Management, L.P., which is the general partner of Sequoia Capital Fund, LP (&quot;SCF&quot;). The Reporting Person disclaims beneficial ownership of the securities included in this report, except to the extent of his pecuniary interest therein, and the inclusion of these securities in this report shall not be deemed an admission of beneficial ownership of the reported securities for purposes of Section 16 or for any other purposes.</footnote>
+    </footnotes>
+
+    <ownerSignature>
+        <signatureName>/s/ Jung Yeon Son, Attorney-in-fact for Roelof Botha</signatureName>
+        <signatureDate>2022-11-10</signatureDate>
+    </ownerSignature>
+</ownershipDocument>

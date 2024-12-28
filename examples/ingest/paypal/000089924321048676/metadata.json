@@ -1,0 +1,68 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000899243-21-048676",
+        "TYPE": "4",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "PERIOD": "20211216",
+        "FILING-DATE": "20211216",
+        "DATE-OF-FILING-DATE-CHANGE": "20211216",
+        "REPORTING-OWNER": [
+            {
+                "OWNER-DATA": {
+                    "CONFORMED-NAME": "Musk Elon",
+                    "CIK": "0001494730"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "4",
+                    "ACT": "34",
+                    "FILE-NUMBER": "001-34756",
+                    "FILM-NUMBER": "211499319"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "C/O TESLA MOTORS, INC.",
+                    "STREET2": "3500 DEER CREEK ROAD",
+                    "CITY": "PALO ALTO",
+                    "STATE": "CA",
+                    "ZIP": "94304"
+                }
+            }
+        ],
+        "ISSUER": [
+            {
+                "COMPANY-DATA": {
+                    "CONFORMED-NAME": "Tesla, Inc.",
+                    "CIK": "0001318605",
+                    "ASSIGNED-SIC": "3711",
+                    "IRS-NUMBER": "912197729",
+                    "STATE-OF-INCORPORATION": "DE",
+                    "FISCAL-YEAR-END": "1231"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "3500 DEER CREEK RD",
+                    "CITY": "PALO ALTO",
+                    "STATE": "CA",
+                    "ZIP": "94304",
+                    "PHONE": "650-681-5000"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "3500 DEER CREEK RD",
+                    "CITY": "PALO ALTO",
+                    "STATE": "CA",
+                    "ZIP": "94304"
+                },
+                "FORMER-COMPANY": {
+                    "FORMER-CONFORMED-NAME": "TESLA MOTORS INC",
+                    "DATE-CHANGED": "20050222"
+                }
+            }
+        ]
+    },
+    "documents": [
+        {
+            "TYPE": "4",
+            "SEQUENCE": "1",
+            "FILENAME": "doc4.xml",
+            "DESCRIPTION": "FORM 4 SUBMISSION"
+        }
+    ]
+}

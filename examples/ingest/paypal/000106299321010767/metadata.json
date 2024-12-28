@@ -1,0 +1,76 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001062993-21-010767",
+        "TYPE": "3",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "PERIOD": "20211104",
+        "FILING-DATE": "20211112",
+        "DATE-OF-FILING-DATE-CHANGE": "20211112",
+        "REPORTING-OWNER": [
+            {
+                "OWNER-DATA": {
+                    "CONFORMED-NAME": "BOTHA ROELOF",
+                    "CIK": "0001222287"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "3",
+                    "ACT": "34",
+                    "FILE-NUMBER": "001-41019",
+                    "FILM-NUMBER": "211405448"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "C/O SEQUOIA CAPITAL",
+                    "STREET2": "2800 SAND HILL RD, SUITE 101",
+                    "CITY": "MENLO PARK",
+                    "STATE": "CA",
+                    "ZIP": "94025"
+                }
+            }
+        ],
+        "ISSUER": [
+            {
+                "COMPANY-DATA": {
+                    "CONFORMED-NAME": "Bird Global, Inc.",
+                    "CIK": "0001861449",
+                    "ASSIGNED-SIC": "3751",
+                    "IRS-NUMBER": "000000000",
+                    "STATE-OF-INCORPORATION": "DE",
+                    "FISCAL-YEAR-END": "1231"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "406 BROADWAY AVENUE",
+                    "STREET2": "SUITE 369",
+                    "CITY": "SANTA MONICA",
+                    "STATE": "CA",
+                    "ZIP": "90401",
+                    "PHONE": "(866) 205-2442"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "406 BROADWAY AVENUE",
+                    "STREET2": "SUITE 369",
+                    "CITY": "SANTA MONICA",
+                    "STATE": "CA",
+                    "ZIP": "90401"
+                },
+                "FORMER-COMPANY": {
+                    "FORMER-CONFORMED-NAME": "Bird Rides Holdings, Inc.",
+                    "DATE-CHANGED": "20210510"
+                }
+            }
+        ]
+    },
+    "documents": [
+        {
+            "TYPE": "3",
+            "SEQUENCE": "1",
+            "FILENAME": "form3.xml",
+            "DESCRIPTION": "INITIAL STATEMENT OF BENEFICIAL OWNERSHIP OF SECURITIES"
+        },
+        {
+            "TYPE": "EX-24.2",
+            "SEQUENCE": "2",
+            "FILENAME": "exhibit24-2.htm",
+            "DESCRIPTION": "POA - MR. BOTHA"
+        }
+    ]
+}
