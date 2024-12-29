@@ -1,0 +1,49 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000101830-15-000021",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20150807",
+        "DATE-OF-FILING-DATE-CHANGE": "20150807",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "SPRINT Corp",
+                "CIK": "0000101830",
+                "ASSIGNED-SIC": "4813",
+                "IRS-NUMBER": "461170005",
+                "FISCAL-YEAR-END": "0331"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-04721",
+                "FILM-NUMBER": "151037082"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "6200 SPRINT PARKWAY",
+                "CITY": "OVERLAND PARK",
+                "STATE": "KS",
+                "ZIP": "66251",
+                "PHONE": "855-848-3280"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "6200 SPRINT PARKWAY",
+                "CITY": "OVERLAND PARK",
+                "STATE": "KS",
+                "ZIP": "66251"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "UNITED TELECOMMUNICATIONS INC",
+                "DATE-CHANGED": "19920316"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "june302015irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

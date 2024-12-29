@@ -1,0 +1,51 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000947484-18-000040",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20180509",
+        "DATE-OF-FILING-DATE-CHANGE": "20180509",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ARCH CAPITAL GROUP LTD.",
+                "CIK": "0000947484",
+                "ASSIGNED-SIC": "6331",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-221344",
+                "FILM-NUMBER": "18818319"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "WATERLOO HOUSE, GROUND FLOOR",
+                "STREET2": "100 PITTS BAY ROAD",
+                "CITY": "PEMBROKE",
+                "STATE": "D0",
+                "ZIP": "HM 08",
+                "PHONE": "441-278-9250"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "WATERLOO HOUSE, GROUND FLOOR",
+                "STREET2": "100 PITTS BAY ROAD",
+                "CITY": "PEMBROKE",
+                "STATE": "D0",
+                "ZIP": "HM 08"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "RISK CAPITAL RE INC",
+                "DATE-CHANGED": "19950703"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannoticeq1201859.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

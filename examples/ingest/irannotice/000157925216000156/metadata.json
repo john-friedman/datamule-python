@@ -1,0 +1,57 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001579252-16-000156",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20160308",
+        "DATE-OF-FILING-DATE-CHANGE": "20160308",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Jason Industries, Inc.",
+                "CIK": "0001579252",
+                "ASSIGNED-SIC": "3990",
+                "IRS-NUMBER": "462888322",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-36051",
+                "FILM-NUMBER": "161492563"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "411 E. WISCONSIN AVENUE",
+                "STREET2": "SUITE 2100",
+                "CITY": "MILWAUKEE",
+                "STATE": "WI",
+                "ZIP": "53202",
+                "PHONE": "414-277-9445"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "411 E. WISCONSIN AVENUE",
+                "STREET2": "SUITE 2100",
+                "CITY": "MILWAUKEE",
+                "STATE": "WI",
+                "ZIP": "53202"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Quinpario Acquisition Corp.",
+                "DATE-CHANGED": "20130613"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "jasonlogoa29.jpg"
+        }
+    ]
+}

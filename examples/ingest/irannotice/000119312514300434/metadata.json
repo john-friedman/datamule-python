@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-14-300434",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20140807",
+        "DATE-OF-FILING-DATE-CHANGE": "20140807",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "AXA EQUITABLE LIFE INSURANCE CO",
+                "CIK": "0000727920",
+                "ASSIGNED-SIC": "6411",
+                "IRS-NUMBER": "135570651",
+                "STATE-OF-INCORPORATION": "NY",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "000-20501",
+                "FILM-NUMBER": "141023305"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1290 AVENUE OF THE AMERICAS",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10104",
+                "PHONE": "2125541234"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1290 AVENUE OF AMERICAS",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10104"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "EQUITABLE LIFE ASSURANCE SOCIETY OF THE UNITED STATES /NY/",
+                "DATE-CHANGED": "19920703"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d769740dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g769740tx_pg001.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

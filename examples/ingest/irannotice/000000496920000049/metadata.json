@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000004969-20-000049",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20201105",
+        "DATE-OF-FILING-DATE-CHANGE": "20201105",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "AMERICAN EXPRESS CREDIT CORP",
+                "CIK": "0000004969",
+                "ASSIGNED-SIC": "6153",
+                "IRS-NUMBER": "111988350",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-06908",
+                "FILM-NUMBER": "201289552"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "200 VESEY STREET",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10285",
+                "PHONE": "2126402000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "200 VESEY STREET",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10285"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "credcoirannoticeq32020.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "axp_blueboxlogo1a.jpg",
+            "DESCRIPTION": "LOGO"
+        }
+    ]
+}

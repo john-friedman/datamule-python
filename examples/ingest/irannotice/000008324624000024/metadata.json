@@ -1,0 +1,47 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000083246-24-000024",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20241029",
+        "DATE-OF-FILING-DATE-CHANGE": "20241029",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "HSBC USA INC /MD/",
+                "CIK": "0000083246",
+                "ASSIGNED-SIC": "6021",
+                "ORGANIZATION-NAME": "02 Finance",
+                "IRS-NUMBER": "132764867",
+                "STATE-OF-INCORPORATION": "MD",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-07436",
+                "FILM-NUMBER": "241402463"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "66 HUDSON BOULEVARD",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10001",
+                "PHONE": "212-525-5000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "66 HUDSON BOULEVARD",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10001"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "husiirandisclosure93024.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

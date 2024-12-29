@@ -1,0 +1,51 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001267395-18-000053",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20180509",
+        "DATE-OF-FILING-DATE-CHANGE": "20180509",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ASPEN INSURANCE HOLDINGS LTD",
+                "CIK": "0001267395",
+                "ASSIGNED-SIC": "6331",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "D0",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-31909",
+                "FILM-NUMBER": "18817416"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "141 FRONT STREET",
+                "CITY": "HAMILTON",
+                "STATE": "D0",
+                "ZIP": "HM 19",
+                "PHONE": "1 441 295 8201"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "141 FRONT STREET",
+                "CITY": "HAMILTON",
+                "STATE": "D0",
+                "ZIP": "HM 19"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannoticeq12018.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "aspenheadera01.jpg"
+        }
+    ]
+}

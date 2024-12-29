@@ -1,0 +1,51 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-14-229884",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20140609",
+        "DATE-OF-FILING-DATE-CHANGE": "20140609",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "UBS CASHFUND INC",
+                "CIK": "0000225732",
+                "IRS-NUMBER": "521117263",
+                "STATE-OF-INCORPORATION": "MD",
+                "FISCAL-YEAR-END": "0331"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "811-02802",
+                "FILM-NUMBER": "14898616"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "C/O UBS GLOBAL ASSET MANAGEMENT (AMERICA",
+                "STREET2": "12TH FLOOR 1285 AVENUE OF THE AMERICAS",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10019",
+                "PHONE": "212-821-3000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "C/O UBS GLOBAL ASSET MANAGEMENT (AMERICA",
+                "STREET2": "12TH FLOOR 1285 AVENUE OF THE AMERICAS",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10019"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "PAINEWEBBER CASHFUND INC",
+                "DATE-CHANGED": "19920703"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d707048dirannotice.htm",
+            "DESCRIPTION": "UBS CASHFUND, INC."
+        }
+    ]
+}

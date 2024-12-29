@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-23-048748",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20230224",
+        "DATE-OF-FILING-DATE-CHANGE": "20230224",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Blackstone Inc.",
+                "CIK": "0001393818",
+                "ASSIGNED-SIC": "6282",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-33551",
+                "FILM-NUMBER": "23667077"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "345 PARK AVENUE",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10154",
+                "PHONE": "(212) 583-5000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "345 PARK AVENUE",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10154"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Blackstone Group L.P.",
+                "DATE-CHANGED": "20070320"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d450959dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g450959g0223094304467.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

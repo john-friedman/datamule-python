@@ -1,0 +1,51 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000919574-19-002471",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20190318",
+        "DATE-OF-FILING-DATE-CHANGE": "20190318",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Performance Shipping Inc.",
+                "CIK": "0001481241",
+                "ASSIGNED-SIC": "4412",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "1T",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-35025",
+                "FILM-NUMBER": "19688864"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "PENDELIS 18",
+                "STREET2": "17564 PALAIO FALIRO",
+                "CITY": "ATHENS",
+                "STATE": "J3",
+                "ZIP": "17564",
+                "PHONE": "302166002400"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "PENDELIS 18",
+                "STREET2": "17564 PALAIO FALIRO",
+                "CITY": "ATHENS",
+                "STATE": "J3",
+                "ZIP": "17564"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Diana Containerships Inc.",
+                "DATE-CHANGED": "20100115"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d8211571_iran-notice.htm"
+        }
+    ]
+}

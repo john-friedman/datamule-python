@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-16-715052",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20160921",
+        "DATE-OF-FILING-DATE-CHANGE": "20160920",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "BHP BILLITON PLC",
+                "CIK": "0001171264",
+                "ASSIGNED-SIC": "1220",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "X0",
+                "FISCAL-YEAR-END": "0630"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-31714",
+                "FILM-NUMBER": "161894708"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "8TH FLOOR - NEATHOUSE PLACE",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "SW1V 1BH",
+                "PHONE": "011442078024054"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "8TH FLOOR - NEATHOUSE PLACE",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "SW1V 1BH"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "BHP BILLITON PLC/ADR",
+                "DATE-CHANGED": "20020416"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d247097dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g247097txpg002.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

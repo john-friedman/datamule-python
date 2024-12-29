@@ -1,0 +1,59 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-24-270302",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20241204",
+        "DATE-OF-FILING-DATE-CHANGE": "20241204",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ROYAL BANK OF CANADA",
+                "CIK": "0001000275",
+                "ASSIGNED-SIC": "6029",
+                "ORGANIZATION-NAME": "02 Finance",
+                "IRS-NUMBER": "135357855",
+                "STATE-OF-INCORPORATION": "A6",
+                "FISCAL-YEAR-END": "1031"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-13928",
+                "FILM-NUMBER": "241524772"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "ROYAL BANK PLAZA",
+                "STREET2": "200 BAY STREET",
+                "CITY": "TORONTO",
+                "STATE": "A6",
+                "ZIP": "M5J2J5",
+                "PHONE": "212-437-9267"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "ROYAL BANK PLAZA",
+                "STREET2": "200 BAY STREET",
+                "CITY": "TORONTO",
+                "STATE": "A6",
+                "ZIP": "M5J2J5"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "ROYAL BANK OF CANADA \\",
+                "DATE-CHANGED": "19950908"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d848220dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g848220dso01.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-15-036046",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20150508",
+        "DATE-OF-FILING-DATE-CHANGE": "20150508",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "COGENT COMMUNICATIONS HOLDINGS, INC.",
+                "CIK": "0001158324",
+                "ASSIGNED-SIC": "7372",
+                "IRS-NUMBER": "522337274",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "000-51829",
+                "FILM-NUMBER": "15845194"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1015 31ST STREET",
+                "CITY": "WASHINGTON",
+                "STATE": "DC",
+                "ZIP": "20007",
+                "PHONE": "2022954200"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1015 31ST STREET NW",
+                "CITY": "WASHINGTON",
+                "STATE": "DC",
+                "ZIP": "20007"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "COGENT COMMUNICATIONS GROUP INC",
+                "DATE-CHANGED": "20010828"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a15-10987_1irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g109871bgi001.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

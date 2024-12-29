@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001564822-14-000047",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20141112",
+        "DATE-OF-FILING-DATE-CHANGE": "20141112",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Pinnacle Foods Inc.",
+                "CIK": "0001564822",
+                "ASSIGNED-SIC": "2000",
+                "IRS-NUMBER": "352215019",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1224"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-35844",
+                "FILM-NUMBER": "141212173"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "399 JEFFERSON ROAD",
+                "CITY": "PARSIPPANY",
+                "STATE": "NJ",
+                "ZIP": "07054",
+                "PHONE": "973-541-6620"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "399 JEFFERSON ROAD",
+                "CITY": "PARSIPPANY",
+                "STATE": "NJ",
+                "ZIP": "07054"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannoticeq314.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "pinnaclelogoa02a01a01.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

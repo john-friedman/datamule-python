@@ -1,0 +1,46 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001158463-14-000010",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20140219",
+        "DATE-OF-FILING-DATE-CHANGE": "20140218",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "JETBLUE AIRWAYS CORP",
+                "CIK": "0001158463",
+                "ASSIGNED-SIC": "4512",
+                "IRS-NUMBER": "870617894",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "000-49728",
+                "FILM-NUMBER": "14623844"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "27-01 QUEENS PLAZA NORTH",
+                "CITY": "LONG ISLAND CITY",
+                "STATE": "NY",
+                "ZIP": "11101",
+                "PHONE": "7182867900"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "27-01 QUEENS PLAZA NORTH",
+                "CITY": "LONG ISLAND CITY",
+                "STATE": "NY",
+                "ZIP": "11101"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a2013irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

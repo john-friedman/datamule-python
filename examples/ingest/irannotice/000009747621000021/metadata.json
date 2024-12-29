@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000097476-21-000021",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20210722",
+        "DATE-OF-FILING-DATE-CHANGE": "20210722",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "TEXAS INSTRUMENTS INC",
+                "CIK": "0000097476",
+                "ASSIGNED-SIC": "3674",
+                "IRS-NUMBER": "750289970",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-03761",
+                "FILM-NUMBER": "211106187"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "P.O. BOX 660199",
+                "CITY": "DALLAS",
+                "STATE": "TX",
+                "ZIP": "75266",
+                "PHONE": "9729953773"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "12500 TI BLVD",
+                "STREET2": "PO BOX 660199",
+                "CITY": "DALLAS",
+                "STATE": "TX",
+                "ZIP": "75266"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "q22021irannoticeletter.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "ti-logoa.jpg"
+        }
+    ]
+}

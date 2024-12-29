@@ -1,0 +1,44 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-23-176673",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20230628",
+        "DATE-OF-FILING-DATE-CHANGE": "20230628",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "MIZUHO FINANCIAL GROUP INC",
+                "CIK": "0001335730",
+                "ASSIGNED-SIC": "6021",
+                "IRS-NUMBER": "000000000"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-33098",
+                "FILM-NUMBER": "231049144"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1-5-5, OTEMACHI",
+                "CITY": "CHIYODA-KU, TOKYO",
+                "STATE": "M0",
+                "ZIP": "100-8176",
+                "PHONE": "81-3-5224-1111"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1-5-5, OTEMACHI",
+                "CITY": "CHIYODA-KU, TOKYO",
+                "STATE": "M0",
+                "ZIP": "100-8176"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d421865dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        }
+    ]
+}

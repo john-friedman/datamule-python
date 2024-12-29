@@ -1,0 +1,46 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001018003-15-000014",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20150227",
+        "DATE-OF-FILING-DATE-CHANGE": "20150226",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "INGRAM MICRO INC",
+                "CIK": "0001018003",
+                "ASSIGNED-SIC": "5045",
+                "IRS-NUMBER": "621644402",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-12203",
+                "FILM-NUMBER": "15654587"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1600 E ST ANDREW PLACE",
+                "CITY": "SANTA ANA",
+                "STATE": "CA",
+                "ZIP": "92799",
+                "PHONE": "7145661000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1600 E ST ANDREW PLACE",
+                "CITY": "SANTA ANA",
+                "STATE": "CA",
+                "ZIP": "92799"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a1315irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

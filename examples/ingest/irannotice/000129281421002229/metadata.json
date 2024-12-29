@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001292814-21-002229",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20210512",
+        "DATE-OF-FILING-DATE-CHANGE": "20210511",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "OI S.A. - In Judicial Reorganization",
+                "CIK": "0001160846",
+                "ASSIGNED-SIC": "4813",
+                "IRS-NUMBER": "000000000"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-15256",
+                "FILM-NUMBER": "21913175"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "RUA HUMBERTO DE CAMPOS 425",
+                "STREET2": "8TH FLOOR, LEBLON",
+                "CITY": "RIO DE JANEIRO, RJ",
+                "STATE": "D5",
+                "ZIP": "22430-190",
+                "PHONE": "55-21-3131-1211"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "RUA HUMBERTO DE CAMPOS 425",
+                "STREET2": "8TH FLOOR, LEBLON",
+                "CITY": "RIO DE JANEIRO, RJ",
+                "STATE": "D5",
+                "ZIP": "22430-190"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "BRASIL TELECOM  SA",
+                "DATE-CHANGED": "20031211"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "oi20210427_irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

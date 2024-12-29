@@ -1,0 +1,55 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000831001-17-000050",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20170501",
+        "DATE-OF-FILING-DATE-CHANGE": "20170501",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "CITIGROUP INC",
+                "CIK": "0000831001",
+                "ASSIGNED-SIC": "6021",
+                "IRS-NUMBER": "521568099",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-09924",
+                "FILM-NUMBER": "17801603"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "388 GREENWICH STREET",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10013",
+                "PHONE": "2125591000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "388 GREENWICH STREET",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10013"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "PRIMERICA CORP /NEW/",
+                "DATE-CHANGED": "19920703"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "tranotice1q2017ltr.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "tranotice1q2017ltrimage1.jpg"
+        }
+    ]
+}

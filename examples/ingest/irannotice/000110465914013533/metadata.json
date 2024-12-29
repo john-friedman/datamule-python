@@ -1,0 +1,63 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-14-013533",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "3",
+        "FILING-DATE": "20140226",
+        "DATE-OF-FILING-DATE-CHANGE": "20140226",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "SWEDISH EXPORT CREDIT CORP /SWED/",
+                "CIK": "0000352960",
+                "ASSIGNED-SIC": "6159",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-08382",
+                "FILM-NUMBER": "14643918"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "KLARABERGSVIADUKTEN 61-63",
+                "STREET2": "P.O. BOX 194",
+                "CITY": "STOCKHOLM SWEDEN",
+                "STATE": "V7",
+                "ZIP": "SE-101 23",
+                "PHONE": "49-8-613-8300"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "KLARABERGSVIADUKTEN 61-63",
+                "STREET2": "P.O. BOX 194",
+                "CITY": "STOCKHOLM SWEDEN",
+                "STATE": "V7",
+                "ZIP": "SE-101 23"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "SWEDISH EXPORT CREDIT CORP",
+                "DATE-CHANGED": "19880329"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a14-6908_1irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g69081bci001.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "3",
+            "FILENAME": "g69081bci002.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

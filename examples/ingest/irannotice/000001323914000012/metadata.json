@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000013239-14-000012",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20140331",
+        "DATE-OF-FILING-DATE-CHANGE": "20140331",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "MOMENTIVE SPECIALTY CHEMICALS INC.",
+                "CIK": "0000013239",
+                "ASSIGNED-SIC": "2821",
+                "IRS-NUMBER": "130511250",
+                "STATE-OF-INCORPORATION": "NJ",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-00071",
+                "FILM-NUMBER": "14731344"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "180 EAST BROAD ST",
+                "STREET2": "26TH FLOOR",
+                "CITY": "COLUMBUS",
+                "STATE": "OH",
+                "ZIP": "43215",
+                "PHONE": "6142254000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "180 EAST BROAD ST",
+                "STREET2": "26TH FLR",
+                "CITY": "COLUMBUS",
+                "STATE": "OH",
+                "ZIP": "43215"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "BORDEN CHEMICAL  INC",
+                "DATE-CHANGED": "20011203"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice-q42013.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001564590-16-014563",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20160311",
+        "DATE-OF-FILING-DATE-CHANGE": "20160311",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Builders FirstSource, Inc.",
+                "CIK": "0001316835",
+                "ASSIGNED-SIC": "5211",
+                "IRS-NUMBER": "522084569",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "000-51357",
+                "FILM-NUMBER": "161500737"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "2001 BRYAN STREET, SUITE 1600",
+                "CITY": "DALLAS",
+                "STATE": "TX",
+                "ZIP": "75201",
+                "PHONE": "(214) 880-3500"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "2001 BRYAN STREET, SUITE 1600",
+                "CITY": "DALLAS",
+                "STATE": "TX",
+                "ZIP": "75201"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "bldr-irannotice_20160304.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g20160229173551243794.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

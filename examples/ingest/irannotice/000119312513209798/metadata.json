@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-13-209798",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20130509",
+        "DATE-OF-FILING-DATE-CHANGE": "20130509",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "CORNERSTONE THERAPEUTICS INC",
+                "CIK": "0001145404",
+                "ASSIGNED-SIC": "2834",
+                "IRS-NUMBER": "043523569",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "000-50767",
+                "FILM-NUMBER": "13827327"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1255 CRESCENT GREEN DRIVE",
+                "STREET2": "SUITE 250",
+                "CITY": "CARY",
+                "STATE": "NC",
+                "ZIP": "27518",
+                "PHONE": "919-678-6611"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1255 CRESCENT GREEN DRIVE",
+                "STREET2": "SUITE 250",
+                "CITY": "CARY",
+                "STATE": "NC",
+                "ZIP": "27518"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "CRITICAL THERAPEUTICS INC",
+                "DATE-CHANGED": "20010719"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d533261dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

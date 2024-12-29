@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001445305-14-000478",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20140218",
+        "DATE-OF-FILING-DATE-CHANGE": "20140218",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Aon plc",
+                "CIK": "0000315293",
+                "ASSIGNED-SIC": "6411",
+                "IRS-NUMBER": "363051915",
+                "STATE-OF-INCORPORATION": "X0",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-07933",
+                "FILM-NUMBER": "14623044"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "8 DEVONSHIRE SQUARE",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "EC2M 4PL",
+                "PHONE": "(44) 20 7623 5500"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "8 DEVONSHIRE SQUARE",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "EC2M 4PL"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "COMBINED INTERNATIONAL CORP",
+                "DATE-CHANGED": "19870504"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "iranthreatreductionnotice2.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "iranthreat_image1a01.gif",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

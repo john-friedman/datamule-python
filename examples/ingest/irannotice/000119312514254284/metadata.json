@@ -1,0 +1,51 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-14-254284",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20140630",
+        "DATE-OF-FILING-DATE-CHANGE": "20140630",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "KYOCERA CORP",
+                "CIK": "0000057083",
+                "ASSIGNED-SIC": "3674",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "0331"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-07952",
+                "FILM-NUMBER": "14947336"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "6, TAKEDA TOBADONO-CHO",
+                "STREET2": "FUSHIMI-KU",
+                "CITY": "KYOTO",
+                "STATE": "M0",
+                "ZIP": "612-8501",
+                "PHONE": "81-75-604-3500"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "6, TAKEDA TOBADONO-CHO",
+                "STREET2": "FUSHIMI-KU",
+                "CITY": "KYOTO",
+                "STATE": "M0",
+                "ZIP": "612-8501"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "KYOTO CERAMIC CO LTD",
+                "DATE-CHANGED": "19821208"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d745846dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        }
+    ]
+}

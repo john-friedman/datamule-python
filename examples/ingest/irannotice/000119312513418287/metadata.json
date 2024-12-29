@@ -1,0 +1,54 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-13-418287",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20131030",
+        "DATE-OF-FILING-DATE-CHANGE": "20131030",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Hyatt Hotels Corp",
+                "CIK": "0001468174",
+                "ASSIGNED-SIC": "7011",
+                "IRS-NUMBER": "201480589",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-34521",
+                "FILM-NUMBER": "131179000"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "71 SOUTH WACKER DRIVE",
+                "STREET2": "12TH FLOOR",
+                "CITY": "CHICAGO",
+                "STATE": "IL",
+                "ZIP": "60606",
+                "PHONE": "(312) 750-1234"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "71 SOUTH WACKER DRIVE",
+                "STREET2": "12TH FLOOR",
+                "CITY": "CHICAGO",
+                "STATE": "IL",
+                "ZIP": "60606"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d617231dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g617231g55s67.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

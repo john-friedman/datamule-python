@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001558370-18-007906",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20181026",
+        "DATE-OF-FILING-DATE-CHANGE": "20181025",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "FIRST HAWAIIAN, INC.",
+                "CIK": "0000036377",
+                "ASSIGNED-SIC": "6022",
+                "IRS-NUMBER": "990156159",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-14585",
+                "FILM-NUMBER": "181139898"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "999 BISHOP STREET",
+                "CITY": "HONOLULU",
+                "STATE": "HI",
+                "ZIP": "96813",
+                "PHONE": "808-525-7000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "999 BISHOP STREET",
+                "CITY": "HONOLULU",
+                "STATE": "HI",
+                "ZIP": "96813"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "FIRST HAWAIIAN INC",
+                "DATE-CHANGED": "19920703"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "fhb-20181025corresp.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        }
+    ]
+}

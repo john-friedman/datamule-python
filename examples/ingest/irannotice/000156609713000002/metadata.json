@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001566097-13-000002",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20130513",
+        "DATE-OF-FILING-DATE-CHANGE": "20130513",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "PBF Finance Corp",
+                "CIK": "0001566097",
+                "IRS-NUMBER": "452685067",
+                "STATE-OF-INCORPORATION": "DE"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-186007-07",
+                "FILM-NUMBER": "13835988"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "ONE SYLVAN WAY, SECOND FLOOR",
+                "CITY": "PARSIPPANY",
+                "STATE": "NJ",
+                "ZIP": "07054",
+                "PHONE": "973-455-7500"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "ONE SYLVAN WAY, SECOND FLOOR",
+                "CITY": "PARSIPPANY",
+                "STATE": "NJ",
+                "ZIP": "07054"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "pbffinance-irannoticeform1.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "pbfenergyirannoticefo_image1.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

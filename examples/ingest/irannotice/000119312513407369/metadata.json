@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-13-407369",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20131023",
+        "DATE-OF-FILING-DATE-CHANGE": "20131023",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Nielsen CO B.V.",
+                "CIK": "0001397410",
+                "ASSIGNED-SIC": "7389",
+                "IRS-NUMBER": "980366864",
+                "STATE-OF-INCORPORATION": "P7",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-142546-29",
+                "FILM-NUMBER": "131164692"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "770 BROADWAY",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10003",
+                "PHONE": "646-654-5000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "770 BROADWAY",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10003"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d612262dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g612262g37q28.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

@@ -1,0 +1,58 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-17-297009",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20170928",
+        "DATE-OF-FILING-DATE-CHANGE": "20170928",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "BHP BILLITON LTD",
+                "CIK": "0000811809",
+                "ASSIGNED-SIC": "1000",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "C3",
+                "FISCAL-YEAR-END": "0630"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-09526",
+                "FILM-NUMBER": "171106028"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "16/171 COLLINS STREET",
+                "STREET2": "MELBOURNE",
+                "CITY": "VICTORIA AUSTRALIA",
+                "STATE": "C3",
+                "ZIP": "3000",
+                "PHONE": "011611300554757"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "GPO BOX 86",
+                "STREET2": "MELBOURNE",
+                "CITY": "VICTORIA AUSTRALIA",
+                "STATE": "C3",
+                "ZIP": "3001"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "BROKEN HILL PROPRIETARY CO LTD",
+                "DATE-CHANGED": "19960116"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d452694dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g452694img01.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

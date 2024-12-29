@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001554855-24-000250",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20240405",
+        "DATE-OF-FILING-DATE-CHANGE": "20240405",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ENI SPA",
+                "CIK": "0001002242",
+                "ASSIGNED-SIC": "1311",
+                "ORGANIZATION-NAME": "01 Energy & Transportation",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-14090",
+                "FILM-NUMBER": "24825139"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "PIAZZALE ENRICO MATTEI 1",
+                "CITY": "ROME ITALY",
+                "STATE": "L6",
+                "ZIP": "00144",
+                "PHONE": "011390659824367"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "PIAZZALE ENRICO MATTEI 1",
+                "CITY": "ROME ITALY",
+                "STATE": "L6",
+                "ZIP": "00144"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "MainDocument.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "imga01526f596ec4961a21d.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

@@ -1,0 +1,58 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-14-201136",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20140515",
+        "DATE-OF-FILING-DATE-CHANGE": "20140515",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "VimpelCom Ltd.",
+                "CIK": "0001468091",
+                "ASSIGNED-SIC": "4812",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "D0",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-34694",
+                "FILM-NUMBER": "14846947"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "SOM 2 BLD., FLOOR 2",
+                "STREET2": "CLAUDE DEBUSSYLAAN 15",
+                "CITY": "AMSTERDAM",
+                "STATE": "P7",
+                "ZIP": "1082 MC",
+                "PHONE": "31 20 79 77 200"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "SOM 2 BLD., FLOOR 2",
+                "STREET2": "CLAUDE DEBUSSYLAAN 15",
+                "CITY": "AMSTERDAM",
+                "STATE": "P7",
+                "ZIP": "1082 MC"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "New Spring Co Ltd.",
+                "DATE-CHANGED": "20090709"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d728363dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g728363mg1.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

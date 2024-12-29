@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-14-127889",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20140402",
+        "DATE-OF-FILING-DATE-CHANGE": "20140402",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "CLAIRES STORES INC",
+                "CIK": "0000034115",
+                "ASSIGNED-SIC": "5600",
+                "IRS-NUMBER": "590940416",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "0203"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-148108",
+                "FILM-NUMBER": "14737672"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "2400 WEST CENTRAL RD",
+                "CITY": "HOFFMAN ESTATES",
+                "STATE": "IL",
+                "ZIP": "60192",
+                "PHONE": "9544333900"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "2400 WEST CENTRAL RD",
+                "CITY": "HOFFMAN ESTATES",
+                "STATE": "IL",
+                "ZIP": "30192"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "FASHION TRESS INC",
+                "DATE-CHANGED": "19750923"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d689657dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        }
+    ]
+}

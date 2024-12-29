@@ -1,0 +1,46 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-18-090837",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20180321",
+        "DATE-OF-FILING-DATE-CHANGE": "20180321",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "GENERAL MILLS INC",
+                "CIK": "0000040704",
+                "ASSIGNED-SIC": "2040",
+                "IRS-NUMBER": "410274440",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "0529"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-01185",
+                "FILM-NUMBER": "18705195"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "NUMBER ONE GENERAL MILLS BLVD",
+                "CITY": "MINNEAPOLIS",
+                "STATE": "MN",
+                "ZIP": "55426",
+                "PHONE": "(763) 764-7600"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "P O BOX 1113",
+                "CITY": "MINNEAPOLIS",
+                "STATE": "MN",
+                "ZIP": "55440"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d540353dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

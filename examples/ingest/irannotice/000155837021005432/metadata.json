@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001558370-21-005432",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20210430",
+        "DATE-OF-FILING-DATE-CHANGE": "20210430",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "PERUSAHAAN PERSEROAN PERSERO PT TELEKOMUNIKASI INDONESIA TBK",
+                "CIK": "0001001807",
+                "ASSIGNED-SIC": "4813",
+                "IRS-NUMBER": "999999999",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-14406",
+                "FILM-NUMBER": "21879372"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "JL. JAPATI 1",
+                "CITY": "BANDUNG",
+                "STATE": "K8",
+                "ZIP": "40133",
+                "PHONE": "62-224527101"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "JL. JAPATI 1",
+                "CITY": "BANDUNG",
+                "STATE": "K8",
+                "ZIP": "40133"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "tlk-20210430corresp.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "tlk-20210430corresp001.jpg"
+        }
+    ]
+}

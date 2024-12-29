@@ -1,0 +1,70 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-16-154604",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "4",
+        "FILING-DATE": "20161103",
+        "DATE-OF-FILING-DATE-CHANGE": "20161103",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ECOLAB INC.",
+                "CIK": "0000031462",
+                "ASSIGNED-SIC": "2840",
+                "IRS-NUMBER": "410231510",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-09328",
+                "FILM-NUMBER": "161972367"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "ECOLAB CORPORATE CENTER",
+                "STREET2": "370 WABASHA STREET NORTH",
+                "CITY": "SAINT PAUL",
+                "STATE": "MN",
+                "ZIP": "55102",
+                "PHONE": "6512502587"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "ECOLAB CORPORATE CENTER",
+                "STREET2": "370 WABASHA STREET NORTH",
+                "CITY": "SAINT PAUL",
+                "STATE": "MN",
+                "ZIP": "55102"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "ECONOMICS LABORATORY INC",
+                "DATE-CHANGED": "19861203"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a16-20305_1irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g203051bgi001.gif",
+            "DESCRIPTION": "GRAPHIC"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "3",
+            "FILENAME": "g203051bgi002.gif",
+            "DESCRIPTION": "GRAPHIC"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "4",
+            "FILENAME": "g203051bgi003.gif",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

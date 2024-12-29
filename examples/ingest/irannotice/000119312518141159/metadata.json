@@ -1,0 +1,53 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-18-141159",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20180430",
+        "DATE-OF-FILING-DATE-CHANGE": "20180430",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "KOREA ELECTRIC POWER CORP",
+                "CIK": "0000887225",
+                "ASSIGNED-SIC": "4911",
+                "IRS-NUMBER": "133442428",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-13372",
+                "FILM-NUMBER": "18786986"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "167, SAMSEONG-DONG",
+                "STREET2": "GANGNAM-GU",
+                "CITY": "SEOUL",
+                "STATE": "M5",
+                "ZIP": "135-791",
+                "PHONE": "2018948855"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "400 KELBY STREET",
+                "STREET2": "16TH FLOOR",
+                "CITY": "FORT LEE",
+                "STATE": "NJ",
+                "ZIP": "07024"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d555988dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g555988g29b30.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

@@ -1,0 +1,45 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001624826-15-000003",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20150814",
+        "DATE-OF-FILING-DATE-CHANGE": "20150814",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "MPM Holdings Inc.",
+                "CIK": "0001624826",
+                "ASSIGNED-SIC": "2821",
+                "IRS-NUMBER": "471756080",
+                "STATE-OF-INCORPORATION": "DE"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-201338",
+                "FILM-NUMBER": "151056688"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "260 HUDSON RIVER ROAD",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "12188",
+                "PHONE": "518-233-3370"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "260 HUDSON RIVER ROAD",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "12188"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice-q22015.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

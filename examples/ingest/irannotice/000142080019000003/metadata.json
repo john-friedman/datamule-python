@@ -1,0 +1,48 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001420800-19-000003",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20190221",
+        "DATE-OF-FILING-DATE-CHANGE": "20190221",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Colfax CORP",
+                "CIK": "0001420800",
+                "ASSIGNED-SIC": "3561",
+                "IRS-NUMBER": "541887631",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-34045",
+                "FILM-NUMBER": "19622869"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "420 NATIONAL BUSINESS PARKWAY",
+                "STREET2": "5TH FLOOR",
+                "CITY": "ANNAPOLIS JUNCTION",
+                "STATE": "MD",
+                "ZIP": "20701",
+                "PHONE": "(301) 323-9000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "420 NATIONAL BUSINESS PARKWAY",
+                "STREET2": "5TH FLOOR",
+                "CITY": "ANNAPOLIS JUNCTION",
+                "STATE": "MD",
+                "ZIP": "20701"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannoticeq42018.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

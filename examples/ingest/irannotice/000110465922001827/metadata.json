@@ -1,0 +1,49 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-22-001827",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20220106",
+        "DATE-OF-FILING-DATE-CHANGE": "20220106",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "CREDIT SUISSE OPPORTUNITY FUNDS",
+                "CIK": "0000946110",
+                "IRS-NUMBER": "133844865",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1031"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "033-92982",
+                "FILM-NUMBER": "22514234"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "ELEVEN MADISON AVENUE",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10010",
+                "PHONE": "212-325-2000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "ELEVEN MADISON AVENUE",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10010"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "DLJ WINTHROP OPPORTUNITY FUNDS",
+                "DATE-CHANGED": "19990222"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "tm221785d1_irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

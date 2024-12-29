@@ -1,0 +1,64 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-16-485570",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "3",
+        "FILING-DATE": "20160229",
+        "DATE-OF-FILING-DATE-CHANGE": "20160229",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Endurance International Group Holdings, Inc.",
+                "CIK": "0001237746",
+                "ASSIGNED-SIC": "7372",
+                "IRS-NUMBER": "463044956",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-36131",
+                "FILM-NUMBER": "161468985"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "10 CORPORATE DRIVE",
+                "STREET2": "SUITE 300",
+                "CITY": "BURLINGTON",
+                "STATE": "MA",
+                "ZIP": "01803",
+                "PHONE": "781-852-3200"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "10 CORPORATE DRIVE",
+                "STREET2": "SUITE 300",
+                "CITY": "BURLINGTON",
+                "STATE": "MA",
+                "ZIP": "01803"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "BIZLAND INC",
+                "DATE-CHANGED": "20030602"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d109510dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g109510g0226130855057.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "3",
+            "FILENAME": "g109510g0226130855291.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

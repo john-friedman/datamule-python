@@ -1,0 +1,58 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-20-052348",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20200428",
+        "DATE-OF-FILING-DATE-CHANGE": "20200428",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "3M CO",
+                "CIK": "0000066740",
+                "ASSIGNED-SIC": "3841",
+                "IRS-NUMBER": "410417775",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-03285",
+                "FILM-NUMBER": "20824607"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "3M CENTER",
+                "STREET2": "BLDG. 220-13E-26A",
+                "CITY": "ST PAUL",
+                "STATE": "MN",
+                "ZIP": "55144-1000",
+                "PHONE": "6517331474"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "3M CENTER",
+                "STREET2": "BLDG. 220-13E-26A",
+                "CITY": "ST. PAUL",
+                "STATE": "MN",
+                "ZIP": "55144-1000"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "MINNESOTA MINING & MANUFACTURING CO",
+                "DATE-CHANGED": "19920703"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a20-17970_1irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g179701bci001.gif",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

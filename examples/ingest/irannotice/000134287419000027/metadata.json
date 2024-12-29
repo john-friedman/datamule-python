@@ -1,0 +1,53 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001342874-19-000027",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20190416",
+        "DATE-OF-FILING-DATE-CHANGE": "20190416",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Ternium S.A.",
+                "CIK": "0001342874",
+                "ASSIGNED-SIC": "3312",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "N4",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-32734",
+                "FILM-NUMBER": "19751351"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "29 AVENUE DE LA PORTE-NEUVE",
+                "STREET2": "3RD FLOOR",
+                "CITY": "LUXEMBOURG",
+                "STATE": "N4",
+                "ZIP": "L-2227",
+                "PHONE": "(352) 4661-11-3815"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "29 AVENUE DE LA PORTE-NEUVE",
+                "STREET2": "3RD FLOOR",
+                "CITY": "LUXEMBOURG",
+                "STATE": "N4",
+                "ZIP": "L-2227"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "ternium20-fxirannotice2018.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "logo02.gif"
+        }
+    ]
+}

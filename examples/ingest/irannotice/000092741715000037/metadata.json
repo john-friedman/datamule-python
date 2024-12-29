@@ -1,0 +1,57 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000927417-15-000037",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20150810",
+        "DATE-OF-FILING-DATE-CHANGE": "20150810",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "AVINTIV Specialty Materials Inc.",
+                "CIK": "0000927417",
+                "ASSIGNED-SIC": "2221",
+                "IRS-NUMBER": "571003983",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-14330",
+                "FILM-NUMBER": "151040909"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "9335 HARRIS CORNERS PARKWAY",
+                "STREET2": "SUITE 300",
+                "CITY": "CHARLOTTE",
+                "STATE": "NC",
+                "ZIP": "28269",
+                "PHONE": "704-697-5100"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "9335 HARRIS CORNERS PARKWAY",
+                "STREET2": "SUITE 300",
+                "CITY": "CHARLOTTE",
+                "STATE": "NC",
+                "ZIP": "28269"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "POLYMER GROUP INC",
+                "DATE-CHANGED": "19940725"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannoticeq22015.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "avintivlogo.jpg"
+        }
+    ]
+}

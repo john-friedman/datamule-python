@@ -1,0 +1,49 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001634621-24-000011",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20240329",
+        "DATE-OF-FILING-DATE-CHANGE": "20240329",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ORANGE",
+                "CIK": "0001038143",
+                "ASSIGNED-SIC": "4813",
+                "ORGANIZATION-NAME": "06 Technology",
+                "IRS-NUMBER": "999999999",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-14712",
+                "FILM-NUMBER": "24803552"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "111 QUAI DU PRESIDENT ROOSEVELT",
+                "CITY": "ISSY-LES-MOULINEAUX",
+                "STATE": "I0",
+                "ZIP": "92130",
+                "PHONE": "33144442222"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "111 QUAI DU PRESIDENT ROOSEVELT",
+                "CITY": "ISSY-LES-MOULINEAUX",
+                "STATE": "I0",
+                "ZIP": "92130"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "FRANCE TELECOM /",
+                "DATE-CHANGED": "19970422"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "lo_in20240329.htm"
+        }
+    ]
+}

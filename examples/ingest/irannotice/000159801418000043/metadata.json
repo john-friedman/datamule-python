@@ -1,0 +1,57 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001598014-18-000043",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20180327",
+        "DATE-OF-FILING-DATE-CHANGE": "20180327",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "IHS Markit Ltd.",
+                "CIK": "0001598014",
+                "ASSIGNED-SIC": "7370",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "D0",
+                "FISCAL-YEAR-END": "1130"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-36495",
+                "FILM-NUMBER": "18715931"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "4TH FLOOR, ROPEMAKER PLACE",
+                "STREET2": "25 ROPEMAKER STREET",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "EC2Y 9LY",
+                "PHONE": "44 20 7260 2000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "4TH FLOOR, ROPEMAKER PLACE",
+                "STREET2": "25 ROPEMAKER STREET",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "EC2Y 9LY"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Markit Ltd.",
+                "DATE-CHANGED": "20140123"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannoticeq1-18.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "logoinfoa15.jpg"
+        }
+    ]
+}

@@ -1,0 +1,48 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-18-102754",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20180330",
+        "DATE-OF-FILING-DATE-CHANGE": "20180330",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "LINE Corp",
+                "CIK": "0001611820",
+                "ASSIGNED-SIC": "7370",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "M0",
+                "FISCAL-YEAR-END": "1214"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-37821",
+                "FILM-NUMBER": "18724839"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "SHIBUYA HIKARIE, 27TH FLOOR",
+                "STREET2": "21-1 SHIBUYA 2-CHOME",
+                "CITY": "SHIBUYA-KU, TOKYO",
+                "STATE": "M0",
+                "ZIP": "150-8510",
+                "PHONE": "(81) 3-5155-1008"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "SHIBUYA HIKARIE, 27TH FLOOR",
+                "STREET2": "21-1 SHIBUYA 2-CHOME",
+                "CITY": "SHIBUYA-KU, TOKYO",
+                "STATE": "M0",
+                "ZIP": "150-8510"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d661717dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        }
+    ]
+}

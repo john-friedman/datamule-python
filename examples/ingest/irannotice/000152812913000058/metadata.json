@@ -1,0 +1,48 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001528129-13-000058",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20130312",
+        "DATE-OF-FILING-DATE-CHANGE": "20130312",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Laredo Petroleum Holdings, Inc.",
+                "CIK": "0001528129",
+                "ASSIGNED-SIC": "1311",
+                "IRS-NUMBER": "453007926",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-35380",
+                "FILM-NUMBER": "13682525"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "15 W. SIXTH STREET",
+                "STREET2": "SUITE 1800",
+                "CITY": "TULSA",
+                "STATE": "OK",
+                "ZIP": "74119",
+                "PHONE": "918-513-4570"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "15 W. SIXTH STREET",
+                "STREET2": "SUITE 1800",
+                "CITY": "TULSA",
+                "STATE": "OK",
+                "ZIP": "74119"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "crrs2013312.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

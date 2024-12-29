@@ -1,0 +1,46 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001445305-14-000648",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20140227",
+        "DATE-OF-FILING-DATE-CHANGE": "20140227",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Reynolds Group Holdings Ltd",
+                "CIK": "0001527508",
+                "ASSIGNED-SIC": "2673",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "Q2"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-177693",
+                "FILM-NUMBER": "14647625"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "Level Nine",
+                "STREET2": "148 Quay Street",
+                "CITY": "Auckland 1140 New Zealand",
+                "STATE": "Q2",
+                "ZIP": "00000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "Level Nine",
+                "STREET2": "148 Quay Street",
+                "CITY": "Auckland 1140 New Zealand",
+                "STATE": "Q2",
+                "ZIP": "00000"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannoticeye2013.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001596532-22-000027",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20220215",
+        "DATE-OF-FILING-DATE-CHANGE": "20220214",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Arista Networks, Inc.",
+                "CIK": "0001596532",
+                "ASSIGNED-SIC": "3576",
+                "IRS-NUMBER": "201751121",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-36468",
+                "FILM-NUMBER": "22636260"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "5453 GREAT AMERICA PARKWAY",
+                "CITY": "SANTA CLARA",
+                "STATE": "CA",
+                "ZIP": "95054",
+                "PHONE": "408-547-5500"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "5453 GREAT AMERICA PARKWAY",
+                "CITY": "SANTA CLARA",
+                "STATE": "CA",
+                "ZIP": "95054"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice-q4.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "aristalogo.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

@@ -1,0 +1,45 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000919574-18-002513",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20180316",
+        "DATE-OF-FILING-DATE-CHANGE": "20180316",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "DIANA SHIPPING INC.",
+                "CIK": "0001318885",
+                "ASSIGNED-SIC": "4412",
+                "IRS-NUMBER": "000000000"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-32458",
+                "FILM-NUMBER": "18694315"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "PENDELIS 16",
+                "STREET2": "175 64 PALAIO FALIRO",
+                "CITY": "ATHENS",
+                "STATE": "J3",
+                "ZIP": "00000",
+                "PHONE": "30-210-947-0100"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "PENDELIS 16",
+                "STREET2": "175 64 PALAIO FALIRO",
+                "CITY": "ATHENS",
+                "STATE": "J3",
+                "ZIP": "00000"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d7841382_nt.htm"
+        }
+    ]
+}

@@ -1,0 +1,51 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-19-034471",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20190607",
+        "DATE-OF-FILING-DATE-CHANGE": "20190607",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "VODAFONE GROUP PUBLIC LTD CO",
+                "CIK": "0000839923",
+                "ASSIGNED-SIC": "4812",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "0331"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-10086",
+                "FILM-NUMBER": "19884807"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "VODAFONE HOUSE",
+                "STREET2": "THE CONNECTION",
+                "CITY": "NEWBURY, BERKSHIRE",
+                "STATE": "X0",
+                "ZIP": "RG14 2FN",
+                "PHONE": "011-44-1635-33251"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "VODAFONE HOUSE",
+                "STREET2": "THE CONNECTION",
+                "CITY": "NEWBURY, BERKSHIRE",
+                "STATE": "X0",
+                "ZIP": "RG14 2FN"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "VODAFONE GROUP PUBLIC LIMITED CO",
+                "DATE-CHANGED": "19960514"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a19-9811_3irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

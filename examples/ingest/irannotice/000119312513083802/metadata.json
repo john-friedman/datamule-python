@@ -1,0 +1,45 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-13-083802",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20130228",
+        "DATE-OF-FILING-DATE-CHANGE": "20130228",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Apollo Senior Floating Rate Fund Inc.",
+                "CIK": "0001502573",
+                "IRS-NUMBER": "000000000"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "811-22481",
+                "FILM-NUMBER": "13651502"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "9 WEST 57TH STREET",
+                "STREET2": "43RD FLOOR",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10019",
+                "PHONE": "212-515-3200"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "9 WEST 57TH STREET",
+                "STREET2": "43RD FLOOR",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10019"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d465885dirannotice.htm",
+            "DESCRIPTION": "APOLLO SENIOR FLOATING RATE FUND INC"
+        }
+    ]
+}

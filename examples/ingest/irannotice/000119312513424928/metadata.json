@@ -1,0 +1,47 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-13-424928",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20131104",
+        "DATE-OF-FILING-DATE-CHANGE": "20131104",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Navios South American Logistics Inc.",
+                "CIK": "0001506042",
+                "ASSIGNED-SIC": "4731",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-179250",
+                "FILM-NUMBER": "131188664"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1248 World Trade Center",
+                "STREET2": "Torre B",
+                "CITY": "Montevideo",
+                "STATE": "X3",
+                "ZIP": "00000",
+                "PHONE": "212-935-3000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1248 World Trade Center",
+                "STREET2": "Torre B",
+                "CITY": "Montevideo",
+                "STATE": "X3",
+                "ZIP": "00000"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d616237dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

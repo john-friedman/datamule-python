@@ -1,0 +1,54 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-16-098829",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20160222",
+        "DATE-OF-FILING-DATE-CHANGE": "20160222",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Kosmos Energy Ltd.",
+                "CIK": "0001509991",
+                "ASSIGNED-SIC": "1311",
+                "IRS-NUMBER": "980686001",
+                "STATE-OF-INCORPORATION": "D0",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-35167",
+                "FILM-NUMBER": "161444952"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "CLARENDON HOUSE",
+                "STREET2": "2 CHURCH STREET",
+                "CITY": "HAMILTON",
+                "STATE": "D0",
+                "ZIP": "HM 11",
+                "PHONE": "(214) 445-9600"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "8176 PARK LANE",
+                "STREET2": "SUITE 500",
+                "CITY": "DALLAS",
+                "STATE": "TX",
+                "ZIP": "75231"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a16-5001_1irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g50011bai001.gif",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

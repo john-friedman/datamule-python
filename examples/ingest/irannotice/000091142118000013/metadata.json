@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000911421-18-000013",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20180314",
+        "DATE-OF-FILING-DATE-CHANGE": "20180314",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "PARTNERRE LTD",
+                "CIK": "0000911421",
+                "ASSIGNED-SIC": "6321",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-14536",
+                "FILM-NUMBER": "18689277"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "WELLESLEY HOUSE SOUTH",
+                "STREET2": "90 PITTS BAY ROAD",
+                "CITY": "PEMBROKE",
+                "STATE": "D0",
+                "ZIP": "HM 08",
+                "PHONE": "14412920888"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "WELLESLEY HOUSE SOUTH",
+                "STREET2": "90 PITTS BAY ROAD",
+                "CITY": "PEMBROKE",
+                "STATE": "D0",
+                "ZIP": "HM 08"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "PARTNER RE HOLDINGS LTD",
+                "DATE-CHANGED": "19950725"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a20-firandisclosure13mar181.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "prelogoa30.jpg"
+        }
+    ]
+}

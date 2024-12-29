@@ -1,0 +1,45 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000101829-13-000046",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20131025",
+        "DATE-OF-FILING-DATE-CHANGE": "20131025",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "UNITED TECHNOLOGIES CORP /DE/",
+                "CIK": "0000101829",
+                "ASSIGNED-SIC": "3724",
+                "IRS-NUMBER": "060570975",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-00812",
+                "FILM-NUMBER": "131169237"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "UNITED TECHNOLOGIES BLDG",
+                "STREET2": "ONE FINANCIAL PLZ",
+                "CITY": "HARTFORD",
+                "STATE": "CT",
+                "ZIP": "06101",
+                "PHONE": "8607287000"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "UNITED TECHNOLOGIES CORP",
+                "DATE-CHANGED": "19841205"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a2013-09x30irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

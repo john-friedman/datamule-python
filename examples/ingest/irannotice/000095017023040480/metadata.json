@@ -1,0 +1,45 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000950170-23-040480",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20230809",
+        "DATE-OF-FILING-DATE-CHANGE": "20230809",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Bumble Inc.",
+                "CIK": "0001830043",
+                "ASSIGNED-SIC": "7370",
+                "IRS-NUMBER": "853604367",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-40054",
+                "FILM-NUMBER": "231154802"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1105 WEST 41ST STREET",
+                "CITY": "AUSTIN",
+                "STATE": "TX",
+                "ZIP": "78756",
+                "PHONE": "512-696-1409"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1105 WEST 41ST STREET",
+                "CITY": "AUSTIN",
+                "STATE": "TX",
+                "ZIP": "78756"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "bmbl_-_irannotice_q2_202.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

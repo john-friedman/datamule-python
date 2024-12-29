@@ -1,0 +1,51 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001141391-16-000137",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20160428",
+        "DATE-OF-FILING-DATE-CHANGE": "20160428",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "MASTERCARD INC",
+                "CIK": "0001141391",
+                "ASSIGNED-SIC": "7389",
+                "IRS-NUMBER": "134172551",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-32877",
+                "FILM-NUMBER": "161597707"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "2000 PURCHASE STREET",
+                "CITY": "PURCHASE",
+                "STATE": "NY",
+                "ZIP": "10577",
+                "PHONE": "9142492000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "2000 PURCHASE STREET",
+                "CITY": "PURCHASE",
+                "STATE": "NY",
+                "ZIP": "10577"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "q12016irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "mclogo_image.gif"
+        }
+    ]
+}

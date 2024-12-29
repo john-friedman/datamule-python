@@ -1,0 +1,51 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001662972-24-000102",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20240809",
+        "DATE-OF-FILING-DATE-CHANGE": "20240809",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Blackstone Real Estate Income Trust, Inc.",
+                "CIK": "0001662972",
+                "ASSIGNED-SIC": "6798",
+                "ORGANIZATION-NAME": "05 Real Estate & Construction",
+                "IRS-NUMBER": "810696966",
+                "STATE-OF-INCORPORATION": "MD",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "000-55931",
+                "FILM-NUMBER": "241193481"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "345 PARK AVENUE",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10154",
+                "PHONE": "212-583-5000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "345 PARK AVENUE",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10154"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Royal Blue Trust, Inc.",
+                "DATE-CHANGED": "20160106"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannoticeq22024.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

@@ -1,0 +1,47 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001144204-14-024269",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20140423",
+        "DATE-OF-FILING-DATE-CHANGE": "20140423",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "58.com Inc.",
+                "CIK": "0001525494",
+                "ASSIGNED-SIC": "7370",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "E9"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-36140",
+                "FILM-NUMBER": "14778833"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "Block E, The North American Bus Center",
+                "STREET2": "Yi 108 Beiyuan road, Chaoyang District",
+                "CITY": "Beijing",
+                "STATE": "F4",
+                "ZIP": "100101",
+                "PHONE": "(86 10) 5796-08888"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "Block E, The North American Bus Center",
+                "STREET2": "Yi 108 Beiyuan road, Chaoyang District",
+                "CITY": "Beijing",
+                "STATE": "F4",
+                "ZIP": "100101"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "v375580_irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

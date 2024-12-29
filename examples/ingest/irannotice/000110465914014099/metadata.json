@@ -1,0 +1,51 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-14-014099",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20140227",
+        "DATE-OF-FILING-DATE-CHANGE": "20140227",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ANTERO RESOURCES Corp",
+                "CIK": "0001433270",
+                "ASSIGNED-SIC": "1311",
+                "IRS-NUMBER": "800162034",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-36120",
+                "FILM-NUMBER": "14647990"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1625 17TH STREET",
+                "STREET2": "SUITE 300",
+                "CITY": "DENVER",
+                "STATE": "CO",
+                "ZIP": "80202",
+                "PHONE": "303-357-7325"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1625 17TH STREET",
+                "STREET2": "SUITE 300",
+                "CITY": "DENVER",
+                "STATE": "CO",
+                "ZIP": "80202"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "ANTERO RESOURCES BARNETT CORP",
+                "DATE-CHANGED": "20080424"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a14-3153_6irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

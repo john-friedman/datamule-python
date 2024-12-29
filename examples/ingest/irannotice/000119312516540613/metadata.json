@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-16-540613",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20160414",
+        "DATE-OF-FILING-DATE-CHANGE": "20160414",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "TELECOM ITALIA S P A",
+                "CIK": "0000948642",
+                "ASSIGNED-SIC": "4899",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "L6",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-13882",
+                "FILM-NUMBER": "161570401"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "VIA GAETANO NEGRI 1",
+                "CITY": "20123 MILAN",
+                "STATE": "L6",
+                "ZIP": "L6",
+                "PHONE": "0039-02-8595-1"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "VIA GAETANO NEGRI 1",
+                "CITY": "20123 MILAN",
+                "STATE": "L6",
+                "ZIP": "L6"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "STET SOCIETA FINANZIARIA TELEFONICA PA",
+                "DATE-CHANGED": "19950727"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d131413dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000950103-17-001638",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20170223",
+        "DATE-OF-FILING-DATE-CHANGE": "20170223",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "TELEFONICA S A",
+                "CIK": "0000814052",
+                "ASSIGNED-SIC": "4813",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "U3",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-09531",
+                "FILM-NUMBER": "17630843"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "GRAN VIA 28",
+                "CITY": "28013 MADRID",
+                "STATE": "U3",
+                "ZIP": "00000",
+                "PHONE": "00 34 91 584 0640"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "GRAN VIA 28",
+                "CITY": "28013 MADRID",
+                "STATE": "U3",
+                "ZIP": "00000"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "NATIONAL TELEPHONE COMPANY OF SPAIN",
+                "DATE-CHANGED": "19880708"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "dp73127_irannotice.htm",
+            "DESCRIPTION": "FORM IRANNOTICE"
+        }
+    ]
+}

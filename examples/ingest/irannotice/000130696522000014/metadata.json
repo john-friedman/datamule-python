@@ -1,0 +1,57 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001306965-22-000014",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20220310",
+        "DATE-OF-FILING-DATE-CHANGE": "20220310",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Shell plc",
+                "CIK": "0001306965",
+                "ASSIGNED-SIC": "1311",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "X0",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-32575",
+                "FILM-NUMBER": "22727348"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "SHELL CENTRE",
+                "STREET2": "2 YORK ROAD",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "SE1 7NA",
+                "PHONE": "044-20-7934-1234"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "SHELL CENTRE",
+                "STREET2": "2 YORK ROAD",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "SE1 7NA"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Forthdeal LTD",
+                "DATE-CHANGED": "20041026"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice2021.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "logoa.jpg"
+        }
+    ]
+}

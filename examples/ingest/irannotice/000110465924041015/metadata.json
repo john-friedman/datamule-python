@@ -1,0 +1,59 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-24-041015",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20240329",
+        "DATE-OF-FILING-DATE-CHANGE": "20240329",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "TotalEnergies SE",
+                "CIK": "0000879764",
+                "ASSIGNED-SIC": "1311",
+                "ORGANIZATION-NAME": "01 Energy & Transportation",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "I0",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-10888",
+                "FILM-NUMBER": "24802664"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "2 PLACE JEAN MILLIER",
+                "STREET2": "LA DEFENSE 6",
+                "CITY": "COURBEVOIE",
+                "STATE": "I0",
+                "ZIP": "92400",
+                "PHONE": "33 (0)1 41 35 04 48"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "2 PLACE JEAN MILLIER",
+                "STREET2": "ARCHE NORD COUPOLE/REGNAULT",
+                "CITY": "PARIS LA DEFENSE CEDEX",
+                "STATE": "I0",
+                "ZIP": "92078"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "TOTAL SA",
+                "DATE-CHANGED": "20030508"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "tm2333610d2_irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "tm2333610d2_irannoticeimg001.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

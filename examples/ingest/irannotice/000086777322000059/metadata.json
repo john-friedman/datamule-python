@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000867773-22-000059",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20220803",
+        "DATE-OF-FILING-DATE-CHANGE": "20220802",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "SUNPOWER CORP",
+                "CIK": "0000867773",
+                "ASSIGNED-SIC": "3674",
+                "IRS-NUMBER": "943008969",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "0101"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-34166",
+                "FILM-NUMBER": "221130510"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "51 RIO ROBLES",
+                "CITY": "SAN JOSE",
+                "STATE": "CA",
+                "ZIP": "95134",
+                "PHONE": "408-240-5500"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "51 RIO ROBLES",
+                "CITY": "SAN JOSE",
+                "STATE": "CA",
+                "ZIP": "95134"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice2021.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "irannoticeimagea.gif",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

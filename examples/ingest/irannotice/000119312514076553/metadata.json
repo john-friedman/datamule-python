@@ -1,0 +1,58 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-14-076553",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20140228",
+        "DATE-OF-FILING-DATE-CHANGE": "20140228",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "TAMINCO Corp",
+                "CIK": "0001547063",
+                "ASSIGNED-SIC": "2860",
+                "IRS-NUMBER": "454031468",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-35875",
+                "FILM-NUMBER": "14653981"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "C/O APOLLO MANAGEMENT VII, L.P.",
+                "STREET2": "9 WEST 57TH STREET, 43RD FLOOR",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10019",
+                "PHONE": "610-366-6744"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "C/O APOLLO MANAGEMENT VII, L.P.",
+                "STREET2": "9 WEST 57TH STREET, 43RD FLOOR",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10019"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "TAMINCO ACQUISITION Corp",
+                "DATE-CHANGED": "20120411"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d685178dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g685178img1.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

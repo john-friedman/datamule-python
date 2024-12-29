@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001140361-18-039528",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "3",
+        "FILING-DATE": "20180928",
+        "DATE-OF-FILING-DATE-CHANGE": "20180928",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "BALCHEM CORP",
+                "CIK": "0000009326",
+                "ASSIGNED-SIC": "2800",
+                "IRS-NUMBER": "132578432",
+                "STATE-OF-INCORPORATION": "MD",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-13648",
+                "FILM-NUMBER": "181093415"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "P O BOX 600",
+                "CITY": "NEW HAMPTON",
+                "STATE": "NY",
+                "ZIP": "10958",
+                "PHONE": "8453265632"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "P O BOX 600",
+                "CITY": "NEW HAMPTON",
+                "STATE": "NY",
+                "ZIP": "10958"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "formirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "image0.jpg"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "3",
+            "FILENAME": "image1.jpg"
+        }
+    ]
+}

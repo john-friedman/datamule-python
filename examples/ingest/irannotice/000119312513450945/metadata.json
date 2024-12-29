@@ -1,0 +1,49 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-13-450945",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20131122",
+        "DATE-OF-FILING-DATE-CHANGE": "20131122",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Apollo Tactical Income Fund Inc.",
+                "CIK": "0001526697",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "MD",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-175832",
+                "FILM-NUMBER": "131237362"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "9 WEST 57TH STREET",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10019",
+                "PHONE": "212-822-0426"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "9 WEST 57TH STREET",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10019"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Apollo Credit Fund Inc.",
+                "DATE-CHANGED": "20110726"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d629839dirannotice.htm",
+            "DESCRIPTION": "APOLLO TACTICAL INCOME FUND INC."
+        }
+    ]
+}

@@ -1,0 +1,57 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-24-064826",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20240311",
+        "DATE-OF-FILING-DATE-CHANGE": "20240311",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Anheuser-Busch InBev SA/NV",
+                "CIK": "0001668717",
+                "ASSIGNED-SIC": "2082",
+                "ORGANIZATION-NAME": "04 Manufacturing",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "C9",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-37911",
+                "FILM-NUMBER": "24738300"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "BROUWERIJPLEIN 1",
+                "CITY": "LEUVEN",
+                "STATE": "C9",
+                "ZIP": "3000",
+                "PHONE": "32(0)16276018"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "BROUWERIJPLEIN 1",
+                "CITY": "LEUVEN",
+                "STATE": "C9",
+                "ZIP": "3000"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Newbelco SA/NV",
+                "DATE-CHANGED": "20160304"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d797320dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g797320g0308062313464.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

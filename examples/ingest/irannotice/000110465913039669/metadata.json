@@ -1,0 +1,54 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-13-039669",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20130509",
+        "DATE-OF-FILING-DATE-CHANGE": "20130509",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Wesco Aircraft Holdings, Inc",
+                "CIK": "0001378718",
+                "ASSIGNED-SIC": "5072",
+                "IRS-NUMBER": "205441563"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-35253",
+                "FILM-NUMBER": "13829861"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "27727 AVENUE SCOTT",
+                "CITY": "VALENCIA",
+                "STATE": "CA",
+                "ZIP": "91355",
+                "PHONE": "661-775-7200"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "27727 AVENUE SCOTT",
+                "CITY": "VALENCIA",
+                "STATE": "CA",
+                "ZIP": "91355"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Wesco Holdings Inc",
+                "DATE-CHANGED": "20061019"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a13-9194_4irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g91944bei001.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

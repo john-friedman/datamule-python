@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-13-080406",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20130227",
+        "DATE-OF-FILING-DATE-CHANGE": "20130227",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "MBIA INC",
+                "CIK": "0000814585",
+                "ASSIGNED-SIC": "6351",
+                "IRS-NUMBER": "061185706",
+                "STATE-OF-INCORPORATION": "CT",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-09583",
+                "FILM-NUMBER": "13647903"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "113 KING ST",
+                "CITY": "ARMONK",
+                "STATE": "NY",
+                "ZIP": "10504",
+                "PHONE": "914-273-4545"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "113 KING ST",
+                "CITY": "ARMONK",
+                "STATE": "NY",
+                "ZIP": "10504"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d493899dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g493899corresppg001.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

@@ -1,0 +1,49 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001613103-21-000063",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20211202",
+        "DATE-OF-FILING-DATE-CHANGE": "20211202",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Medtronic plc",
+                "CIK": "0001613103",
+                "ASSIGNED-SIC": "3845",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "0429"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-36820",
+                "FILM-NUMBER": "211466678"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "20 ON HATCH, LOWER HATCH STREET",
+                "CITY": "DUBLIN",
+                "STATE": "L2",
+                "ZIP": "2",
+                "PHONE": "01135314381700"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "20 ON HATCH, LOWER HATCH STREET",
+                "CITY": "DUBLIN",
+                "STATE": "L2",
+                "ZIP": "2"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Kalani I Ltd",
+                "DATE-CHANGED": "20140709"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannoticeq2fy22.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

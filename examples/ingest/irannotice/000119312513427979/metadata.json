@@ -1,0 +1,48 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-13-427979",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20131105",
+        "DATE-OF-FILING-DATE-CHANGE": "20131105",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "PowerShares DB Precious Metals Fund",
+                "CIK": "0001383057",
+                "ASSIGNED-SIC": "6221",
+                "IRS-NUMBER": "870778065",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-33244",
+                "FILM-NUMBER": "131193737"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "60 WALL STREET",
+                "STREET2": "C/O DB COMMODITY SERVICES LLC",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10005",
+                "PHONE": "212-250-5883"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "60 WALL STREET",
+                "STREET2": "C/O DB COMMODITY SERVICES LLC",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10005"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d590601dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

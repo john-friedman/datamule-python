@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001558370-23-004203",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20230320",
+        "DATE-OF-FILING-DATE-CHANGE": "20230320",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Ares Real Estate Income Trust Inc.",
+                "CIK": "0001327978",
+                "ASSIGNED-SIC": "6798",
+                "IRS-NUMBER": "300309068",
+                "STATE-OF-INCORPORATION": "MD",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "000-52596",
+                "FILM-NUMBER": "23746924"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "ONE TABOR CENTER",
+                "STREET2": "1200 SEVENTEENTH STREET, SUITE 2900",
+                "CITY": "DENVER",
+                "STATE": "CO",
+                "ZIP": "80202",
+                "PHONE": "(303)228-2200"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "ONE TABOR CENTER",
+                "STREET2": "1200 SEVENTEENTH STREET, SUITE 2900",
+                "CITY": "DENVER",
+                "STATE": "CO",
+                "ZIP": "80202"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Dividend Capital Total Realty Trust Inc.",
+                "DATE-CHANGED": "20050520"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "tmb-20230320xirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

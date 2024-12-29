@@ -1,0 +1,59 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-24-271539",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20241205",
+        "DATE-OF-FILING-DATE-CHANGE": "20241205",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Tax-Free Fixed Income Fund II for Puerto Rico Residents, Inc.",
+                "CIK": "0001847302",
+                "ORGANIZATION-NAME": {
+                    "IRS-NUMBER": "660635925",
+                    "STATE-OF-INCORPORATION": "PR",
+                    "FISCAL-YEAR-END": "0930"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "IRANNOTICE",
+                    "ACT": "34",
+                    "FILE-NUMBER": "811-23681",
+                    "FILM-NUMBER": "241529324"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "250 MUNOZ RIVERA",
+                    "STREET2": "TENTH FLOOR",
+                    "CITY": "SAN JUAN",
+                    "STATE": "PR",
+                    "ZIP": "00918",
+                    "PHONE": "787-250-3600"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "250 MUNOZ RIVERA",
+                    "STREET2": "TENTH FLOOR",
+                    "CITY": "SAN JUAN",
+                    "STATE": "PR",
+                    "ZIP": "00918"
+                },
+                "FORMER-COMPANY": {
+                    "FORMER-CONFORMED-NAME": "Puerto Rico Fixed Income Fund II, Inc.",
+                    "DATE-CHANGED": "20210222"
+                }
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d855730dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g768281g76g76.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

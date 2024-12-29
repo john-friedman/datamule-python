@@ -1,0 +1,51 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000796343-17-000035",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20170124",
+        "DATE-OF-FILING-DATE-CHANGE": "20170124",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ADOBE SYSTEMS INC",
+                "CIK": "0000796343",
+                "ASSIGNED-SIC": "7372",
+                "IRS-NUMBER": "770019522",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1202"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "000-15175",
+                "FILM-NUMBER": "17543769"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "345 PARK AVE",
+                "CITY": "SAN JOSE",
+                "STATE": "CA",
+                "ZIP": "95110-2704",
+                "PHONE": "4085366000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "345 PARK AVENUE",
+                "CITY": "SAN JOSE",
+                "STATE": "CA",
+                "ZIP": "95110-2704"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice20170124.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "adbelogoa02.gif"
+        }
+    ]
+}

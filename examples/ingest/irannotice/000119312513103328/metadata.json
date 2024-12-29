@@ -1,0 +1,61 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-13-103328",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "3",
+        "FILING-DATE": "20130312",
+        "DATE-OF-FILING-DATE-CHANGE": "20130312",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ALCATEL LUCENT",
+                "CIK": "0000886125",
+                "ASSIGNED-SIC": "3661",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-11130",
+                "FILM-NUMBER": "13684895"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "3 AVENUE OCTAVE GREARD",
+                "CITY": "PARIS",
+                "STATE": "I0",
+                "ZIP": "75007",
+                "PHONE": "33140761010"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "3 AVENUE OCTAVE GREARD",
+                "CITY": "PARIS",
+                "STATE": "I0",
+                "ZIP": "75007"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "ALCATEL ALSTHOM COMPAGNIE GENERALE DELECTRICITE",
+                "DATE-CHANGED": "19960619"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d500248dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g500248g001.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "3",
+            "FILENAME": "g500248g25t02.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

@@ -1,0 +1,55 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000050863-24-000011",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20240126",
+        "DATE-OF-FILING-DATE-CHANGE": "20240125",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "INTEL CORP",
+                "CIK": "0000050863",
+                "ASSIGNED-SIC": "3674",
+                "ORGANIZATION-NAME": "04 Manufacturing",
+                "IRS-NUMBER": "941672743",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1230"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "000-06217",
+                "FILM-NUMBER": "24563554"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "2200 MISSION COLLEGE BLVD",
+                "STREET2": "RNB-4-151",
+                "CITY": "SANTA CLARA",
+                "STATE": "CA",
+                "ZIP": "95054",
+                "PHONE": "4087658080"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "2200 MISSION COLLEGE BLVD",
+                "STREET2": "RNB-4-151",
+                "CITY": "SANTA CLARA",
+                "STATE": "CA",
+                "ZIP": "95054"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "q42023irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "thumbnail.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

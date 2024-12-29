@@ -1,0 +1,47 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001718512-24-000068",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20240731",
+        "DATE-OF-FILING-DATE-CHANGE": "20240731",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Gates Industrial Corp plc",
+                "CIK": "0001718512",
+                "ASSIGNED-SIC": "3560",
+                "ORGANIZATION-NAME": "06 Technology",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "X0",
+                "FISCAL-YEAR-END": "1228"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-38366",
+                "FILM-NUMBER": "241162404"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1144 FIFTEENTH STREET",
+                "CITY": "DENVER",
+                "STATE": "CO",
+                "ZIP": "80202",
+                "PHONE": "303-744-4876"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1144 FIFTEENTH STREET",
+                "CITY": "DENVER",
+                "STATE": "CO",
+                "ZIP": "80202"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice7312024q22024.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

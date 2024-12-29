@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000216228-22-000041",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20220804",
+        "DATE-OF-FILING-DATE-CHANGE": "20220804",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ITT INC.",
+                "CIK": "0000216228",
+                "ASSIGNED-SIC": "3561",
+                "IRS-NUMBER": "811197930",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-05672",
+                "FILM-NUMBER": "221135791"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "100 WASHINGTON BLVD",
+                "STREET2": "6TH FLOOR",
+                "CITY": "STAMFORD",
+                "STATE": "CT",
+                "ZIP": "06902",
+                "PHONE": "914.641.2000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "100 WASHINGTON BLVD",
+                "STREET2": "6TH FLOOR",
+                "CITY": "STAMFORD",
+                "STATE": "CT",
+                "ZIP": "06902"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "ITT CORP",
+                "DATE-CHANGED": "20060705"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannoticeq22022.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "ittlogo.jpg"
+        }
+    ]
+}

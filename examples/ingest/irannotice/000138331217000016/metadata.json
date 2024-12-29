@@ -1,0 +1,55 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001383312-17-000016",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20170213",
+        "DATE-OF-FILING-DATE-CHANGE": "20170213",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "BROADRIDGE FINANCIAL SOLUTIONS, INC.",
+                "CIK": "0001383312",
+                "ASSIGNED-SIC": "7389",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "0630"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-33220",
+                "FILM-NUMBER": "17598781"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "5 DAKOTA DRIVE",
+                "CITY": "LAKE SUCCESS",
+                "STATE": "NY",
+                "ZIP": "11042",
+                "PHONE": "516-472-5400"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "5 DAKOTA DRIVE",
+                "CITY": "LAKE SUCCESS",
+                "STATE": "NY",
+                "ZIP": "11042"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "BSG LLC",
+                "DATE-CHANGED": "20061212"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice1q2017.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "irannotice201610kimage1.jpg"
+        }
+    ]
+}

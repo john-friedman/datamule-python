@@ -1,0 +1,57 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000064040-24-000073",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20240209",
+        "DATE-OF-FILING-DATE-CHANGE": "20240208",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "S&P Global Inc.",
+                "CIK": "0000064040",
+                "ASSIGNED-SIC": "7320",
+                "ORGANIZATION-NAME": "07 Trade & Services",
+                "IRS-NUMBER": "131026995",
+                "STATE-OF-INCORPORATION": "NY",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-01023",
+                "FILM-NUMBER": "24610915"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "55 WATER STREET",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10041",
+                "PHONE": "212-438-1000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "55 WATER STREET",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10041"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "MCGRAW HILL INC",
+                "DATE-CHANGED": "19920703"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "q42023irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "spgloballogoforfilingsa03.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

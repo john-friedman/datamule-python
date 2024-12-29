@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-13-084367",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20130228",
+        "DATE-OF-FILING-DATE-CHANGE": "20130228",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Affinion Group Holdings, Inc.",
+                "CIK": "0001404624",
+                "ASSIGNED-SIC": "7389",
+                "IRS-NUMBER": "161732155",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-173105",
+                "FILM-NUMBER": "13652542"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "6 HIGH RIDGE PARK",
+                "CITY": "STAMFORD",
+                "STATE": "CT",
+                "ZIP": "06905",
+                "PHONE": "(203) 956-1000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "6 HIGH RIDGE PARK",
+                "CITY": "STAMFORD",
+                "STATE": "CT",
+                "ZIP": "06905"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d445757dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g445757g33r53.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

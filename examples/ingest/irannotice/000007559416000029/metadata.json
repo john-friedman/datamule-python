@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000075594-16-000029",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20160506",
+        "DATE-OF-FILING-DATE-CHANGE": "20160506",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "PACIFICORP /OR/",
+                "CIK": "0000075594",
+                "ASSIGNED-SIC": "4911",
+                "IRS-NUMBER": "930246090",
+                "STATE-OF-INCORPORATION": "OR",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-05152",
+                "FILM-NUMBER": "161628775"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "825 N.E. MULTNOMAH",
+                "STREET2": "SUITE 1900",
+                "CITY": "PORTLAND",
+                "STATE": "OR",
+                "ZIP": "97232",
+                "PHONE": "5038135645"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "825 N E MULTNOMAH",
+                "STREET2": "STE 1900",
+                "CITY": "PORTLAND",
+                "STATE": "OR",
+                "ZIP": "97232"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "PACIFICORP /ME/",
+                "DATE-CHANGED": "19890628"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "pacificorp5616irannotice.htm",
+            "DESCRIPTION": "PACIFICORP IRANNOTICE 5.6.16"
+        }
+    ]
+}

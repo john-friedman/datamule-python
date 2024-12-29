@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-13-105095",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20130313",
+        "DATE-OF-FILING-DATE-CHANGE": "20130313",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "BARCLAYS BANK PLC /ENG/",
+                "CIK": "0000312070",
+                "ASSIGNED-SIC": "6029",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "X0",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-10257",
+                "FILM-NUMBER": "13687386"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1 CHURCHILL PLACE",
+                "STREET2": "E14 5HP",
+                "CITY": "LONDON ENGLAND",
+                "STATE": "X0",
+                "ZIP": "E14 5HP",
+                "PHONE": "2124124000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1 CHURCHILL PLACE",
+                "STREET2": "E14 5HP",
+                "CITY": "LONDON ENGLAND",
+                "STATE": "X0",
+                "ZIP": "E14 5HP"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "BARCLAYS BANK INTERNATIONAL LTD",
+                "DATE-CHANGED": "19850313"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d501847dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        }
+    ]
+}

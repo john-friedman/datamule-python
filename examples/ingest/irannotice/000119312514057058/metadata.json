@@ -1,0 +1,58 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-14-057058",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20140218",
+        "DATE-OF-FILING-DATE-CHANGE": "20140218",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "BLACKSTONE MORTGAGE TRUST, INC.",
+                "CIK": "0001061630",
+                "ASSIGNED-SIC": "6798",
+                "IRS-NUMBER": "946181186",
+                "STATE-OF-INCORPORATION": "MD",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-14788",
+                "FILM-NUMBER": "14622295"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "345 PARK AVENUE",
+                "STREET2": "42ND FLOOR",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10154",
+                "PHONE": "2126550220"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "345 PARK AVENUE",
+                "STREET2": "42ND FLOOR",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10154"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "CAPITAL TRUST INC",
+                "DATE-CHANGED": "19980512"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d675852dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g675852g09s29.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

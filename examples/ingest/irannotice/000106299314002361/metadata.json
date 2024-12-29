@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001062993-14-002361",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20140425",
+        "DATE-OF-FILING-DATE-CHANGE": "20140425",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "POLYMET MINING CORP",
+                "CIK": "0000866028",
+                "ASSIGNED-SIC": "1090",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "A1",
+                "FISCAL-YEAR-END": "0131"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-32929",
+                "FILM-NUMBER": "14786547"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "FIRST CANADIAN PLACE",
+                "STREET2": "100 KING STREET WEST, SUITE 5700",
+                "CITY": "TORONTO",
+                "STATE": "A6",
+                "ZIP": "M5X 1C7",
+                "PHONE": "416-915-4149"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "FIRST CANADIAN PLACE",
+                "STREET2": "100 KING STREET WEST, SUITE 5700",
+                "CITY": "TORONTO",
+                "STATE": "A6",
+                "ZIP": "M5X 1C7"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "FLECK RESOURCES LTD",
+                "DATE-CHANGED": "19950606"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "formirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

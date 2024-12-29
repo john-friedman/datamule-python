@@ -1,0 +1,55 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000930413-17-002535",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20170721",
+        "DATE-OF-FILING-DATE-CHANGE": "20170721",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "HONEYWELL INTERNATIONAL INC",
+                "CIK": "0000773840",
+                "ASSIGNED-SIC": "3714",
+                "IRS-NUMBER": "222640650",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-08974",
+                "FILM-NUMBER": "17975992"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "115 TABOR ROAD",
+                "CITY": "MORRIS PLAINS",
+                "STATE": "NJ",
+                "ZIP": "07950",
+                "PHONE": "9734552000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "115 TABOR ROAD",
+                "CITY": "MORRIS PLAINS",
+                "STATE": "NJ",
+                "ZIP": "07950"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "ALLIEDSIGNAL INC",
+                "DATE-CHANGED": "19940929"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "c88817_irrannotice.htm"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "x1_c88817x1x1.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

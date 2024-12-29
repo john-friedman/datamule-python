@@ -1,0 +1,48 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000950170-23-008203",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20230315",
+        "DATE-OF-FILING-DATE-CHANGE": "20230315",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Paysafe Ltd",
+                "CIK": "0001833835",
+                "ASSIGNED-SIC": "7389",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "D0",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-40302",
+                "FILM-NUMBER": "23736065"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "25 CANADA SQUARE",
+                "STREET2": "27TH FLOOR",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "E14 5LQ",
+                "PHONE": "4402038849226"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "25 CANADA SQUARE",
+                "STREET2": "27TH FLOOR",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "E14 5LQ"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "iran_notice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

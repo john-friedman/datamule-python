@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000858339-13-000014",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20130315",
+        "DATE-OF-FILING-DATE-CHANGE": "20130315",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "CAESARS ENTERTAINMENT Corp",
+                "CIK": "0000858339",
+                "ASSIGNED-SIC": "7011",
+                "IRS-NUMBER": "621411755",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-10410",
+                "FILM-NUMBER": "13693795"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "ONE CAESARS PALACE DRIVE",
+                "CITY": "LAS VEGAS",
+                "STATE": "NV",
+                "ZIP": "89109",
+                "PHONE": "7024076000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "ONE CAESARS PALACE DRIVE",
+                "CITY": "LAS VEGAS",
+                "STATE": "NV",
+                "ZIP": "89109"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "PROMUS COMPANIES INC",
+                "DATE-CHANGED": "19920703"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irandisclosureletter.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

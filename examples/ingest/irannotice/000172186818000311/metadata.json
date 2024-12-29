@@ -1,0 +1,49 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001721868-18-000311",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20180420",
+        "DATE-OF-FILING-DATE-CHANGE": "20180420",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Boston Carriers, Inc.",
+                "CIK": "0001174672",
+                "ASSIGNED-SIC": "7389",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "NV",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-191564",
+                "FILM-NUMBER": "18765487"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "18 POSEIDONOS AVENUE",
+                "CITY": "ATHENS",
+                "STATE": "J3",
+                "ZIP": "17674",
+                "PHONE": "561-276-3737"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "18 POSEIDONOS AVENUE",
+                "CITY": "ATHENS",
+                "STATE": "J3",
+                "ZIP": "17674"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "INPATIENT CLINICAL SOLUTIONS INC",
+                "DATE-CHANGED": "20020603"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "f2sbstn041218irannotice.htm"
+        }
+    ]
+}

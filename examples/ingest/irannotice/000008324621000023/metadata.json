@@ -1,0 +1,46 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000083246-21-000023",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20211025",
+        "DATE-OF-FILING-DATE-CHANGE": "20211025",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "HSBC USA INC /MD/",
+                "CIK": "0000083246",
+                "ASSIGNED-SIC": "6021",
+                "IRS-NUMBER": "132764867",
+                "STATE-OF-INCORPORATION": "MD",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-07436",
+                "FILM-NUMBER": "211342065"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "452 FIFTH AVE",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10018",
+                "PHONE": "212-525-5000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "452 FIFTH AVENUE",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10018"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "husiirandisclosure93021.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

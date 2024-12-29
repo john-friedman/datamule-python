@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001481792-15-000059",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20151104",
+        "DATE-OF-FILING-DATE-CHANGE": "20151104",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Quad/Graphics, Inc.",
+                "CIK": "0001481792",
+                "ASSIGNED-SIC": "2750",
+                "IRS-NUMBER": "391152983",
+                "STATE-OF-INCORPORATION": "WI",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-34806",
+                "FILM-NUMBER": "151198014"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "N61 W23044 HARRY'S WAY",
+                "CITY": "SUSSEX",
+                "STATE": "WI",
+                "ZIP": "53089-3995",
+                "PHONE": "414-566-6000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "N61 W23044 HARRY'S WAY",
+                "CITY": "SUSSEX",
+                "STATE": "WI",
+                "ZIP": "53089-3995"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "qglogorgbaq2015.jpg",
+            "DESCRIPTION": "QUAD/GRAPHICS LOGO"
+        }
+    ]
+}

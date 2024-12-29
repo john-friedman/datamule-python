@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001370368-24-000006",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "3",
+        "FILING-DATE": "20240131",
+        "DATE-OF-FILING-DATE-CHANGE": "20240131",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "NOVARTIS AG",
+                "CIK": "0001114448",
+                "ASSIGNED-SIC": "2834",
+                "ORGANIZATION-NAME": "03 Life Sciences",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "V8",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-15024",
+                "FILM-NUMBER": "24580645"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "LICHTSTRASSE 35",
+                "CITY": "BASEL",
+                "STATE": "V8",
+                "ZIP": "CH 4056",
+                "PHONE": "01141613241111"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "LICHTSTRASSE 35",
+                "CITY": "BASEL",
+                "STATE": "V8",
+                "ZIP": "CH 4056"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a240131IRAN.htm"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "image0.jpg"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "3",
+            "FILENAME": "letter-head.jpg"
+        }
+    ]
+}

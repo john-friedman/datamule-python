@@ -1,0 +1,48 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-17-235651",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20170726",
+        "DATE-OF-FILING-DATE-CHANGE": "20170726",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "MINEBEA MITSUMI Inc.",
+                "CIK": "0001034983",
+                "ASSIGNED-SIC": "3670",
+                "IRS-NUMBER": "000000000"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-214585",
+                "FILM-NUMBER": "17981624"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "3-9-6 MITA, MINATO-KU",
+                "CITY": "TOKYO",
+                "STATE": "M0",
+                "ZIP": "108-8330",
+                "PHONE": "81-3-6758-6704"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "3-9-6 MITA, MINATO-KU",
+                "CITY": "TOKYO",
+                "STATE": "M0",
+                "ZIP": "108-8330"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "MINEBEA CO LTD                                           /FI",
+                "DATE-CHANGED": "19970304"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d424567dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

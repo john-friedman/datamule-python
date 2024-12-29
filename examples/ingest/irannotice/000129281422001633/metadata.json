@@ -1,0 +1,48 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001292814-22-001633",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20220415",
+        "DATE-OF-FILING-DATE-CHANGE": "20220414",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "TIM S.A.",
+                "CIK": "0001826168",
+                "ASSIGNED-SIC": "4813",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "D5",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-39570",
+                "FILM-NUMBER": "22828684"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "JOAO CABRAL DE MELO NETO AVENUE",
+                "STREET2": "850 - NORTH TOWER - 12TH FLOOR",
+                "CITY": "RIO DE JANEIRO, RJ",
+                "STATE": "D5",
+                "ZIP": "22775-057",
+                "PHONE": "(55) 21-4109-4167"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "JOAO CABRAL DE MELO NETO AVENUE",
+                "STREET2": "850 - NORTH TOWER - 12TH FLOOR",
+                "CITY": "RIO DE JANEIRO, RJ",
+                "STATE": "D5",
+                "ZIP": "22775-057"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "timb20220414_irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

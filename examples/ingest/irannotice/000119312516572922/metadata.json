@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-16-572922",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20160502",
+        "DATE-OF-FILING-DATE-CHANGE": "20160502",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "GALLAGHER ARTHUR J & CO",
+                "CIK": "0000354190",
+                "ASSIGNED-SIC": "6411",
+                "IRS-NUMBER": "362151613",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-09761",
+                "FILM-NUMBER": "161612804"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "TWO PIERCE PLACE",
+                "CITY": "ITASCA",
+                "STATE": "IL",
+                "ZIP": "60143",
+                "PHONE": "6307733800"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "TWO PIERCE PLACE",
+                "CITY": "ITASCA",
+                "STATE": "IL",
+                "ZIP": "60143-3141"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d187425dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g187425g33i20.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

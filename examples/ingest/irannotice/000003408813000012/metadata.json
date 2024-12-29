@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000034088-13-000012",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20130227",
+        "DATE-OF-FILING-DATE-CHANGE": "20130227",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "EXXON MOBIL CORP",
+                "CIK": "0000034088",
+                "ASSIGNED-SIC": "2911",
+                "IRS-NUMBER": "135409005",
+                "STATE-OF-INCORPORATION": "NJ",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-02256",
+                "FILM-NUMBER": "13647025"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "5959 LAS COLINAS BLVD",
+                "CITY": "IRVING",
+                "STATE": "TX",
+                "ZIP": "75039-2298",
+                "PHONE": "9724441000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "5959 LAS COLINAS BLVD",
+                "CITY": "IRVING",
+                "STATE": "TX",
+                "ZIP": "75039-2298"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "STANDARD OIL CO OF NEW JERSEY",
+                "DATE-CHANGED": "19721123"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "IRANNOTICE.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "x0x0.gif",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-21-264546",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20210902",
+        "DATE-OF-FILING-DATE-CHANGE": "20210902",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "NetApp, Inc.",
+                "CIK": "0001002047",
+                "ASSIGNED-SIC": "3572",
+                "IRS-NUMBER": "770307520",
+                "STATE-OF-INCORPORATION": "CA",
+                "FISCAL-YEAR-END": "0429"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "000-27130",
+                "FILM-NUMBER": "211233792"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "3060 OLSEN DRIVE",
+                "CITY": "SAN JOSE",
+                "STATE": "CA",
+                "ZIP": "95128",
+                "PHONE": "4088226000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "3060 OLSEN DRIVE",
+                "CITY": "SAN JOSE",
+                "STATE": "CA",
+                "ZIP": "95128"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "NETWORK APPLIANCE INC",
+                "DATE-CHANGED": "19951010"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d188883dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g188883g70f33.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

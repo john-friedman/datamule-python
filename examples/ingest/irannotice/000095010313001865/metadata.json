@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000950103-13-001865",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20130320",
+        "DATE-OF-FILING-DATE-CHANGE": "20130320",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "TELEFONICA BRASIL S.A.",
+                "CIK": "0001066119",
+                "ASSIGNED-SIC": "4813",
+                "IRS-NUMBER": "000000000"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-14475",
+                "FILM-NUMBER": "13705818"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "RUA MARTINIANO DE CARVALHO, 851",
+                "STREET2": "21ST FLOOR",
+                "CITY": "SAO PAULO-SP BRAZIL",
+                "STATE": "D5",
+                "ZIP": "01321-001",
+                "PHONE": "55 11 3549 7200"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "RUA MARTINIANO DE CARVALHO, 851",
+                "STREET2": "21ST FLOOR",
+                "CITY": "SAO PAULO-SP BRAZIL",
+                "STATE": "D5",
+                "ZIP": "01321-001"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "TELESP PARTICIPACOES SA",
+                "DATE-CHANGED": "19980716"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "dp37079_irannotice.htm",
+            "DESCRIPTION": "FORM IRANNOTICE"
+        }
+    ]
+}

@@ -1,0 +1,60 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000097216-13-000042",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "3",
+        "FILING-DATE": "20130228",
+        "DATE-OF-FILING-DATE-CHANGE": "20130227",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "TEREX CORP",
+                "CIK": "0000097216",
+                "ASSIGNED-SIC": "3537",
+                "IRS-NUMBER": "341531521",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-10702",
+                "FILM-NUMBER": "13648895"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "200 NYALA FARM ROAD",
+                "CITY": "WESTPORT",
+                "STATE": "CT",
+                "ZIP": "06880",
+                "PHONE": "2032227170"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "200 NYALA FARM ROAD",
+                "CITY": "WESTPORT",
+                "STATE": "CT",
+                "ZIP": "06880"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "BLACK MAMMOTH CONSOLIDATED MINING CO",
+                "DATE-CHANGED": "19671002"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice2013-02x27.htm",
+            "DESCRIPTION": "IRANNOTICE 2013-02-27"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "terexlogobottomdemaga01.jpg"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "3",
+            "FILENAME": "terexlogotopa01.jpg"
+        }
+    ]
+}

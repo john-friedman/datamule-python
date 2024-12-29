@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001701605-17-000102",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20171031",
+        "DATE-OF-FILING-DATE-CHANGE": "20171031",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Baker Hughes a GE Co",
+                "CIK": "0001701605",
+                "ASSIGNED-SIC": "3533",
+                "IRS-NUMBER": "814403168",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-38143",
+                "FILM-NUMBER": "171164310"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "17021 ALDINE WESTFIELD ROAD",
+                "CITY": "HOUSTON",
+                "STATE": "TX",
+                "ZIP": "77073",
+                "PHONE": "713-439-8600"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "17021 ALDINE WESTFIELD ROAD",
+                "CITY": "HOUSTON",
+                "STATE": "TX",
+                "ZIP": "77073"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Bear Newco, Inc.",
+                "DATE-CHANGED": "20170321"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "bhgeirannotice93017.htm",
+            "DESCRIPTION": "IRAN NOTICE 9.30.17"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "logoofbhge.jpg",
+            "DESCRIPTION": "BHGE LOGO"
+        }
+    ]
+}

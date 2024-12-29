@@ -1,0 +1,45 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000930413-18-000765",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20180302",
+        "DATE-OF-FILING-DATE-CHANGE": "20180302",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "SAFE BULKERS, INC.",
+                "CIK": "0001434754",
+                "ASSIGNED-SIC": "4412",
+                "IRS-NUMBER": "000000000"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-34077",
+                "FILM-NUMBER": "18663480"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "APT. D11, LES ACANTHES",
+                "STREET2": "6, AVENUE DES CITRONNIERS",
+                "CITY": "MONACO",
+                "STATE": "O9",
+                "ZIP": "MC98000",
+                "PHONE": "011-30-2-111-888-400"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "APT. D11, LES ACANTHES",
+                "STREET2": "6, AVENUE DES CITRONNIERS",
+                "CITY": "MONACO",
+                "STATE": "O9",
+                "ZIP": "MC98000"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "c90638_irannotice.htm"
+        }
+    ]
+}

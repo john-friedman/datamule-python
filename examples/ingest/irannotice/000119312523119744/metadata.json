@@ -1,0 +1,48 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-23-119744",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20230427",
+        "DATE-OF-FILING-DATE-CHANGE": "20230427",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "CHINA SOUTHERN AIRLINES CO LTD",
+                "CIK": "0001041668",
+                "ASSIGNED-SIC": "4512",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "F4",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-14660",
+                "FILM-NUMBER": "23851624"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "BALYUN INTERNATIONAL AIRPORT",
+                "STREET2": "GUANGZHOU",
+                "CITY": "PEOPLES REPUBLIC OF CHINA",
+                "STATE": "F4",
+                "ZIP": "510406",
+                "PHONE": "862086930870"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "CHINA SOUTHERN AIR BUILDING",
+                "STREET2": "68 QIXIN ROAD, BAIYUN DISTRICT",
+                "CITY": "GUANGZHOU, GUANGDONG PROVINCE",
+                "STATE": "F4",
+                "ZIP": "510403"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d469285dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

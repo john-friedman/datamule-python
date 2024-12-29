@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001566011-14-000004",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20140507",
+        "DATE-OF-FILING-DATE-CHANGE": "20140507",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "PBF Holding Co LLC",
+                "CIK": "0001566011",
+                "ASSIGNED-SIC": "2911",
+                "IRS-NUMBER": "272198168",
+                "STATE-OF-INCORPORATION": "DE"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-186007",
+                "FILM-NUMBER": "14821947"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "ONE SYLVAN WAY, SECOND FLOOR",
+                "CITY": "PARSIPPANY",
+                "STATE": "NJ",
+                "ZIP": "07054",
+                "PHONE": "973-455-7500"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "ONE SYLVAN WAY, SECOND FLOOR",
+                "CITY": "PARSIPPANY",
+                "STATE": "NJ",
+                "ZIP": "07054"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "pbfholding-irannoticeform1.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "pbfholdingirannotice33114.jpg"
+        }
+    ]
+}

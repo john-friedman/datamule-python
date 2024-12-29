@@ -1,0 +1,48 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001634621-19-000027",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20190416",
+        "DATE-OF-FILING-DATE-CHANGE": "20190416",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ORANGE",
+                "CIK": "0001038143",
+                "ASSIGNED-SIC": "4813",
+                "IRS-NUMBER": "999999999",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-14712",
+                "FILM-NUMBER": "19750024"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "78 RUE OLIVIER DE SERRES",
+                "CITY": "PARIS",
+                "STATE": "I0",
+                "ZIP": "75015",
+                "PHONE": "33144442222"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "78 RUE OLIVIER DE SERRES",
+                "CITY": "PARIS",
+                "STATE": "I0",
+                "ZIP": "75015"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "FRANCE TELECOM /",
+                "DATE-CHANGED": "19970422"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "lo_in_20190416.htm"
+        }
+    ]
+}

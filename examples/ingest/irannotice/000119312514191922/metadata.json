@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-14-191922",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20140509",
+        "DATE-OF-FILING-DATE-CHANGE": "20140509",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "PowerShares DB G10 Currency Harvest Fund",
+                "CIK": "0001354730",
+                "ASSIGNED-SIC": "6221",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-33020",
+                "FILM-NUMBER": "14828021"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "C/O DB COMMODITY SERVICES LLC",
+                "STREET2": "60 WALL STREET",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10005",
+                "PHONE": "212-250-5883"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "C/O DB COMMODITY SERVICES LLC",
+                "STREET2": "60 WALL STREET",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10005"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "DB CURRENCY INDEX VALUE FUND",
+                "DATE-CHANGED": "20060228"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d706569dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

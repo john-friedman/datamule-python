@@ -1,0 +1,48 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000930413-16-005892",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20160308",
+        "DATE-OF-FILING-DATE-CHANGE": "20160308",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Lloyds Banking Group plc",
+                "CIK": "0001160106",
+                "ASSIGNED-SIC": "6029",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "X0"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-15246",
+                "FILM-NUMBER": "161490311"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "25 GRESHAM STREET",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "EC2V 7HN",
+                "PHONE": "44 0 20 7626 1500"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "25 GRESHAM STREET",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "EC2V 7HN"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "LLOYDS TSB GROUP PLC",
+                "DATE-CHANGED": "20010926"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "c84220_irannotice.htm"
+        }
+    ]
+}

@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000313616-23-000089",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20230222",
+        "DATE-OF-FILING-DATE-CHANGE": "20230222",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "DANAHER CORP /DE/",
+                "CIK": "0000313616",
+                "ASSIGNED-SIC": "3823",
+                "IRS-NUMBER": "591995548",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-08089",
+                "FILM-NUMBER": "23653995"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "2200 PENNSYLVANIA AVE. N.W.",
+                "STREET2": "SUITE 800W",
+                "CITY": "WASHINGTON",
+                "STATE": "DC",
+                "ZIP": "20037-1701",
+                "PHONE": "2028280850"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "2200 PENNSYLVANIA AVE. N.W.",
+                "STREET2": "SUITE 800W",
+                "CITY": "WASHINGTON",
+                "STATE": "DC",
+                "ZIP": "20037-1701"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "DMG INC",
+                "DATE-CHANGED": "19850221"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice-20221231.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

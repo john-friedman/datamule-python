@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-21-278314",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20210921",
+        "DATE-OF-FILING-DATE-CHANGE": "20210921",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "FEDEX CORP",
+                "CIK": "0001048911",
+                "ASSIGNED-SIC": "4513",
+                "IRS-NUMBER": "621721435",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "0531"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-15829",
+                "FILM-NUMBER": "211266650"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "942 SOUTH SHADY GROVE ROAD",
+                "CITY": "MEMPHIS",
+                "STATE": "TN",
+                "ZIP": "38120-",
+                "PHONE": "9018187500"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "942 SOUTH SHADY GROVE ROAD",
+                "CITY": "MEMPHIS",
+                "STATE": "TN",
+                "ZIP": "38120-"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "FDX CORP",
+                "DATE-CHANGED": "19971103"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d200979dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g200979g0916050645319.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

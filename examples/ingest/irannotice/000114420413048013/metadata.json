@@ -1,0 +1,46 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001144204-13-048013",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20130827",
+        "DATE-OF-FILING-DATE-CHANGE": "20130827",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "OVERSEAS SHIPHOLDING GROUP INC",
+                "CIK": "0000075208",
+                "ASSIGNED-SIC": "4412",
+                "IRS-NUMBER": "132637623",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-06479",
+                "FILM-NUMBER": "131062373"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "666 THIRD AVENUE",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10017",
+                "PHONE": "2122511153"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "666 THIRD AVENUE",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10017"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "v353829_irannotice.htm",
+            "DESCRIPTION": "FORM IRANNOTICE"
+        }
+    ]
+}

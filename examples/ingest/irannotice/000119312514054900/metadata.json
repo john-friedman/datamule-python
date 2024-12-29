@@ -1,0 +1,55 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-14-054900",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20140214",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "PEPSICO INC",
+                "CIK": "0000077476",
+                "ASSIGNED-SIC": "2080",
+                "IRS-NUMBER": "131584302",
+                "STATE-OF-INCORPORATION": "NC",
+                "FISCAL-YEAR-END": "1229"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-01183",
+                "FILM-NUMBER": "14617325"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "700 ANDERSON HILL RD",
+                "CITY": "PURCHASE",
+                "STATE": "NY",
+                "ZIP": "10577",
+                "PHONE": "9142532000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "700 ANDERSON HILL ROAD",
+                "CITY": "PURCHASE",
+                "STATE": "NY",
+                "ZIP": "10577-1444"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "PEPSI COLA CO",
+                "DATE-CHANGED": "19700903"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d676409dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g676409g39o89.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

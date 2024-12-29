@@ -1,0 +1,49 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001409775-18-000054",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20181106",
+        "DATE-OF-FILING-DATE-CHANGE": "20181106",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "BBVA COMPASS BANCSHARES, INC",
+                "CIK": "0001409775",
+                "ASSIGNED-SIC": "6021",
+                "IRS-NUMBER": "208948381",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "000-55106",
+                "FILM-NUMBER": "181162249"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "2200 POST OAK BLVD",
+                "CITY": "HOUSTON",
+                "STATE": "TX",
+                "ZIP": "77056",
+                "PHONE": "205-297-3000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "2200 POST OAK BLVD",
+                "CITY": "HOUSTON",
+                "STATE": "TX",
+                "ZIP": "77056"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "BBVA USA BANCSHARES INC",
+                "DATE-CHANGED": "20070814"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice09302018.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

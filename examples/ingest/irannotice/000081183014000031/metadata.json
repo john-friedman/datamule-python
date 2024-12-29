@@ -1,0 +1,57 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000811830-14-000031",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20141117",
+        "DATE-OF-FILING-DATE-CHANGE": "20141114",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Santander Holdings USA, Inc.",
+                "CIK": "0000811830",
+                "ASSIGNED-SIC": "6021",
+                "IRS-NUMBER": "232453088",
+                "STATE-OF-INCORPORATION": "VA",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-16581",
+                "FILM-NUMBER": "141225885"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1130 BERKSHIRE BLVD",
+                "CITY": "WYOMISSING",
+                "STATE": "PA",
+                "ZIP": "19610",
+                "PHONE": "610-320-8400"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "11-900-FN5",
+                "STREET2": "1130 BERKSHIRE BLVD",
+                "CITY": "WYOMISSING",
+                "STATE": "PA",
+                "ZIP": "19610"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "SOVEREIGN BANCORP INC",
+                "DATE-CHANGED": "19920703"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "q314iranthreatletter.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "santanderlogo.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

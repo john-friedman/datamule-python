@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000950103-16-012613",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20160414",
+        "DATE-OF-FILING-DATE-CHANGE": "20160414",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "TIM PARTICIPACOES SA",
+                "CIK": "0001066116",
+                "ASSIGNED-SIC": "4813",
+                "IRS-NUMBER": "000000000"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-14491",
+                "FILM-NUMBER": "161572366"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "AV. DAS AMERICAS, 3434",
+                "STREET2": "BLOCO 1, 7O ANDAR - PARTE",
+                "CITY": "RIO DE JANEIRO - RJ",
+                "STATE": "D5",
+                "ZIP": "22640-102",
+                "PHONE": "551181130582"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "AV. DAS AMERICAS, 3434",
+                "STREET2": "BLOCO 1, 7O ANDAR - PARTE",
+                "CITY": "RIO DE JANEIRO - RJ",
+                "STATE": "D5",
+                "ZIP": "22640-102"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "TELE CELULAR SUL PARTICIPACOES SA",
+                "DATE-CHANGED": "19980716"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "dp64904_irannotice.htm",
+            "DESCRIPTION": "FORM IRANNOTICE"
+        }
+    ]
+}

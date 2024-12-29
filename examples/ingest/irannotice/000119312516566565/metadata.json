@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-16-566565",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20160429",
+        "DATE-OF-FILING-DATE-CHANGE": "20160429",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "WOORI BANK",
+                "CIK": "0001264136",
+                "ASSIGNED-SIC": "6029",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "M5",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-31811",
+                "FILM-NUMBER": "161602952"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "203 HOESHYON DONG I GA CHUNG",
+                "CITY": "SEOUL KOREA",
+                "STATE": "M5",
+                "ZIP": "9999999999",
+                "PHONE": "000-000-0000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "203 HOESHYON DONG I GA CHUNG",
+                "CITY": "SEOUL KOREA",
+                "STATE": "M5",
+                "ZIP": "9999999999"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "WOORI FINANCE HOLDINGS CO LTD",
+                "DATE-CHANGED": "20030917"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d186136dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g186136g47n66.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

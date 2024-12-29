@@ -1,0 +1,55 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001681459-19-000092",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20190808",
+        "DATE-OF-FILING-DATE-CHANGE": "20190808",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "TechnipFMC plc",
+                "CIK": "0001681459",
+                "ASSIGNED-SIC": "3533",
+                "IRS-NUMBER": "981283037",
+                "STATE-OF-INCORPORATION": "X0",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-37983",
+                "FILM-NUMBER": "191010290"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "ONE ST. PAUL'S CHURCHYARD",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "EC4M 8AP",
+                "PHONE": "44 203 429 3950"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "ONE ST. PAUL'S CHURCHYARD",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "EC4M 8AP"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "TechnipFMC Ltd",
+                "DATE-CHANGED": "20160803"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice-q22019.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "technipfmclogoa18.jpg"
+        }
+    ]
+}

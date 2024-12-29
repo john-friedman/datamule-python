@@ -1,0 +1,48 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001140465-23-000031",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20230222",
+        "DATE-OF-FILING-DATE-CHANGE": "20230222",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "HSBC BANK PLC",
+                "CIK": "0001140465",
+                "ASSIGNED-SIC": "6029",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "X0",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-12364",
+                "FILM-NUMBER": "23652549"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "8 CANADA SQUARE",
+                "STREET2": "LEVEL 3",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "E14 5HQ",
+                "PHONE": "00447796704226"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "8 CANADA SQUARE",
+                "STREET2": "LEVEL 3",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "E14 5HQ"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "bankplcirannotice2022.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

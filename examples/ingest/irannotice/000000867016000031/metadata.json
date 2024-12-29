@@ -1,0 +1,46 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000008670-16-000031",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20160203",
+        "DATE-OF-FILING-DATE-CHANGE": "20160203",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "AUTOMATIC DATA PROCESSING INC",
+                "CIK": "0000008670",
+                "ASSIGNED-SIC": "7374",
+                "IRS-NUMBER": "221467904",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "0630"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-05397",
+                "FILM-NUMBER": "161383939"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "ONE ADP BOULVARD",
+                "CITY": "ROSELAND",
+                "STATE": "NJ",
+                "ZIP": "07068",
+                "PHONE": "9739747849"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "ONE ADP BOULEVARD",
+                "CITY": "ROSELAND",
+                "STATE": "NJ",
+                "ZIP": "07068"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "q2fy16irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE Q2FY16"
+        }
+    ]
+}

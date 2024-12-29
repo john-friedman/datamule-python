@@ -1,0 +1,49 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-17-026120",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20170426",
+        "DATE-OF-FILING-DATE-CHANGE": "20170426",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "TELECOM ARGENTINA SA",
+                "CIK": "0000932470",
+                "ASSIGNED-SIC": "4813",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-13464",
+                "FILM-NUMBER": "17782537"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "ALICIA MOREAU DE JUSTO 50",
+                "CITY": "BUENOS AIRES",
+                "STATE": "C1",
+                "ZIP": "C1107AAB",
+                "PHONE": "54-11-4968-4000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "ALICIA MOREAU DE JUSTO 50",
+                "CITY": "BUENOS AIRES",
+                "STATE": "C1",
+                "ZIP": "C1107AAB"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "TELECOM ARGENTINA STET FRANCE TELECOM SA",
+                "DATE-CHANGED": "19950809"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a17-11557_2irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

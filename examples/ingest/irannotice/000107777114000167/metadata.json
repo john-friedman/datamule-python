@@ -1,0 +1,48 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001077771-14-000167",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20141107",
+        "DATE-OF-FILING-DATE-CHANGE": "20141107",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "UMPQUA HOLDINGS CORP",
+                "CIK": "0001077771",
+                "ASSIGNED-SIC": "6035",
+                "IRS-NUMBER": "931261319",
+                "STATE-OF-INCORPORATION": "OR",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-34624",
+                "FILM-NUMBER": "141205620"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "ONE SW COLUMBIA STREET",
+                "STREET2": "SUITE 1200",
+                "CITY": "PORTLAND",
+                "STATE": "OR",
+                "ZIP": "97258",
+                "PHONE": "503-727-4100"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "ONE SW COLUMBIA STREET",
+                "STREET2": "SUITE 1200",
+                "CITY": "PORTLAND",
+                "STATE": "OR",
+                "ZIP": "97258"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "umpq-20140930irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

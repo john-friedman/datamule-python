@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001551182-17-000182",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20171031",
+        "DATE-OF-FILING-DATE-CHANGE": "20171031",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Eaton Corp plc",
+                "CIK": "0001551182",
+                "ASSIGNED-SIC": "3590",
+                "IRS-NUMBER": "981059235",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "000-54863",
+                "FILM-NUMBER": "171165385"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "30 PEMBROKE ROAD",
+                "STREET2": "EATON HOUSE",
+                "CITY": "DUBLIN",
+                "STATE": "L2",
+                "ZIP": "DUBLIN 4",
+                "PHONE": "353 1637 2900"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "30 PEMBROKE ROAD",
+                "STREET2": "EATON HOUSE",
+                "CITY": "DUBLIN",
+                "STATE": "L2",
+                "ZIP": "DUBLIN 4"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Eaton Corp Ltd",
+                "DATE-CHANGED": "20120530"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a201710-qq3irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE 3Q2017"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "eatonlogoletterheadlogoa01.jpg"
+        }
+    ]
+}

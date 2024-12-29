@@ -1,0 +1,47 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-15-039180",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20150209",
+        "DATE-OF-FILING-DATE-CHANGE": "20150209",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "STRATEGIC GLOBAL INCOME FUND INC",
+                "CIK": "0000880943",
+                "IRS-NUMBER": "133643938",
+                "STATE-OF-INCORPORATION": "MD",
+                "FISCAL-YEAR-END": "1130"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "811-06475",
+                "FILM-NUMBER": "15588797"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "C/O UBS GLOBAL ASSET MANAGEMENT (AMERICA",
+                "STREET2": "12TH FLOOR 1285 AVENUE OF THE AMERICAS",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10019",
+                "PHONE": "212-821-3000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "C/O UBS GLOBAL ASSET MANAGEMENT (AMERICA",
+                "STREET2": "12TH FLOOR 1285 AVENUE OF THE AMERICAS",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10019"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d823947dirannotice.htm",
+            "DESCRIPTION": "STRATEGIC GLOBAL INCOME FUND, INC."
+        }
+    ]
+}

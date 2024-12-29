@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001305014-13-000189",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20131127",
+        "DATE-OF-FILING-DATE-CHANGE": "20131127",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ASHLAND INC.",
+                "CIK": "0001305014",
+                "ASSIGNED-SIC": "5160",
+                "IRS-NUMBER": "200865835",
+                "STATE-OF-INCORPORATION": "KY",
+                "FISCAL-YEAR-END": "0930"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-32532",
+                "FILM-NUMBER": "131245669"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "50 EAST RIVERCENTER BLVD., 16TH FLOOR",
+                "CITY": "COVINGTON",
+                "STATE": "KY",
+                "ZIP": "41012",
+                "PHONE": "859-815-3483"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "50 EAST RIVERCENTER BLVD., 16TH FLOOR",
+                "CITY": "COVINGTON",
+                "STATE": "KY",
+                "ZIP": "41012"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "New EXM Inc.",
+                "DATE-CHANGED": "20041004"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "iranltr.htm",
+            "DESCRIPTION": "IRAN NOTICE LETTER ASHLAND INC."
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "letterlogo.jpg",
+            "DESCRIPTION": "LOGO"
+        }
+    ]
+}

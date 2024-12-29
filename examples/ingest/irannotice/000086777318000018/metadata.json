@@ -1,0 +1,51 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000867773-18-000018",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20180215",
+        "DATE-OF-FILING-DATE-CHANGE": "20180214",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "SUNPOWER CORP",
+                "CIK": "0000867773",
+                "ASSIGNED-SIC": "3674",
+                "IRS-NUMBER": "943008969",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-34166",
+                "FILM-NUMBER": "18615720"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "77 RIO ROBLES",
+                "CITY": "SAN JOSE",
+                "STATE": "CA",
+                "ZIP": "95134",
+                "PHONE": "408-240-5500"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "77 RIO ROBLES",
+                "CITY": "SAN JOSE",
+                "STATE": "CA",
+                "ZIP": "95134"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice21418.htm",
+            "DESCRIPTION": "IRANNOTICE 2.14.18"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "sp2014logoblacka03.gif"
+        }
+    ]
+}

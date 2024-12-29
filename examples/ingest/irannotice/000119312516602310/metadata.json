@@ -1,0 +1,46 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-16-602310",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20160525",
+        "DATE-OF-FILING-DATE-CHANGE": "20160525",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Mimecast Ltd",
+                "CIK": "0001644675",
+                "ASSIGNED-SIC": "7372",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "X0",
+                "FISCAL-YEAR-END": "0331"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-37637",
+                "FILM-NUMBER": "161674945"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "ONE ROPEMAKER STREET",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "EC2Y 9AW",
+                "PHONE": "44(0)2078478700"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "ONE ROPEMAKER STREET",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "EC2Y 9AW"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d151857dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        }
+    ]
+}

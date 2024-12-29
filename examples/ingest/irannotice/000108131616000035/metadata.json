@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001081316-16-000035",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20160506",
+        "DATE-OF-FILING-DATE-CHANGE": "20160506",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "BERKSHIRE HATHAWAY ENERGY CO",
+                "CIK": "0001081316",
+                "ASSIGNED-SIC": "4900",
+                "IRS-NUMBER": "942213782",
+                "STATE-OF-INCORPORATION": "IA",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-14881",
+                "FILM-NUMBER": "161628687"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "666 GRAND AVE",
+                "STREET2": "SUITE 500",
+                "CITY": "DES MOINES",
+                "STATE": "IA",
+                "ZIP": "50309-2580",
+                "PHONE": "515-242-4300"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "666 GRAND AVE",
+                "STREET2": "SUITE 500",
+                "CITY": "DES MOINES",
+                "STATE": "IA",
+                "ZIP": "50309-2580"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "MID AMERICAN ENERGY HOLDINGS CO /NEW/",
+                "DATE-CHANGED": "19990308"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice.htm",
+            "DESCRIPTION": "BHE IRANNOTICE 5.6.16"
+        }
+    ]
+}

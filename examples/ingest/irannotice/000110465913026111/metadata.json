@@ -1,0 +1,45 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-13-026111",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20130401",
+        "DATE-OF-FILING-DATE-CHANGE": "20130401",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "AAA Energy Opportunities Fund LLC",
+                "CIK": "0001529004",
+                "ASSIGNED-SIC": "6221",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "DE"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "000-54670",
+                "FILM-NUMBER": "13730039"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1285 AVENUE OF THE AMERICAS, 11TH FLOOR",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10019",
+                "PHONE": "(800) 580-2359"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1285 AVENUE OF THE AMERICAS, 11TH FLOOR",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10019"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a13-1996_3irannotice.htm",
+            "DESCRIPTION": "CORRESP"
+        }
+    ]
+}

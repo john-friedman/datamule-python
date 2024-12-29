@@ -1,0 +1,57 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000061398-18-000005",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20180315",
+        "DATE-OF-FILING-DATE-CHANGE": "20180315",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "TELLURIAN INC. /DE/",
+                "CIK": "0000061398",
+                "ASSIGNED-SIC": "1311",
+                "IRS-NUMBER": "060842255",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-05507",
+                "FILM-NUMBER": "18691081"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1201 LOUISIANA STREET",
+                "STREET2": "SUITE 3100",
+                "CITY": "HOUSTON",
+                "STATE": "TX",
+                "ZIP": "77002",
+                "PHONE": "832-962-4000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1201 LOUISIANA STREET",
+                "STREET2": "SUITE 3100",
+                "CITY": "HOUSTON",
+                "STATE": "TX",
+                "ZIP": "77002"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "MAGELLAN PETROLEUM CORP PANAMA",
+                "DATE-CHANGED": "19671130"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "logoa01.jpg"
+        }
+    ]
+}

@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-23-025384",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20230224",
+        "DATE-OF-FILING-DATE-CHANGE": "20230224",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "NatWest Group plc",
+                "CIK": "0000844150",
+                "ASSIGNED-SIC": "6029",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "X0",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-10306",
+                "FILM-NUMBER": "23668687"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "GOGARBURN",
+                "STREET2": "PO BOX 1000",
+                "CITY": "EDINBURGH, SCOTLAND",
+                "STATE": "X0",
+                "ZIP": "EH12 1HQ",
+                "PHONE": "441315568555"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "GOGARBURN",
+                "STREET2": "PO BOX 1000",
+                "CITY": "EDINBURGH, SCOTLAND",
+                "STATE": "X0",
+                "ZIP": "EH12 1HQ"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "ROYAL BANK OF SCOTLAND GROUP PLC",
+                "DATE-CHANGED": "19950712"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "tm2232897d3_irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

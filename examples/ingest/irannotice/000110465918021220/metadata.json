@@ -1,0 +1,48 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-18-021220",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20180329",
+        "DATE-OF-FILING-DATE-CHANGE": "20180329",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ROYAL BANK OF SCOTLAND GROUP PLC",
+                "CIK": "0000844150",
+                "ASSIGNED-SIC": "6029",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "X0",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-10306",
+                "FILM-NUMBER": "18722221"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "GOGARBURN",
+                "STREET2": "PO BOX 1000",
+                "CITY": "EDINBURGH, SCOTLAND",
+                "STATE": "X0",
+                "ZIP": "EH12 1HQ",
+                "PHONE": "441315568555"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "GOGARBURN",
+                "STREET2": "PO BOX 1000",
+                "CITY": "EDINBURGH, SCOTLAND",
+                "STATE": "X0",
+                "ZIP": "EH12 1HQ"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a18-3556_6irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

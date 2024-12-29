@@ -1,0 +1,55 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000216228-14-000018",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20140501",
+        "DATE-OF-FILING-DATE-CHANGE": "20140501",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ITT Corp",
+                "CIK": "0000216228",
+                "ASSIGNED-SIC": "3561",
+                "IRS-NUMBER": "135158950",
+                "STATE-OF-INCORPORATION": "IN",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-05672",
+                "FILM-NUMBER": "14805118"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1133 WESTCHESTER AVENUE",
+                "CITY": "WHITE PLAINS",
+                "STATE": "NY",
+                "ZIP": "10604",
+                "PHONE": "914.641.2041"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1133 WESTCHESTER AVENUE",
+                "CITY": "WHITE PLAINS",
+                "STATE": "NY",
+                "ZIP": "10604"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "ITT CORP",
+                "DATE-CHANGED": "19920703"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice2014q110q.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "ittblocks1.jpg"
+        }
+    ]
+}

@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-23-074043",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20230317",
+        "DATE-OF-FILING-DATE-CHANGE": "20230317",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Blackstone Private Credit Fund",
+                "CIK": "0001803498",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "814-01358",
+                "FILM-NUMBER": "23743601"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "345 PARK AVENUE",
+                "STREET2": "31ST FLOOR",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10154",
+                "PHONE": "212-503-2100"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "345 PARK AVENUE",
+                "STREET2": "31ST FLOOR",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10154"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d483176dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g483176g0314212213398.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

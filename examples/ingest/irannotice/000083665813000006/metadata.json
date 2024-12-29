@@ -1,0 +1,57 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000836658-13-000006",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20130327",
+        "DATE-OF-FILING-DATE-CHANGE": "20130327",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ING USA ANNUITY & LIFE INSURANCE CO",
+                "CIK": "0000836658",
+                "ASSIGNED-SIC": "6311",
+                "IRS-NUMBER": "410991508",
+                "STATE-OF-INCORPORATION": "IA",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-32625",
+                "FILM-NUMBER": "13720805"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1475 DUNWOODY DRIVE",
+                "STREET2": "SUITE 400",
+                "CITY": "WEST CHESTER",
+                "STATE": "PA",
+                "ZIP": "19380-2700",
+                "PHONE": "610-425-3400"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1475 DUNWOODY DRIVE",
+                "STREET2": "SUITE 400",
+                "CITY": "WEST CHESTER",
+                "STATE": "PA",
+                "ZIP": "19380-2700"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "GOLDEN AMERICAN LIFE INSURANCE CO",
+                "DATE-CHANGED": "19600201"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "inglogo.jpg"
+        }
+    ]
+}

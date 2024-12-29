@@ -1,0 +1,49 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-13-434023",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20131108",
+        "DATE-OF-FILING-DATE-CHANGE": "20131108",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "APOLLO INVESTMENT CORP",
+                "CIK": "0001278752",
+                "IRS-NUMBER": "522439556",
+                "STATE-OF-INCORPORATION": "MD",
+                "FISCAL-YEAR-END": "0331"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "814-00646",
+                "FILM-NUMBER": "131202528"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1301 AVENUE OF THE AMERICAS",
+                "STREET2": "38TH FLOOR",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10019"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "APOLLO CAPITAL CORP",
+                "DATE-CHANGED": "20040204"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d624440dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g624440g10m21.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

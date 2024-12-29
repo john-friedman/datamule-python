@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001096343-18-000044",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20180223",
+        "DATE-OF-FILING-DATE-CHANGE": "20180223",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "MARKEL CORP",
+                "CIK": "0001096343",
+                "ASSIGNED-SIC": "6331",
+                "IRS-NUMBER": "541959284",
+                "STATE-OF-INCORPORATION": "VA",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-15811",
+                "FILM-NUMBER": "18636437"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "4521 HIGHWOODS PARKWAY",
+                "CITY": "GLEN ALLEN",
+                "STATE": "VA",
+                "ZIP": "23060-3382",
+                "PHONE": "8047470136"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "4521 HIGHWOODS PKWY",
+                "CITY": "GLEN ALLEN",
+                "STATE": "VA",
+                "ZIP": "23060"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "MARKEL HOLDINGS INC",
+                "DATE-CHANGED": "19991005"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannoticefeb232018.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "irannoticeimage1a06.jpg",
+            "DESCRIPTION": "LOGO"
+        }
+    ]
+}

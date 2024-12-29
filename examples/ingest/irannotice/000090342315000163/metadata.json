@@ -1,0 +1,55 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000903423-15-000163",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20150225",
+        "DATE-OF-FILING-DATE-CHANGE": "20150225",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ArcelorMittal",
+                "CIK": "0001243429",
+                "ASSIGNED-SIC": "3312",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-35788",
+                "FILM-NUMBER": "15646109"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "24-26 BOULEVARD D?AVRANCHES",
+                "STREET2": "L-1160 LUXEMBOURG",
+                "CITY": "GRAND DUCHY OF LUXEMBOURG",
+                "STATE": "N4",
+                "ZIP": "00000",
+                "PHONE": "35247922151"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "24-26 BOULEVARD D?AVRANCHES",
+                "STREET2": "L-1160 LUXEMBOURG",
+                "CITY": "GRAND DUCHY OF LUXEMBOURG",
+                "STATE": "N4",
+                "ZIP": "00000"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "ARCELOR",
+                "DATE-CHANGED": "20030618"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "arcelorirannotice-0224.htm"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "image_002.jpg"
+        }
+    ]
+}

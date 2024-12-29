@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-15-060026",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20150814",
+        "DATE-OF-FILING-DATE-CHANGE": "20150814",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Gener8 Maritime, Inc.",
+                "CIK": "0001443799",
+                "ASSIGNED-SIC": "4412",
+                "IRS-NUMBER": "660716485",
+                "STATE-OF-INCORPORATION": "1T",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-34228",
+                "FILM-NUMBER": "151055369"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "299 PARK AVENUE",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10171",
+                "PHONE": "(212) 763-5600"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "299 PARK AVENUE",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10171"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Galileo Holding CORP",
+                "DATE-CHANGED": "20080825"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a15-16136_3irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g161363bci001.gif",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

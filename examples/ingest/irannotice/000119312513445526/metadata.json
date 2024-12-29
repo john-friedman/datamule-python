@@ -1,0 +1,54 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-13-445526",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20131118",
+        "DATE-OF-FILING-DATE-CHANGE": "20131118",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Oiltanking Partners, L.P.",
+                "CIK": "0001516007",
+                "ASSIGNED-SIC": "4610",
+                "IRS-NUMBER": "450684578",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-35230",
+                "FILM-NUMBER": "131227242"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "333 CLAY STREET",
+                "STREET2": "SUITE 2400",
+                "CITY": "HOUSTON",
+                "STATE": "TX",
+                "ZIP": "77002",
+                "PHONE": "281-457-7900"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "333 CLAY STREET",
+                "STREET2": "SUITE 2400",
+                "CITY": "HOUSTON",
+                "STATE": "TX",
+                "ZIP": "77002"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d631578dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g631578g65y71.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

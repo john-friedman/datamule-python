@@ -26,6 +26,6 @@ datamule/examples/*
 !datamule/examples/*.ipynb
 !datamule/examples/static/
 !datamule/examples/static/**/*
-datamule/examples/ingest/
-!examples/data/
-!examples/data/*.csv
+datamule/examples/ingest/**    # More explicit ignore rule
+!datamule/examples/data/       # Match the same path structure
+!datamule/examples/data/*.csv

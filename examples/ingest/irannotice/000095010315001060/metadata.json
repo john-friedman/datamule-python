@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000950103-15-001060",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20150209",
+        "DATE-OF-FILING-DATE-CHANGE": "20150209",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Synutra International, Inc.",
+                "CIK": "0001293593",
+                "ASSIGNED-SIC": "2020",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "0331"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-33397",
+                "FILM-NUMBER": "15588803"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "15200 SHADY GROVE ROAD #350",
+                "CITY": "ROCKVILLE",
+                "STATE": "MD",
+                "ZIP": "20850",
+                "PHONE": "3018403888"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "15200 SHADY GROVE ROAD #350",
+                "CITY": "ROCKVILLE",
+                "STATE": "MD",
+                "ZIP": "20850"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Vorsatech Ventures, Inc.",
+                "DATE-CHANGED": "20040614"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "dp53321_irannotice.htm",
+            "DESCRIPTION": "FORM IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "logo.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

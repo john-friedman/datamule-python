@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001171843-18-002792",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20180418",
+        "DATE-OF-FILING-DATE-CHANGE": "20180417",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "AMYRIS, INC.",
+                "CIK": "0001365916",
+                "ASSIGNED-SIC": "2860",
+                "IRS-NUMBER": "550856151",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-34885",
+                "FILM-NUMBER": "18759809"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "5885 HOLLIS STREET, SUITE 100",
+                "CITY": "EMERYVILLE",
+                "STATE": "CA",
+                "ZIP": "94608",
+                "PHONE": "510-450-0761"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "5885 HOLLIS STREET, SUITE 100",
+                "CITY": "EMERYVILLE",
+                "STATE": "CA",
+                "ZIP": "94608"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "AMYRIS BIOTECHNOLOGIES INC",
+                "DATE-CHANGED": "20060613"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice_041718.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "logo.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

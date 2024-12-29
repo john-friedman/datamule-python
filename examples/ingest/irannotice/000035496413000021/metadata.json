@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000354964-13-000021",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20131104",
+        "DATE-OF-FILING-DATE-CHANGE": "20131104",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "HSBC Finance Corp",
+                "CIK": "0000354964",
+                "ASSIGNED-SIC": "6141",
+                "IRS-NUMBER": "861052062",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-08198",
+                "FILM-NUMBER": "131187534"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "224-880-7000",
+                "STREET2": "26525 N. RIVERWOODS BLVD.",
+                "CITY": "METTAWA",
+                "STATE": "IL",
+                "ZIP": "60045",
+                "PHONE": "224-880-7000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "26525 N. RIVERWOODS BLVD.",
+                "CITY": "METTAWA",
+                "STATE": "IL",
+                "ZIP": "60045"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "HOUSEHOLD INTERNATIONAL INC",
+                "DATE-CHANGED": "19920703"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "hbioirandisclosure93013.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

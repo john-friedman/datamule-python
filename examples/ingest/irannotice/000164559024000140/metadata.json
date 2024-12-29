@@ -1,0 +1,47 @@
+{
+    "submission": {
+        "ACCESSION NUMBER": "0001645590-24-000140",
+        "CONFORMED SUBMISSION TYPE": "IRANNOTICE",
+        "PUBLIC DOCUMENT COUNT": "1",
+        "FILED AS OF DATE": "20241219",
+        "DATE AS OF CHANGE": "20241219",
+        "FILER": {
+            "COMPANY DATA": {
+                "COMPANY CONFORMED NAME": "Hewlett Packard Enterprise Co",
+                "CENTRAL INDEX KEY": "0001645590",
+                "STANDARD INDUSTRIAL CLASSIFICATION": "COMPUTER & OFFICE EQUIPMENT [3570]",
+                "ORGANIZATION NAME": "06 Technology",
+                "IRS NUMBER": "473298624",
+                "STATE OF INCORPORATION": "DE",
+                "FISCAL YEAR END": "1031"
+            },
+            "FILING VALUES": {
+                "FORM TYPE": "IRANNOTICE",
+                "SEC ACT": "1934 Act",
+                "SEC FILE NUMBER": "001-37483",
+                "FILM NUMBER": "241561050"
+            },
+            "BUSINESS ADDRESS": {
+                "STREET 1": "1701 E MOSSY OAKS ROAD",
+                "CITY": "SPRING",
+                "STATE": "TX",
+                "ZIP": "77389",
+                "BUSINESS PHONE": "678-259-9860"
+            },
+            "MAIL ADDRESS": {
+                "STREET 1": "1701 E MOSSY OAKS ROAD",
+                "CITY": "SPRING",
+                "STATE": "TX",
+                "ZIP": "77389"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice2024-q4.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

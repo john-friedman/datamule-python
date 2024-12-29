@@ -1,0 +1,46 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000950103-21-017366",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20211104",
+        "DATE-OF-FILING-DATE-CHANGE": "20211104",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "TOYOTA MOTOR CREDIT CORP",
+                "CIK": "0000834071",
+                "ASSIGNED-SIC": "6141",
+                "IRS-NUMBER": "953775816",
+                "STATE-OF-INCORPORATION": "CA",
+                "FISCAL-YEAR-END": "0331"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-09961",
+                "FILM-NUMBER": "211379089"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "6565 HEADQUARTERS DRIVE, W2-3D",
+                "CITY": "PLANO",
+                "STATE": "TX",
+                "ZIP": "75024",
+                "PHONE": "(469) 486-9013"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "6565 HEADQUARTERS DRIVE, W2-3D",
+                "CITY": "PLANO",
+                "STATE": "TX",
+                "ZIP": "75024"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "dp161294_irannotice.htm",
+            "DESCRIPTION": "FORM IRANNOTICE"
+        }
+    ]
+}

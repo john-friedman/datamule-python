@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000107140-16-000052",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20160629",
+        "DATE-OF-FILING-DATE-CHANGE": "20160629",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "WILEY JOHN & SONS, INC.",
+                "CIK": "0000107140",
+                "ASSIGNED-SIC": "2731",
+                "IRS-NUMBER": "135593032",
+                "STATE-OF-INCORPORATION": "NY",
+                "FISCAL-YEAR-END": "0430"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-11507",
+                "FILM-NUMBER": "161739122"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "111 RIVER STREET",
+                "CITY": "HOBOKEN",
+                "STATE": "NJ",
+                "ZIP": "07030",
+                "PHONE": "2017486000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "111 RIVER STREET",
+                "CITY": "HOBOKEN",
+                "STATE": "NJ",
+                "ZIP": "07030"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "WILEY JOHN & SONS INC",
+                "DATE-CHANGED": "19920703"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        }
+    ]
+}

@@ -1,0 +1,49 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000902739-17-000012",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20171026",
+        "DATE-OF-FILING-DATE-CHANGE": "20171026",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "NBCUniversal Media, LLC",
+                "CIK": "0000902739",
+                "ASSIGNED-SIC": "4841",
+                "IRS-NUMBER": "141682529",
+                "STATE-OF-INCORPORATION": "DE"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-36438",
+                "FILM-NUMBER": "171156495"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "30 ROCKEFELLER PLAZA",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10112",
+                "PHONE": "2126644444"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "30 ROCKEFELLER PLAZA",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10112"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "NATIONAL BROADCASTING CO INC",
+                "DATE-CHANGED": "19930429"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irrannotice-3q17.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

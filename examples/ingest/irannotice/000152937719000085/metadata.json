@@ -1,0 +1,47 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001529377-19-000085",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20191122",
+        "DATE-OF-FILING-DATE-CHANGE": "20191122",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Ares Commercial Real Estate Corp",
+                "CIK": "0001529377",
+                "ASSIGNED-SIC": "6798",
+                "IRS-NUMBER": "453148087",
+                "STATE-OF-INCORPORATION": "MD"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-35517",
+                "FILM-NUMBER": "191241802"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "245 PARK AVENUE",
+                "STREET2": "42ND FLOOR",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10167",
+                "PHONE": "212.515.3400"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "245 PARK AVENUE",
+                "STREET2": "42ND FLOOR",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10167"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice112219.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

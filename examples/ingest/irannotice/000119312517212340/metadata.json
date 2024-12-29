@@ -1,0 +1,48 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-17-212340",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20170626",
+        "DATE-OF-FILING-DATE-CHANGE": "20170626",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "NOMURA HOLDINGS INC",
+                "CIK": "0001163653",
+                "ASSIGNED-SIC": "6211",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "M0",
+                "FISCAL-YEAR-END": "0331"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-15270",
+                "FILM-NUMBER": "17928864"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1-9-1 NIHONBASHI",
+                "STREET2": "CHUO-KU",
+                "CITY": "TOKYO",
+                "STATE": "M0",
+                "ZIP": "103-8645",
+                "PHONE": "810352551000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1-9-1 NIHONBASHI",
+                "STREET2": "CHUO-KU",
+                "CITY": "TOKYO",
+                "STATE": "M0",
+                "ZIP": "103-8645"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d405865dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        }
+    ]
+}

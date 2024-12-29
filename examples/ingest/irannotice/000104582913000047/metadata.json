@@ -1,0 +1,46 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001045829-13-000047",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20130820",
+        "DATE-OF-FILING-DATE-CHANGE": "20130819",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "VANGUARD HEALTH SYSTEMS INC",
+                "CIK": "0001045829",
+                "ASSIGNED-SIC": "6324",
+                "IRS-NUMBER": "621698183",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "0630"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-35204",
+                "FILM-NUMBER": "131049570"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "20 BURTON HILLS BLVD",
+                "CITY": "NASHVILLE",
+                "STATE": "TN",
+                "ZIP": "37215",
+                "PHONE": "6156656000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "20 BURTON HILLS BLVD",
+                "CITY": "NASHVILLE",
+                "STATE": "TN",
+                "ZIP": "37215"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "vhs-2013630irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

@@ -1,0 +1,45 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001555280-14-000346",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20141117",
+        "DATE-OF-FILING-DATE-CHANGE": "20141117",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Zoetis Inc.",
+                "CIK": "0001555280",
+                "ASSIGNED-SIC": "2834",
+                "IRS-NUMBER": "460696167",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-35797",
+                "FILM-NUMBER": "141227991"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "100 CAMPUS DRIVE",
+                "CITY": "FLORHAM PARK",
+                "STATE": "NJ",
+                "ZIP": "07932",
+                "PHONE": "973-822-7000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "100 CAMPUS DRIVE",
+                "CITY": "FLORHAM PARK",
+                "STATE": "NJ",
+                "ZIP": "07932"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice2013.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

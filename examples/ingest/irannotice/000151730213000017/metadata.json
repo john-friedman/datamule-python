@@ -1,0 +1,53 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001517302-13-000017",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20130805",
+        "DATE-OF-FILING-DATE-CHANGE": "20130805",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Artisan Partners Asset Management Inc.",
+                "CIK": "0001517302",
+                "ASSIGNED-SIC": "6282",
+                "IRS-NUMBER": "450969585",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-35826",
+                "FILM-NUMBER": "131009200"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "875 E. WISCONSIN AVENUE",
+                "STREET2": "SUITE 800",
+                "CITY": "MILWAUKEE",
+                "STATE": "WI",
+                "ZIP": "53202",
+                "PHONE": "414-390-6100"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "875 E. WISCONSIN AVENUE",
+                "STREET2": "SUITE 800",
+                "CITY": "MILWAUKEE",
+                "STATE": "WI",
+                "ZIP": "53202"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a2q13irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "apamletterhead.jpg"
+        }
+    ]
+}

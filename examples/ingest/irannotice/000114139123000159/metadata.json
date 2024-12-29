@@ -1,0 +1,55 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001141391-23-000159",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20231026",
+        "DATE-OF-FILING-DATE-CHANGE": "20231026",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Mastercard Inc",
+                "CIK": "0001141391",
+                "ASSIGNED-SIC": "7389",
+                "IRS-NUMBER": "134172551",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-32877",
+                "FILM-NUMBER": "231347952"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "2000 PURCHASE STREET",
+                "CITY": "PURCHASE",
+                "STATE": "NY",
+                "ZIP": "10577",
+                "PHONE": "9142492000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "2000 PURCHASE STREET",
+                "CITY": "PURCHASE",
+                "STATE": "NY",
+                "ZIP": "10577"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "MASTERCARD INC",
+                "DATE-CHANGED": "20010525"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "ma09302023-irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "mc_logononamea01a.jpg"
+        }
+    ]
+}

@@ -1,0 +1,55 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001385613-20-000045",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20200505",
+        "DATE-OF-FILING-DATE-CHANGE": "20200505",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "GREENLIGHT CAPITAL RE, LTD.",
+                "CIK": "0001385613",
+                "ASSIGNED-SIC": "6331",
+                "IRS-NUMBER": "000000000"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-33493",
+                "FILM-NUMBER": "20849468"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "65 MARKET STREET, SUITE 1207,",
+                "STREET2": "CAMANA BAY, P.O. BOX 31110",
+                "CITY": "GRAND CAYMAN",
+                "STATE": "E9",
+                "ZIP": "KY1-1205",
+                "PHONE": "345 943 4573"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "65 MARKET STREET, SUITE 1207,",
+                "STREET2": "CAMANA BAY, P.O. BOX 31110",
+                "CITY": "GRAND CAYMAN",
+                "STATE": "E9",
+                "ZIP": "KY1-1205"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Greenlight Capital Re, Ltd.",
+                "DATE-CHANGED": "20070109"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice2020q1.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "glre_logoa04.jpg"
+        }
+    ]
+}

@@ -1,0 +1,58 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000018230-22-000114",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20220504",
+        "DATE-OF-FILING-DATE-CHANGE": "20220504",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "CATERPILLAR INC",
+                "CIK": "0000018230",
+                "ASSIGNED-SIC": "3531",
+                "IRS-NUMBER": "370602744",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-00768",
+                "FILM-NUMBER": "22890376"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "510 LAKE COOK ROAD",
+                "STREET2": "SUITE 100",
+                "CITY": "DEERFIELD",
+                "STATE": "IL",
+                "ZIP": "60015",
+                "PHONE": "2245514000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "510 LAKE COOK ROAD",
+                "STREET2": "SUITE 100",
+                "CITY": "DEERFIELD",
+                "STATE": "IL",
+                "ZIP": "60015"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "CATERPILLAR TRACTOR CO",
+                "DATE-CHANGED": "19860623"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "catinc13rnotice_4may2022.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "image_0.jpg",
+            "DESCRIPTION": "CATERPILAR LOGO"
+        }
+    ]
+}

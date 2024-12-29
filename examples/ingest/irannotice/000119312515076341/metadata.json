@@ -1,0 +1,55 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-15-076341",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20150304",
+        "DATE-OF-FILING-DATE-CHANGE": "20150304",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Santander UK plc",
+                "CIK": "0001087711",
+                "ASSIGNED-SIC": "6029",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-14928",
+                "FILM-NUMBER": "15672328"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "2 TRITON SQUARE, REGENT'S PLACE",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "NW1 3AN",
+                "PHONE": "011 44 870 607 6000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "2 TRITON SQUARE, REGENT'S PLACE",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "NW1 3AN"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "ABBEY NATIONAL PLC",
+                "DATE-CHANGED": "19990601"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d863992dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g863992g47l09.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

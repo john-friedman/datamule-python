@@ -1,0 +1,53 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000004962-19-000052",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20190723",
+        "DATE-OF-FILING-DATE-CHANGE": "20190723",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "AMERICAN EXPRESS CO",
+                "CIK": "0000004962",
+                "ASSIGNED-SIC": "6199",
+                "IRS-NUMBER": "134922250",
+                "STATE-OF-INCORPORATION": "NY",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-07657",
+                "FILM-NUMBER": "19967949"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "200 VESEY STREET",
+                "STREET2": "50TH FLOOR",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10285",
+                "PHONE": "2126402000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "200 VESEY STREET",
+                "STREET2": "50TH FLOOR",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10285"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "inaxpq22019.htm",
+            "DESCRIPTION": "IRAN NOTICE OF AMERICAN EXPRESS COMPANY"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "image00001.jpg"
+        }
+    ]
+}

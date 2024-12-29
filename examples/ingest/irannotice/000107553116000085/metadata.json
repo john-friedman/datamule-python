@@ -1,0 +1,55 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001075531-16-000085",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20160217",
+        "DATE-OF-FILING-DATE-CHANGE": "20160217",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Priceline Group Inc.",
+                "CIK": "0001075531",
+                "ASSIGNED-SIC": "7389",
+                "IRS-NUMBER": "061528493",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-36691",
+                "FILM-NUMBER": "161431665"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "800 CONNECTICUT AVE",
+                "CITY": "NORWALK",
+                "STATE": "CT",
+                "ZIP": "06854",
+                "PHONE": "203-299-8000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "800 CONNECTICUT AVE",
+                "CITY": "NORWALK",
+                "STATE": "CT",
+                "ZIP": "06854"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "PRICELINE COM INC",
+                "DATE-CHANGED": "19981221"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a201512irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "pricelinegrouplogoa01.jpg"
+        }
+    ]
+}

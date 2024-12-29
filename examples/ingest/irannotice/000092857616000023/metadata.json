@@ -1,0 +1,48 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000928576-16-000023",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20160506",
+        "DATE-OF-FILING-DATE-CHANGE": "20160506",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "MIDAMERICAN ENERGY CO",
+                "CIK": "0000928576",
+                "ASSIGNED-SIC": "4911",
+                "IRS-NUMBER": "421425214",
+                "STATE-OF-INCORPORATION": "IA",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-206980",
+                "FILM-NUMBER": "161628806"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "666 GRAND AVE",
+                "STREET2": "P O BOX 657",
+                "CITY": "DES MOINES",
+                "STATE": "IA",
+                "ZIP": "50306-0657",
+                "PHONE": "5152424300"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "666 GRAND AVENUE",
+                "STREET2": "SUITE 500",
+                "CITY": "DES MOINES",
+                "STATE": "IA",
+                "ZIP": "50309-2580"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "mec5616irannotice.htm",
+            "DESCRIPTION": "MEC IRANNOTICE 5.6.16"
+        }
+    ]
+}

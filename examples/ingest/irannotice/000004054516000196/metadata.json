@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000040545-16-000196",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20161102",
+        "DATE-OF-FILING-DATE-CHANGE": "20161102",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "GENERAL ELECTRIC CO",
+                "CIK": "0000040545",
+                "ASSIGNED-SIC": "3600",
+                "IRS-NUMBER": "140689340",
+                "STATE-OF-INCORPORATION": "NY",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-00035",
+                "FILM-NUMBER": "161968212"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "41 FARNSWORTH STREET",
+                "CITY": "BOSTON",
+                "STATE": "MA",
+                "ZIP": "02210",
+                "PHONE": "617-443-3000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "41 FARNSWORTH STREET",
+                "CITY": "BOSTON",
+                "STATE": "MA",
+                "ZIP": "02210"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "ge3q16iran.htm"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "image0.jpg"
+        }
+    ]
+}

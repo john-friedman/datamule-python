@@ -1,0 +1,46 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-13-290884",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20130716",
+        "DATE-OF-FILING-DATE-CHANGE": "20130715",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "FEDERAL EXPRESS CORP",
+                "CIK": "0000230211",
+                "ASSIGNED-SIC": "4513",
+                "IRS-NUMBER": "710427007",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "0531"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-07806",
+                "FILM-NUMBER": "13969018"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "3610 HACKS CROSS ROAD",
+                "CITY": "MEMPHIS",
+                "STATE": "TN",
+                "ZIP": "38125",
+                "PHONE": "9013693600"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "3610 HACKS CROSS ROAD",
+                "CITY": "MEMPHIS",
+                "STATE": "TN",
+                "ZIP": "38125"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d565235dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

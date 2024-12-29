@@ -1,0 +1,51 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000867773-23-000027",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20230310",
+        "DATE-OF-FILING-DATE-CHANGE": "20230309",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "SUNPOWER CORP",
+                "CIK": "0000867773",
+                "ASSIGNED-SIC": "3674",
+                "IRS-NUMBER": "943008969",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "0101"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-34166",
+                "FILM-NUMBER": "23721376"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1414 HARBOUR WAY SOUTH, SUITE 1901",
+                "CITY": "RICHMOND",
+                "STATE": "CA",
+                "ZIP": "94804",
+                "PHONE": "408-240-5500"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1414 HARBOUR WAY SOUTH, SUITE 1901",
+                "CITY": "RICHMOND",
+                "STATE": "CA",
+                "ZIP": "94804"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice2022.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "irannoticeimage.gif"
+        }
+    ]
+}

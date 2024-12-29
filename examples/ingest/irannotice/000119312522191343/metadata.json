@@ -1,0 +1,47 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-22-191343",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20220711",
+        "DATE-OF-FILING-DATE-CHANGE": "20220711",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Master Trust",
+                "CIK": "0001403166",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "0430"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "811-22078",
+                "FILM-NUMBER": "221077548"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "C/O UBS ASSET MANAGEMENT (AMERICAS) INC.",
+                "STREET2": "787 SEVENTH AVENUE",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10019",
+                "PHONE": "212-821-3000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "C/O UBS ASSET MANAGEMENT (AMERICAS) INC.",
+                "STREET2": "787 SEVENTH AVENUE",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10019"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d241137dirannotice.htm",
+            "DESCRIPTION": "MASTER TRUST"
+        }
+    ]
+}

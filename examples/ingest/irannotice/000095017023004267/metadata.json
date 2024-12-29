@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000950170-23-004267",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20230224",
+        "DATE-OF-FILING-DATE-CHANGE": "20230224",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ZIMMER BIOMET HOLDINGS, INC.",
+                "CIK": "0001136869",
+                "ASSIGNED-SIC": "3842",
+                "IRS-NUMBER": "134151777",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-16407",
+                "FILM-NUMBER": "23663047"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "345 EAST MAIN STREET",
+                "CITY": "WARSAW",
+                "STATE": "IN",
+                "ZIP": "46580",
+                "PHONE": "5742676131"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "345 EAST MAIN STREET",
+                "CITY": "WARSAW",
+                "STATE": "IN",
+                "ZIP": "46580"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "ZIMMER HOLDINGS INC",
+                "DATE-CHANGED": "20010315"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "zbh_-_irannotice_-_2022.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "img139515006_0.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

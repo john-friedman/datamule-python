@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-21-133886",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20210427",
+        "DATE-OF-FILING-DATE-CHANGE": "20210427",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Capital Product Partners L.P.",
+                "CIK": "0001392326",
+                "ASSIGNED-SIC": "4412",
+                "IRS-NUMBER": "000000000"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-33373",
+                "FILM-NUMBER": "21857986"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "3 IASSONOS STREET",
+                "CITY": "PIRAEUS",
+                "STATE": "J3",
+                "ZIP": "18537",
+                "PHONE": "0030 210 458 4950"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "3 IASSONOS STREET",
+                "CITY": "PIRAEUS",
+                "STATE": "J3",
+                "ZIP": "18537"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d65046dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g65046g0421093103112.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

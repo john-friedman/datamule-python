@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001628280-17-001529",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20170221",
+        "DATE-OF-FILING-DATE-CHANGE": "20170221",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "HSBC HOLDINGS PLC",
+                "CIK": "0001089113",
+                "ASSIGNED-SIC": "6035",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-14930",
+                "FILM-NUMBER": "17625935"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "8 CANADA SQUARE",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "E145HQ",
+                "PHONE": "442079912652"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "8 CANADA SQUARE",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "E14 5HQ"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "salsigned20firannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "hsbclogo.jpg"
+        }
+    ]
+}

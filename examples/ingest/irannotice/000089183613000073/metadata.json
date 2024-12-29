@@ -1,0 +1,54 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000891836-13-000073",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20130322",
+        "DATE-OF-FILING-DATE-CHANGE": "20130322",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "STATOIL ASA",
+                "CIK": "0001140625",
+                "ASSIGNED-SIC": "2911",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-15200",
+                "FILM-NUMBER": "13709514"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "FORUSBEEN 50",
+                "CITY": "STAVANGER NORWAY",
+                "STATE": "Q8",
+                "ZIP": "N 4035",
+                "PHONE": "47 51 99 00 00"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "FORUSBEEN 50",
+                "CITY": "STAVANGER",
+                "STATE": "Q8",
+                "ZIP": "N 4035"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "STATOIL ASA",
+                "DATE-CHANGED": "20010515"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice.htm",
+            "DESCRIPTION": "NOTICE OF DISCLOSURE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "logo.jpg"
+        }
+    ]
+}

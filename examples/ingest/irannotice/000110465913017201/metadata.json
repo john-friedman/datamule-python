@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-13-017201",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20130304",
+        "DATE-OF-FILING-DATE-CHANGE": "20130304",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "HERTZ CORP",
+                "CIK": "0000047129",
+                "ASSIGNED-SIC": "7510",
+                "IRS-NUMBER": "131938568",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-07541",
+                "FILM-NUMBER": "13661636"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "225 BRAE BLVD",
+                "CITY": "PARK RIDGE",
+                "STATE": "NJ",
+                "ZIP": "07656",
+                "PHONE": "2013072000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "225 BRAE BLVD",
+                "CITY": "PARK RIDGE",
+                "STATE": "NJ",
+                "ZIP": "07656"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a13-6527_1irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g65271bii001.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

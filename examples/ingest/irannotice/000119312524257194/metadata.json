@@ -1,0 +1,55 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-24-257194",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20241113",
+        "DATE-OF-FILING-DATE-CHANGE": "20241113",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Blackstone Private Equity Strategies Fund L.P.",
+                "CIK": "0001930054",
+                "ORGANIZATION-NAME": {
+                    "IRS-NUMBER": "000000000",
+                    "STATE-OF-INCORPORATION": "DE",
+                    "FISCAL-YEAR-END": "1231"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "IRANNOTICE",
+                    "ACT": "34",
+                    "FILE-NUMBER": "000-56446",
+                    "FILM-NUMBER": "241453952"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "345 PARK AVENUE",
+                    "STREET2": "27TH FLOOR",
+                    "CITY": "NEW YORK",
+                    "STATE": "NY",
+                    "ZIP": "10154",
+                    "PHONE": "2125835000"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "345 PARK AVENUE",
+                    "STREET2": "27TH FLOOR",
+                    "CITY": "NEW YORK",
+                    "STATE": "NY",
+                    "ZIP": "10154"
+                }
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d896854dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g896854g1104233909704.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

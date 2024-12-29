@@ -1,0 +1,57 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-15-079624",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20150306",
+        "DATE-OF-FILING-DATE-CHANGE": "20150306",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "RIO TINTO PLC",
+                "CIK": "0000863064",
+                "ASSIGNED-SIC": "1000",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "X0",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-10533",
+                "FILM-NUMBER": "15679533"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "2 EASTBOURNE TERRACE",
+                "CITY": "LONDON, W2 6LG",
+                "STATE": "X0",
+                "ZIP": "00000",
+                "PHONE": "44 20 7781 1623"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "RIO TINTO SERVICES INC.",
+                "STREET2": "80 STATE STREET",
+                "CITY": "ALBANY",
+                "STATE": "NY",
+                "ZIP": "12207-2543"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "RTZ CORPORATION PLC",
+                "DATE-CHANGED": "19950522"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d883222dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g883222g87a82.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

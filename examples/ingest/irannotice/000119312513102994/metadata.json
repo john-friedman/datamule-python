@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-13-102994",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20130312",
+        "DATE-OF-FILING-DATE-CHANGE": "20130312",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Travelport LTD",
+                "CIK": "0001386355",
+                "ASSIGNED-SIC": "4700",
+                "IRS-NUMBER": "980505100",
+                "STATE-OF-INCORPORATION": "D0",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-141714-23",
+                "FILM-NUMBER": "13683832"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "300 GALLERIA PARKWAY, N.W.",
+                "CITY": "ATLANTA",
+                "STATE": "GA",
+                "ZIP": "30339",
+                "PHONE": "770-563-7400"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "300 GALLERIA PARKWAY, N.W.",
+                "CITY": "ATLANTA",
+                "STATE": "GA",
+                "ZIP": "30339"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d499103dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g499103image002.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

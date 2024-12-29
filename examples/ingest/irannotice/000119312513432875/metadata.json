@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-13-432875",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20131107",
+        "DATE-OF-FILING-DATE-CHANGE": "20131107",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Sprouts Farmers Market, Inc.",
+                "CIK": "0001575515",
+                "ASSIGNED-SIC": "5411",
+                "IRS-NUMBER": "320331600",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1229"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-36029",
+                "FILM-NUMBER": "131200899"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "11811 N. TATUM BOULEVARD SUITE 2400",
+                "CITY": "PHOENIX",
+                "STATE": "AZ",
+                "ZIP": "85028",
+                "PHONE": "480-814-8016"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "11811 N. TATUM BOULEVARD SUITE 2400",
+                "CITY": "PHOENIX",
+                "STATE": "AZ",
+                "ZIP": "85028"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Sprouts Farmers Markets, LLC",
+                "DATE-CHANGED": "20130426"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d623457dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        }
+    ]
+}

@@ -1,0 +1,51 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000019617-16-000903",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20160223",
+        "DATE-OF-FILING-DATE-CHANGE": "20160223",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "JPMORGAN CHASE & CO",
+                "CIK": "0000019617",
+                "ASSIGNED-SIC": "6021",
+                "IRS-NUMBER": "132624428",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-05805",
+                "FILM-NUMBER": "161448602"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "270 PARK AVE",
+                "STREET2": "38TH FL",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10017",
+                "PHONE": "2122706000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "270 PARK AVENUE",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10017"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "CHEMICAL BANKING CORP",
+                "DATE-CHANGED": "19920703"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "corpq42015irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

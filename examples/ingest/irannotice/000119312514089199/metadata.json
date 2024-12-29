@@ -1,0 +1,54 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-14-089199",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20140307",
+        "DATE-OF-FILING-DATE-CHANGE": "20140307",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Summit Materials, LLC",
+                "CIK": "0001571371",
+                "ASSIGNED-SIC": "1540",
+                "IRS-NUMBER": "244138486",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1229"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-187556",
+                "FILM-NUMBER": "14677668"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "2900 K STREET N.W., SUITE 100",
+                "STREET2": "HARBOURSIDE NORTH TOWER BUILDING",
+                "CITY": "WASHINGTON",
+                "STATE": "DC",
+                "ZIP": "20007",
+                "PHONE": "2025032458"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "2900 K STREET N.W., SUITE 100",
+                "STREET2": "HARBOURSIDE NORTH TOWER BUILDING",
+                "CITY": "WASHINGTON",
+                "STATE": "DC",
+                "ZIP": "20007"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d639809dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g639809g73p23.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

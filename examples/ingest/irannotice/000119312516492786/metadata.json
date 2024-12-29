@@ -1,0 +1,47 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-16-492786",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20160304",
+        "DATE-OF-FILING-DATE-CHANGE": "20160304",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ABBEY NATIONAL TREASURY SERVICES PLC/ENG",
+                "CIK": "0000931061",
+                "ASSIGNED-SIC": "6029",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-35222",
+                "FILM-NUMBER": "161484135"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "2 TRITON SQUARE",
+                "STREET2": "REGENT'S PLACE",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "NW1 3AN",
+                "PHONE": "2126641666"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "2 TRITON SQUARE",
+                "STREET2": "REGENT'S PLACE",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "NW1 3AN"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d44186dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

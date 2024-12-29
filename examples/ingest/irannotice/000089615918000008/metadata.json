@@ -1,0 +1,55 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000896159-18-000008",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20180502",
+        "DATE-OF-FILING-DATE-CHANGE": "20180502",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Chubb Ltd",
+                "CIK": "0000896159",
+                "ASSIGNED-SIC": "6331",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "V8",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-11778",
+                "FILM-NUMBER": "18800334"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "BARENGASSE 32",
+                "CITY": "ZURICH",
+                "STATE": "V8",
+                "ZIP": "CH-8001",
+                "PHONE": "41 0 43 456 7600"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "BARENGASSE 32",
+                "CITY": "ZURICH",
+                "STATE": "V8",
+                "ZIP": "CH-8001"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "ACE LTD",
+                "DATE-CHANGED": "19930122"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "q12018irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "chubbgraphic.gif"
+        }
+    ]
+}

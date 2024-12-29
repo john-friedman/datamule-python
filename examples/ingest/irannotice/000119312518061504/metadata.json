@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-18-061504",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20180228",
+        "DATE-OF-FILING-DATE-CHANGE": "20180227",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ALBEMARLE CORP",
+                "CIK": "0000915913",
+                "ASSIGNED-SIC": "2821",
+                "IRS-NUMBER": "541692118",
+                "STATE-OF-INCORPORATION": "VA",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-12658",
+                "FILM-NUMBER": "18647247"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "4350 CONGRESS STREET",
+                "STREET2": "SUITE 700",
+                "CITY": "CHARLOTTE",
+                "STATE": "NC",
+                "ZIP": "28209",
+                "PHONE": "980-299-5700"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "4350 CONGRESS STREET",
+                "STREET2": "SUITE 700",
+                "CITY": "CHARLOTTE",
+                "STATE": "NC",
+                "ZIP": "28209"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "ECHEM INC",
+                "DATE-CHANGED": "19931208"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d501064dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

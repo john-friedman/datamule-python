@@ -1,0 +1,45 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-14-187681",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20140507",
+        "DATE-OF-FILING-DATE-CHANGE": "20140507",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "UCI HOLDINGS LTD",
+                "CIK": "0001513050",
+                "ASSIGNED-SIC": "3714",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "Q2"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-173626",
+                "FILM-NUMBER": "14821855"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "148 Quay Street, Level Nine",
+                "CITY": "Auckland 1140",
+                "STATE": "Q2",
+                "ZIP": "00000",
+                "PHONE": "64-9-366-6259"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "148 Quay Street, Level Nine",
+                "CITY": "Auckland 1140",
+                "STATE": "Q2",
+                "ZIP": "00000"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d723371dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

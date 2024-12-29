@@ -1,0 +1,51 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-14-062903",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20140221",
+        "DATE-OF-FILING-DATE-CHANGE": "20140221",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Norwegian Cruise Line Holdings Ltd.",
+                "CIK": "0001513761",
+                "ASSIGNED-SIC": "4400",
+                "IRS-NUMBER": "980691007",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-35784",
+                "FILM-NUMBER": "14634236"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "7665 CORPORATE DRIVE",
+                "CITY": "MIAMI",
+                "STATE": "FL",
+                "ZIP": "33126",
+                "PHONE": "305-436-4000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "7665 CORPORATE DRIVE",
+                "CITY": "MIAMI",
+                "STATE": "FL",
+                "ZIP": "33126"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d678844dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g678844g11s74.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

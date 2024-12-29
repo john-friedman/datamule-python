@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001554855-22-000171",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20220331",
+        "DATE-OF-FILING-DATE-CHANGE": "20220331",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "TENARIS SA",
+                "CIK": "0001190723",
+                "ASSIGNED-SIC": "3312",
+                "IRS-NUMBER": "000000000"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-31518",
+                "FILM-NUMBER": "22789291"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "26, BOULEVARD ROYAL, 4TH FLOOR",
+                "CITY": "LUXEMBOURG",
+                "STATE": "N4",
+                "ZIP": "L-2449",
+                "PHONE": "1-888-300-5432"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "26, BOULEVARD ROYAL, 4TH FLOOR",
+                "CITY": "LUXEMBOURG",
+                "STATE": "N4",
+                "ZIP": "L-2449"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "MainDocument.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "imgc0a8ee4f9bd147609441.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000701347-13-000015",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20130322",
+        "DATE-OF-FILING-DATE-CHANGE": "20130322",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "CENTRAL PACIFIC FINANCIAL CORP",
+                "CIK": "0000701347",
+                "ASSIGNED-SIC": "6022",
+                "IRS-NUMBER": "990212597",
+                "STATE-OF-INCORPORATION": "HI",
+                "FISCAL-YEAR-END": "0125"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-31567",
+                "FILM-NUMBER": "13710970"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "220 S KING ST",
+                "CITY": "HONOLULU",
+                "STATE": "HI",
+                "ZIP": "96813",
+                "PHONE": "8085440500"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "P O BOX 3590",
+                "CITY": "HONOLULU",
+                "STATE": "HI",
+                "ZIP": "96811"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "CPB INC",
+                "DATE-CHANGED": "19920703"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "longlogo.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

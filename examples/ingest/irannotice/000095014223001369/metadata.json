@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000950142-23-001369",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20230505",
+        "DATE-OF-FILING-DATE-CHANGE": "20230505",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "CARRIER GLOBAL Corp",
+                "CIK": "0001783180",
+                "ASSIGNED-SIC": "3585",
+                "IRS-NUMBER": "834051582",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-39220",
+                "FILM-NUMBER": "23894345"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "13995 PASTEUR BOULEVARD",
+                "CITY": "PALM BEACH GARDENS",
+                "STATE": "FL",
+                "ZIP": "33418",
+                "PHONE": "5613652000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "13995 PASTEUR BOULEVARD",
+                "CITY": "PALM BEACH GARDENS",
+                "STATE": "FL",
+                "ZIP": "33418"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Carrier Global Corp",
+                "DATE-CHANGED": "20190722"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "eh230356431_irannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "logo.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

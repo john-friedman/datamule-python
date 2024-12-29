@@ -1,0 +1,57 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-18-101467",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20180329",
+        "DATE-OF-FILING-DATE-CHANGE": "20180329",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "CGG",
+                "CIK": "0001037962",
+                "ASSIGNED-SIC": "1382",
+                "IRS-NUMBER": "741734402",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-14622",
+                "FILM-NUMBER": "18722256"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "TOUR MAINE MONTPARNASSE",
+                "STREET2": "33 AVENUE DU MAINE - BP 191",
+                "CITY": "PARIS",
+                "STATE": "I0",
+                "ZIP": "75015",
+                "PHONE": "33164474500"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "TOUR MAINE MONTPARNASSE",
+                "STREET2": "33 AVENUE DU MAINE - BP 191",
+                "CITY": "PARIS",
+                "STATE": "I0",
+                "ZIP": "75015"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "GENERAL GEOPHYSICS CO",
+                "DATE-CHANGED": "19970417"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d551615dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g551615g0329200700461.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

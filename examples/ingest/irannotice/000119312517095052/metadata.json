@@ -1,0 +1,55 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-17-095052",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20170324",
+        "DATE-OF-FILING-DATE-CHANGE": "20170324",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Royal Ahold Delhaize",
+                "CIK": "0000869425",
+                "ASSIGNED-SIC": "5411",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-12510",
+                "FILM-NUMBER": "17711903"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "PROVINCIALEWEG 11",
+                "CITY": "ZAANDAM",
+                "STATE": "P7",
+                "ZIP": "1506 MA",
+                "PHONE": "31-20-509-5100"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "PROVINCIALEWEG 11",
+                "CITY": "ZAANDAM",
+                "STATE": "P7",
+                "ZIP": "1506 MA"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "KONINKLIJKE AHOLD N V",
+                "DATE-CHANGED": "19931119"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d347372dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g347372001.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

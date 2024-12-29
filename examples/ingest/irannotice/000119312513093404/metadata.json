@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-13-093404",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20130306",
+        "DATE-OF-FILING-DATE-CHANGE": "20130306",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "BP PLC",
+                "CIK": "0000313807",
+                "ASSIGNED-SIC": "2911",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "X0",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-06262",
+                "FILM-NUMBER": "13668886"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1 ST JAMES'S SQUARE",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "SW1Y 4PD",
+                "PHONE": "442074962107"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1 ST JAMES'S SQUARE",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "SW1Y 4PD"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "BRITISH PETROLEUM CO PLC",
+                "DATE-CHANGED": "19970226"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d441093dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g441093logo.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

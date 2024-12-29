@@ -1,0 +1,37 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001558370-19-001463",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20190304",
+        "DATE-OF-FILING-DATE-CHANGE": "20190304",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "SMITH & NEPHEW PLC",
+                "CIK": "0000845982",
+                "ASSIGNED-SIC": "3842",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-14978",
+                "FILM-NUMBER": "19652281"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "15 ADAM STREET",
+                "CITY": "LONDON ENGLAND",
+                "STATE": "X0",
+                "ZIP": "WC2N 6LA"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice.htm"
+        }
+    ]
+}

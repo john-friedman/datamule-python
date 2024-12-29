@@ -1,0 +1,53 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-20-078499",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20200319",
+        "DATE-OF-FILING-DATE-CHANGE": "20200319",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "AEGON NV",
+                "CIK": "0000769218",
+                "ASSIGNED-SIC": "6311",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-10882",
+                "FILM-NUMBER": "20726883"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "AEGONPLEIN 50",
+                "STREET2": "PO BOX 85",
+                "CITY": "THE HAGUE",
+                "STATE": "P7",
+                "ZIP": "2501 CB",
+                "PHONE": "011-31-70-344-7308"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "AEGONPLEIN 50",
+                "STREET2": "PO BOX 85",
+                "CITY": "THE HAGUE",
+                "STATE": "P7",
+                "ZIP": "2501 CB"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d902428dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g902428g12d56.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

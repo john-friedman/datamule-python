@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001398344-24-020385",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20241108",
+        "DATE-OF-FILING-DATE-CHANGE": "20241108",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Puerto Rico Residents Tax-Free Fund IV, Inc.",
+                "CIK": "0001847286",
+                "ORGANIZATION-NAME": {
+                    "IRS-NUMBER": "660528496",
+                    "STATE-OF-INCORPORATION": "PR",
+                    "FISCAL-YEAR-END": "0831"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "IRANNOTICE",
+                    "ACT": "34",
+                    "FILE-NUMBER": "333-260719",
+                    "FILM-NUMBER": "241441771"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "270 MUNOZ RIVERA AVENUE",
+                    "STREET2": "SUITE 1110",
+                    "CITY": "SAN JUAN",
+                    "STATE": "PR",
+                    "ZIP": "00918",
+                    "PHONE": "7877641788"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "270 MUNOZ RIVERA AVENUE",
+                    "STREET2": "SUITE 1110",
+                    "CITY": "SAN JUAN",
+                    "STATE": "PR",
+                    "ZIP": "00918"
+                },
+                "FORMER-COMPANY": {
+                    "FORMER-CONFORMED-NAME": "Puerto Rico Investors Tax Free Fund IV, Inc.",
+                    "DATE-CHANGED": "20210222"
+                }
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "fp0090951-4_irannotice.htm"
+        }
+    ]
+}

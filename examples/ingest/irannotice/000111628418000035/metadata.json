@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001116284-18-000035",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20181127",
+        "DATE-OF-FILING-DATE-CHANGE": "20181127",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "EXFO INC.",
+                "CIK": "0001116284",
+                "ASSIGNED-SIC": "3825",
+                "IRS-NUMBER": "980131231",
+                "STATE-OF-INCORPORATION": "A8",
+                "FISCAL-YEAR-END": "0831"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "000-30895",
+                "FILM-NUMBER": "181202129"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "400 GODIN AVENUE",
+                "CITY": "QUEBEC CITY",
+                "STATE": "A8",
+                "ZIP": "G1M 2K2",
+                "PHONE": "418-683-0211"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "400 GODIN AVENUE",
+                "CITY": "QUEBEC CITY",
+                "STATE": "A8",
+                "ZIP": "G1M 2K2"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "EXFO ELECTRO OPTICAL ENGINEERING INC",
+                "DATE-CHANGED": "20000607"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice20181127.htm",
+            "DESCRIPTION": "NOTICE OF DISCLOSURE FILED PURSUANT TO SECTION 219 OF THE IRAN THREAT REDUCTION AND SYRIA HUMAN RIGHTS ACT OF 2012 (EXCHANGE ACT SECTION 13(R))"
+        }
+    ]
+}

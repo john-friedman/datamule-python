@@ -1,0 +1,43 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-16-747977",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20161026",
+        "DATE-OF-FILING-DATE-CHANGE": "20161026",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "COMCAST CORP",
+                "CIK": "0001166691",
+                "ASSIGNED-SIC": "4841",
+                "IRS-NUMBER": "270000798",
+                "STATE-OF-INCORPORATION": "PA",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-32871",
+                "FILM-NUMBER": "161952959"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1500 MARKET STREET",
+                "CITY": "PHILADELPHIA",
+                "STATE": "PA",
+                "ZIP": "19102"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "AT&T COMCAST CORP",
+                "DATE-CHANGED": "20020206"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d254415dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

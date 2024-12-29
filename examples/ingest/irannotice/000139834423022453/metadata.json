@@ -1,0 +1,53 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001398344-23-022453",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20231207",
+        "DATE-OF-FILING-DATE-CHANGE": "20231207",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Blackstone Floating Rate Enhanced Income Fund",
+                "CIK": "0001710523",
+                "IRS-NUMBER": "822936689",
+                "FISCAL-YEAR-END": "1031"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-219127",
+                "FILM-NUMBER": "231473158"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "345 PARK AVENUE, 31ST FLOOR",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10154",
+                "PHONE": "212 503-2100"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "345 PARK AVENUE, 31ST FLOOR",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10154"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Blackstone / GSO Floating Rate Enhanced Income Fund",
+                "DATE-CHANGED": "20170627"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "fp0086155-1_irannotice.htm"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "image_001.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

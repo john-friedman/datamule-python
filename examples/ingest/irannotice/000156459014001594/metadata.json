@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001564590-14-001594",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20140424",
+        "DATE-OF-FILING-DATE-CHANGE": "20140424",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Nielsen CO B.V.",
+                "CIK": "0001397410",
+                "ASSIGNED-SIC": "7389",
+                "IRS-NUMBER": "980366864",
+                "STATE-OF-INCORPORATION": "P7",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-142546-29",
+                "FILM-NUMBER": "14780219"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "770 BROADWAY",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10003",
+                "PHONE": "646-654-5000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "770 BROADWAY",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10003"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "ncbv-10q_20140424.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g20140423161000398309.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

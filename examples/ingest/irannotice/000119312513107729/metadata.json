@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-13-107729",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20130314",
+        "DATE-OF-FILING-DATE-CHANGE": "20130314",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "QUALITY DISTRIBUTION INC",
+                "CIK": "0000922863",
+                "ASSIGNED-SIC": "4213",
+                "IRS-NUMBER": "593239073",
+                "STATE-OF-INCORPORATION": "FL",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "000-24180",
+                "FILM-NUMBER": "13691310"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "4041 PARK OAKS BOULEVARD",
+                "STREET2": "SUITE 200",
+                "CITY": "TAMPA",
+                "STATE": "FL",
+                "ZIP": "33610",
+                "PHONE": "8136305826"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "4041 PARK OAKS BOULEVARD",
+                "STREET2": "SUITE 200",
+                "CITY": "TAMPA",
+                "STATE": "FL",
+                "ZIP": "33610"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "MTL INC",
+                "DATE-CHANGED": "19940509"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d503204dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

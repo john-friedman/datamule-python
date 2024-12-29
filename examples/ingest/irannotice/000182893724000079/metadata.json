@@ -1,0 +1,49 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001828937-24-000079",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20240809",
+        "DATE-OF-FILING-DATE-CHANGE": "20240809",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Finance of America Companies Inc.",
+                "CIK": "0001828937",
+                "ASSIGNED-SIC": "6162",
+                "ORGANIZATION-NAME": "02 Finance",
+                "IRS-NUMBER": "853474065",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-40308",
+                "FILM-NUMBER": "241192784"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "5830 GRANITE PARKWAY",
+                "STREET2": "SUITE 400",
+                "CITY": "PLANO",
+                "STATE": "TX",
+                "ZIP": "75024",
+                "PHONE": "877-202-2666"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "5830 GRANITE PARKWAY",
+                "STREET2": "SUITE 400",
+                "CITY": "PLANO",
+                "STATE": "TX",
+                "ZIP": "75024"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice2q2024.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

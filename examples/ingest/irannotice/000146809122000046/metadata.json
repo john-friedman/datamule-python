@@ -1,0 +1,55 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001468091-22-000046",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20220429",
+        "DATE-OF-FILING-DATE-CHANGE": "20220429",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "VEON Ltd.",
+                "CIK": "0001468091",
+                "ASSIGNED-SIC": "4812",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "D0",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-34694",
+                "FILM-NUMBER": "22876709"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "CLAUDE DEBUSSYLAAN 88",
+                "CITY": "AMSTERDAM",
+                "STATE": "P7",
+                "ZIP": "1082 MD",
+                "PHONE": "31 20 797 7200"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "CLAUDE DEBUSSYLAAN 88",
+                "CITY": "AMSTERDAM",
+                "STATE": "P7",
+                "ZIP": "1082 MD"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "New Spring Co Ltd.",
+                "DATE-CHANGED": "20090709"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "fy2021noticeofdisclosurefi.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "veonlogo11march2019.jpg"
+        }
+    ]
+}

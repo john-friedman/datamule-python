@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000732717-13-000018",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20130222",
+        "DATE-OF-FILING-DATE-CHANGE": "20130222",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "AT&T INC.",
+                "CIK": "0000732717",
+                "ASSIGNED-SIC": "4813",
+                "IRS-NUMBER": "431301883",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-08610",
+                "FILM-NUMBER": "13634730"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "208 S. AKARD ST",
+                "STREET2": "ATTN : JAMES LACY",
+                "CITY": "DALLAS",
+                "STATE": "TX",
+                "ZIP": "75202",
+                "PHONE": "2108214105"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "208 S. AKARD ST",
+                "STREET2": "ATTN : JAMES LACY",
+                "CITY": "DALLAS",
+                "STATE": "TX",
+                "ZIP": "75202"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "SOUTHWESTERN BELL CORP",
+                "DATE-CHANGED": "19920703"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "IRANNOTICE.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

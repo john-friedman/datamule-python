@@ -1,0 +1,59 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001292814-24-001450",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20240419",
+        "DATE-OF-FILING-DATE-CHANGE": "20240418",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "BRF S.A.",
+                "CIK": "0001122491",
+                "ASSIGNED-SIC": "2011",
+                "ORGANIZATION-NAME": "04 Manufacturing",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "D5",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-15148",
+                "FILM-NUMBER": "24855446"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "AV DAS NACOES UNIDAS 14401 22ND-25TH",
+                "STREET2": "FLOORS TORRE A2 VILA GERTRUDES 04794-000",
+                "CITY": "SAO PAULO SP BRAZIL",
+                "STATE": "D5",
+                "ZIP": "00000",
+                "PHONE": "551123225377"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "AV DAS NACOES UNIDAS 14401 22ND-25TH",
+                "STREET2": "FLOORS TORRE A2 VILA GERTRUDES 04794-000",
+                "CITY": "SAO PAULO SP BRAZIL",
+                "STATE": "D5",
+                "ZIP": "00000"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "PERDIGAO SA",
+                "DATE-CHANGED": "20000823"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "brf20240415_irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "brf20240415irannotice_001.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

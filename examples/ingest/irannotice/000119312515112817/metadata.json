@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-15-112817",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20150331",
+        "DATE-OF-FILING-DATE-CHANGE": "20150331",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Autohome Inc.",
+                "CIK": "0001527636",
+                "ASSIGNED-SIC": "7374",
+                "IRS-NUMBER": "000000000"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-36222",
+                "FILM-NUMBER": "15736355"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "10th Floor Tower B CEC Plaza",
+                "STREET2": "3 Dan Ling Street, Haidian District",
+                "CITY": "Beijin",
+                "STATE": "F4",
+                "ZIP": "00000",
+                "PHONE": "8610 5985 7001"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "10th Floor Tower B CEC Plaza",
+                "STREET2": "3 Dan Ling Street, Haidian District",
+                "CITY": "Beijin",
+                "STATE": "F4",
+                "ZIP": "00000"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Sequel Ltd",
+                "DATE-CHANGED": "20110809"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d898450dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

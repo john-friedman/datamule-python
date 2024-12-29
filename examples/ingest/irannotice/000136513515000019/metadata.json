@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001365135-15-000019",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20150430",
+        "DATE-OF-FILING-DATE-CHANGE": "20150430",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Western Union CO",
+                "CIK": "0001365135",
+                "ASSIGNED-SIC": "7389",
+                "IRS-NUMBER": "204531180",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-32903",
+                "FILM-NUMBER": "15818514"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "12500 EAST BELFORD AVENUE",
+                "CITY": "ENGLEWOOD",
+                "STATE": "CO",
+                "ZIP": "80112",
+                "PHONE": "(720) 332-3361"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "12500 EAST BELFORD AVENUE",
+                "CITY": "ENGLEWOOD",
+                "STATE": "CO",
+                "ZIP": "80112"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "wulogoa05.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

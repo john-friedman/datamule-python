@@ -1,0 +1,58 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001558370-17-002369",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20170331",
+        "DATE-OF-FILING-DATE-CHANGE": "20170331",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Banco Santander, S.A.",
+                "CIK": "0000891478",
+                "ASSIGNED-SIC": "6029",
+                "IRS-NUMBER": "132617929",
+                "STATE-OF-INCORPORATION": "U3",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-12518",
+                "FILM-NUMBER": "17730472"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "CIUDAD GRUPO SANTANDER",
+                "STREET2": "BOADILLA DEL MONTE",
+                "CITY": "MADRID",
+                "STATE": "U3",
+                "ZIP": "28660",
+                "PHONE": "34 91 289 32 80"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "CIUDAD GRUPO SANTANDER",
+                "STREET2": "BOADILLA DEL MONTE",
+                "CITY": "MADRID",
+                "STATE": "U3",
+                "ZIP": "28660"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "BANCO SANTANDER S A",
+                "DATE-CHANGED": "19931201"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "san_currentfolioirannotic.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "sancurrentfolioirannotic001.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

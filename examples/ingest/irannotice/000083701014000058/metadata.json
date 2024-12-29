@@ -1,0 +1,55 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000837010-14-000058",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20140327",
+        "DATE-OF-FILING-DATE-CHANGE": "20140327",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ING LIFE INSURANCE & ANNUITY CO",
+                "CIK": "0000837010",
+                "ASSIGNED-SIC": "6311",
+                "IRS-NUMBER": "710294708",
+                "STATE-OF-INCORPORATION": "CT",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "033-23376",
+                "FILM-NUMBER": "14721032"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "ONE ORANGE WAY",
+                "CITY": "WINDSOR",
+                "STATE": "CT",
+                "ZIP": "06095-4774",
+                "PHONE": "860-580-2851"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "ONE ORANGE WAY",
+                "CITY": "WINDSOR",
+                "STATE": "CT",
+                "ZIP": "06095-4774"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "AETNA LIFE INSURANCE & ANNUITY CO /CT",
+                "DATE-CHANGED": "19920703"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice2013q4.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "inglogo.jpg"
+        }
+    ]
+}

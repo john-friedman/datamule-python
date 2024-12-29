@@ -1,0 +1,46 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001733391-19-000019",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20191107",
+        "DATE-OF-FILING-DATE-CHANGE": "20191107",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ARROW ELECTRONICS INC",
+                "CIK": "0000007536",
+                "ASSIGNED-SIC": "5065",
+                "IRS-NUMBER": "111806155",
+                "STATE-OF-INCORPORATION": "NY",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-04482",
+                "FILM-NUMBER": "191199945"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "9201 EAST DRY CREEK ROAD",
+                "CITY": "CENTENNIAL",
+                "STATE": "CO",
+                "ZIP": "80112",
+                "PHONE": "303-824-4000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "9201 EAST DRY CREEK ROAD",
+                "CITY": "CENTENNIAL",
+                "STATE": "CO",
+                "ZIP": "80112"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "arwq32019irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

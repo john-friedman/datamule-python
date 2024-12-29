@@ -1,0 +1,53 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001394159-14-000204",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20140807",
+        "DATE-OF-FILING-DATE-CHANGE": "20140807",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Orbitz Worldwide, Inc.",
+                "CIK": "0001394159",
+                "ASSIGNED-SIC": "4700",
+                "IRS-NUMBER": "205337455",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-33599",
+                "FILM-NUMBER": "141021981"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "500 W. MADISON STREET",
+                "STREET2": "SUITE 1000",
+                "CITY": "CHICAGO",
+                "STATE": "IL",
+                "ZIP": "60661",
+                "PHONE": "312-894-5000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "500 W. MADISON STREET",
+                "STREET2": "SUITE 1000",
+                "CITY": "CHICAGO",
+                "STATE": "IL",
+                "ZIP": "60661"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice2014q-2.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "irannotice2014q2image1.jpg"
+        }
+    ]
+}

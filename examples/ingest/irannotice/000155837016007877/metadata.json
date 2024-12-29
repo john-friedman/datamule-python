@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001558370-16-007877",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20160811",
+        "DATE-OF-FILING-DATE-CHANGE": "20160810",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Summit Materials, Inc.",
+                "CIK": "0001621563",
+                "ASSIGNED-SIC": "1400",
+                "IRS-NUMBER": "471984212",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1227"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-36873",
+                "FILM-NUMBER": "161822775"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1550 WYNKOOP STREET, 3RD FLOOR",
+                "CITY": "DENVER",
+                "STATE": "CO",
+                "ZIP": "80202",
+                "PHONE": "303-893-0012"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1550 WYNKOOP STREET, 3RD FLOOR",
+                "CITY": "DENVER",
+                "STATE": "CO",
+                "ZIP": "80202"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "sum-20160810x8k.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "sum20160810x8k001.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

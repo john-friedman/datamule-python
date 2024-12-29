@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-22-027005",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20220203",
+        "DATE-OF-FILING-DATE-CHANGE": "20220203",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "WESTERN DIGITAL CORP",
+                "CIK": "0000106040",
+                "ASSIGNED-SIC": "3572",
+                "IRS-NUMBER": "330956711",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "0703"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-08703",
+                "FILM-NUMBER": "22588432"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "5601 GREAT OAKS PARKWAY",
+                "CITY": "SAN JOSE",
+                "STATE": "CA",
+                "ZIP": "95119",
+                "PHONE": "9496727000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "3355 MICHELSON DRIVE SUITE 100",
+                "CITY": "IRVINE",
+                "STATE": "CA",
+                "ZIP": "92612"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "GENERAL DIGITAL CORP",
+                "DATE-CHANGED": "19730125"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d247434dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g247434g0201044039314.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

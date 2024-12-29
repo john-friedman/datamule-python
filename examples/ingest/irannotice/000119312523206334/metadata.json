@@ -1,0 +1,46 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-23-206334",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20230808",
+        "DATE-OF-FILING-DATE-CHANGE": "20230808",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "METROPOLITAN LIFE INSURANCE CO",
+                "CIK": "0000937834",
+                "ASSIGNED-SIC": "6311",
+                "IRS-NUMBER": "135581829",
+                "STATE-OF-INCORPORATION": "NY",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "000-55029",
+                "FILM-NUMBER": "231152460"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "200 PARK AVENUE",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10166",
+                "PHONE": "212-578-9000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "200 PARK AVENUE",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10166"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d525645dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

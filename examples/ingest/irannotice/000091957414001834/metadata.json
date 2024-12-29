@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000919574-14-001834",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20140214",
+        "DATE-OF-FILING-DATE-CHANGE": "20140214",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "TOP SHIPS INC.",
+                "CIK": "0001296484",
+                "ASSIGNED-SIC": "4412",
+                "IRS-NUMBER": "000000000"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "000-50859",
+                "FILM-NUMBER": "14617745"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1, VASSILISSIS SOFIAS STR. & MEG.",
+                "STREET2": "ALEXANDROU STR.",
+                "CITY": "151 24, MAROUSSI",
+                "STATE": "J3",
+                "ZIP": "00000",
+                "PHONE": "011-30-210-81-28-107"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1, VASSILISSIS SOFIAS STR. & MEG.",
+                "STREET2": "ALEXANDROU STR.",
+                "CITY": "151 24, MAROUSSI",
+                "STATE": "J3",
+                "ZIP": "00000"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "TOP TANKERS INC.",
+                "DATE-CHANGED": "20040706"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d1451408_iran.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        }
+    ]
+}

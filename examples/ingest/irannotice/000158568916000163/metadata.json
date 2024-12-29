@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001585689-16-000163",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20160226",
+        "DATE-OF-FILING-DATE-CHANGE": "20160226",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Hilton Worldwide Holdings Inc.",
+                "CIK": "0001585689",
+                "ASSIGNED-SIC": "7011",
+                "IRS-NUMBER": "274384691",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-36243",
+                "FILM-NUMBER": "161461061"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "7930 JONES BRANCH DRIVE, SUITE 1100",
+                "CITY": "MCLEAN",
+                "STATE": "VA",
+                "ZIP": "22102",
+                "PHONE": "703-883-1000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "7930 JONES BRANCH DRIVE, SUITE 1100",
+                "CITY": "MCLEAN",
+                "STATE": "VA",
+                "ZIP": "22102"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a2015irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "hiltonworldwidelogo1a04.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

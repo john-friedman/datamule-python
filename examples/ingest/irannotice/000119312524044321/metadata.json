@@ -1,0 +1,57 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-24-044321",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20240223",
+        "DATE-OF-FILING-DATE-CHANGE": "20240223",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Sanofi",
+                "CIK": "0001121404",
+                "ASSIGNED-SIC": "2834",
+                "ORGANIZATION-NAME": "03 Life Sciences",
+                "IRS-NUMBER": "133529324",
+                "STATE-OF-INCORPORATION": "I0",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-31368",
+                "FILM-NUMBER": "24670070"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "46 AVENUE DE LA GRANDE ARMEE",
+                "CITY": "PARIS",
+                "STATE": "I0",
+                "ZIP": "75017",
+                "PHONE": "33153774400"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "46 AVENUE DE LA GRANDE ARMEE",
+                "CITY": "PARIS",
+                "STATE": "I0",
+                "ZIP": "75017"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "SANOFI SYNTHELABO SA",
+                "DATE-CHANGED": "20010104"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d792366dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g792366g0223231808671.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

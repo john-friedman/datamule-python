@@ -1,0 +1,48 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-19-175197",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20190618",
+        "DATE-OF-FILING-DATE-CHANGE": "20190618",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "SONY CORP",
+                "CIK": "0000313838",
+                "ASSIGNED-SIC": "3651",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "M0",
+                "FISCAL-YEAR-END": "0331"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-06439",
+                "FILM-NUMBER": "19902610"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1-7-1, KONAN",
+                "STREET2": "MINATO-KU",
+                "CITY": "TOKYO",
+                "STATE": "M0",
+                "ZIP": "108-0075",
+                "PHONE": "81-3-6748-2111"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1-7-1, KONAN",
+                "STREET2": "MINATO-KU",
+                "CITY": "TOKYO",
+                "STATE": "M0",
+                "ZIP": "108-0075"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d870848dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        }
+    ]
+}

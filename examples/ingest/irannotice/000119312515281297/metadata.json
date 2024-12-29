@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-15-281297",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20150806",
+        "DATE-OF-FILING-DATE-CHANGE": "20150806",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "SunGard",
+                "CIK": "0001337272",
+                "ASSIGNED-SIC": "7372",
+                "IRS-NUMBER": "203059890",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "000-53653",
+                "FILM-NUMBER": "151034234"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "680 EAST SWEDESFORD RD",
+                "CITY": "WAYNE",
+                "STATE": "PA",
+                "ZIP": "19087",
+                "PHONE": "484-582-2000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "680 EAST SWEDESFORD RD",
+                "CITY": "WAYNE",
+                "STATE": "PA",
+                "ZIP": "19087"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "SUNGARD CAPITAL CORP",
+                "DATE-CHANGED": "20050829"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d64365dirannotice.htm",
+            "DESCRIPTION": "SUNGARD IRAN NOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g64365g89a79.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

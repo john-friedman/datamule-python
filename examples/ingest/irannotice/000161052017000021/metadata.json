@@ -1,0 +1,46 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001610520-17-000021",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20170315",
+        "DATE-OF-FILING-DATE-CHANGE": "20170315",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "UBS AG",
+                "CIK": "0001114446",
+                "ASSIGNED-SIC": "6021",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "V8",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-15060",
+                "FILM-NUMBER": "17690657"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "BAHNHOFSTRASSE 45",
+                "STREET2": "P O BOX CH 8001",
+                "CITY": "ZURICH",
+                "STATE": "V8",
+                "ZIP": "CH 8001",
+                "PHONE": "203-719-5241"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "677 WASHINGTON BLVD.",
+                "CITY": "STAMFORD",
+                "STATE": "CT",
+                "ZIP": "06901"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice2017.htm"
+        }
+    ]
+}

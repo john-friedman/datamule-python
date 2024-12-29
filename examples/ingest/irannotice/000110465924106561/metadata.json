@@ -1,0 +1,53 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-24-106561",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20241007",
+        "DATE-OF-FILING-DATE-CHANGE": "20241007",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "PACE SELECT ADVISORS TRUST",
+                "CIK": "0000930007",
+                "ORGANIZATION-NAME": {
+                    "IRS-NUMBER": "000000000",
+                    "STATE-OF-INCORPORATION": "DE",
+                    "FISCAL-YEAR-END": "0731"
+                },
+                "FILING-VALUES": {
+                    "FORM-TYPE": "IRANNOTICE",
+                    "ACT": "34",
+                    "FILE-NUMBER": "033-87254",
+                    "FILM-NUMBER": "241356584"
+                },
+                "BUSINESS-ADDRESS": {
+                    "STREET1": "C/O UBS ASSET MANAGEMENT (AMERICAS) INC.",
+                    "STREET2": "787 SEVENTH AVENUE",
+                    "CITY": "NEW YORK",
+                    "STATE": "NY",
+                    "ZIP": "10019",
+                    "PHONE": "212-821-3000"
+                },
+                "MAIL-ADDRESS": {
+                    "STREET1": "C/O UBS ASSET MANAGEMENT (AMERICAS) INC.",
+                    "STREET2": "787 SEVENTH AVENUE",
+                    "CITY": "NEW YORK",
+                    "STATE": "NY",
+                    "ZIP": "10019"
+                },
+                "FORMER-COMPANY": {
+                    "FORMER-CONFORMED-NAME": "MANAGED ACCOUNTS SERVICES PORTFOLIO TRUST",
+                    "DATE-CHANGED": "19941212"
+                }
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "tm2425188d1_irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

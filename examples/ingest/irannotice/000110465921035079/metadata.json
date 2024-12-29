@@ -1,0 +1,47 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-21-035079",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20210311",
+        "DATE-OF-FILING-DATE-CHANGE": "20210311",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "SMA RELATIONSHIP TRUST",
+                "CIK": "0001225290",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-104218",
+                "FILM-NUMBER": "21734098"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "C/O UBS ASSET MANAGEMENT (AMERICAS) INC",
+                "STREET2": "ONE NORTH WACKER DR.",
+                "CITY": "CHICAGO",
+                "STATE": "IL",
+                "ZIP": "60606",
+                "PHONE": "312-525-7100"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "C/O UBS ASSET MANAGEMENT (AMERICAS) INC",
+                "STREET2": "ONE NORTH WACKER DR.",
+                "CITY": "CHICAGO",
+                "STATE": "IL",
+                "ZIP": "60606"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "tm211907d1_irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

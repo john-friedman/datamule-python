@@ -1,0 +1,49 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000950103-15-003427",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20150430",
+        "DATE-OF-FILING-DATE-CHANGE": "20150430",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "RBS Holdings N.V.",
+                "CIK": "0001038727",
+                "ASSIGNED-SIC": "6029",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-14624",
+                "FILM-NUMBER": "15818216"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "GUSTAV MAHLERLAAN 350",
+                "CITY": "AMSTERDAM",
+                "STATE": "P7",
+                "ZIP": "1082 ME",
+                "PHONE": "44 207 672 1758"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "P.O. 12925",
+                "CITY": "AMSTERDAM",
+                "STATE": "P7",
+                "ZIP": "1100 AX"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "ABN AMRO HOLDING N V",
+                "DATE-CHANGED": "19970507"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "dp55784_irannotice.htm",
+            "DESCRIPTION": "FORM IRANNOTICE"
+        }
+    ]
+}

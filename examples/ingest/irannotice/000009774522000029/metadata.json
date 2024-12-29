@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000097745-22-000029",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20220506",
+        "DATE-OF-FILING-DATE-CHANGE": "20220506",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "THERMO FISHER SCIENTIFIC INC.",
+                "CIK": "0000097745",
+                "ASSIGNED-SIC": "3829",
+                "IRS-NUMBER": "042209186",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-08002",
+                "FILM-NUMBER": "22900614"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "168 THIRD AVENUE",
+                "CITY": "WALTHAM",
+                "STATE": "MA",
+                "ZIP": "02451",
+                "PHONE": "7816221000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "168 THIRD AVENUE",
+                "CITY": "WALTHAM",
+                "STATE": "MA",
+                "ZIP": "02451"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "THERMO ELECTRON CORP",
+                "DATE-CHANGED": "19920703"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannoticeq12022.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

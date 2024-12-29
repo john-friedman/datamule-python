@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001439288-13-000055",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20131028",
+        "DATE-OF-FILING-DATE-CHANGE": "20131028",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Rexnord Corp",
+                "CIK": "0001439288",
+                "ASSIGNED-SIC": "3560",
+                "IRS-NUMBER": "205197013",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "0331"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-35475",
+                "FILM-NUMBER": "131173672"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "4701 GREENFIELD AVENUE",
+                "CITY": "MILWAUKEE",
+                "STATE": "WI",
+                "ZIP": "53214",
+                "PHONE": "414-643-3000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "4701 GREENFIELD AVENUE",
+                "CITY": "MILWAUKEE",
+                "STATE": "WI",
+                "ZIP": "53214"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Rexnord Holdings, Inc",
+                "DATE-CHANGED": "20080707"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "iranletter102813.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "rexnordcorplogo.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000006955-18-000040",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20181029",
+        "DATE-OF-FILING-DATE-CHANGE": "20181029",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ACTUANT CORP",
+                "CIK": "0000006955",
+                "ASSIGNED-SIC": "3590",
+                "IRS-NUMBER": "390168610",
+                "STATE-OF-INCORPORATION": "WI",
+                "FISCAL-YEAR-END": "0831"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-11288",
+                "FILM-NUMBER": "181144744"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "ATTN:  BRYAN JOHNSON",
+                "STREET2": "N86 W12500 WESTBROOK CROSSING",
+                "CITY": "MENOMONEE FALLS",
+                "STATE": "WI",
+                "ZIP": "53051",
+                "PHONE": "262-293-1697"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "ATTN:  BRYAN JOHNSON",
+                "STREET2": "N86 W12500 WESTBROOK CROSSING",
+                "CITY": "MENOMONEE FALLS",
+                "STATE": "WI",
+                "ZIP": "53051"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "APPLIED POWER INDUSTRIES INC",
+                "DATE-CHANGED": "19730123"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "atuirannoticefy18.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

@@ -1,0 +1,48 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001554855-22-000135",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20220310",
+        "DATE-OF-FILING-DATE-CHANGE": "20220310",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Getnet Adquirencia E Servicos Para Meios De Pagamento S.A.",
+                "CIK": "0001867325",
+                "ASSIGNED-SIC": "7389",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "D5",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-40818",
+                "FILM-NUMBER": "22730171"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "AV. PRES. JUSCELINO KUBITSCHEK, 2041,",
+                "STREET2": "STE 121, BLK A CONDO WTORRE JK, VILA CON",
+                "CITY": "SAO PAULO",
+                "STATE": "D5",
+                "ZIP": "04543-011",
+                "PHONE": "55 11 5184- 9002"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "AV. PRES. JUSCELINO KUBITSCHEK, 2041,",
+                "STREET2": "STE 121, BLK A CONDO WTORRE JK, VILA CON",
+                "CITY": "SAO PAULO",
+                "STATE": "D5",
+                "ZIP": "04543-011"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "MainDocument.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

@@ -1,0 +1,38 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-21-135266",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20210428",
+        "DATE-OF-FILING-DATE-CHANGE": "20210428",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "CHINA TELECOM CORP LTD",
+                "CIK": "0001191255",
+                "ASSIGNED-SIC": "4813",
+                "IRS-NUMBER": "000000000"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-31517",
+                "FILM-NUMBER": "21861225"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "31 JIN RONG AVENUE",
+                "CITY": "BEIJING",
+                "STATE": "F5",
+                "ZIP": "100032",
+                "PHONE": "861066428166"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d172710dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

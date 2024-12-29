@@ -1,0 +1,49 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001558370-21-002942",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20210312",
+        "DATE-OF-FILING-DATE-CHANGE": "20210312",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Jumia Technologies AG",
+                "CIK": "0001756708",
+                "ASSIGNED-SIC": "5961",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "2M",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-230207",
+                "FILM-NUMBER": "21738046"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "SKALITZER STRASSE 104",
+                "CITY": "BERLIN",
+                "STATE": "2M",
+                "ZIP": "10997",
+                "PHONE": "49-30-398-20-34-54"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "SKALITZER STRASSE 104",
+                "CITY": "BERLIN",
+                "STATE": "2M",
+                "ZIP": "10997"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Africa Internet Holding GmbH",
+                "DATE-CHANGED": "20181023"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "jmia-20210312xirannotice.htm"
+        }
+    ]
+}

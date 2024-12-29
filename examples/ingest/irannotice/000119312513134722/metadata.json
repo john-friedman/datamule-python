@@ -1,0 +1,48 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-13-134722",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20130329",
+        "DATE-OF-FILING-DATE-CHANGE": "20130329",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "POWERSHARES DB BASE METALS FUND",
+                "CIK": "0001383084",
+                "ASSIGNED-SIC": "6221",
+                "IRS-NUMBER": "870778075",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-33236",
+                "FILM-NUMBER": "13728272"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "60 WALL STREET",
+                "STREET2": "C/O DB COMMODITY SERVICES LLC",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10005",
+                "PHONE": "212-250-5883"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "60 WALL STREET",
+                "STREET2": "C/O DB COMMODITY SERVICES LLC",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10005"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d506224dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

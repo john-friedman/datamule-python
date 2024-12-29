@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001144519-19-000053",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20191030",
+        "DATE-OF-FILING-DATE-CHANGE": "20191030",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Bunge LTD",
+                "CIK": "0001144519",
+                "ASSIGNED-SIC": "2070",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-16625",
+                "FILM-NUMBER": "191180215"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "50 MAIN STREET",
+                "STREET2": "6TH FLOOR",
+                "CITY": "WHITE PLAINS",
+                "STATE": "NY",
+                "ZIP": "10606",
+                "PHONE": "914-684-2800"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "50 MAIN STREET",
+                "STREET2": "6TH FLOOR",
+                "CITY": "WHITE PLAINS",
+                "STATE": "NY",
+                "ZIP": "10606"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "BUNGE LTD",
+                "DATE-CHANGED": "20010710"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "bungelogoa08.jpg"
+        }
+    ]
+}

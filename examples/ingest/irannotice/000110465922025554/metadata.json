@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-22-025554",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20220222",
+        "DATE-OF-FILING-DATE-CHANGE": "20220222",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Fresenius Medical Care AG & Co. KGaA",
+                "CIK": "0001333141",
+                "ASSIGNED-SIC": "8090",
+                "IRS-NUMBER": "000000000"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-32749",
+                "FILM-NUMBER": "22657157"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "ELSE-KROENER STRASSE 1",
+                "CITY": "BAD HOMBURG",
+                "STATE": "2M",
+                "ZIP": "61352",
+                "PHONE": "011-49-6172-6090"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "ELSE-KROENER STRASSE 1",
+                "CITY": "BAD HOMBURG",
+                "STATE": "2M",
+                "ZIP": "61352"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "tm2136073d2_irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "tm2136073d2_irrannoticeimg01.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

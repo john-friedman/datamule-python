@@ -1,0 +1,55 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000070866-16-000094",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20160429",
+        "DATE-OF-FILING-DATE-CHANGE": "20160429",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "NCR CORP",
+                "CIK": "0000070866",
+                "ASSIGNED-SIC": "3578",
+                "IRS-NUMBER": "310387920",
+                "STATE-OF-INCORPORATION": "MD",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-00395",
+                "FILM-NUMBER": "161606587"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "3097 SATELLITE BLVD",
+                "CITY": "DULUTH",
+                "STATE": "GA",
+                "ZIP": "30096",
+                "PHONE": "9374455000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "3097 SATELLITE BLVD",
+                "CITY": "DULUTH",
+                "STATE": "GA",
+                "ZIP": "30096"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "NATIONAL CASH REGISTER CO",
+                "DATE-CHANGED": "19740617"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice-q12016.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "ncrbbpreferreda14.jpg"
+        }
+    ]
+}

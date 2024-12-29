@@ -1,0 +1,57 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000003570-16-000364",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20160809",
+        "DATE-OF-FILING-DATE-CHANGE": "20160808",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "CHENIERE ENERGY INC",
+                "CIK": "0000003570",
+                "ASSIGNED-SIC": "4924",
+                "IRS-NUMBER": "954352386",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-16383",
+                "FILM-NUMBER": "161815365"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "700 MILAM ST.",
+                "STREET2": "SUITE 1900",
+                "CITY": "HOUSTON",
+                "STATE": "TX",
+                "ZIP": "77002",
+                "PHONE": "7133755000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "700 MILAM ST.",
+                "STREET2": "SUITE 1900",
+                "CITY": "HOUSTON",
+                "STATE": "TX",
+                "ZIP": "77002"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "ALL AMERICAN BURGER INC",
+                "DATE-CHANGED": "19931004"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "cei2016irannoticeletter2nd.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "image4a09.jpg"
+        }
+    ]
+}

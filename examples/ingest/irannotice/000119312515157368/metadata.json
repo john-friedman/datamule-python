@@ -1,0 +1,54 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-15-157368",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20150430",
+        "DATE-OF-FILING-DATE-CHANGE": "20150429",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "La Quinta Holdings Inc.",
+                "CIK": "0001594617",
+                "ASSIGNED-SIC": "7011",
+                "IRS-NUMBER": "901032961",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-36412",
+                "FILM-NUMBER": "15814488"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "909 HIDDEN RIDGE",
+                "STREET2": "SUITE 600",
+                "CITY": "IRVING",
+                "STATE": "TX",
+                "ZIP": "75038",
+                "PHONE": "(214)492-6600"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "909 HIDDEN RIDGE",
+                "STREET2": "SUITE 600",
+                "CITY": "IRVING",
+                "STATE": "TX",
+                "ZIP": "75038"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d905646dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g905646g05x07.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

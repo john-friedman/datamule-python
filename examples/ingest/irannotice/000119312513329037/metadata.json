@@ -1,0 +1,58 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-13-329037",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20130809",
+        "DATE-OF-FILING-DATE-CHANGE": "20130809",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "SUNGARD DATA SYSTEMS INC",
+                "CIK": "0000789388",
+                "ASSIGNED-SIC": "7374",
+                "IRS-NUMBER": "510267091",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-12989",
+                "FILM-NUMBER": "131026291"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "SUNGARD DATA SYSTEMS INC",
+                "STREET2": "680 EAST SWEDESFORD RD",
+                "CITY": "WAYNE",
+                "STATE": "PA",
+                "ZIP": "19087",
+                "PHONE": "4845825512"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "SUNGARD DATA SYSTEMS INC",
+                "STREET2": "680 EAST SWEDESFORD RD",
+                "CITY": "WAYNE",
+                "STATE": "PA",
+                "ZIP": "19087"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "SUNDATA CORP",
+                "DATE-CHANGED": "19860310"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d581074dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g581074img003.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

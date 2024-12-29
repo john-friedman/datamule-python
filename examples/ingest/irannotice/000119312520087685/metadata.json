@@ -1,0 +1,48 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-20-087685",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20200327",
+        "DATE-OF-FILING-DATE-CHANGE": "20200327",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "LINE Corp",
+                "CIK": "0001611820",
+                "ASSIGNED-SIC": "7370",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "M0",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-37821",
+                "FILM-NUMBER": "20748094"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "JR SHINJUKU MIRAINA TOWER, 23RD FLOOR",
+                "STREET2": "4-1-6 SHINJUKU",
+                "CITY": "SHINJUKU-KU, TOKYO",
+                "STATE": "M0",
+                "ZIP": "160-0022",
+                "PHONE": "(81) 3-4316-2050"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "JR SHINJUKU MIRAINA TOWER, 23RD FLOOR",
+                "STREET2": "4-1-6 SHINJUKU",
+                "CITY": "SHINJUKU-KU, TOKYO",
+                "STATE": "M0",
+                "ZIP": "160-0022"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d773604dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        }
+    ]
+}

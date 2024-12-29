@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001628280-19-013503",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20191106",
+        "DATE-OF-FILING-DATE-CHANGE": "20191106",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Ares Management Corp",
+                "CIK": "0001176948",
+                "ASSIGNED-SIC": "6282",
+                "IRS-NUMBER": "954656677",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-36429",
+                "FILM-NUMBER": "191196702"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "2000 AVE OF THE STARS",
+                "STREET2": "12TH FLOOR",
+                "CITY": "LOS ANGELES",
+                "STATE": "CA",
+                "ZIP": "90067",
+                "PHONE": "3102014100"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "2000 AVE OF THE STARS",
+                "STREET2": "12TH FLOOR",
+                "CITY": "LOS ANGELES",
+                "STATE": "CA",
+                "ZIP": "90067"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "ARES MANAGEMENT LP",
+                "DATE-CHANGED": "20020701"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice2019q3.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

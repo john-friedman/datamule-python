@@ -1,0 +1,53 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000004962-16-000211",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20161107",
+        "DATE-OF-FILING-DATE-CHANGE": "20161107",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "AMERICAN EXPRESS CREDIT CORP",
+                "CIK": "0000004969",
+                "ASSIGNED-SIC": "6153",
+                "IRS-NUMBER": "111988350",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-06908",
+                "FILM-NUMBER": "161977842"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "ONE CHRISTINA CENTRE 301 N WALNUT STREET",
+                "STREET2": "SUITE 1002",
+                "CITY": "WILMINGTON",
+                "STATE": "DE",
+                "ZIP": "19801-2919",
+                "PHONE": "3025943350"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "ONE CHRISTINA CENTRE 301 N WALNUT STREET",
+                "STREET2": "SUITE 1002",
+                "CITY": "WILMINGTON",
+                "STATE": "DE",
+                "ZIP": "19801-2919"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "credcoq32016irannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE RE AMERICAN EXPRESS CREDIT CORPORATION"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "axpsmallbluebox.jpg"
+        }
+    ]
+}

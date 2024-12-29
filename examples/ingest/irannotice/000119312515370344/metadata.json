@@ -1,0 +1,70 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-15-370344",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "4",
+        "FILING-DATE": "20151106",
+        "DATE-OF-FILING-DATE-CHANGE": "20151106",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Endurance International Group Holdings, Inc.",
+                "CIK": "0001237746",
+                "ASSIGNED-SIC": "7372",
+                "IRS-NUMBER": "463044956",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-36131",
+                "FILM-NUMBER": "151213173"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "10 CORPORATE DRIVE",
+                "STREET2": "SUITE 300",
+                "CITY": "BURLINGTON",
+                "STATE": "MA",
+                "ZIP": "01803",
+                "PHONE": "781-852-3200"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "10 CORPORATE DRIVE",
+                "STREET2": "SUITE 300",
+                "CITY": "BURLINGTON",
+                "STATE": "MA",
+                "ZIP": "01803"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "BIZLAND INC",
+                "DATE-CHANGED": "20030602"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d80294dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g80294g49f58.gif",
+            "DESCRIPTION": "GRAPHIC"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "3",
+            "FILENAME": "g80294g55d17.gif",
+            "DESCRIPTION": "GRAPHIC"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "4",
+            "FILENAME": "g80294g99w63.gif",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-13-057602",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20130214",
+        "DATE-OF-FILING-DATE-CHANGE": "20130214",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Warner Music Group Corp.",
+                "CIK": "0001319161",
+                "ASSIGNED-SIC": "7900",
+                "IRS-NUMBER": "134271875",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "0101"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-32502",
+                "FILM-NUMBER": "13606358"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "75 ROCKEFELLER PLAZA",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10019",
+                "PHONE": "212-275-2000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "75 ROCKEFELLER PLAZA",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10019"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "WMG Parent Corp.",
+                "DATE-CHANGED": "20050228"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d487302dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        }
+    ]
+}

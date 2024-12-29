@@ -1,0 +1,57 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000072971-24-000244",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20241031",
+        "DATE-OF-FILING-DATE-CHANGE": "20241031",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "WELLS FARGO & COMPANY/MN",
+                "CIK": "0000072971",
+                "ASSIGNED-SIC": "6021",
+                "ORGANIZATION-NAME": "02 Finance",
+                "IRS-NUMBER": "410449260",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-02979",
+                "FILM-NUMBER": "241415813"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "420 MONTGOMERY STREET",
+                "CITY": "SAN FRANCISCO",
+                "STATE": "CA",
+                "ZIP": "94104",
+                "PHONE": "8008693557"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "420 MONTGOMERY STREET",
+                "CITY": "SAN FRANCISCO",
+                "STATE": "CA",
+                "ZIP": "94104"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "NORTHWEST BANCORPORATION",
+                "DATE-CHANGED": "19830516"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "wfc_irannoticex10-31x202.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "wfc_irannoticex10-31x202001.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

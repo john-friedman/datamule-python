@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-19-191536",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20190710",
+        "DATE-OF-FILING-DATE-CHANGE": "20190710",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "MITSUBISHI UFJ FINANCIAL GROUP INC",
+                "CIK": "0000067088",
+                "ASSIGNED-SIC": "6029",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "0331"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "000-54189",
+                "FILM-NUMBER": "19948115"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "7-1 MARUNOUCHI 2-CHOME",
+                "STREET2": "CHIYODA-KU",
+                "CITY": "TOKYO",
+                "STATE": "M0",
+                "ZIP": "100-8330",
+                "PHONE": "2125301784"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1251 AVENUE OF THE AMERICAS 10020-1104",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10020-1104"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "MITSUBISHI TOKYO FINANCIAL GROUP INC",
+                "DATE-CHANGED": "19920929"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d685488dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        }
+    ]
+}

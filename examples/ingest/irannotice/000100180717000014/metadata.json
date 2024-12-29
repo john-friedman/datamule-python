@@ -1,0 +1,51 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001001807-17-000014",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20170327",
+        "DATE-OF-FILING-DATE-CHANGE": "20170324",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "PERUSAHAAN PERSEROAN PERSERO PT TELEKOMUNIKASI INDONESIA TBK",
+                "CIK": "0001001807",
+                "ASSIGNED-SIC": "4813",
+                "IRS-NUMBER": "999999999",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-14406",
+                "FILM-NUMBER": "17714018"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "JL. JAPATI 1",
+                "CITY": "BANDUNG",
+                "STATE": "K8",
+                "ZIP": "40133",
+                "PHONE": "62-224527101"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "JL. JAPATI 1",
+                "CITY": "BANDUNG",
+                "STATE": "K8",
+                "ZIP": "40133"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "tlkm-irannotice.htm",
+            "DESCRIPTION": "PT TELKOM INDONESIA (PERSERO) TBK"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "x17032413355800.jpg",
+            "DESCRIPTION": "PT TELKOM INDONESIA (PERSERO) TBK"
+        }
+    ]
+}

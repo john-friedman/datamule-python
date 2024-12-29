@@ -1,0 +1,51 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001140361-24-036667",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20240809",
+        "DATE-OF-FILING-DATE-CHANGE": "20240809",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Apartment Income REIT, L.P.",
+                "CIK": "0000926660",
+                "ASSIGNED-SIC": "6513",
+                "ORGANIZATION-NAME": "05 Real Estate & Construction",
+                "IRS-NUMBER": "841275621",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-261445-01",
+                "FILM-NUMBER": "241194081"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "345 PARK AVENUE",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10154",
+                "PHONE": "(212) 583-5000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "345 PARK AVENUE",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10154"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "AIMCO PROPERTIES LP",
+                "DATE-CHANGED": "19980519"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "ef20033831_irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

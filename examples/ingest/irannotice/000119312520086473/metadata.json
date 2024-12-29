@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-20-086473",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20200326",
+        "DATE-OF-FILING-DATE-CHANGE": "20200326",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "British American Tobacco p.l.c.",
+                "CIK": "0001303523",
+                "ASSIGNED-SIC": "2111",
+                "IRS-NUMBER": "000000000"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-38159",
+                "FILM-NUMBER": "20745192"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "GLOBE HOUSE",
+                "STREET2": "4 TEMPLE PLACE",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "WC2R 2PG",
+                "PHONE": "44-207-845-2000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "GLOBE HOUSE",
+                "STREET2": "4 TEMPLE PLACE",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "WC2R 2PG"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d852741dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g852741dsp01.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

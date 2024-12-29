@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000354964-17-000014",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20170504",
+        "DATE-OF-FILING-DATE-CHANGE": "20170504",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "HSBC Finance Corp",
+                "CIK": "0000354964",
+                "ASSIGNED-SIC": "6141",
+                "IRS-NUMBER": "861052062",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-08198",
+                "FILM-NUMBER": "17811681"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1421 WEST SHURE DRIVE",
+                "STREET2": "SUITE 100",
+                "CITY": "ARLINGTON HEIGHTS",
+                "STATE": "IL",
+                "ZIP": "60004",
+                "PHONE": "224-880-7000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1421 WEST SHURE DRIVE",
+                "STREET2": "SUITE 100",
+                "CITY": "ARLINGTON HEIGHTS",
+                "STATE": "IL",
+                "ZIP": "60004"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "HOUSEHOLD INTERNATIONAL INC",
+                "DATE-CHANGED": "19920703"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "hbioirannotice33117.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

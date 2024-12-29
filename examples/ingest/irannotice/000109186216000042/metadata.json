@@ -1,0 +1,55 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001091862-16-000042",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20161031",
+        "DATE-OF-FILING-DATE-CHANGE": "20161031",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Chemtura CORP",
+                "CIK": "0001091862",
+                "ASSIGNED-SIC": "2820",
+                "IRS-NUMBER": "522183153",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-15339",
+                "FILM-NUMBER": "161962039"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "BENSON ROAD",
+                "CITY": "MIDDLEBURY",
+                "STATE": "CT",
+                "ZIP": "06749",
+                "PHONE": "2035732000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "BENSON ROAD",
+                "CITY": "MIDDLEBURY",
+                "STATE": "CT",
+                "ZIP": "06749"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "CK WITCO CORP",
+                "DATE-CHANGED": "19990727"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a3q2016irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "prpic3a01a01a01a01a10.jpg"
+        }
+    ]
+}

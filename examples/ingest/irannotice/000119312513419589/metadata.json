@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-13-419589",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20131031",
+        "DATE-OF-FILING-DATE-CHANGE": "20131031",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "NCL CORP Ltd.",
+                "CIK": "0001318742",
+                "ASSIGNED-SIC": "4400",
+                "IRS-NUMBER": "200470163",
+                "STATE-OF-INCORPORATION": "D0",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-128780",
+                "FILM-NUMBER": "131180772"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "7665 CORPORATE CENTER DRIVE",
+                "CITY": "MIAMI",
+                "STATE": "FL",
+                "ZIP": "33126",
+                "PHONE": "(305) 436-4000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "7665 CORPORATE CENTER DRIVE",
+                "CITY": "MIAMI",
+                "STATE": "FL",
+                "ZIP": "33126"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d621363dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g621363ncllhlogo.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

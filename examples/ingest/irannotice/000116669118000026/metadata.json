@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001166691-18-000026",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20181025",
+        "DATE-OF-FILING-DATE-CHANGE": "20181025",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "COMCAST CORP",
+                "CIK": "0001166691",
+                "ASSIGNED-SIC": "4841",
+                "IRS-NUMBER": "270000798",
+                "STATE-OF-INCORPORATION": "PA",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-32871",
+                "FILM-NUMBER": "181138819"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "ONE COMCAST CENTER",
+                "CITY": "PHILADELPHIA",
+                "STATE": "PA",
+                "ZIP": "19103-2838",
+                "PHONE": "215-286-1700"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "ONE COMCAST CENTER",
+                "CITY": "PHILADELPHIA",
+                "STATE": "PA",
+                "ZIP": "19103-2838"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "AT&T COMCAST CORP",
+                "DATE-CHANGED": "20020206"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irrannotice-3q18.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

@@ -1,0 +1,46 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001159508-23-000022",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20230320",
+        "DATE-OF-FILING-DATE-CHANGE": "20230317",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "DEUTSCHE BANK AKTIENGESELLSCHAFT",
+                "CIK": "0001159508",
+                "ASSIGNED-SIC": "6022",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-15242",
+                "FILM-NUMBER": "23744320"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "DEUTSCHE BANK AG - LEGAL DEPARTMENT",
+                "STREET2": "1 COLUMBUS CIRCLE, 19TH FLOOR",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10019",
+                "PHONE": "212-250-1306"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "DEUTSCHE BANK AG - LEGAL DEPARTMENT",
+                "STREET2": "1 COLUMBUS CIRCLE, 19TH FLOOR",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10019"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "db20230317IRAN.htm"
+        }
+    ]
+}

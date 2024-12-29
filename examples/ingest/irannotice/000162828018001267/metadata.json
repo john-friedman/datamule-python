@@ -1,0 +1,49 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001628280-18-001267",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20180208",
+        "DATE-OF-FILING-DATE-CHANGE": "20180208",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "NOVO NORDISK A S",
+                "CIK": "0000353278",
+                "ASSIGNED-SIC": "2834",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-82318",
+                "FILM-NUMBER": "18582822"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "NOVO ALLE DK 2880",
+                "CITY": "BAGSVAERD DENMARK",
+                "STATE": "G7",
+                "ZIP": "00000",
+                "PHONE": "4544448888"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "NOVO ALLE DK 2880",
+                "CITY": "BAGSVAERD DENMARK",
+                "STATE": "G7",
+                "ZIP": "00000"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "NOVO INDUSTRI A S /DENMARK/",
+                "DATE-CHANGED": "19890811"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

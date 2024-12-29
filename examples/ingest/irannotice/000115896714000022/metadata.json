@@ -1,0 +1,46 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001158967-14-000022",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20140626",
+        "DATE-OF-FILING-DATE-CHANGE": "20140626",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "NIDEC CORP",
+                "CIK": "0001158967",
+                "ASSIGNED-SIC": "3621",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "0331"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-13896",
+                "FILM-NUMBER": "14941390"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "338 TONOSHIRO-CHO,KUZE",
+                "STREET2": "MINAMI-KU,KYOTO",
+                "CITY": "JAPAN",
+                "STATE": "M0",
+                "ZIP": "601-8205",
+                "PHONE": "81759221111"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "338 TONOSHIRO-CHO,KUZE",
+                "STREET2": "MINAMI-KU,KYOTO",
+                "CITY": "JAPAN",
+                "STATE": "M0",
+                "ZIP": "601-8205"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice20143.htm"
+        }
+    ]
+}

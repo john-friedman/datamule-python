@@ -1,0 +1,49 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-18-009083",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20180213",
+        "DATE-OF-FILING-DATE-CHANGE": "20180213",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Antero Midstream GP LP",
+                "CIK": "0001623925",
+                "ASSIGNED-SIC": "4922",
+                "IRS-NUMBER": "611748605",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-38075",
+                "FILM-NUMBER": "18604660"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1615 WYNKOOP STREET",
+                "CITY": "DENVER",
+                "STATE": "CO",
+                "ZIP": "80202",
+                "PHONE": "(303) 357-7310"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1615 WYNKOOP STREET",
+                "CITY": "DENVER",
+                "STATE": "CO",
+                "ZIP": "80202"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Antero Resources Midstream Management LLC",
+                "DATE-CHANGED": "20141031"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a18-5450_1irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

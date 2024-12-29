@@ -1,0 +1,48 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001341004-23-000086",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20230302",
+        "DATE-OF-FILING-DATE-CHANGE": "20230302",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "NOKIA CORP",
+                "CIK": "0000924613",
+                "ASSIGNED-SIC": "3663",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "H9",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-13202",
+                "FILM-NUMBER": "23697482"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "KARAKAARI 7",
+                "STREET2": "P O BOX 226",
+                "CITY": "ESPOO FINLAND",
+                "STATE": "H9",
+                "ZIP": "02610",
+                "PHONE": "358 71 400 2733"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "KARAKAARI 7",
+                "STREET2": "P O BOX 226",
+                "CITY": "ESPOO",
+                "STATE": "H9",
+                "ZIP": "02610"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        }
+    ]
+}

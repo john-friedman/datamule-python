@@ -1,0 +1,48 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001628280-24-044500",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20241031",
+        "DATE-OF-FILING-DATE-CHANGE": "20241031",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "APi Group Corp",
+                "CIK": "0001796209",
+                "ASSIGNED-SIC": "7340",
+                "ORGANIZATION-NAME": "07 Trade & Services",
+                "IRS-NUMBER": "981510303",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-39275",
+                "FILM-NUMBER": "241414304"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "C/O API GROUP, INC.",
+                "STREET2": "1100 OLD HIGHWAY 8 NW",
+                "CITY": "NEW BRIGHTON",
+                "STATE": "MN",
+                "ZIP": "55112",
+                "PHONE": "651-636-4320"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "C/O API GROUP, INC.",
+                "STREET2": "1100 OLD HIGHWAY 8 NW",
+                "CITY": "NEW BRIGHTON",
+                "STATE": "MN",
+                "ZIP": "55112"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "iranseccorrespondence.htm"
+        }
+    ]
+}

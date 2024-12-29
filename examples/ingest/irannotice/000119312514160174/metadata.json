@@ -1,0 +1,54 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-14-160174",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20140428",
+        "DATE-OF-FILING-DATE-CHANGE": "20140425",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "PETROCHINA CO LTD",
+                "CIK": "0001108329",
+                "ASSIGNED-SIC": "1311",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "F4",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-15006",
+                "FILM-NUMBER": "14786594"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "9 DONGZHIMEN NORTH STREET",
+                "STREET2": "DONGCHENG DISTRICT",
+                "CITY": "BEIJING",
+                "STATE": "F4",
+                "ZIP": "100007",
+                "PHONE": "861084886265"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "9 DONGZHIMEN NORTH STREET",
+                "STREET2": "DONGCHENG DISTRICT",
+                "CITY": "BEIJING",
+                "STATE": "F4",
+                "ZIP": "100007"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d715321dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g715321g62n88.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

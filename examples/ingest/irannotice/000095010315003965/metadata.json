@@ -1,0 +1,54 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000950103-15-003965",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20150518",
+        "DATE-OF-FILING-DATE-CHANGE": "20150518",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "BANCO SANTANDER CHILE",
+                "CIK": "0001027552",
+                "ASSIGNED-SIC": "6029",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-14554",
+                "FILM-NUMBER": "15872461"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "BANDERA 140, PISO 19",
+                "CITY": "SANTIAGO CHILE",
+                "STATE": "F3",
+                "PHONE": "562-320-8284"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "BANDERA 140, PISO 19",
+                "STREET2": "-",
+                "CITY": "SANTIAGO CHILE",
+                "STATE": "F3"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "BANK OF SANTIAGO",
+                "DATE-CHANGED": "19961125"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "dp56296_irannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "logo.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

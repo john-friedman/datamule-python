@@ -1,0 +1,55 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001306965-21-000027",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20210311",
+        "DATE-OF-FILING-DATE-CHANGE": "20210311",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Royal Dutch Shell plc",
+                "CIK": "0001306965",
+                "ASSIGNED-SIC": "1311",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "X0",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-32575",
+                "FILM-NUMBER": "21731797"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "CAREL VAN BYLANDTLAAN 30",
+                "CITY": "THE HAGUE",
+                "STATE": "P7",
+                "ZIP": "2596 HR",
+                "PHONE": "31-70-377-9111"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "CAREL VAN BYLANDTLAAN 30",
+                "CITY": "THE HAGUE",
+                "STATE": "P7",
+                "ZIP": "2596 HR"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Forthdeal LTD",
+                "DATE-CHANGED": "20041026"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice2020.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "logo1a.jpg"
+        }
+    ]
+}

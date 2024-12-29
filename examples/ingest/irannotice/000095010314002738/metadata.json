@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000950103-14-002738",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20140417",
+        "DATE-OF-FILING-DATE-CHANGE": "20140417",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "CNOOC LTD",
+                "CIK": "0001095595",
+                "ASSIGNED-SIC": "1311",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-14966",
+                "FILM-NUMBER": "14768674"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "BANK OF CHINA TOWER",
+                "STREET2": "65TH FLOOR 1 GARDEN RD",
+                "CITY": "HONG KONG",
+                "STATE": "K3",
+                "ZIP": "00000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "CT CORP SYSTEM",
+                "STREET2": "1633 BROADWAY",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10019"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "dp45632_irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "logo.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-14-017587",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20140310",
+        "DATE-OF-FILING-DATE-CHANGE": "20140307",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Athlon Energy Inc.",
+                "CIK": "0001574648",
+                "ASSIGNED-SIC": "1311",
+                "IRS-NUMBER": "462549833",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-36026",
+                "FILM-NUMBER": "14678440"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "420 THROCKMORTON STREET",
+                "STREET2": "SUITE 1200",
+                "CITY": "FORT WORTH",
+                "STATE": "TX",
+                "ZIP": "76102",
+                "PHONE": "817-984-8200"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "420 THROCKMORTON STREET",
+                "STREET2": "SUITE 1200",
+                "CITY": "FORT WORTH",
+                "STATE": "TX",
+                "ZIP": "76102"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a13-25504_5irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g255045bai001.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

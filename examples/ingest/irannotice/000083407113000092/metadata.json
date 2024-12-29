@@ -1,0 +1,46 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000834071-13-000092",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20130812",
+        "DATE-OF-FILING-DATE-CHANGE": "20130812",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "TOYOTA MOTOR CREDIT CORP",
+                "CIK": "0000834071",
+                "ASSIGNED-SIC": "6141",
+                "IRS-NUMBER": "953775816",
+                "STATE-OF-INCORPORATION": "CA",
+                "FISCAL-YEAR-END": "0331"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-09961",
+                "FILM-NUMBER": "131029892"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "19001 S. WESTERN AVENUE",
+                "CITY": "TORRANCE",
+                "STATE": "CA",
+                "ZIP": "90509",
+                "PHONE": "(310) 468-1310"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "19001 S. WESTERN AVENUE",
+                "CITY": "TORRANCE",
+                "STATE": "CA",
+                "ZIP": "90509"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice_06302013.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

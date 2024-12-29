@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-13-113097",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20130319",
+        "DATE-OF-FILING-DATE-CHANGE": "20130319",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "HealthMarkets, Inc.",
+                "CIK": "0000773660",
+                "ASSIGNED-SIC": "6321",
+                "IRS-NUMBER": "752044750",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-14953",
+                "FILM-NUMBER": "13699864"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "9151 BOULEVARD 26",
+                "CITY": "N RICHLAND HILLS",
+                "STATE": "TX",
+                "ZIP": "76180",
+                "PHONE": "8172555200"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "9151 BOULEVARD 26",
+                "CITY": "N RICHLAND HILLS",
+                "STATE": "TX",
+                "ZIP": "76180"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "UNITED INSURANCE COMPANIES INC",
+                "DATE-CHANGED": "19920703"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d501651dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g501651g55c56.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

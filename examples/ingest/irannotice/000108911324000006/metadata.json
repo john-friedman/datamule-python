@@ -1,0 +1,46 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001089113-24-000006",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20240222",
+        "DATE-OF-FILING-DATE-CHANGE": "20240222",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "HSBC HOLDINGS PLC",
+                "CIK": "0001089113",
+                "ASSIGNED-SIC": "6035",
+                "ORGANIZATION-NAME": "02 Finance",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-14930",
+                "FILM-NUMBER": "24664499"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "8 CANADA SQUARE",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "E145HQ",
+                "PHONE": "442079913048"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "8 CANADA SQUARE",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "E14 5HQ"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice2023.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

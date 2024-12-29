@@ -1,0 +1,51 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001534504-14-000013",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20140224",
+        "DATE-OF-FILING-DATE-CHANGE": "20140224",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "PBF Energy Inc.",
+                "CIK": "0001534504",
+                "ASSIGNED-SIC": "2911",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-35764",
+                "FILM-NUMBER": "14635693"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1 SYLVAN WAY",
+                "CITY": "PARSIPPANY",
+                "STATE": "NJ",
+                "ZIP": "07054",
+                "PHONE": "973-455-7500"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1 SYLVAN WAY",
+                "CITY": "PARSIPPANY",
+                "STATE": "NJ",
+                "ZIP": "07054"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "pbfenergy-irannoticeform13.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "pbffinanceirannotice12-31.jpg"
+        }
+    ]
+}

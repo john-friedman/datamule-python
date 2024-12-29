@@ -1,0 +1,45 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-15-022693",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20150325",
+        "DATE-OF-FILING-DATE-CHANGE": "20150325",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "GOVERNOR & CO OF THE BANK OF IRELAND",
+                "CIK": "0001022575",
+                "ASSIGNED-SIC": "6029",
+                "IRS-NUMBER": "132687269",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-14452",
+                "FILM-NUMBER": "15724947"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "40, MESPIL ROAD",
+                "CITY": "DUBLIN 4 IRELAND",
+                "STATE": "L2",
+                "ZIP": "00000",
+                "PHONE": "35316615933"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "40, MESPIL ROAD",
+                "CITY": "DUBLIN 4 IRELAND",
+                "STATE": "L2",
+                "ZIP": "00000"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a15-7134_3irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

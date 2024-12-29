@@ -1,0 +1,51 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-14-063836",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20140829",
+        "DATE-OF-FILING-DATE-CHANGE": "20140829",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Michaels Companies, Inc.",
+                "CIK": "0001593936",
+                "ASSIGNED-SIC": "5945",
+                "IRS-NUMBER": "371737959",
+                "STATE-OF-INCORPORATION": "DE"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-36501",
+                "FILM-NUMBER": "141073223"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "8000 BENT BRANCH DRIVE",
+                "CITY": "IRVING",
+                "STATE": "TX",
+                "ZIP": "75063",
+                "PHONE": "9724091300"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "8000 BENT BRANCH DRIVE",
+                "CITY": "IRVING",
+                "STATE": "TX",
+                "ZIP": "75063"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a14-20157_1irannotice.htm",
+            "DESCRIPTION": "NOTICE OF IRAN-RELATED DISCLOSURE FILED PURSUANT TO SECTION 13(R)(3) OF THE EXCHANGE ACT"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g201571bci001.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

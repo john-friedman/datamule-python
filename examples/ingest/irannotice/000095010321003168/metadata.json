@@ -1,0 +1,48 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000950103-21-003168",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20210226",
+        "DATE-OF-FILING-DATE-CHANGE": "20210226",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Banco Santander (Brasil) S.A.",
+                "CIK": "0001471055",
+                "ASSIGNED-SIC": "6029",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "D5",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-34476",
+                "FILM-NUMBER": "21689972"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "AV. JUSCELINO KUBITSCHEK, 2235",
+                "STREET2": "AV. JUSCELINO KUBITSCHEK, 2041",
+                "CITY": "SAO PAULO, SP",
+                "STATE": "D5",
+                "ZIP": "04543-011",
+                "PHONE": "(55 11) 3174-8589"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "AV. JUSCELINO KUBITSCHEK, 2235",
+                "STREET2": "AV. JUSCELINO KUBITSCHEK, 2041",
+                "CITY": "SAO PAULO, SP",
+                "STATE": "D5",
+                "ZIP": "04543-011"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "dp146851_irannotice.htm",
+            "DESCRIPTION": "FORM IRANNOTICE"
+        }
+    ]
+}

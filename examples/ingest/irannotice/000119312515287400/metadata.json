@@ -1,0 +1,46 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-15-287400",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20150812",
+        "DATE-OF-FILING-DATE-CHANGE": "20150812",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Shell Midstream Partners, L.P.",
+                "CIK": "0001610466",
+                "ASSIGNED-SIC": "4610",
+                "IRS-NUMBER": "465223743",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-36710",
+                "FILM-NUMBER": "151045681"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "910 LOUISIANA STREET",
+                "CITY": "HOUSTON",
+                "STATE": "TX",
+                "ZIP": "77002",
+                "PHONE": "713-241-6161"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "910 LOUISIANA STREET",
+                "CITY": "HOUSTON",
+                "STATE": "TX",
+                "ZIP": "77002"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d39039dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

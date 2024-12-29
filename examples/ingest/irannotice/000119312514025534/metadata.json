@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-14-025534",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20140129",
+        "DATE-OF-FILING-DATE-CHANGE": "20140129",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "CARNIVAL PLC",
+                "CIK": "0001125259",
+                "ASSIGNED-SIC": "4400",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1130"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-15136",
+                "FILM-NUMBER": "14555363"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "5 GAINSFORD ST",
+                "STREET2": "CARNIVAL HOUSE",
+                "CITY": "LONDON WC1A 1PP ENGL",
+                "STATE": "X0",
+                "ZIP": "00000",
+                "PHONE": "011 44 20 7940 5381"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "77 NEW OXFORD ST",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "00000"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "P&O PRINCESS CRUISES PLC",
+                "DATE-CHANGED": "20000929"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d665728dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g665728g48p99.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

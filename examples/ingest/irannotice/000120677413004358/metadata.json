@@ -1,0 +1,47 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001206774-13-004358",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20131209",
+        "DATE-OF-FILING-DATE-CHANGE": "20131209",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "FORT DEARBORN INCOME SECURITIES INC",
+                "CIK": "0000038188",
+                "IRS-NUMBER": "352754979",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "0930"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "811-02319",
+                "FILM-NUMBER": "131264966"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "C/O UBS GLOBAL ASSET MANAGEMENT (AMERICA",
+                "STREET2": "1 NORTH WACKER DRIVE",
+                "CITY": "CHICAGO",
+                "STATE": "IL",
+                "ZIP": "60606",
+                "PHONE": "312-525-7100"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "C/O UBS GLOBAL ASSET MANAGEMENT (AMERICA",
+                "STREET2": "1 NORTH WACKER DRIVE",
+                "CITY": "CHICAGO",
+                "STATE": "IL",
+                "ZIP": "60606"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "ubsfortdear_irannotice.htm",
+            "DESCRIPTION": "NOTICE OF DISCLOSURE FILED IN EXCHANGE ACT"
+        }
+    ]
+}

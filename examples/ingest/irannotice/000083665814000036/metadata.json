@@ -1,0 +1,58 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000836658-14-000036",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20141112",
+        "DATE-OF-FILING-DATE-CHANGE": "20141112",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "VOYA INSURANCE & ANNUITY Co",
+                "CIK": "0000836658",
+                "ASSIGNED-SIC": "6311",
+                "IRS-NUMBER": "410991508",
+                "STATE-OF-INCORPORATION": "IA",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-32625",
+                "FILM-NUMBER": "141213370"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1475 DUNWOODY DRIVE",
+                "STREET2": "SUITE 400",
+                "CITY": "WEST CHESTER",
+                "STATE": "PA",
+                "ZIP": "19380-2700",
+                "PHONE": "610-425-3400"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1475 DUNWOODY DRIVE",
+                "STREET2": "SUITE 400",
+                "CITY": "WEST CHESTER",
+                "STATE": "PA",
+                "ZIP": "19380-2700"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "MB VARIABLE LIFE INSURANCE CO",
+                "DATE-CHANGED": "19600201"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "viac2014q-3irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "q32014voyalogo.jpg",
+            "DESCRIPTION": "LOGO"
+        }
+    ]
+}

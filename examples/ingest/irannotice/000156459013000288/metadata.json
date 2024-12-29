@@ -1,0 +1,58 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001564590-13-000288",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "3",
+        "FILING-DATE": "20130809",
+        "DATE-OF-FILING-DATE-CHANGE": "20130809",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "CSG SYSTEMS INTERNATIONAL INC",
+                "CIK": "0001005757",
+                "ASSIGNED-SIC": "7374",
+                "IRS-NUMBER": "470783182",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "000-27512",
+                "FILM-NUMBER": "131025338"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "9555 MAROON CIRCLE",
+                "CITY": "ENGLEWOOD",
+                "STATE": "CO",
+                "ZIP": "80112",
+                "PHONE": "3037962850"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "9555 MAROON CIRCLE",
+                "CITY": "ENGLEWOOD",
+                "STATE": "CO",
+                "ZIP": "80112"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "csgs-ir_20130808.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "j02000001.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "3",
+            "FILENAME": "j02000002.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

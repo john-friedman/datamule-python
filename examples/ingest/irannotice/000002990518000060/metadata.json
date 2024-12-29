@@ -1,0 +1,57 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000029905-18-000060",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20181018",
+        "DATE-OF-FILING-DATE-CHANGE": "20181018",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "DOVER Corp",
+                "CIK": "0000029905",
+                "ASSIGNED-SIC": "3530",
+                "IRS-NUMBER": "530257888",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-04018",
+                "FILM-NUMBER": "181127555"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "3005 HIGHLAND PARKWAY",
+                "STREET2": "SUITE 200",
+                "CITY": "DOWNERS GROVE",
+                "STATE": "IL",
+                "ZIP": "60515",
+                "PHONE": "(630) 541-1540"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "3005 HIGHLAND PARKWAY",
+                "STREET2": "SUITE 200",
+                "CITY": "DOWNERS GROVE",
+                "STATE": "IL",
+                "ZIP": "60515"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "DOVER CORP",
+                "DATE-CHANGED": "19920703"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a20181018irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "doverirannoticeimage1a01.jpg"
+        }
+    ]
+}

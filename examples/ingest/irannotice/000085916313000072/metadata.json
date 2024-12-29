@@ -1,0 +1,54 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000859163-13-000072",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20131108",
+        "DATE-OF-FILING-DATE-CHANGE": "20131108",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "AVX Corp",
+                "CIK": "0000859163",
+                "ASSIGNED-SIC": "3670",
+                "IRS-NUMBER": "330379007",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "0331"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-07201",
+                "FILM-NUMBER": "131203098"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1 AVX BOULEVARD",
+                "CITY": "FOUNTAIN INN",
+                "STATE": "SC",
+                "ZIP": "29644",
+                "PHONE": "864-967-2150"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1 AVX BOULEVARD",
+                "CITY": "FOUNTAIN INN",
+                "STATE": "SC",
+                "ZIP": "29644"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "KC SUBSIDIARY CORP",
+                "DATE-CHANGED": "19900212"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "avx-20131101x.htm"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "avx-20131101xg1.jpg"
+        }
+    ]
+}

@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001558370-23-004187",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20230320",
+        "DATE-OF-FILING-DATE-CHANGE": "20230320",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ARES INDUSTRIAL REAL ESTATE INCOME TRUST Inc.",
+                "CIK": "0001625941",
+                "ASSIGNED-SIC": "6798",
+                "IRS-NUMBER": "471592886",
+                "STATE-OF-INCORPORATION": "MD",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "000-56032",
+                "FILM-NUMBER": "23746298"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1200 17TH STREET",
+                "STREET2": "SUITE 2900",
+                "CITY": "DENVER",
+                "STATE": "CO",
+                "ZIP": "80202",
+                "PHONE": "303-228-2200"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1200 17TH STREET",
+                "STREET2": "SUITE 2900",
+                "CITY": "DENVER",
+                "STATE": "CO",
+                "ZIP": "80202"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "LOGISTICS PROPERTY TRUST INC.",
+                "DATE-CHANGED": "20141119"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "tmb-20230320xirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

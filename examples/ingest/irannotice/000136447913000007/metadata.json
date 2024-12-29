@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001364479-13-000007",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20130802",
+        "DATE-OF-FILING-DATE-CHANGE": "20130802",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "HERTZ GLOBAL HOLDINGS INC",
+                "CIK": "0001364479",
+                "ASSIGNED-SIC": "7510",
+                "IRS-NUMBER": "203530539",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-33139",
+                "FILM-NUMBER": "131006227"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "225 BRAE BOULEVARD",
+                "CITY": "PARK RIDGE",
+                "STATE": "NJ",
+                "ZIP": "07656",
+                "PHONE": "201-307-2000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "225 BRAE BOULEVARD",
+                "CITY": "PARK RIDGE",
+                "STATE": "NJ",
+                "ZIP": "07656"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "q22013hghirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "q22013hghirannoticeimage1.gif"
+        }
+    ]
+}

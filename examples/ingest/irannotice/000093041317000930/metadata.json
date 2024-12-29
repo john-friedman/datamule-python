@@ -1,0 +1,45 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000930413-17-000930",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20170307",
+        "DATE-OF-FILING-DATE-CHANGE": "20170307",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "SAFE BULKERS, INC.",
+                "CIK": "0001434754",
+                "ASSIGNED-SIC": "4412",
+                "IRS-NUMBER": "000000000"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-34077",
+                "FILM-NUMBER": "17672389"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "32 AVENUE KARAMANLI, P.O. BOX 70837",
+                "STREET2": "16605 VOULA",
+                "CITY": "ATHENS",
+                "STATE": "J3",
+                "ZIP": "16605",
+                "PHONE": "011-30-210-895-7070"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "32 AVENUE KARAMANLI, P.O. BOX 70837",
+                "STREET2": "16605 VOULA",
+                "CITY": "ATHENS",
+                "STATE": "J3",
+                "ZIP": "16605"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "c87600_irannotice.htm"
+        }
+    ]
+}

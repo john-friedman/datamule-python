@@ -1,0 +1,49 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-17-030690",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20170508",
+        "DATE-OF-FILING-DATE-CHANGE": "20170508",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ANTERO RESOURCES Corp",
+                "CIK": "0001433270",
+                "ASSIGNED-SIC": "1311",
+                "IRS-NUMBER": "800162034",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-36120",
+                "FILM-NUMBER": "17823000"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1615 WYNKOOP STREET",
+                "CITY": "DENVER",
+                "STATE": "CO",
+                "ZIP": "80202",
+                "PHONE": "303-357-7325"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1615 WYNKOOP STREET",
+                "CITY": "DENVER",
+                "STATE": "CO",
+                "ZIP": "80202"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "ANTERO RESOURCES BARNETT CORP",
+                "DATE-CHANGED": "20080424"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a17-12448_1irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

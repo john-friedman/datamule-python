@@ -1,0 +1,48 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001379714-15-000006",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20150220",
+        "DATE-OF-FILING-DATE-CHANGE": "20150219",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Sabine Pass LNG, L.P.",
+                "CIK": "0001379714",
+                "ASSIGNED-SIC": "4924",
+                "IRS-NUMBER": "200466069",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-138916",
+                "FILM-NUMBER": "15633166"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "700 MILAM ST.",
+                "STREET2": "SUITE 800",
+                "CITY": "HOUSTON",
+                "STATE": "TX",
+                "ZIP": "77002",
+                "PHONE": "(713) 375-5000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "700 MILAM ST.",
+                "STREET2": "SUITE 800",
+                "CITY": "HOUSTON",
+                "STATE": "TX",
+                "ZIP": "77002"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "splng2014irannoticeletter4.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-17-105408",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20170331",
+        "DATE-OF-FILING-DATE-CHANGE": "20170331",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "CABCO TRUST FOR J.C. PENNEY DEBENTURES",
+                "CIK": "0001269980",
+                "ASSIGNED-SIC": "6189",
+                "IRS-NUMBER": "223281571",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "033-91744-02",
+                "FILM-NUMBER": "17728317"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "68 SOUTH SERVICE ROAD",
+                "STREET2": "SUITE 120",
+                "CITY": "MELVILLE, NY",
+                "STATE": "NY",
+                "ZIP": "11747",
+                "PHONE": "6315874700"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "68 SOUTH SERVICE ROAD",
+                "STREET2": "SUITE 120",
+                "CITY": "MELVILLE, NY",
+                "STATE": "NY",
+                "ZIP": "11747"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "CABCO TRUST FOR JC PENNEY DEBENTURES",
+                "DATE-CHANGED": "20031112"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d370685dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

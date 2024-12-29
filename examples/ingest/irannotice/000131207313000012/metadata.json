@@ -1,0 +1,57 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001312073-13-000012",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20130311",
+        "DATE-OF-FILING-DATE-CHANGE": "20130311",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "VERIFONE SYSTEMS, INC.",
+                "CIK": "0001312073",
+                "ASSIGNED-SIC": "3578",
+                "IRS-NUMBER": "043692546",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1031"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-32465",
+                "FILM-NUMBER": "13681641"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "2099 GATEWAY PLACE",
+                "STREET2": "SUITE 600",
+                "CITY": "SAN JOSE",
+                "STATE": "CA",
+                "ZIP": "95110",
+                "PHONE": "(408) 232-7800"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "2099 GATEWAY PLACE",
+                "STREET2": "SUITE 600",
+                "CITY": "SAN JOSE",
+                "STATE": "CA",
+                "ZIP": "95110"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "VeriFone Holdings, Inc.",
+                "DATE-CHANGED": "20041221"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "noticedated31113.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "verifonebevelwtag4ca04.jpg"
+        }
+    ]
+}

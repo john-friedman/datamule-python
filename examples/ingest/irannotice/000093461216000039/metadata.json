@@ -1,0 +1,49 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000934612-16-000039",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20160506",
+        "DATE-OF-FILING-DATE-CHANGE": "20160506",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "BURLINGTON NORTHERN SANTA FE, LLC",
+                "CIK": "0000934612",
+                "ASSIGNED-SIC": "4011",
+                "IRS-NUMBER": "271754839",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-11535",
+                "FILM-NUMBER": "161628826"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "2650 LOU MENK DR",
+                "CITY": "FT WORTH",
+                "STATE": "TX",
+                "ZIP": "76131-2830",
+                "PHONE": "8007952673"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "2650 LOU MENK DRIVE",
+                "CITY": "FORT WORTH",
+                "STATE": "TX",
+                "ZIP": "76131-2830"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "BNSF CORP",
+                "DATE-CHANGED": "19941223"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "llcirannotice-q12016.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

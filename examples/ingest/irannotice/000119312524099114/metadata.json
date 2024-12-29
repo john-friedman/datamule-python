@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-24-099114",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20240417",
+        "DATE-OF-FILING-DATE-CHANGE": "20240417",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Banco BBVA Argentina S.A.",
+                "CIK": "0000913059",
+                "ASSIGNED-SIC": "6029",
+                "ORGANIZATION-NAME": "02 Finance",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-12568",
+                "FILM-NUMBER": "24851289"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "AV. CORDOBA 111",
+                "CITY": "C1054AAA BUENOS AIRES",
+                "STATE": "C1",
+                "ZIP": "00000",
+                "PHONE": "2127595576"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "AV. CORDOBA 111",
+                "CITY": "C1054AAA BUENOS AIRES",
+                "STATE": "C1",
+                "ZIP": "00000"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "FRENCH BANK OF THE RIO DE LA PLATA",
+                "DATE-CHANGED": "19931005"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d806993dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

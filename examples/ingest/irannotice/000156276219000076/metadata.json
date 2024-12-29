@@ -1,0 +1,46 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001562762-19-000076",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20190308",
+        "DATE-OF-FILING-DATE-CHANGE": "20190308",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ING GROEP NV",
+                "CIK": "0001039765",
+                "ASSIGNED-SIC": "6029",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "P7",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-14642",
+                "FILM-NUMBER": "19668595"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "PO BOX 1800",
+                "CITY": "AMSTERDAM",
+                "STATE": "P7",
+                "ZIP": "1000 BV",
+                "PHONE": "01131205639111"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "PO BOX 1800",
+                "CITY": "AMSTERDAM",
+                "STATE": "P7",
+                "ZIP": "1000 BV"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "maindocument001.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        }
+    ]
+}

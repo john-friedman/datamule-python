@@ -1,0 +1,58 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-17-072944",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20170307",
+        "DATE-OF-FILING-DATE-CHANGE": "20170307",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "RELX N.V.",
+                "CIK": "0000929872",
+                "ASSIGNED-SIC": "2741",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "E1",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-13688",
+                "FILM-NUMBER": "17671177"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "RADARWEG 29",
+                "STREET2": "1043 NX AMSTERDAM",
+                "CITY": "THE NETHERLANDS",
+                "STATE": "P7",
+                "ZIP": "00000",
+                "PHONE": "011442071665660"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "RADARWEG 29",
+                "STREET2": "1043 NX AMSTERDAM",
+                "CITY": "THE NETHERLANDS",
+                "STATE": "P7",
+                "ZIP": "00000"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "ELSEVIER NV /",
+                "DATE-CHANGED": "19980327"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d319642dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g319642relxgroup.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

@@ -1,0 +1,53 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-14-021041",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20140320",
+        "DATE-OF-FILING-DATE-CHANGE": "20140319",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "FRANCO NEVADA Corp",
+                "CIK": "0001456346",
+                "ASSIGNED-SIC": "1040",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "XX"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-35286",
+                "FILM-NUMBER": "14705198"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "EXCHANGE TOWER",
+                "STREET2": "130 KING ST W, SUITE 740",
+                "CITY": "TORONTO",
+                "STATE": "XX",
+                "ZIP": "M5X 1E4",
+                "PHONE": "416-306-6306"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "EXCHANGE TOWER",
+                "STREET2": "130 KING ST W, SUITE 740",
+                "CITY": "TORONTO",
+                "STATE": "XX",
+                "ZIP": "M5X 1E4"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a14-8212_3irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g82123bei001.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

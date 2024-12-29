@@ -1,0 +1,51 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001829864-24-000086",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20240510",
+        "DATE-OF-FILING-DATE-CHANGE": "20240510",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "TaskUs, Inc.",
+                "CIK": "0001829864",
+                "ASSIGNED-SIC": "7374",
+                "ORGANIZATION-NAME": "06 Technology",
+                "IRS-NUMBER": "831586636",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-40482",
+                "FILM-NUMBER": "24934946"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1650 INDEPENDENCE DRIVE",
+                "CITY": "NEW BRAUNFELS",
+                "STATE": "TX",
+                "ZIP": "78132",
+                "PHONE": "888-400-8275"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1650 INDEPENDENCE DRIVE",
+                "CITY": "NEW BRAUNFELS",
+                "STATE": "TX",
+                "ZIP": "78132"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "TU TopCo, Inc.",
+                "DATE-CHANGED": "20201023"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannoticeq12024.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

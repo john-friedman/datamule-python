@@ -1,0 +1,43 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-13-035356",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20130430",
+        "DATE-OF-FILING-DATE-CHANGE": "20130430",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "PORTUGAL TELECOM SGPS SA",
+                "CIK": "0000944747",
+                "ASSIGNED-SIC": "4812",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-13758",
+                "FILM-NUMBER": "13799178"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "AV FONTES PEREIRA DE MELO 40",
+                "CITY": "LISBOA CODEX PO",
+                "STATE": "S1",
+                "ZIP": "1089",
+                "PHONE": "351215001666"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "PORTUGAL TELECOM SA",
+                "DATE-CHANGED": "19950503"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a13-10216_4irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

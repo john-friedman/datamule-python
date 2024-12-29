@@ -1,0 +1,46 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001405041-14-000012",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20140411",
+        "DATE-OF-FILING-DATE-CHANGE": "20140411",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Momentive Performance Materials Inc.",
+                "CIK": "0001405041",
+                "ASSIGNED-SIC": "2860",
+                "IRS-NUMBER": "205748297",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "333-146093",
+                "FILM-NUMBER": "14760760"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "260 HUDSON RIVER ROAD",
+                "CITY": "WATERFORD",
+                "STATE": "NY",
+                "ZIP": "12188",
+                "PHONE": "518-237-3330"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "260 HUDSON RIVER ROAD",
+                "CITY": "WATERFORD",
+                "STATE": "NY",
+                "ZIP": "12188"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice-q42013.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

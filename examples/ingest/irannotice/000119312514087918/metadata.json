@@ -1,0 +1,57 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-14-087918",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20140307",
+        "DATE-OF-FILING-DATE-CHANGE": "20140307",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "UNILEVER PLC",
+                "CIK": "0000217410",
+                "ASSIGNED-SIC": "2840",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-04546",
+                "FILM-NUMBER": "14675186"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "UNILEVER HOUSE",
+                "STREET2": "BLACKFRIARS",
+                "CITY": "LONDON ENGLAND",
+                "STATE": "X0",
+                "ZIP": "EC4P 4BQ",
+                "PHONE": "201-894-2790"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "C/O UNILEVER UNITED STATES INC",
+                "STREET2": "700 SYLVAN AVENUE (ATTN.: M MONTAGNINO)",
+                "CITY": "ENGLEWOOD CLIFFS",
+                "STATE": "NJ",
+                "ZIP": "07632"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "UNILEVER LTD",
+                "DATE-CHANGED": "19820429"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d635348dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g635348g39t24.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

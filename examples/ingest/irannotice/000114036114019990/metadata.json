@@ -1,0 +1,55 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001140361-14-019990",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20140512",
+        "DATE-OF-FILING-DATE-CHANGE": "20140509",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "GENERAL ELECTRIC CAPITAL CORP",
+                "CIK": "0000040554",
+                "ASSIGNED-SIC": "6141",
+                "IRS-NUMBER": "131500700",
+                "STATE-OF-INCORPORATION": "CT",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-06461",
+                "FILM-NUMBER": "14830796"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "901 MAIN AVENUE",
+                "CITY": "NORWALK",
+                "STATE": "CT",
+                "ZIP": "06851-1168",
+                "PHONE": "203-840-6300"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "901 MAIN AVENUE",
+                "CITY": "NORWALK",
+                "STATE": "CT",
+                "ZIP": "06851-1168"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "GENERAL ELECTRIC CREDIT CORP",
+                "DATE-CHANGED": "19871216"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "geccirannotice.htm",
+            "DESCRIPTION": "GENERAL ELECTRIC CAPITAL CORP 5-9-2014"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "logo.jpg"
+        }
+    ]
+}

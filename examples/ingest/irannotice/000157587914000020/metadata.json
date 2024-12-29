@@ -1,0 +1,46 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001575879-14-000020",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20140331",
+        "DATE-OF-FILING-DATE-CHANGE": "20140328",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Caesars Acquisition Co",
+                "CIK": "0001575879",
+                "ASSIGNED-SIC": "7011",
+                "IRS-NUMBER": "462672999",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-36207",
+                "FILM-NUMBER": "14727072"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "ONE CAESARS PALACE DRIVE",
+                "CITY": "LAS VEGAS",
+                "STATE": "NV",
+                "ZIP": "89109",
+                "PHONE": "702-407-6000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "ONE CAESARS PALACE DRIVE",
+                "CITY": "LAS VEGAS",
+                "STATE": "NV",
+                "ZIP": "89109"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "cac-irandisclosureletter.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

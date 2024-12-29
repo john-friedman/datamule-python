@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001283699-19-000016",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20190207",
+        "DATE-OF-FILING-DATE-CHANGE": "20190207",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "T-Mobile US, Inc.",
+                "CIK": "0001283699",
+                "ASSIGNED-SIC": "4812",
+                "IRS-NUMBER": "200836269",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-33409",
+                "FILM-NUMBER": "19573475"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "12920 SE 38TH STREET",
+                "CITY": "BELLEVUE",
+                "STATE": "WA",
+                "ZIP": "98006",
+                "PHONE": "800-318-9270"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "12920 SE 38TH STREET",
+                "CITY": "BELLEVUE",
+                "STATE": "WA",
+                "ZIP": "98006"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "METROPCS COMMUNICATIONS INC",
+                "DATE-CHANGED": "20040315"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "tmus12312018irannotice.htm",
+            "DESCRIPTION": "TMUS IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "tmuslogo.jpg",
+            "DESCRIPTION": "TMUS LOGO"
+        }
+    ]
+}

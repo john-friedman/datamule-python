@@ -1,0 +1,57 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000018926-21-000029",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20210506",
+        "DATE-OF-FILING-DATE-CHANGE": "20210505",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Lumen Technologies, Inc.",
+                "CIK": "0000018926",
+                "ASSIGNED-SIC": "4813",
+                "IRS-NUMBER": "720651161",
+                "STATE-OF-INCORPORATION": "LA",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-07784",
+                "FILM-NUMBER": "21894965"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "P O BOX 4065",
+                "STREET2": "100 CENTURYLINK DR",
+                "CITY": "MONROE",
+                "STATE": "LA",
+                "ZIP": "71203",
+                "PHONE": "3183889000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "100 CENTURYLINK DR",
+                "STREET2": "P O BOX 4065",
+                "CITY": "MONROE",
+                "STATE": "LA",
+                "ZIP": "71203"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "CENTURY TELEPHONE ENTERPRISES INC",
+                "DATE-CHANGED": "19920703"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "lumn033121-section13r.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "download1.jpg"
+        }
+    ]
+}

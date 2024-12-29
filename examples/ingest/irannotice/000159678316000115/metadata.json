@@ -1,0 +1,55 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001596783-16-000115",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20160829",
+        "DATE-OF-FILING-DATE-CHANGE": "20160829",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Catalent, Inc.",
+                "CIK": "0001596783",
+                "ASSIGNED-SIC": "2834",
+                "IRS-NUMBER": "208737688",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "0630"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-36587",
+                "FILM-NUMBER": "161858681"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "14 SCHOOLHOUSE ROAD",
+                "CITY": "SOMERSET",
+                "STATE": "NJ",
+                "ZIP": "08873",
+                "PHONE": "(732) 537-6200"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "14 SCHOOLHOUSE ROAD",
+                "CITY": "SOMERSET",
+                "STATE": "NJ",
+                "ZIP": "08873"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "PTS Holdings Corp.",
+                "DATE-CHANGED": "20140113"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannoticefy16-q4.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "catalentlogov02copy03a05.jpg"
+        }
+    ]
+}

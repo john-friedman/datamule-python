@@ -1,0 +1,55 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001584509-14-000050",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20140811",
+        "DATE-OF-FILING-DATE-CHANGE": "20140811",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Aramark",
+                "CIK": "0001584509",
+                "ASSIGNED-SIC": "5812",
+                "IRS-NUMBER": "208236097",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "0930"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-36223",
+                "FILM-NUMBER": "141030754"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1101 MARKET STREET",
+                "CITY": "PHILADELPHIA",
+                "STATE": "PA",
+                "ZIP": "19107",
+                "PHONE": "215-238-3000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1101 MARKET STREET",
+                "CITY": "PHILADELPHIA",
+                "STATE": "PA",
+                "ZIP": "19107"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "ARAMARK Holdings Corp",
+                "DATE-CHANGED": "20130815"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "q3fy2014irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "armkltrhead1a01.jpg"
+        }
+    ]
+}

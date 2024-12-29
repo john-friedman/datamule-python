@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001090727-13-000034",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20131105",
+        "DATE-OF-FILING-DATE-CHANGE": "20131105",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "UNITED PARCEL SERVICE INC",
+                "CIK": "0001090727",
+                "ASSIGNED-SIC": "4210",
+                "IRS-NUMBER": "582480149",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-15451",
+                "FILM-NUMBER": "131193581"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "55 GLENLAKE PARKWAY NE",
+                "CITY": "ATLANTA",
+                "STATE": "GA",
+                "ZIP": "30328",
+                "PHONE": "4048286000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "55 GLENLAKE PARKWAY NE",
+                "CITY": "ATLANTA",
+                "STATE": "GA",
+                "ZIP": "30328"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g238112g06l57a01a02a01a01.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

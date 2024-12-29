@@ -1,0 +1,47 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001652044-24-000024",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20240131",
+        "DATE-OF-FILING-DATE-CHANGE": "20240130",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Alphabet Inc.",
+                "CIK": "0001652044",
+                "ASSIGNED-SIC": "7370",
+                "ORGANIZATION-NAME": "06 Technology",
+                "IRS-NUMBER": "611767919",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-37580",
+                "FILM-NUMBER": "24580450"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "1600 AMPHITHEATRE PARKWAY",
+                "CITY": "MOUNTAIN VIEW",
+                "STATE": "CA",
+                "ZIP": "94043",
+                "PHONE": "650-253-0000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "1600 AMPHITHEATRE PARKWAY",
+                "CITY": "MOUNTAIN VIEW",
+                "STATE": "CA",
+                "ZIP": "94043"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannoticeq42023.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

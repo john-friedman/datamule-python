@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000015511-16-000032",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20160506",
+        "DATE-OF-FILING-DATE-CHANGE": "20160506",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "BNSF RAILWAY CO",
+                "CIK": "0000015511",
+                "ASSIGNED-SIC": "4011",
+                "IRS-NUMBER": "416034000",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-06324",
+                "FILM-NUMBER": "161628852"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "2650 LOU MENK DR",
+                "CITY": "FORT WORTH",
+                "STATE": "TX",
+                "ZIP": "76131-2830",
+                "PHONE": "8173523466"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "2650 LOU MENK DR",
+                "CITY": "FORT WORTH",
+                "STATE": "TX",
+                "ZIP": "76131-2830"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "BURLINGTON NORTHERN INC",
+                "DATE-CHANGED": "19810602"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "railwayirannotice-q12016.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

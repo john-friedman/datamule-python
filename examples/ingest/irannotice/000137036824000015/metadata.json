@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001370368-24-000015",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20240328",
+        "DATE-OF-FILING-DATE-CHANGE": "20240328",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "CREDIT SUISSE AG",
+                "CIK": "0001053092",
+                "ASSIGNED-SIC": "6211",
+                "ORGANIZATION-NAME": "02 Finance",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "V8",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-33434",
+                "FILM-NUMBER": "24794095"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "PARADEPLATZ 8",
+                "CITY": "ZURICH",
+                "STATE": "V8",
+                "ZIP": "8001",
+                "PHONE": "01141 44 333 1111"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "P.O. BOX 1",
+                "CITY": "ZURICH",
+                "STATE": "V8",
+                "ZIP": "8070"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "CREDIT SUISSE FIRST BOSTON /                            /FI",
+                "DATE-CHANGED": "19980115"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a240328-irannotice.htm"
+        }
+    ]
+}

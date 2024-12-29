@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-18-165469",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20180517",
+        "DATE-OF-FILING-DATE-CHANGE": "20180516",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "OI S.A.",
+                "CIK": "0001160846",
+                "ASSIGNED-SIC": "4813",
+                "IRS-NUMBER": "000000000"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-15256",
+                "FILM-NUMBER": "18841028"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "RUA GENERAL POLIDORO, NO. 99",
+                "STREET2": "5TH FLOOR/PART - BOTAFOGO",
+                "CITY": "RIO DE JANEIRO, RJ",
+                "STATE": "D5",
+                "ZIP": "22280-001",
+                "PHONE": "55-21-3131-1211"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "RUA GENERAL POLIDORO, NO. 99",
+                "STREET2": "5TH FLOOR/PART - BOTAFOGO",
+                "CITY": "RIO DE JANEIRO, RJ",
+                "STATE": "D5",
+                "ZIP": "22280-001"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "BRASIL TELECOM SA",
+                "DATE-CHANGED": "20031208"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d463316dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

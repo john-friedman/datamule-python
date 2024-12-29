@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000071180-16-000026",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20160506",
+        "DATE-OF-FILING-DATE-CHANGE": "20160506",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "NEVADA POWER CO",
+                "CIK": "0000071180",
+                "ASSIGNED-SIC": "4911",
+                "IRS-NUMBER": "880045330",
+                "STATE-OF-INCORPORATION": "NV",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "000-52378",
+                "FILM-NUMBER": "161628772"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "6226 W SAHARA AVE",
+                "CITY": "LAS VEGAS",
+                "STATE": "NV",
+                "ZIP": "89146",
+                "PHONE": "702-402-5000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "P O BOX 98910",
+                "CITY": "LAS VEGAS",
+                "STATE": "NV",
+                "ZIP": "89151"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "SOUTHERN NEVADA POWER CO",
+                "DATE-CHANGED": "19701113"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "npc5616irannotice.htm",
+            "DESCRIPTION": "NPC IRANNOTICE 5.6.16"
+        }
+    ]
+}

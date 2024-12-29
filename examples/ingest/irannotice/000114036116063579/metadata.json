@@ -1,0 +1,46 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001140361-16-063579",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20160505",
+        "DATE-OF-FILING-DATE-CHANGE": "20160505",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "EASTMAN KODAK CO",
+                "CIK": "0000031235",
+                "ASSIGNED-SIC": "3861",
+                "IRS-NUMBER": "160417150",
+                "STATE-OF-INCORPORATION": "NJ",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-00087",
+                "FILM-NUMBER": "161624084"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "343 STATE ST",
+                "CITY": "ROCHESTER",
+                "STATE": "NY",
+                "ZIP": "14650-0910",
+                "PHONE": "7167244000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "343 STATE STREET",
+                "CITY": "ROCHESTER",
+                "STATE": "NY",
+                "ZIP": "14650"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "irannoticeq1-2016.htm",
+            "DESCRIPTION": "EASTMAN KODAK CO IRANNOTICE 5-5-2016"
+        }
+    ]
+}

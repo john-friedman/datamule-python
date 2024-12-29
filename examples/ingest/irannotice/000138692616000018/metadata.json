@@ -1,0 +1,51 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001386926-16-000018",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20161109",
+        "DATE-OF-FILING-DATE-CHANGE": "20161109",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "KKR Financial Holdings LLC",
+                "CIK": "0001386926",
+                "ASSIGNED-SIC": "6199",
+                "IRS-NUMBER": "113801844",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-33437",
+                "FILM-NUMBER": "161984709"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "555 CALIFORNIA STREET, 50TH FLOOR",
+                "CITY": "SAN FRANCISCO",
+                "STATE": "CA",
+                "ZIP": "94104",
+                "PHONE": "(415) 315-3620"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "555 CALIFORNIA STREET, 50TH FLOOR",
+                "CITY": "SAN FRANCISCO",
+                "STATE": "CA",
+                "ZIP": "94104"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "noticeofiranrelateddisclos.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "noticeofiranrelateddi_image1.gif"
+        }
+    ]
+}

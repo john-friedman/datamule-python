@@ -1,0 +1,53 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-23-034451",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20230320",
+        "DATE-OF-FILING-DATE-CHANGE": "20230320",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "GLOBUS MARITIME LTD",
+                "CIK": "0001499780",
+                "ASSIGNED-SIC": "4412",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "1T"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-34985",
+                "FILM-NUMBER": "23746453"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "128 VOULIAGMENIS AVENUE 3RD FL",
+                "STREET2": "166 74 GLYFADA",
+                "CITY": "ATHENS GREECE",
+                "STATE": "J3",
+                "ZIP": "00000",
+                "PHONE": "30 210 960 8300"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "128 VOULIAGMENIS AVENUE 3RD FL",
+                "STREET2": "166 74 GLYFADA",
+                "CITY": "ATHENS GREECE",
+                "STATE": "J3",
+                "ZIP": "00000"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "tm239162-2_irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "image_001.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

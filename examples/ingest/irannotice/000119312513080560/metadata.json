@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-13-080560",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20130228",
+        "DATE-OF-FILING-DATE-CHANGE": "20130227",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Primerica, Inc.",
+                "CIK": "0001475922",
+                "ASSIGNED-SIC": "6311",
+                "IRS-NUMBER": "271204330",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-34680",
+                "FILM-NUMBER": "13648177"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "3120 BRECKINRIDGE BLVD.",
+                "CITY": "DULUTH",
+                "STATE": "GA",
+                "ZIP": "30099",
+                "PHONE": "7703811000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "3120 BRECKINRIDGE BLVD.",
+                "CITY": "DULUTH",
+                "STATE": "GA",
+                "ZIP": "30099"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d493443dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "g493443493443_001.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

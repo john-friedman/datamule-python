@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001639691-24-000061",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20240503",
+        "DATE-OF-FILING-DATE-CHANGE": "20240503",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "LivaNova PLC",
+                "CIK": "0001639691",
+                "ASSIGNED-SIC": "3845",
+                "ORGANIZATION-NAME": "08 Industrial Applications and Services",
+                "IRS-NUMBER": "981268150",
+                "STATE-OF-INCORPORATION": "X0",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-37599",
+                "FILM-NUMBER": "24911707"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "20 EASTBOURNE TERRACE",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "W2 6LG",
+                "PHONE": "4402033250662"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "20 EASTBOURNE TERRACE",
+                "CITY": "LONDON",
+                "STATE": "X0",
+                "ZIP": "W2 6LG"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Sand Holdco Ltd",
+                "DATE-CHANGED": "20150415"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "livn-2024331xirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "image_0a.jpg"
+        }
+    ]
+}

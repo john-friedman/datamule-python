@@ -1,0 +1,48 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0000316300-15-000033",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20150727",
+        "DATE-OF-FILING-DATE-CHANGE": "20150727",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "EXCO RESOURCES INC",
+                "CIK": "0000316300",
+                "ASSIGNED-SIC": "1311",
+                "IRS-NUMBER": "741492779",
+                "STATE-OF-INCORPORATION": "TX",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-32743",
+                "FILM-NUMBER": "151007530"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "12377 MERIT DR",
+                "STREET2": "SUITE 1700",
+                "CITY": "DALLAS",
+                "STATE": "TX",
+                "ZIP": "75251",
+                "PHONE": "2143682084"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "12377 MERIT DR",
+                "STREET2": "SUITE 1700",
+                "CITY": "DALLAS",
+                "STATE": "TX",
+                "ZIP": "75251"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "exco_irannoticeletter2q201.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        }
+    ]
+}

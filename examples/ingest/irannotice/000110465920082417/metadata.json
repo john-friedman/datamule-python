@@ -1,0 +1,46 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-20-082417",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20200709",
+        "DATE-OF-FILING-DATE-CHANGE": "20200709",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Alibaba Group Holding Ltd",
+                "CIK": "0001577552",
+                "ASSIGNED-SIC": "7389",
+                "IRS-NUMBER": "000000000"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-36614",
+                "FILM-NUMBER": "201021065"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "26/F TOWER ONE",
+                "STREET2": "TIMES SQUARE, 1 MATHESON STREET",
+                "CITY": "CAUSEWAY BAY",
+                "STATE": "K3",
+                "ZIP": "00000",
+                "PHONE": "852-2215-5100"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "26/F TOWER ONE",
+                "STREET2": "TIMES SQUARE, 1 MATHESON STREET",
+                "CITY": "CAUSEWAY BAY",
+                "STATE": "K3",
+                "ZIP": "00000"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a20-6321_3irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

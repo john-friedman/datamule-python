@@ -1,0 +1,49 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-16-422204",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20160106",
+        "DATE-OF-FILING-DATE-CHANGE": "20160106",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "CREDIT SUISSE HIGH YIELD BOND FUND",
+                "CIK": "0001061353",
+                "IRS-NUMBER": "134009166",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1031"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "811-08777",
+                "FILM-NUMBER": "161325951"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "ONE MADISON AVENUE",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10010",
+                "PHONE": "2123252000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "ONE MADISON AVENUE",
+                "CITY": "NEW YORK",
+                "STATE": "NY",
+                "ZIP": "10010"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "DLJ HIGH YIELD BOND FUND",
+                "DATE-CHANGED": "19980508"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d19359dirannotice.htm",
+            "DESCRIPTION": "IRAN NOTICE"
+        }
+    ]
+}

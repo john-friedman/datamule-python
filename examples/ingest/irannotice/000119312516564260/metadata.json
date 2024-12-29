@@ -1,0 +1,49 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-16-564260",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20160428",
+        "DATE-OF-FILING-DATE-CHANGE": "20160428",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "ALCATEL LUCENT",
+                "CIK": "0000886125",
+                "ASSIGNED-SIC": "3661",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-11130",
+                "FILM-NUMBER": "161601192"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "148/152 ROUTE DE LA REINE",
+                "CITY": "BOULOGNE-BILLANCOURT",
+                "STATE": "I0",
+                "ZIP": "92100",
+                "PHONE": "331 55 14 10 10"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "148/152 ROUTE DE LA REINE",
+                "CITY": "BOULOGNE-BILLANCOURT",
+                "STATE": "I0",
+                "ZIP": "92100"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "ALCATEL ALSTHOM COMPAGNIE GENERALE DELECTRICITE",
+                "DATE-CHANGED": "19960619"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d183301dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

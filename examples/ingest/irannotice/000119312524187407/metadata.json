@@ -1,0 +1,49 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-24-187407",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20240729",
+        "DATE-OF-FILING-DATE-CHANGE": "20240729",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "HDFC BANK LTD",
+                "CIK": "0001144967",
+                "ASSIGNED-SIC": "6029",
+                "ORGANIZATION-NAME": "02 Finance",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "K7",
+                "FISCAL-YEAR-END": "0331"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-15216",
+                "FILM-NUMBER": "241151769"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "'HDFC BANK HOUSE', SENAPATI BAPAT ROAD",
+                "STREET2": "LOWER PAREL (WEST), MUMBAI INDIA",
+                "CITY": "INDIA",
+                "STATE": "K7",
+                "ZIP": "400013",
+                "PHONE": "91224957676"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "KAMALA MILLS COMPOUND",
+                "STREET2": "SENAPATI BAPAT MARG, LOWER PAREL",
+                "CITY": "MUMBAI INDIA",
+                "STATE": "K7",
+                "ZIP": "400013"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d859031dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

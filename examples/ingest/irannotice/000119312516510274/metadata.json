@@ -1,0 +1,45 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-16-510274",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20160318",
+        "DATE-OF-FILING-DATE-CHANGE": "20160318",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "GLAXOSMITHKLINE PLC",
+                "CIK": "0001131399",
+                "ASSIGNED-SIC": "2834",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "X0"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-15170",
+                "FILM-NUMBER": "161516020"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "980 GREAT WEST ROAD",
+                "CITY": "BRENTFORD MIDDLESEX",
+                "STATE": "X0",
+                "ZIP": "TW8 9GS",
+                "PHONE": "011442080475000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "980 GREAT WEST ROAD",
+                "CITY": "BRENTFORD MIDDLESEX",
+                "STATE": "X0",
+                "ZIP": "TW8 9GS"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d147919dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

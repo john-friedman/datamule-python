@@ -1,0 +1,52 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001305323-18-000012",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20180221",
+        "DATE-OF-FILING-DATE-CHANGE": "20180221",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Bridgepoint Education Inc",
+                "CIK": "0001305323",
+                "ASSIGNED-SIC": "8200",
+                "IRS-NUMBER": "593551629",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-34272",
+                "FILM-NUMBER": "18629408"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "8620 SPECTRUM CENTER BLVD",
+                "CITY": "SAN DIEGO",
+                "STATE": "CA",
+                "ZIP": "92123",
+                "PHONE": "858-668-2586"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "8620 SPECTRUM CENTER BLVD",
+                "CITY": "SAN DIEGO",
+                "STATE": "CA",
+                "ZIP": "92123"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a2017q4formirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "bpia02a01a01a11.gif",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}

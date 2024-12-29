@@ -1,0 +1,50 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001104659-24-037235",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20240321",
+        "DATE-OF-FILING-DATE-CHANGE": "20240321",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "TELECOM ARGENTINA SA",
+                "CIK": "0000932470",
+                "ASSIGNED-SIC": "4813",
+                "ORGANIZATION-NAME": "06 Technology",
+                "IRS-NUMBER": "000000000",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-13464",
+                "FILM-NUMBER": "24771140"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "GENERAL HORNOS, NO. 690",
+                "CITY": "BUENOS AIRES",
+                "STATE": "C1",
+                "ZIP": "C1272ACL",
+                "PHONE": "54-11-4968-4000"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "GENERAL HORNOS, NO. 690",
+                "CITY": "BUENOS AIRES",
+                "STATE": "C1",
+                "ZIP": "C1272ACL"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "TELECOM ARGENTINA STET FRANCE TELECOM SA",
+                "DATE-CHANGED": "19950809"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "tm2333293d2_irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

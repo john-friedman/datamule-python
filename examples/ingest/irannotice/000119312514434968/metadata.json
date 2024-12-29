@@ -1,0 +1,48 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001193125-14-434968",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "1",
+        "FILING-DATE": "20141205",
+        "DATE-OF-FILING-DATE-CHANGE": "20141205",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "BANK OF NOVA SCOTIA /",
+                "CIK": "0000009631",
+                "ASSIGNED-SIC": "6022",
+                "IRS-NUMBER": "134941099",
+                "STATE-OF-INCORPORATION": "Z4",
+                "FISCAL-YEAR-END": "1031"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "002-09048",
+                "FILM-NUMBER": "141270184"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "44 KING STREET WEST",
+                "STREET2": "SCOTIA PLAZA 8TH FL.",
+                "CITY": "TORONTO",
+                "STATE": "A6",
+                "ZIP": "M5H 1H1",
+                "PHONE": "(416)866-7555"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "44 KING STREET WEST",
+                "STREET2": "SCOTIA PLAZA 8TH FL.",
+                "CITY": "TORONTO",
+                "STATE": "A6",
+                "ZIP": "M5H 1H1"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "d700334dirannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        }
+    ]
+}

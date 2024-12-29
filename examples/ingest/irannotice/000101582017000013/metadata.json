@@ -1,0 +1,56 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001015820-17-000013",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "3",
+        "FILING-DATE": "20170306",
+        "DATE-OF-FILING-DATE-CHANGE": "20170303",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "QIAGEN NV",
+                "CIK": "0001015820",
+                "ASSIGNED-SIC": "2836",
+                "IRS-NUMBER": "000000000",
+                "STATE-OF-INCORPORATION": "P7",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "000-28564",
+                "FILM-NUMBER": "17666187"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "HULSTERWEG 82",
+                "CITY": "PL VENLO",
+                "STATE": "P7",
+                "ZIP": "5912",
+                "PHONE": "31-77-35566-00"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "HULSTERWEG 82",
+                "CITY": "PL VENLO",
+                "STATE": "P7",
+                "ZIP": "5912"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "a2016irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "qgennewheaderlogoa13.jpg"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "3",
+            "FILENAME": "qiagenfootera10.jpg"
+        }
+    ]
+}

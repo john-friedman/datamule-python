@@ -1,0 +1,58 @@
+{
+    "submission": {
+        "ACCESSION-NUMBER": "0001564590-19-024436",
+        "TYPE": "IRANNOTICE",
+        "PUBLIC-DOCUMENT-COUNT": "2",
+        "FILING-DATE": "20190702",
+        "DATE-OF-FILING-DATE-CHANGE": "20190702",
+        "FILER": {
+            "COMPANY-DATA": {
+                "CONFORMED-NAME": "Altra Industrial Motion Corp.",
+                "CIK": "0001374535",
+                "ASSIGNED-SIC": "3569",
+                "IRS-NUMBER": "611478870",
+                "STATE-OF-INCORPORATION": "DE",
+                "FISCAL-YEAR-END": "1231"
+            },
+            "FILING-VALUES": {
+                "FORM-TYPE": "IRANNOTICE",
+                "ACT": "34",
+                "FILE-NUMBER": "001-33209",
+                "FILM-NUMBER": "19938616"
+            },
+            "BUSINESS-ADDRESS": {
+                "STREET1": "300 GRANITE STREET",
+                "STREET2": "SUITE 201",
+                "CITY": "BRAINTREE",
+                "STATE": "MA",
+                "ZIP": "02184",
+                "PHONE": "781-917-0600"
+            },
+            "MAIL-ADDRESS": {
+                "STREET1": "300 GRANITE STREET",
+                "STREET2": "SUITE 201",
+                "CITY": "BRAINTREE",
+                "STATE": "MA",
+                "ZIP": "02184"
+            },
+            "FORMER-COMPANY": {
+                "FORMER-CONFORMED-NAME": "Altra Holdings, Inc.",
+                "DATE-CHANGED": "20060905"
+            }
+        }
+    },
+    "documents": [
+        {
+            "TYPE": "IRANNOTICE",
+            "SEQUENCE": "1",
+            "FILENAME": "aimc-irannotice.htm",
+            "DESCRIPTION": "IRANNOTICE"
+        },
+        {
+            "TYPE": "GRAPHIC",
+            "SEQUENCE": "2",
+            "FILENAME": "gdmdgr1pz4nd000001.jpg",
+            "DESCRIPTION": "GRAPHIC"
+        }
+    ]
+}
