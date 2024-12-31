@@ -268,7 +268,7 @@ class Downloader:
         self.current_pbar = None
         return results, parsed_results
 
-    def download_submissions(self, output_dir='filings', cik=None, ticker=None, submission_type=None, date=None, parse=True):
+    def download_submissions(self, output_dir='filings', cik=None, ticker=None, submission_type=None, filing_date=None, parse=True):
         """Main method to download SEC filings."""
         self.parse_filings = parse
         
@@ -288,12 +288,12 @@ class Downloader:
 
                 params['forms'] = ','.join(submission_type) if isinstance(submission_type, list) else submission_type if submission_type else "-0"
 
-                if isinstance(date, list):
-                    dates = [(d, d) for d in date]
-                elif isinstance(date, tuple):
-                    dates = [date]
+                if isinstance(filing_date, list):
+                    dates = [(d, d) for d in filing_date]
+                elif isinstance(filing_date, tuple):
+                    dates = [filing_date]
                 else:
-                    date_str = date if date else f"2001-01-01,{datetime.now().strftime('%Y-%m-%d')}"
+                    date_str = filing_date if filing_date else f"2001-01-01,{datetime.now().strftime('%Y-%m-%d')}"
                     start, end = date_str.split(',')
                     dates = [(start, end)]
 
