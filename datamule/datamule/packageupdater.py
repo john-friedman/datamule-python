@@ -5,7 +5,7 @@ import csv
 import os
 from pkg_resources import resource_filename
 from .helper import headers
-from .downloader import PreciseRateLimiter, RateMonitor
+from .downloader.downloader import PreciseRateLimiter, RateMonitor
 
 class PackageUpdater:
     def __init__(self):
