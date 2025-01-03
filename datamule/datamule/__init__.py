@@ -39,6 +39,9 @@ def __getattr__(name):
     elif name == 'load_package_dataset':
         from .helper import load_package_dataset
         return load_package_dataset
+    elif name == 'Config':
+        from .config import Config
+        return Config
     raise AttributeError(f"module 'datamule' has no attribute '{name}'")
 
 # Lazy load nest_asyncio only when needed
