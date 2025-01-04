@@ -1,0 +1,303 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Downloader &amp; Premium Downloader &mdash; datamule  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Monitor" href="monitor.html" />
+    <link rel="prev" title="Portfolio" href="portfolio.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            datamule
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Usage Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="portfolio.html">Portfolio</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Downloader &amp; Premium Downloader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#downloader">Downloader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#premium-downloader">Premium Downloader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#benchmarks">Benchmarks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pricing">Pricing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#query-optimization">Query Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-tuning-for-premium-downloader">Performance Tuning for Premium Downloader</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#api-key">API key</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="monitor.html">Monitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_classes.html">Core Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html">Parsing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.html">Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_builder.html">Dataset Builder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mulebot.html">MuleBot</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_key.html">API Key</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">datamule</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Usage Guide</a></li>
+      <li class="breadcrumb-item active">Downloader &amp; Premium Downloader</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/usage/downloader.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="downloader-premium-downloader">
+<h1>Downloader &amp; Premium Downloader<a class="headerlink" href="#downloader-premium-downloader" title="Link to this heading"></a></h1>
+<p>Downloader is free, but constrained by SEC rate limits. Premium Downloader uses the <a class="reference external" href="https://datamule.xyz/products">datamule api</a> which is constrained by your internet speed and hardware.</p>
+<section id="downloader">
+<h2>Downloader<a class="headerlink" href="#downloader" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datamule</span> <span class="kn">import</span> <span class="n">Downloader</span>
+<span class="n">downloader</span> <span class="o">=</span> <span class="n">Downloader</span><span class="p">()</span>
+
+<span class="c1"># Download SEC filings</span>
+<span class="n">download_submissions</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">output_dir</span><span class="o">=</span><span class="s1">&#39;filings&#39;</span><span class="p">,</span>  <span class="c1"># Where to save files</span>
+    <span class="n">cik</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>             <span class="c1"># CIK number, list of CIKs, or None for all</span>
+    <span class="n">ticker</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>          <span class="c1"># Stock symbol, list of symbols, or None</span>
+    <span class="n">submission_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>            <span class="c1"># Submission types: &#39;10-K&#39;, [&#39;10-K&#39;, &#39;10-Q&#39;, &#39;8-K&#39;]</span>
+    <span class="n">filing_date</span><span class="o">=</span><span class="kc">None</span>            <span class="c1"># Filing dates:</span>
+                        <span class="c1"># * Single date: &quot;2023-01-01&quot;</span>
+                        <span class="c1"># * Date range tuple: (&quot;2023-01-01&quot;, &quot;2023-12-31&quot;)</span>
+                        <span class="c1"># * List of dates: [&quot;2023-01-01&quot;, &quot;2023-02-01&quot;]</span>
+                        <span class="c1"># * Defaults to all dates from 2001-01-01 to present</span>
+<span class="p">)</span>
+
+<span class="c1"># Download XBRL company concepts (financial data)</span>
+<span class="n">download_company_concepts</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">output_dir</span><span class="o">=</span><span class="s1">&#39;company_concepts&#39;</span><span class="p">,</span>  <span class="c1"># Where to save XBRL JSON files</span>
+    <span class="n">cik</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>                      <span class="c1"># CIK number, list of CIKs, or None for all</span>
+    <span class="n">ticker</span><span class="o">=</span><span class="kc">None</span>                    <span class="c1"># Stock symbol, list of symbols, or None</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="premium-downloader">
+<h2>Premium Downloader<a class="headerlink" href="#premium-downloader" title="Link to this heading"></a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datamuler</span> <span class="kn">import</span> <span class="n">PremiumDownloader</span> <span class="k">as</span> <span class="n">Downloader</span>
+<span class="n">downloader</span> <span class="o">=</span> <span class="n">Downloader</span><span class="p">(</span><span class="n">api_key</span><span class="o">=</span><span class="s1">&#39;your-api-key&#39;</span><span class="p">)</span> <span class="c1"># will automatically use the environment variable DATAMULE_API_KEY</span>
+
+<span class="c1"># Download SEC filings</span>
+<span class="n">download_submissions</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">output_dir</span><span class="o">=</span><span class="s1">&#39;filings&#39;</span><span class="p">,</span>  <span class="c1"># Where to save files</span>
+    <span class="n">cik</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>             <span class="c1"># CIK number, list of CIKs, or None for all</span>
+    <span class="n">ticker</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>          <span class="c1"># Stock symbol, list of symbols, or None</span>
+    <span class="n">submission_type</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>            <span class="c1"># Submission types: &#39;10-K&#39;, [&#39;10-K&#39;, &#39;10-Q&#39;, &#39;8-K&#39;]</span>
+    <span class="n">filing_date</span><span class="o">=</span><span class="kc">None</span>            <span class="c1"># Filing dates:</span>
+                        <span class="c1"># * Single date: &quot;2023-01-01&quot;</span>
+                        <span class="c1"># * Date range tuple: (&quot;2023-01-01&quot;, &quot;2023-12-31&quot;)</span>
+                        <span class="c1"># * List of dates: [&quot;2023-01-01&quot;, &quot;2023-02-01&quot;]</span>
+                        <span class="c1"># * Defaults to all dates from 2001-01-01 to present</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="benchmarks">
+<h2>Benchmarks<a class="headerlink" href="#benchmarks" title="Link to this heading"></a></h2>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Benchmarks</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>File Size</p></th>
+<th class="head"><p>Examples</p></th>
+<th class="head"><p>Downloader</p></th>
+<th class="head"><p>Premium Downloader</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Small Files</p></td>
+<td><p>3, 4, 5</p></td>
+<td><p>5/s</p></td>
+<td><p>300/s</p></td>
+</tr>
+<tr class="row-odd"><td><p>Medium Files</p></td>
+<td><p>8-K</p></td>
+<td><p>5/s</p></td>
+<td><p>60/s</p></td>
+</tr>
+<tr class="row-even"><td><p>Large Files</p></td>
+<td><p>10-K</p></td>
+<td><p>3/s</p></td>
+<td><p>5/s</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Premium Downloader will be updated soon to be 10-100x faster.</p>
+</div>
+</section>
+<section id="pricing">
+<h2>Pricing<a class="headerlink" href="#pricing" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>Free</strong>: Basic Downloader</p></li>
+<li><p><strong>Premium Tier</strong>: $1/100,000 filings + $1/billion rows read (the database is 16 million rows total, so max read cost is about 1.6 cents).</p></li>
+</ul>
+</section>
+<section id="query-optimization">
+<h2>Query Optimization<a class="headerlink" href="#query-optimization" title="Link to this heading"></a></h2>
+<p>The database uses a composite index (submission_type, filing_date, cik). For optimal performance and lower costs:</p>
+<ul class="simple">
+<li><p>Use columns in left-to-right order:
+* <code class="docutils literal notranslate"><span class="pre">submission_type</span></code>
+* <code class="docutils literal notranslate"><span class="pre">submission_type</span> <span class="pre">+</span> <span class="pre">filing_date</span></code>
+* <code class="docutils literal notranslate"><span class="pre">submission_type</span> <span class="pre">+</span> <span class="pre">filing_date</span> <span class="pre">+</span> <span class="pre">cik</span></code></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Queries using only <code class="docutils literal notranslate"><span class="pre">filing_date</span></code> or <code class="docutils literal notranslate"><span class="pre">cik</span></code> will not leverage the index efficiently.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the future, I’ll add more indexes that will remove the need for this optimization. I would do it now, but it would cost me $50. Waiting for next month, when my write quota resets.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>API returns up to 25,000 results per page.</p>
+</div>
+</section>
+<section id="performance-tuning-for-premium-downloader">
+<h2>Performance Tuning for Premium Downloader<a class="headerlink" href="#performance-tuning-for-premium-downloader" title="Link to this heading"></a></h2>
+<p>You can adjust these parameters to optimize for your hardware:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Defaults</span>
+<span class="n">downloader</span><span class="o">.</span><span class="n">CHUNK_SIZE</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">1024</span> <span class="o">*</span> <span class="mi">1024</span>              <span class="c1"># 2MB chunks</span>
+<span class="n">downloader</span><span class="o">.</span><span class="n">MAX_CONCURRENT_DOWNLOADS</span> <span class="o">=</span> <span class="mi">100</span>            <span class="c1"># Parallel downloads</span>
+<span class="n">downloader</span><span class="o">.</span><span class="n">MAX_DECOMPRESSION_WORKERS</span> <span class="o">=</span> <span class="mi">16</span>           <span class="c1"># Decompression threads</span>
+<span class="n">downloader</span><span class="o">.</span><span class="n">MAX_PROCESSING_WORKERS</span> <span class="o">=</span> <span class="mi">16</span>              <span class="c1"># Processing threads</span>
+<span class="n">downloader</span><span class="o">.</span><span class="n">QUEUE_SIZE</span> <span class="o">=</span> <span class="mi">10</span>                          <span class="c1"># Internal queue size</span>
+</pre></div>
+</div>
+<section id="api-key">
+<h3>API key<a class="headerlink" href="#api-key" title="Link to this heading"></a></h3>
+<section id="powershell">
+<h4>PowerShell<a class="headerlink" href="#powershell" title="Link to this heading"></a></h4>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="no">[System.Environment]</span><span class="p">::</span><span class="n">SetEnvironmentVariable</span><span class="p">(</span><span class="s1">&#39;DATAMULE_API_KEY&#39;</span><span class="p">,</span> <span class="s1">&#39;your-api-key&#39;</span><span class="p">,</span> <span class="s1">&#39;User&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="bash">
+<h4>Bash<a class="headerlink" href="#bash" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export DATAMULE_API_KEY=&quot;your-api-key&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+<span class="nb">source</span><span class="w"> </span>~/.bashrc
+</pre></div>
+</div>
+</section>
+<section id="zsh-macos-default">
+<h4>Zsh (macOS default)<a class="headerlink" href="#zsh-macos-default" title="Link to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export DATAMULE_API_KEY=&quot;your-api-key&quot;&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.zshrc
+<span class="nb">source</span><span class="w"> </span>~/.zshrc
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>After setting the environment variable, you may need to restart your terminal/shell for the changes to take effect.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Premium Downloader may be much faster depending on your laptop’s specs and internet connection.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Premium Downloader is in beta and may have bugs. To check for errors go to output_dir/errors.json</p>
+</div>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="portfolio.html" class="btn btn-neutral float-left" title="Portfolio" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="monitor.html" class="btn btn-neutral float-right" title="Monitor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
