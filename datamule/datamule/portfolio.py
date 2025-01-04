@@ -46,6 +46,10 @@ class Portfolio:
 
         downloader.download_submissions(output_dir=self.path, cik=cik, ticker=ticker, submission_type=submission_type, filing_date=filing_date
                                         )
+        
+        # Reload submissions after download
+        self.__init__(self.path)
+        
     def __iter__(self):
         return iter(self.submissions)
     
