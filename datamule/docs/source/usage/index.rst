@@ -7,6 +7,7 @@ This section provides detailed information about using datamule's features.
    :maxdepth: 2
    :caption: Components:
 
+   portfolio
    downloader
    monitor
    core_classes

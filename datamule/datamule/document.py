@@ -1,7 +1,9 @@
 import json
 import csv
 from .parser.document_parsing.sec_parser import Parser
+from .parser.document_parsing.helper import load_file_content
 from .helper import convert_to_dashed_accession
+import re
 
 # we need to modify parse filing to take option in memory
 
@@ -10,12 +12,22 @@ parser = Parser()
 class Document:
     def __init__(self, type, filename):
         self.type = type
-        self.filename = filename
+        self.path = filename
 
         self.data = None
+        self.content = None
 
+    def contains_string(self, pattern):
+        """Currently only works for .htm, .html, and .txt files"""
+        if self.path.suffix in ['.htm', '.html', '.txt']:
+            if self.content is None:
+                self.content = load_file_content(self.path)
+            return bool(re.search(pattern, self.content))
+        return False
+
+    # Note: this method will be heavily modified in the future
     def parse(self):
-        self.data = parser.parse_filing(self.filename, self.type)
+        self.data = parser.parse_filing(self.path, self.type)
         return self.data
     
     def write_json(self, output_filename=None):
@@ -23,7 +35,7 @@ class Document:
             raise ValueError("No data to write. Parse filing first.")
             
         if output_filename is None:
-            output_filename = f"{self.filename.rsplit('.', 1)[0]}.json"
+            output_filename = f"{self.path.rsplit('.', 1)[0]}.json"
             
         with open(output_filename, 'w') as f:
             json.dump(self.data, f, indent=2)
@@ -33,7 +45,7 @@ class Document:
             raise ValueError("No data available. Please call parse_filing() first.")
 
         if output_filename is None:
-            output_filename = f"{self.filename.rsplit('.', 1)[0]}.csv"
+            output_filename = f"{self.path.rsplit('.', 1)[0]}.csv"
 
         with open(output_filename, 'w', newline='') as csvfile:
             if not self.data:

@@ -65,3 +65,12 @@ class Submission:
                     
                 document_path = self.path / filename
                 yield Document(doc['TYPE'], document_path)
+    
+    def __iter__(self):
+        for doc in self.metadata['documents']:
+            filename = doc.get('FILENAME')
+            if filename is None:
+                continue
+                
+            document_path = self.path / filename
+            yield Document(doc['TYPE'], document_path)
