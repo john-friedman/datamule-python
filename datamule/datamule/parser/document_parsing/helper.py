@@ -62,7 +62,7 @@ def load_file_content(filename):
     elif filename.suffix in ['.html','.htm']:
         return load_html_content(filename)
     else:
-        raise ValueError(f"Unsupported file type: {filename}")
+        raise ValueError(f"Unsupported file type: {filename.suffix}")
 
 def clean_title(title: str) -> str:
     """Clean up section title by removing newlines, periods, and all whitespace, converting to lowercase."""

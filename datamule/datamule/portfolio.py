@@ -80,3 +80,11 @@ class Portfolio:
             for document in tqdm(documents, desc=f"Searching for '{pattern}'"):
                 if document.contains_string(pattern):
                     yield document
+
+    def process_documents(self, callback, executor=None):
+        for submission in self:
+            docs = list(submission)
+            if executor:
+                yield from tqdm(executor.map(callback, docs), total=len(docs))
+            else:
+                yield from tqdm(map(callback, docs), total=len(docs))

@@ -17,6 +17,9 @@ class Document:
         self.data = None
         self.content = None
 
+    def _load_content(self):
+        self.content = load_file_content(self.path)
+
     def contains_string(self, pattern):
         """Currently only works for .htm, .html, and .txt files"""
         if self.path.suffix in ['.htm', '.html', '.txt']:
