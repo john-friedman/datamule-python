@@ -65,6 +65,12 @@ Basic Usage
    for document in portfolio.contains_string(r'(?i)covid-19'):
       print(document.type)
 
+   # For faster operations, you can take advantage of built in threading with callback function
+   def callback(submission):
+      print(submission.path)
+
+   submission_results = portfolio.process_submissions(callback) 
+
 
 Examples
 ~~~~~~~~
