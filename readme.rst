@@ -16,6 +16,10 @@ A Python package for working with SEC filings at scale.
 `Full Documentation <https://john-friedman.github.io/datamule-python/>`_ | 
 `Website <https://datamule.xyz/>`_
 
+Related packages:
+-----------------
+* `txt2dataset <https://github.com/john-friedman/txt2dataset/>`_ (alpha)
+
 Features
 --------
 
@@ -120,6 +124,12 @@ Articles
 * `How to host the SEC Archive for $20/month <https://medium.com/@jgfriedman99/how-to-host-the-sec-archive-for-20-month-da374cc3c3fb>`_
 * `Creating Structured Datasets from SEC filings <https://medium.com/@jgfriedman99/how-to-create-alternative-datasets-using-datamule-d3a0192da8f6>`_
 * `Deploy a Financial Chatbot in 5 Minutes <https://medium.com/@jgfriedman99/how-to-deploy-a-financial-chatbot-in-5-minutes-ef5eec973d4c>`_
+
+
+.. image:: https://api.star-history.com/svg?repos=john-friedman/datamule-python&type=Date
+   :target: https://star-history.com/#john-friedman/datamule-python
+   :alt: Star History Chart
+
 
 License
 -------

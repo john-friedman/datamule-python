@@ -31,7 +31,7 @@ def __getattr__(name):
         from .parser.sgml_parsing.sgml_parser_cy import parse_sgml_submission
         return parse_sgml_submission
     elif name == 'DatasetBuilder':
-        from .dataset_builder import DatasetBuilder
+        from txt2dataset import DatasetBuilder
         return DatasetBuilder
     elif name == 'load_package_csv':
         from .helper import load_package_csv

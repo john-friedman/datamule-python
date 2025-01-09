@@ -46,7 +46,7 @@ cython_directives = {
 extras = {
     "mulebot": ['openai'],
     "mulebot_server": ['flask'],
-    "dataset_builder": ['pandas', 'google-generativeai', 'psutil']
+    "dataset_builder": ['txt2dataset']
 }
 
 all_dependencies = set(dep for extra_deps in extras.values() for dep in extra_deps)
