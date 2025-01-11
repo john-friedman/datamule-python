@@ -125,7 +125,6 @@ Articles
 * `Creating Structured Datasets from SEC filings <https://medium.com/@jgfriedman99/how-to-create-alternative-datasets-using-datamule-d3a0192da8f6>`_
 * `Deploy a Financial Chatbot in 5 Minutes <https://medium.com/@jgfriedman99/how-to-deploy-a-financial-chatbot-in-5-minutes-ef5eec973d4c>`_
 
-
 .. image:: https://api.star-history.com/svg?repos=john-friedman/datamule-python&type=Date
    :target: https://star-history.com/#john-friedman/datamule-python
    :alt: Star History Chart
