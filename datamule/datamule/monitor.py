@@ -92,6 +92,7 @@ class Monitor:
         while True:
             current_date = _get_current_eastern_date()
             date_str = current_date.strftime('%Y-%m-%d')
+            timestamp = int(time.time())  # Add this line
             
             if self.last_date != current_date.strftime('%Y-%m-%d'):
                 print(f"New date: {date_str}")
@@ -99,7 +100,7 @@ class Monitor:
                 self.submissions = []
                 self.last_date = date_str
             
-            poll_url = f"{base_url}&startdt={date_str}&enddt={date_str}"
+            poll_url = f"{base_url}&startdt={date_str}&enddt={date_str}&v={timestamp}"  # Modified this line
             if not quiet:
                 print(f"Polling {poll_url}")
             
@@ -119,6 +120,7 @@ class Monitor:
 
     async def _retrieve_batch(self, session, poll_url, from_positions, quiet):
         """Retrieve a batch of submissions concurrently."""
+        # The poll_url already contains the timestamp from _poll
         tasks = [
             self._fetch_json(
                 session,

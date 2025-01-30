@@ -13,7 +13,7 @@ from concurrent.futures import ThreadPoolExecutor
 from functools import partial
 from queue import Queue, Empty
 from threading import Thread
-from datamule.parser.sgml_parsing.sgml_parser_cy import parse_sgml_submission
+from secsgml import parse_sgml_submission
 import urllib.parse
 from ..helper import identifier_to_cik
 
@@ -127,10 +127,8 @@ class PremiumDownloader:
 
         def _process_file(self, item):
             filename, content = item
-            clean_name = filename[:-4] if filename.endswith('.zst') else filename
-            output_path = os.path.join(self.output_dir, Path(clean_name).stem)
             try:
-                parse_sgml_submission(None, output_dir=output_path, content=content)
+                parse_sgml_submission(output_dir=self.output_dir, content=content)
                 self.pbar.update(1)
             except Exception as e:
                 self.downloader._log_error(self.output_dir, filename, str(e))
@@ -282,6 +280,7 @@ class PremiumDownloader:
                     total_urls.extend(more_urls)
                 
                 if total_urls:
+                    total_urls = list(set(total_urls)) # Remove duplicates
                     start_time = time.time()
                     await self.process_batch(total_urls, output_dir)
                     elapsed_time = time.time() - start_time

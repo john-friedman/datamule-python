@@ -4,6 +4,7 @@ from .parser.document_parsing.sec_parser import Parser
 from .parser.document_parsing.helper import load_file_content
 from .helper import convert_to_dashed_accession
 import re
+from doc2dict import parse_xml
 
 # we need to modify parse filing to take option in memory
 
@@ -17,6 +18,12 @@ class Document:
         self.data = None
         self.content = None
 
+
+    def load_content(self,encoding='utf-8'):
+        with open(self.path, 'r',encoding=encoding) as f:
+            self.content = f.read()
+
+    # likely will deprecate this
     def _load_content(self):
         self.content = load_file_content(self.path)
 
@@ -30,7 +37,10 @@ class Document:
 
     # Note: this method will be heavily modified in the future
     def parse(self):
-        self.data = parser.parse_filing(self.path, self.type)
+        if self.path.suffix == '.xml':
+            self.data = parse_xml(self.content)
+        else:
+            self.data = parser.parse_filing(self.path, self.type)
         return self.data
     
     def write_json(self, output_filename=None):

@@ -28,7 +28,7 @@ def __getattr__(name):
         from .document import Document
         return Document
     elif name == "parse_sgml_submission":
-        from .parser.sgml_parsing.sgml_parser_cy import parse_sgml_submission
+        from secsgml import parse_sgml_submission
         return parse_sgml_submission
     elif name == 'DatasetBuilder':
         from txt2dataset import DatasetBuilder

@@ -10,7 +10,7 @@ import time
 from collections import deque
 
 from ..helper import identifier_to_cik, load_package_csv, fix_filing_url, headers
-from ..parser.sgml_parsing.sgml_parser_cy import parse_sgml_submission
+from secsgml import parse_sgml_submission
 
 class RetryException(Exception):
     def __init__(self, url, retry_after=601):
@@ -197,7 +197,7 @@ class Downloader:
 
                                 parsed_data = parse_sgml_submission(
                                     content=content.decode(), 
-                                    output_dir=os.path.dirname(filepath) + f'/{url.split("/")[-1].split(".")[0].replace("-", "")}'
+                                    output_dir=os.path.dirname(filepath)
                                 )
                                 
                                 try:

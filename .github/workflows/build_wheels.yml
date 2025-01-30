@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: ['3.8', '3.9', '3.10', '3.11', '3.12','3.13']
+        python-version: ['3.8', '3.9', '3.10', '3.11', '3.12', '3.13']
 
     steps:
     - uses: actions/checkout@v4
@@ -26,17 +26,12 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         python -m pip install --upgrade setuptools wheel
-        python -m pip install cython --no-build-isolation
         pip install twine
     
     - name: Build wheel
       working-directory: ./datamule
       run: |
-        echo "Current directory contents:"
-        ls -R
         python setup.py bdist_wheel
-        echo "Wheel contents:"
-        unzip -l dist/*.whl
     
     - name: Store wheels
       uses: actions/upload-artifact@v3
@@ -59,28 +54,13 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python -m pip install auditwheel wheel setuptools cython twine
+        python -m pip install wheel setuptools twine
     
     - name: Download all wheels
       uses: actions/download-artifact@v3
       with:
         name: wheels
         path: datamule/dist
-    
-    - name: Fix Linux wheels
-      if: runner.os == 'Linux'
-      working-directory: ./datamule
-      run: |
-        for whl in dist/*linux*.whl; do
-          if [ -f "$whl" ]; then
-            auditwheel repair "$whl" --plat manylinux2014_x86_64
-            rm "$whl"
-          fi
-        done
-        if [ -d "wheelhouse" ]; then
-          mv wheelhouse/* dist/
-          rmdir wheelhouse
-        fi
     
     - name: Build source distribution
       working-directory: ./datamule
@@ -91,5 +71,4 @@ jobs:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
       working-directory: ./datamule
-      run: |
-        twine upload --verbose dist/*
+      run: twine upload dist/*

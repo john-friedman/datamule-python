@@ -1,6 +1,9 @@
 Changelog
 =========
-v.428 (01-03-2025)
+v.433 (2025-01-21)
+- added deduplication to Premium Downloader
+
+v.428 (2025-01-03)
 - added option to set download source via Config class
 - added option to search by document type and by containing text to Portfolio class
 - added download option to Portfolio class. Now you don't need to import Downloader class to download submissions
