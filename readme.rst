@@ -18,7 +18,8 @@ A Python package for working with SEC filings at scale.
 
 Related packages:
 -----------------
-* `txt2dataset <https://github.com/john-friedman/txt2dataset/>`_ (alpha)
+* `txt2dataset <https://github.com/john-friedman/txt2dataset/>`_
+* `secsgml <https://github.com/john-friedman/secsgml/>`_
 
 Features
 --------
