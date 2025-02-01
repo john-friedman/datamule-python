@@ -131,6 +131,9 @@ class PremiumDownloader:
                 parse_sgml_submission(output_dir=self.output_dir, content=content)
                 self.pbar.update(1)
             except Exception as e:
+                accession_dir = os.path.join(self.output_dir, filename.split('.')[0])  
+                if os.path.exists(accession_dir):
+                    shutil.rmtree(accession_dir)
                 self.downloader._log_error(self.output_dir, filename, str(e))
 
         def _processing_worker(self):

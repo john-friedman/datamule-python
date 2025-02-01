@@ -6,8 +6,7 @@ from setuptools import find_namespace_packages
 
 extras = {
     "mulebot": ['openai'],
-    "mulebot_server": ['flask'],
-    "dataset_builder": ['txt2dataset']
+    "mulebot_server": ['flask']
 }
 
 all_dependencies = set(dep for extra_deps in extras.values() for dep in extra_deps)
@@ -34,9 +33,6 @@ setup(
         'zstandard',
         'doc2dict',
         'secsgml'
-    ],
-    setup_requires=[
-        'cython',
     ],
     extras_require=extras,
     package_data={

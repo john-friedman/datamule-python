@@ -1,14 +1,10 @@
 import json
 import csv
-from .parser.document_parsing.sec_parser import Parser
-from .parser.document_parsing.helper import load_file_content
 from .helper import convert_to_dashed_accession
 import re
-from doc2dict import parse_xml
-
-# we need to modify parse filing to take option in memory
-
-parser = Parser()
+from doc2dict import xml2dict, txt2dict
+from doc2dict.xml.mapping_dicts import dict_345
+from selectolax.parser import HTMLParser
 
 class Document:
     def __init__(self, type, filename):
@@ -23,29 +19,98 @@ class Document:
         with open(self.path, 'r',encoding=encoding) as f:
             self.content = f.read()
 
-    # likely will deprecate this
-    def _load_content(self):
-        self.content = load_file_content(self.path)
+    def _load_text_content(self):
+        with open(self.path) as f:
+            return f.read().translate(str.maketrans({
+                '\xa0': ' ', '\u2003': ' ',
+                '\u2018': "'", '\u2019': "'",
+                '\u201c': '"', '\u201d': '"'
+            }))
+
+    # will deprecate this when we add html2dict
+    def _load_html_content(self):
+        parser = HTMLParser(open(self.path).read())
+        
+        # Remove hidden elements first
+        hidden_nodes = parser.css('[style*="display: none"], [style*="display:none"], .hidden, .hide, .d-none')
+        for node in hidden_nodes:
+            node.decompose()
+        
+        blocks = {'p', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'article', 'section', 'li', 'td'}
+        lines = []
+        current_line = []
+        
+        def flush_line():
+            if current_line:
+                lines.append(' '.join(current_line))
+                current_line.clear()
+        
+        for node in parser.root.traverse(include_text=True):
+            if node.tag in ('script', 'style', 'css'):
+                continue
+                
+            if node.tag in blocks:
+                flush_line()
+                lines.append('')
+                
+            if node.text_content:
+                text = node.text_content.strip()
+                if text:
+                    if node.tag in blocks:
+                        flush_line()
+                        lines.append(text)
+                        lines.append('')
+                    else:
+                        current_line.append(text)
+        
+        flush_line()
+        
+        text = '\n'.join(lines)
+        while '\n\n\n' in text:
+            text = text.replace('\n\n\n', '\n\n')
+        
+        return text.translate(str.maketrans({
+            '\xa0': ' ', '\u2003': ' ',
+            '\u2018': "'", '\u2019': "'",
+            '\u201c': '"', '\u201d': '"'
+        }))
+    
+    def _load_file_content(self):
+        if self.path.suffix =='.txt':
+            self.content = self._load_text_content(self.path)
+        elif self.path.suffix in ['.html','.htm']:
+            self.content =  self._load_html_content(self.path)
+        else:
+            raise ValueError(f"Unsupported file type: {self.path.suffix}")
+
 
     def contains_string(self, pattern):
         """Currently only works for .htm, .html, and .txt files"""
         if self.path.suffix in ['.htm', '.html', '.txt']:
             if self.content is None:
-                self.content = load_file_content(self.path)
+                self.content = self._load_file_content(self.path)
             return bool(re.search(pattern, self.content))
         return False
 
     # Note: this method will be heavily modified in the future
     def parse(self):
+        mapping_dict = None
+
         if self.path.suffix == '.xml':
-            self.data = parse_xml(self.content)
-        else:
-            self.data = parser.parse_filing(self.path, self.type)
+            if self.type in ['3', '4', '5']:
+                mapping_dict = dict_345
+
+            self.load_content()
+            self.data = xml2dict(content=self.content, mapping_dict=mapping_dict)
+        # will deprecate this when we add html2dict
+        elif self.path.suffix in ['.htm', '.html','.txt']:
+            self._load_file_content()
+            self.data = txt2dict(content=self.content, mapping_dict=mapping_dict)
         return self.data
     
     def write_json(self, output_filename=None):
         if not self.data:
-            raise ValueError("No data to write. Parse filing first.")
+            self.parse()
             
         if output_filename is None:
             output_filename = f"{self.path.rsplit('.', 1)[0]}.json"
@@ -54,8 +119,7 @@ class Document:
             json.dump(self.data, f, indent=2)
 
     def write_csv(self, output_filename=None, accession_number=None):
-        if self.data is None:
-            raise ValueError("No data available. Please call parse_filing() first.")
+        self.parse()
 
         if output_filename is None:
             output_filename = f"{self.path.rsplit('.', 1)[0]}.csv"
@@ -115,6 +179,7 @@ class Document:
         
         return items
 
+    # we'll modify this for every dict
     def _flatten_dict(self, d, parent_key=''):
         items = {}
         
@@ -131,6 +196,7 @@ class Document:
                     
         return items
    
+   # this will all have to be changed. default will be to flatten everything
     def __iter__(self):
         if not self.data:
             self.parse()

@@ -20,12 +20,23 @@ class Portfolio:
         folders = [f for f in self.path.iterdir() if f.is_dir()]
         print(f"Loading {len(folders)} submissions")
         
+        def load_submission(folder):
+            try:
+                return Submission(folder)
+            except Exception as e:
+                print(f"Error loading submission from {folder}: {str(e)}")
+                return None
+        
         with ThreadPoolExecutor(max_workers=self.MAX_WORKERS) as executor:
             self.submissions = list(tqdm(
-                executor.map(Submission, folders),
+                executor.map(load_submission, folders),
                 total=len(folders),
                 desc="Loading submissions"
             ))
+            
+        # Filter out None values from failed submissions
+        self.submissions = [s for s in self.submissions if s is not None]
+        print(f"Successfully loaded {len(self.submissions)} submissions")
 
     def process_submissions(self, callback):
         """Process all submissions using a thread pool."""

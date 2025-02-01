@@ -14,6 +14,5 @@ This section provides detailed information about using datamule's features.
    core_classes
    parsing
    datasets
-   dataset_builder
    mulebot
    

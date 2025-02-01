@@ -16,7 +16,6 @@ Core Functionality
 
 * **Interact with SEC Submissions**: Access, parse, and interact with SEC submissions using `Portfolio <usage/core_classes#portfolio>`_, `Submission <usage/core_classes#submission>`_, and `Document <usage/core_classes#document>`_.
 
-* **Custom Dataset Creation**: Build specialized datasets from unstructured SEC submission text using `DatasetBuilder <usage/dataset_builder>`_.
 
 Available Datasets
 ------------------

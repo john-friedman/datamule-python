@@ -30,9 +30,6 @@ def __getattr__(name):
     elif name == "parse_sgml_submission":
         from secsgml import parse_sgml_submission
         return parse_sgml_submission
-    elif name == 'DatasetBuilder':
-        from txt2dataset import DatasetBuilder
-        return DatasetBuilder
     elif name == 'load_package_csv':
         from .helper import load_package_csv
         return load_package_csv
@@ -69,6 +66,5 @@ __all__ = [
     'load_package_csv',
     'load_package_dataset',
     'Parser',
-    'Filing',
-    'DatasetBuilder'
+    'Filing'
 ]

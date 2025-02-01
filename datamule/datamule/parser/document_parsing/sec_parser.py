@@ -1,15 +1,5 @@
 import xml.etree.ElementTree as ET
-from .basic_8k_parser import parse_8k
-from .basic_10k_parser import parse_10k
-from .basic_10q_parser import parse_10q
-from .information_table_parser_13fhr import parse_13f_hr_information_table_xml
-from .insider_trading_parser import parse_form345
-from .form_d_parser import parse_form_d
-from .n_port_p_parser import parse_nport_p
-from .basic_13d_parser import parse_13d
-from .basic_13g_parser import parse_13g
-from .generalized_item_parser import generalized_parser
-from .mappings import *
+
 
 class Parser:
 
