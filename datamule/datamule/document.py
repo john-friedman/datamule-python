@@ -3,8 +3,8 @@ import csv
 from .helper import convert_to_dashed_accession
 import re
 from doc2dict import xml2dict, txt2dict
-from .mapping_dicts.txt_mapping_dicts import dict_10k, dict_10q, dict_8k, dict_13d, dict_13g
-from .mapping_dicts.xml_mapping_dicts import dict_345
+from .mapping_dicts import txt_mapping_dicts
+from .mapping_dicts import xml_mapping_dicts
 from selectolax.parser import HTMLParser
 
 class Document:
@@ -30,7 +30,8 @@ class Document:
 
     # will deprecate this when we add html2dict
     def _load_html_content(self):
-        parser = HTMLParser(open(self.path).read())
+        with open(self.path,'rb') as f:
+            parser = HTMLParser(f.read(),detect_encoding=True,decode_errors='ignore')
         
         # Remove hidden elements first
         hidden_nodes = parser.css('[style*="display: none"], [style*="display:none"], .hidden, .hide, .d-none')
@@ -105,7 +106,7 @@ class Document:
 
         if self.path.suffix == '.xml':
             if self.type in ['3', '4', '5']:
-                mapping_dict = dict_345
+                mapping_dict = xml_mapping_dicts.dict_345
 
             self.load_content()
             self.data = xml2dict(content=self.content, mapping_dict=mapping_dict)
@@ -114,15 +115,15 @@ class Document:
             self._load_file_content()
 
             if self.type == '10-K':
-                mapping_dict = dict_10k
+                mapping_dict = txt_mapping_dicts.dict_10k
             elif self.type == '10-Q':
-                mapping_dict = dict_10q
+                mapping_dict = txt_mapping_dicts.dict_10q
             elif self.type == '8-K':
-                mapping_dict = dict_8k
+                mapping_dict = txt_mapping_dicts.dict_8k
             elif self.type == 'SC 13D':
-                mapping_dict = dict_13d
+                mapping_dict = txt_mapping_dicts.dict_13d
             elif self.type == 'SC 13G':
-                mapping_dict = dict_13g
+                mapping_dict = txt_mapping_dicts.dict_13g
             
             self.data = txt2dict(content=self.content, mapping_dict=mapping_dict)
         return self.data
@@ -134,7 +135,7 @@ class Document:
         if output_filename is None:
             output_filename = f"{self.path.rsplit('.', 1)[0]}.json"
             
-        with open(output_filename, 'w') as f:
+        with open(output_filename, 'w',encoding='utf-8') as f:
             json.dump(self.data, f, indent=2)
 
     def write_csv(self, output_filename=None, accession_number=None):

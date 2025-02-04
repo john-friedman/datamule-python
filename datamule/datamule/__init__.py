@@ -1,47 +1,16 @@
-import sys
-from importlib.util import find_spec
-from functools import lru_cache
+from .downloader.downloader import Downloader
+from .downloader.premiumdownloader import PremiumDownloader
+from .monitor import Monitor
+from .packageupdater import PackageUpdater
+from .submission import Submission
+from .portfolio import Portfolio
+from .document import Document
+from secsgml import parse_sgml_submission
+from .helper import load_package_csv, load_package_dataset
+from .config import Config
 
-def __getattr__(name):
-    if name == 'Downloader':
-        from .downloader.downloader import Downloader
-        return Downloader
-    elif name == 'PremiumDownloader':
-        from .downloader.premiumdownloader import PremiumDownloader
-        return PremiumDownloader
-    elif name == 'Parser':
-        from .parser.document_parsing.sec_parser import Parser
-        return Parser
-    elif name == 'Monitor':
-        from .monitor import Monitor
-        return Monitor
-    elif name == 'PackageUpdater':
-        from .packageupdater import PackageUpdater
-        return PackageUpdater
-    elif name == 'Submission':
-        from .submission import Submission
-        return Submission
-    elif name == 'Portfolio':
-        from .portfolio import Portfolio
-        return Portfolio
-    elif name == 'Document':
-        from .document import Document
-        return Document
-    elif name == "parse_sgml_submission":
-        from secsgml import parse_sgml_submission
-        return parse_sgml_submission
-    elif name == 'load_package_csv':
-        from .helper import load_package_csv
-        return load_package_csv
-    elif name == 'load_package_dataset':
-        from .helper import load_package_dataset
-        return load_package_dataset
-    elif name == 'Config':
-        from .config import Config
-        return Config
-    raise AttributeError(f"module 'datamule' has no attribute '{name}'")
 
-# Lazy load nest_asyncio only when needed
+# Keep the notebook environment setup
 def _is_notebook_env():
     """Check if the code is running in a Jupyter or Colab environment."""
     try:
@@ -49,6 +18,8 @@ def _is_notebook_env():
         return shell in ('ZMQInteractiveShell', 'Shell', 'Google.Colab')
     except NameError:
         return False
+
+from functools import lru_cache
 
 @lru_cache(maxsize=1)
 def _setup_notebook_env():
@@ -65,6 +36,12 @@ __all__ = [
     'PremiumDownloader',
     'load_package_csv',
     'load_package_dataset',
-    'Parser',
-    'Filing'
+    'Filing',
+    'Portfolio',
+    'Monitor',
+    'PackageUpdater',
+    'Submission',
+    'Document',
+    'parse_sgml_submission',
+    'Config'
 ]
