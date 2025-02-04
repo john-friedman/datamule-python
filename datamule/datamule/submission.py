@@ -22,13 +22,13 @@ class Submission:
             document_types = [document_types]
             
         for doc in self.metadata['documents']:
-            filename = doc.get('FILENAME')
+            filename = doc.get('filename')
             if filename is None:
                 continue
                 
             filepath = self.path / filename
             # Delete if document type isn't in our keep list
-            if doc['TYPE'] not in document_types and filepath.exists():
+            if doc['type'] not in document_types and filepath.exists():
                 filepath.unlink()
                 
     def drop(self, document_types):
@@ -41,13 +41,13 @@ class Submission:
             document_types = [document_types]
             
         for doc in self.metadata['documents']:
-            filename = doc.get('FILENAME')
+            filename = doc.get('filename')
             if filename is None:
                 continue
                 
             filepath = self.path / filename
             # Delete if document type is in our drop list
-            if doc['TYPE'] in document_types and filepath.exists():
+            if doc['type'] in document_types and filepath.exists():
                 filepath.unlink()
 
     def document_type(self, document_type):
@@ -58,19 +58,19 @@ class Submission:
             document_types = document_type
 
         for doc in self.metadata['documents']:
-            if doc['TYPE'] in document_types:
-                filename = doc.get('FILENAME')
+            if doc['type'] in document_types:
+                filename = doc.get('filename')
                 if filename is None:
                     continue
                     
                 document_path = self.path / filename
-                yield Document(doc['TYPE'], document_path)
+                yield Document(doc['type'], document_path)
     
     def __iter__(self):
         for doc in self.metadata['documents']:
-            filename = doc.get('FILENAME')
+            filename = doc.get('filename')
             if filename is None:
                 continue
                 
             document_path = self.path / filename
-            yield Document(doc['TYPE'], document_path)
+            yield Document(doc['type'], document_path)
