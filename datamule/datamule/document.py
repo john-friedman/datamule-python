@@ -3,7 +3,7 @@ import csv
 from .helper import convert_to_dashed_accession
 import re
 from doc2dict import xml2dict, txt2dict
-from .mapping_dicts.txt_mapping_dicts import dict_10k
+from .mapping_dicts.txt_mapping_dicts import dict_10k, dict_10q, dict_8k, dict_13d, dict_13g
 from .mapping_dicts.xml_mapping_dicts import dict_345
 from selectolax.parser import HTMLParser
 
@@ -115,6 +115,15 @@ class Document:
 
             if self.type == '10-K':
                 mapping_dict = dict_10k
+            elif self.type == '10-Q':
+                mapping_dict = dict_10q
+            elif self.type == '8-K':
+                mapping_dict = dict_8k
+            elif self.type == 'SC 13D':
+                mapping_dict = dict_13d
+            elif self.type == 'SC 13G':
+                mapping_dict = dict_13g
+            
             self.data = txt2dict(content=self.content, mapping_dict=mapping_dict)
         return self.data
     
