@@ -1,5 +1,11 @@
 Changelog
 =========
+v 0.5.0 (ETA 2025-02-03)
+- reworked parsing into doc2dict.
+- reworked sgml parsing into secsgml
+- reworked datasetbuilder into txt2dataset
+- fixed some downloader issues
+
 v.433 (2025-01-21)
 - added deduplication to Premium Downloader
 

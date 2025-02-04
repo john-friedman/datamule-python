@@ -3,7 +3,8 @@ import csv
 from .helper import convert_to_dashed_accession
 import re
 from doc2dict import xml2dict, txt2dict
-from doc2dict.xml.mapping_dicts import dict_345
+from .mapping_dicts.txt_mapping_dicts import dict_10k
+from .mapping_dicts.xml_mapping_dicts import dict_345
 from selectolax.parser import HTMLParser
 
 class Document:
@@ -42,7 +43,8 @@ class Document:
         
         def flush_line():
             if current_line:
-                lines.append(' '.join(current_line))
+                # Don't add spaces between adjacent spans
+                lines.append(''.join(current_line))
                 current_line.clear()
         
         for node in parser.root.traverse(include_text=True):
@@ -61,6 +63,11 @@ class Document:
                         lines.append(text)
                         lines.append('')
                     else:
+                        # Only add space if nodes aren't directly adjacent
+                        if current_line and not current_line[-1].endswith(' '):
+                            if node.prev and node.prev.text_content:
+                                if node.parent != node.prev.parent or node.prev.next != node:
+                                    current_line.append(' ')
                         current_line.append(text)
         
         flush_line()
@@ -74,12 +81,12 @@ class Document:
             '\u2018': "'", '\u2019': "'",
             '\u201c': '"', '\u201d': '"'
         }))
-    
+
     def _load_file_content(self):
         if self.path.suffix =='.txt':
-            self.content = self._load_text_content(self.path)
+            self.content = self._load_text_content()
         elif self.path.suffix in ['.html','.htm']:
-            self.content =  self._load_html_content(self.path)
+            self.content =  self._load_html_content()
         else:
             raise ValueError(f"Unsupported file type: {self.path.suffix}")
 
@@ -105,6 +112,9 @@ class Document:
         # will deprecate this when we add html2dict
         elif self.path.suffix in ['.htm', '.html','.txt']:
             self._load_file_content()
+
+            if self.type == '10-K':
+                mapping_dict = dict_10k
             self.data = txt2dict(content=self.content, mapping_dict=mapping_dict)
         return self.data
     
