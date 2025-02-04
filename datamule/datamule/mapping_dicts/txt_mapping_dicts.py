@@ -62,7 +62,7 @@ dict_10k['transformations'] = [
         "type": "standardize", 
         "match": {
             "type": "item",
-            "text_pattern": r"^\s*(?:ITEM|Item)\s+(\d+|ONE|TWO|THREE|FOUR|FIVE|SIX|SEVEN|EIGHT|NINE|TEN|ELEVEN|TWELVE|THIRTEEN|FOURTEEN|FIFTEEN|SIXTEEN|[0-9]+)"
+            "text_pattern": r"^\s*(?:ITEM|Item)\s+(\d+[a-zA-Z]?|ONE|TWO|THREE|FOUR|FIVE|SIX|SEVEN|EIGHT|NINE|TEN|ELEVEN|TWELVE|THIRTEEN|FOURTEEN|FIFTEEN|SIXTEEN|[0-9]+[a-zA-Z]?)\.?"
         },
         "output": {
             "format": "item{}",
