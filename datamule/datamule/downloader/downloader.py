@@ -122,8 +122,8 @@ class Downloader:
                     raise RetryException(url)
                 raise
 
-    async def _get_filing_urls_from_efts(self, base_url):
-        """Fetch filing URLs from EFTS in batches."""
+    async def _get_filing_urls_from_efts(self, base_url, submission_type=None):
+        """Fetch filing URLs from EFTS in batches with form type filtering."""
         start = 0
         page_size = 100
         urls = []
@@ -152,12 +152,22 @@ class Downloader:
                     if data and 'hits' in data:
                         hits = data['hits']['hits']
                         if hits:
+                            # Filter hits based on exact form match
+                            if not submission_type or submission_type == "-0":
+                                filtered_hits = hits
+                            else:
+                                requested_forms = [submission_type] if isinstance(submission_type, str) else submission_type
+                                filtered_hits = [
+                                    hit for hit in hits
+                                    if hit['_source'].get('form', '') in requested_forms
+                                ]
+                            
                             batch_urls = [
                                 f"https://www.sec.gov/Archives/edgar/data/{hit['_source']['ciks'][0]}/{hit['_id'].split(':')[0]}.txt" 
-                                for hit in hits
+                                for hit in filtered_hits
                             ]
                             urls.extend(batch_urls)
-                            pbar.update(len(hits))
+                            pbar.update(len(hits))  # Update progress based on total hits processed
                             self.update_progress_description()
                 
                 start += 10 * page_size
@@ -173,7 +183,7 @@ class Downloader:
         pbar.close()
         self.current_pbar = None
         return urls
-
+        
     async def _download_file(self, url, filepath):
         """Download single file with precise rate limiting."""
         async with self.connection_semaphore:
@@ -306,7 +316,7 @@ class Downloader:
                     base_url = "https://efts.sec.gov/LATEST/search-index"
                     efts_url = f"{base_url}?{urlencode(params, doseq=True)}"
                     
-                    urls = await self._get_filing_urls_from_efts(efts_url)
+                    urls = await self._get_filing_urls_from_efts(efts_url,submission_type)
                     if urls:
                         filepaths, parsed_data = await self._download_and_process(urls, output_dir)
                         all_filepaths.extend(filepaths)

@@ -1,10 +1,13 @@
 Changelog
 =========
-v 0.5.0 (ETA 2025-02-03)
+v0.5.0 2025-02-04
 - reworked parsing into doc2dict.
 - reworked sgml parsing into secsgml
 - reworked datasetbuilder into txt2dataset
 - fixed some downloader issues
+- made all xmls parseable
+- generalized documents iterablity - may break some work flows. Sorry
+- modified Downloader() to be more specific. downloading 10-K would also download 10-K/A.
 
 v.433 (2025-01-21)
 - added deduplication to Premium Downloader

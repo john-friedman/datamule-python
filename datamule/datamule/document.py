@@ -3,6 +3,7 @@ import csv
 from .helper import convert_to_dashed_accession
 import re
 from doc2dict import xml2dict, txt2dict
+from doc2dict.mapping import flatten_hierarchy
 from .mapping_dicts import txt_mapping_dicts
 from .mapping_dicts import xml_mapping_dicts
 from selectolax.parser import HTMLParser
@@ -221,21 +222,57 @@ class Document:
         if not self.data:
             self.parse()
 
-        if self.type == 'INFORMATION TABLE':
-            return iter(self.data)
-        elif self.type == '8-K':
-            return iter(self._document_to_section_text(self.data['document']))
-        elif self.type == '10-K':
-            return iter(self._document_to_section_text(self.data['document']))
-        elif self.type == '10-Q':
-            return iter(self._document_to_section_text(self.data['document']))
-        elif self.type in ['3', '4', '5']:
-            return iter(self._flatten_dict(self.data['holdings']))
-        elif self.type == 'D':
-            return iter(self._flatten_dict(self.data['document']['relatedPersonsList']['relatedPersonInfo']))
-        elif self.type == 'NPORT-P':
-            return iter(self._flatten_dict(self.data['document']['formData']['invstOrSecs']['invstOrSec']))
-        elif self.type == 'SC 13D':
-            return iter(self._document_to_section_text(self.data['document']))
-        elif self.type == 'SC 13G':
-            return iter(self._document_to_section_text(self.data['document']))
+        # Let's remove XML iterable for now
+
+        # Handle text-based documents
+        if self.path.suffix in ['.txt', '.htm', '.html']:
+            document_data = self.data
+            if not document_data:
+                return iter([])
+                
+            # Find highest hierarchy level from mapping dict
+            highest_hierarchy = float('inf')
+            section_type = None
+            
+            if self.type in ['10-K', '10-Q']:
+                mapping_dict = txt_mapping_dicts.dict_10k if self.type == '10-K' else txt_mapping_dicts.dict_10q
+            elif self.type == '8-K':
+                mapping_dict = txt_mapping_dicts.dict_8k
+            elif self.type == 'SC 13D':
+                mapping_dict = txt_mapping_dicts.dict_13d
+            elif self.type == 'SC 13G':
+                mapping_dict = txt_mapping_dicts.dict_13g
+            else:
+                return iter([])
+                
+            # Find section type with highest hierarchy number
+            highest_hierarchy = -1  # Start at -1 to find highest
+            for mapping in mapping_dict['rules']['mappings']:
+                if mapping.get('hierarchy') is not None:
+                    if mapping['hierarchy'] > highest_hierarchy:
+                        highest_hierarchy = mapping['hierarchy']
+                        section_type = mapping['name']
+                        
+            if not section_type:
+                return iter([])
+                
+            # Extract sections of the identified type
+            def find_sections(data, target_type):
+                sections = []
+                if isinstance(data, dict):
+                    if data.get('type') == target_type:
+                        sections.append({
+                            'item': data.get('text', ''),
+                            'text': flatten_hierarchy(data.get('content', []))
+                        })
+                    for value in data.values():
+                        if isinstance(value, (dict, list)):
+                            sections.extend(find_sections(value, target_type))
+                elif isinstance(data, list):
+                    for item in data:
+                        sections.extend(find_sections(item, target_type))
+                return sections
+                
+            return iter(find_sections(document_data, section_type))
+            
+        return iter([])
