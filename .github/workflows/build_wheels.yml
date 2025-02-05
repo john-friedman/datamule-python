@@ -34,14 +34,18 @@ jobs:
         python setup.py bdist_wheel
     
     - name: Store wheels
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4  # Updated from v3 to v4
       with:
         name: wheels
         path: datamule/dist/*.whl
+        retention-days: 5  # Added retention period for artifacts
 
   upload_pypi:
     needs: build_wheels
     runs-on: ubuntu-latest
+    permissions:  # Added explicit permissions
+      contents: read
+      id-token: write  # Needed for PyPI trusted publishing
     
     steps:
     - uses: actions/checkout@v4
@@ -57,7 +61,7 @@ jobs:
         python -m pip install wheel setuptools twine
     
     - name: Download all wheels
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4  # Updated from v3 to v4
       with:
         name: wheels
         path: datamule/dist
