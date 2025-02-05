@@ -6,47 +6,8 @@ on:
       - 'v*'
 
 jobs:
-  build_wheels:
-    name: Build wheels on ${{ matrix.os }}
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: ['3.8', '3.9', '3.10', '3.11', '3.12', '3.13']
-
-    steps:
-    - uses: actions/checkout@v4
-    
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: ${{ matrix.python-version }}
-    
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        python -m pip install --upgrade setuptools wheel
-        pip install twine
-    
-    - name: Build wheel
-      working-directory: ./datamule
-      run: |
-        python setup.py bdist_wheel
-    
-    - name: Store wheels
-      uses: actions/upload-artifact@v4
-      with:
-        name: wheels-${{ matrix.os }}-py${{ matrix.python-version }}  # Made artifact name unique
-        path: datamule/dist/*.whl
-        retention-days: 5
-
-  upload_pypi:
-    needs: build_wheels
+  deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
-    
     steps:
     - uses: actions/checkout@v4
     
@@ -56,24 +17,20 @@ jobs:
         python-version: '3.11'
     
     - name: Install dependencies
+      working-directory: ./datamule
       run: |
         python -m pip install --upgrade pip
-        python -m pip install wheel setuptools twine
+        pip install setuptools wheel twine
     
-    - name: Download all wheels
-      uses: actions/download-artifact@v4
-      with:
-        pattern: wheels-*  # Download all wheel artifacts using pattern matching
-        path: datamule/dist
-        merge-multiple: true  # Merge all matching artifacts into the target directory
-    
-    - name: Build source distribution
+    - name: Build package
       working-directory: ./datamule
-      run: python setup.py sdist
+      run: |
+        python setup.py sdist bdist_wheel
     
     - name: Upload to PyPI
       env:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
       working-directory: ./datamule
-      run: twine upload dist/*
+      run: |
+        twine upload dist/*
