@@ -15,7 +15,7 @@ extras["all"] = list(all_dependencies)
 setup(
     name="datamule",
     author="John Friedman",
-    version="1.0.0",
+    version="1.0.2",
     description="Making it easier to use SEC filings.",
     packages=find_namespace_packages(include=['datamule*']),
     url="https://github.com/john-friedman/datamule-python",

@@ -1,6 +1,6 @@
 Changelog
 =========
-v0.5.0 2025-02-04
+v01.0.0 2025-02-04
 - reworked parsing into doc2dict.
 - reworked sgml parsing into secsgml
 - reworked datasetbuilder into txt2dataset

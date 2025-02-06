@@ -2,7 +2,7 @@ import json
 import csv
 from .helper import convert_to_dashed_accession
 import re
-from doc2dict import xml2dict, txt2dict
+from doc2dict import xml2dict, txt2dict, dict2dict
 from doc2dict.mapping import flatten_hierarchy
 from .mapping_dicts import txt_mapping_dicts
 from .mapping_dicts import xml_mapping_dicts
@@ -126,7 +126,8 @@ class Document:
             elif self.type == 'SC 13G':
                 mapping_dict = txt_mapping_dicts.dict_13g
             
-            self.data = txt2dict(content=self.content, mapping_dict=mapping_dict)
+            self.data = {}
+            self.data['document'] = dict2dict(txt2dict(content=self.content, mapping_dict=mapping_dict))
         return self.data
     
     def write_json(self, output_filename=None):
