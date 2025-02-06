@@ -1,5 +1,7 @@
 Changelog
 =========
+v01.0.2 2025-02-06
+- modified .parse() to return dictionary in previous package format.
 v01.0.0 2025-02-04
 - reworked parsing into doc2dict.
 - reworked sgml parsing into secsgml
