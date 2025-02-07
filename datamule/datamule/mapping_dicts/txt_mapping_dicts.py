@@ -29,8 +29,8 @@ dict_sgml = {
     }
 }
 
-item_pattern_mapping = r"^\n\n\s*(ITEM|Item)\b"
-part_pattern_mapping = r"^\n\n\s*(PART|Part)\b"
+item_pattern_mapping = r"^\n\n\s*(ITEM|Item)\s+(\d+[a-zA-Z]?|ONE|TWO|THREE|FOUR|FIVE|SIX|SEVEN|EIGHT|NINE|TEN|ELEVEN|TWELVE|THIRTEEN|FOURTEEN|FIFTEEN|SIXTEEN|[0-9]+[a-zA-Z]?)\.?"
+part_pattern_mapping = r"^\n\n\s*(PART|Part)\s+(?:I{1,3}|IV)\.?"
 
 item_pattern_standardization = r"^\s*(?:ITEM|Item)\s+(\d+[a-zA-Z]?|ONE|TWO|THREE|FOUR|FIVE|SIX|SEVEN|EIGHT|NINE|TEN|ELEVEN|TWELVE|THIRTEEN|FOURTEEN|FIFTEEN|SIXTEEN|[0-9]+[a-zA-Z]?)\.?"
 part_pattern_standardization =  r"^\s*(?:PART|Part)\s+([IVX]+)"
