@@ -11,6 +11,15 @@ def _get_current_eastern_date():
     eastern = pytz.timezone('America/New_York')
     return datetime.now(eastern)
 
+def _parse_date(date_str):
+    """Parse YYYY-MM-DD date string to datetime object in Eastern timezone"""
+    try:
+        date = datetime.strptime(date_str, '%Y-%m-%d')
+        eastern = pytz.timezone('America/New_York')
+        return eastern.localize(date)
+    except ValueError as e:
+        raise ValueError(f"Invalid date format. Please use YYYY-MM-DD. Error: {str(e)}")
+
 class PreciseRateLimiter:
     def __init__(self, rate, interval=1.0):
         self.rate = rate  # requests per interval
@@ -67,7 +76,8 @@ class RateMonitor:
 class Monitor:
     def __init__(self):
         self.last_total = 0
-        self.last_date = _get_current_eastern_date()
+        self.last_date = None
+        self.current_monitor_date = None
         self.submissions = []
         self.max_hits = 10000
         self.limiter = PreciseRateLimiter(5)  # 5 requests per second
@@ -91,16 +101,29 @@ class Monitor:
         """Poll API until new submissions are found."""
         while True:
             current_date = _get_current_eastern_date()
-            date_str = current_date.strftime('%Y-%m-%d')
-            timestamp = int(time.time())  # Add this line
             
-            if self.last_date != current_date.strftime('%Y-%m-%d'):
-                print(f"New date: {date_str}")
+            # If we're caught up to current date, use it, otherwise use our tracking date
+            if self.current_monitor_date.date() >= current_date.date():
+                self.current_monitor_date = current_date
+            else:
+                # If we're behind current date and haven't finished current date's processing,
+                # continue with current date
+                if self.last_date == self.current_monitor_date.strftime('%Y-%m-%d'):
+                    pass
+                else:
+                    # Move to next day
+                    self.current_monitor_date += timedelta(days=1)
+                    
+            date_str = self.current_monitor_date.strftime('%Y-%m-%d')
+            timestamp = int(time.time())
+            
+            if self.last_date != date_str:
+                print(f"Processing date: {date_str}")
                 self.last_total = 0
                 self.submissions = []
                 self.last_date = date_str
             
-            poll_url = f"{base_url}&startdt={date_str}&enddt={date_str}&v={timestamp}"  # Modified this line
+            poll_url = f"{base_url}&startdt={date_str}&enddt={date_str}&v={timestamp}"
             if not quiet:
                 print(f"Polling {poll_url}")
             
@@ -109,10 +132,16 @@ class Monitor:
                 if data:
                     current_total = data['hits']['total']['value']
                     if current_total > self.last_total:
-                        print(f"Found {current_total - self.last_total} new submissions")
+                        print(f"Found {current_total - self.last_total} new submissions for {date_str}")
                         self.last_total = current_total
                         return current_total, data, poll_url
                     self.last_total = current_total
+                    
+                    # If we have no hits and we're processing a past date,
+                    # we can move to the next day immediately
+                    if current_total == 0 and self.current_monitor_date.date() < current_date.date():
+                        continue
+                    
             except Exception as e:
                 print(f"Error in poll: {str(e)}")
             
@@ -120,7 +149,6 @@ class Monitor:
 
     async def _retrieve_batch(self, session, poll_url, from_positions, quiet):
         """Retrieve a batch of submissions concurrently."""
-        # The poll_url already contains the timestamp from _poll
         tasks = [
             self._fetch_json(
                 session,
@@ -176,10 +204,16 @@ class Monitor:
         
         return submissions
 
-    async def _monitor(self, callback, form=None, cik=None, ticker=None, poll_interval=1000, quiet=True):
+    async def _monitor(self, callback, form=None, cik=None, ticker=None, start_date=None, poll_interval=1000, quiet=True):
         """Main monitoring loop with parallel processing."""
         if poll_interval < 100:
             raise ValueError("SEC rate limit is 10 requests per second, set poll_interval to 100ms or higher")
+
+        # Set up initial monitoring date
+        if start_date:
+            self.current_monitor_date = _parse_date(start_date)
+        else:
+            self.current_monitor_date = _get_current_eastern_date()
 
         # Handle form parameter
         if form is None:
@@ -233,6 +267,17 @@ class Monitor:
                 
                 await asyncio.sleep(poll_interval / 1000)
 
-    def monitor_submissions(self, callback=None, form=None, cik=None, ticker=None, poll_interval=1000, quiet=True):
-        """Start the monitoring process."""
-        asyncio.run(self._monitor(callback, form, cik, ticker, poll_interval, quiet))
+    def monitor_submissions(self, callback=None, form=None, cik=None, ticker=None, start_date=None, poll_interval=1000, quiet=True):
+        """
+        Start the monitoring process.
+        
+        Parameters:
+            callback (callable, optional): Function to call when new submissions are found
+            form (str or list, optional): Form type(s) to monitor
+            cik (str or list, optional): CIK(s) to monitor
+            ticker (str, optional): Ticker symbol to monitor
+            start_date (str, optional): Start date in YYYY-MM-DD format
+            poll_interval (int, optional): Polling interval in milliseconds
+            quiet (bool, optional): Suppress verbose output
+        """
+        asyncio.run(self._monitor(callback, form, cik, ticker, start_date, poll_interval, quiet))

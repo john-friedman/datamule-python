@@ -1,6 +1,6 @@
 Changelog
 =========
-v01.0.3 2025-02-06
+v01.0.3 2025-02-10
 - modified item mapping dict regex to be more robust.
 
 v01.0.2 2025-02-06
