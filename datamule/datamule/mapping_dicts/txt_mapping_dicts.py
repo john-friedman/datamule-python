@@ -30,9 +30,11 @@ dict_sgml = {
 }
 
 item_pattern_mapping = r"^\n\n\s*(ITEM|Item)\s+(\d+[a-zA-Z]?|ONE|TWO|THREE|FOUR|FIVE|SIX|SEVEN|EIGHT|NINE|TEN|ELEVEN|TWELVE|THIRTEEN|FOURTEEN|FIFTEEN|SIXTEEN|[0-9]+[a-zA-Z]?)\.?"
+item_pattern_mapping_8k = r"^\n\n\s*(ITEM|Item)\s+(\d+(?:\.\d+)?[a-zA-Z]?|ONE|TWO|THREE|FOUR|FIVE|SIX|SEVEN|EIGHT|NINE|TEN|ELEVEN|TWELVE|THIRTEEN|FOURTEEN|FIFTEEN|SIXTEEN|[0-9]+[a-zA-Z]?)\.?"
 part_pattern_mapping = r"^\n\n\s*(PART|Part)\s+(?:I{1,3}|IV)\.?"
 
 item_pattern_standardization = r"^\s*(?:ITEM|Item)\s+(\d+[a-zA-Z]?|ONE|TWO|THREE|FOUR|FIVE|SIX|SEVEN|EIGHT|NINE|TEN|ELEVEN|TWELVE|THIRTEEN|FOURTEEN|FIFTEEN|SIXTEEN|[0-9]+[a-zA-Z]?)\.?"
+item_pattern_standardization_8k = r"^\s*(?:ITEM|Item)\s+(\d+(?:\.\d+)?[a-zA-Z]?|ONE|TWO|THREE|FOUR|FIVE|SIX|SEVEN|EIGHT|NINE|TEN|ELEVEN|TWELVE|THIRTEEN|FOURTEEN|FIFTEEN|SIXTEEN)\.?"
 part_pattern_standardization =  r"^\s*(?:PART|Part)\s+([IVX]+)"
         
 
@@ -194,7 +196,7 @@ dict_8k["rules"]["mappings"].extend([
             {
                 "type": "hierarchy",
                 "name": "item",
-                "pattern": item_pattern_mapping,
+                "pattern": item_pattern_mapping_8k,
                 "hierarchy": 0
             },
             ])
@@ -204,7 +206,7 @@ dict_8k['transformations'] = [
         "type": "standardize", 
         "match": {
             "type": "item",
-            "text_pattern": item_pattern_standardization
+            "text_pattern": item_pattern_standardization_8k
         },
         "output": {
             "format": "item{}",

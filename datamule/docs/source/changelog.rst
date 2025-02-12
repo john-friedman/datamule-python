@@ -1,7 +1,8 @@
 Changelog
 =========
-v01.0.3 2025-02-10
+v01.0.3
 - modified item mapping dict regex to be more robust.
+- modified Monitor().monitor_submissions() to have a start_date parameter.
 
 v01.0.2 2025-02-06
 - modified .parse() to return dictionary in previous package format.
