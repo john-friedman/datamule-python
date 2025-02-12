@@ -1,0 +1,215 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to datamule’s documentation! &mdash; datamule  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            datamule
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage/index.html">Usage Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_key.html">API Key</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">datamule</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Welcome to datamule’s documentation!</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="welcome-to-datamule-s-documentation">
+<h1>Welcome to datamule’s documentation!<a class="headerlink" href="#welcome-to-datamule-s-documentation" title="Link to this heading"></a></h1>
+<p>A Python package to work with SEC submissions at scale. Integrated with <a class="reference external" href="https://datamule.xyz/">datamule’s</a> APIs and datasets.</p>
+<section id="features">
+<h2>Features<a class="headerlink" href="#features" title="Link to this heading"></a></h2>
+<section id="core-functionality">
+<h3>Core Functionality<a class="headerlink" href="#core-functionality" title="Link to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>Fast SEC Downloads</strong>: Utilize the <a class="reference external" href="usage/downloader/downloader">Downloader</a> or <a class="reference external" href="usage/downloader/premium_downloader">Premium Downloader</a> to download SEC filings.</p></li>
+<li><p><strong>Real-time Monitoring</strong>: Keep track of new EDGAR submissions using <a class="reference external" href="usage/monitor">Monitor</a>.</p></li>
+<li><p><strong>Interact with SEC Submissions</strong>: Access, parse, and interact with SEC submissions using <a class="reference external" href="usage/core_classes#portfolio">Portfolio</a>, <a class="reference external" href="usage/core_classes#submission">Submission</a>, and <a class="reference external" href="usage/core_classes#document">Document</a>.</p></li>
+</ul>
+</section>
+<section id="available-datasets">
+<h3>Available Datasets<a class="headerlink" href="#available-datasets" title="Link to this heading"></a></h3>
+<p>Access SEC-related datasets:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://raw.githubusercontent.com/john-friedman/datamule-python/refs/heads/main/datamule/datamule/data/company_metadata.csv">Company Metadata</a> (including SIC Codes)</p></li>
+<li><p><a class="reference external" href="https://raw.githubusercontent.com/john-friedman/datamule-python/refs/heads/main/datamule/datamule/data/company_former_names.csv">Company Former Names</a></p></li>
+<li><p><a class="reference external" href="https://raw.githubusercontent.com/john-friedman/datamule-python/refs/heads/main/datamule/datamule/data/company_tickers.csv">Company Tickers</a></p></li>
+<li><p><a class="reference external" href="https://raw.githubusercontent.com/john-friedman/datamule-python/refs/heads/main/datamule/datamule/data/sec-glossary.csv">SEC Submission Types Glossary</a></p></li>
+<li><p><a class="reference external" href="https://raw.githubusercontent.com/john-friedman/datamule-python/refs/heads/main/datamule/datamule/data/xbrl_descriptions.csv">XBRL Descriptions</a></p></li>
+</ul>
+</section>
+<section id="mulebot-integration">
+<h3>MuleBot Integration<a class="headerlink" href="#mulebot-integration" title="Link to this heading"></a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I built MuleBot in a day to learn how tool-calling chatbots with artifacts work. I’m planning to make it useful in the future. Still fun to play with!</p>
+</div>
+</section>
+</section>
+<section id="navigation">
+<h2>Navigation<a class="headerlink" href="#navigation" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#basic-installation">Basic Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#installation-with-additional-features">Installation with Additional Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#available-extras">Available Extras</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#downloading-submissions-free">Downloading submissions (Free)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#downloading-submissions-premium">Downloading submissions (Premium)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html#parsing-submissions">Parsing submissions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage/index.html">Usage Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="usage/portfolio.html">Portfolio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/config.html">Config</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/downloader.html">Downloader &amp; Premium Downloader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/monitor.html">Monitor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/core_classes.html">Core Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/parsing.html">Parsing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/datasets.html">Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="usage/mulebot.html">MuleBot</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#related-update">Related update</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-400-2024-12-16">v0.400 (2024-12-16)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-382-2024-11-19">v0.382 (2024-11-19)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-379-2024-11-18">v0.379 (2024-11-18)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-377-2024-11-01">v0.377 (2024-11-01)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-376-2024-11-01">v0.376 (2024-11-01)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-374-2024-10-29">v0.374 (2024-10-29)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-373-2024-10-29">v0.373 (2024-10-29)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-372-2024-10-29">v0.372 (2024-10-29)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-368-2024-10-28">v0.368 (2024-10-28)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-364-2024-10-28">v0.364 (2024-10-28)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-363-2024-10-26">v0.363 (2024-10-26)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-357-2024-10-24">v0.357 (2024-10-24)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-356-2024-10-23">v0.356 (2024-10-23)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-355-2024-10-23">v0.355 (2024-10-23)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-352-2024-10-21">v0.352 (2024-10-21)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-351-2024-10-18">v0.351 (2024-10-18)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-350-2024-10-17">v0.350 (2024-10-17)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-343-2024-10-16">v0.343 (2024-10-16)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-342-2024-10-16">v0.342 (2024-10-16)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-341-2024-10-15">v0.341 (2024-10-15)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-337-2024-10-14">v0.337 (2024-10-14)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-335-2024-10-13">v0.335 (2024-10-13)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-334-2024-10-13">v0.334 (2024-10-13)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-333-2024-10-13">v0.333 (2024-10-13)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-332-2024-10-05">v0.332 (2024-10-05)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-330-2024-10-03">v0.330 (2024-10-03)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-323-2024-09-27">v0.323 (2024-09-27)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-314-2024-09-26">v0.314 (2024-09-26)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-312-2024-09-20">v0.312 (2024-09-20)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-311-2024-09-19">v0.311 (2024-09-19)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-302-2024-09-18">v0.302 (2024-09-18)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-301-2024-09-18">v0.301 (2024-09-18)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-29-2024-09-18">v0.29 (2024-09-18)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-26-2024-09-16">v0.26 (2024-09-16)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#v0-25-2024-09-16">v0.25 (2024-09-16)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="changelog.html#earlier-updates">Earlier Updates</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api_key.html">API Key</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
