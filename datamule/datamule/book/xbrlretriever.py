@@ -28,11 +28,21 @@ class XBRLRetriever:
             'Host': 'data.sec.gov'
         }
         self.session = None
-        self.limiter = PreciseRateLimiter(10)
+        self._loop = None
+        self.limiter = None
+
+    @property
+    def loop(self):
+        if self._loop is None:
+            self._loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(self._loop)
+        return self._loop
 
     async def __aenter__(self):
         if not self.session:
             self.session = aiohttp.ClientSession(headers=self.headers)
+        if not self.limiter:
+            self.limiter = PreciseRateLimiter(10)
         return self
 
     async def __aexit__(self, exc_type, exc_val, exc_tb):
@@ -85,5 +95,8 @@ class XBRLRetriever:
             async with self as downloader:
                 return await self._get_xbrl_data(params_list)
 
-        return asyncio.run(_download())
-    
+        return self.loop.run_until_complete(_download())
+
+    def __del__(self):
+        if self._loop is not None:
+            self._loop.close()

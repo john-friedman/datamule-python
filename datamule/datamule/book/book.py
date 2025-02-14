@@ -25,11 +25,17 @@ def get_company_values(xbrl_data, cik, periods):
     """
     values = []
     for period in periods:
+        # Construct the URL key that matches XBRLRetriever's output
+        url = f"https://data.sec.gov/api/xbrl/frames/us-gaap/AccountsPayableCurrent/USD/{period}.json"
+        
         # Find matching record for this company in this period
-        matches = [item['value'] for item in xbrl_data[period] 
-                  if item['cik'] == cik]
-        # Use None if no value found for this period
-        values.append(float(matches[0]) if matches else None)
+        # Note: data is nested under 'data' key and value is 'val'
+        if url in xbrl_data and 'data' in xbrl_data[url]:
+            matches = [item['val'] for item in xbrl_data[url]['data'] 
+                      if item['cik'] == cik]
+            values.append(float(matches[0]) if matches else None)
+        else:
+            values.append(None)
     return values
 
 def check_trend(values, logic):
@@ -139,6 +145,7 @@ class Book():
     def filter_sic(self,sic=None):
         sics = load_package_dataset('company_metadata')
         sic_matches = [item['cik'] for item in sics if str(item['sic']) in sic]
+        # cik codes
         self.sic_matches = (sic_matches)
 
     def filter_xbrl(self, taxonomy, concept, unit, periods, logic, amount=None, callback=None):
@@ -159,7 +166,7 @@ class Book():
         # For each company in the last period
         for item in xbrl_data[f"https://data.sec.gov/api/xbrl/frames/{taxonomy}/{concept}/{unit}/{last_period}.json"]['data']:
             cik = item['cik']
-            acc_no = item['accn']  # Get acc_no for final results
+            acc_no = item['accn'].replace('-','')  # Get acc_no for final results
             
             if logic in [">", "<", "=", "!=", ">=", "<="]:
                 # Simple comparison for last period
@@ -183,6 +190,7 @@ class Book():
     def process_submissions(self,
                             submission_callback=None):
         pass
+        # make request to api # return cik and acco no
         # apply filters
 
         # apply sic filter if exists
