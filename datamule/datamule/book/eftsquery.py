@@ -4,7 +4,6 @@ from tqdm import tqdm
 from datetime import datetime
 from urllib.parse import urlencode
 import time
-
 class PreciseRateLimiter:
     def __init__(self, rate=10, interval=1.0):
         self.rate = rate  # requests per interval
@@ -86,7 +85,8 @@ class EFTSQuery:
                     if data and 'hits' in data:
                         hits = data['hits']['hits']
                         batch_numbers = [
-                            f"{hit['_source']['ciks'][0]}/{hit['_id'].split(':')[0]}"
+                            {'ciks': hit['_source']['ciks'], 'accession_number': hit['_id'].split(':')[0].replace('-', ''),
+                             'filename': hit['_id'].split(':')[1]}
                             for hit in hits
                         ]
                         accession_numbers.extend(batch_numbers)
@@ -96,27 +96,21 @@ class EFTSQuery:
 
         return accession_numbers
 
-    def query_efts(self, cik=None, ticker=None, submission_type=None, filing_date=None, search_text=None):
+    def query_efts(self, filing_date, cik=None, submission_type=None, search_text=None):
         async def _download():
             async with self as downloader:
                 params = {}
                 
+
+                params = {}
                 if cik:
-                    params['ciks'] = str(cik).zfill(10)
+                    params['ciks'] = ','.join(str(c).zfill(10) for c in cik)
 
                 if submission_type:
                     params['forms'] = ','.join(submission_type) if isinstance(submission_type, list) else submission_type
 
-                if isinstance(filing_date, list):
-                    dates = [(d, d) for d in filing_date]
-                elif isinstance(filing_date, tuple):
-                    dates = [filing_date]
-                else:
-                    date_str = filing_date if filing_date else f"2001-01-01,{datetime.now().strftime('%Y-%m-%d')}"
-                    start, end = date_str.split(',')
-                    dates = [(start, end)]
-                
-                params['startdt'], params['enddt'] = dates[0]
+                # filing date will never be none, it will always be a tuple of start and end date
+                params['startdt'], params['enddt'] = filing_date
 
                 if search_text:
                     params['q'] = f'"{search_text}"'
