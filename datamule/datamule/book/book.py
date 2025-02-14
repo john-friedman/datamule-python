@@ -1,30 +1,74 @@
-# Streams data rather than downloading it. 
-# additional functionality such as query by xbrl, and other db
-# also this is basically our experimental rework of portfolio w/o disturbing existing users
-# this is highly experimental and may not work as expected
-# only for datamule source
-# likely new bottleneck will be local parsing() - will be bypassed in future when we have parsed archive
-# wow parsed archive is going to be crazy fast - like every 10k in 1 minute.
-
-# example queries filter by sic = 7372, xbrl query = dei:operatingprofit > 0 in date range 2018-2019
-
-# hmm do we go for sql esq or not.
-# I think we do.
-# i think we remove cik, ticker, sic, etc and just have a query object
-# should be sql esq so users can use it easily w/o learnign new syntax
-
 from .eftsquery import EFTSQuery
 from .xbrlretriever import XBRLRetriever
 from secsgml import parse_sgml_submission_into_memory
 from ..helper import load_package_dataset, identifier_to_cik
 from datetime import datetime
 
+def compare_value(value, logic, amount):
+    """
+    Compare a single value against a target amount using specified logic
+    """
+    comparisons = {
+        ">": lambda x, y: x > y,
+        "<": lambda x, y: x < y,
+        "=": lambda x, y: x == y,
+        "!=": lambda x, y: x != y,
+        ">=": lambda x, y: x >= y,
+        "<=": lambda x, y: x <= y
+    }
+    return comparisons[logic](float(value), float(amount))
 
-# maybe more like
-# book = Book(cik=None,ticker=None,sic=None,submission_type=None,document_type=None,filing_date=None)
-# book.filter_text()
-# book.filter_xbrl()
-# oh yeah thats simpler
+def get_company_values(xbrl_data, cik, periods):
+    """
+    Get list of values for a company across all periods
+    Returns list of values in chronological order
+    """
+    values = []
+    for period in periods:
+        # Find matching record for this company in this period
+        matches = [item['value'] for item in xbrl_data[period] 
+                  if item['cik'] == cik]
+        # Use None if no value found for this period
+        values.append(float(matches[0]) if matches else None)
+    return values
+
+def check_trend(values, logic):
+    """
+    Check if values follow specified trend (increasing/decreasing)
+    Handles missing values by returning False
+    """
+    # Remove None values
+    values = [v for v in values if v is not None]
+    
+    # Need at least 2 values to check trend
+    if len(values) < 2:
+        return False
+        
+    if logic == "increasing":
+        return all(values[i] < values[i+1] 
+                  for i in range(len(values)-1))
+    elif logic == "decreasing":
+        return all(values[i] > values[i+1] 
+                  for i in range(len(values)-1))
+    return False
+
+def check_within_range(values, pct):
+    """
+    Check if all values are within ±percentage range of the mean
+    Handles missing values by excluding them
+    """
+    # Remove None values
+    values = [v for v in values if v is not None]
+    
+    if not values:
+        return False
+        
+    mean = sum(values) / len(values)
+    lower_bound = mean * (1 - pct/100)
+    upper_bound = mean * (1 + pct/100)
+    
+    return all(lower_bound <= v <= upper_bound for v in values)
+
 
 class Book():
     def __init__(self, cik=None,ticker=None,sic=None,submission_type=None,document_type=None,filing_date=None):
@@ -63,7 +107,7 @@ class Book():
 
 
         if filing_date is None:
-            filing_date = ("2001-01-01",{datetime.now().strftime('%Y-%m-%d')})
+            filing_date = ("2001-01-01", datetime.now().strftime('%Y-%m-%d'))
 
         if isinstance(filing_date, str):
             filing_date = (filing_date,filing_date)
@@ -79,6 +123,8 @@ class Book():
         self.search_text_data = []
         # ciks that match sic code
         self.sic_matches = None
+        # xbrl matches that match xbrl query
+        self.xbrl_matches = []
 
     # need to make this so that each call filters it more
     def filter_text(self,text=None,callback=None):
@@ -95,31 +141,43 @@ class Book():
         sic_matches = [item['cik'] for item in sics if str(item['sic']) in sic]
         self.sic_matches = (sic_matches)
 
-    def filter_xbrl(self,taxonomy, concept, unit, periods, logic, amount, callback=None):
-        params = [{taxonomy:taxonomy,concept:concept,unit:unit,period:period} for period in periods]
+    def filter_xbrl(self, taxonomy, concept, unit, periods, logic, amount=None, callback=None):
+
+        if logic in ['>', '<', '=', '!=', '>=', '<='] and amount is None:
+            raise ValueError("Amount must be provided for comparison logic")
+
+        params = [{'taxonomy':taxonomy, 'concept':concept, 'unit':unit, 'period':period} for period in periods]
         xbrl_data = self.XBRLRetriever.get_xbrl_frames(params)
 
         if callback is not None:
             callback(xbrl_data)
 
-        if logic == '>':
-            self.xbrl_matches = [item for item in xbrl_data if item['value'] > amount]
-        elif logic == '<':
-            self.xbrl_matches = [item for item in xbrl_data if item['value'] < amount]
-        elif logic == '=':
-            self.xbrl_matches = [item for item in xbrl_data if item['value'] == amount]
-        elif logic == '>=':
-            self.xbrl_matches = [item for item in xbrl_data if item['value'] >= amount]
-        elif logic == '<=':
-            self.xbrl_matches = [item for item in xbrl_data if item['value'] <= amount]
-        elif logic == '!=':
-            self.xbrl_matches = [item for item in xbrl_data if item['value'] != amount]
-        
-        self.xbrl_matches
+        # Last period is where we get matching acc_nos from
+        last_period = periods[-1]
+        xbrl_matches = []
 
-        # we want to return item['accn']
+        # For each company in the last period
+        for item in xbrl_data[f"https://data.sec.gov/api/xbrl/frames/{taxonomy}/{concept}/{unit}/{last_period}.json"]['data']:
+            cik = item['cik']
+            acc_no = item['accn']  # Get acc_no for final results
+            
+            if logic in [">", "<", "=", "!=", ">=", "<="]:
+                # Simple comparison for last period
+                if compare_value(item['val'], logic, amount):
+                    xbrl_matches.append(acc_no)
+                    
+            elif logic in ["increasing", "decreasing"]:
+                # Get values across all periods using cik to track company
+                values = get_company_values(xbrl_data, cik, periods)
+                if check_trend(values, logic):
+                    xbrl_matches.append(acc_no)  # But store acc_no in results
+                    
+            elif logic == "within_pct":
+                values = get_company_values(xbrl_data, cik, periods)
+                if check_within_range(values, amount):
+                    xbrl_matches.append(acc_no)  # Store acc_no in results
 
-        pass
+        self.xbrl_matches.append((len(self.xbrl_matches), xbrl_matches))
 
     # submission callback is probably correct way even with http ranges.
     def process_submissions(self,
