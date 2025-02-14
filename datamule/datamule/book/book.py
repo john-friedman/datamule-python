@@ -13,31 +13,24 @@
 # i think we remove cik, ticker, sic, etc and just have a query object
 # should be sql esq so users can use it easily w/o learnign new syntax
 
-# WHERE submission_type = '10-K'
-# AND us-gaap:ResearchAndDevelopmentExpense > 0 
-# AND dei:debt_to_equity < 2
-# AND filing_date BETWEEN '2023-01-01' AND '2023-12-31'
-# AND CIK in (123, 456, 789)
-# AND SIC in (123, 456, 789)
-# AND ticker in ('AAPL', 'GOOGL', 'AMZN')
-# AND document_type = 'EX-99.1' # to select attachments
-
 from .eftsquery import EFTSQuery
+from .xbrlretriever import XBRLRetriever
 from secsgml import parse_sgml_submission_into_memory
 from ..helper import load_package_dataset, identifier_to_cik
 from datetime import datetime
 
 
+# maybe more like
+# book = Book(cik=None,ticker=None,sic=None,submission_type=None,document_type=None,filing_date=None)
+# book.filter_text()
+# book.filter_xbrl()
+# oh yeah thats simpler
+
 class Book():
-    def __init__(self):
+    def __init__(self, cik=None,ticker=None,sic=None,submission_type=None,document_type=None,filing_date=None):
         self.EFTSQuery = EFTSQuery()
-    def process_submissions(self,cik=None,ticker=None,sic=None,submission_type=None,document_type=None,filing_date=None,
-                            xbrl_query={},
-                            search_text=None,
-                            search_text_callback=None,
-                            xbrl_query_callback=None,
-                            metadata_callback=None,
-                            document_callback=None,):
+        self.XBRLRetriever = XBRLRetriever()
+
         # cleaning
         if ticker is not None:
             cik = identifier_to_cik(ticker)
@@ -68,28 +61,79 @@ class Book():
             else:
                 document_type = [str(d) for d in document_type]
 
+
         if filing_date is None:
             filing_date = ("2001-01-01",{datetime.now().strftime('%Y-%m-%d')})
 
         if isinstance(filing_date, str):
             filing_date = (filing_date,filing_date)
+
+        self.cik = cik
+        self.ticker = ticker
+        self.sic = sic
+        self.submission_type = submission_type
+        self.document_type = document_type
+        self.filing_date = filing_date
+
+        # accession numbers, document filenames, and associated ciks that match search text
+        self.search_text_data = []
+        # ciks that match sic code
+        self.sic_matches = None
+
+    # need to make this so that each call filters it more
+    def filter_text(self,text=None,callback=None):
+        search_text_data = self.EFTSQuery.query_efts(cik=self.cik, submission_type=self.submission_type,
+                                             filing_date=self.filing_date, search_text=text)
         
+        if callback is not None:
+            callback(search_text_data)
 
-        search_text_data = self.EFTSQuery.query_efts(cik=cik, submission_type=submission_type,
-                                             filing_date=filing_date, search_text=search_text)
-        
-        # add search text callback here
-        if search_text_callback is not None:
-            search_text_data = search_text_callback(search_text_data)
+        self.search_text_data.append((len(self.search_text_data),search_text_data))
 
-
+    def filter_sic(self,sic=None):
         sics = load_package_dataset('company_metadata')
         sic_matches = [item['cik'] for item in sics if str(item['sic']) in sic]
-        search_text_data = [item for item in search_text_data if any(cik in sic_matches for cik in item['ciks'])]
+        self.sic_matches = (sic_matches)
 
-        # filter by xbrl query
+    def filter_xbrl(self,taxonomy, concept, unit, periods, logic, amount, callback=None):
+        params = [{taxonomy:taxonomy,concept:concept,unit:unit,period:period} for period in periods]
+        xbrl_data = self.XBRLRetriever.get_xbrl_frames(params)
 
-        # grab urls and parse them into memory
+        if callback is not None:
+            callback(xbrl_data)
+
+        if logic == '>':
+            self.xbrl_matches = [item for item in xbrl_data if item['value'] > amount]
+        elif logic == '<':
+            self.xbrl_matches = [item for item in xbrl_data if item['value'] < amount]
+        elif logic == '=':
+            self.xbrl_matches = [item for item in xbrl_data if item['value'] == amount]
+        elif logic == '>=':
+            self.xbrl_matches = [item for item in xbrl_data if item['value'] >= amount]
+        elif logic == '<=':
+            self.xbrl_matches = [item for item in xbrl_data if item['value'] <= amount]
+        elif logic == '!=':
+            self.xbrl_matches = [item for item in xbrl_data if item['value'] != amount]
+        
+        self.xbrl_matches
+
+        # we want to return item['accn']
+
+        pass
+
+    # submission callback is probably correct way even with http ranges.
+    def process_submissions(self,
+                            submission_callback=None):
+        pass
+        # apply filters
+
+        # apply sic filter if exists
+
+        # apply search text filter if exists (accn)
+
+        # apply xbrl filter if exists (accn)
+
+        # grab data (1 method for datamule, 1 method for sec)
 
         # metadata callback
 

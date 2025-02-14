@@ -86,3 +86,4 @@ class XBRLRetriever:
                 return await self._get_xbrl_data(params_list)
 
         return asyncio.run(_download())
+    
