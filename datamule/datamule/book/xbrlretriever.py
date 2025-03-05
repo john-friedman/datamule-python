@@ -5,7 +5,7 @@ import time
 class PreciseRateLimiter:
     def __init__(self, rate=10, interval=1.0):
         self.rate = rate
-        self.interval = interval
+        self.interval = interval 
         self.token_time = self.interval / self.rate
         self.last_time = time.time()
         self.lock = asyncio.Lock()
@@ -30,6 +30,9 @@ class XBRLRetriever:
         self.session = None
         self._loop = None
         self.limiter = None
+
+    def set_limiter(self, rate_limit):
+        self.limiter = PreciseRateLimiter(rate_limit)
 
     @property
     def loop(self):

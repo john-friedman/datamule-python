@@ -6,8 +6,9 @@ from .submission import Submission
 from .portfolio import Portfolio
 from .document import Document
 from secsgml import parse_sgml_submission
-from .helper import load_package_csv, load_package_dataset
+from .helper import _load_package_csv, load_package_dataset
 from .config import Config
+from .book.book import Book
 
 
 # Keep the notebook environment setup
@@ -34,7 +35,7 @@ _setup_notebook_env()
 __all__ = [
     'Downloader',
     'PremiumDownloader',
-    'load_package_csv',
+    '_load_package_csv',
     'load_package_dataset',
     'Filing',
     'Portfolio',

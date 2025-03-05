@@ -260,8 +260,8 @@ class PremiumDownloader:
                 keepalive_timeout=60
             )
 
-            # timeout should be max 2 hours.
-            async with aiohttp.ClientSession(connector=connector, timeout=aiohttp.ClientTimeout(total=7200)) as session:
+            # timeout should be max 30s.
+            async with aiohttp.ClientSession(connector=connector, timeout=aiohttp.ClientTimeout(total=30)) as session:
                 tasks = [self.download_and_process(session, url, semaphore, decompression_pool, output_dir, processor) for url in urls]
                 await asyncio.gather(*tasks, return_exceptions=True)
 

@@ -9,7 +9,7 @@ import json
 import time
 from collections import deque
 
-from ..helper import identifier_to_cik, load_package_csv, fix_filing_url, headers
+from ..helper import identifier_to_cik, _load_package_csv, fix_filing_url, headers
 from secsgml import parse_sgml_submission
 
 class RetryException(Exception):
@@ -315,6 +315,7 @@ class Downloader:
                     params['enddt'] = end_date
                     base_url = "https://efts.sec.gov/LATEST/search-index"
                     efts_url = f"{base_url}?{urlencode(params, doseq=True)}"
+                    print(f"Fetching filings from {efts_url}...")
                     
                     urls = await self._get_filing_urls_from_efts(efts_url,submission_type)
                     if urls:
@@ -335,7 +336,7 @@ class Downloader:
                 elif cik:
                     ciks = [cik] if not isinstance(cik, list) else cik
                 else:
-                    company_tickers = load_package_csv('company_tickers')
+                    company_tickers = _load_package_csv('company_tickers')
                     ciks = [company['cik'] for company in company_tickers]
 
                 os.makedirs(output_dir, exist_ok=True)

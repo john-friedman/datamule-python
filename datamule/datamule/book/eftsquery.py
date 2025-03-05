@@ -4,21 +4,35 @@ from tqdm import tqdm
 from datetime import datetime
 from urllib.parse import urlencode
 import time
+from collections import deque
 class PreciseRateLimiter:
     def __init__(self, rate=10, interval=1.0):
-        self.rate = rate  # requests per interval
-        self.interval = interval  # in seconds
-        self.token_time = self.interval / self.rate  # time per token
-        self.last_time = time.time()
+        self.rate = rate
+        self.interval = interval
+        self.timestamps = deque(maxlen=rate)  # Store timestamps of recent requests
         self.lock = asyncio.Lock()
 
     async def acquire(self):
         async with self.lock:
             now = time.time()
-            wait_time = self.last_time + self.token_time - now
-            if wait_time > 0:
-                await asyncio.sleep(wait_time)
-            self.last_time = time.time()
+            
+            # Remove timestamps older than our interval
+            while self.timestamps and now - self.timestamps[0] > self.interval:
+                self.timestamps.popleft()
+            
+            if len(self.timestamps) >= self.rate:
+                # Calculate required wait time
+                wait_time = self.timestamps[0] + self.interval - now
+                if wait_time > 0:
+                    await asyncio.sleep(wait_time)
+                    # Update now after sleeping
+                    now = time.time()
+                    # Clean up old timestamps again
+                    while self.timestamps and now - self.timestamps[0] > self.interval:
+                        self.timestamps.popleft()
+            
+            # Add current timestamp
+            self.timestamps.append(now)
             return True
 
 class EFTSQuery:
@@ -30,6 +44,9 @@ class EFTSQuery:
         }
         self.session = None
         self.limiter = PreciseRateLimiter(10)
+
+    def set_limiter(self, rate_limit):
+        self.limiter = PreciseRateLimiter(rate_limit)
 
     async def __aenter__(self):
         if not self.session:
@@ -86,7 +103,10 @@ class EFTSQuery:
                         hits = data['hits']['hits']
                         batch_numbers = [
                             {'ciks': hit['_source']['ciks'], 'accession_number': hit['_id'].split(':')[0].replace('-', ''),
-                             'filename': hit['_id'].split(':')[1]}
+                             'display_names': hit['_source']['display_names'],
+                             'filename': hit['_id'].split(':')[1],
+                             'file_date':hit['_source']['file_date'],
+                             'file_type':hit['_source']['file_type']}
                             for hit in hits
                         ]
                         accession_numbers.extend(batch_numbers)

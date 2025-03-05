@@ -191,9 +191,10 @@ class Book():
                             submission_callback=None):
         pass
         # make request to api # return cik and acco no
+
         # apply filters
 
-        # apply sic filter if exists
+        # apply sic filter if exists (cik)
 
         # apply search text filter if exists (accn)
 

@@ -15,6 +15,8 @@ class Portfolio:
         
         if self.path.exists():
             self._load_submissions()
+        else:
+            self.path.mkdir(parents=True, exist_ok=True)
     
     def _load_submissions(self):
         folders = [f for f in self.path.iterdir() if f.is_dir()]
