@@ -3,6 +3,46 @@ Portfolio
 
 Portfolio is used to interact with SEC submissions. If called from ``__main__`` it will utilize parallel processing for faster performance.
 
+Quickstart
+----------
+
+Initialization
+~~~~~~~~~~~~~~
+.. code-block:: python
+
+   from datamule import Portfolio
+
+   # Create a Portfolio object
+   portfolio = Portfolio('climate') # need to modify this docs
+
+   # Filter submissions
+   portfolio.filter_text('"climate change" risks', filing_date=('2019-01-01', '2019-01-31'), submission_type='10-K')
+
+Downloading Submissions
+~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: python
+
+   # Download submissions - note that filters are applied here
+   portfolio.download_submissions(submission_type='10-K', filing_date=('2019-01-01', '2019-01-31'), provider='sec')
+
+Processing Submissions
+~~~~~~~~~~~~~~~~~~~~~~~
+
+blurb about download vs streaming here
+
+.. code-block:: python
+
+   def callback_function(submission):
+      try:
+         print(submission.metadata['cik'])
+      except:
+         print(submission.metadata['central index key'])
+
+   # Process submissions - note that filters are applied here
+   portfolio.process_submissions(submission_type='10-K', filing_date=('2019-01-01', '2019-01-31'), provider='sec', submission_callback=callback_function)
+
+
 Functions
 ---------
 
@@ -42,8 +82,7 @@ Parameters for submission functions
 Filters
 ~~~~~~~
 
-Runs before process_submissions.
-
+Run this before Submissions.
 
 ``filter_text(text_query, cik=None, submission_type=None, filing_date=None, requests_per_second=5.0)``
    filters submissions by text.
