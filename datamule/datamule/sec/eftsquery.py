@@ -82,6 +82,7 @@ class EFTSQuery:
         self.was_primary_docs_query = False  # Track if original query was for primary docs
         self.true_total_docs = 0  # Track the true total number of documents
         self.processed_doc_count = 0  # Track how many documents we've processed
+        self.original_forms = []  # Track original form request before adding exclusions
         
     def update_progress_description(self):
         if self.pbar:
@@ -99,6 +100,19 @@ class EFTSQuery:
             await self.session.close()
             self.session = None
 
+    def _get_form_exclusions(self, form):
+        """Dynamically generate form exclusions based on patterns"""
+        # Skip already negated forms
+        if form.startswith('-'):
+            return []
+            
+        # For forms without "/A", exclude the amendment version
+        if not form.endswith('/A'):
+            return [f"-{form}/A"]
+            
+        # No exclusions for amendment forms
+        return []
+
     def _prepare_params(self, cik=None, submission_type=None, filing_date=None):
         params = {}
         
@@ -109,14 +123,31 @@ class EFTSQuery:
             else:
                 params['ciks'] = str(int(cik)).zfill(10)
 
-        # Handle submission type - use -0 as default to get primary documents only
+        # Handle submission type with exact form matching
         if submission_type:
+            # Store original form request for reference
             if isinstance(submission_type, list):
-                params['forms'] = ','.join(submission_type)
+                self.original_forms = submission_type.copy()
+                form_list = submission_type.copy()  # Create a copy to modify
             else:
-                params['forms'] = submission_type
+                self.original_forms = [submission_type]
+                form_list = [submission_type]  # Create a list to modify
+            
+            # Apply form exclusions for exact matching
+            expanded_forms = []
+            for form in form_list:
+                # Add the original form
+                expanded_forms.append(form)
+                
+                # Get and add any exclusions for this form
+                exclusions = self._get_form_exclusions(form)
+                expanded_forms.extend(exclusions)
+            
+            params['forms'] = ','.join(expanded_forms)
         else:
-            params['forms'] = "-0"  # Default to primary documents only
+            # Default to primary documents only
+            self.original_forms = ["-0"]
+            params['forms'] = "-0"
 
         # Handle filing date
         if filing_date:
@@ -245,6 +276,21 @@ class EFTSQuery:
             groups.append(current_group)
             
         return groups
+
+    def _preserve_form_exclusions(self, form_group):
+        """Add necessary exclusions to a form group based on form patterns"""
+        result = form_group.copy()
+        
+        # Check each form in the group to see if it needs exclusions
+        for form in form_group:
+            exclusions = self._get_form_exclusions(form)
+            
+            # Add exclusions if they're not already in the form group
+            for excluded_form in exclusions:
+                if excluded_form not in result:
+                    result.append(excluded_form)
+        
+        return result
 
     def _store_page_request(self, params, total_hits, callback=None, is_initial_query=False):
         """Store pages to be requested later, after planning is complete"""
@@ -381,8 +427,10 @@ class EFTSQuery:
             
             # Process form groups from buckets
             for group in form_groups:
+                # Preserve necessary form exclusions when splitting form groups
+                form_group = self._preserve_form_exclusions(group)
                 form_params = params.copy()
-                form_params['forms'] = ','.join(group)
+                form_params['forms'] = ','.join(form_group)
                 # Track which forms we've processed
                 processed_forms.extend(group)
                 await self._process_query_recursive(form_params, processed_forms, depth + 1, max_depth, callback, False)
@@ -419,7 +467,7 @@ class EFTSQuery:
         all_hits = []
         
         # Check if this is a primary documents query
-        self.was_primary_docs_query = params.get('forms') == '-0'
+        self.was_primary_docs_query = '-0' in params.get('forms', '').split(',')
         
         # Collector callback to gather all hits
         async def collect_hits(hits):
