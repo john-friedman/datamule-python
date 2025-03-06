@@ -1,6 +1,5 @@
 from .olddownloader.premiumdownloader import PremiumDownloader
 from .monitor import Monitor
-from .packageupdater import PackageUpdater
 from .submission import Submission
 from .portfolio import Portfolio
 from .document import Document
@@ -38,7 +37,6 @@ __all__ = [
     'Filing',
     'Portfolio',
     'Monitor',
-    'PackageUpdater',
     'Submission',
     'Document',
     'parse_sgml_submission',

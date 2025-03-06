@@ -1,13 +1,15 @@
 Changelog
 =========
-v01.0.3
+v1.1.0 (2025-03-12 Expected)
+- Reworked downloader
+v1.0.3
 - modified item mapping dict regex to be more robust.
 - modified Monitor().monitor_submissions() to have a start_date parameter.
 
-v01.0.2 2025-02-06
+v1.0.2 2025-02-06
 - modified .parse() to return dictionary in previous package format.
 
-v01.0.0 2025-02-04
+v1.0.0 2025-02-04
 - reworked parsing into doc2dict.
 - reworked sgml parsing into secsgml
 - reworked datasetbuilder into txt2dataset

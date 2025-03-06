@@ -6,6 +6,7 @@ from .olddownloader.premiumdownloader import PremiumDownloader
 from .downloader.downloader import download
 from .config import Config
 import os
+from .helper import get_cik_from_dataset
 
 class Portfolio:
     def __init__(self, path):
@@ -78,6 +79,9 @@ class Portfolio:
                 filing_date=filing_date
             )
         else:
+            if ticker is not None:
+                cik = get_cik_from_dataset('company_tickers','ticker',ticker)
+        
             download(
                 output_dir=self.path,
                 cik=cik,

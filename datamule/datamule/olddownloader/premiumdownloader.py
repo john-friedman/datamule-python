@@ -15,7 +15,7 @@ from queue import Queue, Empty
 from threading import Thread
 from secsgml import parse_sgml_submission
 import urllib.parse
-from ..helper import identifier_to_cik
+from ..helper import get_cik_from_dataset
 
 class InsufficientBalanceError(Exception):
     def __init__(self, required_cost, current_balance, total_urls):
@@ -315,7 +315,7 @@ class PremiumDownloader:
                 filing_date = (int(filing_date[0].replace('-', '')), int(filing_date[1].replace('-', '')))
 
         if ticker is not None:
-            cik = identifier_to_cik(ticker)
+            cik = get_cik_from_dataset('company_tickers','ticker',ticker)
 
         if cik is not None:
             if isinstance(cik, str):

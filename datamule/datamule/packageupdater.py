@@ -7,6 +7,8 @@ from pkg_resources import resource_filename
 from .helper import headers
 from .olddownloader.downloader import PreciseRateLimiter, RateMonitor
 
+# need to rewrite this
+
 class PackageUpdater:
     def __init__(self):
         self.limiter = PreciseRateLimiter(5)  # 5 requests per second

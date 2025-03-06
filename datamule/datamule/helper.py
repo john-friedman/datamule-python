@@ -1,6 +1,5 @@
 from pkg_resources import resource_filename
 import csv
-import re
 
 # May generalize to load any package resource
 def _load_package_csv(name):
@@ -27,47 +26,8 @@ def load_package_dataset(dataset):
     elif dataset == 'xbrl_descriptions':
         return _load_package_csv('xbrl_descriptions')
 
-def identifier_to_cik(ticker):
-    """Convert company tickers to CIK codes"""
-    company_tickers = _load_package_csv('company_tickers')
-    if ticker:
-        if isinstance(ticker, list):
-            cik = []
-            for t in ticker:
-                cik.extend([company['cik'] for company in company_tickers if t == company['ticker']])
-        else:
-            cik = [company['cik'] for company in company_tickers if ticker == company['ticker']]
 
-    if not cik:
-        raise ValueError("No matching companies found")
-
+def get_cik_from_dataset(dataset_name,key,value):
+    dataset = load_package_dataset(dataset_name)
+    cik = [company['cik'] for company in dataset if str(value) == company[key]]
     return cik
-
-
-def fix_filing_url(url):
-    match_suffix = re.search(r'/(\d{4})\.(.+?)$', url)
-    if match_suffix:
-        suffix_number = match_suffix.group(1)
-        file_ext = match_suffix.group(2)
-        match_accession = re.search(r'/(\d{18})/', url)
-        if match_accession:
-            accession_number = match_accession.group(1)
-            formatted_accession_number = f"{accession_number[:10]}-{accession_number[10:12]}-{accession_number[12:]}"
-            new_url = url.rsplit('/', 1)[0] + f'/{formatted_accession_number}-{suffix_number}.{file_ext}'
-            return new_url
-    return url
-
-def convert_to_dashed_accession(accession):
-    # Remove any existing dashes or whitespace
-    cleaned = ''.join(accession.split())
-    
-    # Check if the cleaned string has 18 characters
-    if len(cleaned) != 18:
-        raise ValueError("Invalid accession number format. Expected 18 characters.")
-    
-    # Insert dashes at the correct positions
-    dashed = f"{cleaned[:10]}-{cleaned[10:12]}-{cleaned[12:]}"
-    
-    return dashed
-
-headers = {'User-Agent': 'John Smith johnsmith@gmail.com'}
