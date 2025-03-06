@@ -1,6 +1,5 @@
 import json
 import csv
-from .helper import convert_to_dashed_accession
 import re
 from doc2dict import xml2dict, txt2dict, dict2dict
 from doc2dict.mapping import flatten_hierarchy

@@ -15,7 +15,6 @@ from queue import Queue, Empty
 from threading import Thread
 from secsgml import parse_sgml_submission
 import urllib.parse
-from ..helper import get_cik_from_dataset
 
 class InsufficientBalanceError(Exception):
     def __init__(self, required_cost, current_balance, total_urls):
@@ -302,28 +301,9 @@ class PremiumDownloader:
                 self._log_error(output_dir, "balance_check", error_msg)
                 return
 
-    def download_submissions(self, submission_type=None, cik=None, ticker=None, filing_date=None, output_dir="download"):
+    def download_submissions(self, submission_type=None, cik=None, filing_date=None, output_dir="download"):
         if self.api_key is None:
             raise ValueError("No API key found. Please set DATAMULE_API_KEY environment variable or provide api_key in constructor")
-
-        if filing_date is not None:
-            if isinstance(filing_date, str):
-                filing_date = int(filing_date.replace('-', ''))
-            elif isinstance(filing_date, list):
-                filing_date = [int(x.replace('-', '')) for x in filing_date]
-            elif isinstance(filing_date, tuple):
-                filing_date = (int(filing_date[0].replace('-', '')), int(filing_date[1].replace('-', '')))
-
-        if ticker is not None:
-            cik = get_cik_from_dataset('company_tickers','ticker',ticker)
-
-        if cik is not None:
-            if isinstance(cik, str):
-                cik = [int(cik)]
-            elif isinstance(cik, int):
-                cik = [cik]
-            elif isinstance(cik, list):
-                cik = [int(x) for x in cik]
 
         async def _download():
             try:

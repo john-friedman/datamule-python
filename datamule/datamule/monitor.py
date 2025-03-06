@@ -4,7 +4,9 @@ from datetime import timedelta, datetime
 import pytz
 from collections import deque
 import time
-from .helper import headers, identifier_to_cik
+from .helper import get_cik_from_dataset
+
+headers = {'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
 
 def _get_current_eastern_date():
     """Get current date in US Eastern timezone (automatically handles DST) """
@@ -224,7 +226,7 @@ class Monitor:
         # Handle CIK/ticker parameter
         cik_param = None
         if ticker is not None:
-            cik_param = identifier_to_cik(ticker)
+            cik_param = get_cik_from_dataset('company_tickers','ticker',ticker)
         elif cik is not None:
             cik_param = cik if isinstance(cik, list) else [cik]
 

@@ -6,7 +6,7 @@ from .olddownloader.premiumdownloader import PremiumDownloader
 from .downloader.downloader import download
 from .config import Config
 import os
-from .helper import get_cik_from_dataset
+from .helper import get_cik_from_dataset, get_ciks_from_metadata_filters
 
 class Portfolio:
     def __init__(self, path):
@@ -63,25 +63,51 @@ class Portfolio:
             ))
             return results
 
-    def download_submissions(self, cik=None, ticker=None, submission_type=None, filing_date=None, provider=None):
+    def download_submissions(self, cik=None, ticker=None, submission_type=None, filing_date=None, provider=None, **kwargs):
         if provider is None:
             config = Config()
             provider = config.get_default_source()
 
+        # input validation
+        if cik is not None and ticker is not None:
+            raise ValueError("Only one of cik or ticker should be provided, not both.")
+        
+        if filing_date is not None:
+            if isinstance(filing_date, str):
+                filing_date = int(filing_date.replace('-', ''))
+            elif isinstance(filing_date, list):
+                filing_date = [int(x.replace('-', '')) for x in filing_date]
+            elif isinstance(filing_date, tuple):
+                filing_date = (int(filing_date[0].replace('-', '')), int(filing_date[1].replace('-', '')))
+
+        if ticker is not None:
+            cik = get_cik_from_dataset('company_tickers','ticker',ticker)
+
+        if cik is not None:
+            if isinstance(cik, str):
+                cik = [int(cik)]
+            elif isinstance(cik, int):
+                cik = [cik]
+            elif isinstance(cik, list):
+                cik = [int(x) for x in cik]
+
+        if kwargs:
+            metadata_ciks = get_ciks_from_metadata_filters(**kwargs)
+
+            if cik is not None:
+                cik = list(set(cik).intersection(metadata_ciks))
+            else:
+                cik = metadata_ciks
 
         if provider == 'datamule':
             downloader = PremiumDownloader()
             downloader.download_submissions(
                 output_dir=self.path,
                 cik=cik,
-                ticker=ticker,
                 submission_type=submission_type,
                 filing_date=filing_date
             )
         else:
-            if ticker is not None:
-                cik = get_cik_from_dataset('company_tickers','ticker',ticker)
-        
             download(
                 output_dir=self.path,
                 cik=cik,

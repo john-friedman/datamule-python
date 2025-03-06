@@ -1,4 +1,5 @@
 from pkg_resources import resource_filename
+from functools import lru_cache
 import csv
 
 # May generalize to load any package resource
@@ -26,8 +27,36 @@ def load_package_dataset(dataset):
     elif dataset == 'xbrl_descriptions':
         return _load_package_csv('xbrl_descriptions')
 
-
+@lru_cache(maxsize=128)
 def get_cik_from_dataset(dataset_name,key,value):
     dataset = load_package_dataset(dataset_name)
     cik = [company['cik'] for company in dataset if str(value) == company[key]]
     return cik
+
+
+
+@lru_cache(maxsize=128)
+def get_ciks_from_metadata_filters(**kwargs):
+    """Get CIKs from company_metadata.csv that match all provided filters."""
+    
+    # Start with None to get all CIKs from first filter
+    result_ciks = None
+    
+    # For each filter, get matching CIKs and keep intersection
+    for key, value in kwargs.items():
+        # Get CIKs for this filter
+        ciks = get_cik_from_dataset('company_metadata', key, value)
+        ciks = [int(cik) for cik in ciks]
+        
+        # If this is the first filter, set as initial result
+        if result_ciks is None:
+            result_ciks = set(ciks)
+        # Otherwise, take intersection with previous results
+        else:
+            result_ciks &= set(ciks)
+            
+        # If no matches left, we can exit early
+        if not result_ciks:
+            return []
+    
+    return list(result_ciks)

@@ -6,7 +6,6 @@ from .document import Document
 from secsgml import parse_sgml_submission
 from .helper import _load_package_csv, load_package_dataset
 from .config import Config
-from .book.book import Book
 
 
 # Keep the notebook environment setup
