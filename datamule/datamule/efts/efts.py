@@ -78,6 +78,10 @@ class EFTSQuery:
         self.max_efts_hits = 10000  # EFTS API hard limit
         self.total_results_to_fetch = 0
         self.pending_page_requests = []  # Store pages to fetch during planning phase
+        self.initial_query_hit_count = 0  # Track initial query hits to avoid double counting
+        self.was_primary_docs_query = False  # Track if original query was for primary docs
+        self.true_total_docs = 0  # Track the true total number of documents
+        self.processed_doc_count = 0  # Track how many documents we've processed
         
     def update_progress_description(self):
         if self.pbar:
@@ -242,11 +246,19 @@ class EFTSQuery:
             
         return groups
 
-    def _store_page_request(self, params, total_hits, callback=None):
+    def _store_page_request(self, params, total_hits, callback=None, is_initial_query=False):
         """Store pages to be requested later, after planning is complete"""
         page_size = self.max_page_size
         # Cap total_hits to what we can actually fetch (max 100 pages of 100 results)
         actual_hits = min(total_hits, self.max_efts_hits)
+        
+        # If this is the initial query, track hit count to avoid double counting
+        if is_initial_query:
+            self.initial_query_hit_count = actual_hits
+        else:
+            # Keep track of total processed documents
+            self.processed_doc_count += actual_hits
+            
         self.total_results_to_fetch += actual_hits
         
         num_pages = min((actual_hits + page_size - 1) // page_size, 100)  # Max 100 pages
@@ -321,6 +333,11 @@ class EFTSQuery:
         # Test query size
         total_hits, data = await self._test_query_size(params)
         
+        # Skip if no results
+        if total_hits == 0:
+            print(f"Skipping negated forms query - no results returned")
+            return
+            
         query_desc = self._get_query_description(params)
         date_range = f"{start_date} to {end_date}"
         print(f"Planning: Analyzing negated forms query (depth {depth}): {date_range} [{total_hits:,} hits]")
@@ -339,7 +356,7 @@ class EFTSQuery:
                 base_params, negated_forms, sub_start, sub_end, depth + 1, callback
             )
 
-    async def _process_query_recursive(self, params, processed_forms=None, depth=0, max_depth=3, callback=None):
+    async def _process_query_recursive(self, params, processed_forms=None, depth=0, max_depth=3, callback=None, is_initial_query=True):
         """Process a query with recursive splitting until all chunks are under 10K"""
         if processed_forms is None:
             processed_forms = []
@@ -351,7 +368,7 @@ class EFTSQuery:
         
         # If we're at the maximum recursion depth or hits are under limit, process directly
         if depth >= max_depth or total_hits < self.max_efts_hits:
-            self._store_page_request(params, total_hits, callback)
+            self._store_page_request(params, total_hits, callback, is_initial_query)
             return processed_forms
             
         # Need to split further
@@ -368,7 +385,7 @@ class EFTSQuery:
                 form_params['forms'] = ','.join(group)
                 # Track which forms we've processed
                 processed_forms.extend(group)
-                await self._process_query_recursive(form_params, processed_forms, depth + 1, max_depth, callback)
+                await self._process_query_recursive(form_params, processed_forms, depth + 1, max_depth, callback, False)
                 
             # Return processed forms to parent
             return processed_forms
@@ -383,7 +400,7 @@ class EFTSQuery:
                 date_params = params.copy()
                 date_params['startdt'] = start
                 date_params['enddt'] = end
-                await self._process_query_recursive(date_params, processed_forms, depth + 1, max_depth, callback)
+                await self._process_query_recursive(date_params, processed_forms, depth + 1, max_depth, callback, False)
                 
             # Return processed forms to parent
             return processed_forms
@@ -401,6 +418,9 @@ class EFTSQuery:
         params = self._prepare_params(cik, submission_type, filing_date)
         all_hits = []
         
+        # Check if this is a primary documents query
+        self.was_primary_docs_query = params.get('forms') == '-0'
+        
         # Collector callback to gather all hits
         async def collect_hits(hits):
             all_hits.extend(hits)
@@ -411,6 +431,8 @@ class EFTSQuery:
             # Reset state for new query
             self.total_results_to_fetch = 0
             self.pending_page_requests = []
+            self.initial_query_hit_count = 0
+            self.processed_doc_count = 0
             self.pbar = None
             
             # First check size
@@ -424,38 +446,41 @@ class EFTSQuery:
                 return []
                 
             # Get accurate total from aggregation buckets
-            true_total = self._get_total_from_buckets(data)
-            print(f"Found {true_total:,} total documents to retrieve.")
+            self.true_total_docs = self._get_total_from_buckets(data)
+            print(f"Found {self.true_total_docs:,} total documents to retrieve.")
             
             # Start worker tasks
             workers = [asyncio.create_task(self._fetch_worker()) for _ in range(5)]
             
             # Process the query recursively, splitting as needed, and get processed forms
-            processed_forms = await self._process_query_recursive(params, None, 0, 4, collect_hits)
+            processed_forms = await self._process_query_recursive(params, None, 0, 4, collect_hits, True)
             
-            # Check if we need to handle "other" forms using negation
-            if 'aggregations' in data and 'form_filter' in data['aggregations']:
-                form_filter = data['aggregations']['form_filter']
-                buckets = form_filter.get('buckets', [])
-                other_count = form_filter.get('sum_other_doc_count', 0)
-                
-                # Only proceed if there are "other" forms to process
-                if other_count > 0 and buckets:
-                    # Get negated forms list (exclude all forms we've already processed)
+            # Check if we need to process forms that weren't included in our form splitting
+            # Only do this if:
+            # 1. We split by form (processed_forms is not empty)
+            # 2. We haven't processed all documents yet (processed_doc_count < true_total_docs)
+            # 3. This was a forms=-0 query originally (for primary docs)
+            
+            if processed_forms and len(processed_forms) > 0 and self.processed_doc_count < self.true_total_docs:
+                if self.was_primary_docs_query:
+                    # We split a primary documents query, need to handle other document types
+                    # Create a negated form query that also maintains primary docs constraint
                     negated_forms = [f"-{form}" for form in processed_forms]
+                    negated_forms.append('-0')  # Keep primary documents constraint
                     
-                    # If original query was for primary docs, maintain that filter
-                    if 'forms' in params and params['forms'] == '-0':
-                        negated_forms.append('-0')
+                    remaining_docs = self.true_total_docs - self.processed_doc_count
+                    print(f"Planning: Analyzing remaining primary document forms using negation (~{remaining_docs:,} hits)")
                     
                     # Process negated forms query with recursive date splitting
                     start_date = params['startdt']
                     end_date = params['enddt']
-                    
-                    print(f"Planning: Analyzing remaining forms using negation (~{other_count:,} hits)")
                     await self._process_negated_forms_recursive(
                         params, negated_forms, start_date, end_date, 0, collect_hits
                     )
+                else:
+                    print("No additional forms to process with negation - not a primary documents query")
+            else:
+                print("No additional forms to process with negation")
             
             # Start the download phase
             await self._start_query_phase(collect_hits)

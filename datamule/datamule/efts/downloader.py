@@ -1,0 +1,71 @@
+import os
+import json
+from .streamer import stream
+from secsgml import parse_sgml_submission_into_memory
+import aiofiles
+
+async def download_callback(hit, content, cik, accno, url, output_dir="filings"):
+    """Save downloaded SEC submission to disk."""
+    try:
+        # Parse the SGML content
+        metadata, documents = parse_sgml_submission_into_memory(content=content.decode('utf-8', errors='replace'))
+        
+        # Create folder structure: output_dir/accno
+        file_dir = os.path.join(output_dir, str(accno))
+        os.makedirs(file_dir, exist_ok=True)
+        
+        # Save metadata
+        metadata_path = os.path.join(file_dir, "metadata.json")
+        async with aiofiles.open(metadata_path, 'w') as f:
+            await f.write(json.dumps(metadata, indent=4))
+
+        # Save all documents
+        for idx, _ in enumerate(metadata['documents']):
+            try:
+                filename = metadata['documents'][idx]['filename']
+            except (KeyError, IndexError):
+                filename = f"{metadata['documents'][idx].get('sequence', idx)}.txt"
+
+            # Use async file writing
+            doc_path = os.path.join(file_dir, filename)
+            async with aiofiles.open(doc_path, 'wb') as f:
+                await f.write(documents[idx])
+        
+        return file_dir
+    except Exception as e:
+        print(f"Error processing {accno}: {e}")
+        return None
+
+def download(cik=None, submission_type=None, filing_date=None, requests_per_second=3, output_dir="filings"):
+    """
+    Download SEC EDGAR filings and extract their documents.
+    
+    Parameters:
+    - cik: CIK number(s) to query for
+    - submission_type: Filing type(s) to query for (default: 10-K)
+    - filing_date: Date or date range to query for
+    - requests_per_second: Rate limit for SEC requests
+    - output_dir: Directory to save documents
+    
+    Returns:
+    - List of all document paths processed
+    """
+    # Default to 10-K if submission_type not specified
+    if submission_type is None:
+        submission_type = "10-K"
+        
+    # Make sure output directory exists
+    os.makedirs(output_dir, exist_ok=True)
+    
+    # Create a wrapper for the download_callback that includes the output_dir
+    async def callback_wrapper(hit, content, cik, accno, url):
+        return await download_callback(hit, content, cik, accno, url, output_dir=output_dir)
+    
+    # Call the stream function with our callback
+    return stream(
+        cik=cik,
+        submission_type=submission_type,
+        filing_date=filing_date,
+        requests_per_second=requests_per_second,
+        document_callback=callback_wrapper
+    )
