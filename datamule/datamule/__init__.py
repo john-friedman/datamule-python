@@ -1,5 +1,4 @@
-from .downloader.downloader import Downloader
-from .downloader.premiumdownloader import PremiumDownloader
+from .olddownloader.premiumdownloader import PremiumDownloader
 from .monitor import Monitor
 from .packageupdater import PackageUpdater
 from .submission import Submission
@@ -33,7 +32,6 @@ def _setup_notebook_env():
 _setup_notebook_env()
 
 __all__ = [
-    'Downloader',
     'PremiumDownloader',
     '_load_package_csv',
     'load_package_dataset',

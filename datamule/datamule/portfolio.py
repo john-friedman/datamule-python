@@ -2,8 +2,8 @@ from pathlib import Path
 from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor
 from .submission import Submission
-from .downloader.premiumdownloader import PremiumDownloader
-from .downloader.downloader import Downloader
+from .olddownloader.premiumdownloader import PremiumDownloader
+from .downloader.downloader import download
 from .config import Config
 import os
 
@@ -67,14 +67,24 @@ class Portfolio:
             config = Config()
             provider = config.get_default_source()
 
-        downloader = PremiumDownloader() if provider == 'datamule' else Downloader()
-        downloader.download_submissions(
-            output_dir=self.path,
-            cik=cik,
-            ticker=ticker,
-            submission_type=submission_type,
-            filing_date=filing_date
-        )
+
+        if provider == 'datamule':
+            downloader = PremiumDownloader()
+            downloader.download_submissions(
+                output_dir=self.path,
+                cik=cik,
+                ticker=ticker,
+                submission_type=submission_type,
+                filing_date=filing_date
+            )
+        else:
+            download(
+                output_dir=self.path,
+                cik=cik,
+                submission_type=submission_type,
+                filing_date=filing_date,
+                requests_per_second=4 # change this
+            )
         
         # Reload submissions after download
         self._load_submissions()
