@@ -2,8 +2,9 @@ from pathlib import Path
 from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor
 from .submission import Submission
-from .olddownloader.premiumdownloader import PremiumDownloader
-from .downloader.downloader import download
+from .premiumdownloader.premiumdownloader import PremiumDownloader
+from .sec.downloader import download
+from .sec.filter_text import filter_text
 from .config import Config
 import os
 from .helper import get_cik_from_dataset, get_ciks_from_metadata_filters
@@ -62,6 +63,14 @@ class Portfolio:
                 desc="Processing documents"
             ))
             return results
+        
+    def filter_text(self,text_query, cik=None, submission_type=None, filing_date=None):
+        self.accession_numbers = filter_text(
+            text_query=text_query,
+            cik=cik,
+            submission_type=submission_type,
+            filing_date=filing_date
+        )
 
     def download_submissions(self, cik=None, ticker=None, submission_type=None, filing_date=None, provider=None, **kwargs):
         if provider is None:
@@ -113,7 +122,7 @@ class Portfolio:
                 cik=cik,
                 submission_type=submission_type,
                 filing_date=filing_date,
-                requests_per_second=4 # change this
+                requests_per_second=4 # Revisit this later.
             )
         
         # Reload submissions after download
@@ -129,20 +138,3 @@ class Portfolio:
             
         for submission in self.submissions:
             yield from submission.document_type(document_types)
-
-    def contains_string(self, pattern, document_types=None):
-        """Search for pattern in documents, with optional type filter."""
-        def check_document(document):
-            return document if document.contains_string(pattern) else None
-        
-        # Get documents, filtered by type if specified
-        documents = list(self.document_type(document_types)) if document_types else [
-            doc for sub in self.submissions for doc in sub
-        ]
-        
-        with ThreadPoolExecutor(max_workers=self.MAX_WORKERS) as executor:
-            results = executor.map(check_document, documents)
-            
-            for doc in tqdm(results, total=len(documents), desc=f"Searching for '{pattern}'"):
-                if doc is not None:
-                    yield doc

@@ -14,6 +14,7 @@ Usage Example
 
 .. code-block:: python
     
+    impot pandas as pd
     from datamule import load_package_dataset
     company_tickers = pd.DataFrame(load_package_dataset('company_tickers'))
 

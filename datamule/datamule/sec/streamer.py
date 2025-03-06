@@ -3,7 +3,7 @@ from urllib.parse import urlencode
 from tqdm import tqdm
 import re
 
-from .efts import EFTSQuery
+from .eftsquery import EFTSQuery
 
 
 # This is to fix some broken SEC URLS. There's a better way to do this, but this is a quick fix.
