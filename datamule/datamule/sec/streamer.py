@@ -21,7 +21,7 @@ def fix_filing_url(url):
     return url
 
 class Streamer(EFTSQuery):
-    def __init__(self, requests_per_second=5.0, document_callback=None):
+    def __init__(self, requests_per_second=5.0, document_callback=None, accession_numbers=None):
         super().__init__(requests_per_second=requests_per_second)
         self.document_callback = document_callback
         self.document_queue = asyncio.Queue()
@@ -31,6 +31,8 @@ class Streamer(EFTSQuery):
         self.document_workers = []
         self.documents_processed = 0
         self.total_documents = 0
+        self.accession_numbers = accession_numbers
+        self.skipped_documents = 0
         
     async def _fetch_worker(self):
         """Override the parent class worker to implement pause/resume"""
@@ -73,6 +75,10 @@ class Streamer(EFTSQuery):
             accno_w_dash = hit['_id'].split(':')[0]
             accno_no_dash = accno_w_dash.replace('-', '')
 
+
+            # Check if we should filter by accession numbers
+            if self.accession_numbers is not None and accno_w_dash not in self.accession_numbers:
+                return None, None, None
             
             # Construct the URL
             url = f"https://www.sec.gov/Archives/edgar/data/{cik}/{accno_no_dash}/{accno_w_dash}.txt"
@@ -141,6 +147,9 @@ class Streamer(EFTSQuery):
                 
                 # Add to download queue
                 await self.document_queue.put((hit, doc_url, cik, accno))
+            elif accno is None and self.accession_numbers is not None:
+                # Document was skipped due to accession number filter
+                self.skipped_documents += 1
         
         # Wait for all documents to be downloaded
         await self.document_queue.join()
@@ -162,6 +171,7 @@ class Streamer(EFTSQuery):
         # Reset counters
         self.documents_processed = 0
         self.total_documents = 0
+        self.skipped_documents = 0
         
         # Run the main query with our document download callback
         results = await self.query(cik, submission_type, filing_date, self.document_download_callback)
@@ -183,10 +193,12 @@ class Streamer(EFTSQuery):
             self.document_pbar = None  # Set to None to prevent reuse
             
         print(f"\n--- Streaming complete: {len(results)} EFTS results processed ---")
+        if self.accession_numbers is not None:
+            print(f"--- {self.documents_processed} documents downloaded, {self.skipped_documents} skipped due to accession number filter ---")
         return results
 
 def stream(cik=None, submission_type=None, filing_date=None, 
-                requests_per_second=5.0, document_callback=None):
+                requests_per_second=5.0, document_callback=None, accession_numbers=None):
     """
     Stream EFTS results and download documents into memory.
     
@@ -196,12 +208,17 @@ def stream(cik=None, submission_type=None, filing_date=None,
     - filing_date: Date or date range to query for
     - requests_per_second: Rate limit for SEC requests (combined EFTS and document downloads)
     - document_callback: Callback function that receives (hit, content, cik, accno, url)
+    - accession_numbers: Optional list of accession numbers to filter by
     
     Returns:
     - List of all EFTS hits processed
     """
     async def run_stream():
-        streamer = Streamer(requests_per_second=requests_per_second, document_callback=document_callback)
+        streamer = Streamer(
+            requests_per_second=requests_per_second, 
+            document_callback=document_callback,
+            accession_numbers=accession_numbers
+        )
         return await streamer.stream(cik, submission_type, filing_date)
     
     return asyncio.run(run_stream())

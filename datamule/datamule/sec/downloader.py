@@ -36,7 +36,7 @@ async def download_callback(hit, content, cik, accno, url, output_dir="filings")
         print(f"Error processing {accno}: {e}")
         return None
 
-def download(cik=None, submission_type=None, filing_date=None, requests_per_second=5, output_dir="filings"):
+def download(cik=None, submission_type=None, filing_date=None, requests_per_second=5, output_dir="filings", accession_numbers=None):
     """
     Download SEC EDGAR filings and extract their documents.
     
@@ -46,6 +46,7 @@ def download(cik=None, submission_type=None, filing_date=None, requests_per_seco
     - filing_date: Date or date range to query for
     - requests_per_second: Rate limit for SEC requests
     - output_dir: Directory to save documents
+    - accession_numbers: Optional list of accession numbers to filter by
     
     Returns:
     - List of all document paths processed
@@ -67,5 +68,6 @@ def download(cik=None, submission_type=None, filing_date=None, requests_per_seco
         submission_type=submission_type,
         filing_date=filing_date,
         requests_per_second=requests_per_second,
-        document_callback=callback_wrapper
+        document_callback=callback_wrapper,
+        accession_numbers=accession_numbers
     )

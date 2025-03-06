@@ -80,14 +80,6 @@ class Portfolio:
         # input validation
         if cik is not None and ticker is not None:
             raise ValueError("Only one of cik or ticker should be provided, not both.")
-        
-        if filing_date is not None:
-            if isinstance(filing_date, str):
-                filing_date = int(filing_date.replace('-', ''))
-            elif isinstance(filing_date, list):
-                filing_date = [int(x.replace('-', '')) for x in filing_date]
-            elif isinstance(filing_date, tuple):
-                filing_date = (int(filing_date[0].replace('-', '')), int(filing_date[1].replace('-', '')))
 
         if ticker is not None:
             cik = get_cik_from_dataset('company_tickers','ticker',ticker)
@@ -114,7 +106,8 @@ class Portfolio:
                 output_dir=self.path,
                 cik=cik,
                 submission_type=submission_type,
-                filing_date=filing_date
+                filing_date=filing_date,
+                accession_numbers=self.accession_numbers if hasattr(self, 'accession_numbers') else None
             )
         else:
             download(
@@ -122,12 +115,13 @@ class Portfolio:
                 cik=cik,
                 submission_type=submission_type,
                 filing_date=filing_date,
-                requests_per_second=4 # Revisit this later.
+                requests_per_second=4, # Revisit this later.
+                accession_numbers=self.accession_numbers if hasattr(self, 'accession_numbers') else None
             )
         
         # Reload submissions after download
         self._load_submissions()
-
+        
     def __iter__(self):
         return iter(self.submissions)
     
