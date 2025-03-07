@@ -63,8 +63,49 @@ class Portfolio:
                 desc="Processing documents"
             ))
             return results
+    
+    def _process_cik_and_metadata_filters(self, cik=None, ticker=None, **kwargs):
+        """
+        Helper method to process CIK, ticker, and metadata filters.
+        Returns a list of CIKs after processing.
+        """
+        # Input validation
+        if cik is not None and ticker is not None:
+            raise ValueError("Only one of cik or ticker should be provided, not both.")
+
+        # Convert ticker to CIK if provided
+        if ticker is not None:
+            cik = get_cik_from_dataset('company_tickers', 'ticker', ticker)
+
+        # Normalize CIK format
+        if cik is not None:
+            if isinstance(cik, str):
+                cik = [int(cik)]
+            elif isinstance(cik, int):
+                cik = [cik]
+            elif isinstance(cik, list):
+                cik = [int(x) for x in cik]
+
+        # Process metadata filters if provided
+        if kwargs:
+            metadata_ciks = get_ciks_from_metadata_filters(**kwargs)
+
+            if cik is not None:
+                cik = list(set(cik).intersection(metadata_ciks))
+            else:
+                cik = metadata_ciks
+                
+        return cik
         
-    def filter_text(self,text_query, cik=None, submission_type=None, filing_date=None):
+    def filter_text(self, text_query, cik=None, ticker=None, submission_type=None, filing_date=None, **kwargs):
+        """
+        Filter text based on query and various parameters.
+        Now supports metadata filters through kwargs.
+        """
+        # Process CIK and metadata filters
+        cik = self._process_cik_and_metadata_filters(cik, ticker, **kwargs)
+        
+        # Call the filter_text function with processed parameters
         self.accession_numbers = filter_text(
             text_query=text_query,
             cik=cik,
@@ -77,28 +118,8 @@ class Portfolio:
             config = Config()
             provider = config.get_default_source()
 
-        # input validation
-        if cik is not None and ticker is not None:
-            raise ValueError("Only one of cik or ticker should be provided, not both.")
-
-        if ticker is not None:
-            cik = get_cik_from_dataset('company_tickers','ticker',ticker)
-
-        if cik is not None:
-            if isinstance(cik, str):
-                cik = [int(cik)]
-            elif isinstance(cik, int):
-                cik = [cik]
-            elif isinstance(cik, list):
-                cik = [int(x) for x in cik]
-
-        if kwargs:
-            metadata_ciks = get_ciks_from_metadata_filters(**kwargs)
-
-            if cik is not None:
-                cik = list(set(cik).intersection(metadata_ciks))
-            else:
-                cik = metadata_ciks
+        # Process CIK and metadata filters
+        cik = self._process_cik_and_metadata_filters(cik, ticker, **kwargs)
 
         if provider == 'datamule':
             downloader = PremiumDownloader()
