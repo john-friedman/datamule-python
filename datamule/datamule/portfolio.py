@@ -2,8 +2,8 @@ from pathlib import Path
 from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor
 from .submission import Submission
-from .premiumdownloader.premiumdownloader import PremiumDownloader
-from .sec.downloader import download
+from .seclibrary.downloader import download as seclibrary_download
+from .sec.downloader import download as sec_download
 from .sec.filter_text import filter_text
 from .config import Config
 import os
@@ -100,18 +100,26 @@ class Portfolio:
     def filter_text(self, text_query, cik=None, ticker=None, submission_type=None, filing_date=None, **kwargs):
         """
         Filter text based on query and various parameters.
+        When called multiple times, takes the intersection of results.
         Now supports metadata filters through kwargs.
         """
         # Process CIK and metadata filters
         cik = self._process_cik_and_metadata_filters(cik, ticker, **kwargs)
         
         # Call the filter_text function with processed parameters
-        self.accession_numbers = filter_text(
+        new_accession_numbers = filter_text(
             text_query=text_query,
             cik=cik,
             submission_type=submission_type,
             filing_date=filing_date
         )
+        
+        # If we already have accession numbers, take the intersection
+        if hasattr(self, 'accession_numbers') and self.accession_numbers:
+            self.accession_numbers = list(set(self.accession_numbers).intersection(new_accession_numbers))
+        else:
+            # First query, just set the accession numbers
+            self.accession_numbers = new_accession_numbers
 
     def download_submissions(self, cik=None, ticker=None, submission_type=None, filing_date=None, provider=None, **kwargs):
         if provider is None:
@@ -122,8 +130,7 @@ class Portfolio:
         cik = self._process_cik_and_metadata_filters(cik, ticker, **kwargs)
 
         if provider == 'datamule':
-            downloader = PremiumDownloader()
-            downloader.download_submissions(
+            seclibrary_download(
                 output_dir=self.path,
                 cik=cik,
                 submission_type=submission_type,
@@ -131,7 +138,7 @@ class Portfolio:
                 accession_numbers=self.accession_numbers if hasattr(self, 'accession_numbers') else None
             )
         else:
-            download(
+            sec_download(
                 output_dir=self.path,
                 cik=cik,
                 submission_type=submission_type,
