@@ -2,12 +2,13 @@ from pathlib import Path
 from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor
 from .submission import Submission
-from .seclibrary.downloader import download as seclibrary_download
 from .sec.downloader import download as sec_download
 from .sec.filter_text import filter_text
 from .config import Config
 import os
 from .helper import get_cik_from_dataset, get_ciks_from_metadata_filters
+from .seclibrary.downloader import download as seclibrary_download
+
 
 class Portfolio:
     def __init__(self, path):
@@ -130,6 +131,7 @@ class Portfolio:
         cik = self._process_cik_and_metadata_filters(cik, ticker, **kwargs)
 
         if provider == 'datamule':
+
             seclibrary_download(
                 output_dir=self.path,
                 cik=cik,

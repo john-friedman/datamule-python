@@ -14,8 +14,6 @@ from functools import partial
 from queue import Queue, Empty
 from threading import Thread
 from secsgml import parse_sgml_submission
-
-# Import the query function for getting SEC filings
 from .query import query
 
 class Downloader:
