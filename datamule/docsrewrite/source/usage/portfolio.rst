@@ -67,7 +67,7 @@ Filters
 
 Run this before Submissions.
 
-``filter_text(text_query, cik=None, submission_type=None, filing_date=None, requests_per_second=5.0)``
+``filter_text(text_query, cik=None, submission_type=None, filing_date=None, requests_per_second=5.0, **kwargs)``
    filters submissions by text.
 
    :param text_query: Text to search for in the submission. Use double quotes for exact matches. E.g. '"Climate Change"' or '"Climate Change" risks'

@@ -60,3 +60,38 @@ def get_ciks_from_metadata_filters(**kwargs):
             return []
     
     return list(result_ciks)
+
+
+def _process_cik_and_metadata_filters(cik=None, ticker=None, **kwargs):
+        """ 
+        Helper method to process CIK, ticker, and metadata filters.
+        Returns a list of CIKs after processing.
+        """
+        # Input validation
+        if cik is not None and ticker is not None:
+            raise ValueError("Only one of cik or ticker should be provided, not both.")
+
+        # Convert ticker to CIK if provided
+        if ticker is not None:
+            cik = get_cik_from_dataset('company_tickers', 'ticker', ticker)
+
+        # Normalize CIK format
+        if cik is not None:
+            if isinstance(cik, str):
+                cik = [int(cik)]
+            elif isinstance(cik, int):
+                cik = [cik]
+            elif isinstance(cik, list):
+                cik = [int(x) for x in cik]
+
+        # Process metadata filters if provided
+        if kwargs:
+            metadata_ciks = get_ciks_from_metadata_filters(**kwargs)
+
+            if cik is not None:
+                cik = list(set(cik).intersection(metadata_ciks))
+            else:
+                cik = metadata_ciks
+                
+        return cik
+        

@@ -45,7 +45,7 @@ class XBRLRetriever:
         if not self.session:
             self.session = aiohttp.ClientSession(headers=self.headers)
         if not self.limiter:
-            self.limiter = PreciseRateLimiter(10)
+            self.limiter = PreciseRateLimiter(4)
         return self
 
     async def __aexit__(self, exc_type, exc_val, exc_tb):

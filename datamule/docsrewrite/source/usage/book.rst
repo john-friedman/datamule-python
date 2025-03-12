@@ -1,24 +1,33 @@
 Book
 ====
 
-Book is a class that allows you to download and process tabular datasets.
+Book is a class that allows you to download tabular datasets.
 
 Functions
 ---------
 
-``process_dataset(dataset_name, typical args)``
-    Retrieves the data and processes it. Does not save the data to disk, but will use saved data if available.
-
-
-``download_dataset(dataset_name, typical args)``
+``download_xbrl(cik, **kwargs)``
     Retrieves the data and saves it to disk.
+
+Shared Parameters
+~~~~~~~~~~~~~~~~~
+:param cik: Central Index Key identifier for the company
+:param ticker: Stock ticker symbol
+:param \**kwargs: Additional search criteria including name, entityType, sic, sicDescription, 
+                ownerOrg, insiderTransactionForOwnerExists, insiderTransactionForIssuerExists, 
+                exchanges, ein, description, website, investorWebsite, category, 
+                fiscalYearEnd, stateOfIncorporation, stateOfIncorporationDescription, phone, 
+                flags, mailing_street1, mailing_street2, mailing_city, mailing_stateOrCountry, 
+                mailing_zipCode, mailing_stateOrCountryDescription, business_street1, 
+                business_street2, business_city, business_stateOrCountry, business_zipCode, 
+                business_stateOrCountryDescription
     
 
-Datasets
---------
+Free Datasets
+-------------
 * XBRL (via sec, free)
-* 345 (via datamule, paid)
-* 13F-HR (via datamule, paid)
 
-..note ::
-    xbrl uses frames endpoint or companyfacts endpoint
+Premium Datasets (Forthcoming)
+------------------------------
+* 345
+* 13F-HR

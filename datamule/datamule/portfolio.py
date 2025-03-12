@@ -2,11 +2,11 @@ from pathlib import Path
 from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor
 from .submission import Submission
-from .sec.downloader import download as sec_download
-from .sec.filter_text import filter_text
+from .sec.submissions.downloader import download as sec_download
+from .sec.submissions.filter_text import filter_text
 from .config import Config
 import os
-from .helper import get_cik_from_dataset, get_ciks_from_metadata_filters
+from .helper import _process_cik_and_metadata_filters
 from .seclibrary.downloader import download as seclibrary_download
 
 
@@ -65,39 +65,6 @@ class Portfolio:
             ))
             return results
     
-    def _process_cik_and_metadata_filters(self, cik=None, ticker=None, **kwargs):
-        """
-        Helper method to process CIK, ticker, and metadata filters.
-        Returns a list of CIKs after processing.
-        """
-        # Input validation
-        if cik is not None and ticker is not None:
-            raise ValueError("Only one of cik or ticker should be provided, not both.")
-
-        # Convert ticker to CIK if provided
-        if ticker is not None:
-            cik = get_cik_from_dataset('company_tickers', 'ticker', ticker)
-
-        # Normalize CIK format
-        if cik is not None:
-            if isinstance(cik, str):
-                cik = [int(cik)]
-            elif isinstance(cik, int):
-                cik = [cik]
-            elif isinstance(cik, list):
-                cik = [int(x) for x in cik]
-
-        # Process metadata filters if provided
-        if kwargs:
-            metadata_ciks = get_ciks_from_metadata_filters(**kwargs)
-
-            if cik is not None:
-                cik = list(set(cik).intersection(metadata_ciks))
-            else:
-                cik = metadata_ciks
-                
-        return cik
-        
     def filter_text(self, text_query, cik=None, ticker=None, submission_type=None, filing_date=None, **kwargs):
         """
         Filter text based on query and various parameters.
@@ -105,7 +72,7 @@ class Portfolio:
         Now supports metadata filters through kwargs.
         """
         # Process CIK and metadata filters
-        cik = self._process_cik_and_metadata_filters(cik, ticker, **kwargs)
+        cik = _process_cik_and_metadata_filters(cik, ticker, **kwargs)
         
         # Call the filter_text function with processed parameters
         new_accession_numbers = filter_text(
@@ -128,7 +95,7 @@ class Portfolio:
             provider = config.get_default_source()
 
         # Process CIK and metadata filters
-        cik = self._process_cik_and_metadata_filters(cik, ticker, **kwargs)
+        cik = _process_cik_and_metadata_filters(cik, ticker, **kwargs)
 
         if provider == 'datamule':
 
