@@ -74,8 +74,7 @@ class Streamer(EFTSQuery):
             # Extract accession number from _id (format: accno:file.txt)
             accno_w_dash = hit['_id'].split(':')[0]
             accno_no_dash = accno_w_dash.replace('-', '')
-
-
+            
             # Check if we should filter by accession numbers
             if self.accession_numbers is not None and accno_w_dash not in self.accession_numbers:
                 return None, None, None
@@ -213,6 +212,11 @@ def stream(cik=None, submission_type=None, filing_date=None,
     Returns:
     - List of all EFTS hits processed
     """
+
+    # check if acc no is empty list
+    if accession_numbers == []:
+        raise ValueError("Applied filter resulted in empty accession numbers list")
+    
     async def run_stream():
         streamer = Streamer(
             requests_per_second=requests_per_second, 

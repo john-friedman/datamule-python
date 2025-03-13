@@ -8,6 +8,7 @@ from .config import Config
 import os
 from .helper import _process_cik_and_metadata_filters
 from .seclibrary.downloader import download as seclibrary_download
+from .sec.xbrl.filter_xbrl import filter_xbrl
 
 
 class Portfolio:
@@ -80,6 +81,26 @@ class Portfolio:
             cik=cik,
             submission_type=submission_type,
             filing_date=filing_date
+        )
+        
+        # If we already have accession numbers, take the intersection
+        if hasattr(self, 'accession_numbers') and self.accession_numbers:
+            self.accession_numbers = list(set(self.accession_numbers).intersection(new_accession_numbers))
+        else:
+            # First query, just set the accession numbers
+            self.accession_numbers = new_accession_numbers
+
+    def filter_xbrl(self, taxonomy, concept, unit, period, logic, value):
+        """
+        Filter XBRL data based on logic and value.
+        """
+        new_accession_numbers = filter_xbrl(
+            taxonomy=taxonomy,
+            concept=concept,
+            unit=unit,
+            period=period,
+            logic=logic,
+            value=value
         )
         
         # If we already have accession numbers, take the intersection

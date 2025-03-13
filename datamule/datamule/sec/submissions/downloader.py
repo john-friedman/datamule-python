@@ -51,9 +51,6 @@ def download(cik=None, submission_type=None, filing_date=None, requests_per_seco
     Returns:
     - List of all document paths processed
     """
-    # Default to 10-K if submission_type not specified
-    if submission_type is None:
-        submission_type = "10-K"
         
     # Make sure output directory exists
     os.makedirs(output_dir, exist_ok=True)

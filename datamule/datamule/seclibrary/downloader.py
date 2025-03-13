@@ -272,6 +272,9 @@ class Downloader:
 def download(submission_type=None, cik=None, filing_date=None, api_key=None, output_dir="downloads", accession_numbers=None):
     if accession_numbers:
         accession_numbers = [int(str(x).replace('-', '')) for x in accession_numbers]
+    # check if acc no is empty list
+    elif accession_numbers == []:
+        raise ValueError("Applied filter resulted in empty accession numbers list")
     downloader = Downloader(api_key=api_key)
     downloader.download(
         submission_type=submission_type,

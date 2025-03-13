@@ -72,8 +72,19 @@ Run this before Submissions.
 
    :param text_query: Text to search for in the submission. Use double quotes for exact matches. E.g. '"Climate Change"' or '"Climate Change" risks'
 
-``filter_xbrl(logic)``
-   filters submissions by xbrl logic.
+``filter_xbrl(taxonomy, concept, unit, period, logic, value)``
+   
+   :param taxonomy: XBRL taxonomy e.g. 'us-gaap'
+   :param concept: XBRL concept e.g. 'EntityCommonStockSharesOutstanding'
+   :param unit: XBRL unit e.g. 'USD'
+   :param period: XBRL period e.g. 'CY2019Q4I'
+   :param logic: Logic operator to use for filtering, e.g. '>', '<', '>=', '<=', '==', '!='
+   :param value: Value to compare against
+
+
+.. note::
+   parameters for a company can be found `here <https://data.sec.gov/api/xbrl/companyfacts/CIK0001318605.json>`_
+
 
 Shared Parameters for download_submissions, process_submissions, and filter_text
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
