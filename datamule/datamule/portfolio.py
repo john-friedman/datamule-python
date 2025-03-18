@@ -3,7 +3,7 @@ from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor
 from .submission import Submission
 from .sec.submissions.downloader import download as sec_download
-from .sec.submissions.filter_text import filter_text
+from .sec.submissions.textsearch import filter_text
 from .config import Config
 import os
 from .helper import _process_cik_and_metadata_filters
@@ -15,10 +15,12 @@ class Portfolio:
     def __init__(self, path):
         self.path = Path(path)
         self.submissions = []
+        self.submissions_loaded = False
         self.MAX_WORKERS = os.cpu_count() - 1 
         
         if self.path.exists():
             self._load_submissions()
+            self.submissions_loaded = True
         else:
             self.path.mkdir(parents=True, exist_ok=True)
     
@@ -46,6 +48,8 @@ class Portfolio:
 
     def process_submissions(self, callback):
         """Process all submissions using a thread pool."""
+        if not self.submissions_loaded:
+            self._load_submissions()
         with ThreadPoolExecutor(max_workers=self.MAX_WORKERS) as executor:
             results = list(tqdm(
                 executor.map(callback, self.submissions),
@@ -56,6 +60,9 @@ class Portfolio:
 
     def process_documents(self, callback):
         """Process all documents using a thread pool."""
+        if not self.submissions_loaded:
+            self._load_submissions()
+
         documents = [doc for sub in self.submissions for doc in sub]
         
         with ThreadPoolExecutor(max_workers=self.MAX_WORKERS) as executor:
@@ -136,15 +143,19 @@ class Portfolio:
                 requests_per_second=4, # Revisit this later.
                 accession_numbers=self.accession_numbers if hasattr(self, 'accession_numbers') else None
             )
+
+        self.submissions_loaded = False
         
-        # Reload submissions after download
-        self._load_submissions()
         
     def __iter__(self):
+        if not self.submissions_loaded:
+            self._load_submissions()
         return iter(self.submissions)
     
     def document_type(self, document_types):
         """Filter documents by type(s)."""
+        if not self.submissions_loaded:
+            self._load_submissions()
         if isinstance(document_types, str):
             document_types = [document_types]
             

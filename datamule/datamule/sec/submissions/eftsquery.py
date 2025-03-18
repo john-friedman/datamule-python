@@ -13,7 +13,7 @@ class EFTSQuery:
         self.rate_monitor = RateMonitor()
         self.session = None
         self.pbar = None
-        self.max_page_size = 100  # SEC API limit
+        self.max_page_size = 100  # EFTS API limit
         self.fetch_queue = asyncio.Queue()
         self.connection_semaphore = asyncio.Semaphore(5)  # Max 5 concurrent connections
         self.max_efts_hits = 10000  # EFTS API hard limit

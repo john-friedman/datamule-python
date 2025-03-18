@@ -15,14 +15,15 @@ from queue import Queue, Empty
 from threading import Thread
 from secsgml import parse_sgml_submission
 from .query import query
+from os import cpu_count
 
 class Downloader:
     def __init__(self, api_key=None):
         self.BASE_URL = "https://library.datamule.xyz/original/nc/"
         self.CHUNK_SIZE = 2 * 1024 * 1024
-        self.MAX_CONCURRENT_DOWNLOADS = 100
-        self.MAX_DECOMPRESSION_WORKERS = 16
-        self.MAX_PROCESSING_WORKERS = 16
+        self.MAX_CONCURRENT_DOWNLOADS = 250
+        self.MAX_DECOMPRESSION_WORKERS = cpu_count()
+        self.MAX_PROCESSING_WORKERS = cpu_count()
         self.QUEUE_SIZE = 10
         if api_key is not None:
             self._api_key = api_key
@@ -60,7 +61,7 @@ class Downloader:
             self.processing_workers = []
             self.output_dir = output_dir
             self.max_workers = max_workers
-            self.batch_size = 10
+            self.batch_size = 50
             self.pbar = pbar
             self.downloader = downloader
 
