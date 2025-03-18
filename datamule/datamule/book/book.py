@@ -25,3 +25,10 @@ class Book:
         
         # Download facts for all CIKs in parallel
         download_company_facts(cik=cik_list, output_dir=self.path)
+
+    def query_345():
+        pass
+    def query_xbrl():
+        pass
+    def query_13fhr():
+        pass

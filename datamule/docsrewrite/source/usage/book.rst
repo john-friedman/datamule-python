@@ -29,5 +29,6 @@ Free Datasets
 
 Premium Datasets (Forthcoming)
 ------------------------------
+* XBRL
 * 345
 * 13F-HR
