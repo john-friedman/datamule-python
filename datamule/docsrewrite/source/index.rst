@@ -44,4 +44,5 @@ Navigation
    quickstart
    usage/index
    examples
+   utils/index
    changelog

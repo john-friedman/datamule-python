@@ -3,7 +3,7 @@ import aiohttp
 from datetime import datetime, timedelta
 import pytz
 import time
-from typing import Callable, List, Set, Dict, Any, Optional, Union
+from collections import deque
 from ..utils import PreciseRateLimiter, RateMonitor, RetryException, headers
 from .eftsquery import EFTSQuery
 
@@ -21,14 +21,21 @@ def _parse_date(date_str):
     except ValueError as e:
         raise ValueError(f"Invalid date format. Please use YYYY-MM-DD. Error: {str(e)}")
 
+def _extract_accession_number(filing_id):
+    """Extract accession number from filing ID by splitting at colon and taking first part"""
+    if filing_id and ':' in filing_id:
+        return filing_id.split(':', 1)[0]
+    return filing_id  # Return original if no colon found
+
 class Monitor:
     def __init__(self):
-        self.seen_filing_ids = set()  # Track all seen filing IDs
+        self.recent_accession_numbers = deque(maxlen=10000)  # Limit to recent 10,000 accessions
         self.current_monitor_date = None  # Current date being monitored
         self.max_hits = 10000  # Maximum filings to retrieve
         self.limiter = None  # Will be initialized in monitor method
         self.rate_monitor = RateMonitor()  # Track request rates
         self.headers = headers  # User agent headers
+        self.date_accessions = {}  # Track accessions by date during backfill
 
     async def _fetch_json(self, session, url):
         """Fetch JSON with rate limiting and monitoring."""
@@ -57,7 +64,8 @@ class Monitor:
             self.current_monitor_date = current_date
         else:
             # Move to next day if needed
-            if not self.seen_filing_ids:  # No filings seen for current date, move to next
+            if not self.date_accessions.get(self.current_monitor_date.strftime('%Y-%m-%d'), set()):
+                # No filings seen for current date, move to next
                 self.current_monitor_date += timedelta(days=1)
                 
         date_str = self.current_monitor_date.strftime('%Y-%m-%d')
@@ -72,27 +80,46 @@ class Monitor:
         try:
             data = await self._fetch_json(session, poll_url)
             if data and 'hits' in data and 'hits' in data['hits']:
-                # Extract filing IDs from current page
-                current_page_ids = {filing['_id'] for filing in data['hits']['hits']}
+                # Process filings in this page
+                new_filings = []
+                has_new_filings = False
                 
-                # Find new filings
-                new_ids = current_page_ids - self.seen_filing_ids
+                for filing in data['hits']['hits']:
+                    accession = _extract_accession_number(filing['_id'])
+                    
+                    # Check if this filing is new
+                    if accession not in self.recent_accession_numbers:
+                        has_new_filings = True
+                        self.recent_accession_numbers.append(accession)
+                        new_filings.append(filing)
+                        
+                        # Also track by date for date transitions
+                        if date_str not in self.date_accessions:
+                            self.date_accessions[date_str] = set()
+                        self.date_accessions[date_str].add(accession)
                 
-                # If we have new filings, return them
-                if new_ids:
-                    need_pagination = len(new_ids) == len(current_page_ids)
-                    return need_pagination, data, poll_url
+                # If we have new filings, check if we need pagination
+                if has_new_filings:
+                    if not quiet:
+                        print(f"Found {len(new_filings)} new filings")
+                    
+                    # Determine if we need pagination - if all filings in this page were new
+                    # and there are more pages, we need to paginate
+                    need_pagination = len(new_filings) == len(data['hits']['hits']) and len(data['hits']['hits']) > 0
+                    return need_pagination, data, poll_url, new_filings
                 
                 # If no hits and we're processing a past date,
                 # we can move to the next day immediately
-                if len(current_page_ids) == 0 and self.current_monitor_date.date() < current_date.date():
+                if len(data['hits']['hits']) == 0 and self.current_monitor_date.date() < current_date.date():
                     self.current_monitor_date += timedelta(days=1)
-                    return False, None, None
+                    # Clear accessions for dates older than the current monitor date
+                    self._clear_old_date_accessions()
+                    return False, None, None, []
                 
         except RetryException as e:
             print(f"Rate limit exceeded. Retrying after {e.retry_after} seconds.")
             await asyncio.sleep(e.retry_after)
-            return False, None, None
+            return False, None, None, []
         except Exception as e:
             print(f"Error in poll: {str(e)}")
         
@@ -109,7 +136,14 @@ class Monitor:
         if elapsed < poll_interval:
             await asyncio.sleep((poll_interval - elapsed) / 1000)
         
-        return False, None, None
+        return False, None, None, []
+
+    def _clear_old_date_accessions(self):
+        """Clear accessions for dates older than the current monitor date."""
+        current_date_str = self.current_monitor_date.strftime('%Y-%m-%d')
+        keys_to_remove = [key for key in self.date_accessions.keys() if key < current_date_str]
+        for key in keys_to_remove:
+            del self.date_accessions[key]
 
     async def _retrieve_batch(self, session, poll_url, from_positions, quiet):
         """Retrieve a batch of submissions concurrently."""
@@ -122,7 +156,9 @@ class Monitor:
         ]
         
         results = await asyncio.gather(*tasks, return_exceptions=True)
-        filings = []
+        all_filings = []
+        new_filings = []
+        date_str = self.current_monitor_date.strftime('%Y-%m-%d')
         
         for result in results:
             if isinstance(result, Exception):
@@ -133,52 +169,66 @@ class Monitor:
                     print(f"Error in batch: {str(result)}")
                 continue
             if result and 'hits' in result and 'hits' in result['hits']:
-                filings.extend(result['hits']['hits'])
+                filings = result['hits']['hits']
+                all_filings.extend(filings)
+                
+                # Process filings for new ones
+                for filing in filings:
+                    accession = _extract_accession_number(filing['_id'])
+                    if accession not in self.recent_accession_numbers:
+                        self.recent_accession_numbers.append(accession)
+                        new_filings.append(filing)
+                        
+                        # Also track by date
+                        if date_str not in self.date_accessions:
+                            self.date_accessions[date_str] = set()
+                        self.date_accessions[date_str].add(accession)
         
-        return filings
+        return all_filings, new_filings
 
-    async def _retrieve_all_pages(self, poll_url, initial_data, session, quiet):
+    async def _retrieve_all_pages(self, poll_url, initial_data, session, quiet, first_page_new_filings):
         """Retrieve all filings using parallel batch processing."""
         batch_size = 10  # Number of concurrent requests
         page_size = 100  # Results per request
         total_hits = initial_data['hits']['total']['value']
         max_position = min(self.max_hits, total_hits)
-        all_filings = initial_data['hits']['hits'].copy()  # Start with first page
+        all_new_filings = first_page_new_filings.copy()  # Start with new filings from first page
         
-        # Process in batches of concurrent requests, starting from position 100
-        # (since we already have the first page from initial_data)
-        for batch_start in range(page_size, max_position, batch_size * page_size):
-            from_positions = [
-                pos for pos in range(
-                    batch_start,
-                    min(batch_start + batch_size * page_size, max_position),
-                    page_size
-                )
-            ]
-            
-            if not quiet:
-                print(f"Retrieving batch from positions: {from_positions}")
-            
-            batch_filings = await self._retrieve_batch(
-                session, poll_url, from_positions, quiet
-            )
-            
-            if not batch_filings:
-                break
+        # If all filings are already processed, return early
+        if len(first_page_new_filings) == 0 and len(initial_data['hits']['hits']) > 0:
+            return all_new_filings
+        
+        # Limit to only retrieve additional pages if we found new filings in the first page
+        if len(first_page_new_filings) > 0:
+            # Process in batches of concurrent requests, starting from position 100
+            # (since we already have the first page)
+            for batch_start in range(page_size, max_position, batch_size * page_size):
+                from_positions = [
+                    pos for pos in range(
+                        batch_start,
+                        min(batch_start + batch_size * page_size, max_position),
+                        page_size
+                    )
+                ]
                 
-            all_filings.extend(batch_filings)
+                if not quiet:
+                    print(f"Retrieving batch from positions: {from_positions}")
+                
+                _, batch_new_filings = await self._retrieve_batch(
+                    session, poll_url, from_positions, quiet
+                )
+                
+                if not batch_new_filings:
+                    # If we got a batch with no new filings, we can stop
+                    break
+                    
+                all_new_filings.extend(batch_new_filings)
+                
+                # If we got fewer new filings than positions requested, we're likely done
+                if len(batch_new_filings) < len(from_positions) * page_size:
+                    break
             
-            # If we got fewer results than expected, we're done
-            if len(batch_filings) < len(from_positions) * page_size:
-                break
-        
-        # Find new filings
-        new_filings = [filing for filing in all_filings if filing['_id'] not in self.seen_filing_ids]
-        
-        # Update seen IDs
-        self.seen_filing_ids.update(filing['_id'] for filing in all_filings)
-        
-        return new_filings
+        return all_new_filings
 
     async def _backfill_from_date(self, start_date, data_callback, submission_type=None, cik=None, 
                                 requests_per_second=2.0, quiet=True):
@@ -205,26 +255,37 @@ class Monitor:
         # Create query client
         query = EFTSQuery(requests_per_second=requests_per_second)
         
-        # Prepare backfill data for callback
-        backfill_data = []
+        # Clear and initialize date-specific accessions for backfill
+        self.date_accessions = {}
         
-        # Define callback function to process backfill results
+        # Define callback function to process backfill results by date
         async def backfill_callback(hits):
+            # Group filings by date
+            date_filings = {}
             for filing in hits:
-                filing_id = filing['_id']
-                if filing_id not in self.seen_filing_ids:
-                    self.seen_filing_ids.add(filing_id)
-                    backfill_data.append(filing)
+                accession = _extract_accession_number(filing['_id'])
+                file_date = filing['_source'].get('file_date', '')
+                
+                # Initialize date entry if needed
+                if file_date not in date_filings:
+                    date_filings[file_date] = []
+                
+                # Initialize date accessions if needed
+                if file_date not in self.date_accessions:
+                    self.date_accessions[file_date] = set()
+                
+                # Check if this filing is new for this date
+                if accession not in self.date_accessions[file_date]:
+                    self.date_accessions[file_date].add(accession)
+                    self.recent_accession_numbers.append(accession)
+                    date_filings[file_date].append(filing)
             
-            # If we've accumulated enough data or this is the last batch, process it
-            if len(backfill_data) >= 100 or len(hits) < 100:
-                if backfill_data and data_callback:
-                    # Sort by filing date (assuming accession_number order approximates filing time)
-                    sorted_data = sorted(backfill_data, key=lambda x: x['_id'])
-                    if not quiet:
-                        print(f"Processing batch of {len(sorted_data)} historical filings")
+            # Process filings by date, sorted chronologically
+            for date in sorted(date_filings.keys()):
+                if date_filings[date] and data_callback:
+                    # Sort by accession number (which approximates filing time)
+                    sorted_data = sorted(date_filings[date], key=lambda x: _extract_accession_number(x['_id']))
                     await data_callback(sorted_data)
-                    backfill_data.clear()
         
         # Phase 1: Historical data from start_date to yesterday
         if parsed_start_date.date() < yesterday.date():
@@ -252,15 +313,8 @@ class Monitor:
             callback=backfill_callback
         )
         
-        # Process any remaining data
-        if backfill_data and data_callback:
-            sorted_data = sorted(backfill_data, key=lambda x: x['_id'])
-            if not quiet:
-                print(f"Processing final batch of {len(sorted_data)} historical filings")
-            await data_callback(sorted_data)
-        
         if not quiet:
-            print(f"Historical backfill complete. {len(self.seen_filing_ids)} filings processed.")
+            print(f"Historical backfill complete. {len(self.recent_accession_numbers)} filings processed.")
 
     async def _monitor(self, data_callback, poll_callback, submission_type=None, cik=None, 
                       poll_interval=1000, requests_per_second=5, quiet=True, start_date=None):
@@ -304,32 +358,25 @@ class Monitor:
             while True:
                 try:
                     # Poll until we find new filings
-                    need_pagination, data, poll_url = await self._poll(
+                    need_pagination, data, poll_url, first_page_new_filings = await self._poll(
                         base_url, session, poll_interval, quiet, poll_callback
                     )
                     
                     if data is None:
                         continue  # No new data, continue polling
                     
-                    # Process new filings
+                    # Process new filings if found
+                    all_new_filings = first_page_new_filings
+                    
                     if need_pagination:
-                        # Need to retrieve all pages - complete set change detected
-                        new_filings = await self._retrieve_all_pages(poll_url, data, session, quiet)
-                    else:
-                        # Just process new filings from first page
-                        first_page_filings = data['hits']['hits']
-                        new_filings = [f for f in first_page_filings if f['_id'] not in self.seen_filing_ids]
-                        # Update seen IDs
-                        self.seen_filing_ids.update(f['_id'] for f in first_page_filings)
+                        # Need to retrieve additional pages
+                        all_new_filings = await self._retrieve_all_pages(
+                            poll_url, data, session, quiet, first_page_new_filings
+                        )
                     
                     # Call data callback with new filings
-                    if new_filings and data_callback:
-                        await data_callback(new_filings)
-                    
-                    # Output current rates
-                    reqs_per_sec, mb_per_sec = self.rate_monitor.get_current_rates()
-                    if not quiet:
-                        print(f"Current rates: {reqs_per_sec} req/s, {mb_per_sec} MB/s")
+                    if all_new_filings and data_callback:
+                        await data_callback(all_new_filings)
                     
                 except Exception as e:
                     print(f"Error in monitor: {str(e)}")
