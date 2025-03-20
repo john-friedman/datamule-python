@@ -8,7 +8,8 @@ from tqdm.auto import tqdm
 from ..utils import RetryException, PreciseRateLimiter, RateMonitor, headers
 
 async def start_monitor(data_callback=None, poll_callback=None, submission_type=None, cik=None,
-                        polling_interval=200, requests_per_second=2.0, quiet=True, known_accession_numbers=None):
+                        polling_interval=200, requests_per_second=2.0, quiet=True, 
+                        known_accession_numbers=None, skip_initial_accession_numbers=None):
     """
     Main monitoring loop for SEC filings.
     
@@ -20,18 +21,23 @@ async def start_monitor(data_callback=None, poll_callback=None, submission_type=
         polling_interval (int): Polling interval in milliseconds.
         requests_per_second (float): Maximum requests per second.
         quiet (bool): Suppress verbose output.
-        known_accession_numbers (list): List of accession numbers to skip (already processed).
+        known_accession_numbers (list): List of accession numbers to track for ongoing monitoring.
+        skip_initial_accession_numbers (set): Set of accession numbers to skip during initialization
+                                             (these were already processed by EFTS).
     """
     # Initialize rate limiter
     rate_limiter = PreciseRateLimiter(requests_per_second)
     rate_monitor = RateMonitor()
     
-    # Initialize known accession numbers with a maximum size of 20,000
-    if known_accession_numbers is None:
-        known_accession_numbers = deque(maxlen=20000)
-    else:
-        known_accession_numbers = deque(known_accession_numbers, maxlen=20000)
-    
+    # Initialize tracking set for known accession numbers with a reasonable size
+    active_accession_numbers = deque(maxlen=20000)
+    if known_accession_numbers:
+        active_accession_numbers.extend(known_accession_numbers)
+
+    # Convert skip_initial_accession_numbers to a set if it's not already
+    if skip_initial_accession_numbers is not None and not isinstance(skip_initial_accession_numbers, set):
+        skip_initial_accession_numbers = set(skip_initial_accession_numbers)
+
     # Convert submission_type to list if it's a string
     if submission_type and isinstance(submission_type, str):
         submission_type = [submission_type]
@@ -57,36 +63,60 @@ async def start_monitor(data_callback=None, poll_callback=None, submission_type=
     first_page_accession_numbers = set()
     
     # Initialize by loading a batch of the latest filings
-    # Pass the data_callback to initialize_known_filings
-    await initialize_known_filings(url_params, known_accession_numbers, rate_limiter, rate_monitor, quiet, data_callback)
+    await initialize_known_filings(
+        url_params, 
+        active_accession_numbers, 
+        rate_limiter, 
+        rate_monitor, 
+        quiet, 
+        data_callback, 
+        skip_initial_accession_numbers
+    )
     
     # Main polling loop
     while True:
         try:
             # Poll for new filings on the first page
-            new_filings = await poll_for_new_filings(url_params, first_page_accession_numbers, 
-                                                    rate_limiter, rate_monitor, quiet)
+            new_filings = await poll_for_new_filings(
+                url_params, 
+                first_page_accession_numbers, 
+                rate_limiter, 
+                rate_monitor, 
+                quiet
+            )
             
             if new_filings:
                 # If there are new filings, check if we need to fetch more comprehensive data
                 if len(new_filings) >= 100:  # If the entire first page is new
-                    new_filings = await fetch_comprehensive_filings(url_params, known_accession_numbers, 
-                                                                    rate_limiter, rate_monitor, quiet)
+                    new_filings = await fetch_comprehensive_filings(
+                        url_params, 
+                        set(active_accession_numbers),  # Convert to set for faster lookups 
+                        rate_limiter, 
+                        rate_monitor, 
+                        quiet
+                    )
                 
                 # Process new filings and call the data callback
                 if new_filings and data_callback:
                     processed_filings = process_filings(new_filings)
-                    await data_callback(processed_filings)
                     
-                    # Add new filings to known accession numbers
-                    for filing in processed_filings:
-                        known_accession_numbers.append(filing['accession_number'])
+                    # Filter out filings we're already tracking
+                    new_processed_filings = [
+                        filing for filing in processed_filings 
+                        if filing['accession_number'] not in active_accession_numbers
+                    ]
+                    
+                    if new_processed_filings:
+                        await data_callback(new_processed_filings)
+                        
+                        # Add new filings to known accession numbers
+                        for filing in new_processed_filings:
+                            active_accession_numbers.append(filing['accession_number'])
                 
-                if not quiet:
-                    print(f"Found {len(processed_filings)} new filings.")
+                    if not quiet and new_processed_filings:
+                        print(f"Found {len(new_processed_filings)} new filings.")
             
             # Call the poll callback if provided
-            # Ensure callback output gets its own line and doesn't mix with other messages
             if poll_callback:
                 await poll_callback()
             
@@ -102,7 +132,9 @@ async def start_monitor(data_callback=None, poll_callback=None, submission_type=
                 print(f"Error in monitoring loop: {e}")
             await asyncio.sleep(polling_interval / 1000.0)  # Wait before retrying
 
-async def initialize_known_filings(url_params, known_accession_numbers, rate_limiter, rate_monitor, quiet, data_callback=None):
+async def initialize_known_filings(url_params, active_accession_numbers, rate_limiter, 
+                                 rate_monitor, quiet, data_callback=None, 
+                                 skip_initial_accession_numbers=None):
     """Initialize the list of known accession numbers from the SEC feed."""
     if not quiet:
         print("Initializing known filings...")
@@ -112,12 +144,23 @@ async def initialize_known_filings(url_params, known_accession_numbers, rate_lim
     
     # Process and emit filings if data_callback is provided
     if data_callback and all_filings:
-        processed_filings = process_filings(all_filings)
-        if not quiet:
-            print(f"Emitting {len(processed_filings)} initial filings to data callback...")
-        await data_callback(processed_filings)
+        # Filter out filings that are in the skip list (already processed by EFTS)
+        new_filings = []
+        for filing in all_filings:
+            acc_no = extract_accession_number(filing)
+            # Only include filings NOT in the skip list
+            if acc_no and (skip_initial_accession_numbers is None or 
+                          acc_no not in skip_initial_accession_numbers):
+                new_filings.append(filing)
+        
+        if new_filings:
+            processed_filings = process_filings(new_filings)
+            if not quiet:
+                print(f"Emitting {len(processed_filings)} initial filings to data callback...")
+            await data_callback(processed_filings)
     
-    # Add all fetched accession numbers to the known list
+    # Add ALL fetched accession numbers to the active tracking list
+    # We track all accession numbers regardless of whether they were in the skip list
     if not quiet:
         # Create a single progress bar that stays in place and shows rate
         with tqdm(total=len(all_filings), desc="Processing filings", unit="filing", ncols=100, 
@@ -126,17 +169,18 @@ async def initialize_known_filings(url_params, known_accession_numbers, rate_lim
             for filing in all_filings:
                 acc_no = extract_accession_number(filing)
                 if acc_no:
-                    known_accession_numbers.append(acc_no)
+                    active_accession_numbers.append(acc_no)
                 pbar.update(1)
     else:
         for filing in all_filings:
             acc_no = extract_accession_number(filing)
             if acc_no:
-                known_accession_numbers.append(acc_no)
+                active_accession_numbers.append(acc_no)
     
     if not quiet:
-        print(f"Initialized with {len(known_accession_numbers)} known filings.")
+        print(f"Initialized with {len(active_accession_numbers)} known filings.")
 
+# The rest of the functions remain the same
 async def poll_for_new_filings(url_params, first_page_accession_numbers, rate_limiter, rate_monitor, quiet):
     """Poll the first page of SEC filings to check for new ones."""
     # Create a copy of the URL parameters for the first page
@@ -340,7 +384,8 @@ def construct_url(params):
     return f"{base_url}?{query_string}"
 
 def monitor(data_callback=None, poll_callback=None, submission_type=None, cik=None, 
-           polling_interval=200, requests_per_second=2.0, quiet=True, known_accession_numbers=None):
+           polling_interval=200, requests_per_second=2.0, quiet=True, 
+           known_accession_numbers=None, skip_initial_accession_numbers=None):
     """
     Convenience function to start monitoring SEC filings from the RSS feed.
     
@@ -354,7 +399,9 @@ def monitor(data_callback=None, poll_callback=None, submission_type=None, cik=No
         polling_interval (int): Polling interval in milliseconds.
         requests_per_second (float): Maximum requests per second.
         quiet (bool): Suppress verbose output.
-        known_accession_numbers (list): List of accession numbers to skip (already processed).
+        known_accession_numbers (list): List of accession numbers to track for ongoing monitoring.
+        skip_initial_accession_numbers (set): Set of accession numbers to skip during initialization
+                                             (already processed by EFTS).
     """
     return asyncio.run(start_monitor(
         data_callback=data_callback,
@@ -364,5 +411,6 @@ def monitor(data_callback=None, poll_callback=None, submission_type=None, cik=No
         polling_interval=polling_interval,
         requests_per_second=requests_per_second,
         quiet=quiet,
-        known_accession_numbers=known_accession_numbers
+        known_accession_numbers=known_accession_numbers,
+        skip_initial_accession_numbers=skip_initial_accession_numbers
     ))
