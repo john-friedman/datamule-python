@@ -9,6 +9,8 @@ import os
 from .helper import _process_cik_and_metadata_filters
 from .seclibrary.downloader import download as seclibrary_download
 from .sec.xbrl.filter_xbrl import filter_xbrl
+from .sec.submissions.monitor import monitor
+from .sec.xbrl.xbrlmonitor import XBRLMonitor
 
 
 class Portfolio:
@@ -145,6 +147,23 @@ class Portfolio:
             )
 
         self.submissions_loaded = False
+    def monitor_submissions(self,data_callback=None, poll_callback=None, submission_type=None, cik=None, 
+           polling_interval=200, requests_per_second=2.0, quiet=False, start_date=None, ticker=None, **kwargs):
+        
+        cik = _process_cik_and_metadata_filters(cik, ticker, **kwargs)
+
+        monitor(
+            data_callback=data_callback,
+            poll_callback=poll_callback,
+            cik=cik,
+            submission_type=submission_type,
+            polling_interval=polling_interval,
+            requests_per_second=requests_per_second,
+            quiet=quiet,
+            start_date=start_date
+        )
+
+        
         
         
     def __iter__(self):
