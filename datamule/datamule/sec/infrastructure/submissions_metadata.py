@@ -5,6 +5,7 @@ import csv
 import gzip
 import asyncio
 import aiohttp
+import tempfile
 from tqdm import tqdm
 from datetime import datetime
 from ..utils import headers
@@ -148,14 +149,14 @@ def write_names_to_csv(names_list, output_path):
     
     print(f"Wrote {len(names_list)} records to {output_path}")
 
-async def extract_and_process_metadata(output_dir, zip_path=None, sec_url="https://www.sec.gov/Archives/edgar/daily-index/bulkdata/submissions.zip", max_bytes=2000):
+async def extract_and_process_metadata(output_dir, local_zip_path=None, sec_url="https://www.sec.gov/Archives/edgar/daily-index/bulkdata/submissions.zip", max_bytes=2000):
     """
     Extracts metadata from JSON files in a ZIP archive and writes to multiple CSV files.
-    Can download the ZIP file from SEC if path not provided.
+    Can download the ZIP file from SEC to a temporary location if local_zip_path not provided.
     
     Args:
         output_dir (str): Directory for output CSV files
-        zip_path (str, optional): Path to the ZIP file. If None, downloads from SEC
+        local_zip_path (str, optional): Path to a local ZIP file. If None, downloads from SEC to temp
         sec_url (str): URL to download the SEC submissions ZIP file
         max_bytes (int): Maximum number of bytes to extract from each file
     
@@ -165,14 +166,6 @@ async def extract_and_process_metadata(output_dir, zip_path=None, sec_url="https
     # Ensure output directory exists
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
-    
-    # Download the file if no path provided
-    if not zip_path:
-        zip_path = os.path.join(output_dir, "submissions.zip")
-        await download_sec_file(sec_url, zip_path)
-        print(f"Downloaded SEC data to {zip_path}")
-    else:
-        print(f"Using provided ZIP file: {zip_path}")
     
     # Initialize collections for different types of data
     listed_metadata = []
@@ -186,81 +179,109 @@ async def extract_and_process_metadata(output_dir, zip_path=None, sec_url="https
         'unlisted_companies': 0
     }
     
-    # Open the ZIP file
-    with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-        # Get list of files (excluding directories)
-        files = [f for f in zip_ref.infolist() if not f.is_dir()]
-        # Remove files that contain "submission" in their name
-        files = [f for f in files if "submission" not in f.filename]
-        # Remove placeholder.txt
-        files = [f for f in files if "placeholder.txt" not in f.filename]
+    # Use provided ZIP file or download to temporary file
+    if local_zip_path:
+        # Use local file
+        print(f"Using local ZIP file: {local_zip_path}")
+        zip_path = local_zip_path
+        temp_file = None
+    else:
+        # Download to temporary file
+        print(f"Downloading from SEC to temporary file: {sec_url}")
+        temp_file = tempfile.NamedTemporaryFile(suffix='.zip', delete=False)
+        temp_file.close()  # Close the file so we can download to it
+        zip_path = temp_file.name
         
-
-        # Create a progress bar
-        with tqdm(total=len(files), desc="Extracting metadata", unit="file") as pbar:
-            # Loop through all files in the ZIP archive
-            for file_info in files:
-                try:
-                    # Open the file within the ZIP archive
-                    with zip_ref.open(file_info.filename, 'r') as file:
-                        # Read only the first chunk of bytes
-                        content_bytes = file.read(max_bytes)
-                        
-                        # Convert to string
-                        content = content_bytes.decode('utf-8', errors='replace')
-                        
-                        # Truncate at "filings" and complete the JSON
-                        filings_index = content.find('"filings":')
-                        if filings_index != -1:
-                            # Get content up to "filings"
-                            truncated_content = content[:filings_index]
-                            # Remove trailing comma if present
-                            truncated_content = truncated_content.rstrip().rstrip(',')
-                            # Add closing brace
-                            content = truncated_content + '}'
-                        else:
-                            # If "filings" not found, try to make valid JSON by adding closing brace
-                            content = content.rstrip().rstrip(',') + '}'
-                        
-                        try:
-                            # Parse the JSON
-                            json_data = json.loads(content)
+        try:
+            await download_sec_file(sec_url, zip_path)
+        except Exception as e:
+            # Clean up temp file if download fails
+            if os.path.exists(zip_path):
+                os.unlink(zip_path)
+            raise e
+    
+    try:
+        # Process the ZIP file
+        with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+            # Get list of files (excluding directories)
+            files = [f for f in zip_ref.infolist() if not f.is_dir()]
+            # Remove files that contain "submission" in their name
+            files = [f for f in files if "submission" not in f.filename]
+            # Remove placeholder.txt
+            files = [f for f in files if "placeholder.txt" not in f.filename]
+            
+            
+            # Create a progress bar
+            with tqdm(total=len(files), desc="Extracting metadata", unit="file") as pbar:
+                # Loop through all files in the ZIP archive
+                for file_info in files:
+                    try:
+                        # Open the file within the ZIP archive
+                        with zip_ref.open(file_info.filename, 'r') as file:
+                            # Read only the first chunk of bytes
+                            content_bytes = file.read(max_bytes)
                             
-                            # Extract metadata (without former names)
-                            metadata = extract_metadata(json_data)
+                            # Convert to string
+                            content = content_bytes.decode('utf-8', errors='replace')
                             
-                            # Get CIK and name for former names processing
-                            cik = metadata.get('cik', '')
-                            name = metadata.get('name', '')
-                            
-                            # Process former names
-                            former_names_records = process_former_names(json_data, cik, name)
-                            
-                            # Check if company is listed (has tickers)
-                            tickers = metadata.get('tickers', [])
-                            is_listed = tickers and isinstance(tickers, list) and len(tickers) > 0
-                            
-                            # Add to appropriate collections
-                            if is_listed:
-                                listed_metadata.append(metadata)
-                                listed_names.extend(former_names_records)
-                                stats['listed_companies'] += 1
+                            # Truncate at "filings" and complete the JSON
+                            filings_index = content.find('"filings":')
+                            if filings_index != -1:
+                                # Get content up to "filings"
+                                truncated_content = content[:filings_index]
+                                # Remove trailing comma if present
+                                truncated_content = truncated_content.rstrip().rstrip(',')
+                                # Add closing brace
+                                content = truncated_content + '}'
                             else:
-                                unlisted_metadata.append(metadata)
-                                unlisted_names.extend(former_names_records)
-                                stats['unlisted_companies'] += 1
+                                # If "filings" not found, try to make valid JSON by adding closing brace
+                                content = content.rstrip().rstrip(',') + '}'
                             
-                            stats['total_processed'] += 1
-                            
-                        except json.JSONDecodeError as je:
-                            print(f"JSON parsing error in {file_info.filename}: {str(je)}")
-                
-                except Exception as e:
-                    # Handle any errors
-                    print(f"Error processing {file_info.filename}: {str(e)}")
-                
-                # Update the progress bar
-                pbar.update(1)
+                            try:
+                                # Parse the JSON
+                                json_data = json.loads(content)
+                                
+                                # Extract metadata (without former names)
+                                metadata = extract_metadata(json_data)
+                                
+                                # Get CIK and name for former names processing
+                                cik = metadata.get('cik', '')
+                                name = metadata.get('name', '')
+                                
+                                # Process former names
+                                former_names_records = process_former_names(json_data, cik, name)
+                                
+                                # Check if company is listed (has tickers)
+                                tickers = metadata.get('tickers', [])
+                                is_listed = tickers and isinstance(tickers, list) and len(tickers) > 0
+                                
+                                # Add to appropriate collections
+                                if is_listed:
+                                    listed_metadata.append(metadata)
+                                    listed_names.extend(former_names_records)
+                                    stats['listed_companies'] += 1
+                                else:
+                                    unlisted_metadata.append(metadata)
+                                    unlisted_names.extend(former_names_records)
+                                    stats['unlisted_companies'] += 1
+                                
+                                stats['total_processed'] += 1
+                                
+                            except json.JSONDecodeError as je:
+                                print(f"JSON parsing error in {file_info.filename}: {str(je)}")
+                    
+                    except Exception as e:
+                        # Handle any errors
+                        print(f"Error processing {file_info.filename}: {str(e)}")
+                    
+                    # Update the progress bar
+                    pbar.update(1)
+    
+    finally:
+        # Clean up temporary file if we created one
+        if temp_file and os.path.exists(zip_path):
+            print(f"Removing temporary file: {zip_path}")
+            os.unlink(zip_path)
     
     # Define output file paths (without .gz extension, it will be added in the write functions)
     listed_metadata_path = os.path.join(output_dir, "listed_filer_metadata.csv")
@@ -293,13 +314,13 @@ async def extract_and_process_metadata(output_dir, zip_path=None, sec_url="https
     return stats
 
 # Convenience function to run the extractor
-def process_submissions_metadata(output_dir, zip_path=None, sec_url="https://www.sec.gov/Archives/edgar/daily-index/bulkdata/submissions.zip", max_bytes=2000):
+def process_submissions_metadata(output_dir, local_zip_path=None, sec_url="https://www.sec.gov/Archives/edgar/daily-index/bulkdata/submissions.zip", max_bytes=2000):
     """
     Convenience function to run the SEC Metadata Extractor.
     
     Args:
         output_dir (str): Directory for output CSV files
-        zip_path (str, optional): Path to the ZIP file. If None, downloads from SEC
+        local_zip_path (str, optional): Path to a local ZIP file. If None, downloads from SEC to temp
         sec_url (str): URL to download the SEC submissions ZIP file
         max_bytes (int): Maximum number of bytes to extract from each file
     
@@ -308,7 +329,8 @@ def process_submissions_metadata(output_dir, zip_path=None, sec_url="https://www
     """
     return asyncio.run(extract_and_process_metadata(
         output_dir=output_dir,
-        zip_path=zip_path,
+        local_zip_path=local_zip_path,
         sec_url=sec_url,
         max_bytes=max_bytes
     ))
+
