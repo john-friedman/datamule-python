@@ -1,19 +1,20 @@
-from pkg_resources import resource_filename
 from functools import lru_cache
 import csv
+from pathlib import Path
 
-# May generalize to load any package resource
 def _load_package_csv(name):
-    """Load package CSV files"""
-    csv_path = resource_filename('datamule', f'data/{name}.csv')
-    company_tickers = []
+    """Load CSV files from ~/.datamule/ directory"""
+    data_dir = Path.home() / ".datamule"
+    csv_path = data_dir / f"{name}.csv"
+    
+    data = []
     
     with open(csv_path, 'r') as csvfile:
         csv_reader = csv.DictReader(csvfile)
         for row in csv_reader:
-            company_tickers.append(row)
+            data.append(row)
     
-    return company_tickers
+    return data
 
 def load_package_dataset(dataset):
     if dataset =='listed_filer_metadata':
