@@ -4,7 +4,7 @@ from setuptools import find_namespace_packages
 setup(
     name="datamule",
     author="John Friedman",
-    version="1.0.4",
+    version="1.0.6",
     description="Making it easier to use SEC filings.",
     packages=find_namespace_packages(include=['datamule*']),
     url="https://github.com/john-friedman/datamule-python",
@@ -21,7 +21,8 @@ setup(
         'pytz',
         'zstandard',
         'doc2dict',
-        'secsgml'
+        'secsgml',
+        'lxml'
     ],
     package_data={
         "datamule": ["data/*.csv"],
