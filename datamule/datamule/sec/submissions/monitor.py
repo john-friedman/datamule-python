@@ -2,6 +2,7 @@ import asyncio
 from datetime import datetime, timedelta
 from .eftsquery import EFTSQuery  # Import the class directly instead of the function
 from ..rss.monitor import start_monitor  # Import start_monitor directly
+import pytz
 
 
 async def _process_efts_hits(hits, collected_accession_numbers, data_callback=None):
@@ -42,8 +43,9 @@ async def _process_efts_hits(hits, collected_accession_numbers, data_callback=No
 async def _master_monitor_impl(data_callback=None, poll_callback=None, submission_type=None, cik=None, 
                               polling_interval=200, requests_per_second=2.0, quiet=True, start_date=None):
     """Implementation of the master monitor."""
-    # Set default start date to today if not provided
-    current_date = datetime.now().strftime('%Y-%m-%d')
+    # Set default start date to today if not provided (eastern)
+    eastern_tz = pytz.timezone('US/Eastern')
+    current_date = datetime.now(eastern_tz).strftime('%Y-%m-%d')
     if not start_date:
         start_date = current_date
         
@@ -110,7 +112,7 @@ def monitor(data_callback=None, poll_callback=None, submission_type=None, cik=No
         requests_per_second (float): Maximum requests per second.
         quiet (bool): Suppress verbose output.
         start_date (str): ISO format date (YYYY-MM-DD) from which to start monitoring.
-                         If None, will start from current date.
+                        If None, will start from current date. (EASTERN TIME)
     """
     return asyncio.run(_master_monitor_impl(
         data_callback=data_callback,

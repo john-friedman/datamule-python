@@ -16,28 +16,33 @@ def _load_package_csv(name):
     return company_tickers
 
 def load_package_dataset(dataset):
-    if dataset == 'company_tickers':
-        return _load_package_csv('company_tickers')
-    elif dataset =='company_former_names':
-        return _load_package_csv('company_former_names')
-    elif dataset =='company_metadata':
-        return _load_package_csv('company_metadata')
-    elif dataset == 'sec_glossary':
-        return _load_package_csv('sec-glossary')
-    elif dataset == 'xbrl_descriptions':
-        return _load_package_csv('xbrl_descriptions')
+    if dataset =='listed_filer_metadata':
+        return _load_package_csv('listed_filer_metadata')
 
 @lru_cache(maxsize=128)
-def get_cik_from_dataset(dataset_name,key,value):
+def get_cik_from_dataset(dataset_name, key, value):
     dataset = load_package_dataset(dataset_name)
-    cik = [company['cik'] for company in dataset if str(value) == company[key]]
-    return cik
+    
+    if dataset_name == 'listed_filer_metadata' and key == 'ticker':
+        key = 'tickers'
+    
+    result = []
+    for company in dataset:
+        if key in ['tickers', 'exchanges'] and dataset_name == 'listed_filer_metadata':
+            # Parse the string representation of list into an actual list
+            list_values = [i.strip() for i in company[key][1:-1].replace("'", "").replace('"', '').split(',')]
+            if str(value) in list_values:
+                result.append(company['cik'])
+        elif str(value) == company[key]:
+            result.append(company['cik'])
+    
+    return result
 
 
 
 @lru_cache(maxsize=128)
 def get_ciks_from_metadata_filters(**kwargs):
-    """Get CIKs from company_metadata.csv that match all provided filters."""
+    """Get CIKs from listed_filer_metadata.csv that match all provided filters."""
     
     # Start with None to get all CIKs from first filter
     result_ciks = None
@@ -45,7 +50,7 @@ def get_ciks_from_metadata_filters(**kwargs):
     # For each filter, get matching CIKs and keep intersection
     for key, value in kwargs.items():
         # Get CIKs for this filter
-        ciks = get_cik_from_dataset('company_metadata', key, value)
+        ciks = get_cik_from_dataset('listed_filer_metadata', key, value)
         ciks = [int(cik) for cik in ciks]
         
         # If this is the first filter, set as initial result
@@ -73,7 +78,7 @@ def _process_cik_and_metadata_filters(cik=None, ticker=None, **kwargs):
 
         # Convert ticker to CIK if provided
         if ticker is not None:
-            cik = get_cik_from_dataset('company_tickers', 'ticker', ticker)
+            cik = get_cik_from_dataset('listed_filer_metadata', 'ticker', ticker)
 
         # Normalize CIK format
         if cik is not None:
