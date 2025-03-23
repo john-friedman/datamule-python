@@ -3,8 +3,8 @@ import csv
 import re
 from doc2dict import xml2dict, txt2dict, dict2dict
 from doc2dict.mapping import flatten_hierarchy
-from .mapping_dicts import txt_mapping_dicts
-from .mapping_dicts import xml_mapping_dicts
+from .mapping_dicts.txt_mapping_dicts import dict_10k, dict_10q, dict_8k, dict_13d, dict_13g
+from .mapping_dicts.xml_mapping_dicts import dict_345
 from selectolax.parser import HTMLParser
 
 class Document:
@@ -106,7 +106,7 @@ class Document:
 
         if self.path.suffix == '.xml':
             if self.type in ['3', '4', '5']:
-                mapping_dict = xml_mapping_dicts.dict_345
+                mapping_dict = dict_345
 
             self.load_content()
             self.data = xml2dict(content=self.content, mapping_dict=mapping_dict)
@@ -115,15 +115,15 @@ class Document:
             self._load_file_content()
 
             if self.type == '10-K':
-                mapping_dict = txt_mapping_dicts.dict_10k
+                mapping_dict = dict_10k
             elif self.type == '10-Q':
-                mapping_dict = txt_mapping_dicts.dict_10q
+                mapping_dict = dict_10q
             elif self.type == '8-K':
-                mapping_dict = txt_mapping_dicts.dict_8k
+                mapping_dict = dict_8k
             elif self.type == 'SC 13D':
-                mapping_dict = txt_mapping_dicts.dict_13d
+                mapping_dict = dict_13d
             elif self.type == 'SC 13G':
-                mapping_dict = txt_mapping_dicts.dict_13g
+                mapping_dict = dict_13g
             
             self.data = {}
             self.data['document'] = dict2dict(txt2dict(content=self.content, mapping_dict=mapping_dict))

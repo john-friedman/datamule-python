@@ -5,11 +5,14 @@ from ..utils import headers
 def fetch_frame(taxonomy, concept, unit, period):
     url = f"https://data.sec.gov/api/xbrl/frames/{taxonomy}/{concept}/{unit}/{period}.json"
     response = requests.get(url, headers=headers)
+    print(url)
+    print(response)
     return response.json()
 
 
 def filter_xbrl(taxonomy, concept, unit, period, logic, value):
     response_data = fetch_frame(taxonomy, concept, unit, period)
+    
     if response_data is None:
         raise ValueError("Unable to fetch XBRL data. Incorrect parameters?")
     

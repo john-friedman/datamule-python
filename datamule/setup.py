@@ -29,7 +29,7 @@ if not file_path.exists():
 setup(
     name="datamule",
     author="John Friedman",
-    version="1.0.6",
+    version="1.0.7",
     description="Making it easier to use SEC filings.",
     packages=find_namespace_packages(include=['datamule']),
     url="https://github.com/john-friedman/datamule-python",
