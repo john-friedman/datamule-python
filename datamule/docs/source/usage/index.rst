@@ -8,11 +8,7 @@ This section provides detailed information about using datamule's features.
    :caption: Components:
 
    portfolio
-   config
-   downloader
-   monitor
-   core_classes
+   book
    parsing
-   datasets
-   mulebot
+   package_data
    

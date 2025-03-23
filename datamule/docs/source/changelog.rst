@@ -1,7 +1,7 @@
 Changelog
 =========
 v1.1.0 (2025-03-12 Expected)
-- Reworked downloader
+- A full list of changes would be too tiring for me to provide. Enough to say that the package has been reworked & the docs are up to date. Enjoy the new features & smoother experience.
 v1.0.3
 - modified item mapping dict regex to be more robust.
 - modified Monitor().monitor_submissions() to have a start_date parameter.

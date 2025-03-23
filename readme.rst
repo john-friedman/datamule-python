@@ -18,18 +18,21 @@ A Python package for working with SEC filings at scale.
 
 Related packages:
 -----------------
-* `txt2dataset <https://github.com/john-friedman/txt2dataset/>`_
-* `secsgml <https://github.com/john-friedman/secsgml/>`_
+
+* `datamule-data <https://github.com/john-friedman/datamule-data/>`_ Contains datasets for use with datamule-python
+* `datamule-indicators <https://github.com/john-friedman/datamule-indicators/>`_  Create economic indicators from SEC filings
+* `txt2dataset <https://github.com/john-friedman/txt2dataset/>`_  Create datasets from unstructured text
+* `secsgml <https://github.com/john-friedman/secsgml/>`_ Parse SEC filings in SGML format
+* `doc2dict <https://github.com/john-friedman/doc2dict>`_ Convert documents to dictionaries. Not ready for public use.
+
 
 Features
 --------
 
-* `Download SEC filings quickly and efficiently <https://john-friedman.github.io/datamule-python/usage/downloader.html>`_
-* `Monitor EDGAR for new filings in real-time <https://john-friedman.github.io/datamule-python/usage/monitor.html>`_
-* `Parse filings at scale <https://john-friedman.github.io/datamule-python/usage/parsing.html>`_
-* `Access comprehensive datasets (10-Ks, SIC codes, etc.) <https://john-friedman.github.io/datamule-python/usage/datasets.html>`_
-* `Build datasets directly from unstructured text <https://john-friedman.github.io/datamule-python/usage/dataset_builder.html>`_
-* `Interact with SEC data using MuleBot <https://john-friedman.github.io/datamule-python/usage/mulebot.html>`_
+* Download SEC filings quickly and efficiently
+* Monitor EDGAR for new filings in real-time
+* Parse filings at scale
+* Access comprehensive datasets (10-Ks, SIC codes, etc.)
 
 Quick Start
 -----------
@@ -77,8 +80,8 @@ Basic Usage
    submission_results = portfolio.process_submissions(callback) 
 
 
-Examples
-~~~~~~~~
+Examples (Out of Date - Will be updated soon)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Create a discord bot, use insider trading disclosures to map relationships in Silicon Valley, and more in `examples <https://github.com/john-friedman/datamule-python/tree/main/examples>`_.
 
@@ -95,33 +98,11 @@ Default is the SEC, but for faster downloads you can use datamule.
    config.set_default_source("datamule") # set default source to datamule, can also be "sec"
    print(f"Default source: {config.get_default_source()}")
 
-To use datamule as a provider, you need an `API key <https://datamule.xyz/dashboard>`_. It costs $1/100,000 downloads.
-
-.. list-table:: Benchmarks
-   :widths: 20 20 20 40
-   :header-rows: 1
-
-   * - File Size
-     - Examples
-     - Downloader
-     - Premium Downloader
-   * - Small Files
-     - 3, 4, 5
-     - 5/s
-     - 300/s
-   * - Medium Files
-     - 8-K
-     - 5/s
-     - 60/s
-   * - Large Files
-     - 10-K
-     - 3/s
-     - 5/s
+To use datamule as a provider, you need an `API key <https://datamule.xyz/dashboard>`_.
 
 
 Articles
 --------
-* `How to download SEC filings in 2025 <https://medium.com/@jgfriedman99/how-to-download-sec-filings-in-2025-ecaa023a81ac>`_
 * `How to host the SEC Archive for $20/month <https://medium.com/@jgfriedman99/how-to-host-the-sec-archive-for-20-month-da374cc3c3fb>`_
 * `Creating Structured Datasets from SEC filings <https://medium.com/@jgfriedman99/how-to-create-alternative-datasets-using-datamule-d3a0192da8f6>`_
 * `Deploy a Financial Chatbot in 5 Minutes <https://medium.com/@jgfriedman99/how-to-deploy-a-financial-chatbot-in-5-minutes-ef5eec973d4c>`_

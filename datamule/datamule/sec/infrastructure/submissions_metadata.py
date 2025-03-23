@@ -55,6 +55,28 @@ def extract_metadata(data):
     
     return result
 
+def extract_earliest_filing_date(data):
+    """Extract the earliest filing date from the full JSON data."""
+    earliest_date = None
+    
+    # Try to get dates from the filings.files array first
+    if 'filings' in data and 'files' in data['filings'] and isinstance(data['filings']['files'], list):
+        for file_info in data['filings']['files']:
+            if isinstance(file_info, dict) and 'filingFrom' in file_info:
+                file_date = file_info.get('filingFrom', '')
+                if file_date and (earliest_date is None or file_date < earliest_date):
+                    earliest_date = file_date
+    
+    # If no date found in files array, check filingDate array in filings.recent
+    if earliest_date is None and 'filings' in data and 'recent' in data['filings']:
+        if 'filingDate' in data['filings']['recent'] and isinstance(data['filings']['recent']['filingDate'], list):
+            filing_dates = data['filings']['recent']['filingDate']
+            for filing_date in filing_dates:
+                if filing_date and (earliest_date is None or filing_date < earliest_date):
+                    earliest_date = filing_date
+    
+    return earliest_date
+
 def process_former_names(data, cik, current_name):
     """Process former names into a list of records."""
     former_names_records = []
@@ -91,6 +113,11 @@ def process_former_names(data, cik, current_name):
                 }
                 
                 former_names_records.append(record)
+    
+    # For the current name, if we don't have a start date from former names,
+    # we'll try to find the earliest filing date
+    if not latest_end_date:
+        latest_end_date = extract_earliest_filing_date(data)
     
     # Add current name record with start date as latest end date
     current_record = {
@@ -176,7 +203,8 @@ async def extract_and_process_metadata(output_dir, local_zip_path=None, sec_url=
     stats = {
         'total_processed': 0,
         'listed_companies': 0,
-        'unlisted_companies': 0
+        'unlisted_companies': 0,
+        'full_content_reads': 0
     }
     
     # Use provided ZIP file or download to temporary file
@@ -216,30 +244,52 @@ async def extract_and_process_metadata(output_dir, local_zip_path=None, sec_url=
                 # Loop through all files in the ZIP archive
                 for file_info in files:
                     try:
-                        # Open the file within the ZIP archive
+                        # Initially read just a small chunk of the file
                         with zip_ref.open(file_info.filename, 'r') as file:
-                            # Read only the first chunk of bytes
-                            content_bytes = file.read(max_bytes)
+                            partial_content_bytes = file.read(max_bytes)
                             
                             # Convert to string
-                            content = content_bytes.decode('utf-8', errors='replace')
+                            partial_content = partial_content_bytes.decode('utf-8', errors='replace')
                             
-                            # Truncate at "filings" and complete the JSON
-                            filings_index = content.find('"filings":')
+                            # Truncate at "filings" and complete the JSON for initial parsing
+                            filings_index = partial_content.find('"filings":')
                             if filings_index != -1:
                                 # Get content up to "filings"
-                                truncated_content = content[:filings_index]
+                                truncated_content = partial_content[:filings_index]
                                 # Remove trailing comma if present
                                 truncated_content = truncated_content.rstrip().rstrip(',')
                                 # Add closing brace
-                                content = truncated_content + '}'
+                                partial_content = truncated_content + '}'
                             else:
                                 # If "filings" not found, try to make valid JSON by adding closing brace
-                                content = content.rstrip().rstrip(',') + '}'
+                                partial_content = partial_content.rstrip().rstrip(',') + '}'
                             
                             try:
-                                # Parse the JSON
-                                json_data = json.loads(content)
+                                # Parse the partial JSON to check for former names
+                                partial_json_data = json.loads(partial_content)
+                                
+                                # Check if we need full content (no former names or former names is empty list)
+                                former_names = partial_json_data.get('formerNames', [])
+                                need_full_content = not former_names or len(former_names) == 0
+                                
+                                # Initialize json_data with the partial data
+                                json_data = partial_json_data
+                                
+                                # If we need more data for filing dates, read the full file
+                                if need_full_content:
+                                    stats['full_content_reads'] += 1
+                                    
+                                    # Read the entire file content
+                                    with zip_ref.open(file_info.filename, 'r') as full_file:
+                                        full_content_bytes = full_file.read()
+                                        full_content = full_content_bytes.decode('utf-8', errors='replace')
+                                        
+                                        try:
+                                            # Parse the full JSON
+                                            json_data = json.loads(full_content)
+                                        except json.JSONDecodeError:
+                                            # If full content can't be parsed, stick with partial data
+                                            print(f"Warning: Could not parse full content of {file_info.filename}, using partial data")
                                 
                                 # Extract metadata (without former names)
                                 metadata = extract_metadata(json_data)
@@ -248,7 +298,7 @@ async def extract_and_process_metadata(output_dir, local_zip_path=None, sec_url=
                                 cik = metadata.get('cik', '')
                                 name = metadata.get('name', '')
                                 
-                                # Process former names
+                                # Process former names with the full json_data
                                 former_names_records = process_former_names(json_data, cik, name)
                                 
                                 # Check if company is listed (has tickers)
@@ -309,6 +359,7 @@ async def extract_and_process_metadata(output_dir, local_zip_path=None, sec_url=
     print(f"\nTotal files processed: {stats['total_processed']}")
     print(f"Listed companies found: {stats['listed_companies']}")
     print(f"Unlisted companies found: {stats['unlisted_companies']}")
+    print(f"Files requiring full content read: {stats['full_content_reads']}")
     print(f"Output files written to {output_dir}")
     
     return stats
@@ -333,4 +384,3 @@ def process_submissions_metadata(output_dir, local_zip_path=None, sec_url="https
         sec_url=sec_url,
         max_bytes=max_bytes
     ))
-
