@@ -1,5 +1,5 @@
 from setuptools import setup
-from setuptools import find_namespace_packages
+from setuptools import find_packages
 import os
 import gzip
 import shutil
@@ -29,9 +29,9 @@ if not file_path.exists():
 setup(
     name="datamule",
     author="John Friedman",
-    version="1.0.8",
+    version="1.0.9",
     description="Making it easier to use SEC filings.",
-    packages=find_namespace_packages(include=['datamule']),
+    packages=find_packages(include=['datamule', 'datamule.*']),
     url="https://github.com/john-friedman/datamule-python",
     install_requires=[
         'aiohttp',
