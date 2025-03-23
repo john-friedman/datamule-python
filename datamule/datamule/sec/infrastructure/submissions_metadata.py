@@ -12,7 +12,6 @@ from ..utils import headers
 
 async def download_sec_file(url, target_path):
     """Download submissions.zip from SEC website with progress bar."""
-
     
     async with aiohttp.ClientSession() as session:
         async with session.get(url, headers=headers) as response:
@@ -53,6 +52,9 @@ def extract_metadata(data):
                 for field in ['street1', 'street2', 'city', 'stateOrCountry', 'zipCode', 'stateOrCountryDescription']:
                     result[f"{addr_type}_{field}"] = addr.get(field)
     
+    # Add start_date field (will be populated later)
+    result['start_date'] = ''
+    
     return result
 
 def extract_earliest_filing_date(data):
@@ -78,8 +80,12 @@ def extract_earliest_filing_date(data):
     return earliest_date
 
 def process_former_names(data, cik, current_name):
-    """Process former names into a list of records."""
+    """
+    Process former names into a list of records.
+    Returns former names records and the earliest company date.
+    """
     former_names_records = []
+    earliest_company_date = None
     
     # Process former names if present
     former_names = data.get('formerNames', [])
@@ -98,6 +104,10 @@ def process_former_names(data, cik, current_name):
                 # Clean up date formats (remove time component)
                 if start_date:
                     start_date = start_date.split('T')[0]
+                    # Track earliest company date across all former names
+                    if earliest_company_date is None or start_date < earliest_company_date:
+                        earliest_company_date = start_date
+                        
                 if end_date:
                     end_date = end_date.split('T')[0]
                     # Track latest end date
@@ -114,10 +124,16 @@ def process_former_names(data, cik, current_name):
                 
                 former_names_records.append(record)
     
+    # Find the earliest filing date for the company if no date found in former names
+    if earliest_company_date is None:
+        earliest_company_date = extract_earliest_filing_date(data)
+        if earliest_company_date and 'T' in earliest_company_date:
+            earliest_company_date = earliest_company_date.split('T')[0]
+    
     # For the current name, if we don't have a start date from former names,
-    # we'll try to find the earliest filing date
+    # we'll use the earliest filing date
     if not latest_end_date:
-        latest_end_date = extract_earliest_filing_date(data)
+        latest_end_date = earliest_company_date
     
     # Add current name record with start date as latest end date
     current_record = {
@@ -129,7 +145,8 @@ def process_former_names(data, cik, current_name):
     
     former_names_records.append(current_record)
     
-    return former_names_records
+    # Return both the records and the earliest company date (for metadata)
+    return former_names_records, earliest_company_date
 
 def write_metadata_to_csv(metadata_list, output_path):
     """Write metadata records to CSV and compress with gzip."""
@@ -145,8 +162,8 @@ def write_metadata_to_csv(metadata_list, output_path):
     for metadata in metadata_list:
         fieldnames.update(metadata.keys())
     
-    # Make sure 'name' and 'cik' come first
-    fieldnames = ['name', 'cik'] + [f for f in sorted(fieldnames) if f not in ['name', 'cik']]
+    # Make sure 'name', 'cik', and 'start_date' come first
+    fieldnames = ['name', 'cik', 'start_date'] + [f for f in sorted(fieldnames) if f not in ['name', 'cik', 'start_date']]
     
     # Write directly to gzipped CSV without using StringIO buffer
     with gzip.open(output_path, 'wt', encoding='utf-8', newline='') as gzfile:
@@ -299,7 +316,11 @@ async def extract_and_process_metadata(output_dir, local_zip_path=None, sec_url=
                                 name = metadata.get('name', '')
                                 
                                 # Process former names with the full json_data
-                                former_names_records = process_former_names(json_data, cik, name)
+                                # Now also returning the earliest company date
+                                former_names_records, earliest_company_date = process_former_names(json_data, cik, name)
+                                
+                                # Add the earliest company date to the metadata
+                                metadata['start_date'] = earliest_company_date if earliest_company_date else ''
                                 
                                 # Check if company is listed (has tickers)
                                 tickers = metadata.get('tickers', [])
