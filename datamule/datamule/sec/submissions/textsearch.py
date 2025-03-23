@@ -9,8 +9,8 @@ class TextSearchEFTSQuery(EFTSQuery):
     """
     Extended EFTSQuery class that adds text search capabilities.
     """
-    def __init__(self, text_query, requests_per_second=5.0):
-        super().__init__(requests_per_second=requests_per_second)
+    def __init__(self, text_query, requests_per_second=5.0, quiet=False):
+        super().__init__(requests_per_second=requests_per_second, quiet=quiet)
         self.text_query = text_query
         
     def _prepare_params(self, cik=None, submission_type=None, filing_date=None):
@@ -46,7 +46,7 @@ async def extract_accession_numbers(hits):
                 accession_numbers.append(acc_no)
     return accession_numbers
 
-def query(text_query, cik=None, submission_type=None, filing_date=None, requests_per_second=5.0):
+def query(text_query, cik=None, submission_type=None, filing_date=None, requests_per_second=5.0, quiet=False):
     """
     Search SEC filings for text and return the full search results.
     
@@ -66,6 +66,8 @@ def query(text_query, cik=None, submission_type=None, filing_date=None, requests
     requests_per_second : float, optional
         Maximum number of requests per second to make to the SEC API.
         Default is 5.0.
+    quiet : bool, optional
+        If True, suppresses all output (progress bars and prints). Default is False.
         
     Returns:
     --------
@@ -73,12 +75,12 @@ def query(text_query, cik=None, submission_type=None, filing_date=None, requests
         Complete search results with all hit data.
     """
     async def run_query():
-        query = TextSearchEFTSQuery(text_query, requests_per_second=requests_per_second)
+        query = TextSearchEFTSQuery(text_query, requests_per_second=requests_per_second, quiet=quiet)
         return await query.query(cik, submission_type, filing_date)
     
     return asyncio.run(run_query())
 
-def filter_text(text_query, cik=None, submission_type=None, filing_date=None, requests_per_second=5.0):
+def filter_text(text_query, cik=None, submission_type=None, filing_date=None, requests_per_second=5.0, quiet=False):
     """
     Search SEC filings for text and return matching accession numbers.
     
@@ -98,6 +100,8 @@ def filter_text(text_query, cik=None, submission_type=None, filing_date=None, re
     requests_per_second : float, optional
         Maximum number of requests per second to make to the SEC API.
         Default is 5.0.
+    quiet : bool, optional
+        If True, suppresses all output (progress bars and prints). Default is False.
         
     Returns:
     --------
@@ -105,7 +109,7 @@ def filter_text(text_query, cik=None, submission_type=None, filing_date=None, re
         List of accession numbers (as strings) for filings that match the text query.
     """
     async def run_query():
-        query_obj = TextSearchEFTSQuery(text_query, requests_per_second=requests_per_second)
+        query_obj = TextSearchEFTSQuery(text_query, requests_per_second=requests_per_second, quiet=quiet)
         
         # Create a collector for accession numbers
         all_acc_nos = []

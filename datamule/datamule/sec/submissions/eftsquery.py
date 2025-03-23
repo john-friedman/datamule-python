@@ -6,13 +6,14 @@ from tqdm import tqdm
 from ..utils import RetryException, PreciseRateLimiter, RateMonitor, headers
 
 class EFTSQuery:
-    def __init__(self, requests_per_second=5.0):
+    def __init__(self, requests_per_second=5.0, quiet=False):
         self.base_url = "https://efts.sec.gov/LATEST/search-index"
         self.headers = headers
         self.limiter = PreciseRateLimiter(requests_per_second)
         self.rate_monitor = RateMonitor()
         self.session = None
         self.pbar = None
+        self.quiet = quiet
         self.max_page_size = 100  # EFTS API limit
         self.fetch_queue = asyncio.Queue()
         self.connection_semaphore = asyncio.Semaphore(5)  # Max 5 concurrent connections
@@ -127,6 +128,8 @@ class EFTSQuery:
         return ", ".join(parts)
 
     async def _fetch_json(self, url):
+        if not self.quiet:
+            print(f"Fetching {url}...")
         async with self.connection_semaphore:
             async with self.limiter:
                 try:
@@ -160,18 +163,21 @@ class EFTSQuery:
                             await callback(hits)
                     self.fetch_queue.task_done()
                 except RetryException as e:
-                    print(f"\nRate limited. Sleeping for {e.retry_after} seconds...")
+                    if not self.quiet:
+                        print(f"\nRate limited. Sleeping for {e.retry_after} seconds...")
                     await asyncio.sleep(e.retry_after)
                     # Put back in queue
                     await self.fetch_queue.put((params, from_val, size_val, callback))
                     self.fetch_queue.task_done()
                 except Exception as e:
-                    print(f"\nError fetching {url}: {str(e)}")
+                    if not self.quiet:
+                        print(f"\nError fetching {url}: {str(e)}")
                     self.fetch_queue.task_done()
             except asyncio.CancelledError:
                 break
             except Exception as e:
-                print(f"\nWorker error: {str(e)}")
+                if not self.quiet:
+                    print(f"\nWorker error: {str(e)}")
                 self.fetch_queue.task_done()
 
     def _split_date_range(self, start_date, end_date, num_splits=4):
@@ -322,12 +328,14 @@ class EFTSQuery:
         
         # Skip if no results
         if total_hits == 0:
-            print(f"Skipping negated forms query - no results returned")
+            if not self.quiet:
+                print(f"Skipping negated forms query - no results returned")
             return
             
-        query_desc = self._get_query_description(params)
-        date_range = f"{start_date} to {end_date}"
-        print(f"Planning: Analyzing negated forms query (depth {depth}): {date_range} [{total_hits:,} hits]")
+        if not self.quiet:
+            query_desc = self._get_query_description(params)
+            date_range = f"{start_date} to {end_date}"
+            print(f"Planning: Analyzing negated forms query (depth {depth}): {date_range} [{total_hits:,} hits]")
         
         # If small enough or at max depth, process directly
         if total_hits < self.max_efts_hits or start_date == end_date:
@@ -350,8 +358,9 @@ class EFTSQuery:
             
         total_hits, data = await self._test_query_size(params)
         
-        query_desc = self._get_query_description(params)
-        print(f"Planning: Analyzing {'  '*depth}query: {query_desc} [{total_hits:,} hits]")
+        if not self.quiet:
+            query_desc = self._get_query_description(params)
+            print(f"Planning: Analyzing {'  '*depth}query: {query_desc} [{total_hits:,} hits]")
         
         # If we're at the maximum recursion depth or hits are under limit, process directly
         if depth >= max_depth or total_hits < self.max_efts_hits:
@@ -396,8 +405,9 @@ class EFTSQuery:
 
     async def _start_query_phase(self, callback):
         """Start the query phase after planning is complete"""
-        print("\n--- Starting query phase ---")
-        self.pbar = tqdm(total=self.total_results_to_fetch, desc="Querying documents [Rate: 0/s | 0 MB/s]")
+        if not self.quiet:
+            print("\n--- Starting query phase ---")
+            self.pbar = tqdm(total=self.total_results_to_fetch, desc="Querying documents [Rate: 0/s | 0 MB/s]")
         
         # Queue all pending page requests
         for params, from_val, size_val, callback in self.pending_page_requests:
@@ -425,18 +435,21 @@ class EFTSQuery:
             self.pbar = None
             
             # First check size
-            print("\n--- Starting query planning phase ---")
-            print("Analyzing request and splitting into manageable chunks...")
+            if not self.quiet:
+                print("\n--- Starting query planning phase ---")
+                print("Analyzing request and splitting into manageable chunks...")
             
             total_hits, data = await self._test_query_size(params)
             
             if total_hits == 0:
-                print("No results found for this query.")
+                if not self.quiet:
+                    print("No results found for this query.")
                 return []
                 
             # Get accurate total from aggregation buckets
             self.true_total_docs = self._get_total_from_buckets(data)
-            print(f"Found {self.true_total_docs:,} total documents to retrieve.")
+            if not self.quiet:
+                print(f"Found {self.true_total_docs:,} total documents to retrieve.")
             
             # Start worker tasks
             workers = [asyncio.create_task(self._fetch_worker()) for _ in range(5)]
@@ -458,7 +471,8 @@ class EFTSQuery:
                     negated_forms.append('-0')  # Keep primary documents constraint
                     
                     remaining_docs = self.true_total_docs - self.processed_doc_count
-                    print(f"Planning: Analyzing remaining primary document forms using negation (~{remaining_docs:,} hits)")
+                    if not self.quiet:
+                        print(f"Planning: Analyzing remaining primary document forms using negation (~{remaining_docs:,} hits)")
                     
                     # Process negated forms query with recursive date splitting
                     start_date = params['startdt']
@@ -466,9 +480,9 @@ class EFTSQuery:
                     await self._process_negated_forms_recursive(
                         params, negated_forms, start_date, end_date, 0, collect_hits
                     )
-                else:
+                elif not self.quiet:
                     print("No additional forms to process with negation - not a primary documents query")
-            else:
+            elif not self.quiet:
                 print("No additional forms to process with negation")
             
             # Start the download phase
@@ -488,15 +502,16 @@ class EFTSQuery:
                 self.pbar.close()
                 self.pbar = None
             
-            print(f"\n--- Query complete: {len(all_hits):,} submissions retrieved ---")
+            if not self.quiet:
+                print(f"\n--- Query complete: {len(all_hits):,} submissions retrieved ---")
             return all_hits
 
-def query_efts(cik=None, submission_type=None, filing_date=None, requests_per_second=5.0, callback=None):
+def query_efts(cik=None, submission_type=None, filing_date=None, requests_per_second=5.0, callback=None, quiet=False):
     """
     Convenience function to run a query without managing the async context.
     """
     async def run_query():
-        query = EFTSQuery(requests_per_second=requests_per_second)
+        query = EFTSQuery(requests_per_second=requests_per_second, quiet=quiet)
         return await query.query(cik, submission_type, filing_date, callback)
     
     return asyncio.run(run_query())
