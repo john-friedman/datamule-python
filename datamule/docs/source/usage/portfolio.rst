@@ -1,7 +1,7 @@
 Portfolio
 =========
 
-Portfolio is used to interact with SEC submissions. If called from ``__main__`` it will utilize parallel processing for faster performance.
+Portfolio is used to interact with SEC submissions.
 
 Quickstart
 ----------
@@ -29,7 +29,6 @@ Downloading Submissions
 Processing Submissions
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-blurb about download vs streaming here
 
 .. code-block:: python
 
@@ -50,7 +49,7 @@ Submissions
 ~~~~~~~~~~~
 
 ``process_submissions(submission_callback, cik=None, ticker=None, submission_type=None, filing_date=None, provider=None, **kwargs)``
-   Retrieves the submissions and processes them. Does not save the data to disk, but will use saved submissions if available.
+   Processes submissions.
 
    :param submission_callback: Function to call for each submission
    :param provider: Data provider to use for retrieval
@@ -101,27 +100,37 @@ Shared Parameters for download_submissions, process_submissions, and filter_text
                 business_street2, business_city, business_stateOrCountry, business_zipCode, 
                 business_stateOrCountryDescription
 
-.. note::
-   \**kwargs will get some love in the future. Handling for ciks having multiple values will be added. View the dataset here: `Company Metadata <https://raw.githubusercontent.com/john-friedman/datamule-python/refs/heads/main/datamule/datamule/data/company_metadata.csv>`_.
+
 
 
 Monitoring
 ~~~~~~~~~~
 
-``monitor_submissions(typical args)``
+monitor_submissions(self,data_callback=None, poll_callback=None, submission_type=None, cik=None, 
+           polling_interval=200, requests_per_second=5, quiet=False, start_date=None, ticker=None, **kwargs)
+
+``monitor_submissions(data_callback,poll_callback, submission_type, cik, polling_interval, requests_per_second, quiet, start_date, ticker, **kwargs)``
    Monitors for new submissions.
+
+   :param data_callback: Function to call for each submission
+   :param poll_callback: Function to call after each poll
+   :param requests_per_second: Number of requests per second to make. Default is 5. You will be rate limited if you exceed this.
+   :param polling_interval: Time in seconds to wait between polls. Default is 200.
+   :param quiet: If True, suppresses output. Default is False.
+   :param start_date: Date to start monitoring from. Default is today.
 
 Submission Class
 ----------------
 
 Submissions are the core of the Portfolio class.
 
-submission.metadata
+.. note:: submission.metadata is useful
 
 Document Class
 --------------
 
 Documents are the core of the Submission class.
 
-document.parse()
-document.load()
+.. note:: document.parse() is useful
+
+.. note:: I will make the documentation better soon.

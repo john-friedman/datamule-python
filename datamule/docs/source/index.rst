@@ -14,20 +14,7 @@ Features
 Available Datasets
 ------------------
 
-Access SEC-related datasets:
-
-* `Company Metadata`_ (including SIC Codes)
-* `Company Former Names`_
-* `Company Tickers`_
-* `SEC Submission Types Glossary`_
-* `XBRL Descriptions`_
-
-.. _Company Metadata: https://raw.githubusercontent.com/john-friedman/datamule-python/refs/heads/main/datamule/datamule/data/company_metadata.csv
-.. _Company Former Names: https://raw.githubusercontent.com/john-friedman/datamule-python/refs/heads/main/datamule/datamule/data/company_former_names.csv
-.. _Company Tickers: https://raw.githubusercontent.com/john-friedman/datamule-python/refs/heads/main/datamule/datamule/data/company_tickers.csv
-.. _SEC Submission Types Glossary: https://raw.githubusercontent.com/john-friedman/datamule-python/refs/heads/main/datamule/datamule/data/sec-glossary.csv
-.. _XBRL Descriptions: https://raw.githubusercontent.com/john-friedman/datamule-python/refs/heads/main/datamule/datamule/data/xbrl_descriptions.csv
-
+Checkout: `datamule-data <https://github.com/john-friedman/datamule-data>`_.
 
 .. note::
    Feel free to contact me for free credits.

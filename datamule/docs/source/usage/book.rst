@@ -7,7 +7,7 @@ Functions
 ---------
 
 ``download_xbrl(cik, **kwargs)``
-    Retrieves the data and saves it to disk.
+    Retrieves the data and saves it to disk. if cik is not provided, all data will be downloaded.
 
 Shared Parameters
 ~~~~~~~~~~~~~~~~~

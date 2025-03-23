@@ -10,5 +10,5 @@ This section provides detailed information about using datamule's features.
    portfolio
    book
    parsing
-   package_data
+   datasets
    
