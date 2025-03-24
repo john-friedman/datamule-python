@@ -3,6 +3,8 @@ from .portfolio import Portfolio
 from .document import Document
 from .helper import _load_package_csv, load_package_dataset
 from .config import Config
+from .sheet import Sheet
+from .index import Index
 
 
 # Keep the notebook environment setup
@@ -32,5 +34,7 @@ __all__ = [
     'Portfolio',
     'Submission',
     'Document',
-    'Config'
+    'Config',
+    'Sheet',
+    'Index',
 ]

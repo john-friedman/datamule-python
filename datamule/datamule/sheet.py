@@ -1,8 +1,8 @@
 from pathlib import Path
-from ..helper import _process_cik_and_metadata_filters, load_package_dataset
-from ..sec.xbrl.downloadcompanyfacts import download_company_facts
+from .helper import _process_cik_and_metadata_filters, load_package_dataset
+from .sec.xbrl.downloadcompanyfacts import download_company_facts
 
-class Book:
+class Sheet:
     def __init__(self, path):
         self.path = Path(path)
 

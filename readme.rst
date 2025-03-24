@@ -45,8 +45,10 @@ Basic Installation
     pip install datamule
 
 Basic Usage
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~
 
+Portfolio
+^^^^^^^^^
 .. code-block:: python
 
    from datamule import Portfolio
@@ -78,6 +80,34 @@ Basic Usage
       print(submission.path)
 
    submission_results = portfolio.process_submissions(callback) 
+
+Sheet
+^^^^^
+
+.. code-block:: python
+
+   from datamule import Sheet
+
+   sheet = Sheet('apple')
+
+   sheet.download_xbrl(ticker='AAPL')
+
+Index
+^^^^^
+
+.. code-block:: python
+
+   from datamule import Index
+
+   index = Index()
+
+   results = index.search_submissions(
+      text_query='tariff NOT canada',
+      submission_type="10-K",
+      start_date="2023-01-01",
+      end_date="2023-01-31",
+      quiet=False,
+      requests_per_second=3)
 
 
 Examples (Out of Date - Will be updated soon)

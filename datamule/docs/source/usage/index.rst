@@ -8,7 +8,8 @@ This section provides detailed information about using datamule's features.
    :caption: Components:
 
    portfolio
-   book
+   sheet
+   index_class
    parsing
    datasets
    

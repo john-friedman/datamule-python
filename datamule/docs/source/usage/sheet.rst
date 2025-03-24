@@ -1,7 +1,10 @@
-Book
-====
+Sheet
+=====
 
-Book is a class that allows you to download tabular datasets.
+Sheet is a class that allows you to download tabular datasets.
+
+..
+    Sheet will have leaves in the future
 
 Functions
 ---------

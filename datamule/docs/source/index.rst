@@ -11,6 +11,13 @@ Features
 * Monitor the SEC for new submissions
 * Parse SEC submissions
 
+Core Classes
+============
+
+* **Portfolio**: Download & manipulate SEC submissions.
+* **Sheet**: Download tabular datasets such as XBRL.
+* **Index**: Search SEC Submissions using simple or complex search terms, just like using a search engine.
+
 Available Datasets
 ------------------
 
