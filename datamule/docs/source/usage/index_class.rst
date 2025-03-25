@@ -25,37 +25,34 @@ Parameters
 
 Text Query Syntax
 ~~~~~~~~~~~~~~~~~
-The `text_query` parameter supports a modified Elasticsearch syntax with the following operators:
+The ``text_query`` parameter supports a modified Elasticsearch syntax with the following operators:
 
 1. Boolean Operators
-   - `term1 AND term2` - Both terms must appear
-   - `term1 OR term2` - Either term can appear
-   - `term1 NOT term2` or `term1 -term2` - Exclusion
-   - Example: `"revenue AND growth NOT decline"`
+   - ``term1 AND term2`` - Both terms must appear
+   - ``term1 OR term2`` - Either term can appear
+   - ``term1 NOT term2`` or ``term1 -term2`` - Excludes documents containing the second term
+   - Example: ``revenue AND growth NOT decline``
 
-2. Grouping with Parentheses
-   - For complex nested queries
-   - Example: `"(revenue OR sales) AND growth"`
+2. Exact Phrase Matching
+   - Using double quotes for exact phrase matching
+   - Example: ``"revenue growth"``
 
-3. Exact Phrase Matching
-   - Using double quotes
-   - Example: `"\"revenue growth\""`
+3. Wildcards
+   - Single character (``?``) and multiple character (``*``) wildcards
+   - Example: ``ris* factor?`` - Matches "risk factors", "rise factorx", etc.
 
-4. Proximity Searches
-   - Using tilde (~) with a number
-   - Example: `"\"revenue growth\"~5"` - Terms within 5 words of each other
+4. Boosting
+   - Using double asterisk (``**``) followed by a number to increase term importance
+   - Example: ``revenue**2 growth`` - Makes "revenue" twice as important
 
-5. Wildcards
-   - Single character (?) and multiple character (*) wildcards
-   - Example: `"ris* factor?"` - Matches "risk factors", "rise factorx", etc.
+Limitations to Note
+^^^^^^^^^^^^^^^^^^^
+- **Complex Nesting**: Avoid using parentheses for grouping as they may be interpreted as literal search terms
+  - Instead of: ``(revenue OR sales) AND growth``
+  - Use: ``revenue AND growth OR sales AND growth``
 
-6. Fuzzy Matching
-   - Using tilde (~) for approximate matches
-   - Example: `"recession~"` - Matches "recession", "recission", etc.
+- **Proximity & Fuzzy Searches**: This implementation does not support proximity searches with the tilde operator (``~``) or fuzzy matching
 
-7. Boosting
-   - Using double asterisk (**) to increase term importance
-   - Example: `"revenue**2 growth"` - Makes "revenue" twice as important
     
 Additional Search Criteria
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
