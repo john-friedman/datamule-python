@@ -5,10 +5,6 @@ Datamule
    :target: https://pepy.tech/project/datamule
    :alt: Downloads
 
-.. image:: https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fjohn-friedman%2Fdatamule-python&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false
-   :target: https://hits.seeyoufarm.com
-   :alt: Hits
-
 .. image:: https://img.shields.io/github/stars/john-friedman/datamule-python
    :alt: GitHub Stars
 
@@ -136,10 +132,6 @@ Articles
 * `How to host the SEC Archive for $20/month <https://medium.com/@jgfriedman99/how-to-host-the-sec-archive-for-20-month-da374cc3c3fb>`_
 * `Creating Structured Datasets from SEC filings <https://medium.com/@jgfriedman99/how-to-create-alternative-datasets-using-datamule-d3a0192da8f6>`_
 * `Deploy a Financial Chatbot in 5 Minutes <https://medium.com/@jgfriedman99/how-to-deploy-a-financial-chatbot-in-5-minutes-ef5eec973d4c>`_
-
-.. image:: https://api.star-history.com/svg?repos=john-friedman/datamule-python&type=Date
-   :target: https://star-history.com/#john-friedman/datamule-python
-   :alt: Star History Chart
 
 
 License
