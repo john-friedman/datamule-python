@@ -1,0 +1,316 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Index &mdash; datamule  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Parsing" href="parsing.html" />
+    <link rel="prev" title="Sheet" href="sheet.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            datamule
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_key.html">Data provider</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Usage Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="portfolio.html">Portfolio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sheet.html">Sheet</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Index</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#methods">Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#text-query-syntax">Text Query Syntax</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#additional-search-criteria">Additional Search Criteria</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#returns">Returns</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#results-format">Results Format</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html">Parsing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.html">Package Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">datamule</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Usage Guide</a></li>
+      <li class="breadcrumb-item active">Index</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/usage/index_class.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="index">
+<h1>Index<a class="headerlink" href="#index" title="Link to this heading"></a></h1>
+<p>Index is a class that allows you to search SEC submissions using simple or complex search terms.</p>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">search_submissions(text_query=None,</span> <span class="pre">start_date=None,</span> <span class="pre">end_date=None,</span> <span class="pre">submission_type=None,</span> <span class="pre">cik=None,</span> <span class="pre">ticker=None,</span> <span class="pre">requests_per_second=5.0,</span> <span class="pre">quiet=False,</span> <span class="pre">**kwargs)</span></code></dt><dd><p>Retrieves SEC filing data matching the specified criteria and saves it to disk.</p>
+</dd>
+</dl>
+<section id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Link to this heading"></a></h3>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">param text_query<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Text to search for in SEC filings.</p>
+</dd>
+<dt class="field-even">start_date<span class="colon">:</span></dt>
+<dd class="field-even"><p>Start date for filing search. Format ‘YYYY-MM-DD’.</p>
+</dd>
+<dt class="field-odd">end_date<span class="colon">:</span></dt>
+<dd class="field-odd"><p>End date for filing search. Format ‘YYYY-MM-DD’.</p>
+</dd>
+<dt class="field-even">submission_type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Type of SEC submission to search (e.g., ‘10-K’, ‘10-Q’, ‘8-K’).</p>
+</dd>
+<dt class="field-odd">cik<span class="colon">:</span></dt>
+<dd class="field-odd"><p>CIK(s) to filter by. Company identifier(s).</p>
+</dd>
+<dt class="field-even">ticker<span class="colon">:</span></dt>
+<dd class="field-even"><p>Ticker(s) to filter by. Stock symbol(s).</p>
+</dd>
+<dt class="field-odd">requests_per_second<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Rate limit for API requests. Default is 5. Will immediately break if set to &gt; 10, will break for &gt; 5 if used for extended periods.</p>
+</dd>
+<dt class="field-even">quiet<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether to suppress output. Default is True.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="text-query-syntax">
+<h3>Text Query Syntax<a class="headerlink" href="#text-query-syntax" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">text_query</span></code> parameter supports a modified Elasticsearch syntax with the following operators:</p>
+<ol class="arabic simple">
+<li><p>Boolean Operators
+- <code class="docutils literal notranslate"><span class="pre">term1</span> <span class="pre">AND</span> <span class="pre">term2</span></code> - Both terms must appear
+- <code class="docutils literal notranslate"><span class="pre">term1</span> <span class="pre">OR</span> <span class="pre">term2</span></code> - Either term can appear
+- <code class="docutils literal notranslate"><span class="pre">term1</span> <span class="pre">NOT</span> <span class="pre">term2</span></code> or <code class="docutils literal notranslate"><span class="pre">term1</span> <span class="pre">-term2</span></code> - Excludes documents containing the second term
+- Example: <code class="docutils literal notranslate"><span class="pre">revenue</span> <span class="pre">AND</span> <span class="pre">growth</span> <span class="pre">NOT</span> <span class="pre">decline</span></code></p></li>
+<li><p>Exact Phrase Matching
+- Using double quotes for exact phrase matching
+- Example: <code class="docutils literal notranslate"><span class="pre">&quot;revenue</span> <span class="pre">growth&quot;</span></code></p></li>
+<li><p>Wildcards
+- Single character (<code class="docutils literal notranslate"><span class="pre">?</span></code>) and multiple character (<code class="docutils literal notranslate"><span class="pre">*</span></code>) wildcards
+- Example: <code class="docutils literal notranslate"><span class="pre">ris*</span> <span class="pre">factor?</span></code> - Matches “risk factors”, “rise factorx”, etc.</p></li>
+<li><p>Boosting
+- Using double asterisk (<code class="docutils literal notranslate"><span class="pre">**</span></code>) followed by a number to increase term importance
+- Example: <code class="docutils literal notranslate"><span class="pre">revenue**2</span> <span class="pre">growth</span></code> - Makes “revenue” twice as important</p></li>
+</ol>
+<section id="limitations-to-note">
+<h4>Limitations to Note<a class="headerlink" href="#limitations-to-note" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><strong>Complex Nesting</strong>: Avoid using parentheses for grouping as they may be interpreted as literal search terms
+- Instead of: <code class="docutils literal notranslate"><span class="pre">(revenue</span> <span class="pre">OR</span> <span class="pre">sales)</span> <span class="pre">AND</span> <span class="pre">growth</span></code>
+- Use: <code class="docutils literal notranslate"><span class="pre">revenue</span> <span class="pre">AND</span> <span class="pre">growth</span> <span class="pre">OR</span> <span class="pre">sales</span> <span class="pre">AND</span> <span class="pre">growth</span></code></p></li>
+<li><p><strong>Proximity &amp; Fuzzy Searches</strong>: This implementation does not support proximity searches with the tilde operator (<code class="docutils literal notranslate"><span class="pre">~</span></code>) or fuzzy matching</p></li>
+</ul>
+</section>
+</section>
+<section id="additional-search-criteria">
+<h3>Additional Search Criteria<a class="headerlink" href="#additional-search-criteria" title="Link to this heading"></a></h3>
+<dl class="field-list simple">
+<dt class="field-odd">param **kwargs<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Additional search criteria including:
+name (str): Company name
+entityType (str): Type of entity
+sic (str): Standard Industrial Classification code
+sicDescription (str): Description of SIC code
+ownerOrg (str): Owner organization
+insiderTransactionForOwnerExists (bool): Filter by insider transaction for owner
+insiderTransactionForIssuerExists (bool): Filter by insider transaction for issuer
+exchanges (str or list): Stock exchange(s)
+ein (str): Employer Identification Number
+description (str): Company description
+website (str): Company website URL
+investorWebsite (str): Investor relations website URL
+category (str): Company category
+fiscalYearEnd (str): Fiscal year end date
+stateOfIncorporation (str): State of incorporation
+stateOfIncorporationDescription (str): Description of state of incorporation
+phone (str): Company phone number
+flags (str or list): Special flags
+mailing_street1 (str): Mailing address street line 1
+mailing_street2 (str): Mailing address street line 2
+mailing_city (str): Mailing address city
+mailing_stateOrCountry (str): Mailing address state or country code
+mailing_zipCode (str): Mailing address ZIP code
+mailing_stateOrCountryDescription (str): Description of mailing state or country
+business_street1 (str): Business address street line 1
+business_street2 (str): Business address street line 2
+business_city (str): Business address city
+business_stateOrCountry (str): Business address state or country code
+business_zipCode (str): Business address ZIP code
+business_stateOrCountryDescription (str): Description of business state or country</p>
+</dd>
+</dl>
+</section>
+<section id="returns">
+<h3>Returns<a class="headerlink" href="#returns" title="Link to this heading"></a></h3>
+<blockquote>
+<div><p>dict: A dictionary containing search results</p>
+</div></blockquote>
+</section>
+<section id="results-format">
+<h3>Results Format<a class="headerlink" href="#results-format" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">search_submissions</span></code> method returns a dictionary containing search results. Each result entry includes:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;_index&quot;</span><span class="p">:</span> <span class="s2">&quot;edgar_file&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;_id&quot;</span><span class="p">:</span> <span class="s2">&quot;0001628280-24-002390:tsla-2023x12x31xex211.htm&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;_score&quot;</span><span class="p">:</span> <span class="mf">10.79173</span><span class="p">,</span>
+    <span class="s2">&quot;_source&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;ciks&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;0001318605&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;period_ending&quot;</span><span class="p">:</span> <span class="s2">&quot;2023-12-31&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;file_num&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;001-34756&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;display_names&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Tesla, Inc.  (TSLA)  (CIK 0001318605)&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;xsl&quot;</span><span class="p">:</span> <span class="n">null</span><span class="p">,</span>
+        <span class="s2">&quot;sequence&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+        <span class="s2">&quot;root_forms&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;10-K&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;file_date&quot;</span><span class="p">:</span> <span class="s2">&quot;2024-01-29&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;biz_states&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;CA&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;sics&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;3711&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;form&quot;</span><span class="p">:</span> <span class="s2">&quot;10-K&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;adsh&quot;</span><span class="p">:</span> <span class="s2">&quot;0001628280-24-002390&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;film_num&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;24569853&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;biz_locations&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Palo Alto, CA&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;file_type&quot;</span><span class="p">:</span> <span class="s2">&quot;EX-21.1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;file_description&quot;</span><span class="p">:</span> <span class="s2">&quot;EX-21.1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;inc_states&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;DE&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;items&quot;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="key-components-of-results">
+<h4>Key Components of Results<a class="headerlink" href="#key-components-of-results" title="Link to this heading"></a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code>: Contains the document identifier in the format accession_number:matched document within a submission</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_score</span></code>: Elasticsearch relevance score indicating match quality</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_source</span></code>: Contains metadata about the filing, including:
+- <code class="docutils literal notranslate"><span class="pre">ciks</span></code>: Company identifiers
+- <code class="docutils literal notranslate"><span class="pre">period_ending</span></code>: End date of the reporting period
+- <code class="docutils literal notranslate"><span class="pre">display_names</span></code>: Company name with ticker and CIK
+- <code class="docutils literal notranslate"><span class="pre">root_forms</span></code>: Primary form type
+- <code class="docutils literal notranslate"><span class="pre">file_date</span></code>: Date the document was filed
+- <code class="docutils literal notranslate"><span class="pre">form</span></code>: Specific form type
+- <code class="docutils literal notranslate"><span class="pre">adsh</span></code>: Accession number
+- <code class="docutils literal notranslate"><span class="pre">file_type</span></code>: Document type within the filing</p></li>
+</ul>
+</section>
+</section>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Search for &quot;risk factors&quot; in Apple&#39;s 10-K filings</span>
+<span class="n">index</span> <span class="o">=</span> <span class="n">Index</span><span class="p">()</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">search_submissions</span><span class="p">(</span>
+    <span class="n">text_query</span><span class="o">=</span><span class="s1">&#39;&quot;risk factors&quot;&#39;</span><span class="p">,</span>
+    <span class="n">submission_type</span><span class="o">=</span><span class="s2">&quot;10-K&quot;</span><span class="p">,</span>
+    <span class="n">ticker</span><span class="o">=</span><span class="s2">&quot;AAPL&quot;</span><span class="p">,</span>
+    <span class="n">start_date</span><span class="o">=</span><span class="s2">&quot;2020-01-01&quot;</span><span class="p">,</span>
+    <span class="n">end_date</span><span class="o">=</span><span class="s2">&quot;2023-12-31&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Search for &quot;war&quot; but exclude &quot;peace&quot; in 10-K filings from January 2023 using 3 requests per second</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">index</span><span class="o">.</span><span class="n">search_submissions</span><span class="p">(</span>
+    <span class="n">text_query</span><span class="o">=</span><span class="s1">&#39;war NOT peace&#39;</span><span class="p">,</span>
+    <span class="n">submission_type</span><span class="o">=</span><span class="s2">&quot;10-K&quot;</span><span class="p">,</span>
+    <span class="n">start_date</span><span class="o">=</span><span class="s2">&quot;2023-01-01&quot;</span><span class="p">,</span>
+    <span class="n">end_date</span><span class="o">=</span><span class="s2">&quot;2023-01-31&quot;</span><span class="p">,</span>
+    <span class="n">quiet</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">requests_per_second</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="sheet.html" class="btn btn-neutral float-left" title="Sheet" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="parsing.html" class="btn btn-neutral float-right" title="Parsing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
