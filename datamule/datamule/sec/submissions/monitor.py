@@ -5,7 +5,7 @@ from ..rss.monitor import start_monitor  # Import start_monitor directly
 import pytz
 
 
-async def _process_efts_hits(hits, collected_accession_numbers, data_callback=None):
+async def _process_efts_hits(hits, collected_accession_numbers, data_callback=None,rate_limiter=None):
     """Process EFTS hits, collect accession numbers, and call data callback."""
     processed_hits = []
     
@@ -36,7 +36,7 @@ async def _process_efts_hits(hits, collected_accession_numbers, data_callback=No
     
     # Call data callback if provided
     if data_callback and processed_hits:
-        await data_callback(processed_hits)
+        await data_callback(processed_hits, rate_limiter)
         
     return processed_hits
 
@@ -61,7 +61,7 @@ async def _master_monitor_impl(data_callback=None, poll_callback=None, submissio
     
     # Prepare a wrapper callback to collect accession numbers
     async def process_callback(hits):
-        await _process_efts_hits(hits, collected_accession_numbers, data_callback)
+         await _process_efts_hits(hits, collected_accession_numbers, data_callback, efts_query.limiter)
     
     # Create an EFTSQuery instance
     efts_query = EFTSQuery(requests_per_second=requests_per_second)
