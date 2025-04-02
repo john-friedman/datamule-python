@@ -42,6 +42,67 @@ class EFTSQuery:
             await self.session.close()
             self.session = None
 
+    async def search_name(self, name):
+        """
+        Search for companies by name using the EFTS name search endpoint.
+        
+        Parameters:
+        name (str): Company name to search for
+        
+        Returns:
+        list: List of dictionaries containing company information (entity, id, tickers if available)
+        """
+        if not self.session:
+            raise RuntimeError("No active session. This method must be called within an async context.")
+            
+        url = f"{self.base_url}?keysTyped={name}"
+        
+        if not self.quiet:
+            print(f"Searching for company: {name}")
+            
+        async with self.limiter:
+            try:
+                async with self.session.get(url) as response:
+                    if response.status == 429:
+                        raise RetryException(url)
+                    response.raise_for_status()
+                    content = await response.read()
+                    await self.rate_monitor.add_request(len(content))
+                    data = await response.json()
+                    
+                    if 'hits' in data and 'hits' in data['hits']:
+                        hits = data['hits']['hits']
+                        results = []
+                        
+                        for hit in hits:
+                            source = hit.get('_source', {})
+                            result = {
+                                'entity': source.get('entity', ''),
+                                'id': hit.get('_id', ''),
+                                'tickers': source.get('tickers', '')
+                            }
+                            results.append(result)
+                        
+                        if not self.quiet and results:
+                            # Create a compact display of results
+                            display_results = [f"{r['entity']} [{r['id']}]" for r in results]
+                            print(f"Name matches: {', '.join(display_results[:5])}")
+                            if len(results) > 5:
+                                print(f"...and {len(results) - 5} more matches")
+                        
+                        return results
+                    return []
+            except aiohttp.ClientResponseError as e:
+                if e.status == 429:
+                    raise RetryException(url)
+                if not self.quiet:
+                    print(f"Error searching for company: {str(e)}")
+                return []
+            except Exception as e:
+                if not self.quiet:
+                    print(f"Error searching for company: {str(e)}")
+                return []
+
     def _get_form_exclusions(self, form):
         """Dynamically generate form exclusions based on patterns"""
         # Skip already negated forms
@@ -55,7 +116,7 @@ class EFTSQuery:
         # No exclusions for amendment forms
         return []
 
-    def _prepare_params(self, cik=None, submission_type=None, filing_date=None):
+    def _prepare_params(self, cik=None, submission_type=None, filing_date=None, location=None):
         params = {}
         
         # Handle CIK
@@ -111,6 +172,10 @@ class EFTSQuery:
             params['startdt'] = "2001-01-01"
             params['enddt'] = datetime.now().strftime('%Y-%m-%d')
             
+        # Handle location filtering
+        if location:
+            params['filter_location'] = location
+            
         return params
 
     def _get_query_description(self, params):
@@ -124,6 +189,9 @@ class EFTSQuery:
             
         if 'startdt' in params and 'enddt' in params:
             parts.append(f"dates={params['startdt']} to {params['enddt']}")
+            
+        if 'filter_location' in params:
+            parts.append(f"location={params['filter_location']}")
             
         return ", ".join(parts)
 
@@ -413,12 +481,26 @@ class EFTSQuery:
         for params, from_val, size_val, callback in self.pending_page_requests:
             await self.fetch_queue.put((params, from_val, size_val, callback))
 
-    async def query(self, cik=None, submission_type=None, filing_date=None, callback=None):
-        params = self._prepare_params(cik, submission_type, filing_date)
-        all_hits = []
+    async def query(self, cik=None, submission_type=None, filing_date=None, location=None, callback=None, name=None):
+        """
+        Query SEC filings using the EFTS API.
         
-        # Check if this is a primary documents query
-        self.was_primary_docs_query = '-0' in params.get('forms', '').split(',')
+        Parameters:
+        cik (str or list): Central Index Key(s) for the company
+        submission_type (str or list): Filing form type(s) to filter by
+        filing_date (str, tuple, or list): Date or date range to filter by
+        location (str): Location code to filter by (e.g., 'CA' for California)
+        callback (function): Async callback function to process results as they arrive
+        name (str): Company name to search for (alternative to providing CIK)
+        
+        Returns:
+        list: List of filing documents matching the query criteria
+        """
+        # If both CIK and name are provided, raise an error
+        if cik is not None and name is not None:
+            raise ValueError("Please provide either 'name' or 'cik', not both")
+            
+        all_hits = []
         
         # Collector callback to gather all hits
         async def collect_hits(hits):
@@ -427,6 +509,25 @@ class EFTSQuery:
                 await callback(hits)
                 
         async with self as client:
+            # If name is provided, search for matching companies inside the context manager
+            if name is not None:
+                company_results = await self.search_name(name)
+                if not company_results:
+                    if not self.quiet:
+                        print(f"No companies found matching: {name}")
+                    return []
+                    
+                # Use the first (best) match's CIK
+                cik = company_results[0]['id']
+                if not self.quiet:
+                    print(f"Using CIK {cik} for {company_results[0]['entity']}")
+            
+            # Now prepare parameters with the CIK (either provided directly or from name search)
+            params = self._prepare_params(cik, submission_type, filing_date, location)
+            
+            # Check if this is a primary documents query
+            self.was_primary_docs_query = '-0' in params.get('forms', '').split(',')
+            
             # Reset state for new query
             self.total_results_to_fetch = 0
             self.pending_page_requests = []
@@ -506,12 +607,32 @@ class EFTSQuery:
                 print(f"\n--- Query complete: {len(all_hits):,} submissions retrieved ---")
             return all_hits
 
-def query_efts(cik=None, submission_type=None, filing_date=None, requests_per_second=5.0, callback=None, quiet=False):
+def query_efts(cik=None, submission_type=None, filing_date=None, location=None, requests_per_second=5.0, callback=None, quiet=False, name=None):
     """
     Convenience function to run a query without managing the async context.
+    
+    Parameters:
+    cik (str or list): Central Index Key(s) for the company
+    submission_type (str or list): Filing form type(s) to filter by
+    filing_date (str, tuple, or list): Date or date range to filter by
+    location (str): Location code to filter by (e.g., 'CA' for California)
+    requests_per_second (float): Maximum requests per second to make to the SEC API
+    callback (function): Async callback function to process results as they arrive
+    quiet (bool): Whether to suppress progress output
+    name (str): Company name to search for (alternative to providing CIK)
+    
+    Returns:
+    list: List of filing documents matching the query criteria
+    
+    Example:
+    To search by company name:
+        results = query_efts(name="Tesla", submission_type="10-K")
+        
+    To search by CIK:
+        results = query_efts(cik="1318605", submission_type="10-K")
     """
     async def run_query():
         query = EFTSQuery(requests_per_second=requests_per_second, quiet=quiet)
-        return await query.query(cik, submission_type, filing_date, callback)
+        return await query.query(cik, submission_type, filing_date, location, callback, name)
     
     return asyncio.run(run_query())

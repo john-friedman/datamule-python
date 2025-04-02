@@ -36,7 +36,8 @@ async def download_callback(hit, content, cik, accno, url, output_dir="filings")
         print(f"Error processing {accno}: {e}")
         return None
 
-def download(cik=None, submission_type=None, filing_date=None, requests_per_second=5, output_dir="filings", accession_numbers=None):
+def download(cik=None, submission_type=None, filing_date=None, location=None, name=None, 
+             requests_per_second=5, output_dir="filings", accession_numbers=None, quiet=False):
     """
     Download SEC EDGAR filings and extract their documents.
     
@@ -44,12 +45,25 @@ def download(cik=None, submission_type=None, filing_date=None, requests_per_seco
     - cik: CIK number(s) to query for
     - submission_type: Filing type(s) to query for (default: 10-K)
     - filing_date: Date or date range to query for
+    - location: Location code to filter by (e.g., 'CA' for California)
+    - name: Company name to search for (alternative to providing CIK)
     - requests_per_second: Rate limit for SEC requests
     - output_dir: Directory to save documents
     - accession_numbers: Optional list of accession numbers to filter by
+    - quiet: Whether to suppress progress output
     
     Returns:
     - List of all document paths processed
+    
+    Examples:
+    # Download filings by CIK
+    download(cik="1318605", submission_type="10-K")
+    
+    # Download filings by company name
+    download(name="Tesla", submission_type="10-K")
+    
+    # Download filings with location filter
+    download(name="Apple", location="CA", submission_type="10-K")
     """
         
     # Make sure output directory exists
@@ -62,9 +76,12 @@ def download(cik=None, submission_type=None, filing_date=None, requests_per_seco
     # Call the stream function with our callback
     return stream(
         cik=cik,
+        name=name,
         submission_type=submission_type,
         filing_date=filing_date,
+        location=location,
         requests_per_second=requests_per_second,
         document_callback=callback_wrapper,
-        accession_numbers=accession_numbers
+        accession_numbers=accession_numbers,
+        quiet=quiet
     )

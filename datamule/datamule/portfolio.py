@@ -142,7 +142,7 @@ class Portfolio:
                 cik=cik,
                 submission_type=submission_type,
                 filing_date=filing_date,
-                requests_per_second=5, # Revisit this later.
+                requests_per_second=5, 
                 accession_numbers=self.accession_numbers if hasattr(self, 'accession_numbers') else None
             )
 

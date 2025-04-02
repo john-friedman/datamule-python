@@ -13,9 +13,9 @@ class TextSearchEFTSQuery(EFTSQuery):
         super().__init__(requests_per_second=requests_per_second, quiet=quiet)
         self.text_query = text_query
         
-    def _prepare_params(self, cik=None, submission_type=None, filing_date=None):
+    def _prepare_params(self, cik=None, submission_type=None, filing_date=None, location=None):
         # Get base parameters from parent class
-        params = super()._prepare_params(cik, submission_type, filing_date)
+        params = super()._prepare_params(cik, submission_type, filing_date, location)
         
         # Add text query parameter
         params['q'] = self.text_query
@@ -46,7 +46,8 @@ async def extract_accession_numbers(hits):
                 accession_numbers.append(acc_no)
     return accession_numbers
 
-def query(text_query, cik=None, submission_type=None, filing_date=None, requests_per_second=5.0, quiet=False):
+def query(text_query, cik=None, submission_type=None, filing_date=None, location=None, 
+          name=None, requests_per_second=5.0, quiet=False):
     """
     Search SEC filings for text and return the full search results.
     
@@ -63,6 +64,10 @@ def query(text_query, cik=None, submission_type=None, filing_date=None, requests
     filing_date : str, tuple, list, optional
         Date or date range to filter by. Can be a single date string ('YYYY-MM-DD'),
         a tuple of (start_date, end_date), or a list of dates.
+    location : str, optional
+        Location code to filter by (e.g., 'CA' for California).
+    name : str, optional
+        Company name to search for (alternative to providing CIK).
     requests_per_second : float, optional
         Maximum number of requests per second to make to the SEC API.
         Default is 5.0.
@@ -73,14 +78,23 @@ def query(text_query, cik=None, submission_type=None, filing_date=None, requests
     --------
     list
         Complete search results with all hit data.
+        
+    Examples:
+    ---------
+    # Search for 'climate risk' in Tesla's 10-K filings using company name
+    results = query('"climate risk"', name='Tesla', submission_type='10-K')
+    
+    # Search for 'pandemic' in California companies' filings
+    results = query('pandemic', location='CA', submission_type='8-K')
     """
     async def run_query():
         query = TextSearchEFTSQuery(text_query, requests_per_second=requests_per_second, quiet=quiet)
-        return await query.query(cik, submission_type, filing_date)
+        return await query.query(cik, submission_type, filing_date, location, None, name)
     
     return asyncio.run(run_query())
 
-def filter_text(text_query, cik=None, submission_type=None, filing_date=None, requests_per_second=5.0, quiet=False):
+def filter_text(text_query, cik=None, submission_type=None, filing_date=None, location=None, 
+                name=None, requests_per_second=5.0, quiet=False):
     """
     Search SEC filings for text and return matching accession numbers.
     
@@ -97,6 +111,10 @@ def filter_text(text_query, cik=None, submission_type=None, filing_date=None, re
     filing_date : str, tuple, list, optional
         Date or date range to filter by. Can be a single date string ('YYYY-MM-DD'),
         a tuple of (start_date, end_date), or a list of dates.
+    location : str, optional
+        Location code to filter by (e.g., 'CA' for California).
+    name : str, optional
+        Company name to search for (alternative to providing CIK).
     requests_per_second : float, optional
         Maximum number of requests per second to make to the SEC API.
         Default is 5.0.
@@ -107,6 +125,15 @@ def filter_text(text_query, cik=None, submission_type=None, filing_date=None, re
     --------
     list
         List of accession numbers (as strings) for filings that match the text query.
+        
+    Examples:
+    ---------
+    # Get accession numbers of Apple filings mentioning 'supply chain'
+    acc_numbers = filter_text('"supply chain"', name='Apple')
+    
+    # Use the accession numbers as a filter in another API
+    from .downloader import download
+    download(name='Apple', accession_numbers=acc_numbers)
     """
     async def run_query():
         query_obj = TextSearchEFTSQuery(text_query, requests_per_second=requests_per_second, quiet=quiet)
@@ -119,7 +146,7 @@ def filter_text(text_query, cik=None, submission_type=None, filing_date=None, re
             all_acc_nos.extend(acc_nos)
         
         # Run the query with our callback
-        await query_obj.query(cik, submission_type, filing_date, collect_acc_nos)
+        await query_obj.query(cik, submission_type, filing_date, location, collect_acc_nos, name)
         
         return all_acc_nos
     

@@ -104,14 +104,14 @@ class Document:
     def parse(self):
         mapping_dict = None
 
-        if self.path.suffix == '.xml':
+        if self.path.suffix.lower() == '.xml':
             if self.type in ['3', '4', '5']:
                 mapping_dict = dict_345
 
             self.load_content()
             self.data = xml2dict(content=self.content, mapping_dict=mapping_dict)
         # will deprecate this when we add html2dict
-        elif self.path.suffix in ['.htm', '.html','.txt']:
+        elif self.path.suffix.lower() in ['.htm', '.html','.txt']:
             self._load_file_content()
 
             if self.type == '10-K':

@@ -30,5 +30,12 @@ class Sheet:
         pass
     def query_xbrl():
         pass
-    def query_13fhr():
+
+    # LIST TUPLE SYNTAX, so e.g. value (0,100) is 0-100, while [0,100] is 0 and 100
+    def get_13fhr(reportingOwnerCIK,nameOfIssuer,titleOfClass,cusip,value,
+                shrsOrPrnAmt_sshPrnamt,shrsOrPrnAmt_sshPrnamtType,investmentDiscretion,otherManager,
+                votingAuthority_Sole,
+                votingAuthority_Shared,
+                votingAuthority_None,
+                filing_date):
         pass

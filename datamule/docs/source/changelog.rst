@@ -1,5 +1,8 @@
 Changelog
 =========
+v1.1.6
+- fixed XML not catching xml
+- added location and name to eftsquery. Not integrated into package yet
 v1.1.5 (2025-03-24)
 - Added Sheet() and Index()
 

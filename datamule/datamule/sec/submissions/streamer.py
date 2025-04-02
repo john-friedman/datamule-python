@@ -21,8 +21,8 @@ def fix_filing_url(url):
     return url
 
 class Streamer(EFTSQuery):
-    def __init__(self, requests_per_second=5.0, document_callback=None, accession_numbers=None):
-        super().__init__(requests_per_second=requests_per_second)
+    def __init__(self, requests_per_second=5.0, document_callback=None, accession_numbers=None, quiet=False):
+        super().__init__(requests_per_second=requests_per_second, quiet=quiet)
         self.document_callback = document_callback
         self.document_queue = asyncio.Queue()
         self.download_in_progress = asyncio.Event()
@@ -57,12 +57,14 @@ class Streamer(EFTSQuery):
                             await callback(hits)
                     self.fetch_queue.task_done()
                 except Exception as e:
-                    print(f"\nError fetching {url}: {str(e)}")
+                    if not self.quiet:
+                        print(f"\nError fetching {url}: {str(e)}")
                     self.fetch_queue.task_done()
             except asyncio.CancelledError:
                 break
             except Exception as e:
-                print(f"\nWorker error: {str(e)}")
+                if not self.quiet:
+                    print(f"\nWorker error: {str(e)}")
                 self.fetch_queue.task_done()
 
     def _construct_submission_url(self, hit):
@@ -85,7 +87,8 @@ class Streamer(EFTSQuery):
             
             return url, cik, accno_w_dash
         except (KeyError, IndexError) as e:
-            print(f"Error constructing URL for hit: {hit}. Error: {str(e)}")
+            if not self.quiet:
+                print(f"Error constructing URL for hit: {hit}. Error: {str(e)}")
             return None, None, None
 
     async def _document_download_worker(self):
@@ -115,13 +118,15 @@ class Streamer(EFTSQuery):
                             
                     self.document_queue.task_done()
                 except Exception as e:
-                    print(f"\nError streaming document {doc_url}: {str(e)}")
+                    if not self.quiet:
+                        print(f"\nError streaming document {doc_url}: {str(e)}")
                     self.document_queue.task_done()
                     
             except asyncio.CancelledError:
                 break
             except Exception as e:
-                print(f"\nDocument worker error: {str(e)}")
+                if not self.quiet:
+                    print(f"\nDocument worker error: {str(e)}")
                 self.document_queue.task_done()
 
     async def document_download_callback(self, hits):
@@ -133,7 +138,7 @@ class Streamer(EFTSQuery):
         self.download_in_progress.set()
         
         # Create progress bar for documents if not exists
-        if not self.document_pbar:
+        if not self.document_pbar and not self.quiet:
             self.document_pbar = tqdm(total=0, desc="Streaming submissions")
         
         # Queue up the documents for download
@@ -141,7 +146,8 @@ class Streamer(EFTSQuery):
             doc_url, cik, accno = self._construct_submission_url(hit)
             if doc_url:
                 # Update document progress bar total
-                self.document_pbar.total += 1
+                if self.document_pbar:
+                    self.document_pbar.total += 1
                 self.total_documents += 1
                 
                 # Add to download queue
@@ -159,8 +165,20 @@ class Streamer(EFTSQuery):
         # Signal that document download is complete
         self.download_in_progress.clear()
 
-    async def stream(self, cik=None, submission_type=None, filing_date=None):
-        """Main method to stream EFTS results and download documents"""
+    async def stream(self, cik=None, submission_type=None, filing_date=None, location=None, name=None):
+        """
+        Main method to stream EFTS results and download documents
+        
+        Parameters:
+        cik (str or list): Central Index Key(s) for the company
+        submission_type (str or list): Filing form type(s) to filter by
+        filing_date (str, tuple, or list): Date or date range to filter by
+        location (str): Location code to filter by (e.g., 'CA' for California)
+        name (str): Company name to search for (alternative to providing CIK)
+        
+        Returns:
+        list: List of all EFTS hits processed
+        """
         # Create document worker tasks
         self.document_workers = [
             asyncio.create_task(self._document_download_worker()) 
@@ -173,11 +191,12 @@ class Streamer(EFTSQuery):
         self.skipped_documents = 0
         
         # Run the main query with our document download callback
-        results = await self.query(cik, submission_type, filing_date, self.document_download_callback)
+        results = await self.query(cik, submission_type, filing_date, location, self.document_download_callback, name)
         
         # Make sure all document downloads are complete
         if self.download_in_progress.is_set():
-            print("Waiting for remaining document downloads to complete...")
+            if not self.quiet:
+                print("Waiting for remaining document downloads to complete...")
             await self.document_queue.join()
         
         # Clean up document workers
@@ -190,14 +209,17 @@ class Streamer(EFTSQuery):
         if self.document_pbar:
             self.document_pbar.close()
             self.document_pbar = None  # Set to None to prevent reuse
-            
-        print(f"\n--- Streaming complete: {len(results)} EFTS results processed ---")
-        if self.accession_numbers is not None:
-            print(f"--- {self.documents_processed} documents downloaded, {self.skipped_documents} skipped due to accession number filter ---")
+        
+        if not self.quiet:
+            print(f"\n--- Streaming complete: {len(results)} EFTS results processed ---")
+            if self.accession_numbers is not None:
+                print(f"--- {self.documents_processed} documents downloaded, {self.skipped_documents} skipped due to accession number filter ---")
+        
         return results
 
-def stream(cik=None, submission_type=None, filing_date=None, 
-                requests_per_second=5.0, document_callback=None, accession_numbers=None):
+def stream(cik=None, submission_type=None, filing_date=None, location=None, 
+           requests_per_second=5.0, document_callback=None, accession_numbers=None,
+           quiet=False, name=None):
     """
     Stream EFTS results and download documents into memory.
     
@@ -205,15 +227,28 @@ def stream(cik=None, submission_type=None, filing_date=None,
     - cik: CIK number(s) to query for
     - submission_type: Filing type(s) to query for
     - filing_date: Date or date range to query for
+    - location: Location code to filter by (e.g., 'CA' for California)
     - requests_per_second: Rate limit for SEC requests (combined EFTS and document downloads)
     - document_callback: Callback function that receives (hit, content, cik, accno, url)
     - accession_numbers: Optional list of accession numbers to filter by
+    - quiet: Whether to suppress progress output
+    - name: Company name to search for (alternative to providing CIK)
     
     Returns:
     - List of all EFTS hits processed
+    
+    Example:
+    To search by company name:
+        results = stream(name="Tesla", submission_type="10-K")
+        
+    To search by CIK:
+        results = stream(cik="1318605", submission_type="10-K")
+        
+    To search with location filter:
+        results = stream(name="Tesla", location="CA", submission_type="10-K")
     """
-
-    # check if acc no is empty list
+    
+    # Check if acc no is empty list
     if accession_numbers == []:
         raise ValueError("Applied filter resulted in empty accession numbers list")
     
@@ -221,8 +256,9 @@ def stream(cik=None, submission_type=None, filing_date=None,
         streamer = Streamer(
             requests_per_second=requests_per_second, 
             document_callback=document_callback,
-            accession_numbers=accession_numbers
+            accession_numbers=accession_numbers,
+            quiet=quiet
         )
-        return await streamer.stream(cik, submission_type, filing_date)
+        return await streamer.stream(cik, submission_type, filing_date, location, name)
     
     return asyncio.run(run_stream())
