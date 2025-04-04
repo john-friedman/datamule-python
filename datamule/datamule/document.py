@@ -8,31 +8,34 @@ from .mapping_dicts.xml_mapping_dicts import dict_345
 from selectolax.parser import HTMLParser
 
 class Document:
-    def __init__(self, type, filename):
+    def __init__(self, type, content, extension):
+        
         self.type = type
-        self.path = filename
+        # we will remove this later #
+        # make sure extension is in lower case
+        extension = extension.lower()
+        self.content = content
+        if extension == '.txt':
+            self.content = self._preprocess_txt_content()
+        elif extension in ['.htm', '.html']:
+            self.content = self._preprocess_html_content()
 
+        self.extension = extension
+        # this will be filled by parsed
         self.data = None
-        self.content = None
 
-
-    def load_content(self,encoding='utf-8'):
-        with open(self.path, 'r',encoding=encoding) as f:
-            self.content = f.read()
-
-    def _load_text_content(self):
-        with open(self.path) as f:
-            return f.read().translate(str.maketrans({
+    #_load_text_content
+    def _preprocess_txt_content(self):
+            return self.content.read().translate(str.maketrans({
                 '\xa0': ' ', '\u2003': ' ',
                 '\u2018': "'", '\u2019': "'",
                 '\u201c': '"', '\u201d': '"'
             }))
 
     # will deprecate this when we add html2dict
-    def _load_html_content(self):
-        with open(self.path,'rb') as f:
-            parser = HTMLParser(f.read(),detect_encoding=True,decode_errors='ignore')
-        
+    def _preprocess_html_content(self):
+        parser = HTMLParser(self.content,detect_encoding=True,decode_errors='ignore')
+    
         # Remove hidden elements first
         hidden_nodes = parser.css('[style*="display: none"], [style*="display:none"], .hidden, .hide, .d-none')
         for node in hidden_nodes:
@@ -83,20 +86,9 @@ class Document:
             '\u201c': '"', '\u201d': '"'
         }))
 
-    def _load_file_content(self):
-        if self.path.suffix =='.txt':
-            self.content = self._load_text_content()
-        elif self.path.suffix in ['.html','.htm']:
-            self.content =  self._load_html_content()
-        else:
-            raise ValueError(f"Unsupported file type: {self.path.suffix}")
-
-
     def contains_string(self, pattern):
-        """Currently only works for .htm, .html, and .txt files"""
-        if self.path.suffix in ['.htm', '.html', '.txt']:
-            if self.content is None:
-                self.content = self._load_file_content(self.path)
+        """Works for select files"""
+        if self.extension in ['.htm', '.html', '.txt','.xml']:
             return bool(re.search(pattern, self.content))
         return False
 
@@ -104,15 +96,14 @@ class Document:
     def parse(self):
         mapping_dict = None
 
-        if self.path.suffix.lower() == '.xml':
+        if self.extension == '.xml':
             if self.type in ['3', '4', '5']:
                 mapping_dict = dict_345
 
-            self.load_content()
             self.data = xml2dict(content=self.content, mapping_dict=mapping_dict)
+
         # will deprecate this when we add html2dict
-        elif self.path.suffix.lower() in ['.htm', '.html','.txt']:
-            self._load_file_content()
+        elif self.extension in ['.htm', '.html','.txt']:
 
             if self.type == '10-K':
                 mapping_dict = dict_10k
@@ -133,17 +124,11 @@ class Document:
         if not self.data:
             self.parse()
             
-        if output_filename is None:
-            output_filename = f"{self.path.rsplit('.', 1)[0]}.json"
-            
         with open(output_filename, 'w',encoding='utf-8') as f:
             json.dump(self.data, f, indent=2)
 
     def write_csv(self, output_filename=None, accession_number=None):
         self.parse()
-
-        if output_filename is None:
-            output_filename = f"{self.path.rsplit('.', 1)[0]}.csv"
 
         with open(output_filename, 'w', newline='') as csvfile:
             if not self.data:
@@ -165,7 +150,7 @@ class Document:
                 writer.writeheader()
                 for row in self.data:
                     if accession_number:
-                        row['Accession Number'] = convert_to_dashed_accession(accession_number)
+                        row['Accession Number'] = accession_number
                     writer.writerow(row)
 
         return output_filename
@@ -225,7 +210,7 @@ class Document:
         # Let's remove XML iterable for now
 
         # Handle text-based documents
-        if self.path.suffix in ['.txt', '.htm', '.html']:
+        if self.extension in ['.txt', '.htm', '.html']:
             document_data = self.data
             if not document_data:
                 return iter([])
@@ -235,13 +220,13 @@ class Document:
             section_type = None
             
             if self.type in ['10-K', '10-Q']:
-                mapping_dict = txt_mapping_dicts.dict_10k if self.type == '10-K' else txt_mapping_dicts.dict_10q
+                mapping_dict = dict_10k if self.type == '10-K' else dict_10q
             elif self.type == '8-K':
-                mapping_dict = txt_mapping_dicts.dict_8k
+                mapping_dict = dict_8k
             elif self.type == 'SC 13D':
-                mapping_dict = txt_mapping_dicts.dict_13d
+                mapping_dict = dict_13d
             elif self.type == 'SC 13G':
-                mapping_dict = txt_mapping_dicts.dict_13g
+                mapping_dict = dict_13g
             else:
                 return iter([])
                 
