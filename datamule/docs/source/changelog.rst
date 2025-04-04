@@ -1,8 +1,10 @@
 Changelog
 =========
-v1.1.6
-- fixed XML not catching xml
+v1.1.7 (2025-04-03)
+- fixed XML not catching xml due to uppercase
 - added location and name to eftsquery. Not integrated into package yet
+- Refactored Submission and Document in preparation for allowing users to download only certain document types.
+- added keep to Portfolio. This allows you to drop un needed documents. Bit of a bandaid solution, but it works for now.
 v1.1.5 (2025-03-24)
 - Added Sheet() and Index()
 
