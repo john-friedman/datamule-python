@@ -164,8 +164,6 @@ class Portfolio:
         )
 
         
-        
-        
     def __iter__(self):
         if not self.submissions_loaded:
             self._load_submissions()

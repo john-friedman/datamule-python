@@ -14,6 +14,7 @@ class Submission:
         if sgml_content is not None:
             self.path = None
             self.metadata, raw_documents = parse_sgml_submission_into_memory(sgml_content)
+            self.documents = []
 
             for idx,doc in enumerate(self.metadata['documents']):
                 type = doc.get('type')
@@ -23,7 +24,7 @@ class Submission:
                     continue
                 filename = doc.get('filename')
                 extension = Path(filename).suffix
-                self.documents = [Document(type=type, content=raw_documents[idx], extension=extension)]
+                self.documents.append(Document(type=type, content=raw_documents[idx], extension=extension))
 
 
         if path is not None:

@@ -94,6 +94,9 @@ class Document:
 
     # Note: this method will be heavily modified in the future
     def parse(self):
+        # check if we have already parsed the content
+        if self.data:
+            return self.data
         mapping_dict = None
 
         if self.extension == '.xml':
@@ -127,34 +130,88 @@ class Document:
         with open(output_filename, 'w',encoding='utf-8') as f:
             json.dump(self.data, f, indent=2)
 
-    def write_csv(self, output_filename=None, accession_number=None):
+    def to_tabular(self, accession_number=None):
         self.parse()
 
-        with open(output_filename, 'w', newline='') as csvfile:
-            if not self.data:
-                return output_filename
+        if self.type == "INFORMATION TABLE":
+            info_table = self.data['informationTable']['infoTable']
+            if isinstance(info_table, dict):
+                info_table = [info_table]
 
-            has_document = any('document' in item for item in self.data)
+            flattened = self._flatten_dict(info_table)
+
+            # Original field names
+            original_columns = [
+                "nameOfIssuer", "titleOfClass", "cusip", "value", 
+                "shrsOrPrnAmt_sshPrnamt", "shrsOrPrnAmt_sshPrnamtType", 
+                "investmentDiscretion", "votingAuthority_Sole", 
+                "votingAuthority_Shared", "votingAuthority_None", 
+                "reportingOwnerCIK", "putCall", "otherManager"
+            ]
             
-            if has_document and 'document' in self.data:
-                writer = csv.DictWriter(csvfile, ['section', 'text'], quoting=csv.QUOTE_ALL)
-                writer.writeheader()
-                flattened = self._flatten_dict(self.data['document'])
-                for section, text in flattened.items():
-                    writer.writerow({'section': section, 'text': text})
-            else:
-                fieldnames = list(self.data[0].keys())
-                if accession_number:
-                    fieldnames.append('Accession Number')
+            # Define mapping from original to camelCase field names
+            field_mapping = {
+                "shrsOrPrnAmt_sshPrnamt": "sshPrnamt",
+                "shrsOrPrnAmt_sshPrnamtType": "sshPrnamtType",
+                "votingAuthority_Sole": "votingAuthoritySole",
+                "votingAuthority_Shared": "votingAuthorityShared",
+                "votingAuthority_None": "votingAuthorityNone"
+            }
+            
+            # Create the new expected columns list with mapped field names
+            expected_columns = []
+            for column in original_columns:
+                if column in field_mapping:
+                    expected_columns.append(field_mapping[column])
+                else:
+                    expected_columns.append(column)
+            
+            # Process each item in the flattened data
+            for item in flattened:
+                new_item = {}
+                for key, value in item.items():
+                    # Apply the mapping if the key is in our mapping dictionary
+                    if key in field_mapping:
+                        new_item[field_mapping[key]] = value
+                    else:
+                        new_item[key] = value
+                
+                # Update the original item with the new keys
+                item.clear()
+                item.update(new_item)
+                
+                # Ensure all expected columns exist
+                for column in expected_columns:
+                    if column not in item:
+                        item[column] = None
+
+                item['accession'] = accession_number
+            
+            return flattened
+        
+        else:
+            raise ValueError("sorry, rejigging conversion to tabular format")
+        
+        
+        
+    def write_csv(self, output_filename=None, accession_number=None):
+        if not output_filename:
+            return None
+            
+        data = self.to_tabular(accession_number)
+        
+        if not data:
+            return output_filename
+            
+        with open(output_filename, 'w', newline='') as csvfile:
+            if isinstance(data, list) and len(data) > 0:
+                fieldnames = data[0].keys()
                 writer = csv.DictWriter(csvfile, fieldnames, quoting=csv.QUOTE_ALL)
                 writer.writeheader()
-                for row in self.data:
-                    if accession_number:
-                        row['Accession Number'] = accession_number
-                    writer.writerow(row)
+                writer.writerows(data)
 
         return output_filename
-    
+        
     def _document_to_section_text(self, document_data, parent_key=''):
         items = []
         
@@ -188,7 +245,7 @@ class Document:
     # we'll modify this for every dict
     def _flatten_dict(self, d, parent_key=''):
         items = {}
-        
+
         if isinstance(d, list):
             return [self._flatten_dict(item) for item in d]
                 
@@ -204,8 +261,7 @@ class Document:
    
    # this will all have to be changed. default will be to flatten everything
     def __iter__(self):
-        if not self.data:
-            self.parse()
+        self.parse()
 
         # Let's remove XML iterable for now
 

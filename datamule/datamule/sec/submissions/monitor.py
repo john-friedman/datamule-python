@@ -20,12 +20,16 @@ async def _process_efts_hits(hits, collected_accession_numbers, data_callback=No
             submission_type = source.get('form')
             ciks = source.get('ciks', [])
             ciks = [str(int(cik)) for cik in ciks]
+
+            filing_date = source.get('file_date')
                 
             # Create standardized filing record
             filing = {
                 'accession_number': accession_number,
                 'submission_type': submission_type,
-                'ciks': ciks
+                'ciks': ciks,
+                'filing_date': filing_date,
+
             }
             
             processed_hits.append(filing)
