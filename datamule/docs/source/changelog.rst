@@ -1,5 +1,7 @@
 Changelog
 =========
+v1.1.8 (2025-04-07)
+- added information table big query to Sheet().
 v1.1.7 (2025-04-03)
 - fixed XML not catching xml due to uppercase
 - added location and name to eftsquery. Not integrated into package yet
