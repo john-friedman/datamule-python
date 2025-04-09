@@ -204,6 +204,76 @@ class Document:
                 
             return ordered_data
         
+        elif self.type == "PROXY VOTING RECORD":
+            # Master mapping dictionary for proxy voting records
+            master_mapping_dict = {
+                'meetingDate': 'meetingDate',
+                'isin': 'isin',  
+                'cusip': 'cusip',
+                'issuerName': 'issuerName',
+                'voteDescription': 'voteDescription',
+                'sharesOnLoan': 'sharesOnLoan',
+                'vote_voteRecord_sharesVoted': 'sharesVoted',
+                'voteCategories_voteCategory_categoryType': 'voteCategory', 
+                'vote_voteRecord': 'voteRecord',
+                'sharesVoted': 'sharesVoted', 
+                'voteSource': 'voteSource', 
+                'vote_voteRecord_howVoted': 'howVoted',
+                'figi': 'figi', 
+                'vote_voteRecord_managementRecommendation': 'managementRecommendation'
+            }
+            
+            # Get the unique target column names in order from the mapping dictionary
+            output_columns = []
+            for _, target_key in master_mapping_dict.items():
+                if target_key not in output_columns:
+                    output_columns.append(target_key)
+            
+            # Process function that handles proxy voting records
+            def process_proxy_table(table_data):
+                if isinstance(table_data, dict):
+                    table_data = [table_data]
+                
+                flattened = self._flatten_dict(table_data)
+                
+                # Apply mapping to the flattened data and ensure all expected columns are present
+                mapped_data = []
+                for item in flattened:
+                    mapped_item = {}
+                    # First, apply the mapping
+                    for old_key, value in item.items():
+                        target_key = master_mapping_dict.get(old_key, old_key)
+                        mapped_item[target_key] = value
+                    
+                    # Create a new ordered dictionary with all columns
+                    ordered_item = {}
+                    for column in output_columns:
+                        ordered_item[column] = mapped_item.get(column, None)
+                    
+                    # Add accession_number if available
+                    if accession_number is not None:
+                        ordered_item['accession'] = accession_number
+                    
+                    mapped_data.append(ordered_item)
+                
+                return mapped_data
+            
+            # Results container
+            all_results = []
+            
+            # Process proxy voting records if they exist
+            if 'proxyVoteTable' in self.data and 'proxyTable' in self.data['proxyVoteTable'] and self.data['proxyVoteTable']['proxyTable'] is not None:
+                proxy_records = self.data['proxyVoteTable']['proxyTable']
+                proxy_results = process_proxy_table(proxy_records)
+                all_results.extend(proxy_results)
+            
+            # Check if any rows not in the mapping dict, raise error if so
+            for item in all_results:
+                for key in item.keys():
+                    if key not in output_columns and key != 'accession':
+                        raise ValueError(f"Key '{key}' not found in mapping dictionary")
+            
+            return all_results
         elif self.type in ["3", "4", "5"]:
             # Master mapping dictionary - includes all possible fields
             # The order of this dictionary will determine the output column order
@@ -303,7 +373,7 @@ class Document:
                     
                     # Add accession_number if available
                     if accession_number is not None:
-                        ordered_item['accession_number'] = accession_number
+                        ordered_item['accession'] = accession_number
                     
                     mapped_data.append(ordered_item)
                 
@@ -341,7 +411,7 @@ class Document:
             # check if any rows not in the mapping dict, raise error if so
             for item in all_results:
                 for key in item.keys():
-                    if key not in master_mapping_dict.values() and key != 'accession_number':
+                    if key not in master_mapping_dict.values() and key != 'accession':
                         raise ValueError(f"Key '{key}' not found in mapping dictionary")
 
             
