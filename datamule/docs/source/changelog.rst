@@ -1,5 +1,7 @@
 Changelog
 =========
+v1.2.0 (2024-04-08)
+- added 345 & proxy voting records to big query
 v1.1.8 (2025-04-07)
 - added information table big query to Sheet().
 v1.1.7 (2025-04-03)
