@@ -35,5 +35,5 @@ intersphinx_mapping = {
 }
 
 html_context = {
-    'line_length_limit': 80,  # or whatever number of characters you prefer
+    'line_length_limit': 50,  # or whatever number of characters you prefer
 }
