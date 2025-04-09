@@ -129,84 +129,95 @@ class Document:
             json.dump(self.data, f, indent=2)
 
     def to_tabular(self, accession_number=None):
+        """
+        Convert the document to a tabular format suitable for CSV output.
+        
+        Args:
+            accession_number: Optional accession number to include in the output
+            
+        Returns:
+            list: List of dictionaries, each representing a row in the tabular output
+        """
         self.parse()
-
-        if self.type == "INFORMATION TABLE":
-            info_table = self.data['informationTable']['infoTable']
-            if isinstance(info_table, dict):
-                info_table = [info_table]
-
-            flattened = self._flatten_dict(info_table)
-
-            # Original field names
-            original_columns = [
-                "nameOfIssuer", "titleOfClass", "cusip", "value", 
-                "shrsOrPrnAmt_sshPrnamt", "shrsOrPrnAmt_sshPrnamtType", 
-                "investmentDiscretion", "votingAuthority_Sole", 
-                "votingAuthority_Shared", "votingAuthority_None", 
-                "reportingOwnerCIK", "putCall", "otherManager", 'figi'
-            ]
+        
+        # Common function to normalize and process dictionaries
+        def process_records(records, mapping_dict, is_derivative=None):
+            """
+            Process records into a standardized tabular format
+            
+            Args:
+                records: List or single dictionary of records to process
+                mapping_dict: Dictionary mapping source keys to target keys
+                is_derivative: Boolean flag for derivative securities (or None if not applicable)
                 
-            # Define mapping from original to camelCase field names
-            field_mapping = {
-                "shrsOrPrnAmt_sshPrnamt": "sshPrnamt",
-                "shrsOrPrnAmt_sshPrnamtType": "sshPrnamtType",
-                "votingAuthority_Sole": "votingAuthoritySole",
-                "votingAuthority_Shared": "votingAuthorityShared",
-                "votingAuthority_None": "votingAuthorityNone"
-            }
+            Returns:
+                list: Processed records in tabular format
+            """
+            # Convert single dict to list for uniform processing
+            if isinstance(records, dict):
+                records = [records]
                 
-            # Create the new expected columns list with mapped field names
-            expected_columns = []
-            for column in original_columns:
-                if column in field_mapping:
-                    expected_columns.append(field_mapping[column])
-                else:
-                    expected_columns.append(column)
-                
-            # Process each item in the flattened data
+            # Flatten nested dictionaries
+            flattened = self._flatten_dict(records)
+            
+            # Process each record
+            result = []
             for item in flattened:
-                # Remove newlines from items
+                # Normalize whitespace in all string values
                 for key in item:
                     if isinstance(item[key], str):
                         item[key] = re.sub(r'\s+', ' ', item[key])
+                        
+                # Map keys according to the mapping dictionary
+                mapped_item = {}
+                for old_key, value in item.items():
+                    target_key = mapping_dict.get(old_key, old_key)
+                    mapped_item[target_key] = value
                     
-                new_item = {}
-                for key, value in item.items():
-                    # Apply the mapping if the key is in our mapping dictionary
-                    if key in field_mapping:
-                        new_item[field_mapping[key]] = value
-                    else:
-                        new_item[key] = value
-                    
-                # Update the original item with the new keys
-                item.clear()
-                item.update(new_item)
+                # Set derivative flags if applicable
+                if is_derivative is not None:
+                    mapped_item["isDerivative"] = 1 if is_derivative else 0
+                    mapped_item["isNonDerivative"] = 0 if is_derivative else 1
                     
                 # Ensure all expected columns exist
-                for column in expected_columns:
-                    if column not in item:
-                        item[column] = None
-
-                item['accession'] = accession_number
-            
-            # Add this block to reorder the items to match the expected order
-            ordered_columns = ["nameOfIssuer", "titleOfClass", "cusip", "value", "sshPrnamt", "sshPrnamtType",
-                            "investmentDiscretion", "votingAuthoritySole", "votingAuthorityShared", "votingAuthorityNone",
-                            "reportingOwnerCIK", "putCall", "otherManager", "figi"]
-            if accession_number is not None:
-                ordered_columns.append("accession")
+                output_columns = list(dict.fromkeys(mapping_dict.values()))
+                ordered_item = {column: mapped_item.get(column, None) for column in output_columns}
                 
-            ordered_data = []
-            for item in flattened:
-                ordered_item = {column: item.get(column, None) for column in ordered_columns}
-                ordered_data.append(ordered_item)
+                # Add accession number if provided
+                if accession_number is not None:
+                    ordered_item['accession'] = accession_number
+                    
+                result.append(ordered_item)
                 
-            return ordered_data
+            return result
         
+        # Handle different document types
+        if self.type == "INFORMATION TABLE":
+            # Information Table mapping dictionary
+            info_table_mapping = {
+                "nameOfIssuer": "nameOfIssuer", 
+                "titleOfClass": "titleOfClass", 
+                "cusip": "cusip", 
+                "value": "value", 
+                "shrsOrPrnAmt_sshPrnamt": "sshPrnamt", 
+                "shrsOrPrnAmt_sshPrnamtType": "sshPrnamtType", 
+                "investmentDiscretion": "investmentDiscretion", 
+                "votingAuthority_Sole": "votingAuthoritySole", 
+                "votingAuthority_Shared": "votingAuthorityShared", 
+                "votingAuthority_None": "votingAuthorityNone", 
+                "reportingOwnerCIK": "reportingOwnerCIK", 
+                "putCall": "putCall", 
+                "otherManager": "otherManager", 
+                "figi": "figi"
+            }
+            
+            # Process the information table
+            info_table = self.data['informationTable']['infoTable']
+            return process_records(info_table, info_table_mapping)
+            
         elif self.type == "PROXY VOTING RECORD":
-            # Master mapping dictionary for proxy voting records
-            master_mapping_dict = {
+            # Proxy voting record mapping dictionary
+            proxy_mapping = {
                 'meetingDate': 'meetingDate',
                 'isin': 'isin',  
                 'cusip': 'cusip',
@@ -223,61 +234,18 @@ class Document:
                 'vote_voteRecord_managementRecommendation': 'managementRecommendation'
             }
             
-            # Get the unique target column names in order from the mapping dictionary
-            output_columns = []
-            for _, target_key in master_mapping_dict.items():
-                if target_key not in output_columns:
-                    output_columns.append(target_key)
-            
-            # Process function that handles proxy voting records
-            def process_proxy_table(table_data):
-                if isinstance(table_data, dict):
-                    table_data = [table_data]
-                
-                flattened = self._flatten_dict(table_data)
-                
-                # Apply mapping to the flattened data and ensure all expected columns are present
-                mapped_data = []
-                for item in flattened:
-                    mapped_item = {}
-                    # First, apply the mapping
-                    for old_key, value in item.items():
-                        target_key = master_mapping_dict.get(old_key, old_key)
-                        mapped_item[target_key] = value
-                    
-                    # Create a new ordered dictionary with all columns
-                    ordered_item = {}
-                    for column in output_columns:
-                        ordered_item[column] = mapped_item.get(column, None)
-                    
-                    # Add accession_number if available
-                    if accession_number is not None:
-                        ordered_item['accession'] = accession_number
-                    
-                    mapped_data.append(ordered_item)
-                
-                return mapped_data
-            
-            # Results container
-            all_results = []
-            
             # Process proxy voting records if they exist
+            all_results = []
             if 'proxyVoteTable' in self.data and 'proxyTable' in self.data['proxyVoteTable'] and self.data['proxyVoteTable']['proxyTable'] is not None:
                 proxy_records = self.data['proxyVoteTable']['proxyTable']
-                proxy_results = process_proxy_table(proxy_records)
+                proxy_results = process_records(proxy_records, proxy_mapping)
                 all_results.extend(proxy_results)
-            
-            # Check if any rows not in the mapping dict, raise error if so
-            for item in all_results:
-                for key in item.keys():
-                    if key not in output_columns and key != 'accession':
-                        raise ValueError(f"Key '{key}' not found in mapping dictionary")
-            
+                
             return all_results
+            
         elif self.type in ["3", "4", "5"]:
-            # Master mapping dictionary - includes all possible fields
-            # The order of this dictionary will determine the output column order
-            master_mapping_dict = {
+            # Forms 3, 4, 5 mapping dictionary
+            form_345_mapping = {
                 # Flag fields (will be set programmatically)
                 "isDerivative": "isDerivative",
                 "isNonDerivative": "isNonDerivative",
@@ -340,45 +308,6 @@ class Document:
                 "underlyingSecurity_underlyingSecurityValue_footnote": "underlyingSecurityValueFootnote"
             }
             
-            # Get the unique target column names in order from the mapping dictionary
-            output_columns = []
-            for _, target_key in master_mapping_dict.items():
-                if target_key not in output_columns:
-                    output_columns.append(target_key)
-            
-            # Process function that handles any table type
-            def process_table(table_data, is_derivative):
-                if isinstance(table_data, dict):
-                    table_data = [table_data]
-                
-                flattened = self._flatten_dict(table_data)
-                
-                # Apply mapping to the flattened data and ensure all expected columns are present
-                mapped_data = []
-                for item in flattened:
-                    mapped_item = {}
-                    # First, apply the mapping
-                    for old_key, value in item.items():
-                        target_key = master_mapping_dict.get(old_key, old_key)
-                        mapped_item[target_key] = value
-                    
-                    # Set the derivative/non-derivative flags
-                    mapped_item["isDerivative"] = 1 if is_derivative else 0
-                    mapped_item["isNonDerivative"] = 0 if is_derivative else 1
-                    
-                    # Create a new ordered dictionary with all columns
-                    ordered_item = {}
-                    for column in output_columns:
-                        ordered_item[column] = mapped_item.get(column, None)
-                    
-                    # Add accession_number if available
-                    if accession_number is not None:
-                        ordered_item['accession'] = accession_number
-                    
-                    mapped_data.append(ordered_item)
-                
-                return mapped_data
-            
             # Results container
             all_results = []
             
@@ -386,39 +315,33 @@ class Document:
             if 'nonDerivativeTable' in self.data['ownershipDocument'] and self.data['ownershipDocument']['nonDerivativeTable'] is not None:
                 if 'nonDerivativeTransaction' in self.data['ownershipDocument']['nonDerivativeTable']:
                     non_deriv_trans = self.data['ownershipDocument']['nonDerivativeTable']['nonDerivativeTransaction']
-                    non_deriv_results = process_table(non_deriv_trans, is_derivative=False)
+                    non_deriv_results = process_records(non_deriv_trans, form_345_mapping, is_derivative=False)
                     all_results.extend(non_deriv_results)
                 
                 # Process non-derivative holdings (for Form 3)
                 if 'nonDerivativeHolding' in self.data['ownershipDocument']['nonDerivativeTable']:
                     non_deriv_hold = self.data['ownershipDocument']['nonDerivativeTable']['nonDerivativeHolding']
-                    non_deriv_hold_results = process_table(non_deriv_hold, is_derivative=False)
+                    non_deriv_hold_results = process_records(non_deriv_hold, form_345_mapping, is_derivative=False)
                     all_results.extend(non_deriv_hold_results)
             
             # Process derivative transactions if they exist
             if 'derivativeTable' in self.data['ownershipDocument'] and self.data['ownershipDocument']['derivativeTable'] is not None:
                 if 'derivativeTransaction' in self.data['ownershipDocument']['derivativeTable']:
                     deriv_trans = self.data['ownershipDocument']['derivativeTable']['derivativeTransaction']
-                    deriv_results = process_table(deriv_trans, is_derivative=True)
+                    deriv_results = process_records(deriv_trans, form_345_mapping, is_derivative=True)
                     all_results.extend(deriv_results)
                 
                 # Process derivative holdings (for Form 3)
                 if 'derivativeHolding' in self.data['ownershipDocument']['derivativeTable']:
                     deriv_hold = self.data['ownershipDocument']['derivativeTable']['derivativeHolding']
-                    deriv_hold_results = process_table(deriv_hold, is_derivative=True)
+                    deriv_hold_results = process_records(deriv_hold, form_345_mapping, is_derivative=True)
                     all_results.extend(deriv_hold_results)
-
-            # check if any rows not in the mapping dict, raise error if so
-            for item in all_results:
-                for key in item.keys():
-                    if key not in master_mapping_dict.values() and key != 'accession':
-                        raise ValueError(f"Key '{key}' not found in mapping dictionary")
-
             
             return all_results
-        else:
-            raise ValueError("sorry, rejigging conversion to tabular format")
         
+        else:
+            raise ValueError(f"Document type '{self.type}' is not supported for tabular conversion")
+    
     def write_csv(self, output_filename, accession_number=None):
             
         data = self.to_tabular(accession_number)
