@@ -16,25 +16,27 @@ jobs:
       with:
         python-version: '3.11'
     
-    - name: Debug environment
-      working-directory: ./datamule
-      run: |
-        python --version
-        pip --version
-        echo $PATH
-    
-    - name: Install dependencies with verification
+    - name: Install dependencies
       working-directory: ./datamule
       run: |
         python -m pip install --upgrade pip
-        pip install setuptools wheel twine --verbose
-        pip show wheel
+        pip install --upgrade setuptools wheel
+        pip install twine
+    
+    - name: Fix wheel integration
+      working-directory: ./datamule
+      run: |
+        # Install wheel in a way that ensures proper integration with setuptools
+        pip uninstall -y wheel setuptools
+        pip install setuptools==69.0.3
+        pip install wheel==0.42.0
+        # Verify installation
         pip list | grep wheel
+        pip list | grep setuptools
     
     - name: Build package
       working-directory: ./datamule
       run: |
-        python -c "from setuptools.command.bdist_wheel import bdist_wheel; print('Wheel command is available')"
         python setup.py sdist bdist_wheel
     
     - name: Upload to PyPI
