@@ -1,0 +1,16 @@
+/* custom.css */
+
+/* Limit the width of the content area */
+.wy-nav-content {
+    max-width: 900px !important;  /* Adjust this value as needed */
+}
+
+/* Improve readability */
+.rst-content {
+    line-height: 1.5;
+}
+
+/* Better spacing for paragraphs */
+.rst-content p {
+    margin-bottom: 1em;
+}

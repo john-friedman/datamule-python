@@ -29,11 +29,12 @@ html_theme = 'sphinx_rtd_theme'
 # Add any paths that contain custom static files (such as style sheets)
 html_static_path = ['_static']
 
+# Add custom CSS
+html_css_files = [
+    'custom.css',
+]
+
 # Intersphinx configuration
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3', None),
-}
-
-html_context = {
-    'line_length_limit': 100,  # or whatever number of characters you prefer
 }
