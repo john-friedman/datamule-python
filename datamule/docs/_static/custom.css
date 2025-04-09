@@ -2,7 +2,7 @@
 
 /* Limit the width of the content area */
 .wy-nav-content {
-    max-width: 900px !important;  /* Adjust this value as needed */
+    max-width: 400px !important;  /* Adjust this value as needed */
 }
 
 /* Improve readability */
