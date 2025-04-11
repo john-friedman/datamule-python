@@ -33,7 +33,3 @@ html_static_path = ['_static']
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3', None),
 }
-
-html_context = {
-    'line_length_limit': 50,  # or whatever number of characters you prefer
-}

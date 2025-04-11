@@ -98,7 +98,7 @@ class Document:
         mapping_dict = None
 
         if self.extension == '.xml':
-            if self.type in ['3', '4', '5']:
+            if self.type in ['3', '4', '5', '3/A', '4/A', '5/A']:
                 mapping_dict = dict_345
 
             self.data = xml2dict(content=self.content, mapping_dict=mapping_dict)
@@ -242,8 +242,35 @@ class Document:
                 all_results.extend(proxy_results)
                 
             return all_results
+        
+        elif self.type == "NPORT-P":
+            # Proxy voting record mapping dictionary
+            mapping = {
+                'meetingDate': 'meetingDate',
+                'isin': 'isin',  
+                'cusip': 'cusip',
+                'issuerName': 'issuerName',
+                'voteDescription': 'voteDescription',
+                'sharesOnLoan': 'sharesOnLoan',
+                'vote_voteRecord_sharesVoted': 'sharesVoted',
+                'voteCategories_voteCategory_categoryType': 'voteCategory', 
+                'vote_voteRecord': 'voteRecord',
+                'sharesVoted': 'sharesVoted', 
+                'voteSource': 'voteSource', 
+                'vote_voteRecord_howVoted': 'howVoted',
+                'figi': 'figi', 
+                'vote_voteRecord_managementRecommendation': 'managementRecommendation'
+            }
             
-        elif self.type in ["3", "4", "5"]:
+            all_results = []
+            data = (self.data.get('edgarSubmission', {}).get('formData', {}).get('invstOrSecs', {}).get('invstOrSec'))
+            if data is not None:
+                results = process_records(data, mapping)
+                all_results.extend(results)
+                
+            return all_results
+            
+        elif self.type in ["3", "4", "5", "3/A", "4/A", "5/A"]:
             # Forms 3, 4, 5 mapping dictionary
             form_345_mapping = {
                 # Flag fields (will be set programmatically)
