@@ -478,4 +478,5 @@ mapping_metadata_cfportal = {
     'filerInfo_flags_returnCopyFlag' : 'returnCopyFlag',
     'submissionType' : 'submissionType'
 
+
 }
