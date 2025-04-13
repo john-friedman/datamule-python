@@ -3,11 +3,25 @@ from .utils import _flatten_dict, Table
 # need to add missing numbers e.g schema
 
 def process_ownership(data):
-    pass
+    tables = []
+    tables.append(Table(_flatten_dict(data['ownershipDocument']['nonDerivativeTable']['nonDerivativeHolding']),'non_derivative_holding_ownership'))
+    tables.append(Table(_flatten_dict(data['ownershipDocument']['nonDerivativeTable']['nonDerivativeTransaction']),'non_derivative_transaction_ownership'))
+    tables.append(Table(_flatten_dict(data['ownershipDocument']['derivativeTable']['derivativeHolding']),'derivative_holding_ownership'))
+    tables.append(Table(_flatten_dict(data['ownershipDocument']['derivativeTable']['derivativeTransaction']),'derivative_transaction_ownership'))
+    # need to implement metadata
+    raise NotImplementedError("Need to implement metadata for ownership")
+    return tables
+
 def process_information_table(data):
-    pass
+    tables = []
+    tables.append(Table(_flatten_dict(data['informationTable']),'information_table'))
+    return tables
+    
 def process_13fhr(data):
-    pass
+    tables = []
+    tables.append(Table(_flatten_dict(data['edgarSubmission']),'13fhr'))
+    return tables
+
 def process_sbsef(data):
     tables = [Table(_flatten_dict(data['edgarSubmission']['headerData']),'sbsef')]
     return tables
@@ -202,5 +216,5 @@ def process_sbs(data):
 def process_abs(data):
     tables = []
     tables.append(Table(_flatten_dict(data['assetData']),'abs'))
-
+    raise NotImplementedError("Need to implement the rest of the ABS processing")
     return tables
