@@ -3,6 +3,12 @@ class Table():
         self.data = data
         self.type = type
 
+    def add_column(self,column_name,value):
+        pass
+
+    def map_data(self,mapping_dict):
+        pass
+
 def _flatten_dict(d, parent_key=''):
     items = {}
 

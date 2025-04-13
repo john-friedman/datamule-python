@@ -8,3 +8,6 @@ then apply flatten on those tables.
 THEN RENAME them. but we can actually do this AFTER PROCESSING
 
 so we need to double check that flatten dict does what we think then just feed in the proper tables.
+
+tables need add column
+tables need mapping func

@@ -128,3 +128,15 @@ def process_npx(data):
 def process_proxy_voting_record(data):
     tables = []
     tables.append(Table(_flatten_dict(data['proxyVoteTable']['proxyTable']),'proxy_voting_record'))
+
+def process_ta(data):
+    tables = []
+    metadata_ta = Table(_flatten_dict(data['edgarSubmission']['headerData']),'metadata_ta')
+    metadata_ta.add_column('schemaVersion', data['edgarSubmission']['schemaVersion'])
+    tables.append(metadata_ta)
+
+    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['registrant']),'registrant_ta'))
+    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['independentRegistrant']),'independent_registrant_ta'))
+    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['disciplinaryHistory']),'disciplinary_history_ta'))
+    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['signature']),'signature_ta'))
+    return tables
