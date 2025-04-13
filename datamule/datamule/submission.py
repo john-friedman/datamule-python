@@ -24,7 +24,7 @@ class Submission:
                     continue
                 filename = doc.get('filename')
                 extension = Path(filename).suffix
-                self.documents.append(Document(type=type, content=raw_documents[idx], extension=extension))
+                self.documents.append(Document(type=type, content=raw_documents[idx], extension=extension,filing_date=self.filing_date,accession=self.accession))
 
 
         if path is not None:
@@ -32,6 +32,9 @@ class Submission:
             metadata_path = self.path / 'metadata.json'
             with metadata_path.open('r') as f:
                 self.metadata = json.load(f)
+
+        self.accession = self.metadata['accession-number']
+        self.filing_date= f"{self.metadata['filing-date'][:4]}-{self.metadata['filing-date'][4:6]}-{self.metadata['filing-date'][6:8]}"
     
 
     def document_type(self, document_type):
@@ -57,7 +60,7 @@ class Submission:
                     with document_path.open('r') as f:
                         content = f.read()
 
-                    yield Document(type=doc['type'], content=content, extension=extension)
+                    yield Document(type=doc['type'], content=content, extension=extension,filing_date=self.filing_date,accession=self.accession)
                 # if loaded from sgml_content
                 else:
                     yield self.documents[idx]
@@ -81,7 +84,7 @@ class Submission:
                     with document_path.open('r') as f:
                         content = f.read()
 
-                    yield Document(type=doc['type'], content=content, extension=extension)
+                    yield Document(type=doc['type'], content=content, extension=extension,filing_date=self.filing_date,accession=self.accession)
                 else:
                     print(f"Warning: File {document_path} does not exist likely due to keep types in downloading.")
 

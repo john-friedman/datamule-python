@@ -21,7 +21,7 @@ class Downloader:
     def __init__(self, api_key=None):
         self.BASE_URL = "https://library.datamule.xyz/original/nc/"
         self.CHUNK_SIZE = 2 * 1024 * 1024
-        self.MAX_CONCURRENT_DOWNLOADS = 5
+        self.MAX_CONCURRENT_DOWNLOADS = 100
         self.MAX_DECOMPRESSION_WORKERS = cpu_count()
         self.MAX_PROCESSING_WORKERS = cpu_count()
         self.QUEUE_SIZE = 10

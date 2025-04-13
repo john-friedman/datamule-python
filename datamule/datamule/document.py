@@ -8,11 +8,14 @@ from .mapping_dicts.xml_mapping_dicts import dict_345
 from selectolax.parser import HTMLParser
 
 class Document:
-    def __init__(self, type, content, extension):
+    def __init__(self, type, content, extension,accession,filing_date):
         
         self.type = type
         extension = extension.lower()
+        self.accession = accession
+        self.filing_date = filing_date
         self.content = content
+        
         if extension == '.txt':
             self.content = self._preprocess_txt_content()
         elif extension in ['.htm', '.html']:
