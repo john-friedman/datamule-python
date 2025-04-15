@@ -1,6 +1,6 @@
 from pathlib import Path
 import json
-from .document import Document
+from .document.document import Document
 from secsgml import parse_sgml_submission_into_memory
 from pathlib import Path
 

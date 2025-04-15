@@ -1,7 +1,83 @@
-from .utils import _flatten_dict
 from .table import Table
 
 # need to add missing numbers e.g schema
+
+def process_tabular_data(self):
+    if self.type in ["3","4","5","3/A","4/A","5/A"]:
+        return process_ownership(self.data)
+    elif self.type in ["13F-HR", "13F-HR/A","13F-NT", "13F-NT/A"]:
+        return process_13fhr(self.data)
+    elif self.type in ["INFORMATION TABLE"]:
+        return process_information_table(self.data)
+    elif self.type in ["SBSEF","SBSEF/A","SBSEF-V","SBSEF-W"]:
+        return process_sbsef(self.data)
+    elif self.type in ["SDR","SDR/A","SDR-W","SDR-A"]:
+        return process_sdr_header_data(self.data)
+    elif self.type in ["EX-99.C SDR"]:
+        return process_ex_99c_sdr(self.data)
+    elif self.type in ["EX-99.A SDR SUMMARY"]:
+        return process_ex_99a_summary_sdr(self.data)
+    elif self.type in ["EX-99.G SDR"]:
+        return process_ex_99g_summary_sdr(self.data)
+    elif self.type in ["EX-99.I SDR SUMMARY"]:
+        return process_ex_99i_summary_sdr(self.data)
+    elif self.type in ["144", "144/A"]:
+        return process_144(self.data)
+    elif self.type in ["24F-2NT", "24F-2NT/A"]:
+        return process_24f2nt(self.data)
+    elif self.type in ["25-NSE", "25-NSE/A"]:
+        return process_25nse(self.data)
+    elif self.type in ["ATS-N", "ATS-N/A"]:
+        return process_ats(self.data)
+    elif self.type in ["C","C-W","C-U","C-U-W","C/A","C/A-W",
+            "C-AR","C-AR-W","C-AR/A","C-AR/A-W","C-TR","C-TR-W"]:
+        return process_c(self.data)
+    elif self.type in ["CFPORTAL","CFPORTAL/A","CFPORTAL-W"]:
+        return process_cfportal(self.data)
+    elif self.type in ["D","D/A"]:
+        return process_d(self.data)
+    elif self.type in ["MA","MA-A","MA/A","MA-I","MA-I/A","MA-W"]:
+        return process_ma(self.data)
+    elif self.type in ["N-CEN","N-CEN/A"]:
+        return process_ncen(self.data)
+    elif self.type in ["N-MFP","N-MFP/A","N-MFP1","N-MFP1/A",
+        "N-MFP2","N-MFP2/A","N-MFP3","N-MFP3/A"]:
+        return process_nmfp(self.data)
+    elif self.type in ["NPORT-P","NPORT-P/A"]:
+        return process_nportp(self.data)
+    elif self.type in ["N-PX","N-PX/A"]:
+        return process_npx(self.data)
+    elif self.type in ["TA-1","TA-1/A","TA-W","TA-2","TA-2/A"]:
+        return process_ta(self.data)
+    elif self.type in ["X-17A-5","X-17A-5/A"]:
+        return process_x17a5(self.data)
+    elif self.type in ["SCHEDULE 13D","SCHEDULE 13D/A",
+                    "SCHEDULE 13G","SCHEDULE 13G/A"]:
+        return process_schedule_13(self.data)
+    elif self.type in ["1-A","1-A/A","1-A POS","1-K","1-K/A","1-Z","1-Z/A"]:
+        return process_reg_a(self.data)
+    elif self.type in ["SBSE","SBSE/A","SBSE-A","SBSE-A/A","SBSE-BD","SBSE-BD/A","SBSE-C","SBSE-W","SBSE-CCO-RPT","SBSE-CCO-RPT/A"]:
+        return process_sbs(self.data)
+    elif self.type in ["EX-102"]:
+        return process_abs(self.data)
+    else:
+        raise ValueError(f"Unknown type: {self.type}")
+
+def _flatten_dict(d, parent_key=''):
+    items = {}
+
+    if isinstance(d, list):
+        return [_flatten_dict(item) for item in d]
+            
+    for k, v in d.items():
+        new_key = f"{parent_key}_{k}" if parent_key else k
+        
+        if isinstance(v, dict):
+            items.update(_flatten_dict(v, new_key))
+        else:
+            items[new_key] = str(v)
+                
+    return items
 
 def process_ownership(data):
     tables = []

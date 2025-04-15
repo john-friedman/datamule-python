@@ -1,6 +1,6 @@
 from .submission import Submission
 from .portfolio import Portfolio
-from .document import Document
+from .document.document import Document
 from .helper import _load_package_csv, load_package_dataset
 from .config import Config
 from .sheet import Sheet

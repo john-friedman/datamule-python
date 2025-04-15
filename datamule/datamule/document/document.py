@@ -3,9 +3,10 @@ import csv
 import re
 from doc2dict import xml2dict, txt2dict, dict2dict
 from doc2dict.mapping import flatten_hierarchy
-from .mapping_dicts.txt_mapping_dicts import dict_10k, dict_10q, dict_8k, dict_13d, dict_13g
-from .mapping_dicts.xml_mapping_dicts import dict_345
+from ..mapping_dicts.txt_mapping_dicts import dict_10k, dict_10q, dict_8k, dict_13d, dict_13g
+from ..mapping_dicts.xml_mapping_dicts import dict_345
 from selectolax.parser import HTMLParser
+from .processing import process_tabular_data
 
 class Document:
     def __init__(self, type, content, extension,accession,filing_date):
@@ -130,6 +131,12 @@ class Document:
             
         with open(output_filename, 'w',encoding='utf-8') as f:
             json.dump(self.data, f, indent=2)
+
+    def test(self):
+        self.parse()
+        print(1)
+        print(process_tabular_data(self))
+
 
     def to_tabular(self, accession_number=None):
         """
