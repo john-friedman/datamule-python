@@ -89,23 +89,36 @@ def process_ownership(data):
     if 'nonDerivativeTable' in ownership_doc:
         non_deriv_table = ownership_doc['nonDerivativeTable']
         if 'nonDerivativeHolding' in non_deriv_table and non_deriv_table['nonDerivativeHolding']:
-            tables.append(Table(_flatten_dict(non_deriv_table['nonDerivativeHolding']),'non_derivative_holding_ownership'))
+            tables.append(Table(_flatten_dict(non_deriv_table['nonDerivativeHolding']), 'non_derivative_holding_ownership'))
         if 'nonDerivativeTransaction' in non_deriv_table and non_deriv_table['nonDerivativeTransaction']:
-            nonderivative_transaction_data = non_deriv_table['nonDerivativeTransaction'].pop() if isinstance(non_deriv_table['nonDerivativeTransaction'], list) else non_deriv_table['nonDerivativeTransaction']
-            tables.append(Table(_flatten_dict(nonderivative_transaction_data),'non_derivative_transaction_ownership'))
+            tables.append(Table(_flatten_dict(non_deriv_table['nonDerivativeTransaction']), 'non_derivative_transaction_ownership'))
     
     if 'derivativeTable' in ownership_doc:
         deriv_table = ownership_doc['derivativeTable']
         if 'derivativeHolding' in deriv_table and deriv_table['derivativeHolding']:
-            derivative_holding_data = deriv_table['derivativeHolding'].pop() if isinstance(deriv_table['derivativeHolding'], list) else deriv_table['derivativeHolding']
-            tables.append(Table(_flatten_dict(derivative_holding_data),'derivative_holding_ownership'))
+            tables.append(Table(_flatten_dict(deriv_table['derivativeHolding']), 'derivative_holding_ownership'))
         if 'derivativeTransaction' in deriv_table and deriv_table['derivativeTransaction']:
-            derivative_transaction_data = deriv_table['derivativeTransaction'].pop() if isinstance(deriv_table['derivativeTransaction'], list) else deriv_table['derivativeTransaction']
-            tables.append(Table(_flatten_dict(derivative_transaction_data),'derivative_transaction_ownership'))
+            tables.append(Table(_flatten_dict(deriv_table['derivativeTransaction']), 'derivative_transaction_ownership'))
 
+    metadata_table_dict = {'schemaVersion': ownership_doc.get('schemaVersion', None),
+                            'documentType': ownership_doc.get('documentType', None),
+                            'periodOfReport': ownership_doc.get('periodOfReport', None),
+                            'dateOfOriginalSubmission': ownership_doc.get('dateOfOriginalSubmission', None),
+                            'noSecuritiesOwned': ownership_doc.get('noSecuritiesOwned', None),
+                            'notSubjectToSection16': ownership_doc.get('notSubjectToSection16', None),
+                            'form3HoldingsReported': ownership_doc.get('form3HoldingsReported', None),
+                            'form4TransactionsReported': ownership_doc.get('form4TransactionsReported', None),
+                            'aff10b5One': ownership_doc.get('aff10b5One', None),
+                            'remarks': ownership_doc.get('remarks', None)}
+    
+    metadata_table = Table(data=metadata_table_dict,type='metadata_ownership')
+    tables.append(metadata_table)
 
-
-    #tables.append(Table(_flatten_dict(ownership_doc),'metadata_ownership'))
+    if 'reportingOwner' in ownership_doc:
+        tables.append(Table(_flatten_dict(ownership_doc['reportingOwner']), 'reporting_owner_ownership'))
+    
+    if 'ownerSignature' in ownership_doc:
+        tables.append(Table(_flatten_dict(ownership_doc['ownerSignature']), 'owner_signature_ownership'))
 
     return tables
 
