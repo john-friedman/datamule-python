@@ -1,15 +1,20 @@
-from .utils import _flatten_dict, Table
+from .utils import _flatten_dict
+from .table import Table
 
 # need to add missing numbers e.g schema
 
 def process_ownership(data):
     tables = []
-    tables.append(Table(_flatten_dict(data['ownershipDocument']['nonDerivativeTable']['nonDerivativeHolding']),'non_derivative_holding_ownership'))
-    tables.append(Table(_flatten_dict(data['ownershipDocument']['nonDerivativeTable']['nonDerivativeTransaction']),'non_derivative_transaction_ownership'))
-    tables.append(Table(_flatten_dict(data['ownershipDocument']['derivativeTable']['derivativeHolding']),'derivative_holding_ownership'))
-    tables.append(Table(_flatten_dict(data['ownershipDocument']['derivativeTable']['derivativeTransaction']),'derivative_transaction_ownership'))
-    # need to implement metadata
-    raise NotImplementedError("Need to implement metadata for ownership")
+    nonderivative_holding_data = data['ownershipDocument']['nonDerivativeTable']['nonDerivativeHolding'].pop()
+    derivative_holding_data = data['ownershipDocument']['derivativeTable']['derivativeHolding'].pop()
+    nonderivative_transaction_data = data['ownershipDocument']['nonDerivativeTable']['nonDerivativeTransaction'].pop()
+    derivative_transaction_data = data['ownershipDocument']['derivativeTable']['derivativeTransaction'].pop()
+    tables.append(Table(_flatten_dict(data['ownershipDocument']),'metadata_ownership'))
+    tables.append(Table(_flatten_dict(nonderivative_holding_data),'non_derivative_holding_ownership'))
+    tables.append(Table(_flatten_dict(derivative_holding_data),'derivative_holding_ownership'))
+    tables.append(Table(_flatten_dict(nonderivative_transaction_data),'non_derivative_transaction_ownership'))
+    tables.append(Table(_flatten_dict(derivative_transaction_data),'derivative_transaction_ownership'))
+
     return tables
 
 def process_information_table(data):
@@ -62,8 +67,21 @@ def process_144(data):
     tables.append(Table(_flatten_dict(data['edgarSubmission']['headerData']),'metadata_144'))
     return tables
 
-def process_24f_2nt(data):
-    pass
+def process_24f2nt(data):
+    tables = []
+
+    header_data_table = Table(_flatten_dict(data['edgarSubmission']['headerData']),'metadata_24f_2nt')
+    header_data_table.add_column('schemaVersion', data['edgarSubmission']['schemaVersion'])
+    tables.append(header_data_table)
+
+    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['annualFilings']['annualFilingInfo']['item1']),'item_1_24f2nt'))
+    for i in range(2, 10):
+        tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['annualFilings']['annualFilingInfo'][f'item{i}']),
+                        f'item_{i}_24f2nt'))
+        
+    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['annualFilings']['annualFilingInfo']['signature']),'signature_24f2nt'))
+    return tables
+    
 
 def process_25nse(data):
     tables = []
@@ -114,10 +132,29 @@ def process_cfportal(data):
     return tables
 
 def process_d(data):
-    pass
+    tables = []
+    metadata = Table(_flatten_dict(data['edgarSubmission']['primaryIssuer']),'metadata_d')
+    metadata_columns = ['schemaVersion', 'submissionType', 'testOrLive','returnCopy','contactData','notificationAddressList']
+    for col in metadata_columns:
+        if col in data['edgarSubmission']:
+            metadata.add_column(col, data['edgarSubmission'][col])
+
+    tables.append(metadata)
+
+    tables.append(Table(_flatten_dict(data['edgarSubmission']['issuerList']),'primary_issuer_d'))
+    tables.append(Table(_flatten_dict(data['edgarSubmission']['offeringData']),'offering_data_d'))
+    tables.append(Table(_flatten_dict(data['edgarSubmission']['relatedPersonsList']),'related_persons_list_d'))
+
+    return tables
+
 
 def process_ma(data):
-    pass
+    tables = []
+    header_ma = Table(_flatten_dict(data['edgarSubmission']['headerData']),'metadata_ma')
+    tables.append(header_ma)
+    # AH THIS IS HOW IT WORKS
+    # WE NEED TO COMBINE TABLES
+    raise NotImplementedError("Need to implement the rest of the MA processing")
 
 def process_ncen(data):
     pass
