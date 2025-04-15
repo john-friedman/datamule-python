@@ -1,4 +1,4 @@
-from .mapping_dicts import non_derivative_holding_ownership_dict
+from .mapping_dicts import *
 class Table():
     def __init__(self, data, type):
         if isinstance(data,dict):
@@ -21,6 +21,12 @@ class Table():
         # Define the mapping dictionary for each table type
         if self.type == 'non_derivative_holding_ownership':
             mapping_dict = non_derivative_holding_ownership_dict
+        elif self.type == 'non_derivative_transaction_ownership':
+            mapping_dict = non_derivative_transaction_ownership_dict
+        elif self.type == 'derivative_transaction_ownership':
+            mapping_dict = derivative_transaction_ownership_dict
+        elif self.type == 'derivative_holding_ownership':
+            mapping_dict = derivative_holding_ownership_dict
         else:
             mapping_dict = {}
 
