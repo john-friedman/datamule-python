@@ -134,8 +134,7 @@ class Document:
 
     def test(self):
         self.parse()
-        print(1)
-        print(process_tabular_data(self))
+        return process_tabular_data(self)
 
 
     def to_tabular(self, accession_number=None):
