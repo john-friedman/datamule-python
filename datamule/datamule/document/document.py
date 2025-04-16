@@ -7,6 +7,7 @@ from ..mapping_dicts.txt_mapping_dicts import dict_10k, dict_10q, dict_8k, dict_
 from ..mapping_dicts.xml_mapping_dicts import dict_345
 from selectolax.parser import HTMLParser
 from .processing import process_tabular_data
+from pathlib import Path
 
 class Document:
     def __init__(self, type, content, extension,accession,filing_date):
@@ -132,266 +133,26 @@ class Document:
         with open(output_filename, 'w',encoding='utf-8') as f:
             json.dump(self.data, f, indent=2)
 
-    def test(self):
+    def to_tabular(self):
         self.parse()
         return process_tabular_data(self)
 
 
-    def to_tabular(self, accession_number=None):
-        """
-        Convert the document to a tabular format suitable for CSV output.
-        
-        Args:
-            accession_number: Optional accession number to include in the output
+    def write_csv(self, output_folder, accession_number=None):
             
-        Returns:
-            list: List of dictionaries, each representing a row in the tabular output
-        """
-        self.parse()
-        
-        # Common function to normalize and process dictionaries
-        def process_records(records, mapping_dict, is_derivative=None):
-            """
-            Process records into a standardized tabular format
-            
-            Args:
-                records: List or single dictionary of records to process
-                mapping_dict: Dictionary mapping source keys to target keys
-                is_derivative: Boolean flag for derivative securities (or None if not applicable)
-                
-            Returns:
-                list: Processed records in tabular format
-            """
-            # Convert single dict to list for uniform processing
-            if isinstance(records, dict):
-                records = [records]
-                
-            # Flatten nested dictionaries
-            flattened = self._flatten_dict(records)
-            
-            # Process each record
-            result = []
-            for item in flattened:
-                # Normalize whitespace in all string values
-                for key in item:
-                    if isinstance(item[key], str):
-                        item[key] = re.sub(r'\s+', ' ', item[key])
-                        
-                # Map keys according to the mapping dictionary
-                mapped_item = {}
-                for old_key, value in item.items():
-                    target_key = mapping_dict.get(old_key, old_key)
-                    mapped_item[target_key] = value
-                    
-                # Set derivative flags if applicable
-                if is_derivative is not None:
-                    mapped_item["isDerivative"] = 1 if is_derivative else 0
-                    mapped_item["isNonDerivative"] = 0 if is_derivative else 1
-                    
-                # Ensure all expected columns exist
-                output_columns = list(dict.fromkeys(mapping_dict.values()))
-                ordered_item = {column: mapped_item.get(column, None) for column in output_columns}
-                
-                # Add accession number if provided
-                if accession_number is not None:
-                    ordered_item['accession'] = accession_number
-                    
-                result.append(ordered_item)
-                
-            return result
-        
-        # Handle different document types
-        if self.type == "INFORMATION TABLE":
-            # Information Table mapping dictionary
-            info_table_mapping = {
-                "nameOfIssuer": "nameOfIssuer", 
-                "titleOfClass": "titleOfClass", 
-                "cusip": "cusip", 
-                "value": "value", 
-                "shrsOrPrnAmt_sshPrnamt": "sshPrnamt", 
-                "shrsOrPrnAmt_sshPrnamtType": "sshPrnamtType", 
-                "investmentDiscretion": "investmentDiscretion", 
-                "votingAuthority_Sole": "votingAuthoritySole", 
-                "votingAuthority_Shared": "votingAuthorityShared", 
-                "votingAuthority_None": "votingAuthorityNone", 
-                "reportingOwnerCIK": "reportingOwnerCIK", 
-                "putCall": "putCall", 
-                "otherManager": "otherManager", 
-                "figi": "figi"
-            }
-            
-            # Process the information table
-            info_table = self.data['informationTable']['infoTable']
-            return process_records(info_table, info_table_mapping)
-            
-        elif self.type == "PROXY VOTING RECORD":
-            # Proxy voting record mapping dictionary
-            proxy_mapping = {
-                'meetingDate': 'meetingDate',
-                'isin': 'isin',  
-                'cusip': 'cusip',
-                'issuerName': 'issuerName',
-                'voteDescription': 'voteDescription',
-                'sharesOnLoan': 'sharesOnLoan',
-                'vote_voteRecord_sharesVoted': 'sharesVoted',
-                'voteCategories_voteCategory_categoryType': 'voteCategory', 
-                'vote_voteRecord': 'voteRecord',
-                'sharesVoted': 'sharesVoted', 
-                'voteSource': 'voteSource', 
-                'vote_voteRecord_howVoted': 'howVoted',
-                'figi': 'figi', 
-                'vote_voteRecord_managementRecommendation': 'managementRecommendation'
-            }
-            
-            # Process proxy voting records if they exist
-            all_results = []
-            if 'proxyVoteTable' in self.data and 'proxyTable' in self.data['proxyVoteTable'] and self.data['proxyVoteTable']['proxyTable'] is not None:
-                proxy_records = self.data['proxyVoteTable']['proxyTable']
-                proxy_results = process_records(proxy_records, proxy_mapping)
-                all_results.extend(proxy_results)
-                
-            return all_results
-        
-        elif self.type == "NPORT-P":
-            # Proxy voting record mapping dictionary
-            mapping = {
-                'meetingDate': 'meetingDate',
-                'isin': 'isin',  
-                'cusip': 'cusip',
-                'issuerName': 'issuerName',
-                'voteDescription': 'voteDescription',
-                'sharesOnLoan': 'sharesOnLoan',
-                'vote_voteRecord_sharesVoted': 'sharesVoted',
-                'voteCategories_voteCategory_categoryType': 'voteCategory', 
-                'vote_voteRecord': 'voteRecord',
-                'sharesVoted': 'sharesVoted', 
-                'voteSource': 'voteSource', 
-                'vote_voteRecord_howVoted': 'howVoted',
-                'figi': 'figi', 
-                'vote_voteRecord_managementRecommendation': 'managementRecommendation'
-            }
-            
-            all_results = []
-            data = (self.data.get('edgarSubmission', {}).get('formData', {}).get('invstOrSecs', {}).get('invstOrSec'))
-            if data is not None:
-                results = process_records(data, mapping)
-                all_results.extend(results)
-                
-            return all_results
-            
-        elif self.type in ["3", "4", "5", "3/A", "4/A", "5/A"]:
-            # Forms 3, 4, 5 mapping dictionary
-            form_345_mapping = {
-                # Flag fields (will be set programmatically)
-                "isDerivative": "isDerivative",
-                "isNonDerivative": "isNonDerivative",
-                
-                # Common fields across all types
-                "securityTitle_value": "securityTitle",
-                "transactionDate_value": "transactionDate",
-                "documentType": "documentType",
-                "transactionCoding_transactionFormType": "documentType",
-                "transactionCoding_transactionCode": "transactionCode",
-                "transactionAmounts_transactionAcquiredDisposedCode_value": "transactionCode",
-                "transactionCoding_equitySwapInvolved": "equitySwapInvolved",
-                "transactionTimeliness_value": "transactionTimeliness",
-                "transactionAmounts_transactionShares_value": "transactionShares",
-                "transactionAmounts_transactionPricePerShare_value": "transactionPricePerShare",
-                "postTransactionAmounts_sharesOwnedFollowingTransaction_value": "sharesOwnedFollowingTransaction",
-                "heldFollowingReport": "sharesOwnedFollowingTransaction",  # Form 3
-                "ownershipNature_directOrIndirectOwnership_value": "ownershipType",
-                "ownershipNature_natureOfOwnership_value": "ownershipType",
-                "deemedExecutionDate": "deemedExecutionDate",
-                "deemedExecutionDate_value": "deemedExecutionDate",
-                
-                # Derivative-specific fields
-                "conversionOrExercisePrice_value": "conversionOrExercisePrice",
-                "exerciseDate_value": "exerciseDate",
-                "expirationDate_value": "expirationDate",
-                "underlyingSecurity_underlyingSecurityTitle_value": "underlyingSecurityTitle",
-                "underlyingSecurity_underlyingSecurityShares_value": "underlyingSecurityShares",
-                "underlyingSecurity_underlyingSecurityValue_value": "underlyingSecurityValue",
-                
-                # Footnote fields
-                "transactionPricePerShareFootnote": "transactionPricePerShareFootnote",
-                "transactionAmounts_transactionPricePerShare_footnote": "transactionPricePerShareFootnote",
-                "transactionCodeFootnote": "transactionCodeFootnote",
-                "transactionAmounts_transactionAcquiredDisposedCode_footnote": "transactionCodeFootnote",
-                "transactionCoding_footnote": "transactionCodeFootnote",
-                "natureOfOwnershipFootnote": "natureOfOwnershipFootnote",
-                "ownershipNature_natureOfOwnership_footnote": "natureOfOwnershipFootnote",
-                "sharesOwnedFollowingTransactionFootnote": "sharesOwnedFollowingTransactionFootnote",
-                "postTransactionAmounts_sharesOwnedFollowingTransaction_footnote": "sharesOwnedFollowingTransactionFootnote",
-                "ownershipTypeFootnote": "ownershipTypeFootnote",
-                "ownershipNature_directOrIndirectOwnership_footnote": "ownershipTypeFootnote",
-                "securityTitleFootnote": "securityTitleFootnote",
-                "securityTitle_footnote": "securityTitleFootnote",
-                "transactionSharesFootnote": "transactionSharesFootnote",
-                "transactionAmounts_transactionShares_footnote": "transactionSharesFootnote",
-                "transactionDateFootnote": "transactionDateFootnote",
-                "transactionDate_footnote": "transactionDateFootnote",
-                "conversionOrExercisePriceFootnote": "conversionOrExercisePriceFootnote",
-                "conversionOrExercisePrice_footnote": "conversionOrExercisePriceFootnote",
-                "exerciseDateFootnote": "exerciseDateFootnote",
-                "exerciseDate_footnote": "exerciseDateFootnote",
-                "expirationDateFootnote": "expirationDateFootnote",
-                "expirationDate_footnote": "expirationDateFootnote",
-                "underlyingSecurityTitleFootnote": "underlyingSecurityTitleFootnote",
-                "underlyingSecurity_underlyingSecurityTitle_footnote": "underlyingSecurityTitleFootnote",
-                "underlyingSecuritySharesFootnote": "underlyingSecuritySharesFootnote",
-                "underlyingSecurity_underlyingSecurityShares_footnote": "underlyingSecuritySharesFootnote",
-                "underlyingSecurityValueFootnote": "underlyingSecurityValueFootnote",
-                "underlyingSecurity_underlyingSecurityValue_footnote": "underlyingSecurityValueFootnote"
-            }
-            
-            # Results container
-            all_results = []
-            
-            # Process non-derivative transactions if they exist
-            if 'nonDerivativeTable' in self.data['ownershipDocument'] and self.data['ownershipDocument']['nonDerivativeTable'] is not None:
-                if 'nonDerivativeTransaction' in self.data['ownershipDocument']['nonDerivativeTable']:
-                    non_deriv_trans = self.data['ownershipDocument']['nonDerivativeTable']['nonDerivativeTransaction']
-                    non_deriv_results = process_records(non_deriv_trans, form_345_mapping, is_derivative=False)
-                    all_results.extend(non_deriv_results)
-                
-                # Process non-derivative holdings (for Form 3)
-                if 'nonDerivativeHolding' in self.data['ownershipDocument']['nonDerivativeTable']:
-                    non_deriv_hold = self.data['ownershipDocument']['nonDerivativeTable']['nonDerivativeHolding']
-                    non_deriv_hold_results = process_records(non_deriv_hold, form_345_mapping, is_derivative=False)
-                    all_results.extend(non_deriv_hold_results)
-            
-            # Process derivative transactions if they exist
-            if 'derivativeTable' in self.data['ownershipDocument'] and self.data['ownershipDocument']['derivativeTable'] is not None:
-                if 'derivativeTransaction' in self.data['ownershipDocument']['derivativeTable']:
-                    deriv_trans = self.data['ownershipDocument']['derivativeTable']['derivativeTransaction']
-                    deriv_results = process_records(deriv_trans, form_345_mapping, is_derivative=True)
-                    all_results.extend(deriv_results)
-                
-                # Process derivative holdings (for Form 3)
-                if 'derivativeHolding' in self.data['ownershipDocument']['derivativeTable']:
-                    deriv_hold = self.data['ownershipDocument']['derivativeTable']['derivativeHolding']
-                    deriv_hold_results = process_records(deriv_hold, form_345_mapping, is_derivative=True)
-                    all_results.extend(deriv_hold_results)
-            
-            return all_results
-        
-        else:
-            raise ValueError(f"Document type '{self.type}' is not supported for tabular conversion")
-    
-    def write_csv(self, output_filename, accession_number=None):
-            
-        data = self.to_tabular(accession_number)
+        tables = self.to_tabular(accession_number)
 
-        if not data:
-
+        if not tables:
             return
         
-        fieldnames = data[0].keys()
+        for table in tables:
+            fieldnames = table.columns
+            output_filename = Path(output_folder) / f"{table.type}.csv"
         
-        with open(output_filename, 'w', newline='') as csvfile:
-            writer = csv.DictWriter(csvfile,fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
-            writer.writeheader()
-            writer.writerows(data)
+            with open(output_filename, 'w', newline='') as csvfile:
+                writer = csv.DictWriter(csvfile,fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
+                writer.writeheader()
+                writer.writerows(table.data)
 
         
     def _document_to_section_text(self, document_data, parent_key=''):
