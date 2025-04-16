@@ -29,7 +29,7 @@ class Document:
 
     #_load_text_content
     def _preprocess_txt_content(self):
-            return self.content.read().translate(str.maketrans({
+            return self.content.translate(str.maketrans({
                 '\xa0': ' ', '\u2003': ' ',
                 '\u2018': "'", '\u2019': "'",
                 '\u201c': '"', '\u201d': '"'
@@ -134,6 +134,8 @@ class Document:
             json.dump(self.data, f, indent=2)
 
     def to_tabular(self):
+        if self.extension != '.xml':
+            return []
         self.parse()
         return process_tabular_data(self)
 

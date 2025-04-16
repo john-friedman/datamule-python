@@ -1,3 +1,9 @@
+Norman's requests
 Filter portfolio by ticker/cik
+document path
 
-re-add document path
+
+my requests:
+* rewrite portfolio to take advantage of parallel procesor executor
+* rewrite secsgml to be safer wrt to '>', also faster and optimized for parallel processing using rust
+* fix datamule sec archive cik issue
