@@ -1,10 +1,12 @@
 from .mapping_dicts import *
+
 class Table():
-    def __init__(self, data, type):
+    def __init__(self, data, type,accession):
         if isinstance(data,dict):
             data = [data]
         self.type = type
         self.data = data
+        self.accession = accession
         self.columns = self.determine_columns()
 
     def determine_columns(self):
@@ -17,6 +19,9 @@ class Table():
             row[column_name] = value
 
     def map_data(self):
+        # Add the accession column to all rows first, ensuring it will be first
+        self.add_column('accession', self.accession)
+        
         # Define the mapping dictionary for each table type
         if self.type == 'non_derivative_holding_ownership':
             mapping_dict = non_derivative_holding_ownership_dict
@@ -28,6 +33,13 @@ class Table():
             mapping_dict = derivative_holding_ownership_dict
         else:
             mapping_dict = {}
+        
+        # Update mapping dictionary to include accession at the beginning
+        # Create a new mapping with accession as the first key
+        new_mapping = {'accession': 'accession'}
+        # Add the rest of the mapping
+        new_mapping.update(mapping_dict)
+        mapping_dict = new_mapping
 
         # apply the mapping to the data
         for row in self.data:
@@ -49,4 +61,3 @@ class Table():
             row.update(ordered_row)
 
         self.determine_columns()
-

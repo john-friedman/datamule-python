@@ -1,65 +1,80 @@
 from .table import Table
 
+def safe_get(d, keys, default=None):
+    """Safely access nested dictionary keys"""
+    current = d
+    for key in keys:
+        if isinstance(current, dict) and key in current:
+            current = current[key]
+        else:
+            return default
+    return current
+
 def process_tabular_data(self):
     if self.type in ["3","4","5","3/A","4/A","5/A"]:
-        return process_ownership(self.data)
+        tables = process_ownership(self.data)
     elif self.type in ["13F-HR", "13F-HR/A","13F-NT", "13F-NT/A"]:
-        return process_13fhr(self.data)
+        tables = process_13fhr(self.data)
     elif self.type in ["INFORMATION TABLE"]:
-        return process_information_table(self.data)
+        tables = process_information_table(self.data)
     elif self.type in ["SBSEF","SBSEF/A","SBSEF-V","SBSEF-W"]:
-        return process_sbsef(self.data)
+        tables = process_sbsef(self.data)
     elif self.type in ["SDR","SDR/A","SDR-W","SDR-A"]:
-        return process_sdr_header_data(self.data)
+        tables = process_sdr_header_data(self.data)
     elif self.type in ["EX-99.C SDR"]:
-        return process_ex_99c_sdr(self.data)
+        tables = process_ex_99c_sdr(self.data)
     elif self.type in ["EX-99.A SDR SUMMARY"]:
-        return process_ex_99a_summary_sdr(self.data)
+        tables = process_ex_99a_summary_sdr(self.data)
     elif self.type in ["EX-99.G SDR"]:
-        return process_ex_99g_summary_sdr(self.data)
+        tables = process_ex_99g_summary_sdr(self.data)
     elif self.type in ["EX-99.I SDR SUMMARY"]:
-        return process_ex_99i_summary_sdr(self.data)
+        tables = process_ex_99i_summary_sdr(self.data)
     elif self.type in ["144", "144/A"]:
-        return process_144(self.data)
+        tables = process_144(self.data)
     elif self.type in ["24F-2NT", "24F-2NT/A"]:
-        return process_24f2nt(self.data)
+        tables = process_24f2nt(self.data)
     elif self.type in ["25-NSE", "25-NSE/A"]:
-        return process_25nse(self.data)
+        tables = process_25nse(self.data)
     elif self.type in ["ATS-N", "ATS-N/A"]:
-        return process_ats(self.data)
+        tables = process_ats(self.data)
     elif self.type in ["C","C-W","C-U","C-U-W","C/A","C/A-W",
             "C-AR","C-AR-W","C-AR/A","C-AR/A-W","C-TR","C-TR-W"]:
-        return process_c(self.data)
+        tables = process_c(self.data)
     elif self.type in ["CFPORTAL","CFPORTAL/A","CFPORTAL-W"]:
-        return process_cfportal(self.data)
+        tables = process_cfportal(self.data)
     elif self.type in ["D","D/A"]:
-        return process_d(self.data)
+        tables = process_d(self.data)
     elif self.type in ["MA","MA-A","MA/A","MA-I","MA-I/A","MA-W"]:
-        return process_ma(self.data)
+        tables = process_ma(self.data)
     elif self.type in ["N-CEN","N-CEN/A"]:
-        return process_ncen(self.data)
+        tables = process_ncen(self.data)
     elif self.type in ["N-MFP","N-MFP/A","N-MFP1","N-MFP1/A",
         "N-MFP2","N-MFP2/A","N-MFP3","N-MFP3/A"]:
-        return process_nmfp(self.data)
+        tables = process_nmfp(self.data)
     elif self.type in ["NPORT-P","NPORT-P/A"]:
-        return process_nportp(self.data)
+        tables = process_nportp(self.data)
     elif self.type in ["N-PX","N-PX/A"]:
-        return process_npx(self.data)
+        tables = process_npx(self.data)
     elif self.type in ["TA-1","TA-1/A","TA-W","TA-2","TA-2/A"]:
-        return process_ta(self.data)
+        tables = process_ta(self.data)
     elif self.type in ["X-17A-5","X-17A-5/A"]:
-        return process_x17a5(self.data)
+        tables = process_x17a5(self.data)
     elif self.type in ["SCHEDULE 13D","SCHEDULE 13D/A",
                     "SCHEDULE 13G","SCHEDULE 13G/A"]:
-        return process_schedule_13(self.data)
+        tables = process_schedule_13(self.data)
     elif self.type in ["1-A","1-A/A","1-A POS","1-K","1-K/A","1-Z","1-Z/A"]:
-        return process_reg_a(self.data)
+        tables = process_reg_a(self.data)
     elif self.type in ["SBSE","SBSE/A","SBSE-A","SBSE-A/A","SBSE-BD","SBSE-BD/A","SBSE-C","SBSE-W","SBSE-CCO-RPT","SBSE-CCO-RPT/A"]:
-        return process_sbs(self.data)
+        tables = process_sbs(self.data)
     elif self.type in ["EX-102"]:
-        return process_ex102_abs(self.data)
+        tables = process_ex102_abs(self.data)
     else:
         raise ValueError(f"Unknown type: {self.type}")
+    
+    if tables is not None:
+        tables = [table.map_data() for table in tables]
+        
+    return tables
 
 def _flatten_dict(d, parent_key=''):
     items = {}
@@ -122,238 +137,461 @@ def process_ownership(data):
 
 def process_information_table(data):
     tables = []
-    if 'informationTable' in data:
-        tables.append(Table(_flatten_dict(data['informationTable']),'information_table'))
+    info_table = safe_get(data, ['informationTable'])
+    if info_table:
+        tables.append(Table(_flatten_dict(info_table), 'information_table'))
     return tables
     
 def process_13fhr(data):
     tables = []
-    if 'edgarSubmission' in data:
-        tables.append(Table(_flatten_dict(data['edgarSubmission']),'13fhr'))
+    edgar_submission = safe_get(data, ['edgarSubmission'])
+    if edgar_submission:
+        tables.append(Table(_flatten_dict(edgar_submission), '13fhr'))
     return tables
 
 def process_sbsef(data):
-    tables = [Table(_flatten_dict(data['edgarSubmission']['headerData']),'sbsef')]
+    tables = []
+    header_data = safe_get(data, ['edgarSubmission', 'headerData'])
+    if header_data:
+        tables.append(Table(_flatten_dict(header_data), 'sbsef'))
     return tables
 
 def process_sdr_header_data(data):
     tables = []
-    tables.append(Table(_flatten_dict(data['edgarSubmission']),'sdr'))
+    edgar_submission = safe_get(data, ['edgarSubmission'])
+    if edgar_submission:
+        tables.append(Table(_flatten_dict(edgar_submission), 'sdr'))
     return tables 
 
 def process_ex_99c_sdr(data):
     tables = []
-    tables.append(Table(_flatten_dict(data['directorGovernors']),'EX-99.C SDR'))
+    director_governors = safe_get(data, ['directorGovernors'])
+    if director_governors:
+        tables.append(Table(_flatten_dict(director_governors), 'EX-99.C SDR'))
     return tables
 
 def process_ex_99a_summary_sdr(data):
     tables = []
-    tables.append(Table(_flatten_dict(data['controllingPersons']),'EX-99.A SDR SUMMARY'))
+    controlling_persons = safe_get(data, ['controllingPersons'])
+    if controlling_persons:
+        tables.append(Table(_flatten_dict(controlling_persons), 'EX-99.A SDR SUMMARY'))
     return tables
 
 def process_ex_99g_summary_sdr(data):
     tables = []
-    tables.append(Table(_flatten_dict(data['affiliates']),'EX-99.G SDR'))
+    affiliates = safe_get(data, ['affiliates'])
+    if affiliates:
+        tables.append(Table(_flatten_dict(affiliates), 'EX-99.G SDR'))
     return tables
 
 def process_ex_99i_summary_sdr(data):
     tables = []
-    tables.append(Table(_flatten_dict(data['serviceProviderContracts']),'EX-99.I SDR SUMMARY'))
+    service_provider_contracts = safe_get(data, ['serviceProviderContracts'])
+    if service_provider_contracts:
+        tables.append(Table(_flatten_dict(service_provider_contracts), 'EX-99.I SDR SUMMARY'))
     return tables
 
 def process_144(data):
     tables = []
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['noticeSignature']),'signatures_144'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['securitiesSoldInPast3Months']),'securities_sold_in_past_3_months_144'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['securitiesToBeSold']),'securities_to_be_sold_144'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['securitiesInformation']),'securities_information_144'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['issuerInformation']),'issuer_information_144'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['remarks']),'remarks_144'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['headerData']),'metadata_144'))
+    notice_signature = safe_get(data, ['edgarSubmission', 'formData', 'noticeSignature'])
+    if notice_signature:
+        tables.append(Table(_flatten_dict(notice_signature), 'signatures_144'))
+    
+    securities_sold = safe_get(data, ['edgarSubmission', 'formData', 'securitiesSoldInPast3Months'])
+    if securities_sold:
+        tables.append(Table(_flatten_dict(securities_sold), 'securities_sold_in_past_3_months_144'))
+    
+    securities_to_be_sold = safe_get(data, ['edgarSubmission', 'formData', 'securitiesToBeSold'])
+    if securities_to_be_sold:
+        tables.append(Table(_flatten_dict(securities_to_be_sold), 'securities_to_be_sold_144'))
+    
+    securities_info = safe_get(data, ['edgarSubmission', 'formData', 'securitiesInformation'])
+    if securities_info:
+        tables.append(Table(_flatten_dict(securities_info), 'securities_information_144'))
+    
+    issuer_info = safe_get(data, ['edgarSubmission', 'formData', 'issuerInformation'])
+    if issuer_info:
+        tables.append(Table(_flatten_dict(issuer_info), 'issuer_information_144'))
+    
+    header_data = safe_get(data, ['edgarSubmission', 'headerData'])
+    metadata_table = Table(_flatten_dict(header_data), 'metadata_144')
+    remarks = safe_get(data, ['edgarSubmission', 'formData', 'remarks'])
+    if remarks:
+        metadata_table.add_column('remarks', remarks)
+    
+    tables.append(metadata_table)
+    
     return tables
 
 def process_24f2nt(data):
     tables = []
 
-    header_data_table = Table(_flatten_dict(data['edgarSubmission']['headerData']),'metadata_24f_2nt')
-    header_data_table.add_column('schemaVersion', data['edgarSubmission']['schemaVersion'])
-    tables.append(header_data_table)
+    header_data = safe_get(data, ['edgarSubmission', 'headerData'])
+    if header_data:
+        header_data_table = Table(_flatten_dict(header_data), 'metadata_24f_2nt')
+        schema_version = safe_get(data, ['edgarSubmission', 'schemaVersion'])
+        if schema_version:
+            header_data_table.add_column('schemaVersion', schema_version)
+        tables.append(header_data_table)
 
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['annualFilings']['annualFilingInfo']['item1']),'item_1_24f2nt'))
+    item1 = safe_get(data, ['edgarSubmission', 'formData', 'annualFilings', 'annualFilingInfo', 'item1'])
+    if item1:
+        tables.append(Table(_flatten_dict(item1), 'item_1_24f2nt'))
+    
     for i in range(2, 10):
-        tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['annualFilings']['annualFilingInfo'][f'item{i}']),
-                        f'item_{i}_24f2nt'))
-        
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['annualFilings']['annualFilingInfo']['signature']),'signature_24f2nt'))
+        item = safe_get(data, ['edgarSubmission', 'formData', 'annualFilings', 'annualFilingInfo', f'item{i}'])
+        if item:
+            tables.append(Table(_flatten_dict(item), f'item_{i}_24f2nt'))
+    
+    signature = safe_get(data, ['edgarSubmission', 'formData', 'annualFilings', 'annualFilingInfo', 'signature'])
+    if signature:
+        tables.append(Table(_flatten_dict(signature), 'signature_24f2nt'))
+    
     return tables
 
 def process_25nse(data):
     tables = []
-    tables.append(Table(_flatten_dict(data['notificationOfRemoval']),'_25nse'))
+    notification = safe_get(data, ['notificationOfRemoval'])
+    if notification:
+        tables.append(Table(_flatten_dict(notification), '_25nse'))
     return tables
 
 def process_ats(data):
     tables = []
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['headerData']),'metadata_ats'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['cover']),'cover_ats'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['partOne']),'part_one_ats'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['partTwo']),'part_two_ats'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['partThree']),'part_three_ats'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['partFour']),'part_four_ats'))
+    header_data = safe_get(data, ['edgarSubmission', 'headerData'])
+    if header_data:
+        tables.append(Table(_flatten_dict(header_data), 'metadata_ats'))
+    
+    cover = safe_get(data, ['edgarSubmission', 'formData', 'cover'])
+    if cover:
+        tables.append(Table(_flatten_dict(cover), 'cover_ats'))
+    
+    part_one = safe_get(data, ['edgarSubmission', 'formData', 'partOne'])
+    if part_one:
+        tables.append(Table(_flatten_dict(part_one), 'part_one_ats'))
+    
+    part_two = safe_get(data, ['edgarSubmission', 'formData', 'partTwo'])
+    if part_two:
+        tables.append(Table(_flatten_dict(part_two), 'part_two_ats'))
+    
+    part_three = safe_get(data, ['edgarSubmission', 'formData', 'partThree'])
+    if part_three:
+        tables.append(Table(_flatten_dict(part_three), 'part_three_ats'))
+    
+    part_four = safe_get(data, ['edgarSubmission', 'formData', 'partFour'])
+    if part_four:
+        tables.append(Table(_flatten_dict(part_four), 'part_four_ats'))
+    
     return tables
 
 def process_c(data):
     tables = []
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['headerData']),'metadata_c'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['issuerInformation']),'issuer_information_c'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['offeringInformation']),'offering_information_c'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['annualReportDisclosureRequirements']),'annual_report_disclosure_requirements_c'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['signatureInfo']),'signature_info_c'))
+    header_data = safe_get(data, ['edgarSubmission', 'headerData'])
+    if header_data:
+        tables.append(Table(_flatten_dict(header_data), 'metadata_c'))
+    
+    issuer_info = safe_get(data, ['edgarSubmission', 'formData', 'issuerInformation'])
+    if issuer_info:
+        tables.append(Table(_flatten_dict(issuer_info), 'issuer_information_c'))
+    
+    offering_info = safe_get(data, ['edgarSubmission', 'formData', 'offeringInformation'])
+    if offering_info:
+        tables.append(Table(_flatten_dict(offering_info), 'offering_information_c'))
+    
+    annual_report = safe_get(data, ['edgarSubmission', 'formData', 'annualReportDisclosureRequirements'])
+    if annual_report:
+        tables.append(Table(_flatten_dict(annual_report), 'annual_report_disclosure_requirements_c'))
+    
+    signature_info = safe_get(data, ['edgarSubmission', 'formData', 'signatureInfo'])
+    if signature_info:
+        tables.append(Table(_flatten_dict(signature_info), 'signature_info_c'))
+    
     return tables
 
 def process_cfportal(data):
     tables = []
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['headerData']),'metadata_cfportal'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['identifyingInformation']),'identifying_information_cfportal'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['formOfOrganization']),'form_of_organization_cfportal'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['successions']),'successions_cfportal'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['controlRelationships']),'control_relationships_cfportal'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['disclosureAnswers']),'disclosure_answers_cfportal'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['nonSecuritiesRelatedBusiness']),'non_securities_related_business_cfportal'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['escrowArrangements']),'escrow_arrangements_cfportal'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['execution']),'execution_cfportal'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['scheduleA']),'schedule_a_cfportal'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['scheduleB']),'schedule_b_cfportal'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['scheduleC']),'schedule_c_cfportal'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['scheduleD']),'schedule_d_cfportal'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['criminalDrpInfo']),'criminal_drip_info_cfportal'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['regulatoryDrpInfo']),'regulatory_drip_info_cfportal'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['civilJudicialDrpInfo']),'civil_judicial_drip_info_cfportal'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['bankruptcySipcDrpInfo']),'bankruptcy_sipc_drip_info_cfportal'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['bondDrpInfo']),'bond_drip_info_cfportal'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['judgementDrpInfo']),'judgement_drip_info_cfportal'))
+    header_data = safe_get(data, ['edgarSubmission', 'headerData'])
+    if header_data:
+        tables.append(Table(_flatten_dict(header_data), 'metadata_cfportal'))
+    
+    base_path = ['edgarSubmission', 'formData']
+    sections = [
+        ('identifyingInformation', 'identifying_information_cfportal'),
+        ('formOfOrganization', 'form_of_organization_cfportal'),
+        ('successions', 'successions_cfportal'),
+        ('controlRelationships', 'control_relationships_cfportal'),
+        ('disclosureAnswers', 'disclosure_answers_cfportal'),
+        ('nonSecuritiesRelatedBusiness', 'non_securities_related_business_cfportal'),
+        ('escrowArrangements', 'escrow_arrangements_cfportal'),
+        ('execution', 'execution_cfportal'),
+        ('scheduleA', 'schedule_a_cfportal'),
+        ('scheduleB', 'schedule_b_cfportal'),
+        ('scheduleC', 'schedule_c_cfportal'),
+        ('scheduleD', 'schedule_d_cfportal'),
+        ('criminalDrpInfo', 'criminal_drip_info_cfportal'),
+        ('regulatoryDrpInfo', 'regulatory_drip_info_cfportal'),
+        ('civilJudicialDrpInfo', 'civil_judicial_drip_info_cfportal'),
+        ('bankruptcySipcDrpInfo', 'bankruptcy_sipc_drip_info_cfportal'),
+        ('bondDrpInfo', 'bond_drip_info_cfportal'),
+        ('judgementDrpInfo', 'judgement_drip_info_cfportal')
+    ]
+    
+    for section_key, table_name in sections:
+        section_data = safe_get(data, base_path + [section_key])
+        if section_data:
+            tables.append(Table(_flatten_dict(section_data), table_name))
+    
     return tables
 
 def process_d(data):
     tables = []
-    metadata = Table(_flatten_dict(data['edgarSubmission']['primaryIssuer']),'metadata_d')
-    metadata_columns = ['schemaVersion', 'submissionType', 'testOrLive','returnCopy','contactData','notificationAddressList']
-    for col in metadata_columns:
-        if col in data['edgarSubmission']:
-            metadata.add_column(col, data['edgarSubmission'][col])
-
-    tables.append(metadata)
-
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['issuerList']),'primary_issuer_d'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['offeringData']),'offering_data_d'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['relatedPersonsList']),'related_persons_list_d'))
+    primary_issuer = safe_get(data, ['edgarSubmission', 'primaryIssuer'])
+    if primary_issuer:
+        metadata = Table(_flatten_dict(primary_issuer), 'metadata_d')
+        
+        metadata_columns = ['schemaVersion', 'submissionType', 'testOrLive', 'returnCopy', 'contactData', 'notificationAddressList']
+        for col in metadata_columns:
+            col_data = safe_get(data, ['edgarSubmission', col])
+            if col_data:
+                metadata.add_column(col, col_data)
+        
+        tables.append(metadata)
+    
+    issuer_list = safe_get(data, ['edgarSubmission', 'issuerList'])
+    if issuer_list:
+        tables.append(Table(_flatten_dict(issuer_list), 'primary_issuer_d'))
+    
+    offering_data = safe_get(data, ['edgarSubmission', 'offeringData'])
+    if offering_data:
+        tables.append(Table(_flatten_dict(offering_data), 'offering_data_d'))
+    
+    related_persons_list = safe_get(data, ['edgarSubmission', 'relatedPersonsList'])
+    if related_persons_list:
+        tables.append(Table(_flatten_dict(related_persons_list), 'related_persons_list_d'))
+    
     return tables
 
 def process_nmfp(data):
     tables = []
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['headerData']),'metadata_nmfp'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['generalInfo']),'general_information_nmfp'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['seriesLevelInfo']),'series_level_info_nmfp'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['classLevelInfo']),'class_level_info_nmfp'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['scheduleOfPortfolioSecuritiesInfo']),'schedule_of_portfolio_securities_info_nmfp'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['signature']),'signature_nmfp'))
+    header_data = safe_get(data, ['edgarSubmission', 'headerData'])
+    if header_data:
+        tables.append(Table(_flatten_dict(header_data), 'metadata_nmfp'))
+    
+    general_info = safe_get(data, ['edgarSubmission', 'formData', 'generalInfo'])
+    if general_info:
+        tables.append(Table(_flatten_dict(general_info), 'general_information_nmfp'))
+    
+    series_level_info = safe_get(data, ['edgarSubmission', 'formData', 'seriesLevelInfo'])
+    if series_level_info:
+        tables.append(Table(_flatten_dict(series_level_info), 'series_level_info_nmfp'))
+    
+    class_level_info = safe_get(data, ['edgarSubmission', 'formData', 'classLevelInfo'])
+    if class_level_info:
+        tables.append(Table(_flatten_dict(class_level_info), 'class_level_info_nmfp'))
+    
+    portfolio_securities = safe_get(data, ['edgarSubmission', 'formData', 'scheduleOfPortfolioSecuritiesInfo'])
+    if portfolio_securities:
+        tables.append(Table(_flatten_dict(portfolio_securities), 'schedule_of_portfolio_securities_info_nmfp'))
+    
+    signature = safe_get(data, ['edgarSubmission', 'formData', 'signature'])
+    if signature:
+        tables.append(Table(_flatten_dict(signature), 'signature_nmfp'))
+    
     return tables
 
 def process_nportp(data):
     tables = []
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['headerData']),'metadata_nportp'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['genInfo']),'general_information_nportp'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['fundInfo']),'fund_information_nportp'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['invstOrSecs']),'investment_or_securities_nportp'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['signature']),'signature_nportp'))
+    header_data = safe_get(data, ['edgarSubmission', 'headerData'])
+    if header_data:
+        tables.append(Table(_flatten_dict(header_data), 'metadata_nportp'))
+    
+    gen_info = safe_get(data, ['edgarSubmission', 'formData', 'genInfo'])
+    if gen_info:
+        tables.append(Table(_flatten_dict(gen_info), 'general_information_nportp'))
+    
+    fund_info = safe_get(data, ['edgarSubmission', 'formData', 'fundInfo'])
+    if fund_info:
+        tables.append(Table(_flatten_dict(fund_info), 'fund_information_nportp'))
+    
+    invst_or_secs = safe_get(data, ['edgarSubmission', 'formData', 'invstOrSecs'])
+    if invst_or_secs:
+        tables.append(Table(_flatten_dict(invst_or_secs), 'investment_or_securities_nportp'))
+    
+    signature = safe_get(data, ['edgarSubmission', 'formData', 'signature'])
+    if signature:
+        tables.append(Table(_flatten_dict(signature), 'signature_nportp'))
+    
     return tables
 
 def process_npx(data):
     tables = []
-    tables.append(Table(_flatten_dict(data['edgarSubmission']),'npx'))
+    edgar_submission = safe_get(data, ['edgarSubmission'])
+    if edgar_submission:
+        tables.append(Table(_flatten_dict(edgar_submission), 'npx'))
     return tables
 
 def process_proxy_voting_record(data):
     tables = []
-    tables.append(Table(_flatten_dict(data['proxyVoteTable']['proxyTable']),'proxy_voting_record'))
+    proxy_table = safe_get(data, ['proxyVoteTable', 'proxyTable'])
+    if proxy_table:
+        tables.append(Table(_flatten_dict(proxy_table), 'proxy_voting_record'))
     return tables 
 
 def process_ta(data):
     tables = []
-    metadata_ta = Table(_flatten_dict(data['edgarSubmission']['headerData']),'metadata_ta')
-    metadata_ta.add_column('schemaVersion', data['edgarSubmission']['schemaVersion'])
-    tables.append(metadata_ta)
-
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['registrant']),'registrant_ta'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['independentRegistrant']),'independent_registrant_ta'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['disciplinaryHistory']),'disciplinary_history_ta'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['signature']),'signature_ta'))
+    header_data = safe_get(data, ['edgarSubmission', 'headerData'])
+    if header_data:
+        metadata_ta = Table(_flatten_dict(header_data), 'metadata_ta')
+        schema_version = safe_get(data, ['edgarSubmission', 'schemaVersion'])
+        if schema_version:
+            metadata_ta.add_column('schemaVersion', schema_version)
+        tables.append(metadata_ta)
+    
+    registrant = safe_get(data, ['edgarSubmission', 'formData', 'registrant'])
+    if registrant:
+        tables.append(Table(_flatten_dict(registrant), 'registrant_ta'))
+    
+    independent_registrant = safe_get(data, ['edgarSubmission', 'formData', 'independentRegistrant'])
+    if independent_registrant:
+        tables.append(Table(_flatten_dict(independent_registrant), 'independent_registrant_ta'))
+    
+    disciplinary_history = safe_get(data, ['edgarSubmission', 'formData', 'disciplinaryHistory'])
+    if disciplinary_history:
+        tables.append(Table(_flatten_dict(disciplinary_history), 'disciplinary_history_ta'))
+    
+    signature = safe_get(data, ['edgarSubmission', 'formData', 'signature'])
+    if signature:
+        tables.append(Table(_flatten_dict(signature), 'signature_ta'))
+    
     return tables
 
 def process_x17a5(data):
     tables = []
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['headerData']),'metadata_x17a5'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['submissionInformation']),'submission_information_x17a5'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['registrantIdentification']),'registrant_identification_x17a5'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['accountantIdentification']),'accountant_identification_x17a5'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['oathSignature']),'oath_signature_x17a5'))
+    header_data = safe_get(data, ['edgarSubmission', 'headerData'])
+    if header_data:
+        tables.append(Table(_flatten_dict(header_data), 'metadata_x17a5'))
+    
+    submission_info = safe_get(data, ['edgarSubmission', 'formData', 'submissionInformation'])
+    if submission_info:
+        tables.append(Table(_flatten_dict(submission_info), 'submission_information_x17a5'))
+    
+    registrant_id = safe_get(data, ['edgarSubmission', 'formData', 'registrantIdentification'])
+    if registrant_id:
+        tables.append(Table(_flatten_dict(registrant_id), 'registrant_identification_x17a5'))
+    
+    accountant_id = safe_get(data, ['edgarSubmission', 'formData', 'accountantIdentification'])
+    if accountant_id:
+        tables.append(Table(_flatten_dict(accountant_id), 'accountant_identification_x17a5'))
+    
+    oath_signature = safe_get(data, ['edgarSubmission', 'formData', 'oathSignature'])
+    if oath_signature:
+        tables.append(Table(_flatten_dict(oath_signature), 'oath_signature_x17a5'))
+    
     return tables
 
 def process_schedule_13(data):
     tables = []
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['headerData']),'metadata_schedule_13'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['coverPageHeader']),'cover_page_header_schedule_13'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['coverPageHeaderReportingPersonDetails']),'cover_page_header_reporting_person_details_schedule_13'))
-    for k,v in data['edgarSubmission']['formData']['items'].items():
-        tables.append(Table(_flatten_dict(v),f'item_schedule_{k}_13'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['signatureInformation']),'signature_information_schedule_13'))
+    header_data = safe_get(data, ['edgarSubmission', 'headerData'])
+    if header_data:
+        tables.append(Table(_flatten_dict(header_data), 'metadata_schedule_13'))
+    
+    cover_page_header = safe_get(data, ['edgarSubmission', 'formData', 'coverPageHeader'])
+    if cover_page_header:
+        tables.append(Table(_flatten_dict(cover_page_header), 'cover_page_header_schedule_13'))
+    
+    cover_page_details = safe_get(data, ['edgarSubmission', 'formData', 'coverPageHeaderReportingPersonDetails'])
+    if cover_page_details:
+        tables.append(Table(_flatten_dict(cover_page_details), 'cover_page_header_reporting_person_details_schedule_13'))
+    
+    items = safe_get(data, ['edgarSubmission', 'formData', 'items'])
+    if items and isinstance(items, dict):
+        for k, v in items.items():
+            if v:
+                tables.append(Table(_flatten_dict(v), f'item_schedule_{k}_13'))
+    
+    signature_info = safe_get(data, ['edgarSubmission', 'formData', 'signatureInformation'])
+    if signature_info:
+        tables.append(Table(_flatten_dict(signature_info), 'signature_information_schedule_13'))
+    
     return tables
 
 def process_reg_a(data):
     tables = []
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['headerData']),'metadata_reg_a'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['employeesInfo']),'employees_info_reg_a'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['issuerInfo']),'issuer_info_reg_a'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['commonEquity']),'common_equity_reg_a'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['preferredEquity']),'preferred_equity_reg_a'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['debtSecurities']),'debt_securities_reg_a'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['issuerEligibility']),'issuer_eligibility_reg_a'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['applicationRule262']),'application_rule_262_reg_a'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['summaryInfo']),'summary_info_reg_a'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['juridictionSecuritiesOffered']),'juridiction_securities_offered_reg_a'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['unregisteredSecurities']),'unregistered_securities_reg_a'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['securitiesIssued']),'securities_issued_reg_a'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['unregisteredSecuritiesAct']),'unregistered_securities_act_reg_a'))
+    header_data = safe_get(data, ['edgarSubmission', 'headerData'])
+    if header_data:
+        tables.append(Table(_flatten_dict(header_data), 'metadata_reg_a'))
+    
+    base_path = ['edgarSubmission', 'formData']
+    sections = [
+        ('employeesInfo', 'employees_info_reg_a'),
+        ('issuerInfo', 'issuer_info_reg_a'),
+        ('commonEquity', 'common_equity_reg_a'),
+        ('preferredEquity', 'preferred_equity_reg_a'),
+        ('debtSecurities', 'debt_securities_reg_a'),
+        ('issuerEligibility', 'issuer_eligibility_reg_a'),
+        ('applicationRule262', 'application_rule_262_reg_a'),
+        ('summaryInfo', 'summary_info_reg_a'),
+        ('juridictionSecuritiesOffered', 'juridiction_securities_offered_reg_a'),
+        ('unregisteredSecurities', 'unregistered_securities_reg_a'),
+        ('securitiesIssued', 'securities_issued_reg_a'),
+        ('unregisteredSecuritiesAct', 'unregistered_securities_act_reg_a')
+    ]
+    
+    for section_key, table_name in sections:
+        section_data = safe_get(data, base_path + [section_key])
+        if section_data:
+            tables.append(Table(_flatten_dict(section_data), table_name))
+    
     return tables
 
 def process_sbs(data):
     tables = []
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['headerData']),'metadata_sbse'))
-    for k,v in data['edgarSubmission']['formData']['applicant'].items():
-        tables.append(Table(_flatten_dict(v),f'applicant_{k}_sbs'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['scheduleA']),'schedule_a_sbs'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['scheduleB']),'schedule_b_sbs'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['scheduleC']),'schedule_c_sbs'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['scheduleD']),'schedule_d_sbs'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['scheduleE']),'schedule_e_sbs'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['scheduleF']),'schedule_f_sbs'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['criminalDrpInfo']),'criminal_drip_info_sbs'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['regulatoryDrpInfo']),'regulatory_drip_info_sbs'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['civilJudicialDrpInfo']),'civil_judicial_drip_info_sbs'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['bankruptcySipcDrpInfo']),'bankruptcy_sipc_drip_info_sbs'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['execution']),'execution_sbs'))
+    header_data = safe_get(data, ['edgarSubmission', 'headerData'])
+    if header_data:
+        tables.append(Table(_flatten_dict(header_data), 'metadata_sbse'))
+    
+    applicant = safe_get(data, ['edgarSubmission', 'formData', 'applicant'])
+    if applicant and isinstance(applicant, dict):
+        for k, v in applicant.items():
+            if v:
+                tables.append(Table(_flatten_dict(v), f'applicant_{k}_sbs'))
+    
+    base_path = ['edgarSubmission', 'formData']
+    sections = [
+        ('scheduleA', 'schedule_a_sbs'),
+        ('scheduleB', 'schedule_b_sbs'),
+        ('scheduleC', 'schedule_c_sbs'),
+        ('scheduleD', 'schedule_d_sbs'),
+        ('scheduleE', 'schedule_e_sbs'),
+        ('scheduleF', 'schedule_f_sbs'),
+        ('criminalDrpInfo', 'criminal_drip_info_sbs'),
+        ('regulatoryDrpInfo', 'regulatory_drip_info_sbs'),
+        ('civilJudicialDrpInfo', 'civil_judicial_drip_info_sbs'),
+        ('bankruptcySipcDrpInfo', 'bankruptcy_sipc_drip_info_sbs'),
+        ('execution', 'execution_sbs')
+    ]
+    
+    for section_key, table_name in sections:
+        section_data = safe_get(data, base_path + [section_key])
+        if section_data:
+            tables.append(Table(_flatten_dict(section_data), table_name))
+    
     return tables
 
 def process_ex102_abs(data):
     tables = []
-    tables.append(Table(_flatten_dict(data['assetData']),'abs'))
+    asset_data = safe_get(data, ['assetData'])
+    if asset_data:
+        tables.append(Table(_flatten_dict(asset_data), 'abs'))
     raise NotImplementedError("Need to implement the rest of the ABS processing")
     return tables
 
 def process_ma(data):
     tables = []
-    header_ma = Table(_flatten_dict(data['edgarSubmission']['headerData']),'metadata_ma')
-    tables.append(header_ma)
+    header_data = safe_get(data, ['edgarSubmission', 'headerData'])
+    if header_data:
+        header_ma = Table(_flatten_dict(header_data), 'metadata_ma')
+        tables.append(header_ma)
     # WE NEED TO COMBINE TABLES
     raise NotImplementedError("Need to implement the rest of the MA processing")
 
