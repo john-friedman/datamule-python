@@ -32,10 +32,20 @@ class Table():
 
         # apply the mapping to the data
         for row in self.data:
+            ordered_row = {}
+            # First add all keys from the mapping dict in order
             for old_key, new_key in mapping_dict.items():
                 if old_key in row:
-                    row[new_key] = row.pop(old_key)
+                    ordered_row[new_key] = row.pop(old_key)
                 else:
                     # if the old key is not present, set the new key to None
-                    row[new_key] = None
+                    ordered_row[new_key] = None
+            
+            # Then add any remaining keys that weren't in the mapping
+            for key, value in row.items():
+                ordered_row[key] = value
+            
+            # Replace the original row with the ordered row
+            row.clear()
+            row.update(ordered_row)
 

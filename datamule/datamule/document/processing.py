@@ -1,7 +1,5 @@
 from .table import Table
 
-# need to add missing numbers e.g schema
-
 def process_tabular_data(self):
     if self.type in ["3","4","5","3/A","4/A","5/A"]:
         return process_ownership(self.data)
@@ -59,7 +57,7 @@ def process_tabular_data(self):
     elif self.type in ["SBSE","SBSE/A","SBSE-A","SBSE-A/A","SBSE-BD","SBSE-BD/A","SBSE-C","SBSE-W","SBSE-CCO-RPT","SBSE-CCO-RPT/A"]:
         return process_sbs(self.data)
     elif self.type in ["EX-102"]:
-        return process_abs(self.data)
+        return process_ex102_abs(self.data)
     else:
         raise ValueError(f"Unknown type: {self.type}")
 
@@ -124,12 +122,14 @@ def process_ownership(data):
 
 def process_information_table(data):
     tables = []
-    tables.append(Table(_flatten_dict(data['informationTable']),'information_table'))
+    if 'informationTable' in data:
+        tables.append(Table(_flatten_dict(data['informationTable']),'information_table'))
     return tables
     
 def process_13fhr(data):
     tables = []
-    tables.append(Table(_flatten_dict(data['edgarSubmission']),'13fhr'))
+    if 'edgarSubmission' in data:
+        tables.append(Table(_flatten_dict(data['edgarSubmission']),'13fhr'))
     return tables
 
 def process_sbsef(data):
@@ -139,6 +139,7 @@ def process_sbsef(data):
 def process_sdr_header_data(data):
     tables = []
     tables.append(Table(_flatten_dict(data['edgarSubmission']),'sdr'))
+    return tables 
 
 def process_ex_99c_sdr(data):
     tables = []
@@ -149,7 +150,6 @@ def process_ex_99a_summary_sdr(data):
     tables = []
     tables.append(Table(_flatten_dict(data['controllingPersons']),'EX-99.A SDR SUMMARY'))
     return tables
-
 
 def process_ex_99g_summary_sdr(data):
     tables = []
@@ -186,7 +186,6 @@ def process_24f2nt(data):
         
     tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['annualFilings']['annualFilingInfo']['signature']),'signature_24f2nt'))
     return tables
-    
 
 def process_25nse(data):
     tables = []
@@ -233,7 +232,6 @@ def process_cfportal(data):
     tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['bankruptcySipcDrpInfo']),'bankruptcy_sipc_drip_info_cfportal'))
     tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['bondDrpInfo']),'bond_drip_info_cfportal'))
     tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['judgementDrpInfo']),'judgement_drip_info_cfportal'))
-
     return tables
 
 def process_d(data):
@@ -249,23 +247,17 @@ def process_d(data):
     tables.append(Table(_flatten_dict(data['edgarSubmission']['issuerList']),'primary_issuer_d'))
     tables.append(Table(_flatten_dict(data['edgarSubmission']['offeringData']),'offering_data_d'))
     tables.append(Table(_flatten_dict(data['edgarSubmission']['relatedPersonsList']),'related_persons_list_d'))
-
     return tables
 
-
-def process_ma(data):
-    tables = []
-    header_ma = Table(_flatten_dict(data['edgarSubmission']['headerData']),'metadata_ma')
-    tables.append(header_ma)
-    # AH THIS IS HOW IT WORKS
-    # WE NEED TO COMBINE TABLES
-    raise NotImplementedError("Need to implement the rest of the MA processing")
-
-def process_ncen(data):
-    pass
-
 def process_nmfp(data):
-    pass
+    tables = []
+    tables.append(Table(_flatten_dict(data['edgarSubmission']['headerData']),'metadata_nmfp'))
+    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['generalInfo']),'general_information_nmfp'))
+    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['seriesLevelInfo']),'series_level_info_nmfp'))
+    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['classLevelInfo']),'class_level_info_nmfp'))
+    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['scheduleOfPortfolioSecuritiesInfo']),'schedule_of_portfolio_securities_info_nmfp'))
+    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['signature']),'signature_nmfp'))
+    return tables
 
 def process_nportp(data):
     tables = []
@@ -284,6 +276,7 @@ def process_npx(data):
 def process_proxy_voting_record(data):
     tables = []
     tables.append(Table(_flatten_dict(data['proxyVoteTable']['proxyTable']),'proxy_voting_record'))
+    return tables 
 
 def process_ta(data):
     tables = []
@@ -296,7 +289,6 @@ def process_ta(data):
     tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['disciplinaryHistory']),'disciplinary_history_ta'))
     tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['signature']),'signature_ta'))
     return tables
-
 
 def process_x17a5(data):
     tables = []
@@ -311,7 +303,6 @@ def process_schedule_13(data):
     tables = []
     tables.append(Table(_flatten_dict(data['edgarSubmission']['headerData']),'metadata_schedule_13'))
     tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['coverPageHeader']),'cover_page_header_schedule_13'))
-    tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['coverPageHeaderReportingPersonDetails']),'cover_page_header_reporting_person_details_schedule_13'))
     tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['coverPageHeaderReportingPersonDetails']),'cover_page_header_reporting_person_details_schedule_13'))
     for k,v in data['edgarSubmission']['formData']['items'].items():
         tables.append(Table(_flatten_dict(v),f'item_schedule_{k}_13'))
@@ -351,12 +342,20 @@ def process_sbs(data):
     tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['civilJudicialDrpInfo']),'civil_judicial_drip_info_sbs'))
     tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['bankruptcySipcDrpInfo']),'bankruptcy_sipc_drip_info_sbs'))
     tables.append(Table(_flatten_dict(data['edgarSubmission']['formData']['execution']),'execution_sbs'))
-
     return tables
 
-# might have to do one for each loan
-def process_abs(data):
+def process_ex102_abs(data):
     tables = []
     tables.append(Table(_flatten_dict(data['assetData']),'abs'))
     raise NotImplementedError("Need to implement the rest of the ABS processing")
     return tables
+
+def process_ma(data):
+    tables = []
+    header_ma = Table(_flatten_dict(data['edgarSubmission']['headerData']),'metadata_ma')
+    tables.append(header_ma)
+    # WE NEED TO COMBINE TABLES
+    raise NotImplementedError("Need to implement the rest of the MA processing")
+
+def process_ncen(data):
+    raise NotImplementedError("Need to implement the N-CEN processing")
