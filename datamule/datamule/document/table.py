@@ -5,7 +5,6 @@ class Table():
             data = [data]
         self.type = type
         self.data = data
-        self.map_data()
         self.columns = self.determine_columns()
 
     def determine_columns(self):
@@ -48,4 +47,6 @@ class Table():
             # Replace the original row with the ordered row
             row.clear()
             row.update(ordered_row)
+
+        self.determine_columns()
 
