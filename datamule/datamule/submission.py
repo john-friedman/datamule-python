@@ -60,7 +60,7 @@ class Submission:
                     with document_path.open('r') as f:
                         content = f.read()
 
-                    yield Document(type=doc['type'], content=content, extension=extension,filing_date=self.filing_date,accession=self.accession)
+                    yield Document(type=doc['type'], content=content, extension=extension,filing_date=self.filing_date,accession=self.accession,path=document_path)
                 # if loaded from sgml_content
                 else:
                     yield self.documents[idx]
@@ -84,7 +84,7 @@ class Submission:
                     with document_path.open('r') as f:
                         content = f.read()
 
-                    yield Document(type=doc['type'], content=content, extension=extension,filing_date=self.filing_date,accession=self.accession)
+                    yield Document(type=doc['type'], content=content, extension=extension,filing_date=self.filing_date,accession=self.accession,path=document_path)
                 else:
                     print(f"Warning: File {document_path} does not exist likely due to keep types in downloading.")
 

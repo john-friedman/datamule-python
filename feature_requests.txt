@@ -1,6 +1,24 @@
 Norman's requests
 Filter portfolio by ticker/cik
+
+look into tiny db for advanced filtering.
+-yep like this. We will probably change how portfolio is structured
+- porbably to:
+portfolio/
+--metata.json
+--accno1/
+--accno2/
+
+test if fast enough at 1 million level. can also look into flattening.
+
+add way to update package using datamule-data + refactor setup.py to use that function - setup for next update
+-added
+
 document path
+- added
+
+multiple people
+subset by document type on download. - will do bandaid fix here, before archive rewrite
 
 
 my requests:

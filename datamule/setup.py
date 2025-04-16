@@ -6,6 +6,7 @@ import shutil
 import urllib.request
 from pathlib import Path
 
+# NOTE: would like to replace this with package updater, but circular import?
 # Create data directory in user's home
 data_dir = Path.home() / ".datamule"
 data_dir.mkdir(exist_ok=True)

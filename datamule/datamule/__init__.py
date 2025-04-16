@@ -5,6 +5,7 @@ from .helper import _load_package_csv, load_package_dataset
 from .config import Config
 from .sheet import Sheet
 from .index import Index
+from .package_updater import PackageUpdater
 
 
 # Keep the notebook environment setup
@@ -37,4 +38,5 @@ __all__ = [
     'Config',
     'Sheet',
     'Index',
+    'PackageUpdater',
 ]

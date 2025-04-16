@@ -10,13 +10,16 @@ from .processing import process_tabular_data
 from pathlib import Path
 
 class Document:
-    def __init__(self, type, content, extension,accession,filing_date):
+    def __init__(self, type, content, extension,accession,filing_date,path=None):
         
         self.type = type
         extension = extension.lower()
         self.accession = accession
         self.filing_date = filing_date
         self.content = content
+
+        if path is not None:
+            self.path = path
         
         if extension == '.txt':
             self.content = self._preprocess_txt_content()
