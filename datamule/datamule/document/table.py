@@ -31,8 +31,30 @@ class Table():
             mapping_dict = derivative_transaction_ownership_dict
         elif self.type == 'derivative_holding_ownership':
             mapping_dict = derivative_holding_ownership_dict
+        elif self.type == 'reporting_owner_ownership':
+            mapping_dict = reporting_owner_ownership_dict
+        elif self.type == 'metadata_ownership':
+            mapping_dict = metadata_ownership_dict
+        elif self.type == 'owner_signature_ownership':
+            mapping_dict = owner_signature_ownership_dict
+        elif self.type == 'sbsef':
+            mapping_dict = sbsef_dict
+        elif self.type == '13fhr':
+            mapping_dict = thirteenfhr_dict
+        elif self.type == 'information_table':
+            mapping_dict = information_table_dict
+        elif self.type == 'sdr':
+            mapping_dict = sdr_dict
+        elif self.type == 'EX-99.A SDR SUMMARY':
+            mapping_dict = ex99a_sdr_summary_dict
+        elif self.type == 'EX-99.G SDR':
+            mapping_dict = ex99g_sdr_dict
+        elif self.type == 'EX-99.I SDR SUMMARY':
+            mapping_dict = ex99i_sdr_summary_dict
+        elif self.type == 'EX-99.C SDR':
+            mapping_dict = ex99c_sdr_dict
         else:
-            mapping_dict = {}
+            mapping_dict = {} 
         
         # Update mapping dictionary to include accession at the beginning
         # Create a new mapping with accession as the first key

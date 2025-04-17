@@ -37,26 +37,26 @@ def process_tabular_data(self):
         tables = process_25nse(self.data, self.accession)
     elif self.type in ["ATS-N", "ATS-N/A"]:
         tables = process_ats(self.data, self.accession)
-    elif self.type in ["C","C-W","C-U","C-U-W","C/A","C/A-W",
-            "C-AR","C-AR-W","C-AR/A","C-AR/A-W","C-TR","C-TR-W"]:
-        tables = process_c(self.data, self.accession)
+    # elif self.type in ["C","C-W","C-U","C-U-W","C/A","C/A-W",
+    #         "C-AR","C-AR-W","C-AR/A","C-AR/A-W","C-TR","C-TR-W"]:
+    #     tables = process_c(self.data, self.accession)
     elif self.type in ["CFPORTAL","CFPORTAL/A","CFPORTAL-W"]:
         tables = process_cfportal(self.data, self.accession)
-    elif self.type in ["D","D/A"]:
-        tables = process_d(self.data, self.accession)
-    elif self.type in ["MA","MA-A","MA/A","MA-I","MA-I/A","MA-W"]:
-        tables = process_ma(self.data, self.accession)
-    elif self.type in ["N-CEN","N-CEN/A"]:
-        tables = process_ncen(self.data, self.accession)
-    elif self.type in ["N-MFP","N-MFP/A","N-MFP1","N-MFP1/A",
-        "N-MFP2","N-MFP2/A","N-MFP3","N-MFP3/A"]:
-        tables = process_nmfp(self.data, self.accession)
-    elif self.type in ["NPORT-P","NPORT-P/A"]:
-        tables = process_nportp(self.data, self.accession)
+    # elif self.type in ["D","D/A"]:
+    #     tables = process_d(self.data, self.accession)
+    # elif self.type in ["MA","MA-A","MA/A","MA-I","MA-I/A","MA-W"]:
+    #     tables = process_ma(self.data, self.accession)
+    # elif self.type in ["N-CEN","N-CEN/A"]:
+    #     tables = process_ncen(self.data, self.accession)
+    # elif self.type in ["N-MFP","N-MFP/A","N-MFP1","N-MFP1/A",
+    #     "N-MFP2","N-MFP2/A","N-MFP3","N-MFP3/A"]:
+    #     tables = process_nmfp(self.data, self.accession)
+    # elif self.type in ["NPORT-P","NPORT-P/A"]:
+    #     tables = process_nportp(self.data, self.accession)
     elif self.type in ["N-PX","N-PX/A"]:
         tables = process_npx(self.data, self.accession)
-    elif self.type in ["TA-1","TA-1/A","TA-W","TA-2","TA-2/A"]:
-        tables = process_ta(self.data, self.accession)
+    # elif self.type in ["TA-1","TA-1/A","TA-W","TA-2","TA-2/A"]:
+    #     tables = process_ta(self.data, self.accession)
     elif self.type in ["X-17A-5","X-17A-5/A"]:
         tables = process_x17a5(self.data, self.accession)
     elif self.type in ["SCHEDULE 13D","SCHEDULE 13D/A",
@@ -64,10 +64,12 @@ def process_tabular_data(self):
         tables = process_schedule_13(self.data, self.accession)
     elif self.type in ["1-A","1-A/A","1-A POS","1-K","1-K/A","1-Z","1-Z/A"]:
         tables = process_reg_a(self.data, self.accession)
-    elif self.type in ["SBSE","SBSE/A","SBSE-A","SBSE-A/A","SBSE-BD","SBSE-BD/A","SBSE-C","SBSE-W","SBSE-CCO-RPT","SBSE-CCO-RPT/A"]:
-        tables = process_sbs(self.data, self.accession)
-    elif self.type in ["EX-102"]:
-        tables = process_ex102_abs(self.data, self.accession)
+    # elif self.type in ["SBSE","SBSE/A","SBSE-A","SBSE-A/A","SBSE-BD","SBSE-BD/A","SBSE-C","SBSE-W","SBSE-CCO-RPT","SBSE-CCO-RPT/A"]:
+    #     tables = process_sbs(self.data, self.accession)
+    # elif self.type in ["EX-102"]:
+    #     tables = process_ex102_abs(self.data, self.accession)
+    elif self.type == "PROXY VOTING RECORD":
+        tables = process_proxy_voting_record(self.data, self.accession)
     else:
         raise ValueError(f"Unknown type: {self.type}")
     
@@ -253,7 +255,7 @@ def process_25nse(data, accession):
     tables = []
     notification = safe_get(data, ['notificationOfRemoval'])
     if notification:
-        tables.append(Table(_flatten_dict(notification), '_25nse', accession))
+        tables.append(Table(_flatten_dict(notification), '25nse', accession))
     return tables
 
 def process_ats(data, accession):
@@ -284,29 +286,29 @@ def process_ats(data, accession):
     
     return tables
 
-def process_c(data, accession):
-    tables = []
-    header_data = safe_get(data, ['edgarSubmission', 'headerData'])
-    if header_data:
-        tables.append(Table(_flatten_dict(header_data), 'metadata_c', accession))
+# def process_c(data, accession):
+#     tables = []
+#     header_data = safe_get(data, ['edgarSubmission', 'headerData'])
+#     if header_data:
+#         tables.append(Table(_flatten_dict(header_data), 'metadata_c', accession))
     
-    issuer_info = safe_get(data, ['edgarSubmission', 'formData', 'issuerInformation'])
-    if issuer_info:
-        tables.append(Table(_flatten_dict(issuer_info), 'issuer_information_c', accession))
+#     issuer_info = safe_get(data, ['edgarSubmission', 'formData', 'issuerInformation'])
+#     if issuer_info:
+#         tables.append(Table(_flatten_dict(issuer_info), 'issuer_information_c', accession))
     
-    offering_info = safe_get(data, ['edgarSubmission', 'formData', 'offeringInformation'])
-    if offering_info:
-        tables.append(Table(_flatten_dict(offering_info), 'offering_information_c', accession))
+#     offering_info = safe_get(data, ['edgarSubmission', 'formData', 'offeringInformation'])
+#     if offering_info:
+#         tables.append(Table(_flatten_dict(offering_info), 'offering_information_c', accession))
     
-    annual_report = safe_get(data, ['edgarSubmission', 'formData', 'annualReportDisclosureRequirements'])
-    if annual_report:
-        tables.append(Table(_flatten_dict(annual_report), 'annual_report_disclosure_requirements_c', accession))
+#     annual_report = safe_get(data, ['edgarSubmission', 'formData', 'annualReportDisclosureRequirements'])
+#     if annual_report:
+#         tables.append(Table(_flatten_dict(annual_report), 'annual_report_disclosure_requirements_c', accession))
     
-    signature_info = safe_get(data, ['edgarSubmission', 'formData', 'signatureInfo'])
-    if signature_info:
-        tables.append(Table(_flatten_dict(signature_info), 'signature_info_c', accession))
+#     signature_info = safe_get(data, ['edgarSubmission', 'formData', 'signatureInfo']) 
+#     if signature_info:
+#         tables.append(Table(_flatten_dict(signature_info), 'signature_info_c', accession))
     
-    return tables
+#     return tables
 
 def process_cfportal(data, accession):
     tables = []
@@ -343,85 +345,85 @@ def process_cfportal(data, accession):
     
     return tables
 
-def process_d(data, accession):
-    tables = []
-    primary_issuer = safe_get(data, ['edgarSubmission', 'primaryIssuer'])
-    if primary_issuer:
-        metadata = Table(_flatten_dict(primary_issuer), 'metadata_d', accession)
+# def process_d(data, accession):
+#     tables = []
+#     primary_issuer = safe_get(data, ['edgarSubmission', 'primaryIssuer'])
+#     if primary_issuer:
+#         metadata = Table(_flatten_dict(primary_issuer), 'metadata_d', accession)
         
-        metadata_columns = ['schemaVersion', 'submissionType', 'testOrLive', 'returnCopy', 'contactData', 'notificationAddressList']
-        for col in metadata_columns:
-            col_data = safe_get(data, ['edgarSubmission', col])
-            if col_data:
-                metadata.add_column(col, col_data)
+#         metadata_columns = ['schemaVersion', 'submissionType', 'testOrLive', 'returnCopy', 'contactData', 'notificationAddressList']
+#         for col in metadata_columns:
+#             col_data = safe_get(data, ['edgarSubmission', col])
+#             if col_data:
+#                 metadata.add_column(col, col_data)
         
-        tables.append(metadata)
+#         tables.append(metadata)
     
-    issuer_list = safe_get(data, ['edgarSubmission', 'issuerList'])
-    if issuer_list:
-        tables.append(Table(_flatten_dict(issuer_list), 'primary_issuer_d', accession))
+#     issuer_list = safe_get(data, ['edgarSubmission', 'issuerList'])
+#     if issuer_list:
+#         tables.append(Table(_flatten_dict(issuer_list), 'primary_issuer_d', accession))
     
-    offering_data = safe_get(data, ['edgarSubmission', 'offeringData'])
-    if offering_data:
-        tables.append(Table(_flatten_dict(offering_data), 'offering_data_d', accession))
+#     offering_data = safe_get(data, ['edgarSubmission', 'offeringData'])
+#     if offering_data:
+#         tables.append(Table(_flatten_dict(offering_data), 'offering_data_d', accession))
     
-    related_persons_list = safe_get(data, ['edgarSubmission', 'relatedPersonsList'])
-    if related_persons_list:
-        tables.append(Table(_flatten_dict(related_persons_list), 'related_persons_list_d', accession))
+#     related_persons_list = safe_get(data, ['edgarSubmission', 'relatedPersonsList'])
+#     if related_persons_list:
+#         tables.append(Table(_flatten_dict(related_persons_list), 'related_persons_list_d', accession))
     
-    return tables
+#     return tables
 
-def process_nmfp(data, accession):
-    tables = []
-    header_data = safe_get(data, ['edgarSubmission', 'headerData'])
-    if header_data:
-        tables.append(Table(_flatten_dict(header_data), 'metadata_nmfp', accession))
+# def process_nmfp(data, accession):
+#     tables = []
+#     header_data = safe_get(data, ['edgarSubmission', 'headerData'])
+#     if header_data:
+#         tables.append(Table(_flatten_dict(header_data), 'metadata_nmfp', accession))
     
-    general_info = safe_get(data, ['edgarSubmission', 'formData', 'generalInfo'])
-    if general_info:
-        tables.append(Table(_flatten_dict(general_info), 'general_information_nmfp', accession))
+#     general_info = safe_get(data, ['edgarSubmission', 'formData', 'generalInfo'])
+#     if general_info:
+#         tables.append(Table(_flatten_dict(general_info), 'general_information_nmfp', accession))
     
-    series_level_info = safe_get(data, ['edgarSubmission', 'formData', 'seriesLevelInfo'])
-    if series_level_info:
-        tables.append(Table(_flatten_dict(series_level_info), 'series_level_info_nmfp', accession))
+#     series_level_info = safe_get(data, ['edgarSubmission', 'formData', 'seriesLevelInfo'])
+#     if series_level_info:
+#         tables.append(Table(_flatten_dict(series_level_info), 'series_level_info_nmfp', accession))
     
-    class_level_info = safe_get(data, ['edgarSubmission', 'formData', 'classLevelInfo'])
-    if class_level_info:
-        tables.append(Table(_flatten_dict(class_level_info), 'class_level_info_nmfp', accession))
+#     class_level_info = safe_get(data, ['edgarSubmission', 'formData', 'classLevelInfo'])
+#     if class_level_info:
+#         tables.append(Table(_flatten_dict(class_level_info), 'class_level_info_nmfp', accession))
     
-    portfolio_securities = safe_get(data, ['edgarSubmission', 'formData', 'scheduleOfPortfolioSecuritiesInfo'])
-    if portfolio_securities:
-        tables.append(Table(_flatten_dict(portfolio_securities), 'schedule_of_portfolio_securities_info_nmfp', accession))
+#     portfolio_securities = safe_get(data, ['edgarSubmission', 'formData', 'scheduleOfPortfolioSecuritiesInfo'])
+#     if portfolio_securities:
+#         tables.append(Table(_flatten_dict(portfolio_securities), 'schedule_of_portfolio_securities_info_nmfp', accession))
     
-    signature = safe_get(data, ['edgarSubmission', 'formData', 'signature'])
-    if signature:
-        tables.append(Table(_flatten_dict(signature), 'signature_nmfp', accession))
+#     signature = safe_get(data, ['edgarSubmission', 'formData', 'signature'])
+#     if signature:
+#         tables.append(Table(_flatten_dict(signature), 'signature_nmfp', accession))
     
-    return tables
+#     return tables
 
-def process_nportp(data, accession):
-    tables = []
-    header_data = safe_get(data, ['edgarSubmission', 'headerData'])
-    if header_data:
-        tables.append(Table(_flatten_dict(header_data), 'metadata_nportp', accession))
+# def process_nportp(data, accession):
+#     tables = []
+#     header_data = safe_get(data, ['edgarSubmission', 'headerData'])
+#     if header_data:
+#         tables.append(Table(_flatten_dict(header_data), 'metadata_nportp', accession))
     
-    gen_info = safe_get(data, ['edgarSubmission', 'formData', 'genInfo'])
-    if gen_info:
-        tables.append(Table(_flatten_dict(gen_info), 'general_information_nportp', accession))
+#     gen_info = safe_get(data, ['edgarSubmission', 'formData', 'genInfo'])
+#     if gen_info:
+#         tables.append(Table(_flatten_dict(gen_info), 'general_information_nportp', accession))
     
-    fund_info = safe_get(data, ['edgarSubmission', 'formData', 'fundInfo'])
-    if fund_info:
-        tables.append(Table(_flatten_dict(fund_info), 'fund_information_nportp', accession))
+#     fund_info = safe_get(data, ['edgarSubmission', 'formData', 'fundInfo'])
+#     if fund_info:
+#         tables.append(Table(_flatten_dict(fund_info), 'fund_information_nportp', accession))
     
-    invst_or_secs = safe_get(data, ['edgarSubmission', 'formData', 'invstOrSecs'])
-    if invst_or_secs:
-        tables.append(Table(_flatten_dict(invst_or_secs), 'investment_or_securities_nportp', accession))
+#     invst_or_secs = safe_get(data, ['edgarSubmission', 'formData', 'invstOrSecs'])
+#     if invst_or_secs:
+#         tables.append(Table(_flatten_dict(invst_or_secs), 'investment_or_securities_nportp', accession))
     
-    signature = safe_get(data, ['edgarSubmission', 'formData', 'signature'])
-    if signature:
-        tables.append(Table(_flatten_dict(signature), 'signature_nportp', accession))
+#     signature = safe_get(data, ['edgarSubmission', 'formData', 'signature'])
+#     if signature:
+#         tables.append(Table(_flatten_dict(signature), 'signature_nportp', accession))
     
-    return tables
+#     return tables
 
 def process_npx(data, accession):
     tables = []
@@ -437,33 +439,34 @@ def process_proxy_voting_record(data, accession):
         tables.append(Table(_flatten_dict(proxy_table), 'proxy_voting_record', accession))
     return tables 
 
-def process_ta(data, accession):
-    tables = []
-    header_data = safe_get(data, ['edgarSubmission', 'headerData'])
-    if header_data:
-        metadata_ta = Table(_flatten_dict(header_data), 'metadata_ta', accession)
-        schema_version = safe_get(data, ['edgarSubmission', 'schemaVersion'])
-        if schema_version:
-            metadata_ta.add_column('schemaVersion', schema_version)
-        tables.append(metadata_ta)
+# SOMETHING IS VERY OFF HERE
+# def process_ta(data, accession):
+#     tables = []
+#     header_data = safe_get(data, ['edgarSubmission', 'headerData'])
+#     if header_data:
+#         metadata_ta = Table(_flatten_dict(header_data), 'metadata_ta', accession)
+#         schema_version = safe_get(data, ['edgarSubmission', 'schemaVersion'])
+#         if schema_version:
+#             metadata_ta.add_column('schemaVersion', schema_version)
+#         tables.append(metadata_ta)
     
-    registrant = safe_get(data, ['edgarSubmission', 'formData', 'registrant'])
-    if registrant:
-        tables.append(Table(_flatten_dict(registrant), 'registrant_ta', accession))
+#     registrant = safe_get(data, ['edgarSubmission', 'registrant'])
+#     if registrant:
+#         tables.append(Table(_flatten_dict(registrant), 'registrant_ta', accession))
     
-    independent_registrant = safe_get(data, ['edgarSubmission', 'formData', 'independentRegistrant'])
-    if independent_registrant:
-        tables.append(Table(_flatten_dict(independent_registrant), 'independent_registrant_ta', accession))
+#     independent_registrant = safe_get(data, ['edgarSubmission', 'formData', 'independentRegistrant'])
+#     if independent_registrant:
+#         tables.append(Table(_flatten_dict(independent_registrant), 'independent_registrant_ta', accession))
     
-    disciplinary_history = safe_get(data, ['edgarSubmission', 'formData', 'disciplinaryHistory'])
-    if disciplinary_history:
-        tables.append(Table(_flatten_dict(disciplinary_history), 'disciplinary_history_ta', accession))
+#     disciplinary_history = safe_get(data, ['edgarSubmission', 'formData', 'disciplinaryHistory'])
+#     if disciplinary_history:
+#         tables.append(Table(_flatten_dict(disciplinary_history), 'disciplinary_history_ta', accession))
     
-    signature = safe_get(data, ['edgarSubmission', 'formData', 'signature'])
-    if signature:
-        tables.append(Table(_flatten_dict(signature), 'signature_ta', accession))
+#     signature = safe_get(data, ['edgarSubmission', 'formData', 'signature'])
+#     if signature:
+#         tables.append(Table(_flatten_dict(signature), 'signature_ta', accession))
     
-    return tables
+#     return tables
 
 def process_x17a5(data, accession):
     tables = []
@@ -544,56 +547,57 @@ def process_reg_a(data, accession):
     
     return tables
 
-def process_sbs(data, accession):
-    tables = []
-    header_data = safe_get(data, ['edgarSubmission', 'headerData'])
-    if header_data:
-        tables.append(Table(_flatten_dict(header_data), 'metadata_sbse', accession))
+# looks good but some extra nesed tables we missed
+# def process_sbs(data, accession):
+#     tables = []
+#     header_data = safe_get(data, ['edgarSubmission', 'headerData'])
+#     if header_data:
+#         tables.append(Table(_flatten_dict(header_data), 'metadata_sbse', accession))
     
-    applicant = safe_get(data, ['edgarSubmission', 'formData', 'applicant'])
-    if applicant and isinstance(applicant, dict):
-        for k, v in applicant.items():
-            if v:
-                tables.append(Table(_flatten_dict(v), f'applicant_{k}_sbs', accession))
+#     applicant = safe_get(data, ['edgarSubmission', 'formData', 'applicant'])
+#     if applicant and isinstance(applicant, dict):
+#         for k, v in applicant.items():
+#             if v:
+#                 tables.append(Table(_flatten_dict(v), f'applicant_{k}_sbs', accession))
     
-    base_path = ['edgarSubmission', 'formData']
-    sections = [
-        ('scheduleA', 'schedule_a_sbs'),
-        ('scheduleB', 'schedule_b_sbs'),
-        ('scheduleC', 'schedule_c_sbs'),
-        ('scheduleD', 'schedule_d_sbs'),
-        ('scheduleE', 'schedule_e_sbs'),
-        ('scheduleF', 'schedule_f_sbs'),
-        ('criminalDrpInfo', 'criminal_drip_info_sbs'),
-        ('regulatoryDrpInfo', 'regulatory_drip_info_sbs'),
-        ('civilJudicialDrpInfo', 'civil_judicial_drip_info_sbs'),
-        ('bankruptcySipcDrpInfo', 'bankruptcy_sipc_drip_info_sbs'),
-        ('execution', 'execution_sbs')
-    ]
+#     base_path = ['edgarSubmission', 'formData']
+#     sections = [
+#         ('scheduleA', 'schedule_a_sbs'),
+#         ('scheduleB', 'schedule_b_sbs'),
+#         ('scheduleC', 'schedule_c_sbs'),
+#         ('scheduleD', 'schedule_d_sbs'),
+#         ('scheduleE', 'schedule_e_sbs'),
+#         ('scheduleF', 'schedule_f_sbs'),
+#         ('criminalDrpInfo', 'criminal_drip_info_sbs'),
+#         ('regulatoryDrpInfo', 'regulatory_drip_info_sbs'),
+#         ('civilJudicialDrpInfo', 'civil_judicial_drip_info_sbs'),
+#         ('bankruptcySipcDrpInfo', 'bankruptcy_sipc_drip_info_sbs'),
+#         ('execution', 'execution_sbs')
+#     ]
     
-    for section_key, table_name in sections:
-        section_data = safe_get(data, base_path + [section_key])
-        if section_data:
-            tables.append(Table(_flatten_dict(section_data), table_name, accession))
+#     for section_key, table_name in sections:
+#         section_data = safe_get(data, base_path + [section_key])
+#         if section_data:
+#             tables.append(Table(_flatten_dict(section_data), table_name, accession))
     
-    return tables
+#     return tables
 
-def process_ex102_abs(data, accession):
-    tables = []
-    asset_data = safe_get(data, ['assetData'])
-    if asset_data:
-        tables.append(Table(_flatten_dict(asset_data), 'abs', accession))
-    raise NotImplementedError("Need to implement the rest of the ABS processing")
-    return tables
+# def process_ex102_abs(data, accession):
+#     tables = []
+#     asset_data = safe_get(data, ['assetData'])
+#     if asset_data:
+#         tables.append(Table(_flatten_dict(asset_data), 'abs', accession))
+#     raise NotImplementedError("Need to implement the rest of the ABS processing")
+#     return tables
 
-def process_ma(data, accession):
-    tables = []
-    header_data = safe_get(data, ['edgarSubmission', 'headerData'])
-    if header_data:
-        header_ma = Table(_flatten_dict(header_data), 'metadata_ma', accession)
-        tables.append(header_ma)
-    # WE NEED TO COMBINE TABLES
-    raise NotImplementedError("Need to implement the rest of the MA processing")
+# def process_ma(data, accession):
+#     tables = []
+#     header_data = safe_get(data, ['edgarSubmission', 'headerData'])
+#     if header_data:
+#         header_ma = Table(_flatten_dict(header_data), 'metadata_ma', accession)
+#         tables.append(header_ma)
+#     # WE NEED TO COMBINE TABLES
+#     raise NotImplementedError("Need to implement the rest of the MA processing")
 
-def process_ncen(data, accession):
-    raise NotImplementedError("Need to implement the N-CEN processing")
+# def process_ncen(data, accession):
+#     raise NotImplementedError("Need to implement the N-CEN processing")

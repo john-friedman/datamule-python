@@ -27,9 +27,7 @@ non_derivative_transaction_ownership_dict = {
     'transactionTimeliness_value': 'transactionTimeliness',
     'transactionTimeliness_footnote': 'transactionTimelinessFootnote',
     'postTransactionAmounts_valueOwnedFollowingTransaction_value': 'valueOwnedFollowingTransaction',
-    'postTransactionAmounts_valueOwnedFollowingTransaction_footnote': 'valueOwnedFollowingTransactionFootnote',
-    # Additional fields from CSV
-    'accession': 'accession'
+    'postTransactionAmounts_valueOwnedFollowingTransaction_footnote': 'valueOwnedFollowingTransactionFootnote'
 }
 
 # Derivative transaction ownership mapping
@@ -72,7 +70,6 @@ derivative_transaction_ownership_dict = {
     'transactionTimeliness_footnote': 'transactionTimelinessFootnote',
     'postTransactionAmounts_valueOwnedFollowingTransaction_value': 'valueOwnedFollowingTransaction',
     'postTransactionAmounts_valueOwnedFollowingTransaction_footnote': 'valueOwnedFollowingTransactionFootnote',
-
     'transactionAmounts_transactionAcquiredDisposedCode_footnote': 'transactionAcquiredDisposedCodeFootnote',
     'underlyingSecurity_underlyingSecurityValue_footnote': 'underlyingSecurityValueFootnote'
 }
@@ -90,7 +87,6 @@ non_derivative_holding_ownership_dict = {
     'postTransactionAmounts_valueOwnedFollowingTransaction_value': 'valueOwnedFollowingTransaction',
     'transactionCoding_footnote': 'transactionCodingFootnote',
     'transactionCoding_transactionFormType': 'transactionFormType',
-
     'postTransactionAmounts_valueOwnedFollowingTransaction_footnote': 'valueOwnedFollowingTransactionFootnote'
 }
 
@@ -119,7 +115,6 @@ derivative_holding_ownership_dict = {
     'postTransactionAmounts_valueOwnedFollowingTransaction_value': 'valueOwnedFollowingTransaction',
     'postTransactionAmounts_valueOwnedFollowingTransaction_footnote': 'valueOwnedFollowingTransactionFootnote',
     'transactionCoding_transactionFormType': 'transactionFormType',
-
     'transactionCoding_footnote': 'transactionCodingFootnote'
 }
 
@@ -138,9 +133,7 @@ reporting_owner_ownership_dict = {
     'reportingOwnerRelationship_isTenPercentOwner': 'rptOwnerIsTenPercentOwner',
     'reportingOwnerRelationship_isOther': 'rptOwnerIsOther',
     'reportingOwnerRelationship_officerTitle': 'rptOwnerOfficerTitle',
-    'reportingOwnerRelationship_otherText': 'rptOwnerOtherText',
-    # Additional fields from CSV
-    'accession': 'accession'
+    'reportingOwnerRelationship_otherText': 'rptOwnerOtherText'
 }
 
 # Metadata ownership mapping
@@ -159,17 +152,13 @@ metadata_ownership_dict = {
     'noSecuritiesOwned': 'noSecuritiesOwned',
     'aff10b5One': 'aff10b5One',
     'dateOfOriginalSubmission': 'dateOfOriginalSubmission',
-    'schemaVersion': 'schemaVersion',
-    # Additional fields from CSV
-    'accession': 'accession'
+    'schemaVersion': 'schemaVersion'
 }
 
 # Owner signature ownership mapping
 owner_signature_ownership_dict = {
     'signatureName': 'signatureName',
-    'signatureDate': 'signatureDate',
-    # Additional fields from CSV
-    'accession': 'accession'
+    'signatureDate': 'signatureDate'
 }
 
 # SBSEF (Swap Execution Facility) mapping
@@ -179,7 +168,6 @@ sbsef_dict = {
     'sbsefRegistrationDate': 'sbsefRegistrationDate',
     'sbsefStatus': 'sbsefStatus',
     'sbsefContactInfo': 'sbsefContactInfo',
-
     'filerInfo_filer_filerCredentials_ccc': 'filerCredentialsCcc',
     'filerInfo_filer_filerCredentials_cik': 'filerCredentialsCik',
     'filerInfo_flags_overrideInternetFlag': 'overrideInternetFlag',
@@ -218,14 +206,6 @@ thirteenfhr_dict = {
     'signatureTitle': 'signatureTitle',
     'signaturePhoneNumber': 'signaturePhoneNumber',
     'summaryPageTotal': 'summaryPageTotal',
-
-    '@xmlns_': 'xmlns',
-    '@xmlns_common': 'xmlnsCommon',
-    '@xmlns_n1': 'xmlnsN1',
-    '@xmlns_ns1': 'xmlnsNs1',
-    '@xmlns_ns11': 'xmlnsNs11',
-    '@xmlns_ns2': 'xmlnsNs2',
-    '@xmlns_xsi': 'xmlnsXsi',
     'formData_coverPage_additionalInformation': 'additionalInformation',
     'formData_coverPage_amendmentInfo_amendmentType': 'amendmentInfoType',
     'formData_coverPage_amendmentInfo_confDeniedExpired': 'confDeniedExpired',
@@ -301,18 +281,6 @@ information_table_dict = {
     'entityName': 'entityName',
     'entityIdentifier': 'entityIdentifier',
     'entityIdentifierType': 'entityIdentifierType',
-
-    '@xmlns_': 'xmlns',
-    '@xmlns_NS1': 'xmlnsNS1',
-    '@xmlns_a': 'xmlnsA',
-    '@xmlns_eis': 'xmlnsEis',
-    '@xmlns_fo': 'xmlnsFo',
-    '@xmlns_n1': 'xmlnsN1',
-    '@xmlns_ns1': 'xmlnsNs1',
-    '@xmlns_ns11': 'xmlnsNs11',
-    '@xmlns_ns2': 'xmlnsNs2',
-    '@xmlns_xsd': 'xmlnsXsd',
-    '@xmlns_xsi': 'xmlnsXsi',
     'infoTable': 'infoTable',
     'infoTable_cusip': 'infoTableCusip',
     'infoTable_figi': 'infoTableFigi',
@@ -332,7 +300,6 @@ information_table_dict = {
 
 # SDR (Swap Data Repository) mapping
 sdr_dict = {
-    'accession': 'accession',
     'formData_generalInfo_applicantCategory_applcntTypeConfFlag': 'applicantTypeConfFlag',
     'formData_generalInfo_applicantCategory_applicantType': 'applicantType',
     'formData_generalInfo_applicantCategory_applicantTypeOtherDesc': 'applicantTypeOtherDesc',
@@ -398,25 +365,21 @@ sdr_dict = {
 
 # EX-99.A SDR SUMMARY mapping
 ex99a_sdr_summary_dict = {
-    'accession': 'accession',
     'controlPerson': 'controlPerson'
 }
 
 # EX-99.G SDR mapping
 ex99g_sdr_dict = {
-    'accession': 'accession',
     'affiliate': 'affiliate'
 }
 
 # EX-99.I SDR SUMMARY mapping
 ex99i_sdr_summary_dict = {
-    'accession': 'accession',
     'serviceProviderContract': 'serviceProviderContract'
 }
 
 # EX-99.C SDR mapping
 ex99c_sdr_dict = {
-    'accession': 'accession',
     'officer': 'officer',
     'standingCommittee_standingCommitteeMember_memberBusinessExperienceDesc': 'memberBusinessExperienceDesc',
     'standingCommittee_standingCommitteeMember_memberDisciplinaryHistory': 'memberDisciplinaryHistory',
