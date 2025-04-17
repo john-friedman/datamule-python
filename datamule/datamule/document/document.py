@@ -111,6 +111,8 @@ class Document:
 
             self.data = xml2dict(content=self.content, mapping_dict=mapping_dict)
 
+
+
         # will deprecate this when we add html2dict
         elif self.extension in ['.htm', '.html','.txt']:
 
@@ -189,25 +191,9 @@ class Document:
                     })
         
         return items
-
-    # we'll modify this for every dict
-    def _flatten_dict(self, d, parent_key=''):
-        items = {}
-
-        if isinstance(d, list):
-            return [self._flatten_dict(item) for item in d]
-                
-        for k, v in d.items():
-            new_key = f"{parent_key}_{k}" if parent_key else k
-            
-            if isinstance(v, dict):
-                items.update(self._flatten_dict(v, new_key))
-            else:
-                items[new_key] = str(v)
-                    
-        return items
    
    # this will all have to be changed. default will be to flatten everything
+   # candidate for deletion
     def __iter__(self):
         self.parse()
 

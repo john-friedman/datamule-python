@@ -1,5 +1,5 @@
 from .mapping_dicts import *
-
+# need to check if mappings correctly create new columns
 class Table():
     def __init__(self, data, type,accession):
         if isinstance(data,dict):

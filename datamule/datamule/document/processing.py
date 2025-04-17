@@ -137,9 +137,9 @@ def process_ownership(data, accession):
 
 def process_information_table(data, accession):
     tables = []
-    info_table = safe_get(data, ['informationTable'])
-    if info_table:
-        tables.append(Table(_flatten_dict(info_table), 'information_table', accession))
+    information_table = safe_get(data, ['informationTable','infoTable'])
+    if information_table:
+        tables.append(Table(_flatten_dict(information_table), 'information_table', accession))
     return tables
     
 def process_13fhr(data, accession):
@@ -151,7 +151,7 @@ def process_13fhr(data, accession):
 
 def process_sbsef(data, accession):
     tables = []
-    header_data = safe_get(data, ['edgarSubmission', 'headerData'])
+    header_data = safe_get(data, ['edgarSubmission'])
     if header_data:
         tables.append(Table(_flatten_dict(header_data), 'sbsef', accession))
     return tables
@@ -165,28 +165,28 @@ def process_sdr_header_data(data, accession):
 
 def process_ex_99c_sdr(data, accession):
     tables = []
-    director_governors = safe_get(data, ['directorGovernors'])
+    director_governors = safe_get(data, ['directorGovernors','officer'])
     if director_governors:
         tables.append(Table(_flatten_dict(director_governors), 'EX-99.C SDR', accession))
     return tables
 
 def process_ex_99a_summary_sdr(data, accession):
     tables = []
-    controlling_persons = safe_get(data, ['controllingPersons'])
+    controlling_persons = safe_get(data, ['controllingPersons','controlPerson'])
     if controlling_persons:
         tables.append(Table(_flatten_dict(controlling_persons), 'EX-99.A SDR SUMMARY', accession))
     return tables
 
 def process_ex_99g_summary_sdr(data, accession):
     tables = []
-    affiliates = safe_get(data, ['affiliates'])
+    affiliates = safe_get(data, ['affiliates','affiliate'])
     if affiliates:
         tables.append(Table(_flatten_dict(affiliates), 'EX-99.G SDR', accession))
     return tables
 
 def process_ex_99i_summary_sdr(data, accession):
     tables = []
-    service_provider_contracts = safe_get(data, ['serviceProviderContracts'])
+    service_provider_contracts = safe_get(data, ['serviceProviderContracts','serviceProviderContract'])
     if service_provider_contracts:
         tables.append(Table(_flatten_dict(service_provider_contracts), 'EX-99.I SDR SUMMARY', accession))
     return tables
