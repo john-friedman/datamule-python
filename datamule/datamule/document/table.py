@@ -156,6 +156,10 @@ class Table():
 
         # SBS
 
+        # SBSEF
+        elif self.type == 'sbsef':
+            mapping_dict = sbsef_dict
+
         # Schedule 13
         elif self.type == 'metadata_schedule_13':
             mapping_dict = metadata_schedule_13_dict
@@ -186,8 +190,43 @@ class Table():
         elif self.type == 'signature_schedule_13':
             mapping_dict = signature_schedule_13_dict
 
-        # SBS
+        # SDR
+        elif self.type == 'sdr':
+            mapping_dict = sdr_dict
 
+        # TA
+
+        # 13F-HR
+        elif self.type == '13fhr':
+            mapping_dict = thirteenfhr_dict
+        
+        # 25-NSE
+        elif self.type == '25nse':
+            mapping_dict = twentyfive_nse_dict
+
+        # 24F-2NT
+        elif self.type == 'metadata_24f_2nt':
+            mapping_dict = metadata_24f_2nt_dict
+        elif self.type == 'item_1_24f2nt':
+            mapping_dict = item_1_24f2nt_dict
+        elif self.type == 'item_2_24f2nt':
+            mapping_dict = item_2_24f2nt_dict
+        elif self.type == 'item_3_24f2nt':
+            mapping_dict = item_3_24f2nt_dict
+        elif self.type == 'item_4_24f2nt':
+            mapping_dict = item_4_24f2nt_dict
+        elif self.type == 'item_5_24f2nt':
+            mapping_dict = item_5_24f2nt_dict
+        elif self.type == 'item_6_24f2nt':
+            mapping_dict = item_6_24f2nt_dict
+        elif self.type == 'item_7_24f2nt':
+            mapping_dict = item_7_24f2nt_dict
+        elif self.type == 'item_8_24f2nt':
+            mapping_dict = item_8_24f2nt_dict
+        elif self.type == 'item_9_24f2nt':
+            mapping_dict = item_9_24f2nt_dict
+        elif self.type == 'signature_info_schedule_a':
+            mapping_dict = signature_24f2nt_dict
 
         else:
             mapping_dict = {}

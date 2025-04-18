@@ -1,5 +1,5 @@
 # 25-NSE mapping
-mapping_25nse = {
+twentyfive_nse_dict = {
     'descriptionClassSecurity': 'securityDescription',
     'exchange_cik': 'exchangeCik',
     'exchange_entityName': 'exchangeName',

@@ -1,5 +1,3 @@
-
-# SDR (Swap Data Repository) mapping
 sdr_dict = {
     'formData_generalInfo_applicantCategory_applcntTypeConfFlag': 'applicantTypeConfFlag',
     'formData_generalInfo_applicantCategory_applicantType': 'applicantType',
@@ -62,32 +60,4 @@ sdr_dict = {
     'headerData_filerInfo_flags_returnCopyFlag': 'headerReturnCopyFlag',
     'headerData_filerInfo_liveTestFlag': 'headerLiveTestFlag',
     'headerData_submissionType': 'headerSubmissionType'
-}
-
-
-
-# EX-99.G SDR mapping
-ex99g_sdr_dict = {
-    'affiliate': 'affiliate'
-}
-
-# EX-99.I SDR SUMMARY mapping
-ex99i_sdr_summary_dict = {
-    'serviceProviderContract': 'serviceProviderContract'
-}
-
-# EX-99.C SDR mapping
-ex99c_sdr_dict = {
-    'officer': 'officer',
-    'standingCommittee_standingCommitteeMember_memberBusinessExperienceDesc': 'memberBusinessExperienceDesc',
-    'standingCommittee_standingCommitteeMember_memberDisciplinaryHistory': 'memberDisciplinaryHistory',
-    'standingCommittee_standingCommitteeMember_memberFirstName': 'memberFirstName',
-    'standingCommittee_standingCommitteeMember_memberLastName': 'memberLastName',
-    'standingCommittee_standingCommitteeMember_memberNumOfMonthInPosition': 'memberNumOfMonthInPosition',
-    'standingCommittee_standingCommitteeMember_memberNumOfYearInPosition': 'memberNumOfYearInPosition',
-    'standingCommittee_standingCommitteeMember_memberOtherBusinessAffiliation': 'memberOtherBusinessAffiliation',
-    'standingCommittee_standingCommitteeMember_memberTermCommencementDate': 'memberTermCommencementDate',
-    'standingCommittee_standingCommitteeMember_memberTermTerminateDate': 'memberTermTerminateDate',
-    'standingCommittee_standingCommitteeMember_memberTitle': 'memberTitle',
-    'standingCommittee_standingCommitteeName': 'standingCommitteeName'
 }
