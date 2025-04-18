@@ -1,0 +1,1 @@
+proxy_voting_record_dict = {}

@@ -169,28 +169,28 @@ def process_ex_99c_sdr(data, accession):
     tables = []
     director_governors = safe_get(data, ['directorGovernors','officer'])
     if director_governors:
-        tables.append(Table(_flatten_dict(director_governors), 'EX-99.C SDR', accession))
+        tables.append(Table(_flatten_dict(director_governors), 'ex99c_sdr', accession))
     return tables
 
 def process_ex_99a_summary_sdr(data, accession):
     tables = []
     controlling_persons = safe_get(data, ['controllingPersons','controlPerson'])
     if controlling_persons:
-        tables.append(Table(_flatten_dict(controlling_persons), 'EX-99.A SDR SUMMARY', accession))
+        tables.append(Table(_flatten_dict(controlling_persons), 'ex99a_sdr', accession))
     return tables
 
 def process_ex_99g_summary_sdr(data, accession):
     tables = []
     affiliates = safe_get(data, ['affiliates','affiliate'])
     if affiliates:
-        tables.append(Table(_flatten_dict(affiliates), 'EX-99.G SDR', accession))
+        tables.append(Table(_flatten_dict(affiliates), 'ex99g_sdr', accession))
     return tables
 
 def process_ex_99i_summary_sdr(data, accession):
     tables = []
     service_provider_contracts = safe_get(data, ['serviceProviderContracts','serviceProviderContract'])
     if service_provider_contracts:
-        tables.append(Table(_flatten_dict(service_provider_contracts), 'EX-99.I SDR SUMMARY', accession))
+        tables.append(Table(_flatten_dict(service_provider_contracts), 'ex99i_sdr', accession))
     return tables
 
 def process_144(data, accession):
@@ -266,7 +266,7 @@ def process_ats(data, accession):
     
     cover = safe_get(data, ['edgarSubmission', 'formData', 'cover'])
     if cover:
-        tables.append(Table(_flatten_dict(cover), 'cover_ats', accession))
+        tables.append(Table(_flatten_dict(cover), 'cover_ats', accession)) 
     
     part_one = safe_get(data, ['edgarSubmission', 'formData', 'partOne'])
     if part_one:
@@ -283,7 +283,7 @@ def process_ats(data, accession):
     part_four = safe_get(data, ['edgarSubmission', 'formData', 'partFour'])
     if part_four:
         tables.append(Table(_flatten_dict(part_four), 'part_four_ats', accession))
-    
+      
     return tables
 
 # def process_c(data, accession):

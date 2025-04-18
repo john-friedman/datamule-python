@@ -1,4 +1,23 @@
-from .mapping_dicts import *
+from .mappings.atsn import *
+from .mappings.cfportal import *
+from .mappings.ex99a_sdr import *
+from .mappings.ex99c_sdr import *
+from .mappings.ex99g_sdr import *
+from .mappings.ex99i_sdr import *
+from .mappings.nmfp import *
+from .mappings.npx import *
+from .mappings.onefourtyfour import *
+from .mappings.ownership import *
+from .mappings.sbs import *
+from .mappings.sbsef import *
+from .mappings.schedule13 import *
+from .mappings.sdr import *
+from .mappings.ta import *
+from .mappings.thirteenfhr import *
+from .mappings.twentyfivense import *
+from .mappings.twentyfourf2nt import *
+from .mappings.information_table import *
+
 # need to check if mappings correctly create new columns
 class Table():
     def __init__(self, data, type,accession):
@@ -21,9 +40,101 @@ class Table():
     def map_data(self):
         # Add the accession column to all rows first, ensuring it will be first
         self.add_column('accession', self.accession)
+
+
+        # ATS-N, types: metadata_ats,cover_ats,part_one_ats,part_two_ats,part_three_ats,part_four_ats
+        if self.type == 'metadata_ats':
+            mapping_dict = metadata_ats_dict
+        elif self.type == 'cover_ats':
+            mapping_dict = cover_ats_dict
+        elif self.type == 'part_one_ats':
+            mapping_dict = part_one_ats_dict
+        elif self.type == 'part_two_ats':
+            mapping_dict = part_two_ats_dict
+        elif self.type == 'part_three_ats':
+            mapping_dict = part_three_ats_dict
+        elif self.type == 'part_four_ats':
+            mapping_dict = part_four_ats_dict
+        # CFPORTAL
+        elif self.type == 'metadata_cfportal':
+            mapping_dict = metadata_cfportal_dict
+        elif self.type == 'identifying_information_cfportal':
+            mapping_dict = identifying_information_cfportal_dict
+        elif self.type == 'form_of_organization_cfportal':
+            mapping_dict = form_of_organization_cfportal_dict
+        elif self.type == 'successions_cfportal':
+            mapping_dict = successions_cfportal_dict
+        elif self.type == 'control_relationships_cfportal':
+            mapping_dict = control_relationships_cfportal_dict
+        elif self.type == 'disclosure_answers_cfportal':
+            mapping_dict = disclosure_answers_cfportal_dict
+        elif self.type == 'non_securities_related_business_cfportal':
+            mapping_dict = non_securities_related_business_cfportal_dict
+        elif self.type == 'escrow_arrangements_cfportal':
+            mapping_dict = escrow_arrangements_cfportal_dict
+        elif self.type == 'execution_cfportal':
+            mapping_dict = execution_cfportal_dict
+        elif self.type == 'schedule_a_cfportal':
+            mapping_dict = schedule_a_cfportal_dict
+        elif self.type == 'schedule_b_cfportal':
+            mapping_dict = schedule_b_cfportal_dict
+        elif self.type == 'schedule_c_cfportal':
+            mapping_dict = schedule_c_cfportal_dict
+        elif self.type == 'schedule_d_cfportal':
+            mapping_dict = schedule_d_cfportal_dict
+        elif self.type == 'criminal_drip_info_cfportal':
+            mapping_dict = criminal_drip_info_cfportal_dict
+        elif self.type == 'regulatory_drip_info_cfportal':
+            mapping_dict = regulatory_drip_info_cfportal_dict
+        elif self.type == 'civil_judicial_drip_info_cfportal':
+            mapping_dict = civil_judicial_drip_info_cfportal_dict
+        elif self.type == 'bankruptcy_sipc_drip_info_cfportal':
+            mapping_dict = bankruptcy_sipc_drip_info_cfportal_dict
+        elif self.type == 'bond_drip_info_cfportal':
+            mapping_dict = bond_drip_info_cfportal_dict
+        elif self.type == 'judgement_drip_info_cfportal':
+            mapping_dict = judgement_drip_info_cfportal_dict
+
+        # SDR
         
-        # Define the mapping dictionary for each table type
-        if self.type == 'non_derivative_holding_ownership':
+        # Information Table
+        elif self.type == 'information_table':
+            mapping_dict = information_table_dict
+
+        # NFMP
+        elif self.type == 'metadata_nmfp':
+            mapping_dict = metadata_nmfp_dict
+        elif self.type == 'general_information_nmfp':
+            mapping_dict = general_information_nmfp_dict
+        elif self.type == 'series_level_info_nmfp':
+            mapping_dict = series_level_info_nmfp_dict
+        elif self.type == 'class_level_info_nmfp':
+            mapping_dict = class_level_info_nmfp_dict
+        elif self.type == 'schedule_of_portfolio_securities_info_nmfp':
+            mapping_dict = schedule_of_portfolio_securities_info_nmfp_dict
+        elif self.type == 'signature_nmfp':
+            mapping_dict = signature_nmfp_dict
+
+        # NPX
+        elif self.type == 'npx':
+            mapping_dict = npx_dict
+
+        # 144
+        elif self.type == 'signatures_144':
+            mapping_dict = signatures_144_dict
+        elif self.type == 'securities_sold_in_past_3_months_144':
+            mapping_dict = securities_sold_in_past_3_months_144_dict
+        elif self.type == 'securities_to_be_sold_144':
+            mapping_dict = securities_to_be_sold_144_dict
+        elif self.type == 'securities_information_144':
+            mapping_dict = securities_information_144_dict
+        elif self.type == 'issuer_information_144':
+            mapping_dict = issuer_information_144_dict
+        elif self.type == 'metadata_144':
+            mapping_dict = metadata_144_dict
+        
+        # Ownership
+        elif self.type == 'non_derivative_holding_ownership':
             mapping_dict = non_derivative_holding_ownership_dict
         elif self.type == 'non_derivative_transaction_ownership':
             mapping_dict = non_derivative_transaction_ownership_dict
@@ -37,24 +148,14 @@ class Table():
             mapping_dict = metadata_ownership_dict
         elif self.type == 'owner_signature_ownership':
             mapping_dict = owner_signature_ownership_dict
-        elif self.type == 'sbsef':
-            mapping_dict = sbsef_dict
-        elif self.type == '13fhr':
-            mapping_dict = thirteenfhr_dict
-        elif self.type == 'information_table':
-            mapping_dict = information_table_dict
-        elif self.type == 'sdr':
-            mapping_dict = sdr_dict
-        elif self.type == 'EX-99.A SDR SUMMARY':
-            mapping_dict = ex99a_sdr_summary_dict
-        elif self.type == 'EX-99.G SDR':
-            mapping_dict = ex99g_sdr_dict
-        elif self.type == 'EX-99.I SDR SUMMARY':
-            mapping_dict = ex99i_sdr_summary_dict
-        elif self.type == 'EX-99.C SDR':
-            mapping_dict = ex99c_sdr_dict
+
+        # Proxy Voting Record
+        elif self.type == 'proxy_voting_record':
+            mapping_dict = proxy_voting_record_dict
+
+
         else:
-            mapping_dict = {} 
+            mapping_dict = {}
         
         # Update mapping dictionary to include accession at the beginning
         # Create a new mapping with accession as the first key
