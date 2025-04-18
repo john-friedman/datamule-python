@@ -1,5 +1,5 @@
 from .table import Table
-
+from warnings import warn
 def safe_get(d, keys, default=None):
     """Safely access nested dictionary keys"""
     current = d
@@ -71,7 +71,8 @@ def process_tabular_data(self):
     elif self.type == "PROXY VOTING RECORD":
         tables = process_proxy_voting_record(self.data, self.accession)
     else:
-        raise ValueError(f"Unknown type: {self.type}")
+        warn(f"Processing for {self.type} is not implemented yet.")
+        return []
     
     if tables is not None:
         [table.map_data() for table in tables]
@@ -211,7 +212,7 @@ def process_144(data, accession):
     if securities_info:
         tables.append(Table(_flatten_dict(securities_info), 'securities_information_144', accession))
     
-    issuer_info = safe_get(data, ['edgarSubmission', 'formData', 'issuerInformation'])
+    issuer_info = safe_get(data, ['edgarSubmission', 'formData', 'issuerInfo'])
     if issuer_info:
         tables.append(Table(_flatten_dict(issuer_info), 'issuer_information_144', accession))
     
