@@ -28,6 +28,23 @@ class Downloader:
         self.QUEUE_SIZE = 10
         if api_key is not None:
             self._api_key = api_key
+        # Create a shared event loop for async operations
+        self.loop = asyncio.new_event_loop()
+        # Create a thread to run the event loop
+        self.loop_thread = Thread(target=self._run_event_loop, daemon=True)
+        self.loop_thread.start()
+        # Create a queue for async tasks
+        self.async_queue = Queue()
+        
+    def _run_event_loop(self):
+        """Run the event loop in a separate thread"""
+        asyncio.set_event_loop(self.loop)
+        self.loop.run_forever()
+    
+    def _run_coroutine(self, coro):
+        """Run a coroutine in the event loop and return its result"""
+        future = asyncio.run_coroutine_threadsafe(coro, self.loop)
+        return future.result()
 
     @property
     def api_key(self):
@@ -78,7 +95,8 @@ class Downloader:
             filename, content = item
             try:
                 submission = Submission(sgml_content=content, keep_document_types=self.keep_document_types)
-                file_dir = submission.save(output_dir=self.output_dir)
+                # Use the shared event loop to run save_async
+                self.downloader._run_coroutine(submission.save_async(output_dir=self.output_dir))
                 self.pbar.update(1)
             except Exception as e:
                 accession_dir = os.path.join(self.output_dir, filename.split('.')[0])  
@@ -273,6 +291,11 @@ class Downloader:
         elapsed_time = time.time() - start_time
         print(f"\nProcessing completed in {elapsed_time:.2f} seconds")
         print(f"Processing speed: {len(urls)/elapsed_time:.2f} files/second")
+    
+    def __del__(self):
+        """Cleanup when the downloader is garbage collected"""
+        if hasattr(self, 'loop') and self.loop.is_running():
+            self.loop.call_soon_threadsafe(self.loop.stop)
 
 
 def download(submission_type=None, cik=None, filing_date=None, api_key=None, output_dir="downloads", accession_numbers=None, keep_document_types=None):
