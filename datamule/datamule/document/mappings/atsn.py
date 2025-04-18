@@ -14,10 +14,7 @@ cover_ats_dict = {
 }
 
 part_one_ats_dict = {
-    'atsNames_atsName_@txPart1Item3ATSName': 'formalATSName',
-    'atsNames_atsName_@xmlns_': 'xmlnsDefault',
-    'atsNames_atsName_@xmlns_ats': 'xmlnsAts',
-    'atsNames_atsName_@xmlns_com': 'xmlnsCom',
+    'atsNames_atsName_@txPart1Item3ATSName': 'formalATSName',   
     'cbPart1Item8Exhibit1atWebsite': 'exhibit1AtWebsite',
     'cbPart1Item9Exhibit2atWebsite': 'exhibit2AtWebsite',
     'part1Item5bEffectiveMembershipDate': 'membershipEffectiveDate',

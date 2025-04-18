@@ -510,7 +510,7 @@ def process_schedule_13(data, accession):
     if items and isinstance(items, dict):
         for k, v in items.items():
             if v:
-                tables.append(Table(_flatten_dict(v), f'item_{k}_schedule_13', accession))
+                tables.append(Table(_flatten_dict(v), f'{k}_schedule_13', accession))
     
     signature_info = safe_get(data, ['edgarSubmission', 'formData', 'signatureInformation'])
     if signature_info:
