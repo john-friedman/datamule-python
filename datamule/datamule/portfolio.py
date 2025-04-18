@@ -119,7 +119,7 @@ class Portfolio:
             # First query, just set the accession numbers
             self.accession_numbers = new_accession_numbers
 
-    def download_submissions(self, cik=None, ticker=None, submission_type=None, filing_date=None, provider=None,requests_per_second=5, **kwargs):
+    def download_submissions(self, cik=None, ticker=None, submission_type=None, filing_date=None, provider=None,document_type=None,requests_per_second=5, **kwargs):
         if provider is None:
             config = Config()
             provider = config.get_default_source()
@@ -143,7 +143,8 @@ class Portfolio:
                 submission_type=submission_type,
                 filing_date=filing_date,
                 requests_per_second=requests_per_second, 
-                accession_numbers=self.accession_numbers if hasattr(self, 'accession_numbers') else None
+                accession_numbers=self.accession_numbers if hasattr(self, 'accession_numbers') else None,
+                keep_document_types=document_type
             )
 
         self.submissions_loaded = False

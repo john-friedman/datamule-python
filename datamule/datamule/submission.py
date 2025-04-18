@@ -2,7 +2,9 @@ from pathlib import Path
 import json
 from .document.document import Document
 from secsgml import parse_sgml_submission_into_memory
-from pathlib import Path
+import os
+import aiofiles
+
 
 class Submission:
     def __init__(self, path=None,sgml_content=None,keep_document_types=None):
@@ -14,7 +16,12 @@ class Submission:
         if sgml_content is not None:
             self.path = None
             self.metadata, raw_documents = parse_sgml_submission_into_memory(sgml_content)
+
+            self.accession = self.metadata['accession-number']
+            self.filing_date= f"{self.metadata['filing-date'][:4]}-{self.metadata['filing-date'][4:6]}-{self.metadata['filing-date'][6:8]}"
+    
             self.documents = []
+            filtered_metadata_documents = []
 
             for idx,doc in enumerate(self.metadata['documents']):
                 type = doc.get('type')
@@ -26,6 +33,9 @@ class Submission:
                 extension = Path(filename).suffix
                 self.documents.append(Document(type=type, content=raw_documents[idx], extension=extension,filing_date=self.filing_date,accession=self.accession))
 
+                filtered_metadata_documents.append(doc)
+            
+            self.metadata['documents'] = filtered_metadata_documents
 
         if path is not None:
             self.path = Path(path)  
@@ -33,9 +43,7 @@ class Submission:
             with metadata_path.open('r') as f:
                 self.metadata = json.load(f)
 
-        self.accession = self.metadata['accession-number']
-        self.filing_date= f"{self.metadata['filing-date'][:4]}-{self.metadata['filing-date'][4:6]}-{self.metadata['filing-date'][6:8]}"
-    
+
 
     def document_type(self, document_type):
         # Convert single document type to list for consistent handling
@@ -114,3 +122,87 @@ class Submission:
                     document_path.unlink()
         else:
             print("Warning: keep() method is only available when loading from path.")
+
+
+
+    def save(self, output_dir="filings"):
+        file_dir = Path(output_dir) / str(self.accession)
+        file_dir.mkdir(parents=True, exist_ok=True)
+        
+        metadata_path = file_dir / "metadata.json"
+        with open(metadata_path, 'w') as f:
+            json.dump(self.metadata, f, indent=4)
+        
+        for idx, doc in enumerate(self.metadata['documents']):
+            try:
+                filename = doc.get('filename')
+                if filename is None:
+                    filename = f"{doc.get('sequence', idx)}.txt"
+            except (KeyError, IndexError):
+                filename = f"{idx}.txt"
+            
+            doc_path = file_dir / filename
+            
+            if self.path is not None:
+                if hasattr(self, 'documents') and self.documents:
+                    content = self.documents[idx].content
+                else:
+                    orig_doc_path = self.path / filename
+                    if orig_doc_path.exists():
+                        with open(orig_doc_path, 'r', encoding='utf-8', errors='replace') as f:
+                            content = f.read()
+                    else:
+                        print(f"Warning: File {orig_doc_path} does not exist, skipping.")
+                        continue
+            else:
+                content = self.documents[idx].content
+            
+            if isinstance(content, bytes):
+                with open(doc_path, 'wb') as f:
+                    f.write(content)
+            else:
+                with open(doc_path, 'w', encoding='utf-8', errors='replace') as f:
+                    f.write(content)
+        
+        return file_dir
+
+    async def save_async(self, output_dir="filings"):
+        file_dir = Path(output_dir) / str(self.accession)
+        os.makedirs(file_dir, exist_ok=True)
+        
+        metadata_path = file_dir / "metadata.json"
+        async with aiofiles.open(metadata_path, 'w') as f:
+            await f.write(json.dumps(self.metadata, indent=4))
+        
+        for idx, doc in enumerate(self.metadata['documents']):
+            try:
+                filename = doc.get('filename')
+                if filename is None:
+                    filename = f"{doc.get('sequence', idx)}.txt"
+            except (KeyError, IndexError):
+                filename = f"{idx}.txt"
+            
+            doc_path = file_dir / filename
+            
+            if self.path is not None:
+                if hasattr(self, 'documents') and self.documents:
+                    content = self.documents[idx].content
+                else:
+                    orig_doc_path = self.path / filename
+                    if orig_doc_path.exists():
+                        async with aiofiles.open(orig_doc_path, 'r', encoding='utf-8', errors='replace') as f:
+                            content = await f.read()
+                    else:
+                        print(f"Warning: File {orig_doc_path} does not exist, skipping.")
+                        continue
+            else:
+                content = self.documents[idx].content
+            
+            if isinstance(content, bytes):
+                async with aiofiles.open(doc_path, 'wb') as f:
+                    await f.write(content)
+            else:
+                async with aiofiles.open(doc_path, 'w', encoding='utf-8', errors='replace') as f:
+                    await f.write(content)
+        
+        return file_dir

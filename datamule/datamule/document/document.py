@@ -20,11 +20,6 @@ class Document:
 
         if path is not None:
             self.path = path
-        
-        if extension == '.txt':
-            self.content = self._preprocess_txt_content()
-        elif extension in ['.htm', '.html']:
-            self.content = self._preprocess_html_content()
 
         self.extension = extension
         # this will be filled by parsed
@@ -103,6 +98,13 @@ class Document:
         # check if we have already parsed the content
         if self.data:
             return self.data
+        
+        # preprocess content
+        if self.extension == '.txt':
+            self.content = self._preprocess_txt_content()
+        elif self.extension in ['.htm', '.html']:
+            self.content = self._preprocess_html_content()
+
         mapping_dict = None
 
         if self.extension == '.xml':
