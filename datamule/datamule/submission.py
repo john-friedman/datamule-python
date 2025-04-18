@@ -17,6 +17,7 @@ class Submission:
             self.path = None
             self.metadata, raw_documents = parse_sgml_submission_into_memory(sgml_content)
 
+            # code dupe
             self.accession = self.metadata['accession-number']
             self.filing_date= f"{self.metadata['filing-date'][:4]}-{self.metadata['filing-date'][4:6]}-{self.metadata['filing-date'][6:8]}"
     
@@ -43,6 +44,11 @@ class Submission:
             with metadata_path.open('r') as f:
                 self.metadata = json.load(f)
 
+            # Code dupe
+            self.accession = self.metadata['accession-number']
+            self.filing_date= f"{self.metadata['filing-date'][:4]}-{self.metadata['filing-date'][4:6]}-{self.metadata['filing-date'][6:8]}"
+    
+
 
 
     def document_type(self, document_type):
@@ -65,8 +71,11 @@ class Submission:
                     document_path = self.path / filename
                     extension = document_path.suffix
 
-                    with document_path.open('r') as f:
+                    with document_path.open('rb') as f:
                         content = f.read()
+
+                    if extension in ['.htm','.html','.txt','.xml']:
+                        content = content.decode('utf-8', errors='replace')
 
                     yield Document(type=doc['type'], content=content, extension=extension,filing_date=self.filing_date,accession=self.accession,path=document_path)
                 # if loaded from sgml_content
@@ -89,8 +98,11 @@ class Submission:
 
                 # check if the file exists
                 if document_path.exists():
-                    with document_path.open('r') as f:
+                    with document_path.open('rb') as f:
                         content = f.read()
+
+                    if extension in ['.htm','.html','.txt','.xml']:
+                        content = content.decode('utf-8', errors='replace')
 
                     yield Document(type=doc['type'], content=content, extension=extension,filing_date=self.filing_date,accession=self.accession,path=document_path)
                 else:
@@ -100,28 +112,6 @@ class Submission:
             else:
                 yield self.documents[idx]
 
-    # keep documents by document type
-    def keep(self, document_type):
-        # Convert single document type to list for consistent handling
-        if isinstance(document_type, str):
-            document_types = [document_type]
-        else:
-            document_types = document_type
-
-        if self.path is not None:
-            for doc in self.metadata['documents']:
-                filename = doc.get('filename')
-                type = doc.get('type')
-                if type not in document_types:
-                    # oh we need handling here for sequences case
-                    if filename is None:
-                        filename = doc.sequence + '.txt'
-
-                    document_path = self.path / filename
-                    # delete the file
-                    document_path.unlink()
-        else:
-            print("Warning: keep() method is only available when loading from path.")
 
 
 
