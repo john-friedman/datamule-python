@@ -16,6 +16,7 @@ from threading import Thread
 from secsgml import parse_sgml_submission
 from .query import query
 from os import cpu_count
+from ..submission import Submission
 
 class Downloader:
     def __init__(self, api_key=None):
@@ -55,7 +56,7 @@ class Downloader:
             print(f"Failed to log error to {error_file}: {str(e)}")
 
     class FileProcessor:
-        def __init__(self, output_dir, max_workers, queue_size, pbar, downloader):
+        def __init__(self, output_dir, max_workers, queue_size, pbar, downloader, keep_document_types=None):
             self.processing_queue = Queue(maxsize=queue_size)
             self.should_stop = False
             self.processing_workers = []
@@ -64,6 +65,7 @@ class Downloader:
             self.batch_size = 50
             self.pbar = pbar
             self.downloader = downloader
+            self.keep_document_types = keep_document_types
 
         def start_processing_workers(self):
             for _ in range(self.max_workers):
@@ -75,7 +77,8 @@ class Downloader:
         def _process_file(self, item):
             filename, content = item
             try:
-                parse_sgml_submission(output_dir=self.output_dir, content=content)
+                submission = Submission(sgml_content=content, keep_document_types=self.keep_document_types)
+                file_dir = submission.save(output_dir=self.output_dir)
                 self.pbar.update(1)
             except Exception as e:
                 accession_dir = os.path.join(self.output_dir, filename.split('.')[0])  
@@ -189,11 +192,11 @@ class Downloader:
             except Exception as e:
                 self._log_error(output_dir, filename, str(e))
 
-    async def process_batch(self, urls, output_dir):
+    async def process_batch(self, urls, output_dir, keep_document_types=None):
         os.makedirs(output_dir, exist_ok=True)
         
         with tqdm(total=len(urls), desc="Processing files") as pbar:
-            processor = self.FileProcessor(output_dir, self.MAX_PROCESSING_WORKERS, self.QUEUE_SIZE, pbar, self)
+            processor = self.FileProcessor(output_dir, self.MAX_PROCESSING_WORKERS, self.QUEUE_SIZE, pbar, self, keep_document_types=keep_document_types)
             processor.start_processing_workers()
 
             semaphore = asyncio.Semaphore(self.MAX_CONCURRENT_DOWNLOADS)
@@ -216,7 +219,7 @@ class Downloader:
             processor.stop_workers()
             decompression_pool.shutdown()
 
-    def download(self, submission_type=None, cik=None, filing_date=None, output_dir="downloads", accession_numbers=None):
+    def download(self, submission_type=None, cik=None, filing_date=None, output_dir="downloads", accession_numbers=None, keep_document_types=None):
         """
         Query SEC filings and download/process them.
         
@@ -225,6 +228,8 @@ class Downloader:
         - cik: Company CIK number(s), string, int, or list
         - filing_date: Filing date(s), string, list, or tuple of (start_date, end_date)
         - output_dir: Directory to save downloaded files
+        - accession_numbers: List of specific accession numbers to download
+        - keep_document_types: List of document types to keep (e.g., ['10-K', 'EX-10.1'])
         """
         if self.api_key is None:
             raise ValueError("No API key found. Please set DATAMULE_API_KEY environment variable or provide api_key in constructor")
@@ -262,7 +267,7 @@ class Downloader:
         start_time = time.time()
         
         # Process the batch asynchronously
-        asyncio.run(self.process_batch(urls, output_dir))
+        asyncio.run(self.process_batch(urls, output_dir, keep_document_types=keep_document_types))
         
         # Calculate and display performance metrics
         elapsed_time = time.time() - start_time
@@ -270,7 +275,19 @@ class Downloader:
         print(f"Processing speed: {len(urls)/elapsed_time:.2f} files/second")
 
 
-def download(submission_type=None, cik=None, filing_date=None, api_key=None, output_dir="downloads", accession_numbers=None):
+def download(submission_type=None, cik=None, filing_date=None, api_key=None, output_dir="downloads", accession_numbers=None, keep_document_types=None):
+    """
+    Query SEC filings and download/process them.
+    
+    Parameters:
+    - submission_type: Filing type(s), string or list (e.g., '10-K', ['10-K', '10-Q'])
+    - cik: Company CIK number(s), string, int, or list
+    - filing_date: Filing date(s), string, list, or tuple of (start_date, end_date)
+    - api_key: API key for datamule service (optional if DATAMULE_API_KEY env var is set)
+    - output_dir: Directory to save downloaded files
+    - accession_numbers: List of specific accession numbers to download
+    - keep_document_types: List of document types to keep (e.g., ['10-K', 'EX-10.1'])
+    """
     if accession_numbers:
         accession_numbers = [int(str(x).replace('-', '')) for x in accession_numbers]
     # check if acc no is empty list
@@ -282,5 +299,6 @@ def download(submission_type=None, cik=None, filing_date=None, api_key=None, out
         cik=cik,
         filing_date=filing_date,
         output_dir=output_dir,
-        accession_numbers=accession_numbers
+        accession_numbers=accession_numbers,
+        keep_document_types=keep_document_types
     )

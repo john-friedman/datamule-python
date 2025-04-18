@@ -134,7 +134,8 @@ class Portfolio:
                 cik=cik,
                 submission_type=submission_type,
                 filing_date=filing_date,
-                accession_numbers=self.accession_numbers if hasattr(self, 'accession_numbers') else None
+                accession_numbers=self.accession_numbers if hasattr(self, 'accession_numbers') else None,
+                keep_document_types=document_type
             )
         else:
             sec_download(
