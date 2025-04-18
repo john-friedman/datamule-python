@@ -8,6 +8,7 @@ from .mappings.nmfp import *
 from .mappings.npx import *
 from .mappings.onefourtyfour import *
 from .mappings.ownership import *
+from .mappings.proxy_voting_record import *
 from .mappings.sbs import *
 from .mappings.sbsef import *
 from .mappings.schedule13 import *
@@ -152,6 +153,40 @@ class Table():
         # Proxy Voting Record
         elif self.type == 'proxy_voting_record':
             mapping_dict = proxy_voting_record_dict
+
+        # SBS
+
+        # Schedule 13
+        elif self.type == 'metadata_schedule_13':
+            mapping_dict = metadata_schedule_13_dict
+        elif self.type == 'cover_schedule_13':
+            mapping_dict = cover_schedule_13_dict
+        elif self.type == 'reporting_person_details_schedule_13':
+            mapping_dict = reporting_person_details_schedule_13_dict
+        elif self.type == 'item_1_schedule_13':
+            mapping_dict = item_1_schedule_13_dict
+        elif self.type == 'item_2_schedule_13':
+            mapping_dict = item_2_schedule_13_dict
+        elif self.type == 'item_3_schedule_13':
+            mapping_dict = item_3_schedule_13_dict
+        elif self.type == 'item_4_schedule_13':
+            mapping_dict = item_4_schedule_13_dict
+        elif self.type == 'item_5_schedule_13':
+            mapping_dict = item_5_schedule_13_dict
+        elif self.type == 'item_6_schedule_13':
+            mapping_dict = item_6_schedule_13_dict
+        elif self.type == 'item_7_schedule_13':
+            mapping_dict = item_7_schedule_13_dict
+        elif self.type == 'item_8_schedule_13':
+            mapping_dict = item_8_schedule_13_dict
+        elif self.type == 'item_9_schedule_13':
+            mapping_dict = item_9_schedule_13_dict
+        elif self.type == 'item_10_schedule_13':
+            mapping_dict = item_10_schedule_13_dict
+        elif self.type == 'signature_schedule_13':
+            mapping_dict = signature_schedule_13_dict
+
+        # SBS
 
 
         else:

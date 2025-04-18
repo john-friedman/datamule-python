@@ -500,17 +500,17 @@ def process_schedule_13(data, accession):
     
     cover_page_header = safe_get(data, ['edgarSubmission', 'formData', 'coverPageHeader'])
     if cover_page_header:
-        tables.append(Table(_flatten_dict(cover_page_header), 'cover_page_header_schedule_13', accession))
+        tables.append(Table(_flatten_dict(cover_page_header), 'cover_schedule_13', accession))
     
     cover_page_details = safe_get(data, ['edgarSubmission', 'formData', 'coverPageHeaderReportingPersonDetails'])
     if cover_page_details:
-        tables.append(Table(_flatten_dict(cover_page_details), 'cover_page_header_reporting_person_details_schedule_13', accession))
+        tables.append(Table(_flatten_dict(cover_page_details), 'reporting_person_details_schedule_13', accession))
     
     items = safe_get(data, ['edgarSubmission', 'formData', 'items'])
     if items and isinstance(items, dict):
         for k, v in items.items():
             if v:
-                tables.append(Table(_flatten_dict(v), f'item_schedule_{k}_13', accession))
+                tables.append(Table(_flatten_dict(v), f'item_{k}_schedule_13', accession))
     
     signature_info = safe_get(data, ['edgarSubmission', 'formData', 'signatureInformation'])
     if signature_info:
