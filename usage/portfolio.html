@@ -1,0 +1,317 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio &mdash; datamule  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Sheet" href="sheet.html" />
+    <link rel="prev" title="Usage Guide" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            datamule
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_key.html">Data provider</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Usage Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Portfolio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#quickstart">Quickstart</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#initialization">Initialization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#downloading-submissions">Downloading Submissions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#processing-submissions">Processing Submissions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#submissions">Submissions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#filters">Filters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#shared-parameters-for-download-submissions-process-submissions-and-filter-text">Shared Parameters for download_submissions, process_submissions, and filter_text</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#monitoring">Monitoring</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#submission-class">Submission Class</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#document-class">Document Class</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sheet.html">Sheet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index_class.html">Index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html">Parsing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.html">Package Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">datamule</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Usage Guide</a></li>
+      <li class="breadcrumb-item active">Portfolio</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/usage/portfolio.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="portfolio">
+<h1>Portfolio<a class="headerlink" href="#portfolio" title="Link to this heading"></a></h1>
+<p>Portfolio is used to interact with SEC submissions.</p>
+<section id="quickstart">
+<h2>Quickstart<a class="headerlink" href="#quickstart" title="Link to this heading"></a></h2>
+<section id="initialization">
+<h3>Initialization<a class="headerlink" href="#initialization" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datamule</span><span class="w"> </span><span class="kn">import</span> <span class="n">Portfolio</span>
+
+<span class="c1"># Create a Portfolio object</span>
+<span class="n">portfolio</span> <span class="o">=</span> <span class="n">Portfolio</span><span class="p">(</span><span class="s1">&#39;climate&#39;</span><span class="p">)</span> <span class="c1"># need to modify this docs</span>
+
+<span class="c1"># Filter submissions</span>
+<span class="n">portfolio</span><span class="o">.</span><span class="n">filter_text</span><span class="p">(</span><span class="s1">&#39;&quot;climate change&quot; risks&#39;</span><span class="p">,</span> <span class="n">filing_date</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;2019-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-01-31&#39;</span><span class="p">),</span> <span class="n">submission_type</span><span class="o">=</span><span class="s1">&#39;10-K&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="downloading-submissions">
+<h3>Downloading Submissions<a class="headerlink" href="#downloading-submissions" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download submissions - note that filters are applied here</span>
+<span class="n">portfolio</span><span class="o">.</span><span class="n">download_submissions</span><span class="p">(</span><span class="n">submission_type</span><span class="o">=</span><span class="s1">&#39;10-K&#39;</span><span class="p">,</span> <span class="n">filing_date</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;2019-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-01-31&#39;</span><span class="p">),</span> <span class="n">provider</span><span class="o">=</span><span class="s1">&#39;sec&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="processing-submissions">
+<h3>Processing Submissions<a class="headerlink" href="#processing-submissions" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">callback_function</span><span class="p">(</span><span class="n">submission</span><span class="p">):</span>
+   <span class="k">try</span><span class="p">:</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">submission</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;cik&#39;</span><span class="p">])</span>
+   <span class="k">except</span><span class="p">:</span>
+      <span class="nb">print</span><span class="p">(</span><span class="n">submission</span><span class="o">.</span><span class="n">metadata</span><span class="p">[</span><span class="s1">&#39;central index key&#39;</span><span class="p">])</span>
+
+<span class="c1"># Process submissions - note that filters are applied here</span>
+<span class="n">portfolio</span><span class="o">.</span><span class="n">process_submissions</span><span class="p">(</span><span class="n">submission_type</span><span class="o">=</span><span class="s1">&#39;10-K&#39;</span><span class="p">,</span> <span class="n">filing_date</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;2019-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2019-01-31&#39;</span><span class="p">),</span> <span class="n">provider</span><span class="o">=</span><span class="s1">&#39;sec&#39;</span><span class="p">,</span> <span class="n">submission_callback</span><span class="o">=</span><span class="n">callback_function</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h2>
+<section id="submissions">
+<h3>Submissions<a class="headerlink" href="#submissions" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">process_submissions(submission_callback,</span> <span class="pre">cik=None,</span> <span class="pre">ticker=None,</span> <span class="pre">submission_type=None,</span> <span class="pre">filing_date=None,</span> <span class="pre">provider=None,</span> <span class="pre">**kwargs)</span></code></dt><dd><p>Processes submissions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param submission_callback<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Function to call for each submission</p>
+</dd>
+<dt class="field-even">param provider<span class="colon">:</span></dt>
+<dd class="field-even"><p>Data provider to use for retrieval</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">download_submissions(output_dir='submissions',</span> <span class="pre">cik=None,</span> <span class="pre">ticker=None,</span> <span class="pre">submission_type=None,</span> <span class="pre">filing_date=None,</span> <span class="pre">provider=None,</span> <span class="pre">**kwargs)</span></code></dt><dd><p>Retrieves the submissions and saves them to disk.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param output_dir<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Directory to save the submissions</p>
+</dd>
+<dt class="field-even">param provider<span class="colon">:</span></dt>
+<dd class="field-even"><p>Data provider to use for retrieval</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+<section id="filters">
+<h3>Filters<a class="headerlink" href="#filters" title="Link to this heading"></a></h3>
+<p>Run this before Submissions.</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">filter_text(text_query,</span> <span class="pre">cik=None,</span> <span class="pre">submission_type=None,</span> <span class="pre">filing_date=None,</span> <span class="pre">requests_per_second=5.0,</span> <span class="pre">**kwargs)</span></code></dt><dd><p>filters submissions by text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param text_query<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Text to search for in the submission. Use double quotes for exact matches. E.g. ‘“Climate Change”’ or ‘“Climate Change” risks’</p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">filter_xbrl(taxonomy,</span> <span class="pre">concept,</span> <span class="pre">unit,</span> <span class="pre">period,</span> <span class="pre">logic,</span> <span class="pre">value)</span></code></dt><dd><dl class="field-list simple">
+<dt class="field-odd">param taxonomy<span class="colon">:</span></dt>
+<dd class="field-odd"><p>XBRL taxonomy e.g. ‘dei’</p>
+</dd>
+<dt class="field-even">param concept<span class="colon">:</span></dt>
+<dd class="field-even"><p>XBRL concept e.g. ‘EntityCommonStockSharesOutstanding’</p>
+</dd>
+<dt class="field-odd">param unit<span class="colon">:</span></dt>
+<dd class="field-odd"><p>XBRL unit e.g. ‘shares’</p>
+</dd>
+<dt class="field-even">param period<span class="colon">:</span></dt>
+<dd class="field-even"><p>XBRL period e.g. ‘CY2019Q4I’</p>
+</dd>
+<dt class="field-odd">param logic<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Logic operator to use for filtering, e.g. ‘&gt;’, ‘&lt;’, ‘&gt;=’, ‘&lt;=’, ‘==’, ‘!=’</p>
+</dd>
+<dt class="field-even">param value<span class="colon">:</span></dt>
+<dd class="field-even"><p>Value to compare against</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>parameters for a company can be found <a class="reference external" href="https://data.sec.gov/api/xbrl/companyfacts/CIK0001318605.json">here</a></p>
+</div>
+</section>
+<section id="shared-parameters-for-download-submissions-process-submissions-and-filter-text">
+<h3>Shared Parameters for download_submissions, process_submissions, and filter_text<a class="headerlink" href="#shared-parameters-for-download-submissions-process-submissions-and-filter-text" title="Link to this heading"></a></h3>
+<dl class="field-list simple">
+<dt class="field-odd">param cik<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Central Index Key identifier for the company</p>
+</dd>
+<dt class="field-even">param ticker<span class="colon">:</span></dt>
+<dd class="field-even"><p>Stock ticker symbol</p>
+</dd>
+<dt class="field-odd">param submission_type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Type of filing (e.g. “10-K”, “10-Q”, “8-K”)</p>
+</dd>
+<dt class="field-even">param filing_date<span class="colon">:</span></dt>
+<dd class="field-even"><p>Date of the filing</p>
+</dd>
+<dt class="field-odd">param **kwargs<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Additional search criteria including name, entityType, sic, sicDescription,
+ownerOrg, insiderTransactionForOwnerExists, insiderTransactionForIssuerExists,
+exchanges, ein, description, website, investorWebsite, category,
+fiscalYearEnd, stateOfIncorporation, stateOfIncorporationDescription, phone,
+flags, mailing_street1, mailing_street2, mailing_city, mailing_stateOrCountry,
+mailing_zipCode, mailing_stateOrCountryDescription, business_street1,
+business_street2, business_city, business_stateOrCountry, business_zipCode,
+business_stateOrCountryDescription</p>
+</dd>
+</dl>
+</section>
+<section id="monitoring">
+<h3>Monitoring<a class="headerlink" href="#monitoring" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>monitor_submissions(self,data_callback=None, poll_callback=None, submission_type=None, cik=None,</dt><dd><p>polling_interval=200, requests_per_second=5, quiet=False, start_date=None, ticker=None, <a href="#id1"><span class="problematic" id="id2">**</span></a>kwargs)</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">monitor_submissions(data_callback,poll_callback,</span> <span class="pre">submission_type,</span> <span class="pre">cik,</span> <span class="pre">polling_interval,</span> <span class="pre">requests_per_second,</span> <span class="pre">quiet,</span> <span class="pre">start_date,</span> <span class="pre">ticker,</span> <span class="pre">**kwargs)</span></code></dt><dd><p>Monitors for new submissions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param data_callback<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Function to call for each submission</p>
+</dd>
+<dt class="field-even">param poll_callback<span class="colon">:</span></dt>
+<dd class="field-even"><p>Function to call after each poll</p>
+</dd>
+<dt class="field-odd">param requests_per_second<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Number of requests per second to make. Default is 5. You will be rate limited if you exceed this.</p>
+</dd>
+<dt class="field-even">param polling_interval<span class="colon">:</span></dt>
+<dd class="field-even"><p>Time in seconds to wait between polls. Default is 200.</p>
+</dd>
+<dt class="field-odd">param quiet<span class="colon">:</span></dt>
+<dd class="field-odd"><p>If True, suppresses output. Default is False.</p>
+</dd>
+<dt class="field-even">param start_date<span class="colon">:</span></dt>
+<dd class="field-even"><p>Date to start monitoring from. Default is today.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</section>
+<section id="submission-class">
+<h2>Submission Class<a class="headerlink" href="#submission-class" title="Link to this heading"></a></h2>
+<p>Submissions are the core of the Portfolio class.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>submission.metadata is useful</p>
+</div>
+</section>
+<section id="document-class">
+<h2>Document Class<a class="headerlink" href="#document-class" title="Link to this heading"></a></h2>
+<p>Documents are the core of the Submission class.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>document.parse() is useful</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I will make the documentation better soon.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Usage Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sheet.html" class="btn btn-neutral float-right" title="Sheet" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

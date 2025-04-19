@@ -1,0 +1,781 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sheet &mdash; datamule  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Index" href="index_class.html" />
+    <link rel="prev" title="Portfolio" href="portfolio.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            datamule
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_key.html">Data provider</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Usage Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="portfolio.html">Portfolio</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Sheet</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#xbrl-data">XBRL Data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#form-13f-hr-information-table">Form 13F-HR Information Table</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#form-3-4-5-insider-transactions">Form 3, 4, 5 (Insider Transactions)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#form-npx-proxy-voting-records">Form NPX (Proxy Voting Records)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#available-datasets">Available Datasets</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="index_class.html">Index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parsing.html">Parsing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="datasets.html">Package Data</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils/index.html">Utils</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">datamule</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Usage Guide</a></li>
+      <li class="breadcrumb-item active">Sheet</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/usage/sheet.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sheet">
+<h1>Sheet<a class="headerlink" href="#sheet" title="Link to this heading"></a></h1>
+<p>Sheet is a class that allows you to download and work with tabular datasets from the SEC (Securities and Exchange Commission).</p>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading"></a></h2>
+<section id="xbrl-data">
+<h3>XBRL Data<a class="headerlink" href="#xbrl-data" title="Link to this heading"></a></h3>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">download_xbrl(cik=None,</span> <span class="pre">ticker=None,</span> <span class="pre">**kwargs)</span></code></dt><dd><p>Retrieves XBRL data for companies and saves it to disk.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">cik</span></code> and <code class="docutils literal notranslate"><span class="pre">ticker</span></code> are not provided, data for all companies with tickers will be downloaded.
+The data is saved to the directory specified when initializing the Sheet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param cik<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Central Index Key identifier(s) for the company(ies) (str, int, list, or None)</p>
+</dd>
+<dt class="field-even">param ticker<span class="colon">:</span></dt>
+<dd class="field-even"><p>Stock ticker symbol(s) (str, list, or None)</p>
+</dd>
+<dt class="field-odd">param **kwargs<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Additional search criteria including name, entityType, sic, sicDescription,
+ownerOrg, insiderTransactionForOwnerExists, insiderTransactionForIssuerExists,
+exchanges, ein, description, website, investorWebsite, category,
+fiscalYearEnd, stateOfIncorporation, stateOfIncorporationDescription, phone,
+flags, various address fields (mailing and business)</p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download XBRL data for Tesla</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">download_xbrl</span><span class="p">(</span><span class="n">ticker</span><span class="o">=</span><span class="s2">&quot;TSLA&quot;</span><span class="p">)</span>
+
+<span class="c1"># Download XBRL data for multiple companies by CIK</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">download_xbrl</span><span class="p">(</span><span class="n">cik</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;1318605&quot;</span><span class="p">,</span> <span class="s2">&quot;320193&quot;</span><span class="p">])</span>  <span class="c1"># Tesla and Apple</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</section>
+<section id="form-13f-hr-information-table">
+<h3>Form 13F-HR Information Table<a class="headerlink" href="#form-13f-hr-information-table" title="Link to this heading"></a></h3>
+<section id="get-data">
+<h4>Get Data<a class="headerlink" href="#get-data" title="Link to this heading"></a></h4>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">get_information_table(columns=None,</span> <span class="pre">...,</span> <span class="pre">api_key=None,</span> <span class="pre">print_cost=True,</span> <span class="pre">verbose=False)</span></code></dt><dd><p>Query the SEC BigQuery API for 13F-HR information table data (institutional holdings).</p>
+<dl class="field-list simple">
+<dt class="field-odd">param columns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Specific columns to return (List[str], optional)</p>
+</dd>
+<dt class="field-even">param name_of_issuer<span class="colon">:</span></dt>
+<dd class="field-even"><p>Name of the issuing company (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param title_of_class<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Class of securities (string, list, or None)</p>
+</dd>
+<dt class="field-even">param cusip<span class="colon">:</span></dt>
+<dd class="field-even"><p>CUSIP identifier (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Value of holdings in $ (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-even">param ssh_prnamt<span class="colon">:</span></dt>
+<dd class="field-even"><p>Number of shares held (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-odd">param ssh_prnamt_type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Type of shares (e.g., SH for shares) (string, list, or None)</p>
+</dd>
+<dt class="field-even">param investment_discretion<span class="colon">:</span></dt>
+<dd class="field-even"><p>Level of investment discretion (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param voting_authority_sole<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Shares with sole voting authority (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-even">param voting_authority_shared<span class="colon">:</span></dt>
+<dd class="field-even"><p>Shares with shared voting authority (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-odd">param voting_authority_none<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Shares with no voting authority (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-even">param reporting_owner_cik<span class="colon">:</span></dt>
+<dd class="field-even"><p>CIK of the reporting owner (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param put_call<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Put or call indicator (string, list, or None)</p>
+</dd>
+<dt class="field-even">param other_manager<span class="colon">:</span></dt>
+<dd class="field-even"><p>Other managers reporting the security (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param figi<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Financial Instrument Global Identifier (string, list, or None)</p>
+</dd>
+<dt class="field-even">param accession<span class="colon">:</span></dt>
+<dd class="field-even"><p>SEC filing accession number (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param filing_date<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Date of filing (string, list, or tuple for date range)</p>
+</dd>
+<dt class="field-even">param api_key<span class="colon">:</span></dt>
+<dd class="field-even"><p>SEC BigQuery API key. If None, looks for DATAMULE_API_KEY env variable (string, optional)</p>
+</dd>
+<dt class="field-odd">param print_cost<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether to print the query cost information (bool)</p>
+</dd>
+<dt class="field-even">param verbose<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether to print additional information about the query (bool)</p>
+</dd>
+<dt class="field-odd">return<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Records matching the query (List[Dict])</p>
+</dd>
+</dl>
+<p><strong>Filter Format Options:</strong></p>
+<ul class="simple">
+<li><p>String filters: Exact match (e.g., <code class="docutils literal notranslate"><span class="pre">cusip=&quot;023135106&quot;</span></code>)</p></li>
+<li><p>List filters: Match any in list (e.g., <code class="docutils literal notranslate"><span class="pre">name_of_issuer=[&quot;Apple</span> <span class="pre">Inc&quot;,</span> <span class="pre">&quot;Microsoft</span> <span class="pre">Corp&quot;]</span></code>)</p></li>
+<li><p>Numeric range filters: (min, max) tuple (e.g., <code class="docutils literal notranslate"><span class="pre">value=(1000000,</span> <span class="pre">10000000)</span></code>)</p></li>
+<li><p>Date range filters: (start_date, end_date) tuple (e.g., <code class="docutils literal notranslate"><span class="pre">filing_date=(&quot;2023-01-01&quot;,</span> <span class="pre">&quot;2023-12-31&quot;)</span></code>)</p></li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get all BlackRock holdings of Apple stock</span>
+<span class="n">holdings</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get_information_table</span><span class="p">(</span>
+    <span class="n">name_of_issuer</span><span class="o">=</span><span class="s2">&quot;Apple Inc&quot;</span><span class="p">,</span>
+    <span class="n">reporting_owner_cik</span><span class="o">=</span><span class="s2">&quot;1364742&quot;</span><span class="p">,</span>  <span class="c1"># BlackRock</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="s2">&quot;ssh_prnamt&quot;</span><span class="p">,</span> <span class="s2">&quot;filing_date&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</section>
+<section id="download-to-csv">
+<h4>Download to CSV<a class="headerlink" href="#download-to-csv" title="Link to this heading"></a></h4>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">download_information_table(filepath,</span> <span class="pre">columns=None,</span> <span class="pre">...,</span> <span class="pre">api_key=None,</span> <span class="pre">print_cost=True,</span> <span class="pre">verbose=False)</span></code></dt><dd><p>Query the SEC BigQuery API for 13F-HR information table data and save to CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param filepath<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Path where to save the CSV file (str)</p>
+</dd>
+<dt class="field-even">param columns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Specific columns to return (List[str], optional)</p>
+</dd>
+<dt class="field-odd">param name_of_issuer<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Name of the issuing company (string, list, or None)</p>
+</dd>
+<dt class="field-even">param title_of_class<span class="colon">:</span></dt>
+<dd class="field-even"><p>Class of securities (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param cusip<span class="colon">:</span></dt>
+<dd class="field-odd"><p>CUSIP identifier (string, list, or None)</p>
+</dd>
+<dt class="field-even">param value<span class="colon">:</span></dt>
+<dd class="field-even"><p>Value of holdings in $ (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-odd">param ssh_prnamt<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Number of shares held (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-even">param ssh_prnamt_type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Type of shares (e.g., SH for shares) (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param investment_discretion<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Level of investment discretion (string, list, or None)</p>
+</dd>
+<dt class="field-even">param voting_authority_sole<span class="colon">:</span></dt>
+<dd class="field-even"><p>Shares with sole voting authority (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-odd">param voting_authority_shared<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Shares with shared voting authority (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-even">param voting_authority_none<span class="colon">:</span></dt>
+<dd class="field-even"><p>Shares with no voting authority (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-odd">param reporting_owner_cik<span class="colon">:</span></dt>
+<dd class="field-odd"><p>CIK of the reporting owner (string, list, or None)</p>
+</dd>
+<dt class="field-even">param put_call<span class="colon">:</span></dt>
+<dd class="field-even"><p>Put or call indicator (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param other_manager<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Other managers reporting the security (string, list, or None)</p>
+</dd>
+<dt class="field-even">param figi<span class="colon">:</span></dt>
+<dd class="field-even"><p>Financial Instrument Global Identifier (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param accession<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SEC filing accession number (string, list, or None)</p>
+</dd>
+<dt class="field-even">param filing_date<span class="colon">:</span></dt>
+<dd class="field-even"><p>Date of filing (string, list, or tuple for date range)</p>
+</dd>
+<dt class="field-odd">param api_key<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SEC BigQuery API key. If None, looks for DATAMULE_API_KEY env variable (string, optional)</p>
+</dd>
+<dt class="field-even">param print_cost<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether to print the query cost information (bool)</p>
+</dd>
+<dt class="field-odd">param verbose<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether to print additional information about the query (bool)</p>
+</dd>
+<dt class="field-even">return<span class="colon">:</span></dt>
+<dd class="field-even"><p>Records matching the query (List[Dict])</p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download all Vanguard holdings to CSV</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">download_information_table</span><span class="p">(</span>
+    <span class="n">filepath</span><span class="o">=</span><span class="s2">&quot;vanguard_holdings.csv&quot;</span><span class="p">,</span>
+    <span class="n">reporting_owner_cik</span><span class="o">=</span><span class="s2">&quot;0000102909&quot;</span><span class="p">,</span>  <span class="c1"># Vanguard</span>
+    <span class="n">filing_date</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;2023-01-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2023-12-31&quot;</span><span class="p">),</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</section>
+</section>
+<section id="form-3-4-5-insider-transactions">
+<h3>Form 3, 4, 5 (Insider Transactions)<a class="headerlink" href="#form-3-4-5-insider-transactions" title="Link to this heading"></a></h3>
+<section id="id1">
+<h4>Get Data<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">get_345(columns=None,</span> <span class="pre">...,</span> <span class="pre">api_key=None,</span> <span class="pre">print_cost=True,</span> <span class="pre">verbose=False)</span></code></dt><dd><p>Query the SEC BigQuery API for Form 3, 4, 5 insider transaction data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param columns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Specific columns to return (List[str], optional)</p>
+</dd>
+<dt class="field-even">param is_derivative<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether transaction involves derivative securities (boolean)</p>
+</dd>
+<dt class="field-odd">param is_non_derivative<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether transaction involves non-derivative securities (boolean)</p>
+</dd>
+<dt class="field-even">param security_title<span class="colon">:</span></dt>
+<dd class="field-even"><p>Title of security (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param transaction_date<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Date of transaction (string, list, or tuple for date range)</p>
+</dd>
+<dt class="field-even">param document_type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Form type (3, 4, or 5) (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param transaction_code<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Transaction code (e.g., P for purchase, S for sale) (string, list, or None)</p>
+</dd>
+<dt class="field-even">param equity_swap_involved<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether equity swap was involved (boolean)</p>
+</dd>
+<dt class="field-odd">param transaction_timeliness<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Timeliness of reporting (string, list, or None)</p>
+</dd>
+<dt class="field-even">param transaction_shares<span class="colon">:</span></dt>
+<dd class="field-even"><p>Number of shares in transaction (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-odd">param transaction_price_per_share<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Price per share (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-even">param shares_owned_following_transaction<span class="colon">:</span></dt>
+<dd class="field-even"><p>Shares owned after transaction (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-odd">param ownership_type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Type of ownership (D for direct, I for indirect) (string, list, or None)</p>
+</dd>
+<dt class="field-even">param deemed_execution_date<span class="colon">:</span></dt>
+<dd class="field-even"><p>Deemed execution date (string, list, or tuple for date range)</p>
+</dd>
+<dt class="field-odd">param conversion_or_exercise_price<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Price for conversion or exercise (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-even">param exercise_date<span class="colon">:</span></dt>
+<dd class="field-even"><p>Exercise date (string, list, or tuple for date range)</p>
+</dd>
+<dt class="field-odd">param expiration_date<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Expiration date (string, list, or tuple for date range)</p>
+</dd>
+<dt class="field-even">param underlying_security_title<span class="colon">:</span></dt>
+<dd class="field-even"><p>Title of underlying security (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param underlying_security_shares<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Shares of underlying security (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-even">param underlying_security_value<span class="colon">:</span></dt>
+<dd class="field-even"><p>Value of underlying security (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-odd">param accession<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SEC filing accession number (string, list, or None)</p>
+</dd>
+<dt class="field-even">param reporting_owner_cik<span class="colon">:</span></dt>
+<dd class="field-even"><p>CIK of the reporting insider (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param issuer_cik<span class="colon">:</span></dt>
+<dd class="field-odd"><p>CIK of the company (string, list, or None)</p>
+</dd>
+<dt class="field-even">param filing_date<span class="colon">:</span></dt>
+<dd class="field-even"><p>Date of filing (string, list, or tuple for date range)</p>
+</dd>
+<dt class="field-odd">param api_key<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SEC BigQuery API key. If None, looks for DATAMULE_API_KEY env variable (string, optional)</p>
+</dd>
+<dt class="field-even">param print_cost<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether to print the query cost information (bool)</p>
+</dd>
+<dt class="field-odd">param verbose<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether to print additional information about the query (bool)</p>
+</dd>
+<dt class="field-even">return<span class="colon">:</span></dt>
+<dd class="field-even"><p>Records matching the query (List[Dict])</p>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get all Elon Musk&#39;s Tesla transactions</span>
+<span class="n">transactions</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get_345</span><span class="p">(</span>
+    <span class="n">reporting_owner_cik</span><span class="o">=</span><span class="s2">&quot;1494730&quot;</span><span class="p">,</span>  <span class="c1"># Elon Musk&#39;s CIK</span>
+    <span class="n">issuer_cik</span><span class="o">=</span><span class="s2">&quot;1318605&quot;</span><span class="p">,</span>  <span class="c1"># Tesla&#39;s CIK</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;transaction_date&quot;</span><span class="p">,</span> <span class="s2">&quot;transaction_code&quot;</span><span class="p">,</span> <span class="s2">&quot;transaction_shares&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;transaction_price_per_share&quot;</span><span class="p">,</span> <span class="s2">&quot;is_derivative&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</section>
+<section id="id2">
+<h4>Download to CSV<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">download_345(filepath,</span> <span class="pre">columns=None,</span> <span class="pre">...,</span> <span class="pre">api_key=None,</span> <span class="pre">print_cost=True,</span> <span class="pre">verbose=False)</span></code></dt><dd><p>Query the SEC BigQuery API for Form 3, 4, 5 insider transaction data and save to CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param filepath<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Path where to save the CSV file (str)</p>
+</dd>
+<dt class="field-even">param columns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Specific columns to return (List[str], optional)</p>
+</dd>
+<dt class="field-odd">param is_derivative<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether transaction involves derivative securities (boolean)</p>
+</dd>
+<dt class="field-even">param is_non_derivative<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether transaction involves non-derivative securities (boolean)</p>
+</dd>
+<dt class="field-odd">param security_title<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Title of security (string, list, or None)</p>
+</dd>
+<dt class="field-even">param transaction_date<span class="colon">:</span></dt>
+<dd class="field-even"><p>Date of transaction (string, list, or tuple for date range)</p>
+</dd>
+<dt class="field-odd">param document_type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Form type (3, 4, or 5) (string, list, or None)</p>
+</dd>
+<dt class="field-even">param transaction_code<span class="colon">:</span></dt>
+<dd class="field-even"><p>Transaction code (e.g., P for purchase, S for sale) (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param equity_swap_involved<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether equity swap was involved (boolean)</p>
+</dd>
+<dt class="field-even">param transaction_timeliness<span class="colon">:</span></dt>
+<dd class="field-even"><p>Timeliness of reporting (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param transaction_shares<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Number of shares in transaction (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-even">param transaction_price_per_share<span class="colon">:</span></dt>
+<dd class="field-even"><p>Price per share (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-odd">param shares_owned_following_transaction<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Shares owned after transaction (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-even">param ownership_type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Type of ownership (D for direct, I for indirect) (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param deemed_execution_date<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Deemed execution date (string, list, or tuple for date range)</p>
+</dd>
+<dt class="field-even">param conversion_or_exercise_price<span class="colon">:</span></dt>
+<dd class="field-even"><p>Price for conversion or exercise (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-odd">param exercise_date<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Exercise date (string, list, or tuple for date range)</p>
+</dd>
+<dt class="field-even">param expiration_date<span class="colon">:</span></dt>
+<dd class="field-even"><p>Expiration date (string, list, or tuple for date range)</p>
+</dd>
+<dt class="field-odd">param underlying_security_title<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Title of underlying security (string, list, or None)</p>
+</dd>
+<dt class="field-even">param underlying_security_shares<span class="colon">:</span></dt>
+<dd class="field-even"><p>Shares of underlying security (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-odd">param underlying_security_value<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Value of underlying security (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-even">param accession<span class="colon">:</span></dt>
+<dd class="field-even"><p>SEC filing accession number (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param reporting_owner_cik<span class="colon">:</span></dt>
+<dd class="field-odd"><p>CIK of the reporting insider (string, list, or None)</p>
+</dd>
+<dt class="field-even">param issuer_cik<span class="colon">:</span></dt>
+<dd class="field-even"><p>CIK of the company (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param filing_date<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Date of filing (string, list, or tuple for date range)</p>
+</dd>
+<dt class="field-even">param api_key<span class="colon">:</span></dt>
+<dd class="field-even"><p>SEC BigQuery API key. If None, looks for DATAMULE_API_KEY env variable (string, optional)</p>
+</dd>
+<dt class="field-odd">param print_cost<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether to print the query cost information (bool)</p>
+</dd>
+<dt class="field-even">param verbose<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether to print additional information about the query (bool)</p>
+</dd>
+<dt class="field-odd">return<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Records matching the query (List[Dict])</p>
+</dd>
+</dl>
+<p><strong>Examples:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download all Tesla insider transactions for a year</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">download_345</span><span class="p">(</span>
+    <span class="n">filepath</span><span class="o">=</span><span class="s2">&quot;tesla_insider_transactions.csv&quot;</span><span class="p">,</span>
+    <span class="n">issuer_cik</span><span class="o">=</span><span class="s2">&quot;1318605&quot;</span><span class="p">,</span>  <span class="c1"># Tesla&#39;s CIK</span>
+    <span class="n">filing_date</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;2023-01-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2023-12-31&quot;</span><span class="p">),</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;transaction_date&quot;</span><span class="p">,</span> <span class="s2">&quot;security_title&quot;</span><span class="p">,</span> <span class="s2">&quot;transaction_code&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;transaction_shares&quot;</span><span class="p">,</span> <span class="s2">&quot;transaction_price_per_share&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;reporting_owner_cik&quot;</span><span class="p">,</span> <span class="s2">&quot;is_derivative&quot;</span><span class="p">],</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># Download all Elon Musk&#39;s transactions to CSV</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">download_345</span><span class="p">(</span>
+    <span class="n">filepath</span><span class="o">=</span><span class="s2">&quot;elon_transactions.csv&quot;</span><span class="p">,</span>
+    <span class="n">reporting_owner_cik</span><span class="o">=</span><span class="s2">&quot;1494730&quot;</span><span class="p">,</span>  <span class="c1"># Elon Musk&#39;s CIK</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># Get all large insider acquisitions (over 10,000 shares)</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">download_345</span><span class="p">(</span>
+    <span class="n">filepath</span><span class="o">=</span><span class="s2">&quot;large_acquisitions.csv&quot;</span><span class="p">,</span>
+    <span class="n">transaction_code</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">,</span>  <span class="c1"># Acquisition/grant</span>
+    <span class="n">shares_owned_following_transaction</span><span class="o">=</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>  <span class="c1"># Minimum of 10,000 shares</span>
+    <span class="n">is_derivative</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># Only non-derivative transactions</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</section>
+</section>
+<section id="form-npx-proxy-voting-records">
+<h3>Form NPX (Proxy Voting Records)<a class="headerlink" href="#form-npx-proxy-voting-records" title="Link to this heading"></a></h3>
+<section id="id3">
+<h4>Get Data<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">get_proxy_voting_record(columns=None,</span> <span class="pre">...,</span> <span class="pre">api_key=None,</span> <span class="pre">print_cost=True,</span> <span class="pre">verbose=False)</span></code></dt><dd><p>Query the SEC BigQuery API for NPX proxy voting record data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param columns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Specific columns to return (List[str], optional)</p>
+</dd>
+<dt class="field-even">param meeting_date<span class="colon">:</span></dt>
+<dd class="field-even"><p>Date of shareholder meeting (string, list, or tuple for date range)</p>
+</dd>
+<dt class="field-odd">param isin<span class="colon">:</span></dt>
+<dd class="field-odd"><p>International Securities Identification Number (string, list, or None)</p>
+</dd>
+<dt class="field-even">param cusip<span class="colon">:</span></dt>
+<dd class="field-even"><p>CUSIP identifier (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param issuer_name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Name of the issuing company (string, list, or None)</p>
+</dd>
+<dt class="field-even">param vote_description<span class="colon">:</span></dt>
+<dd class="field-even"><p>Description of the vote (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param shares_on_loan<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Number of shares on loan (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-even">param shares_voted<span class="colon">:</span></dt>
+<dd class="field-even"><p>Number of shares voted (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-odd">param vote_category<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Category of vote (string, list, or None)</p>
+</dd>
+<dt class="field-even">param vote_record<span class="colon">:</span></dt>
+<dd class="field-even"><p>Record of vote (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param vote_source<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Source of vote (string, list, or None)</p>
+</dd>
+<dt class="field-even">param how_voted<span class="colon">:</span></dt>
+<dd class="field-even"><p>How the vote was cast (e.g., FOR, AGAINST, ABSTAIN) (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param figi<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Financial Instrument Global Identifier (string, list, or None)</p>
+</dd>
+<dt class="field-even">param management_recommendation<span class="colon">:</span></dt>
+<dd class="field-even"><p>Management’s recommendation for the vote (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param accession<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SEC filing accession number (string, list, or None)</p>
+</dd>
+<dt class="field-even">param reporting_owner_cik<span class="colon">:</span></dt>
+<dd class="field-even"><p>CIK of the reporting owner (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param filing_date<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Date of filing (string, list, or tuple for date range)</p>
+</dd>
+<dt class="field-even">param api_key<span class="colon">:</span></dt>
+<dd class="field-even"><p>SEC BigQuery API key. If None, looks for DATAMULE_API_KEY env variable (string, optional)</p>
+</dd>
+<dt class="field-odd">param print_cost<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether to print the query cost information (bool)</p>
+</dd>
+<dt class="field-even">param verbose<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether to print additional information about the query (bool)</p>
+</dd>
+<dt class="field-odd">return<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Records matching the query (List[Dict])</p>
+</dd>
+</dl>
+<p><strong>Filter Format Options:</strong></p>
+<ul class="simple">
+<li><p>String filters: Exact match (e.g., <code class="docutils literal notranslate"><span class="pre">cusip=&quot;037833100&quot;</span></code>)</p></li>
+<li><p>List filters: Match any in list (e.g., <code class="docutils literal notranslate"><span class="pre">issuer_name=[&quot;Apple</span> <span class="pre">Inc&quot;,</span> <span class="pre">&quot;Tesla,</span> <span class="pre">Inc&quot;]</span></code>)</p></li>
+<li><p>Numeric range filters: (min, max) tuple (e.g., <code class="docutils literal notranslate"><span class="pre">shares_voted=(1000000,</span> <span class="pre">None)</span></code>)</p></li>
+<li><p>Date range filters: (start_date, end_date) tuple (e.g., <code class="docutils literal notranslate"><span class="pre">filing_date=(&quot;2023-01-01&quot;,</span> <span class="pre">&quot;2023-12-31&quot;)</span></code>)</p></li>
+</ul>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Get all BlackRock votes for Apple in 2023</span>
+<span class="n">votes</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get_proxy_voting_record</span><span class="p">(</span>
+    <span class="n">issuer_name</span><span class="o">=</span><span class="s2">&quot;Apple Inc&quot;</span><span class="p">,</span>
+    <span class="n">reporting_owner_cik</span><span class="o">=</span><span class="s2">&quot;1364742&quot;</span><span class="p">,</span>  <span class="c1"># BlackRock</span>
+    <span class="n">meeting_date</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;2023-01-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2023-12-31&quot;</span><span class="p">),</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;vote_description&quot;</span><span class="p">,</span> <span class="s2">&quot;how_voted&quot;</span><span class="p">,</span> <span class="s2">&quot;management_recommendation&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</section>
+<section id="id4">
+<h4>Download to CSV<a class="headerlink" href="#id4" title="Link to this heading"></a></h4>
+<dl>
+<dt><code class="docutils literal notranslate"><span class="pre">download_proxy_voting_record(filepath,</span> <span class="pre">columns=None,</span> <span class="pre">...,</span> <span class="pre">api_key=None,</span> <span class="pre">print_cost=True,</span> <span class="pre">verbose=False)</span></code></dt><dd><p>Query the SEC BigQuery API for NPX proxy voting record data and save to CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">param filepath<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Path where to save the CSV file (str)</p>
+</dd>
+<dt class="field-even">param columns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Specific columns to return (List[str], optional)</p>
+</dd>
+<dt class="field-odd">param meeting_date<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Date of shareholder meeting (string, list, or tuple for date range)</p>
+</dd>
+<dt class="field-even">param isin<span class="colon">:</span></dt>
+<dd class="field-even"><p>International Securities Identification Number (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param cusip<span class="colon">:</span></dt>
+<dd class="field-odd"><p>CUSIP identifier (string, list, or None)</p>
+</dd>
+<dt class="field-even">param issuer_name<span class="colon">:</span></dt>
+<dd class="field-even"><p>Name of the issuing company (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param vote_description<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Description of the vote (string, list, or None)</p>
+</dd>
+<dt class="field-even">param shares_on_loan<span class="colon">:</span></dt>
+<dd class="field-even"><p>Number of shares on loan (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-odd">param shares_voted<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Number of shares voted (numeric, tuple for range, or None)</p>
+</dd>
+<dt class="field-even">param vote_category<span class="colon">:</span></dt>
+<dd class="field-even"><p>Category of vote (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param vote_record<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Record of vote (string, list, or None)</p>
+</dd>
+<dt class="field-even">param vote_source<span class="colon">:</span></dt>
+<dd class="field-even"><p>Source of vote (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param how_voted<span class="colon">:</span></dt>
+<dd class="field-odd"><p>How the vote was cast (e.g., FOR, AGAINST, ABSTAIN) (string, list, or None)</p>
+</dd>
+<dt class="field-even">param figi<span class="colon">:</span></dt>
+<dd class="field-even"><p>Financial Instrument Global Identifier (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param management_recommendation<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Management’s recommendation for the vote (string, list, or None)</p>
+</dd>
+<dt class="field-even">param accession<span class="colon">:</span></dt>
+<dd class="field-even"><p>SEC filing accession number (string, list, or None)</p>
+</dd>
+<dt class="field-odd">param reporting_owner_cik<span class="colon">:</span></dt>
+<dd class="field-odd"><p>CIK of the reporting owner (string, list, or None)</p>
+</dd>
+<dt class="field-even">param filing_date<span class="colon">:</span></dt>
+<dd class="field-even"><p>Date of filing (string, list, or tuple for date range)</p>
+</dd>
+<dt class="field-odd">param api_key<span class="colon">:</span></dt>
+<dd class="field-odd"><p>SEC BigQuery API key. If None, looks for DATAMULE_API_KEY env variable (string, optional)</p>
+</dd>
+<dt class="field-even">param print_cost<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether to print the query cost information (bool)</p>
+</dd>
+<dt class="field-odd">param verbose<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether to print additional information about the query (bool)</p>
+</dd>
+<dt class="field-even">return<span class="colon">:</span></dt>
+<dd class="field-even"><p>Records matching the query (List[Dict])</p>
+</dd>
+</dl>
+<p><strong>Examples:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Download recent proxy votes</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">download_proxy_voting_record</span><span class="p">(</span>
+    <span class="n">filepath</span><span class="o">=</span><span class="s2">&quot;recent_proxy_votes.csv&quot;</span><span class="p">,</span>
+    <span class="n">filing_date</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;2025-02-01&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>  <span class="c1"># From February 2025 to present</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># Download Apple and Microsoft proxy votes</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">download_proxy_voting_record</span><span class="p">(</span>
+    <span class="n">filepath</span><span class="o">=</span><span class="s2">&quot;apple_msft_votes.csv&quot;</span><span class="p">,</span>
+    <span class="n">cusip</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;037833100&quot;</span><span class="p">,</span> <span class="s2">&quot;594918104&quot;</span><span class="p">],</span>  <span class="c1"># Apple and Microsoft CUSIPs</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;meetingDate&quot;</span><span class="p">,</span> <span class="s2">&quot;issuerName&quot;</span><span class="p">,</span> <span class="s2">&quot;voteDescription&quot;</span><span class="p">,</span> <span class="s2">&quot;howVoted&quot;</span><span class="p">,</span>
+             <span class="s2">&quot;sharesVoted&quot;</span><span class="p">,</span> <span class="s2">&quot;filingDate&quot;</span><span class="p">,</span> <span class="s2">&quot;reportingOwnerCIK&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Download votes against management recommendations</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">download_proxy_voting_record</span><span class="p">(</span>
+    <span class="n">filepath</span><span class="o">=</span><span class="s2">&quot;against_mgmt.csv&quot;</span><span class="p">,</span>
+    <span class="n">how_voted</span><span class="o">=</span><span class="s2">&quot;AGAINST&quot;</span><span class="p">,</span>
+    <span class="n">management_recommendation</span><span class="o">=</span><span class="s2">&quot;FOR&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Download all proxy votes for Tesla</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">download_proxy_voting_record</span><span class="p">(</span>
+    <span class="n">filepath</span><span class="o">=</span><span class="s2">&quot;tesla.csv&quot;</span><span class="p">,</span>
+    <span class="n">cusip</span><span class="o">=</span><span class="s2">&quot;88160R101&quot;</span>  <span class="c1"># Tesla&#39;s CUSIP</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+<section id="available-datasets">
+<h2>Available Datasets<a class="headerlink" href="#available-datasets" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><strong>XBRL</strong> (via SEC, free): Company financial data in XBRL format</p></li>
+<li><p><strong>Institutional Holdings</strong> (via datamule, paid): Constructed from 13F-HR INFORMATION TABLE</p></li>
+<li><p><strong>Insider Transactions</strong> (via datamule, paid): Constructed from Forms 3, 4, and 5</p></li>
+<li><p><strong>Proxy Voting Records</strong> (via datamule, paid): Constructed from Form NPX</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="portfolio.html" class="btn btn-neutral float-left" title="Portfolio" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="index_class.html" class="btn btn-neutral float-right" title="Index" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
