@@ -1,38 +1,18 @@
-Norman's requests
-Filter portfolio by ticker/cik
+Feature Requests:
 
-tinydb is neat, but uses json. we can store as csv for better efficiency, then use custom stuff.
-yep probably just do custom stuff using dict comprehension
--yep like this. We will probably change how portfolio is structured
-- porbably to:
+Rewrite indexing to allow filter portfolio by ticker/cik and more
+1. Test solution - store metadata for portfolio in one place using new tabular stuff
 portfolio/
---metata.json
+--metadata1.csv (e.g. owners)
+--metadata2.csv (e.g documents)
 --accno1/
 --accno2/
-
-test if fast enough at 1 million level. can also look into flattening.
-yep flattening seems smart, will introduce after next version.
-will do 3? tables.
-introduce
-portfolio.filter_documents(**kwargs)
-e.g. filter_documents(type='INFORMATION TABLE,cik=....)
-add ticker arg here. add other kwargs like in download submissions
-issue with key overlap -> favor tables
-
-add way to update package using datamule-data + refactor setup.py to use that function - setup for next update
--added
-
-document path
-- added
-
-multiple people
-subset by document type on download. - will do bandaid fix here, before archive rewrite
 
 david
 - easier way to join listed + unlisted filer names using datamule
 
 
-my requests:
+others:
 * rewrite portfolio to take advantage of parallel procesor executor
 * rewrite secsgml to be safer wrt to '>', also faster and optimized for parallel processing using rust
 * fix datamule sec archive cik issue
