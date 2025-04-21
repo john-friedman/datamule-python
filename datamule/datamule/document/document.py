@@ -147,21 +147,30 @@ class Document:
         return process_tabular_data(self)
 
 
-    def write_csv(self, output_folder, accession_number=None):
+    def write_csv(self, output_folder):
+        output_folder = Path(output_folder)
+        output_folder.mkdir(exist_ok=True)
             
-        tables = self.to_tabular(accession_number)
+        tables = self.to_tabular()
 
         if not tables:
             return
         
         for table in tables:
             fieldnames = table.columns
-            output_filename = Path(output_folder) / f"{table.type}.csv"
+            output_filename = output_folder / f"{table.type}.csv"
+
+            # Check if the file already exists
+            if output_filename.exists():
         
-            with open(output_filename, 'w', newline='') as csvfile:
-                writer = csv.DictWriter(csvfile,fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
-                writer.writeheader()
-                writer.writerows(table.data)
+                with open(output_filename, 'a', newline='') as csvfile:
+                    writer = csv.DictWriter(csvfile,fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
+                    writer.writerows(table.data)
+            else:
+                with open(output_filename, 'w', newline='') as csvfile:
+                    writer = csv.DictWriter(csvfile, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
+                    writer.writeheader()
+                    writer.writerows(table.data)
 
         
     def _document_to_section_text(self, document_data, parent_key=''):

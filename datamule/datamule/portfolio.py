@@ -180,7 +180,3 @@ class Portfolio:
             
         for submission in self.submissions:
             yield from submission.document_type(document_types)
-
-    def keep(self,document_type):
-        for submission in self.__iter__():
-            submission.keep(document_type)

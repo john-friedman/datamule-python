@@ -7,3 +7,5 @@ contributors:
 * Mike Meyers
 * Jeff Meyers
 * l0pl0p
+* d6tdev
+* xingren23
