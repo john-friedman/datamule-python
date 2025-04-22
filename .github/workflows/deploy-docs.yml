@@ -23,8 +23,16 @@ jobs:
           pwd
           echo "Files and directories at root level:"
           ls -la
-          echo "Does docs-rewrite exist?"
-          test -d docs-rewrite && echo "Yes" || echo "No"
+          echo "Check for datamule directory:"
+          test -d datamule && echo "datamule directory exists" || echo "datamule directory does NOT exist"
+          if [ -d datamule ]; then
+            echo "Contents of datamule directory:"
+            ls -la datamule/
+            echo "Check for docs-rewrite in datamule:"
+            test -d datamule/docs-rewrite && echo "datamule/docs-rewrite exists" || echo "datamule/docs-rewrite does NOT exist"
+          fi
+          echo "Check for docs-rewrite at root:"
+          test -d docs-rewrite && echo "docs-rewrite exists at root" || echo "docs-rewrite does NOT exist at root"
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -35,24 +43,49 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install mkdocs mkdocs-material pymdown-extensions
-          # Add any additional dependencies your docs need
-          # pip install -r docs-rewrite/requirements.txt
 
       - name: Build Documentation
         run: |
-          cd docs-rewrite
-          mkdocs build
+          # Try datamule/docs-rewrite first, fall back to docs-rewrite if the first fails
+          if [ -d datamule/docs-rewrite ]; then
+            echo "Building from datamule/docs-rewrite"
+            cd datamule/docs-rewrite
+            mkdocs build
+          elif [ -d docs-rewrite ]; then
+            echo "Building from docs-rewrite"
+            cd docs-rewrite
+            mkdocs build
+          else
+            echo "ERROR: Could not find docs-rewrite directory"
+            exit 1
+          fi
           
       - name: Check Build Directory
         run: |
+          echo "Current directory:"
           pwd
-          ls -la docs-rewrite/site || true
+          echo "Checking build output directories:"
+          
+          if [ -d datamule/docs-rewrite/site ]; then
+            echo "Found build output in datamule/docs-rewrite/site:"
+            ls -la datamule/docs-rewrite/site
+            echo "Will use this as publish directory"
+            echo "publish_dir=./datamule/docs-rewrite/site" >> $GITHUB_ENV
+          elif [ -d docs-rewrite/site ]; then
+            echo "Found build output in docs-rewrite/site:"
+            ls -la docs-rewrite/site
+            echo "Will use this as publish directory"
+            echo "publish_dir=./docs-rewrite/site" >> $GITHUB_ENV
+          else
+            echo "ERROR: Could not find build output directory"
+            exit 1
+          fi
           
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs-rewrite/site
+          publish_dir: ${{ env.publish_dir }}
           force_orphan: true  # This ensures a fresh history
           enable_jekyll: false
           user_name: 'github-actions[bot]'
