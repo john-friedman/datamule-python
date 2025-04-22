@@ -1,0 +1,29 @@
+site_name: datamule
+theme:
+  name: material
+nav:
+  - Home: index.md
+  - Data Providers: providers.md
+  - datamule-python: 
+      Overview: datamule-python/index.md
+      Quickstart: datamule-python/quickstart.md
+      Setting a Data Provider: datamule-python/data_provider.md
+      Package Data: datamule-python/package_data.md
+      Portfolio:
+        Portfolio: datamule-python/portfolio/portfolio.md
+        Submission: datamule-python/portfolio/submission.md
+        Document: datamule-python/portfolio/document.md
+        Table: datamule-python/portfolio/table.md
+      Sheet: datamule-python/sheet/sheet.md
+      Index: datamule-python/index/index.md
+      Config: datamule-python/config/config.md
+      Utils: 
+        'CIK Filtering': datamule-python/utils/_process_cik_and_metadata_filters.md
+
+
+markdown_extensions:
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - def_list
+  - admonition
+  - pymdownx.details

@@ -1,16 +1,16 @@
-from pathlib import Path
+
 from .sec.submissions.textsearch import query
-from .helper import _process_cik_and_metadata_filters, load_package_dataset
+from .helper import _process_cik_and_metadata_filters
+from pathlib import Path
 
 class Index:
-    def __init__(self, path=None):
-        self.path = Path(path) if path else None
+    def __init__(self):
+        pass
         
     def search_submissions(
         self,
         text_query,
-        start_date=None,
-        end_date=None,
+        filing_date=None,
         submission_type=None,
         cik=None,
         ticker=None,
@@ -47,16 +47,14 @@ class Index:
         # Execute the search query
         results = query(
             f'{text_query}',
-            filing_date=(start_date, end_date),
+            filing_date=filing_date,
             requests_per_second=requests_per_second,
             quiet=quiet,
             submission_type=submission_type,
             **kwargs
         )
         
-        # Save results to path if specified
-        if self.path:
-            self._save_results(results, text_query)
+
             
         return results
     
