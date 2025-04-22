@@ -14,6 +14,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Fetch all history for all branches and tags
+
+      - name: Debug directory structure
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Files and directories at root level:"
+          ls -la
+          echo "Does docs-rewrite exist?"
+          test -d docs-rewrite && echo "Yes" || echo "No"
 
       - name: Set up Python
         uses: actions/setup-python@v4
