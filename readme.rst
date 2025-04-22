@@ -9,7 +9,7 @@ Datamule
    :alt: GitHub Stars
 
 A Python package for working with SEC filings at scale. 
-`Full Documentation <https://john-friedman.github.io/datamule-python/>`_ | 
+`Full Documentation <https://john-friedman.github.io/datamule-python/datamule-python/quickstart/>`_ | 
 `Website <https://datamule.xyz/>`_
 
 Related packages:
