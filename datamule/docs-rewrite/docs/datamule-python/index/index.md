@@ -78,6 +78,9 @@ The `text_query` parameter supports a modified Elasticsearch syntax with the fol
 - Use double asterisk (`**`) followed by a number to increase term importance
 - Example: `revenue**2 growth` - Makes "revenue" twice as important
 
+#### 5. Near
+- Example `war NEAR(5) russia`
+
 ### Limitations to Note
 
 - **Complex Nesting**: Avoid using parentheses for grouping as they may be interpreted as literal search terms

@@ -1,7 +1,6 @@
 import os
 import asyncio
 import aiohttp
-from pathlib import Path
 from tqdm import tqdm
 import time
 import shutil
@@ -13,10 +12,11 @@ from concurrent.futures import ThreadPoolExecutor
 from functools import partial
 from queue import Queue, Empty
 from threading import Thread
-from secsgml import parse_sgml_submission
 from .query import query
 from os import cpu_count
 from ..submission import Submission
+
+
 
 class Downloader:
     def __init__(self, api_key=None):

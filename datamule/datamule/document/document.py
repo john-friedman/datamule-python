@@ -141,10 +141,13 @@ class Document:
             json.dump(self.data, f, indent=2)
 
     def to_tabular(self):
-        if self.extension != '.xml':
+        if self.type == 'submission_metadata':
+            return process_tabular_data(self)
+        elif self.extension != '.xml':
             return []
-        self.parse()
-        return process_tabular_data(self)
+        else:
+            self.parse()
+            return process_tabular_data(self)
 
 
     def write_csv(self, output_folder):

@@ -70,6 +70,8 @@ def process_tabular_data(self):
     #     tables = process_ex102_abs(self.data, self.accession)
     elif self.type == "PROXY VOTING RECORD":
         tables = process_proxy_voting_record(self.data, self.accession)
+    elif self.type == 'submission_metadata':
+        tables = process_submission_metadata(self.content, self.accession)
     else:
         warn(f"Processing for {self.type} is not implemented yet.")
         return []
@@ -602,3 +604,27 @@ def process_reg_a(data, accession):
 
 # def process_ncen(data, accession):
 #     raise NotImplementedError("Need to implement the N-CEN processing")
+
+# WIP
+# Note: going to pause this for now, as I don't have a great way of putting this in a csv.
+def process_submission_metadata(data,accession):
+    tables = []
+    document_data = safe_get(data, ['documents'])
+    if document_data:
+        tables.append(Table(_flatten_dict(document_data), 'document_submission_metadata', accession))
+
+    reporting_owner_data = safe_get(data,['reporting-owner'])
+    if reporting_owner_data:
+        tables.append(Table(_flatten_dict(reporting_owner_data), 'reporting_owner_submission_metadata', accession))
+
+    issuer_data = safe_get(data,['issuer'])
+    if issuer_data:
+        tables.append(Table(_flatten_dict(issuer_data), 'issuer_submission_metadata', accession))
+        
+    # # construct metadata
+    # accession-number date-of-filing-date-change, depositor-cik effectiveness-date
+
+    # # other tables
+    # depositor, securitizer
+        
+    return tables

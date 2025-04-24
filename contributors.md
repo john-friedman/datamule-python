@@ -9,3 +9,4 @@ contributors:
 * l0pl0p
 * d6tdev
 * xingren23
+* Norman Niemer

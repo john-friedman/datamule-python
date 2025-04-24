@@ -18,7 +18,7 @@ from .mappings.thirteenfhr import *
 from .mappings.twentyfivense import *
 from .mappings.twentyfourf2nt import *
 from .mappings.information_table import *
-
+from .mappings.submission_metadata import *
 # need to check if mappings correctly create new columns
 class Table():
     def __init__(self, data, type,accession):
@@ -227,6 +227,11 @@ class Table():
             mapping_dict = item_9_24f2nt_dict
         elif self.type == 'signature_info_schedule_a':
             mapping_dict = signature_24f2nt_dict
+
+        # submission metadata
+        elif self.type == 'document_submission_metadata':
+            mapping_dict = document_submission_metadata_dict
+        
 
         else:
             mapping_dict = {}

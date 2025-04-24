@@ -4,6 +4,70 @@ from .document.document import Document
 from secsgml import parse_sgml_submission_into_memory
 import os
 import aiofiles
+import tempfile
+
+
+# # NEW CODE YAY. probably will remove
+
+# def save_metadata_atomically(metadata_file_path, metadata_content):
+#     """Save metadata to a JSONL file atomically, works on any filesystem"""
+    
+#     # Create directory if it doesn't exist
+#     os.makedirs(os.path.dirname(metadata_file_path), exist_ok=True)
+    
+#     # Format the JSON with newline
+#     json_str = json.dumps(metadata_content, indent=4) + "\n"
+    
+#     # Write complete content to a temporary file first
+#     fd, temp_path = tempfile.mkstemp(dir=os.path.dirname(metadata_file_path))
+#     try:
+#         with os.fdopen(fd, 'w') as temp_file:
+#             temp_file.write(json_str)
+#             temp_file.flush()
+#             os.fsync(temp_file.fileno())  # Force write to disk
+        
+#         # Append the temporary file to the main file
+#         with open(metadata_file_path, 'a') as target_file:
+#             with open(temp_path, 'r') as temp_read:
+#                 content = temp_read.read()
+#                 target_file.write(content)
+#                 target_file.flush()
+#                 os.fsync(target_file.fileno())  # Force write to disk
+#     finally:
+#         # Clean up the temporary file
+#         if os.path.exists(temp_path):
+#             os.unlink(temp_path)
+
+# async def save_metadata_atomically_async(metadata_file_path, metadata_content):
+#     """Save metadata to a JSONL file atomically in async mode"""
+    
+#     # Create directory if it doesn't exist
+#     os.makedirs(os.path.dirname(metadata_file_path), exist_ok=True)
+    
+#     # Format the JSON with newline
+#     json_str = json.dumps(metadata_content, indent=4) + "\n"
+    
+#     # Write to a temporary file first
+#     fd, temp_path = tempfile.mkstemp(dir=os.path.dirname(metadata_file_path))
+#     os.close(fd)  # Close the file descriptor
+    
+#     try:
+#         async with aiofiles.open(temp_path, 'w') as temp_file:
+#             await temp_file.write(json_str)
+#             await temp_file.flush()
+        
+#         # Append the temporary file to the main file
+#         async with aiofiles.open(metadata_file_path, 'a') as target_file:
+#             async with aiofiles.open(temp_path, 'r') as temp_read:
+#                 content = await temp_read.read()
+#                 await target_file.write(content)
+#                 await target_file.flush()
+#     finally:
+#         # Clean up the temporary file
+#         if os.path.exists(temp_path):
+#             os.unlink(temp_path)
+
+# # END OF NEW CODE
 
 
 class Submission:
@@ -15,16 +79,17 @@ class Submission:
         
         if sgml_content is not None:
             self.path = None
-            self.metadata, raw_documents = parse_sgml_submission_into_memory(sgml_content)
+            metadata, raw_documents = parse_sgml_submission_into_memory(sgml_content)
+            self.metadata = Document(type='submission_metadata', content=metadata, extension='.json',filing_date=None,accession=None,path=None)
 
             # code dupe
-            self.accession = self.metadata['accession-number']
-            self.filing_date= f"{self.metadata['filing-date'][:4]}-{self.metadata['filing-date'][4:6]}-{self.metadata['filing-date'][6:8]}"
+            self.accession = self.metadata.content['accession-number']
+            self.filing_date= f"{self.metadata.content['filing-date'][:4]}-{self.metadata.content['filing-date'][4:6]}-{self.metadata.content['filing-date'][6:8]}"
     
             self.documents = []
             filtered_metadata_documents = []
 
-            for idx,doc in enumerate(self.metadata['documents']):
+            for idx,doc in enumerate(self.metadata.content['documents']):
                 type = doc.get('type')
                 
                 # Keep only specified types
@@ -36,17 +101,18 @@ class Submission:
 
                 filtered_metadata_documents.append(doc)
             
-            self.metadata['documents'] = filtered_metadata_documents
+            self.metadata.content['documents'] = filtered_metadata_documents
 
         if path is not None:
             self.path = Path(path)  
             metadata_path = self.path / 'metadata.json'
             with metadata_path.open('r') as f:
-                self.metadata = json.load(f)
+                metadata = json.load(f) 
+            self.metadata = Document(type='submission_metadata', content=metadata, extension='.json',filing_date=None,accession=None,path=metadata_path)
 
             # Code dupe
-            self.accession = self.metadata['accession-number']
-            self.filing_date= f"{self.metadata['filing-date'][:4]}-{self.metadata['filing-date'][4:6]}-{self.metadata['filing-date'][6:8]}"
+            self.accession = self.metadata.content['accession-number']
+            self.filing_date= f"{self.metadata.content['filing-date'][:4]}-{self.metadata.content['filing-date'][4:6]}-{self.metadata.content['filing-date'][6:8]}"
     
 
 
@@ -58,7 +124,7 @@ class Submission:
         else:
             document_types = document_type
 
-        for idx,doc in enumerate(self.metadata['documents']):
+        for idx,doc in enumerate(self.metadata.content['documents']):
             if doc['type'] in document_types:
                 
                 # if loaded from path
@@ -84,7 +150,7 @@ class Submission:
 
     
     def __iter__(self):
-        for idx,doc in enumerate(self.metadata['documents']):
+        for idx,doc in enumerate(self.metadata.content['documents']):
             # if loaded from path
             if self.path is not None:
                 filename = doc.get('filename')
@@ -121,9 +187,9 @@ class Submission:
         
         metadata_path = file_dir / "metadata.json"
         with open(metadata_path, 'w') as f:
-            json.dump(self.metadata, f, indent=4)
+            json.dump(self.metadata.content, f, indent=4)
         
-        for idx, doc in enumerate(self.metadata['documents']):
+        for idx, doc in enumerate(self.metadata.content['documents']):
             try:
                 filename = doc.get('filename')
                 if filename is None:
@@ -162,9 +228,9 @@ class Submission:
         
         metadata_path = file_dir / "metadata.json"
         async with aiofiles.open(metadata_path, 'w') as f:
-            await f.write(json.dumps(self.metadata, indent=4))
+            await f.write(json.dumps(self.metadata.content, indent=4))
         
-        for idx, doc in enumerate(self.metadata['documents']):
+        for idx, doc in enumerate(self.metadata.content['documents']):
             try:
                 filename = doc.get('filename')
                 if filename is None:

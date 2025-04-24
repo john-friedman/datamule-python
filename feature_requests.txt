@@ -11,6 +11,8 @@ portfolio/
 david
 - easier way to join listed + unlisted filer names using datamule
 
+Monitor rewrite + docs
+
 
 others:
 * rewrite portfolio to take advantage of parallel procesor executor
@@ -18,3 +20,9 @@ others:
 * fix datamule sec archive cik issue
 * fix sec downloader tqdm prog
 * oops! we're not doing async right for downloader. fixing this probably 2x-3x speed.
+
+eftsquery
+* add sics filtering in search-index
+* add mailing/biz? not sure which address using locationCodes=M0
+* add principle office using filter_location
+*add items e.g. https://www.sec.gov/edgar/search/#items=1.01,2.01
