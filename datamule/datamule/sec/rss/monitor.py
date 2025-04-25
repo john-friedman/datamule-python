@@ -384,7 +384,7 @@ def construct_url(params):
     return f"{base_url}?{query_string}"
 
 def monitor(data_callback=None, poll_callback=None, submission_type=None, cik=None, 
-           polling_interval=200, requests_per_second=2.0, quiet=True, 
+           polling_interval=200, requests_per_second=5, quiet=True, 
            known_accession_numbers=None, skip_initial_accession_numbers=None):
     """
     Convenience function to start monitoring SEC filings from the RSS feed.

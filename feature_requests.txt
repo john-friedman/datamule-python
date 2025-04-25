@@ -26,3 +26,7 @@ eftsquery
 * add mailing/biz? not sure which address using locationCodes=M0
 * add principle office using filter_location
 *add items e.g. https://www.sec.gov/edgar/search/#items=1.01,2.01
+
+
+datamule-data
+* add cik accession etc dataset that updates daily. ~500mb, so gz maybe ~100mb? neat to target <50mb......	

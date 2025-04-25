@@ -41,7 +41,6 @@ setup(
         'requests',
         'nest_asyncio',
         'aiofiles',
-        'polars',
         'setuptools',
         'selectolax',
         'pytz',
