@@ -1,3 +1,4 @@
+# Ready for mass testing
 
 # Information Table (13F-HR Securities) mapping
 information_table_dict = {

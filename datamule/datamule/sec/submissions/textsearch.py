@@ -1,8 +1,4 @@
 import asyncio
-import aiohttp
-from datetime import datetime
-from urllib.parse import urlencode
-from tqdm import tqdm
 from .eftsquery import EFTSQuery
 
 class TextSearchEFTSQuery(EFTSQuery):

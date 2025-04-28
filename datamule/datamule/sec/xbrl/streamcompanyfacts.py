@@ -2,7 +2,7 @@ import asyncio
 import aiohttp
 import json
 from tqdm import tqdm
-from ..utils import PreciseRateLimiter, RateMonitor, RetryException, headers
+from ..utils import PreciseRateLimiter, RateMonitor, headers
 
 async def fetch_company_facts(session, cik, rate_limiter, rate_monitor, pbar):
     # Format CIK with leading zeros to 10 digits

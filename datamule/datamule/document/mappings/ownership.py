@@ -1,4 +1,4 @@
-# Mapping dictionaries for SEC filing table types based on actual field occurrences
+# Ready for mass testing
 
 # Non-derivative transaction ownership mapping
 non_derivative_transaction_ownership_dict = {

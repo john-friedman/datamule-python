@@ -17,6 +17,12 @@ def process_tabular_data(self):
         tables = process_13fhr(self.data, self.accession)
     elif self.type in ["INFORMATION TABLE"]:
         tables = process_information_table(self.data, self.accession)
+    elif self.type in ["25-NSE", "25-NSE/A"]:
+        tables = process_25nse(self.data, self.accession)
+    # complete mark:
+    elif self.type in ["N-PX","N-PX/A"]:
+        tables = process_npx(self.data, self.accession)
+
     elif self.type in ["SBSEF","SBSEF/A","SBSEF-V","SBSEF-W"]:
         tables = process_sbsef(self.data, self.accession)
     elif self.type in ["SDR","SDR/A","SDR-W","SDR-A"]:
@@ -33,8 +39,7 @@ def process_tabular_data(self):
         tables = process_144(self.data, self.accession)
     elif self.type in ["24F-2NT", "24F-2NT/A"]:
         tables = process_24f2nt(self.data, self.accession)
-    elif self.type in ["25-NSE", "25-NSE/A"]:
-        tables = process_25nse(self.data, self.accession)
+
     elif self.type in ["ATS-N", "ATS-N/A"]:
         tables = process_ats(self.data, self.accession)
     # elif self.type in ["C","C-W","C-U","C-U-W","C/A","C/A-W",
@@ -53,8 +58,7 @@ def process_tabular_data(self):
     #     tables = process_nmfp(self.data, self.accession)
     # elif self.type in ["NPORT-P","NPORT-P/A"]:
     #     tables = process_nportp(self.data, self.accession)
-    elif self.type in ["N-PX","N-PX/A"]:
-        tables = process_npx(self.data, self.accession)
+
     # elif self.type in ["TA-1","TA-1/A","TA-W","TA-2","TA-2/A"]:
     #     tables = process_ta(self.data, self.accession)
     elif self.type in ["X-17A-5","X-17A-5/A"]:

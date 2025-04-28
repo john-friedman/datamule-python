@@ -118,10 +118,11 @@ class Document:
         # will deprecate this when we add html2dict
         elif self.extension in ['.htm', '.html','.txt']:
 
-            if self.type == '10-K':
-                mapping_dict = dict_10k
-            elif self.type == '10-Q':
+
+            if self.type == '10-Q':
                 mapping_dict = dict_10q
+            elif self.type == '10-K':
+                mapping_dict = dict_10k
             elif self.type == '8-K':
                 mapping_dict = dict_8k
             elif self.type == 'SC 13D':

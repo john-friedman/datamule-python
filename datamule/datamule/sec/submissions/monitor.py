@@ -1,130 +1,140 @@
+import time
+from collections import deque
+from .eftsquery import query_efts
+from datetime import datetime
+from ..utils import headers
+import urllib.request
+import xml.etree.ElementTree as ET
+import re
+from ..utils import PreciseRateLimiter
+from .eftsquery import EFTSQuery
 import asyncio
-from datetime import datetime, timedelta
-from .eftsquery import EFTSQuery  # Import the class directly instead of the function
-from ..rss.monitor import start_monitor  # Import start_monitor directly
-import pytz
 
-
-async def _process_efts_hits(hits, collected_accession_numbers, data_callback=None,rate_limiter=None):
-    """Process EFTS hits, collect accession numbers, and call data callback."""
-    processed_hits = []
+def poll_rss():
+    base_url = 'https://www.sec.gov/cgi-bin/browse-edgar?count=100&action=getcurrent&output=rss'
+    req = urllib.request.Request(base_url, headers=headers)
+    with urllib.request.urlopen(req) as response:
+        content = response.read().decode('utf-8')
     
-    for hit in hits:
-        try:
-            source = hit.get('_source', {})
-            
-            # Extract key fields
-            accession_number = source.get('adsh')
-                
-            # Extract submission_type (form) and ciks
-            submission_type = source.get('form')
-            ciks = source.get('ciks', [])
-            ciks = [str(int(cik)) for cik in ciks]
+    root = ET.fromstring(content)
+    namespace = {'atom': 'http://www.w3.org/2005/Atom'}
+    entries = root.findall('atom:entry', namespace)
+    grouped = {}
 
-            filing_date = source.get('file_date')
-                
-            # Create standardized filing record
-            filing = {
-                'accession_number': accession_number,
-                'submission_type': submission_type,
-                'ciks': ciks,
-                'filing_date': filing_date,
-
-            }
-            
-            processed_hits.append(filing)
-            collected_accession_numbers.add(accession_number)  # Changed append to add for set operation
-            
-        except Exception as e:
-            print(f"Error processing EFTS hit: {e}")
-    
-    # Call data callback if provided
-    if data_callback and processed_hits:
-        await data_callback(processed_hits, rate_limiter)
+    for entry in entries:
+        url = entry.find('atom:link', namespace).get('href')
+        accession = re.search(r'/(\d{10})-(\d{2})-(\d{6})', url)
+        accession = accession.group(1) + accession.group(2) + accession.group(3)
+        cik = re.search(r'/data/(\d+)/', url).group(1)
         
-    return processed_hits
-
-async def _master_monitor_impl(data_callback=None, poll_callback=None, submission_type=None, cik=None, 
-                              polling_interval=200, requests_per_second=2.0, quiet=True, start_date=None):
-    """Implementation of the master monitor."""
-    # Set default start date to today if not provided (eastern)
-    eastern_tz = pytz.timezone('US/Eastern')
-    current_date = datetime.now(eastern_tz).strftime('%Y-%m-%d')
-    if not start_date:
-        start_date = current_date
+        if accession not in grouped:
+            grouped[accession] = {'submission_type': '', 'ciks': set(), 'filing_date': ''}
         
-    # Changed from list to set for more efficient lookups
-    collected_accession_numbers = set()
-    
-    if not quiet:
-        print(f"Starting SEC monitoring from {start_date}")
-    
-    # Step 1: Query EFTS for all filings from start_date up to current date
-    if not quiet:
-        print(f"Fetching filings from {start_date} to {current_date}...")
-    
-    # Prepare a wrapper callback to collect accession numbers
-    async def process_callback(hits):
-         await _process_efts_hits(hits, collected_accession_numbers, data_callback, efts_query.limiter)
-    
-    # Create an EFTSQuery instance
-    efts_query = EFTSQuery(requests_per_second=requests_per_second)
-    
-    # Run EFTS query for the date range
-    async with efts_query:
-        await efts_query.query(
-            cik=cik,
-            submission_type=submission_type,
-            filing_date=(start_date, current_date),
-            callback=process_callback
-        )
-    
-    if not quiet:
-        print(f"Historical query complete. Collected {len(collected_accession_numbers)} accession numbers.")
-    
-    # Step 2: Hand off to RSS monitor with collected accession numbers
-    if not quiet:
-        print("Starting real-time RSS monitoring...")
-    
-    # Start RSS monitor with the set of accession numbers to skip (from EFTS)
-    # and an empty list for ongoing tracking
-    await start_monitor(
-        data_callback=data_callback,
-        poll_callback=poll_callback,
-        submission_type=submission_type,
-        cik=cik,
-        polling_interval=polling_interval,
-        requests_per_second=requests_per_second,
-        quiet=quiet,
-        known_accession_numbers=[],  # Start with an empty list for ongoing tracking
-        skip_initial_accession_numbers=collected_accession_numbers  # Pass the EFTS accession numbers as the skip list
-    )
+        grouped[accession]['ciks'].add(cik)
+        grouped[accession]['submission_type'] = entry.find('atom:category', namespace).get('term')
+        summary_text = entry.find('atom:summary', namespace).text
+        filing_date_match = re.search(r'Filed:</b>\s*(\d{4}-\d{2}-\d{2})', summary_text)
+        if filing_date_match:
+            grouped[accession]['filing_date'] = filing_date_match.group(1)
 
-def monitor(data_callback=None, poll_callback=None, submission_type=None, cik=None, 
-           polling_interval=200, requests_per_second=2.0, quiet=True, start_date=None):
-    """
-    Monitor SEC filings by combining EFTS historical queries with real-time RSS monitoring.
+    results = [{'accession': int(k.replace('-', '')), 'submission_type': v['submission_type'], 'ciks': list(v['ciks']), 'filing_date': v['filing_date']} for k, v in grouped.items()]
+    return results
+
+def clean_efts_hits(hits):
+    # clean hits
+    hits = [{'accession': int(hit['_source']['adsh'].replace('-','')), 'filing_date': hit['_source']['file_date'], 'ciks': hit['_source']['ciks']} for hit in hits]
+    return hits
+
+class Monitor():
+    def __init__(self):
+        self.accessions = deque(maxlen=50000)
+        self.ratelimiters = {'sec.gov':PreciseRateLimiter(rate=5)}
+        self.efts_query = EFTSQuery()
+        self.efts_query.limiter = self.ratelimiters['sec.gov']
+
+    def set_domain_rate_limit(self, domain, rate):
+        self.ratelimiters[domain] = PreciseRateLimiter(rate=rate)
+        if domain == 'sec.gov':
+            self.efts_query.limiter = self.ratelimiters[domain]
+
+    def monitor_submissions(self, data_callback=None, interval_callback=None,
+                            polling_interval=1000, quiet=True, start_date=None,
+                            validation_interval=60000):
+        """
+        Monitor SEC submissions using the EDGAR system.
+        :param data_callback: function to call with the data
+        :param interval_callback: function that executes between polls
+        :param polling_interval: interval between polls in milliseconds
+        :param requests_per_second: number of requests per second to make.
+        :param quiet: if True, suppresses output
+        :param start_date: backfill start date in YYYY-MM-DD format
+        :param validation_interval: interval between validation in milliseconds
+
+        This function combines the speed of the RSS feed (fast, but misses some submissions) with the accuracy of the EFTS system.
+        """
     
-    Parameters:
-        data_callback (callable): Async function to call when new filings are found.
-                                 Will be called with a list of dicts containing
-                                 'accession_number', 'submission_type', and 'ciks'.
-        poll_callback (callable): Async function to call during RSS polling wait periods.
-        submission_type (str or list): Form type(s) to monitor (e.g., "8-K", "10-Q").
-        cik (str or list): CIK(s) to monitor.
-        polling_interval (int): Polling interval in milliseconds for RSS monitor.
-        requests_per_second (float): Maximum requests per second.
-        quiet (bool): Suppress verbose output.
-        start_date (str): ISO format date (YYYY-MM-DD) from which to start monitoring.
-                        If None, will start from current date. (EASTERN TIME)
-    """
-    return asyncio.run(_master_monitor_impl(
-        data_callback=data_callback,
-        poll_callback=poll_callback,
-        submission_type=submission_type,
-        cik=cik,
-        polling_interval=polling_interval,
-        requests_per_second=requests_per_second,
-        quiet=quiet,
-        start_date=start_date
-    ))
+        last_validation_time = 0
+
+        # Backfill if start_date is provided
+        if start_date is not None:
+            today_date = datetime.now().date()
+            if not quiet:
+                print(f"Backfilling from {start_date} to {today_date}")
+
+            hits = clean_efts_hits(query_efts(filing_date=(start_date, today_date),quiet=quiet))
+
+            new_hits = self._filter_new_accessions(hits)
+            if not quiet:
+                print(f"New submissions found: {len(new_hits)}")
+            if new_hits and data_callback:
+                data_callback(new_hits)
+
+
+
+        while True:
+            current_time = time.time()
+            # RSS polling
+            if not quiet:
+                print(f"Polling RSS feed")
+            results = poll_rss()
+            new_results = self._filter_new_accessions(results)
+            if new_results:
+                if not quiet:
+                    print(f"Found {len(new_results)} new submissions via RSS")
+                if data_callback:
+                    data_callback(new_results)
+            
+            # EFTS validation
+            if validation_interval and (current_time - last_validation_time) >= validation_interval/1000:
+                # Get submissions from the last 24 hours for validation
+                today_date = (datetime.now()).strftime('%Y-%m-%d')
+                if not quiet:
+                    print(f"Validating submissions from {today_date}")
+
+                hits = clean_efts_hits(query_efts(filing_date=(today_date, today_date),quiet=quiet))
+                new_hits = self._filter_new_accessions(hits)
+                if new_hits:
+                    if not quiet:
+                        print(f"Found {len(new_hits)} new submissions via EFTS validation")
+                    if data_callback:
+                        data_callback(new_hits)
+                last_validation_time = current_time
+            
+            # Interval callback
+            if interval_callback:
+                interval_callback()
+            
+            # Sleep to control the polling rate
+            time.sleep(polling_interval/1000)
+                
+
+    
+    def _filter_new_accessions(self, items):
+        """Filter items to only include those with new accession numbers."""
+        new_items = []
+        for item in items:
+            accession = item['accession']
+            if accession not in self.accessions:
+                self.accessions.append(accession)
+                new_items.append(item)
+        return new_items

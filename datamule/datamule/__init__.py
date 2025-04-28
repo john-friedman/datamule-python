@@ -8,6 +8,7 @@ from .index import Index
 from .package_updater import PackageUpdater
 
 
+
 # Keep the notebook environment setup
 def _is_notebook_env():
     """Check if the code is running in a Jupyter or Colab environment."""

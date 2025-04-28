@@ -1,3 +1,4 @@
+# Ready for mass testing
 # 25-NSE mapping
 twentyfive_nse_dict = {
     'descriptionClassSecurity': 'securityDescription',

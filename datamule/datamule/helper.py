@@ -79,7 +79,16 @@ def _process_cik_and_metadata_filters(cik=None, ticker=None, **kwargs):
 
         # Convert ticker to CIK if provided
         if ticker is not None:
-            cik = get_cik_from_dataset('listed_filer_metadata', 'ticker', ticker)
+            if isinstance(ticker, str):
+                ticker = [ticker]
+
+            ciks_from_ticker = []
+            for t in ticker:
+                ciks = get_cik_from_dataset('listed_filer_metadata', 'ticker', t)
+                if ciks:
+                    ciks_from_ticker.extend(ciks)
+
+            cik = ciks
 
         # Normalize CIK format
         if cik is not None:
