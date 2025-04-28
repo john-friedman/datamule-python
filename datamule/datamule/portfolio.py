@@ -9,13 +9,14 @@ import os
 from .helper import _process_cik_and_metadata_filters
 from .seclibrary.downloader import download as seclibrary_download
 from .sec.xbrl.filter_xbrl import filter_xbrl
-from .sec.submissions.monitor import monitor
-from .sec.xbrl.xbrlmonitor import XBRLMonitor
+#from .sec.submissions.monitor import monitor
+#from .sec.xbrl.xbrlmonitor import XBRLMonitor
 
 
 class Portfolio:
     def __init__(self, path):
         self.path = Path(path)
+        self.api_key = None
         self.submissions = []
         self.submissions_loaded = False
         self.MAX_WORKERS = os.cpu_count() - 1 
@@ -25,6 +26,9 @@ class Portfolio:
             self.submissions_loaded = True
         else:
             self.path.mkdir(parents=True, exist_ok=True)
+
+    def set_api_key(self, api_key):
+        self.api_key = api_key
     
     def _load_submissions(self):
         folders = [f for f in self.path.iterdir() if f.is_dir()]
@@ -132,6 +136,7 @@ class Portfolio:
             seclibrary_download(
                 output_dir=self.path,
                 cik=cik,
+                api_key=self.api_key,
                 submission_type=submission_type,
                 filing_date=filing_date,
                 accession_numbers=self.accession_numbers if hasattr(self, 'accession_numbers') else None,

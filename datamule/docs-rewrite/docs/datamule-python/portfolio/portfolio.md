@@ -5,6 +5,13 @@ The `Portfolio` class lets you interact with SEC Submissions. Portfolio's consis
 ## Attributes
 * `portfolio.path` - path to folder
 
+## `set_api_key`
+
+Use this if you don't want to store the api key as environmental variable.
+```python
+set_api_key(api_key)
+```
+
 ## `download_submissions`
 ```python
 download_submissions(self, cik=None, ticker=None, submission_type=None, filing_date=None, provider=None,document_type=None,requests_per_second=5, **kwargs)
