@@ -66,9 +66,54 @@ For help filling out args, see [this](https://www.sec.gov/search-filings/edgar-a
 * logic - `'>'`,`'>='`,`'=='`,`'!='`, `'<='`, `'<'`
 
 ## `monitor_submissions`
+```python
+monitor_submissions(data_callback=None, interval_callback=None,
+                            polling_interval=1000, quiet=True, start_date=None,
+                            validation_interval=60000)
+```
+### hits format:
+```python
+[{'accession': 95017022000796,
+'ciks': ['1318605']
+'filing_date':'2022-02-07'}...]
+```
+### Parameters
+* data_callback - function that uses hits
+* interval_callback - function that is called between polls
+* quiet - whether to print output
+* start_date - start date for backfill
+* polling_interval - time in ms to poll the rss feed. If set to None, will never poll
+* validation_interval - time to run more robust check of what submissions have been submitted. If set to None, will never validate
 
-???+ warning "will rewrite soon"
-    not going to write docs, because rewriting this week to make it more accessible
+???+ note "rate limit sharing"
+    will update this later to add documentation for rate limit sharing - e.g. downloading each submission as they come out
+
+### Example
+```python
+from datamule import Portfolio
+from time import time
+
+start_time = time()
+
+portfolio = Portfolio('test')
+portfolio.monitor.set_domain_rate_limit(domain='sec.gov', rate=3)
+def interval_callback():
+    global start_time
+    print(f"elapsed time: {time() - start_time} seconds")
+
+def data_callback(hits):
+    print(f"Number of new hits: {len(hits)}")
+
+portfolio.monitor_submissions(validation_interval=60000,start_date='2025-04-25',
+                                   quiet=True,polling_interval=1000,
+                                   interval_callback=interval_callback,data_callback=data_callback)
+```
+
+??? note "Architecture"
+    There are two ways to Monitor SEC submissions in real time.
+    1. RSS - ~25% of submissions are missed
+    2. EFTS - often 30-50s slower than the RSS feed
+    The `Monitor` class is a compromise that uses both systems. I will likely do a write up on how it works later on, because both systems are annoying to work with. If you have a use-case that requires insane levels of speed, feel free to email me for advice.
 
 ## `document_type`
 

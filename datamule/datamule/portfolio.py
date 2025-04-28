@@ -9,7 +9,7 @@ import os
 from .helper import _process_cik_and_metadata_filters
 from .seclibrary.downloader import download as seclibrary_download
 from .sec.xbrl.filter_xbrl import filter_xbrl
-#from .sec.submissions.monitor import monitor
+from .sec.submissions.monitor import Monitor
 #from .sec.xbrl.xbrlmonitor import XBRLMonitor
 
 
@@ -20,6 +20,8 @@ class Portfolio:
         self.submissions = []
         self.submissions_loaded = False
         self.MAX_WORKERS = os.cpu_count() - 1 
+
+        self.monitor = Monitor()
         
         if self.path.exists():
             self._load_submissions()
@@ -154,20 +156,18 @@ class Portfolio:
             )
 
         self.submissions_loaded = False
-    def monitor_submissions(self,data_callback=None, poll_callback=None, submission_type=None, cik=None, 
-           polling_interval=200, requests_per_second=5, quiet=False, start_date=None, ticker=None, **kwargs):
+    def monitor_submissions(self, data_callback=None, interval_callback=None,
+                            polling_interval=1000, quiet=True, start_date=None,
+                            validation_interval=600000):
         
-        cik = _process_cik_and_metadata_filters(cik, ticker, **kwargs)
 
-        monitor(
+        self.monitor.monitor_submissions(
             data_callback=data_callback,
-            poll_callback=poll_callback,
-            cik=cik,
-            submission_type=submission_type,
+            interval_callback=interval_callback,
             polling_interval=polling_interval,
-            requests_per_second=requests_per_second,
             quiet=quiet,
-            start_date=start_date
+            start_date=start_date,
+            validation_interval=validation_interval
         )
 
         
