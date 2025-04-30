@@ -27,7 +27,13 @@ class Table():
         self.type = type
         self.data = data
         self.accession = accession
-        self.columns = self.determine_columns()
+        self.columns = self.determine_columns_complete()
+
+    def determine_columns_complete(self):
+        if not self.data:
+            return []
+        return list(set().union(*(row.keys() for row in self.data)))
+
 
     def determine_columns(self):
         if len(self.data) == 0:

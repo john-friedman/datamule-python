@@ -22,6 +22,8 @@ def process_tabular_data(self):
     # complete mark:
     elif self.type in ["N-PX","N-PX/A"]:
         tables = process_npx(self.data, self.accession)
+    elif self.type in ["EX-102"]:
+        tables = process_ex102_abs(self.data, self.accession)
 
     elif self.type in ["SBSEF","SBSEF/A","SBSEF-V","SBSEF-W"]:
         tables = process_sbsef(self.data, self.accession)
@@ -70,8 +72,7 @@ def process_tabular_data(self):
         tables = process_reg_a(self.data, self.accession)
     # elif self.type in ["SBSE","SBSE/A","SBSE-A","SBSE-A/A","SBSE-BD","SBSE-BD/A","SBSE-C","SBSE-W","SBSE-CCO-RPT","SBSE-CCO-RPT/A"]:
     #     tables = process_sbs(self.data, self.accession)
-    # elif self.type in ["EX-102"]:
-    #     tables = process_ex102_abs(self.data, self.accession)
+
     elif self.type == "PROXY VOTING RECORD":
         tables = process_proxy_voting_record(self.data, self.accession)
     elif self.type == 'submission_metadata':
@@ -589,13 +590,29 @@ def process_reg_a(data, accession):
     
 #     return tables
 
-# def process_ex102_abs(data, accession):
-#     tables = []
-#     asset_data = safe_get(data, ['assetData'])
-#     if asset_data:
-#         tables.append(Table(_flatten_dict(asset_data), 'abs', accession))
-#     raise NotImplementedError("Need to implement the rest of the ABS processing")
-#     return tables
+def process_ex102_abs(data, accession):
+    tables = []
+    data = safe_get(data, ['assetData', 'assets'])
+    
+    
+    # Create assets list: all items without their 'property' field
+    assets = [{k: v for k, v in item.items() if k != 'property'} for item in data]
+
+    # Filter data to only include items with a 'property' field
+    filtered_data = [item for item in data if 'property' in item]
+    
+    # Create properties list: include assetNumber with each property dictionary
+    properties = []
+    for item in filtered_data:
+        properties.append(item['property'] | {'assetNumber': item['assetNumber']})
+    
+    if assets:
+        tables.append(Table(_flatten_dict(assets), 'assets_ex102_absee', accession))
+    
+    if properties:
+        tables.append(Table(_flatten_dict(properties), 'properties_ex102_absee', accession))
+    
+    return tables
 
 # def process_ma(data, accession):
 #     tables = []
