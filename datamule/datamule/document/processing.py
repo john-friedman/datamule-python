@@ -594,17 +594,27 @@ def process_ex102_abs(data, accession):
     tables = []
     data = safe_get(data, ['assetData', 'assets'])
     
-    
     # Create assets list: all items without their 'property' field
     assets = [{k: v for k, v in item.items() if k != 'property'} for item in data]
 
-    # Filter data to only include items with a 'property' field
-    filtered_data = [item for item in data if 'property' in item]
-    
-    # Create properties list: include assetNumber with each property dictionary
+    # Create properties list in a more vectorized way
     properties = []
-    for item in filtered_data:
-        properties.append(item['property'] | {'assetNumber': item['assetNumber']})
+    
+    # Handle dictionary properties
+    properties.extend([
+        item['property'] | {'assetNumber': item['assetNumber']}
+        for item in data
+        if 'property' in item and isinstance(item['property'], dict)
+    ])
+    
+    # Handle list properties - flatten in one operation
+    properties.extend([
+        prop | {'assetNumber': item['assetNumber']}
+        for item in data
+        if 'property' in item and isinstance(item['property'], list)
+        for prop in item['property']
+        if isinstance(prop, dict)
+    ])
     
     if assets:
         tables.append(Table(_flatten_dict(assets), 'assets_ex102_absee', accession))

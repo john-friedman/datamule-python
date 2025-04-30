@@ -27,7 +27,10 @@ document.contains_string(pattern)
 Parses a document into dictionary form, and applies a mapping dict. Currently supports all XML files as well as:
 `10-K`, `10-Q`, `8-K`, `SC 13D`, and `SC 13G`.
 
-## `to_tabular`
+## `tables`
+```python
+document.tables()
+```
 
 If the document has extension '.xml', parses the xml into tables.
 

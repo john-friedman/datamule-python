@@ -19,6 +19,10 @@ from .mappings.twentyfivense import *
 from .mappings.twentyfourf2nt import *
 from .mappings.information_table import *
 from .mappings.submission_metadata import *
+from .mappings.ex102_abs import *
+
+from pathlib import Path
+import csv
 # need to check if mappings correctly create new columns
 class Table():
     def __init__(self, data, type,accession):
@@ -38,6 +42,7 @@ class Table():
     def determine_columns(self):
         if len(self.data) == 0:
             return []
+        
         return self.data[0].keys()
 
     def add_column(self,column_name,value):
@@ -233,7 +238,11 @@ class Table():
             mapping_dict = item_9_24f2nt_dict
         elif self.type == 'signature_info_schedule_a':
             mapping_dict = signature_24f2nt_dict
-
+        # ABS
+        elif self.type == 'assets_ex102_absee':
+            mapping_dict = assets_dict_ex102_abs
+        elif self.type =='properties_ex102_absee':
+            mapping_dict = properties_dict_ex102_abs
         # submission metadata
         elif self.type == 'document_submission_metadata':
             mapping_dict = document_submission_metadata_dict
@@ -256,9 +265,6 @@ class Table():
             for old_key, new_key in mapping_dict.items():
                 if old_key in row:
                     ordered_row[new_key] = row.pop(old_key)
-                else:
-                    # if the old key is not present, set the new key to None
-                    ordered_row[new_key] = None
             
             # Then add any remaining keys that weren't in the mapping
             for key, value in row.items():
@@ -268,4 +274,30 @@ class Table():
             row.clear()
             row.update(ordered_row)
 
-        self.determine_columns()
+        # Update the columns after mapping
+        columns = set(self.columns)
+        # remove the old columns that are now in the mapping
+        columns.difference_update(mapping_dict.keys())
+        # add the new columns from the mapping
+        columns.update(mapping_dict.values())
+        # add the accession column to the columns
+        columns.add('accession')
+
+        self.columns = list(columns)
+
+    def write_csv(self, output_file):
+        output_file = Path(output_file)
+        fieldnames = self.columns
+        
+        # Check if the file already exists
+        if output_file.exists():
+            # Append to existing file without writing header
+            with open(output_file, 'a', newline='') as csvfile:
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
+                writer.writerows(self.data)
+        else:
+            # Create new file with header
+            with open(output_file, 'w', newline='') as csvfile:
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
+                writer.writeheader()
+                writer.writerows(self.data)

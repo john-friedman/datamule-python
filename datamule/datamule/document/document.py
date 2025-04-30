@@ -141,7 +141,7 @@ class Document:
         with open(output_filename, 'w',encoding='utf-8') as f:
             json.dump(self.data, f, indent=2)
 
-    def to_tabular(self):
+    def tables(self):
         if self.type == 'submission_metadata':
             return process_tabular_data(self)
         elif self.extension != '.xml':
@@ -155,7 +155,7 @@ class Document:
         output_folder = Path(output_folder)
         output_folder.mkdir(exist_ok=True)
             
-        tables = self.to_tabular()
+        tables = self.tables()
 
         if not tables:
             return
