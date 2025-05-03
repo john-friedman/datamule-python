@@ -20,10 +20,13 @@ def process_tabular_data(self):
     elif self.type in ["25-NSE", "25-NSE/A"]:
         tables = process_25nse(self.data, self.accession)
     # complete mark:
-    elif self.type in ["N-PX","N-PX/A"]:
-        tables = process_npx(self.data, self.accession)
     elif self.type in ["EX-102"]:
         tables = process_ex102_abs(self.data, self.accession)
+    elif self.type in ["D","D/A"]:
+        tables = process_d(self.data, self.accession)
+    elif self.type in ["N-PX","N-PX/A"]:
+        tables = process_npx(self.data, self.accession)
+
 
     elif self.type in ["SBSEF","SBSEF/A","SBSEF-V","SBSEF-W"]:
         tables = process_sbsef(self.data, self.accession)
@@ -49,8 +52,7 @@ def process_tabular_data(self):
     #     tables = process_c(self.data, self.accession)
     elif self.type in ["CFPORTAL","CFPORTAL/A","CFPORTAL-W"]:
         tables = process_cfportal(self.data, self.accession)
-    # elif self.type in ["D","D/A"]:
-    #     tables = process_d(self.data, self.accession)
+
     # elif self.type in ["MA","MA-A","MA/A","MA-I","MA-I/A","MA-W"]:
     #     tables = process_ma(self.data, self.accession)
     # elif self.type in ["N-CEN","N-CEN/A"]:
@@ -353,33 +355,22 @@ def process_cfportal(data, accession):
     
     return tables
 
-# def process_d(data, accession):
-#     tables = []
-#     primary_issuer = safe_get(data, ['edgarSubmission', 'primaryIssuer'])
-#     if primary_issuer:
-#         metadata = Table(_flatten_dict(primary_issuer), 'metadata_d', accession)
-        
-#         metadata_columns = ['schemaVersion', 'submissionType', 'testOrLive', 'returnCopy', 'contactData', 'notificationAddressList']
-#         for col in metadata_columns:
-#             col_data = safe_get(data, ['edgarSubmission', col])
-#             if col_data:
-#                 metadata.add_column(col, col_data)
-        
-#         tables.append(metadata)
+def process_d(data, accession):
+    tables = []
+    groups = ['contactData', 'notificationAddressList', 'primaryIssuer', 'issuerList', 'relatedPersonsList', 'offeringData']
+    for group in groups:
+        if group == 'relatedPersonList':
+            group_data = data['edgarSubmission'].pop('relatedPersonInfo', None)
+            data['edgarSubmission'].pop(group, None)
+        else:
+            group_data = data['edgarSubmission'].pop(group, None)
+        if group_data:
+            tables.append(Table(_flatten_dict(group_data), f'{group}_d', accession))
+
+    metadata_table = Table(_flatten_dict(data['edgarSubmission']), 'metadata_d', accession)
     
-#     issuer_list = safe_get(data, ['edgarSubmission', 'issuerList'])
-#     if issuer_list:
-#         tables.append(Table(_flatten_dict(issuer_list), 'primary_issuer_d', accession))
     
-#     offering_data = safe_get(data, ['edgarSubmission', 'offeringData'])
-#     if offering_data:
-#         tables.append(Table(_flatten_dict(offering_data), 'offering_data_d', accession))
-    
-#     related_persons_list = safe_get(data, ['edgarSubmission', 'relatedPersonsList'])
-#     if related_persons_list:
-#         tables.append(Table(_flatten_dict(related_persons_list), 'related_persons_list_d', accession))
-    
-#     return tables
+    return tables
 
 # def process_nmfp(data, accession):
 #     tables = []

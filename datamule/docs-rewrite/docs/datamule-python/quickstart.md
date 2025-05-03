@@ -24,14 +24,6 @@ for ten_k in portfolio.document_type('10-K'):
    ten_k.parse()
    print(ten_k.data['document']['part2']['item7'])
 
-# Iterate through documents by what strings they contain
-for document in portfolio.contains_string('United States'):
-   print(document.path)
-
-# You can also use regex patterns
-for document in portfolio.contains_string(r'(?i)covid-19'):
-   print(document.type)
-
 # For faster operations, you can take advantage of built in threading with callback function
 def callback(submission):
    print(submission.path)

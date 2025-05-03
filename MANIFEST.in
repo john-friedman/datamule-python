@@ -1,2 +1,0 @@
-include datamule/mulebot/mulebot_server/templates/*.html
-include datamule/parser/sgml_parsing/*.pyx
