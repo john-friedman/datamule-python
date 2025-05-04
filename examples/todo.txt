@@ -1,3 +1,0 @@
-1. discord bot that uses monitor
-2. IRANNOTICE with relevant extracted sections
-3. Ownership network graphs
