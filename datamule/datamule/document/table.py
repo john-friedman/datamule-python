@@ -203,15 +203,15 @@ class Table():
             mapping_dict = signature_schedule_13_dict
 
         # D 
-        elif self.type == 'issuerList_d':
+        elif self.type == 'issuer_list_d':
             mapping_dict = issuer_list_d_dict
         elif self.type == 'metadata_d':
             mapping_dict = metadata_d_dict
-        elif self.type == 'offeringData_d':
+        elif self.type == 'offering_data_d':
             mapping_dict = offering_data_d_dict
-        elif self.type == 'primaryIssuer_d':
+        elif self.type == 'primary_issuer_d':
             mapping_dict = primary_issuer_d_dict
-        elif self.type == 'relatedPersonsList_d':
+        elif self.type == 'related_persons_list_d':
             mapping_dict = related_persons_d_dict
         # SDR
         elif self.type == 'sdr':

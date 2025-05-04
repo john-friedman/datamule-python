@@ -418,8 +418,14 @@ def process_cfportal(data, accession):
 
 def process_d(data, accession):
     tables = []
-    groups = ['contactData', 'notificationAddressList', 'primaryIssuer', 'issuerList', 'relatedPersonsList', 'offeringData']
-    for group in groups:
+    groups = [('contactData', 'contact_data_d'),
+                ('notificationAddressList', 'notification_address_list_d'),
+                ('primaryIssuer', 'primary_issuer_d'),
+                ('issuerList', 'issuer_list_d'),
+                ('relatedPersonsList', 'related_persons_list_d'),
+                ('offeringData', 'offering_data_d'),
+    ]
+    for group,table_type in groups:
         if group == 'relatedPersonList':
             group_data = data['edgarSubmission'].pop('relatedPersonInfo', None)
             data['edgarSubmission'].pop(group, None)
@@ -430,14 +436,16 @@ def process_d(data, accession):
             
         if group_data:
             # Special handling ONLY for relatedPersonsList
-            if group in ['relatedPersonsList', 'issuerList']:
+            if group in ['relatedPersonsList', 'issuerList','offeringData']:
                 # Use the new flatten_dict_to_rows ONLY for this key
                 flattened_rows = flatten_dict_to_rows(group_data)
                 if flattened_rows:
-                    tables.append(Table(flattened_rows, f'{group}_d', accession))
+                    tables.append(Table(flattened_rows, table_type, accession))
             else:
                 # Everything else remains EXACTLY the same
-                tables.append(Table(_flatten_dict(group_data), f'{group}_d', accession))
+                tables.append(Table(_flatten_dict(group_data), table_type, accession))
+
+
 
     metadata_table = Table(_flatten_dict(data['edgarSubmission']), 'metadata_d', accession)
     tables.append(metadata_table)
