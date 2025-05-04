@@ -20,6 +20,7 @@ from .mappings.twentyfourf2nt import *
 from .mappings.information_table import *
 from .mappings.submission_metadata import *
 from .mappings.ex102_abs import *
+from .mappings.d import *
 
 from pathlib import Path
 import csv
@@ -201,6 +202,17 @@ class Table():
         elif self.type == 'signature_schedule_13':
             mapping_dict = signature_schedule_13_dict
 
+        # D 
+        elif self.type == 'issuerList_d':
+            mapping_dict = issuer_list_d_dict
+        elif self.type == 'metadata_d':
+            mapping_dict = metadata_d_dict
+        elif self.type == 'offeringData_d':
+            mapping_dict = offering_data_d_dict
+        elif self.type == 'primaryIssuer_d':
+            mapping_dict = primary_issuer_d_dict
+        elif self.type == 'relatedPersonsList_d':
+            mapping_dict = related_persons_d_dict
         # SDR
         elif self.type == 'sdr':
             mapping_dict = sdr_dict

@@ -104,6 +104,67 @@ def _flatten_dict(d, parent_key=''):
                 
     return items
 
+# flattens in a different way
+def flatten_dict_to_rows(d, parent_key='', sep='_'):
+
+    if isinstance(d, list):
+        # If input is a list, flatten each item and return all rows
+        all_rows = []
+        for item in d:
+            all_rows.extend(flatten_dict_to_rows(item, parent_key, sep))
+        return all_rows
+    
+    if not isinstance(d, dict):
+        # If input is a primitive value, return single row
+        return [{parent_key: d}] if parent_key else []
+    
+    # Input is a dictionary
+    rows = [{}]
+    
+    for k, v in d.items():
+        new_key = f"{parent_key}{sep}{k}" if parent_key else k
+        
+        if isinstance(v, dict):
+            # Recursively flatten nested dictionaries
+            nested_rows = flatten_dict_to_rows(v, new_key, sep)
+            # Cross-product with existing rows
+            new_rows = []
+            for row in rows:
+                for nested_row in nested_rows:
+                    combined_row = row.copy()
+                    combined_row.update(nested_row)
+                    new_rows.append(combined_row)
+            rows = new_rows
+            
+        elif isinstance(v, list):
+            # Handle lists - create multiple rows
+            if not v:  # Empty list
+                for row in rows:
+                    row[new_key] = ''
+            else:
+                new_rows = []
+                for row in rows:
+                    for list_item in v:
+                        new_row = row.copy()
+                        if isinstance(list_item, dict):
+                            # Recursively flatten dict items in list
+                            nested_rows = flatten_dict_to_rows(list_item, new_key, sep)
+                            for nested_row in nested_rows:
+                                combined_row = new_row.copy()
+                                combined_row.update(nested_row)
+                                new_rows.append(combined_row)
+                        else:
+                            # Primitive value in list
+                            new_row[new_key] = list_item
+                            new_rows.append(new_row)
+                rows = new_rows
+        else:
+            # Handle primitive values
+            for row in rows:
+                row[new_key] = v
+    
+    return rows
+
 def process_ownership(data, accession):
     tables = []
     if 'ownershipDocument' not in data:
@@ -362,13 +423,24 @@ def process_d(data, accession):
         if group == 'relatedPersonList':
             group_data = data['edgarSubmission'].pop('relatedPersonInfo', None)
             data['edgarSubmission'].pop(group, None)
+        elif group == 'issuerList':
+            group_data = data['edgarSubmission'].pop('issuerList', None)
         else:
             group_data = data['edgarSubmission'].pop(group, None)
+            
         if group_data:
-            tables.append(Table(_flatten_dict(group_data), f'{group}_d', accession))
+            # Special handling ONLY for relatedPersonsList
+            if group in ['relatedPersonsList', 'issuerList']:
+                # Use the new flatten_dict_to_rows ONLY for this key
+                flattened_rows = flatten_dict_to_rows(group_data)
+                if flattened_rows:
+                    tables.append(Table(flattened_rows, f'{group}_d', accession))
+            else:
+                # Everything else remains EXACTLY the same
+                tables.append(Table(_flatten_dict(group_data), f'{group}_d', accession))
 
     metadata_table = Table(_flatten_dict(data['edgarSubmission']), 'metadata_d', accession)
-    
+    tables.append(metadata_table)
     
     return tables
 
