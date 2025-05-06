@@ -31,7 +31,7 @@ setup(
     name="datamule",
     author="John Friedman",
     version="1.2.9",
-    description="Making it easier to use SEC filings.",
+    description="Work with SEC submissions at scale.",
     packages=find_packages(include=['datamule', 'datamule.*']),
     url="https://github.com/john-friedman/datamule-python",
     install_requires=[
@@ -47,6 +47,5 @@ setup(
         'zstandard',
         'doc2dict',
         'secsgml',
-        'lxml'
     ]
 )

@@ -1,0 +1,1630 @@
+Submission Type: 4, Accession: 5849225000306, CIKs: ['2003773'], received_time: 2025-05-05 15:27:01 EDT
+Submission Type: 13F-HR, Accession: 205351025000002, CIKs: ['830588'], received_time: 2025-05-05 15:27:17 EDT
+Submission Type: 10-Q, Accession: 121465925006938, CIKs: ['1315061'], received_time: 2025-05-05 15:27:28 EDT
+Submission Type: 10-Q, Accession: 121465925006945, CIKs: ['1455741'], received_time: 2025-05-05 15:27:29 EDT
+Submission Type: 10-Q, Accession: 121465925006943, CIKs: ['1385662'], received_time: 2025-05-05 15:27:29 EDT
+Submission Type: 10-Q, Accession: 121465925006942, CIKs: ['1377178'], received_time: 2025-05-05 15:27:32 EDT
+Submission Type: 10-Q, Accession: 121465925006940, CIKs: ['1352190'], received_time: 2025-05-05 15:27:32 EDT
+Submission Type: 10-Q, Accession: 121465925006946, CIKs: ['1434070'], received_time: 2025-05-05 15:27:33 EDT
+Submission Type: 10-Q, Accession: 121465925006941, CIKs: ['1364397'], received_time: 2025-05-05 15:27:33 EDT
+Submission Type: 10-Q, Accession: 121465925006939, CIKs: ['1338474'], received_time: 2025-05-05 15:27:33 EDT
+Submission Type: 10-Q, Accession: 121465925006947, CIKs: ['1457919'], received_time: 2025-05-05 15:27:34 EDT
+Submission Type: 10-Q, Accession: 121465925006944, CIKs: ['1409947'], received_time: 2025-05-05 15:27:34 EDT
+Submission Type: 144, Accession: 195917325002871, CIKs: ['1804176'], received_time: 2025-05-05 15:27:47 EDT
+Submission Type: D/A, Accession: 90514825001445, CIKs: ['1459527'], received_time: 2025-05-05 15:27:55 EDT
+Submission Type: 144, Accession: 195917325002872, CIKs: ['1875667', '1964789'], received_time: 2025-05-05 15:29:02 EDT
+Submission Type: 13F-NT, Accession: 95012325004022, CIKs: ['1399069'], received_time: 2025-05-05 15:29:23 EDT
+Submission Type: 13F-HR, Accession: 108514625002607, CIKs: ['1096978'], received_time: 2025-05-05 15:30:03 EDT
+Submission Type: 424B2, Accession: 95017025063469, CIKs: ['886982'], received_time: 2025-05-05 15:30:17 EDT
+Submission Type: 144, Accession: 195917325002874, CIKs: ['1822966'], received_time: 2025-05-05 15:30:17 EDT
+Submission Type: 144, Accession: 195917325002873, CIKs: ['1581280', '1753672'], received_time: 2025-05-05 15:30:18 EDT
+Submission Type: 144, Accession: 195917325002875, CIKs: ['1581280', '1590947'], received_time: 2025-05-05 15:31:12 EDT
+Submission Type: D, Accession: 101297525000217, CIKs: ['2066309'], received_time: 2025-05-05 15:31:12 EDT
+Submission Type: D, Accession: 206693125000004, CIKs: ['2066975'], received_time: 2025-05-05 15:31:12 EDT
+Submission Type: 4, Accession: 5849225000307, CIKs: ['1166334'], received_time: 2025-05-05 15:31:42 EDT
+Submission Type: 424B2, Accession: 95010325005747, CIKs: ['312070'], received_time: 2025-05-05 15:31:42 EDT
+Submission Type: 13F-HR, Accession: 196465225000002, CIKs: ['1964652'], received_time: 2025-05-05 15:32:32 EDT
+Submission Type: D, Accession: 206687925000001, CIKs: ['2066879'], received_time: 2025-05-05 15:33:27 EDT
+Submission Type: 10-Q, Accession: 121390025039649, CIKs: ['1953988'], received_time: 2025-05-05 15:33:32 EDT
+Submission Type: 497, Accession: 119312525112724, CIKs: ['1738078'], received_time: 2025-05-05 15:33:59 EDT
+Submission Type: 144, Accession: 200731725000296, CIKs: ['1204700', '882835'], received_time: 2025-05-05 15:34:15 EDT
+Submission Type: 10-Q, Accession: 151133725000014, CIKs: ['1511337'], received_time: 2025-05-05 15:34:21 EDT
+Submission Type: DEFA14A, Accession: 114036125017312, CIKs: ['1597672'], received_time: 2025-05-05 15:34:31 EDT
+Submission Type: 4, Accession: 5849225000308, CIKs: ['58492', '1876463'], received_time: 2025-05-05 15:34:33 EDT
+Submission Type: FWP, Accession: 110465925044485, CIKs: ['83246'], received_time: 2025-05-05 15:34:48 EDT
+Submission Type: 4, Accession: 75197825000004, CIKs: ['751978', '1403540'], received_time: 2025-05-05 15:35:57 EDT
+Submission Type: 497J, Accession: 139834425008654, CIKs: ['1593547'], received_time: 2025-05-05 15:35:58 EDT
+Submission Type: 424B2, Accession: 95010325005748, CIKs: ['1000275'], received_time: 2025-05-05 15:36:38 EDT
+Submission Type: 4, Accession: 154581425000002, CIKs: ['1545814'], received_time: 2025-05-05 15:36:39 EDT
+Submission Type: 4, Accession: 122520825004646, CIKs: ['823768', '1544705'], received_time: 2025-05-05 15:37:05 EDT
+Submission Type: D, Accession: 101297525000218, CIKs: ['2066324'], received_time: 2025-05-05 15:38:41 EDT
+Submission Type: 4, Accession: 5849225000309, CIKs: ['58492', '1980775'], received_time: 2025-05-05 15:38:41 EDT
+Submission Type: 13F-HR, Accession: 71414225000002, CIKs: ['714142'], received_time: 2025-05-05 15:38:57 EDT
+Submission Type: FWP, Accession: 110465925044486, CIKs: ['83246'], received_time: 2025-05-05 15:39:00 EDT
+Submission Type: 424B2, Accession: 114036125017316, CIKs: ['96223'], received_time: 2025-05-05 15:39:07 EDT
+Submission Type: D, Accession: 90572925000086, CIKs: ['2066255'], received_time: 2025-05-05 15:39:08 EDT
+Submission Type: 13F-HR, Accession: 93758925000002, CIKs: ['937589'], received_time: 2025-05-05 15:39:19 EDT
+Submission Type: 424B2, Accession: 121465925006949, CIKs: ['927971'], received_time: 2025-05-05 15:39:20 EDT
+Submission Type: 144, Accession: 195917325002876, CIKs: ['1850119', '1867310'], received_time: 2025-05-05 15:39:28 EDT
+Submission Type: FWP, Accession: 110465925044487, CIKs: ['83246'], received_time: 2025-05-05 15:40:16 EDT
+Submission Type: 144, Accession: 100027525000068, CIKs: ['1235468', '1352656'], received_time: 2025-05-05 15:40:24 EDT
+Submission Type: DFAN14A, Accession: 110465925044488, CIKs: ['831616', '1446687'], received_time: 2025-05-05 15:40:39 EDT
+Submission Type: 4, Accession: 5849225000310, CIKs: ['58492', '2042448'], received_time: 2025-05-05 15:40:55 EDT
+Submission Type: 13F-HR, Accession: 202660225000003, CIKs: ['2026602'], received_time: 2025-05-05 15:41:20 EDT
+Submission Type: 13F-HR, Accession: 181124025000002, CIKs: ['1811240'], received_time: 2025-05-05 15:41:20 EDT
+Submission Type: D/A, Accession: 101359425000561, CIKs: ['2021674'], received_time: 2025-05-05 15:41:21 EDT
+Submission Type: 10-Q, Accession: 100291025000098, CIKs: ['1002910'], received_time: 2025-05-05 15:41:32 EDT
+Submission Type: ABS-15G, Accession: 199937125005423, CIKs: ['2034290'], received_time: 2025-05-05 15:41:40 EDT
+Submission Type: 13F-HR, Accession: 193450025000004, CIKs: ['1934500'], received_time: 2025-05-05 15:41:54 EDT
+Submission Type: 6-K, Accession: 164117225008677, CIKs: ['1786286'], received_time: 2025-05-05 15:42:39 EDT
+Submission Type: 4, Accession: 5849225000311, CIKs: ['1289899'], received_time: 2025-05-05 15:43:01 EDT
+Submission Type: C-W, Accession: 167025425000549, CIKs: ['2032895'], received_time: 2025-05-05 15:43:02 EDT
+Submission Type: 497J, Accession: 158064225002832, CIKs: ['1552947'], received_time: 2025-05-05 15:44:45 EDT
+Submission Type: 13F-HR, Accession: 201185025000005, CIKs: ['2011850'], received_time: 2025-05-05 15:44:53 EDT
+Submission Type: 4, Accession: 5849225000312, CIKs: ['1642221'], received_time: 2025-05-05 15:44:55 EDT
+Submission Type: 497J, Accession: 139834425008656, CIKs: ['878719'], received_time: 2025-05-05 15:45:10 EDT
+Submission Type: 144, Accession: 200731725000297, CIKs: ['889331'], received_time: 2025-05-05 15:45:28 EDT
+Submission Type: 144, Accession: 173952725000002, CIKs: ['825313', '1739527'], received_time: 2025-05-05 15:45:44 EDT
+Submission Type: 424B2, Accession: 95017025063493, CIKs: ['886982'], received_time: 2025-05-05 15:46:26 EDT
+Submission Type: FWP, Accession: 183988225026955, CIKs: ['927971'], received_time: 2025-05-05 15:46:48 EDT
+Submission Type: 13F-HR, Accession: 176704525000002, CIKs: ['1767045'], received_time: 2025-05-05 15:47:41 EDT
+Submission Type: 144, Accession: 200731725000298, CIKs: ['1306045', '105634'], received_time: 2025-05-05 15:47:57 EDT
+Submission Type: 10-K, Accession: 116956125000034, CIKs: ['1169561'], received_time: 2025-05-05 15:48:06 EDT
+Submission Type: 497J, Accession: 168386325004616, CIKs: ['1768447'], received_time: 2025-05-05 15:48:14 EDT
+Submission Type: D/A, Accession: 101359425000562, CIKs: ['2021587'], received_time: 2025-05-05 15:48:29 EDT
+Submission Type: 424B2, Accession: 121390025039665, CIKs: ['70858'], received_time: 2025-05-05 15:48:45 EDT
+Submission Type: FWP, Accession: 121465925006951, CIKs: ['927971'], received_time: 2025-05-05 15:48:45 EDT
+Submission Type: 497J, Accession: 168386325004617, CIKs: ['865733'], received_time: 2025-05-05 15:49:00 EDT
+Submission Type: 497K, Accession: 116204425000474, CIKs: ['1003924'], received_time: 2025-05-05 15:49:02 EDT
+Submission Type: 13F-HR, Accession: 151277925000006, CIKs: ['1512779'], received_time: 2025-05-05 15:49:17 EDT
+Submission Type: 424B2, Accession: 183988225026956, CIKs: ['895421'], received_time: 2025-05-05 15:49:18 EDT
+Submission Type: 424B2, Accession: 121390025039667, CIKs: ['1665650', '19617'], received_time: 2025-05-05 15:49:29 EDT
+Submission Type: 424B3, Accession: 119312525112744, CIKs: ['29915'], received_time: 2025-05-05 15:49:35 EDT
+Submission Type: C/A, Accession: 121390025039668, CIKs: ['2066219'], received_time: 2025-05-05 15:49:38 EDT
+Submission Type: 4, Accession: 75197825000005, CIKs: ['751978', '1411500'], received_time: 2025-05-05 15:50:01 EDT
+Submission Type: 424B2, Accession: 183988225026957, CIKs: ['9631'], received_time: 2025-05-05 15:51:33 EDT
+Submission Type: 13F-HR, Accession: 196074925000004, CIKs: ['1960749'], received_time: 2025-05-05 15:51:48 EDT
+Submission Type: C-AR, Accession: 166516025000997, CIKs: ['1943499'], received_time: 2025-05-05 15:51:58 EDT
+Submission Type: 497K, Accession: 116204425000475, CIKs: ['1003924'], received_time: 2025-05-05 15:52:28 EDT
+Submission Type: 424B2, Accession: 121390025039671, CIKs: ['1665650', '19617'], received_time: 2025-05-05 15:52:30 EDT
+Submission Type: 10-Q, Accession: 95017025063499, CIKs: ['792966'], received_time: 2025-05-05 15:52:46 EDT
+Submission Type: 497, Accession: 168386325004620, CIKs: ['2042316'], received_time: 2025-05-05 15:52:54 EDT
+Submission Type: 497, Accession: 168386325004622, CIKs: ['1547580'], received_time: 2025-05-05 15:52:54 EDT
+Submission Type: 497, Accession: 168386325004621, CIKs: ['908695'], received_time: 2025-05-05 15:52:56 EDT
+Submission Type: 497K, Accession: 168386325004619, CIKs: ['908695'], received_time: 2025-05-05 15:52:56 EDT
+Submission Type: N-MFP3, Accession: 158064225002834, CIKs: ['1997375'], received_time: 2025-05-05 15:52:57 EDT
+Submission Type: 497, Accession: 168386325004623, CIKs: ['802716'], received_time: 2025-05-05 15:52:57 EDT
+Submission Type: 497, Accession: 89418925003589, CIKs: ['1650149'], received_time: 2025-05-05 15:53:20 EDT
+Submission Type: FWP, Accession: 121465925006952, CIKs: ['927971'], received_time: 2025-05-05 15:53:35 EDT
+Submission Type: 497K, Accession: 116204425000476, CIKs: ['1003924'], received_time: 2025-05-05 15:54:00 EDT
+Submission Type: FWP, Accession: 183988225026958, CIKs: ['927971'], received_time: 2025-05-05 15:54:03 EDT
+Submission Type: 424B2, Accession: 95017025063500, CIKs: ['886982'], received_time: 2025-05-05 15:54:21 EDT
+Submission Type: 1-U, Accession: 164033425000768, CIKs: ['1734237'], received_time: 2025-05-05 15:54:29 EDT
+Submission Type: 8-K, Accession: 121390025039675, CIKs: ['1842937'], received_time: 2025-05-05 15:54:40 EDT
+Submission Type: 1-U, Accession: 164033425000769, CIKs: ['1734237'], received_time: 2025-05-05 15:54:46 EDT
+Submission Type: D/A, Accession: 181003725000001, CIKs: ['1810037'], received_time: 2025-05-05 15:54:55 EDT
+Submission Type: 13F-HR, Accession: 166773125000593, CIKs: ['1964226'], received_time: 2025-05-05 15:55:04 EDT
+Submission Type: 424B2, Accession: 110465925044493, CIKs: ['83246'], received_time: 2025-05-05 15:55:35 EDT
+Submission Type: 8-K, Accession: 147793225003310, CIKs: ['1877461'], received_time: 2025-05-05 15:55:35 EDT
+Submission Type: 497J, Accession: 199937125005425, CIKs: ['1396092'], received_time: 2025-05-05 15:56:17 EDT
+Submission Type: 13F-HR, Accession: 148171425000005, CIKs: ['1481714'], received_time: 2025-05-05 15:56:27 EDT
+Submission Type: D, Accession: 143774925014520, CIKs: ['1935242'], received_time: 2025-05-05 15:56:35 EDT
+Submission Type: 13F-NT, Accession: 95012325004029, CIKs: ['1163368'], received_time: 2025-05-05 15:57:46 EDT
+Submission Type: 425, Accession: 121390025039678, CIKs: ['1842937'], received_time: 2025-05-05 15:57:47 EDT
+Submission Type: 424B2, Accession: 114036125017318, CIKs: ['96223'], received_time: 2025-05-05 15:57:57 EDT
+Submission Type: 13F-HR, Accession: 95012325004031, CIKs: ['1589115'], received_time: 2025-05-05 15:57:59 EDT
+Submission Type: FWP, Accession: 95010325005749, CIKs: ['1000275'], received_time: 2025-05-05 15:57:59 EDT
+Submission Type: 4, Accession: 186628125000002, CIKs: ['1866281'], received_time: 2025-05-05 15:58:07 EDT
+Submission Type: D/A, Accession: 197669925000001, CIKs: ['1976699'], received_time: 2025-05-05 15:58:39 EDT
+Submission Type: 424B2, Accession: 191870425007686, CIKs: ['1682472', '70858'], received_time: 2025-05-05 15:58:56 EDT
+Submission Type: 13F-HR, Accession: 95012325004032, CIKs: ['1535323'], received_time: 2025-05-05 15:59:20 EDT
+Submission Type: 10-Q, Accession: 95017025063508, CIKs: ['1013488'], received_time: 2025-05-05 16:00:43 EDT
+Submission Type: 4, Accession: 112760225013330, CIKs: ['827187', '1951324'], received_time: 2025-05-05 16:00:48 EDT
+Submission Type: 4, Accession: 75197825000006, CIKs: ['1654862'], received_time: 2025-05-05 16:00:49 EDT
+Submission Type: DEFA14A, Accession: 110465925044499, CIKs: ['1368265'], received_time: 2025-05-05 16:00:51 EDT
+Submission Type: 13F-NT, Accession: 95012325004035, CIKs: ['1562008'], received_time: 2025-05-05 16:00:52 EDT
+Submission Type: SCHEDULE 13G, Accession: 110465925044500, CIKs: ['1557746', '1273087'], received_time: 2025-05-05 16:00:52 EDT
+Submission Type: 13F-HR, Accession: 184646225000002, CIKs: ['1846462'], received_time: 2025-05-05 16:00:52 EDT
+Submission Type: 13F-NT, Accession: 95012325004036, CIKs: ['1549940'], received_time: 2025-05-05 16:00:55 EDT
+Submission Type: 10-Q, Accession: 95017025063509, CIKs: ['1136869'], received_time: 2025-05-05 16:00:55 EDT
+Submission Type: 10-Q, Accession: 7800325000114, CIKs: ['78003'], received_time: 2025-05-05 16:01:02 EDT
+Submission Type: 144, Accession: 192109425000434, CIKs: ['1564475', '1326801'], received_time: 2025-05-05 16:01:11 EDT
+Submission Type: 4, Accession: 112760225013331, CIKs: ['1860742', '1394923'], received_time: 2025-05-05 16:01:11 EDT
+Submission Type: 8-K, Accession: 121390025039680, CIKs: ['1805526'], received_time: 2025-05-05 16:01:29 EDT
+Submission Type: 4, Accession: 140819825000137, CIKs: ['1414310', '1408198'], received_time: 2025-05-05 16:01:31 EDT
+Submission Type: 4, Accession: 90883425000136, CIKs: ['1834202'], received_time: 2025-05-05 16:01:31 EDT
+Submission Type: 8-K, Accession: 169241225000061, CIKs: ['1692412'], received_time: 2025-05-05 16:01:31 EDT
+Submission Type: S-3/A, Accession: 110465925044501, CIKs: ['1056943'], received_time: 2025-05-05 16:01:40 EDT
+Submission Type: 4, Accession: 203131325000013, CIKs: ['2031313'], received_time: 2025-05-05 16:01:43 EDT
+Submission Type: 4, Accession: 112537625000078, CIKs: ['1212067'], received_time: 2025-05-05 16:01:43 EDT
+Submission Type: 4, Accession: 90883425000137, CIKs: ['2034804', '1794515'], received_time: 2025-05-05 16:01:44 EDT
+Submission Type: D/A, Accession: 90514825001446, CIKs: ['1606565'], received_time: 2025-05-05 16:01:58 EDT
+Submission Type: 8-K, Accession: 164117225008680, CIKs: ['1958777'], received_time: 2025-05-05 16:01:59 EDT
+Submission Type: 4, Accession: 93042025000107, CIKs: ['1034045'], received_time: 2025-05-05 16:02:07 EDT
+Submission Type: 4, Accession: 188308525000069, CIKs: ['1935207'], received_time: 2025-05-05 16:02:07 EDT
+Submission Type: 4, Accession: 140819825000138, CIKs: ['1781215'], received_time: 2025-05-05 16:02:07 EDT
+Submission Type: 497J, Accession: 148401825000032, CIKs: ['1484018'], received_time: 2025-05-05 16:02:08 EDT
+Submission Type: 144, Accession: 195004725002722, CIKs: ['1820740', '1381668'], received_time: 2025-05-05 16:02:11 EDT
+Submission Type: 4, Accession: 122520825004652, CIKs: ['1577243'], received_time: 2025-05-05 16:02:11 EDT
+Submission Type: 10-Q, Accession: 143774925014522, CIKs: ['1280452'], received_time: 2025-05-05 16:02:14 EDT
+Submission Type: 144, Accession: 195004725002723, CIKs: ['1211583'], received_time: 2025-05-05 16:02:17 EDT
+Submission Type: 4, Accession: 112760225013332, CIKs: ['1677301'], received_time: 2025-05-05 16:02:18 EDT
+Submission Type: 8-K, Accession: 162828025022148, CIKs: ['1487712'], received_time: 2025-05-05 16:02:28 EDT
+Submission Type: 13F-NT, Accession: 95012325004038, CIKs: ['1989201'], received_time: 2025-05-05 16:02:28 EDT
+Submission Type: DEF 14A, Accession: 95017025063511, CIKs: ['1638826'], received_time: 2025-05-05 16:02:31 EDT
+Submission Type: 4, Accession: 140819825000139, CIKs: ['1648837'], received_time: 2025-05-05 16:02:37 EDT
+Submission Type: 144, Accession: 195004725002724, CIKs: ['789019'], received_time: 2025-05-05 16:02:37 EDT
+Submission Type: 8-K, Accession: 168316825003133, CIKs: ['1420520'], received_time: 2025-05-05 16:02:39 EDT
+Submission Type: 144, Accession: 195004725002725, CIKs: ['1408198'], received_time: 2025-05-05 16:02:46 EDT
+Submission Type: 4, Accession: 188308525000070, CIKs: ['1935202', '1883085'], received_time: 2025-05-05 16:02:49 EDT
+Submission Type: 8-K, Accession: 164033425000771, CIKs: ['1519472'], received_time: 2025-05-05 16:02:49 EDT
+Submission Type: 424B2, Accession: 183988225026959, CIKs: ['895421', '1666268'], received_time: 2025-05-05 16:02:50 EDT
+Submission Type: SCHEDULE 13G, Accession: 205211325002079, CIKs: ['2052113', '1100663'], received_time: 2025-05-05 16:02:59 EDT
+Submission Type: 8-K, Accession: 95017025063514, CIKs: ['1395937'], received_time: 2025-05-05 16:02:59 EDT
+Submission Type: 3, Accession: 128369925000084, CIKs: ['1283699', '2066499'], received_time: 2025-05-05 16:03:01 EDT
+Submission Type: 497J, Accession: 112199725000025, CIKs: ['1122003'], received_time: 2025-05-05 16:03:09 EDT
+Submission Type: 4, Accession: 122520825004653, CIKs: ['230557', '1826516'], received_time: 2025-05-05 16:03:10 EDT
+Submission Type: 4, Accession: 140819825000140, CIKs: ['1801716', '1408198'], received_time: 2025-05-05 16:03:18 EDT
+Submission Type: 8-K, Accession: 91447525000099, CIKs: ['914475'], received_time: 2025-05-05 16:03:18 EDT
+Submission Type: 4, Accession: 184606925000053, CIKs: ['1560399'], received_time: 2025-05-05 16:03:20 EDT
+Submission Type: 4, Accession: 122520825004657, CIKs: ['1807264'], received_time: 2025-05-05 16:03:21 EDT
+Submission Type: 4, Accession: 122520825004655, CIKs: ['1658431'], received_time: 2025-05-05 16:03:22 EDT
+Submission Type: 424B2, Accession: 121390025039683, CIKs: ['1665650', '19617'], received_time: 2025-05-05 16:03:22 EDT
+Submission Type: 4, Accession: 122520825004656, CIKs: ['1500886'], received_time: 2025-05-05 16:03:23 EDT
+Submission Type: 144, Accession: 200731725000299, CIKs: ['1207137', '19584'], received_time: 2025-05-05 16:03:25 EDT
+Submission Type: 3, Accession: 114139125000096, CIKs: ['1737206'], received_time: 2025-05-05 16:03:26 EDT
+Submission Type: 144, Accession: 195004725002726, CIKs: ['1528396'], received_time: 2025-05-05 16:03:27 EDT
+Submission Type: 8-K, Accession: 180022725000025, CIKs: ['1800227'], received_time: 2025-05-05 16:03:27 EDT
+Submission Type: 8-K, Accession: 168285225000036, CIKs: ['1682852'], received_time: 2025-05-05 16:03:28 EDT
+Submission Type: 10-Q, Accession: 155837025006291, CIKs: ['36377'], received_time: 2025-05-05 16:03:29 EDT
+Submission Type: 4, Accession: 144398425000162, CIKs: ['1830165'], received_time: 2025-05-05 16:03:35 EDT
+Submission Type: 4, Accession: 162828025022149, CIKs: ['785786', '1411282'], received_time: 2025-05-05 16:03:38 EDT
+Submission Type: 8-K, Accession: 84405925000016, CIKs: ['844059'], received_time: 2025-05-05 16:03:38 EDT
+Submission Type: 4, Accession: 184606925000054, CIKs: ['1620093'], received_time: 2025-05-05 16:03:46 EDT
+Submission Type: 4, Accession: 156218025003573, CIKs: ['1959594'], received_time: 2025-05-05 16:03:47 EDT
+Submission Type: 6-K, Accession: 121390025039684, CIKs: ['1885408'], received_time: 2025-05-05 16:03:49 EDT
+Submission Type: 4, Accession: 140819825000141, CIKs: ['1366334', '1408198'], received_time: 2025-05-05 16:03:56 EDT
+Submission Type: 144, Accession: 195004725002727, CIKs: ['917273'], received_time: 2025-05-05 16:03:56 EDT
+Submission Type: 424B2, Accession: 111444625001828, CIKs: ['1114446'], received_time: 2025-05-05 16:03:56 EDT
+Submission Type: 4, Accession: 206632625000004, CIKs: ['2066326', '1099219'], received_time: 2025-05-05 16:03:58 EDT
+Submission Type: 10-Q, Accession: 169241225000062, CIKs: ['1692412'], received_time: 2025-05-05 16:04:13 EDT
+Submission Type: 8-K, Accession: 160955025000018, CIKs: ['1609550'], received_time: 2025-05-05 16:04:14 EDT
+Submission Type: 4, Accession: 122520825004659, CIKs: ['1620477', '230557'], received_time: 2025-05-05 16:04:17 EDT
+Submission Type: 4, Accession: 122520825004658, CIKs: ['1295482'], received_time: 2025-05-05 16:04:17 EDT
+Submission Type: DEFA14A, Accession: 95017025063517, CIKs: ['1638826'], received_time: 2025-05-05 16:04:17 EDT
+Submission Type: 4, Accession: 112760225013335, CIKs: ['712034', '1356797'], received_time: 2025-05-05 16:04:17 EDT
+Submission Type: 4, Accession: 184606925000055, CIKs: ['1550608'], received_time: 2025-05-05 16:04:17 EDT
+Submission Type: 4, Accession: 114085925000074, CIKs: ['1765744', '1140859'], received_time: 2025-05-05 16:04:17 EDT
+Submission Type: 144, Accession: 192109425000435, CIKs: ['1665141', '1099800'], received_time: 2025-05-05 16:04:17 EDT
+Submission Type: 424B2, Accession: 111444625001829, CIKs: ['1114446'], received_time: 2025-05-05 16:04:17 EDT
+Submission Type: 13F-HR, Accession: 117720625000003, CIKs: ['1177206'], received_time: 2025-05-05 16:04:18 EDT
+Submission Type: 144, Accession: 196922325000267, CIKs: ['1579298'], received_time: 2025-05-05 16:04:20 EDT
+Submission Type: 13F-NT, Accession: 95012325004040, CIKs: ['1666778'], received_time: 2025-05-05 16:04:27 EDT
+Submission Type: 144, Accession: 195004725002728, CIKs: ['85961'], received_time: 2025-05-05 16:04:28 EDT
+Submission Type: 4, Accession: 122520825004661, CIKs: ['230557', '2028545'], received_time: 2025-05-05 16:04:28 EDT
+Submission Type: 144, Accession: 195004725002729, CIKs: ['885725', '1629277'], received_time: 2025-05-05 16:04:30 EDT
+Submission Type: 4, Accession: 122520825004662, CIKs: ['1441644'], received_time: 2025-05-05 16:04:30 EDT
+Submission Type: 4, Accession: 122520825004660, CIKs: ['1470648', '230557'], received_time: 2025-05-05 16:04:30 EDT
+Submission Type: 10-Q, Accession: 91447525000100, CIKs: ['914475'], received_time: 2025-05-05 16:04:32 EDT
+Submission Type: 4, Accession: 128369925000085, CIKs: ['1283699', '2066499'], received_time: 2025-05-05 16:04:38 EDT
+Submission Type: 424B2, Accession: 95010325005750, CIKs: ['312070'], received_time: 2025-05-05 16:04:39 EDT
+Submission Type: D/A, Accession: 95014225001250, CIKs: ['2058928'], received_time: 2025-05-05 16:04:47 EDT
+Submission Type: 13F-HR, Accession: 204194325000002, CIKs: ['2041943'], received_time: 2025-05-05 16:04:47 EDT
+Submission Type: 424B2, Accession: 111444625001830, CIKs: ['1114446'], received_time: 2025-05-05 16:04:49 EDT
+Submission Type: 497K, Accession: 148401825000034, CIKs: ['1484018'], received_time: 2025-05-05 16:04:50 EDT
+Submission Type: 4, Accession: 141588925011937, CIKs: ['1734268'], received_time: 2025-05-05 16:04:50 EDT
+Submission Type: 10-Q, Accession: 95017025063518, CIKs: ['1395937'], received_time: 2025-05-05 16:04:52 EDT
+Submission Type: 8-K, Accession: 87535725000032, CIKs: ['875357'], received_time: 2025-05-05 16:04:53 EDT
+Submission Type: SD, Accession: 144398425000164, CIKs: ['825542'], received_time: 2025-05-05 16:05:00 EDT
+Submission Type: 8-K, Accession: 106660525000034, CIKs: ['1066605'], received_time: 2025-05-05 16:05:00 EDT
+Submission Type: 424B2, Accession: 111444625001831, CIKs: ['1114446'], received_time: 2025-05-05 16:05:10 EDT
+Submission Type: 13F-NT, Accession: 95012325004042, CIKs: ['1453852'], received_time: 2025-05-05 16:05:10 EDT
+Submission Type: SCHEDULE 13G, Accession: 110465925044503, CIKs: ['1398987'], received_time: 2025-05-05 16:05:10 EDT
+Submission Type: 144, Accession: 195004725002731, CIKs: ['1405495'], received_time: 2025-05-05 16:05:10 EDT
+Submission Type: 4, Accession: 156218025003574, CIKs: ['1811812', '700564'], received_time: 2025-05-05 16:05:11 EDT
+Submission Type: 144, Accession: 195004725002730, CIKs: ['51434'], received_time: 2025-05-05 16:05:11 EDT
+Submission Type: 4, Accession: 91538925000116, CIKs: ['1245142', '915389'], received_time: 2025-05-05 16:05:13 EDT
+Submission Type: 8-K, Accession: 129970925000090, CIKs: ['1299709'], received_time: 2025-05-05 16:05:21 EDT
+Submission Type: 4, Accession: 147793225003314, CIKs: ['1651671'], received_time: 2025-05-05 16:05:29 EDT
+Submission Type: 4, Accession: 95017025063522, CIKs: ['1098972', '1711184'], received_time: 2025-05-05 16:05:30 EDT
+Submission Type: 13F-HR, Accession: 117266125001575, CIKs: ['1910961'], received_time: 2025-05-05 16:05:30 EDT
+Submission Type: 4, Accession: 95017025063521, CIKs: ['935679'], received_time: 2025-05-05 16:05:31 EDT
+Submission Type: 4, Accession: 141588925011938, CIKs: ['1792789', '1832614'], received_time: 2025-05-05 16:05:34 EDT
+Submission Type: 8-K, Accession: 183768625000053, CIKs: ['1837686'], received_time: 2025-05-05 16:05:36 EDT
+Submission Type: 144, Accession: 195004725002732, CIKs: ['1645113'], received_time: 2025-05-05 16:05:40 EDT
+Submission Type: 8-K, Accession: 95017025063523, CIKs: ['1840439'], received_time: 2025-05-05 16:05:40 EDT
+Submission Type: 4, Accession: 162828025022155, CIKs: ['2007129'], received_time: 2025-05-05 16:05:41 EDT
+Submission Type: 8-K, Accession: 155837025006292, CIKs: ['1027838'], received_time: 2025-05-05 16:05:41 EDT
+Submission Type: 4, Accession: 140819825000142, CIKs: ['1836301'], received_time: 2025-05-05 16:05:43 EDT
+Submission Type: 4, Accession: 122520825004664, CIKs: ['1826552'], received_time: 2025-05-05 16:05:44 EDT
+Submission Type: 8-K, Accession: 95017025063524, CIKs: ['1803696'], received_time: 2025-05-05 16:05:44 EDT
+Submission Type: 4, Accession: 147793225003316, CIKs: ['1841637'], received_time: 2025-05-05 16:05:45 EDT
+Submission Type: 3, Accession: 112760225013337, CIKs: ['2065448'], received_time: 2025-05-05 16:05:46 EDT
+Submission Type: 8-K, Accession: 119312525112766, CIKs: ['1359841'], received_time: 2025-05-05 16:05:46 EDT
+Submission Type: 8-K, Accession: 164117225008683, CIKs: ['1888734'], received_time: 2025-05-05 16:05:47 EDT
+Submission Type: S-3ASR, Accession: 119312525112763, CIKs: ['934612'], received_time: 2025-05-05 16:05:48 EDT
+Submission Type: 8-K, Accession: 143774925014525, CIKs: ['1438231'], received_time: 2025-05-05 16:05:48 EDT
+Submission Type: 144, Accession: 194984625000177, CIKs: ['825313', '2006999'], received_time: 2025-05-05 16:05:49 EDT
+Submission Type: DEFA14A, Accession: 147744925000051, CIKs: ['1477449'], received_time: 2025-05-05 16:05:49 EDT
+Submission Type: 4, Accession: 107718325000081, CIKs: ['1951869'], received_time: 2025-05-05 16:05:50 EDT
+Submission Type: 8-K, Accession: 162045925000069, CIKs: ['1620459'], received_time: 2025-05-05 16:05:50 EDT
+Submission Type: 8-K, Accession: 164117225008682, CIKs: ['109657'], received_time: 2025-05-05 16:05:50 EDT
+Submission Type: 8-K, Accession: 119312525112764, CIKs: ['1593222'], received_time: 2025-05-05 16:05:50 EDT
+Submission Type: 10-Q, Accession: 162828025022154, CIKs: ['1581280'], received_time: 2025-05-05 16:05:52 EDT
+Submission Type: 497, Accession: 89418925003591, CIKs: ['1511699'], received_time: 2025-05-05 16:05:52 EDT
+Submission Type: 8-K, Accession: 164117225008681, CIKs: ['1978528'], received_time: 2025-05-05 16:05:52 EDT
+Submission Type: 8-K, Accession: 164117225008684, CIKs: ['1414767'], received_time: 2025-05-05 16:05:52 EDT
+Submission Type: 4, Accession: 91538925000117, CIKs: ['1243982'], received_time: 2025-05-05 16:05:52 EDT
+Submission Type: 8-K, Accession: 70092325000024, CIKs: ['700923'], received_time: 2025-05-05 16:05:53 EDT
+Submission Type: 8-K, Accession: 121390025039685, CIKs: ['1903464'], received_time: 2025-05-05 16:05:54 EDT
+Submission Type: 8-K, Accession: 95017025063526, CIKs: ['1640428'], received_time: 2025-05-05 16:05:54 EDT
+Submission Type: 497VPU, Accession: 112199725000027, CIKs: ['1122003'], received_time: 2025-05-05 16:05:56 EDT
+Submission Type: 4, Accession: 114085925000076, CIKs: ['1986505'], received_time: 2025-05-05 16:05:56 EDT
+Submission Type: 4, Accession: 93313625000036, CIKs: ['933136', '1543932'], received_time: 2025-05-05 16:05:58 EDT
+Submission Type: 4, Accession: 162828025022157, CIKs: ['1623596'], received_time: 2025-05-05 16:05:59 EDT
+Submission Type: 4, Accession: 147793225003317, CIKs: ['93314', '1834339'], received_time: 2025-05-05 16:05:59 EDT
+Submission Type: 8-K, Accession: 160206525000030, CIKs: ['1602065'], received_time: 2025-05-05 16:05:59 EDT
+Submission Type: 8-K, Accession: 127381325000029, CIKs: ['1273813'], received_time: 2025-05-05 16:06:00 EDT
+Submission Type: 4, Accession: 91538925000118, CIKs: ['1544184'], received_time: 2025-05-05 16:06:00 EDT
+Submission Type: 8-K, Accession: 114036125017321, CIKs: ['1782754'], received_time: 2025-05-05 16:06:01 EDT
+Submission Type: 3, Accession: 162828025022158, CIKs: ['1771770'], received_time: 2025-05-05 16:06:01 EDT
+Submission Type: 10-Q, Accession: 161164725000013, CIKs: ['1611647'], received_time: 2025-05-05 16:06:02 EDT
+Submission Type: DEF 14A, Accession: 110465925044504, CIKs: ['812796'], received_time: 2025-05-05 16:06:04 EDT
+Submission Type: 10-K/A, Accession: 147793225003315, CIKs: ['1682265'], received_time: 2025-05-05 16:06:05 EDT
+Submission Type: 8-K, Accession: 128994525000028, CIKs: ['1289945'], received_time: 2025-05-05 16:06:05 EDT
+Submission Type: 8-K, Accession: 149229825000015, CIKs: ['1492298'], received_time: 2025-05-05 16:06:05 EDT
+Submission Type: ARS, Accession: 95017025063529, CIKs: ['1638826'], received_time: 2025-05-05 16:06:08 EDT
+Submission Type: 4, Accession: 140819825000143, CIKs: ['1718950'], received_time: 2025-05-05 16:06:08 EDT
+Submission Type: S-3/A, Accession: 95017025063525, CIKs: ['1603652'], received_time: 2025-05-05 16:06:09 EDT
+Submission Type: 8-K, Accession: 182896225000069, CIKs: ['1828962'], received_time: 2025-05-05 16:06:09 EDT
+Submission Type: 4, Accession: 91538925000119, CIKs: ['1406985'], received_time: 2025-05-05 16:06:10 EDT
+Submission Type: 8-K, Accession: 119312525112767, CIKs: ['1414932'], received_time: 2025-05-05 16:06:12 EDT
+Submission Type: 144, Accession: 196922325000268, CIKs: ['1669213', '1037038'], received_time: 2025-05-05 16:06:13 EDT
+Submission Type: 8-K, Accession: 119312525112768, CIKs: ['1888447'], received_time: 2025-05-05 16:06:13 EDT
+Submission Type: 424B2, Accession: 111444625001832, CIKs: ['1114446'], received_time: 2025-05-05 16:06:13 EDT
+Submission Type: 497, Accession: 89418925003592, CIKs: ['1511699'], received_time: 2025-05-05 16:06:14 EDT
+Submission Type: 424B2, Accession: 111444625001833, CIKs: ['1114446'], received_time: 2025-05-05 16:06:15 EDT
+Submission Type: 4, Accession: 91538925000120, CIKs: ['1660951'], received_time: 2025-05-05 16:06:15 EDT
+Submission Type: 4, Accession: 147793225003318, CIKs: ['93314', '1577894'], received_time: 2025-05-05 16:06:17 EDT
+Submission Type: 4, Accession: 147793225003319, CIKs: ['2015252'], received_time: 2025-05-05 16:06:18 EDT
+Submission Type: 144, Accession: 76490025000007, CIKs: ['945983', '1914842'], received_time: 2025-05-05 16:06:18 EDT
+Submission Type: C, Accession: 202543325000001, CIKs: ['2025433'], received_time: 2025-05-05 16:06:18 EDT
+Submission Type: 144, Accession: 195004725002733, CIKs: ['1144211', '85961'], received_time: 2025-05-05 16:06:18 EDT
+Submission Type: 8-K, Accession: 87423825000065, CIKs: ['874238'], received_time: 2025-05-05 16:06:21 EDT
+Submission Type: 10-Q, Accession: 160154825000025, CIKs: ['1601548'], received_time: 2025-05-05 16:06:22 EDT
+Submission Type: 10-Q, Accession: 95017025063527, CIKs: ['862831'], received_time: 2025-05-05 16:06:24 EDT
+Submission Type: 4, Accession: 107718325000082, CIKs: ['1646370', '1077183'], received_time: 2025-05-05 16:06:29 EDT
+Submission Type: 4, Accession: 147793225003320, CIKs: ['93314', '1709503'], received_time: 2025-05-05 16:06:29 EDT
+Submission Type: 4, Accession: 91538925000121, CIKs: ['1790292', '915389'], received_time: 2025-05-05 16:06:29 EDT
+Submission Type: 8-K, Accession: 95017025063531, CIKs: ['1841156'], received_time: 2025-05-05 16:06:29 EDT
+Submission Type: 8-K, Accession: 162828025022159, CIKs: ['63276'], received_time: 2025-05-05 16:06:31 EDT
+Submission Type: 4, Accession: 140819825000144, CIKs: ['1532601'], received_time: 2025-05-05 16:06:40 EDT
+Submission Type: 4, Accession: 85785525000077, CIKs: ['1608560'], received_time: 2025-05-05 16:06:40 EDT
+Submission Type: 6-K, Accession: 110465925044505, CIKs: ['1836470'], received_time: 2025-05-05 16:06:41 EDT
+Submission Type: 144, Accession: 195004725002734, CIKs: ['1807794'], received_time: 2025-05-05 16:06:45 EDT
+Submission Type: 4, Accession: 91538925000122, CIKs: ['1208752', '915389'], received_time: 2025-05-05 16:06:45 EDT
+Submission Type: 8-K, Accession: 86878025000014, CIKs: ['868780'], received_time: 2025-05-05 16:06:47 EDT
+Submission Type: 8-K, Accession: 165253525000009, CIKs: ['1652535'], received_time: 2025-05-05 16:06:47 EDT
+Submission Type: D, Accession: 112329225000190, CIKs: ['1813814'], received_time: 2025-05-05 16:06:47 EDT
+Submission Type: 10-Q, Accession: 155837025006294, CIKs: ['1513761'], received_time: 2025-05-05 16:06:49 EDT
+Submission Type: 10-Q, Accession: 87786025000095, CIKs: ['877860'], received_time: 2025-05-05 16:06:53 EDT
+Submission Type: 4, Accession: 91538925000123, CIKs: ['1023582', '915389'], received_time: 2025-05-05 16:06:56 EDT
+Submission Type: 10-Q, Accession: 149229825000016, CIKs: ['1492298'], received_time: 2025-05-05 16:07:03 EDT
+Submission Type: 4, Accession: 140819825000145, CIKs: ['1801717', '1408198'], received_time: 2025-05-05 16:07:07 EDT
+Submission Type: 8-K, Accession: 162747525000031, CIKs: ['1627475'], received_time: 2025-05-05 16:07:09 EDT
+Submission Type: 4, Accession: 156218025003575, CIKs: ['2032462'], received_time: 2025-05-05 16:07:09 EDT
+Submission Type: 4, Accession: 91538925000124, CIKs: ['1536512'], received_time: 2025-05-05 16:07:10 EDT
+Submission Type: SC TO-T/A, Accession: 119312525112769, CIKs: ['1293971', '1873422'], received_time: 2025-05-05 16:07:10 EDT
+Submission Type: 497J, Accession: 139834425008659, CIKs: ['1649227'], received_time: 2025-05-05 16:07:12 EDT
+Submission Type: 144, Accession: 195917325002877, CIKs: ['1104657'], received_time: 2025-05-05 16:07:13 EDT
+Submission Type: 8-K, Accession: 143774925014527, CIKs: ['1549084'], received_time: 2025-05-05 16:07:13 EDT
+Submission Type: 40-17G, Accession: 119312525112770, CIKs: ['1974793'], received_time: 2025-05-05 16:07:14 EDT
+Submission Type: 425, Accession: 114036125017323, CIKs: ['1782754'], received_time: 2025-05-05 16:07:14 EDT
+Submission Type: 8-K, Accession: 76889925000089, CIKs: ['768899'], received_time: 2025-05-05 16:07:14 EDT
+Submission Type: 10-Q, Accession: 155837025006295, CIKs: ['1027838'], received_time: 2025-05-05 16:07:18 EDT
+Submission Type: 8-K, Accession: 180022725000027, CIKs: ['1800227'], received_time: 2025-05-05 16:07:19 EDT
+Submission Type: 4, Accession: 140819825000146, CIKs: ['2008967'], received_time: 2025-05-05 16:07:25 EDT
+Submission Type: 4, Accession: 119573425000079, CIKs: ['1195734', '1593559'], received_time: 2025-05-05 16:07:26 EDT
+Submission Type: 144, Accession: 195917325002878, CIKs: ['1535527'], received_time: 2025-05-05 16:07:28 EDT
+Submission Type: 8-K, Accession: 162828025022164, CIKs: ['1618563'], received_time: 2025-05-05 16:07:30 EDT
+Submission Type: 8-K, Accession: 160154825000026, CIKs: ['1601548'], received_time: 2025-05-05 16:07:31 EDT
+Submission Type: 4, Accession: 114085925000078, CIKs: ['1685596', '1140859'], received_time: 2025-05-05 16:07:31 EDT
+Submission Type: 8-K, Accession: 72672825000093, CIKs: ['726728'], received_time: 2025-05-05 16:07:33 EDT
+Submission Type: 8-K, Accession: 194455825000058, CIKs: ['1944558'], received_time: 2025-05-05 16:07:39 EDT
+Submission Type: 10-Q, Accession: 91752025000041, CIKs: ['917520'], received_time: 2025-05-05 16:07:39 EDT
+Submission Type: 8-K, Accession: 95017025063534, CIKs: ['1999784'], received_time: 2025-05-05 16:07:40 EDT
+Submission Type: 8-K, Accession: 132165525000063, CIKs: ['1321655'], received_time: 2025-05-05 16:07:42 EDT
+Submission Type: 144, Accession: 192109425000436, CIKs: ['1315098', '2044191'], received_time: 2025-05-05 16:07:52 EDT
+Submission Type: 4, Accession: 154571125000006, CIKs: ['1190598', '51644'], received_time: 2025-05-05 16:07:52 EDT
+Submission Type: 4, Accession: 162828025022165, CIKs: ['1621769'], received_time: 2025-05-05 16:07:52 EDT
+Submission Type: 8-K, Accession: 147676525000037, CIKs: ['1476765'], received_time: 2025-05-05 16:07:53 EDT
+Submission Type: 8-K, Accession: 148813925000092, CIKs: ['1488139'], received_time: 2025-05-05 16:07:59 EDT
+Submission Type: 144, Accession: 196922325000269, CIKs: ['1883685'], received_time: 2025-05-05 16:08:08 EDT
+Submission Type: 4, Accession: 141588925011939, CIKs: ['1698990', '1964005'], received_time: 2025-05-05 16:08:11 EDT
+Submission Type: 8-K, Accession: 118534825000010, CIKs: ['1185348'], received_time: 2025-05-05 16:08:11 EDT
+Submission Type: 8-K, Accession: 3799625000071, CIKs: ['37996'], received_time: 2025-05-05 16:08:12 EDT
+Submission Type: 8-K, Accession: 162828025022167, CIKs: ['1088856'], received_time: 2025-05-05 16:08:20 EDT
+Submission Type: 10-Q, Accession: 95017025063536, CIKs: ['1050446'], received_time: 2025-05-05 16:08:20 EDT
+Submission Type: 40-17G, Accession: 119312525112773, CIKs: ['1872371'], received_time: 2025-05-05 16:08:21 EDT
+Submission Type: 8-K, Accession: 157056225000069, CIKs: ['1570562'], received_time: 2025-05-05 16:08:28 EDT
+Submission Type: 497J, Accession: 139834425008660, CIKs: ['890540'], received_time: 2025-05-05 16:08:31 EDT
+Submission Type: 10-Q, Accession: 162828025022166, CIKs: ['1487712'], received_time: 2025-05-05 16:08:35 EDT
+Submission Type: 10-Q, Accession: 143774925014528, CIKs: ['1549084'], received_time: 2025-05-05 16:08:36 EDT
+Submission Type: 425, Accession: 121390025039687, CIKs: ['1903464'], received_time: 2025-05-05 16:08:38 EDT
+Submission Type: 4, Accession: 112760225013339, CIKs: ['1926668'], received_time: 2025-05-05 16:08:40 EDT
+Submission Type: 4, Accession: 114139125000098, CIKs: ['1141391', '1737206'], received_time: 2025-05-05 16:08:42 EDT
+Submission Type: 8-K, Accession: 153983825000063, CIKs: ['1539838'], received_time: 2025-05-05 16:08:42 EDT
+Submission Type: 4, Accession: 143774925014530, CIKs: ['1181564'], received_time: 2025-05-05 16:08:44 EDT
+Submission Type: 3, Accession: 162828025022169, CIKs: ['1032033', '2066900'], received_time: 2025-05-05 16:08:44 EDT
+Submission Type: 10-Q, Accession: 180022725000028, CIKs: ['1800227'], received_time: 2025-05-05 16:08:53 EDT
+Submission Type: D/A, Accession: 169866025000002, CIKs: ['1698660'], received_time: 2025-05-05 16:09:00 EDT
+Submission Type: 8-K, Accession: 78419925000069, CIKs: ['784199'], received_time: 2025-05-05 16:09:00 EDT
+Submission Type: 4, Accession: 162828025022171, CIKs: ['1365257', '1539638'], received_time: 2025-05-05 16:09:02 EDT
+Submission Type: D/A, Accession: 186019325000002, CIKs: ['1860193'], received_time: 2025-05-05 16:09:10 EDT
+Submission Type: 4, Accession: 95017025063537, CIKs: ['1124804', '1926637'], received_time: 2025-05-05 16:09:10 EDT
+Submission Type: 4, Accession: 141588925011940, CIKs: ['1780088', '1623526'], received_time: 2025-05-05 16:09:12 EDT
+Submission Type: 8-K, Accession: 110465925044507, CIKs: ['1273441'], received_time: 2025-05-05 16:09:13 EDT
+Submission Type: 4, Accession: 106299325008470, CIKs: ['1434365'], received_time: 2025-05-05 16:09:14 EDT
+Submission Type: 4, Accession: 156218025003576, CIKs: ['2035688', '700564'], received_time: 2025-05-05 16:09:16 EDT
+Submission Type: 8-K, Accession: 147676525000038, CIKs: ['1476765'], received_time: 2025-05-05 16:09:18 EDT
+Submission Type: 497J, Accession: 112199725000029, CIKs: ['1121997'], received_time: 2025-05-05 16:09:21 EDT
+Submission Type: 4, Accession: 161653325000024, CIKs: ['1944970'], received_time: 2025-05-05 16:09:28 EDT
+Submission Type: 424B2, Accession: 111444625001834, CIKs: ['1114446'], received_time: 2025-05-05 16:09:29 EDT
+Submission Type: 8-K, Accession: 87786025000096, CIKs: ['877860'], received_time: 2025-05-05 16:09:29 EDT
+Submission Type: 424B2, Accession: 111444625001835, CIKs: ['1114446'], received_time: 2025-05-05 16:09:41 EDT
+Submission Type: 8-K, Accession: 143774925014532, CIKs: ['1761312'], received_time: 2025-05-05 16:09:41 EDT
+Submission Type: 144, Accession: 196430625000204, CIKs: ['1864896', '4281'], received_time: 2025-05-05 16:09:41 EDT
+Submission Type: 4, Accession: 143774925014531, CIKs: ['1332249'], received_time: 2025-05-05 16:09:43 EDT
+Submission Type: 8-K, Accession: 144736225000068, CIKs: ['1447362'], received_time: 2025-05-05 16:09:48 EDT
+Submission Type: 144, Accession: 200731725000300, CIKs: ['889331'], received_time: 2025-05-05 16:09:54 EDT
+Submission Type: 8-K, Accession: 143774925014533, CIKs: ['855658'], received_time: 2025-05-05 16:09:54 EDT
+Submission Type: 424B2, Accession: 114036125017326, CIKs: ['96223'], received_time: 2025-05-05 16:09:56 EDT
+Submission Type: DEFA14A, Accession: 110465925044509, CIKs: ['812796'], received_time: 2025-05-05 16:09:58 EDT
+Submission Type: 10-Q, Accession: 162828025022173, CIKs: ['1088856'], received_time: 2025-05-05 16:10:02 EDT
+Submission Type: 8-K, Accession: 172895125000086, CIKs: ['1728951'], received_time: 2025-05-05 16:10:04 EDT
+Submission Type: 4, Accession: 146737325000114, CIKs: ['1467373', '2030841'], received_time: 2025-05-05 16:10:10 EDT
+Submission Type: D, Accession: 118374025000034, CIKs: ['1703292'], received_time: 2025-05-05 16:10:13 EDT
+Submission Type: 497, Accession: 119312525112776, CIKs: ['1476842'], received_time: 2025-05-05 16:10:17 EDT
+Submission Type: 4, Accession: 146737325000115, CIKs: ['2028611'], received_time: 2025-05-05 16:10:17 EDT
+Submission Type: 8-K, Accession: 116500225000041, CIKs: ['1165002'], received_time: 2025-05-05 16:10:17 EDT
+Submission Type: 8-K, Accession: 87532025000171, CIKs: ['875320'], received_time: 2025-05-05 16:10:18 EDT
+Submission Type: 8-K, Accession: 85277225000081, CIKs: ['852772'], received_time: 2025-05-05 16:10:25 EDT
+Submission Type: 6-K, Accession: 185747525000021, CIKs: ['1857475'], received_time: 2025-05-05 16:10:35 EDT
+Submission Type: 497, Accession: 119312525112777, CIKs: ['1475231'], received_time: 2025-05-05 16:10:35 EDT
+Submission Type: 424B5, Accession: 119312525112775, CIKs: ['1414932'], received_time: 2025-05-05 16:10:35 EDT
+Submission Type: 4, Accession: 156218025003577, CIKs: ['1892180'], received_time: 2025-05-05 16:10:36 EDT
+Submission Type: 4, Accession: 161310325000073, CIKs: ['2028475', '1613103'], received_time: 2025-05-05 16:10:38 EDT
+Submission Type: 4, Accession: 146737325000116, CIKs: ['1467373', '2030855'], received_time: 2025-05-05 16:10:38 EDT
+Submission Type: 497, Accession: 119312525112779, CIKs: ['916943'], received_time: 2025-05-05 16:10:38 EDT
+Submission Type: 8-K, Accession: 95017025063540, CIKs: ['1796280'], received_time: 2025-05-05 16:10:38 EDT
+Submission Type: 8-K, Accession: 155837025006296, CIKs: ['3453'], received_time: 2025-05-05 16:10:39 EDT
+Submission Type: 8-K, Accession: 95017025063539, CIKs: ['1812364'], received_time: 2025-05-05 16:10:39 EDT
+Submission Type: 10-Q, Accession: 95017025063543, CIKs: ['1840439'], received_time: 2025-05-05 16:10:44 EDT
+Submission Type: SC TO-I, Accession: 114036125017327, CIKs: ['1901164'], received_time: 2025-05-05 16:10:48 EDT
+Submission Type: 10-Q, Accession: 161740625000037, CIKs: ['1617406'], received_time: 2025-05-05 16:10:55 EDT
+Submission Type: 10-Q, Accession: 106660525000037, CIKs: ['1066605'], received_time: 2025-05-05 16:10:56 EDT
+Submission Type: 10-Q, Accession: 144736225000069, CIKs: ['1447362'], received_time: 2025-05-05 16:10:58 EDT
+Submission Type: 8-K, Accession: 110465925044512, CIKs: ['77360'], received_time: 2025-05-05 16:11:04 EDT
+Submission Type: 4, Accession: 138865825000109, CIKs: ['1850152'], received_time: 2025-05-05 16:11:04 EDT
+Submission Type: 4, Accession: 2021225000082, CIKs: ['1257384'], received_time: 2025-05-05 16:11:06 EDT
+Submission Type: 13F-HR, Accession: 202289325000003, CIKs: ['2022893'], received_time: 2025-05-05 16:11:06 EDT
+Submission Type: DEFA14A, Accession: 119312525112780, CIKs: ['96869'], received_time: 2025-05-05 16:11:06 EDT
+Submission Type: S-8, Accession: 110465925044510, CIKs: ['1142750'], received_time: 2025-05-05 16:11:07 EDT
+Submission Type: 8-K, Accession: 177375125000152, CIKs: ['1773751'], received_time: 2025-05-05 16:11:08 EDT
+Submission Type: 497J, Accession: 112199725000031, CIKs: ['1121997'], received_time: 2025-05-05 16:11:11 EDT
+Submission Type: N-CSRS, Accession: 120677425000344, CIKs: ['924628'], received_time: 2025-05-05 16:11:17 EDT
+Submission Type: 4, Accession: 112760225013340, CIKs: ['1565687', '1821111'], received_time: 2025-05-05 16:11:20 EDT
+Submission Type: 424B2, Accession: 128703225000110, CIKs: ['1287032'], received_time: 2025-05-05 16:11:20 EDT
+Submission Type: 3, Accession: 92189525001279, CIKs: ['2063950'], received_time: 2025-05-05 16:11:28 EDT
+Submission Type: 4, Accession: 117001025000053, CIKs: ['1376853'], received_time: 2025-05-05 16:11:28 EDT
+Submission Type: 4, Accession: 90514825001447, CIKs: ['1453104'], received_time: 2025-05-05 16:11:30 EDT
+Submission Type: 8-K, Accession: 3800925000013, CIKs: ['38009'], received_time: 2025-05-05 16:11:34 EDT
+Submission Type: DEFA14A, Accession: 110465925044513, CIKs: ['1896036'], received_time: 2025-05-05 16:11:39 EDT
+Submission Type: 4, Accession: 138865825000110, CIKs: ['1388658', '1860745'], received_time: 2025-05-05 16:11:41 EDT
+Submission Type: 8-K, Accession: 160955025000019, CIKs: ['1609550'], received_time: 2025-05-05 16:11:44 EDT
+Submission Type: 4, Accession: 117001025000054, CIKs: ['2028856'], received_time: 2025-05-05 16:11:45 EDT
+Submission Type: 4, Accession: 156218025003578, CIKs: ['2011897'], received_time: 2025-05-05 16:11:49 EDT
+Submission Type: 144, Accession: 192109425000437, CIKs: ['1730430'], received_time: 2025-05-05 16:11:49 EDT
+Submission Type: 8-K, Accession: 87786025000097, CIKs: ['877860'], received_time: 2025-05-05 16:11:54 EDT
+Submission Type: 5, Accession: 115637525000113, CIKs: ['1475318', '1156375'], received_time: 2025-05-05 16:11:58 EDT
+Submission Type: 4, Accession: 117001025000055, CIKs: ['1721932', '1170010'], received_time: 2025-05-05 16:11:59 EDT
+Submission Type: 8-K, Accession: 119312525112783, CIKs: ['892553'], received_time: 2025-05-05 16:12:01 EDT
+Submission Type: 8-K, Accession: 110465925044515, CIKs: ['868857'], received_time: 2025-05-05 16:12:01 EDT
+Submission Type: 10-Q, Accession: 194455825000059, CIKs: ['1944558'], received_time: 2025-05-05 16:12:05 EDT
+Submission Type: ARS, Accession: 110465925044516, CIKs: ['812796'], received_time: 2025-05-05 16:12:08 EDT
+Submission Type: 4, Accession: 122520825004665, CIKs: ['2025072'], received_time: 2025-05-05 16:12:10 EDT
+Submission Type: 8-K, Accession: 2107625000021, CIKs: ['21076'], received_time: 2025-05-05 16:12:12 EDT
+Submission Type: 4, Accession: 117001025000056, CIKs: ['2030154', '1170010'], received_time: 2025-05-05 16:12:12 EDT
+Submission Type: 8-K, Accession: 171368325000057, CIKs: ['1713683'], received_time: 2025-05-05 16:12:14 EDT
+Submission Type: DEFR14A, Accession: 102056925000113, CIKs: ['1020569'], received_time: 2025-05-05 16:12:17 EDT
+Submission Type: 4, Accession: 117001025000057, CIKs: ['1620490'], received_time: 2025-05-05 16:12:18 EDT
+Submission Type: 144, Accession: 195917325002879, CIKs: ['1532286'], received_time: 2025-05-05 16:12:29 EDT
+Submission Type: 144, Accession: 195004725002735, CIKs: ['1569345', '1475901'], received_time: 2025-05-05 16:12:39 EDT
+Submission Type: 10-Q, Accession: 76889925000091, CIKs: ['768899'], received_time: 2025-05-05 16:12:46 EDT
+Submission Type: 8-K, Accession: 168316825003134, CIKs: ['1022652'], received_time: 2025-05-05 16:12:51 EDT
+Submission Type: 10-Q, Accession: 89968925000019, CIKs: ['899689', '1040765'], received_time: 2025-05-05 16:12:59 EDT
+Submission Type: 8-K, Accession: 148477825000049, CIKs: ['1484778'], received_time: 2025-05-05 16:13:02 EDT
+Submission Type: SCHEDULE 13D, Accession: 92189525001280, CIKs: ['924396'], received_time: 2025-05-05 16:13:03 EDT
+Submission Type: 4, Accession: 143774925014536, CIKs: ['1241198'], received_time: 2025-05-05 16:13:04 EDT
+Submission Type: 8-K, Accession: 145983925000059, CIKs: ['1459839'], received_time: 2025-05-05 16:13:05 EDT
+Submission Type: 4, Accession: 122520825004667, CIKs: ['2011807'], received_time: 2025-05-05 16:13:23 EDT
+Submission Type: 4, Accession: 122520825004666, CIKs: ['1972634'], received_time: 2025-05-05 16:13:23 EDT
+Submission Type: 4, Accession: 162828025022182, CIKs: ['2058150'], received_time: 2025-05-05 16:13:24 EDT
+Submission Type: 6-K, Accession: 121390025039691, CIKs: ['1783036'], received_time: 2025-05-05 16:13:27 EDT
+Submission Type: 4, Accession: 156218025003579, CIKs: ['1580484'], received_time: 2025-05-05 16:13:42 EDT
+Submission Type: 10-Q, Accession: 89542125000343, CIKs: ['895421'], received_time: 2025-05-05 16:13:42 EDT
+Submission Type: 144, Accession: 195917325002880, CIKs: ['874766', '1820324'], received_time: 2025-05-05 16:13:44 EDT
+Submission Type: 4, Accession: 154571125000007, CIKs: ['1241724'], received_time: 2025-05-05 16:13:48 EDT
+Submission Type: 8-K, Accession: 95017025063546, CIKs: ['1666291'], received_time: 2025-05-05 16:13:50 EDT
+Submission Type: 4, Accession: 117001025000058, CIKs: ['1545342', '1170010'], received_time: 2025-05-05 16:13:51 EDT
+Submission Type: 4, Accession: 141588925011941, CIKs: ['1870473'], received_time: 2025-05-05 16:13:59 EDT
+Submission Type: 3, Accession: 121390025039692, CIKs: ['1273813', '2000153'], received_time: 2025-05-05 16:13:59 EDT
+Submission Type: 8-K, Accession: 150158525000040, CIKs: ['1501585'], received_time: 2025-05-05 16:13:59 EDT
+Submission Type: 4, Accession: 117001025000059, CIKs: ['1456533'], received_time: 2025-05-05 16:14:00 EDT
+Submission Type: 3, Accession: 173112225000664, CIKs: ['1885849', '2054209'], received_time: 2025-05-05 16:14:02 EDT
+Submission Type: 8-K, Accession: 164117225008686, CIKs: ['1297937'], received_time: 2025-05-05 16:14:02 EDT
+Submission Type: 4, Accession: 117001025000060, CIKs: ['1628337'], received_time: 2025-05-05 16:14:11 EDT
+Submission Type: 424B2, Accession: 95010325005751, CIKs: ['1000275'], received_time: 2025-05-05 16:14:12 EDT
+Submission Type: 8-K, Accession: 147584125000028, CIKs: ['1475841'], received_time: 2025-05-05 16:14:12 EDT
+Submission Type: 8-K, Accession: 160915125000051, CIKs: ['1609151'], received_time: 2025-05-05 16:14:14 EDT
+Submission Type: 497, Accession: 158064225002837, CIKs: ['1518042'], received_time: 2025-05-05 16:14:14 EDT
+Submission Type: 497VPU, Accession: 112199725000033, CIKs: ['1121997'], received_time: 2025-05-05 16:14:15 EDT
+Submission Type: 3, Accession: 156218025003580, CIKs: ['711404', '1822841'], received_time: 2025-05-05 16:14:17 EDT
+Submission Type: 4, Accession: 117001025000061, CIKs: ['1793012', '1170010'], received_time: 2025-05-05 16:14:17 EDT
+Submission Type: 424B2, Accession: 114036125017330, CIKs: ['947263'], received_time: 2025-05-05 16:14:17 EDT
+Submission Type: 4, Accession: 89971525000108, CIKs: ['1809284'], received_time: 2025-05-05 16:14:19 EDT
+Submission Type: 8-K, Accession: 132731825000014, CIKs: ['1327318'], received_time: 2025-05-05 16:14:24 EDT
+Submission Type: 4, Accession: 143774925014539, CIKs: ['1000230', '1241194'], received_time: 2025-05-05 16:14:31 EDT
+Submission Type: 497, Accession: 113322825005258, CIKs: ['1011378'], received_time: 2025-05-05 16:14:31 EDT
+Submission Type: 4, Accession: 117001025000062, CIKs: ['1702741', '1170010'], received_time: 2025-05-05 16:14:33 EDT
+Submission Type: 4, Accession: 101730325000042, CIKs: ['1245709'], received_time: 2025-05-05 16:14:34 EDT
+Submission Type: 4, Accession: 75197825000007, CIKs: ['1912196'], received_time: 2025-05-05 16:14:34 EDT
+Submission Type: 144, Accession: 195917325002881, CIKs: ['1715489', '1532286'], received_time: 2025-05-05 16:14:42 EDT
+Submission Type: 4, Accession: 87532025000173, CIKs: ['875320', '1643921'], received_time: 2025-05-05 16:14:44 EDT
+Submission Type: 144, Accession: 196430625000205, CIKs: ['1612042', '1965622'], received_time: 2025-05-05 16:14:44 EDT
+Submission Type: 4, Accession: 151286825000001, CIKs: ['751978', '1512868'], received_time: 2025-05-05 16:14:45 EDT
+Submission Type: 4, Accession: 156218025003581, CIKs: ['700564', '1580406'], received_time: 2025-05-05 16:14:55 EDT
+Submission Type: 8-K, Accession: 2882325000051, CIKs: ['28823'], received_time: 2025-05-05 16:14:55 EDT
+Submission Type: 497, Accession: 158064225002838, CIKs: ['1518042'], received_time: 2025-05-05 16:14:58 EDT
+Submission Type: 144, Accession: 195917325002882, CIKs: ['1727661', '1532286'], received_time: 2025-05-05 16:14:59 EDT
+Submission Type: 4, Accession: 112760225013342, CIKs: ['1841519'], received_time: 2025-05-05 16:15:09 EDT
+Submission Type: 10-Q, Accession: 143774925014540, CIKs: ['855658'], received_time: 2025-05-05 16:15:14 EDT
+Submission Type: 144, Accession: 195004725002736, CIKs: ['896622'], received_time: 2025-05-05 16:15:19 EDT
+Submission Type: 4, Accession: 95017025063548, CIKs: ['2020123'], received_time: 2025-05-05 16:15:22 EDT
+Submission Type: 4, Accession: 95017025063551, CIKs: ['1784967', '1579298'], received_time: 2025-05-05 16:15:32 EDT
+Submission Type: 4, Accession: 141588925011942, CIKs: ['1431045'], received_time: 2025-05-05 16:15:32 EDT
+Submission Type: 4, Accession: 95017025063550, CIKs: ['1641994'], received_time: 2025-05-05 16:15:33 EDT
+Submission Type: 4, Accession: 95017025063549, CIKs: ['1998017'], received_time: 2025-05-05 16:15:33 EDT
+Submission Type: 13F-HR, Accession: 194104025000258, CIKs: ['2056676'], received_time: 2025-05-05 16:15:44 EDT
+Submission Type: DEFR14A, Accession: 119312525112787, CIKs: ['1098972'], received_time: 2025-05-05 16:15:44 EDT
+Submission Type: 8-K, Accession: 182912625003399, CIKs: ['1907730'], received_time: 2025-05-05 16:15:45 EDT
+Submission Type: 4, Accession: 141588925011948, CIKs: ['1330708'], received_time: 2025-05-05 16:15:45 EDT
+Submission Type: 4, Accession: 95017025063552, CIKs: ['1936931'], received_time: 2025-05-05 16:15:45 EDT
+Submission Type: 4, Accession: 141588925011947, CIKs: ['1750705', '84246'], received_time: 2025-05-05 16:15:47 EDT
+Submission Type: 8-K, Accession: 3872525000088, CIKs: ['38725'], received_time: 2025-05-05 16:15:47 EDT
+Submission Type: 4, Accession: 141588925011949, CIKs: ['1227758', '84246'], received_time: 2025-05-05 16:15:47 EDT
+Submission Type: 4, Accession: 141588925011943, CIKs: ['1179676'], received_time: 2025-05-05 16:15:47 EDT
+Submission Type: 4, Accession: 95017025063554, CIKs: ['1262142'], received_time: 2025-05-05 16:15:48 EDT
+Submission Type: 4, Accession: 141588925011944, CIKs: ['1309338'], received_time: 2025-05-05 16:15:48 EDT
+Submission Type: 8-K, Accession: 119312525112786, CIKs: ['923796'], received_time: 2025-05-05 16:15:48 EDT
+Submission Type: 6-K, Accession: 94787125000450, CIKs: ['932787'], received_time: 2025-05-05 16:15:49 EDT
+Submission Type: SCHEDULE 13D, Accession: 173112225000665, CIKs: ['1885849'], received_time: 2025-05-05 16:15:49 EDT
+Submission Type: 10-Q, Accession: 95017025063553, CIKs: ['1812364'], received_time: 2025-05-05 16:15:49 EDT
+Submission Type: 497K, Accession: 119312525112789, CIKs: ['1761055'], received_time: 2025-05-05 16:15:50 EDT
+Submission Type: 497VPU, Accession: 112199725000035, CIKs: ['1121997'], received_time: 2025-05-05 16:15:50 EDT
+Submission Type: DEFR14A, Accession: 114036125017332, CIKs: ['1472091'], received_time: 2025-05-05 16:15:50 EDT
+Submission Type: 4, Accession: 176096525000036, CIKs: ['1791961', '1760965'], received_time: 2025-05-05 16:15:50 EDT
+Submission Type: 4, Accession: 143774925014543, CIKs: ['1241193'], received_time: 2025-05-05 16:15:51 EDT
+Submission Type: 4, Accession: 141588925011951, CIKs: ['1445826'], received_time: 2025-05-05 16:15:51 EDT
+Submission Type: 4, Accession: 141588925011950, CIKs: ['1192707'], received_time: 2025-05-05 16:15:51 EDT
+Submission Type: 8-K, Accession: 119312525112790, CIKs: ['1825024'], received_time: 2025-05-05 16:15:52 EDT
+Submission Type: 424B3, Accession: 119312525112788, CIKs: ['2042694'], received_time: 2025-05-05 16:15:52 EDT
+Submission Type: 8-K, Accession: 121390025039694, CIKs: ['1726711'], received_time: 2025-05-05 16:15:53 EDT
+Submission Type: 4, Accession: 141588925011946, CIKs: ['1267926'], received_time: 2025-05-05 16:15:53 EDT
+Submission Type: 10-Q, Accession: 147793225003321, CIKs: ['1096938'], received_time: 2025-05-05 16:15:54 EDT
+Submission Type: 8-K, Accession: 141063625000090, CIKs: ['1410636'], received_time: 2025-05-05 16:15:54 EDT
+Submission Type: 497J, Accession: 113322825005260, CIKs: ['1011378'], received_time: 2025-05-05 16:15:54 EDT
+Submission Type: 4, Accession: 141588925011945, CIKs: ['1785329'], received_time: 2025-05-05 16:15:55 EDT
+Submission Type: 10-Q, Accession: 162828025022186, CIKs: ['1484769'], received_time: 2025-05-05 16:15:58 EDT
+Submission Type: 8-K, Accession: 143774925014542, CIKs: ['1466085'], received_time: 2025-05-05 16:16:00 EDT
+Submission Type: 8-K, Accession: 95017025063555, CIKs: ['912595'], received_time: 2025-05-05 16:16:01 EDT
+Submission Type: C, Accession: 203698525000004, CIKs: ['2036985'], received_time: 2025-05-05 16:16:04 EDT
+Submission Type: 8-K, Accession: 9836225000082, CIKs: ['98362'], received_time: 2025-05-05 16:16:04 EDT
+Submission Type: 4, Accession: 156218025003583, CIKs: ['1727249'], received_time: 2025-05-05 16:16:05 EDT
+Submission Type: 8-K, Accession: 119312525112791, CIKs: ['1624794'], received_time: 2025-05-05 16:16:06 EDT
+Submission Type: 4, Accession: 90266425002100, CIKs: ['1166564'], received_time: 2025-05-05 16:16:10 EDT
+Submission Type: 8-K, Accession: 155837025006298, CIKs: ['1783032'], received_time: 2025-05-05 16:16:11 EDT
+Submission Type: 4, Accession: 121390025039696, CIKs: ['2010297'], received_time: 2025-05-05 16:16:12 EDT
+Submission Type: 144, Accession: 195917325002883, CIKs: ['1808492', '1532286'], received_time: 2025-05-05 16:16:14 EDT
+Submission Type: ARS, Accession: 106299325008471, CIKs: ['1790169'], received_time: 2025-05-05 16:16:15 EDT
+Submission Type: 424B2, Accession: 114036125017333, CIKs: ['947263'], received_time: 2025-05-05 16:16:15 EDT
+Submission Type: 4, Accession: 101730325000044, CIKs: ['1841645'], received_time: 2025-05-05 16:16:17 EDT
+Submission Type: 4, Accession: 87532025000175, CIKs: ['875320', '1204424'], received_time: 2025-05-05 16:16:17 EDT
+Submission Type: 4, Accession: 176096525000037, CIKs: ['1909944', '1760965'], received_time: 2025-05-05 16:16:18 EDT
+Submission Type: 8-K, Accession: 95017025063557, CIKs: ['1418121'], received_time: 2025-05-05 16:16:23 EDT
+Submission Type: 8-K, Accession: 143774925014544, CIKs: ['1698022'], received_time: 2025-05-05 16:16:29 EDT
+Submission Type: 3, Accession: 141776125000006, CIKs: ['1417761'], received_time: 2025-05-05 16:16:30 EDT
+Submission Type: 4, Accession: 112760225013343, CIKs: ['1583903'], received_time: 2025-05-05 16:16:31 EDT
+Submission Type: 4, Accession: 176096525000038, CIKs: ['1786642'], received_time: 2025-05-05 16:16:41 EDT
+Submission Type: D, Accession: 112329225000191, CIKs: ['1689796'], received_time: 2025-05-05 16:16:41 EDT
+Submission Type: S-8, Accession: 110465925044519, CIKs: ['1790340'], received_time: 2025-05-05 16:16:41 EDT
+Submission Type: 4, Accession: 156218025003588, CIKs: ['711404', '1822841'], received_time: 2025-05-05 16:16:42 EDT
+Submission Type: 4, Accession: 11047125000071, CIKs: ['1015790'], received_time: 2025-05-05 16:16:45 EDT
+Submission Type: 4, Accession: 157058525000124, CIKs: ['1565787', '1570585'], received_time: 2025-05-05 16:16:45 EDT
+Submission Type: 6-K, Accession: 93278725000013, CIKs: ['932787'], received_time: 2025-05-05 16:16:46 EDT
+Submission Type: 8-K, Accession: 188953925000026, CIKs: ['1889539'], received_time: 2025-05-05 16:16:48 EDT
+Submission Type: 4, Accession: 143774925014546, CIKs: ['1671366'], received_time: 2025-05-05 16:16:49 EDT
+Submission Type: 4, Accession: 157058525000125, CIKs: ['1693396'], received_time: 2025-05-05 16:16:50 EDT
+Submission Type: 4, Accession: 157058525000126, CIKs: ['1570585', '1778743'], received_time: 2025-05-05 16:17:02 EDT
+Submission Type: 8-K/A, Accession: 109428525000111, CIKs: ['1094285'], received_time: 2025-05-05 16:17:04 EDT
+Submission Type: 8-K, Accession: 149609925000017, CIKs: ['1496099'], received_time: 2025-05-05 16:17:05 EDT
+Submission Type: 8-K, Accession: 7420825000039, CIKs: ['74208'], received_time: 2025-05-05 16:17:09 EDT
+Submission Type: 144, Accession: 195917325002884, CIKs: ['1727542', '1532286'], received_time: 2025-05-05 16:17:12 EDT
+Submission Type: 4, Accession: 176096525000039, CIKs: ['1769347', '1760965'], received_time: 2025-05-05 16:17:13 EDT
+Submission Type: 4, Accession: 157058525000127, CIKs: ['1091974'], received_time: 2025-05-05 16:17:16 EDT
+Submission Type: 424B2, Accession: 121390025039697, CIKs: ['19617'], received_time: 2025-05-05 16:17:20 EDT
+Submission Type: 497J, Accession: 89418925003594, CIKs: ['1026708'], received_time: 2025-05-05 16:17:20 EDT
+Submission Type: 4, Accession: 157058525000128, CIKs: ['1058725'], received_time: 2025-05-05 16:17:21 EDT
+Submission Type: 4, Accession: 141588925011953, CIKs: ['1667211'], received_time: 2025-05-05 16:17:21 EDT
+Submission Type: PRE 14A, Accession: 119312525112793, CIKs: ['1613780'], received_time: 2025-05-05 16:17:21 EDT
+Submission Type: 8-K, Accession: 173112225000666, CIKs: ['1885849'], received_time: 2025-05-05 16:17:31 EDT
+Submission Type: 4, Accession: 157058525000129, CIKs: ['1292152', '1570585'], received_time: 2025-05-05 16:17:33 EDT
+Submission Type: 4, Accession: 5947825000134, CIKs: ['1685556'], received_time: 2025-05-05 16:17:33 EDT
+Submission Type: 4, Accession: 112760225013345, CIKs: ['1181174'], received_time: 2025-05-05 16:17:34 EDT
+Submission Type: 497J, Accession: 89418925003595, CIKs: ['890453'], received_time: 2025-05-05 16:17:34 EDT
+Submission Type: 4, Accession: 194136525000050, CIKs: ['1941365', '1630133'], received_time: 2025-05-05 16:17:36 EDT
+Submission Type: 8-K, Accession: 182176925000063, CIKs: ['1821769'], received_time: 2025-05-05 16:17:38 EDT
+Submission Type: 10-Q, Accession: 155837025006300, CIKs: ['1318742'], received_time: 2025-05-05 16:17:38 EDT
+Submission Type: 4, Accession: 176096525000040, CIKs: ['1570948'], received_time: 2025-05-05 16:17:47 EDT
+Submission Type: 497, Accession: 112199725000037, CIKs: ['948972'], received_time: 2025-05-05 16:17:49 EDT
+Submission Type: 8-K, Accession: 179034025000059, CIKs: ['1790340'], received_time: 2025-05-05 16:17:52 EDT
+Submission Type: 4, Accession: 156155025000113, CIKs: ['1540517'], received_time: 2025-05-05 16:18:01 EDT
+Submission Type: S-8, Accession: 143774925014548, CIKs: ['1173489'], received_time: 2025-05-05 16:18:01 EDT
+Submission Type: 8-K, Accession: 165347725000062, CIKs: ['1653477'], received_time: 2025-05-05 16:18:01 EDT
+Submission Type: ABS-15G, Accession: 119312525112795, CIKs: ['2066160'], received_time: 2025-05-05 16:18:04 EDT
+Submission Type: 8-K, Accession: 169899125000022, CIKs: ['1698991'], received_time: 2025-05-05 16:18:05 EDT
+Submission Type: 10-Q, Accession: 177375125000154, CIKs: ['1773751'], received_time: 2025-05-05 16:18:13 EDT
+Submission Type: 4, Accession: 90514825001448, CIKs: ['1444783'], received_time: 2025-05-05 16:18:15 EDT
+Submission Type: 8-K, Accession: 137005325000045, CIKs: ['1370053'], received_time: 2025-05-05 16:18:16 EDT
+Submission Type: 4, Accession: 176096525000041, CIKs: ['1234928'], received_time: 2025-05-05 16:18:17 EDT
+Submission Type: 8-K, Accession: 182387825000027, CIKs: ['1823878'], received_time: 2025-05-05 16:18:17 EDT
+Submission Type: 4, Accession: 162828025022190, CIKs: ['1546374'], received_time: 2025-05-05 16:18:18 EDT
+Submission Type: 40-17G, Accession: 119312525112796, CIKs: ['1597634'], received_time: 2025-05-05 16:18:19 EDT
+Submission Type: 4, Accession: 156218025003589, CIKs: ['1645113', '2039078'], received_time: 2025-05-05 16:18:21 EDT
+Submission Type: 6-K, Accession: 119312525112797, CIKs: ['1533232'], received_time: 2025-05-05 16:18:22 EDT
+Submission Type: 4, Accession: 91214725000024, CIKs: ['912147', '1009121'], received_time: 2025-05-05 16:18:22 EDT
+Submission Type: 424B2, Accession: 114036125017335, CIKs: ['96223'], received_time: 2025-05-05 16:18:34 EDT
+Submission Type: 8-K, Accession: 155837025006301, CIKs: ['887905'], received_time: 2025-05-05 16:18:38 EDT
+Submission Type: 424B2, Accession: 183988225026961, CIKs: ['927971'], received_time: 2025-05-05 16:18:42 EDT
+Submission Type: 4, Accession: 154571125000008, CIKs: ['1219888', '51644'], received_time: 2025-05-05 16:18:42 EDT
+Submission Type: 4, Accession: 106299325008474, CIKs: ['842023', '1208906'], received_time: 2025-05-05 16:18:44 EDT
+Submission Type: 4, Accession: 176096525000042, CIKs: ['1444506'], received_time: 2025-05-05 16:18:44 EDT
+Submission Type: 40-APP/A, Accession: 121390025039701, CIKs: ['861177', '903954'], received_time: 2025-05-05 16:18:44 EDT
+Submission Type: 4, Accession: 11047125000072, CIKs: ['110471', '1160672'], received_time: 2025-05-05 16:18:45 EDT
+Submission Type: 8-K, Accession: 143774925014549, CIKs: ['896156'], received_time: 2025-05-05 16:18:47 EDT
+Submission Type: 497, Accession: 112199725000038, CIKs: ['948972'], received_time: 2025-05-05 16:18:50 EDT
+Submission Type: SCHEDULE 13G/A, Accession: 89707025000004, CIKs: ['1720116', '897070'], received_time: 2025-05-05 16:18:51 EDT
+Submission Type: 8-K, Accession: 189110125000010, CIKs: ['1891101'], received_time: 2025-05-05 16:18:53 EDT
+Submission Type: 4, Accession: 7430325000077, CIKs: ['1721123'], received_time: 2025-05-05 16:19:03 EDT
+Submission Type: 4, Accession: 156155025000114, CIKs: ['1783990'], received_time: 2025-05-05 16:19:04 EDT
+Submission Type: 497J, Accession: 89418925003596, CIKs: ['1511699'], received_time: 2025-05-05 16:19:04 EDT
+Submission Type: 4, Accession: 156218025003590, CIKs: ['1347709'], received_time: 2025-05-05 16:19:04 EDT
+Submission Type: 144, Accession: 195004725002737, CIKs: ['1299709'], received_time: 2025-05-05 16:19:06 EDT
+Submission Type: 4, Accession: 121390025039702, CIKs: ['1273813', '1770196'], received_time: 2025-05-05 16:19:08 EDT
+Submission Type: 8-K, Accession: 119312525112799, CIKs: ['1166691'], received_time: 2025-05-05 16:19:22 EDT
+Submission Type: 10-Q, Accession: 169899125000023, CIKs: ['1698991'], received_time: 2025-05-05 16:19:24 EDT
+Submission Type: 4, Accession: 87532025000177, CIKs: ['1312907'], received_time: 2025-05-05 16:19:30 EDT
+Submission Type: 144, Accession: 196430625000206, CIKs: ['771497', '1831911'], received_time: 2025-05-05 16:19:31 EDT
+Submission Type: 8-K, Accession: 158536425000051, CIKs: ['1585364'], received_time: 2025-05-05 16:19:43 EDT
+Submission Type: 4, Accession: 112760225013346, CIKs: ['875045', '1973607'], received_time: 2025-05-05 16:19:44 EDT
+Submission Type: 4, Accession: 106299325008475, CIKs: ['1752632'], received_time: 2025-05-05 16:19:45 EDT
+Submission Type: 4, Accession: 11047125000073, CIKs: ['1331680'], received_time: 2025-05-05 16:19:49 EDT
+Submission Type: 8-K, Accession: 143774925014550, CIKs: ['855658'], received_time: 2025-05-05 16:19:49 EDT
+Submission Type: 4, Accession: 90514825001449, CIKs: ['1774297', '1563577'], received_time: 2025-05-05 16:19:59 EDT
+Submission Type: 424B2, Accession: 114036125017339, CIKs: ['96223'], received_time: 2025-05-05 16:20:00 EDT
+Submission Type: 8-K, Accession: 10726325000100, CIKs: ['107263'], received_time: 2025-05-05 16:20:03 EDT
+Submission Type: SCHEDULE 13D/A, Accession: 121390025039703, CIKs: ['1805526'], received_time: 2025-05-05 16:20:10 EDT
+Submission Type: 4, Accession: 167491025000074, CIKs: ['1924613', '1674910'], received_time: 2025-05-05 16:20:12 EDT
+Submission Type: 8-K, Accession: 95017025063562, CIKs: ['1320854'], received_time: 2025-05-05 16:20:13 EDT
+Submission Type: 497J, Accession: 93041325001634, CIKs: ['1000249'], received_time: 2025-05-05 16:20:13 EDT
+Submission Type: 8-K, Accession: 157601825000018, CIKs: ['1576018'], received_time: 2025-05-05 16:20:16 EDT
+Submission Type: 8-K, Accession: 87786025000098, CIKs: ['877860'], received_time: 2025-05-05 16:20:20 EDT
+Submission Type: 497J, Accession: 80618025000037, CIKs: ['806180'], received_time: 2025-05-05 16:20:21 EDT
+Submission Type: D, Accession: 206696325000001, CIKs: ['2066963'], received_time: 2025-05-05 16:20:22 EDT
+Submission Type: 4, Accession: 141588925011955, CIKs: ['1604457'], received_time: 2025-05-05 16:20:24 EDT
+Submission Type: 10-Q, Accession: 137005325000046, CIKs: ['1370053'], received_time: 2025-05-05 16:20:25 EDT
+Submission Type: 4, Accession: 143774925014552, CIKs: ['2059658'], received_time: 2025-05-05 16:20:26 EDT
+Submission Type: 497, Accession: 112199725000039, CIKs: ['948972'], received_time: 2025-05-05 16:20:26 EDT
+Submission Type: 4, Accession: 159396825000591, CIKs: ['1526064', '1824893'], received_time: 2025-05-05 16:20:26 EDT
+Submission Type: 8-K, Accession: 162828025022191, CIKs: ['849395'], received_time: 2025-05-05 16:20:27 EDT
+Submission Type: 424B2, Accession: 95017025063563, CIKs: ['886982'], received_time: 2025-05-05 16:20:28 EDT
+Submission Type: 4, Accession: 11047125000074, CIKs: ['1673961'], received_time: 2025-05-05 16:20:38 EDT
+Submission Type: 8-K, Accession: 143774925014554, CIKs: ['1173489'], received_time: 2025-05-05 16:20:40 EDT
+Submission Type: 10-Q, Accession: 95017025063564, CIKs: ['1796280'], received_time: 2025-05-05 16:20:43 EDT
+Submission Type: 424B2, Accession: 114036125017340, CIKs: ['96223'], received_time: 2025-05-05 16:20:48 EDT
+Submission Type: 8-K, Accession: 140871025000021, CIKs: ['1408710'], received_time: 2025-05-05 16:20:52 EDT
+Submission Type: 4, Accession: 121390025039704, CIKs: ['1272020'], received_time: 2025-05-05 16:20:54 EDT
+Submission Type: 4, Accession: 156218025003591, CIKs: ['1727564', '700564'], received_time: 2025-05-05 16:21:05 EDT
+Submission Type: 8-K, Accession: 160915125000053, CIKs: ['1609151'], received_time: 2025-05-05 16:21:08 EDT
+Submission Type: DEFA14A, Accession: 132388525000046, CIKs: ['1323885'], received_time: 2025-05-05 16:21:16 EDT
+Submission Type: 144, Accession: 195917325002885, CIKs: ['1579684'], received_time: 2025-05-05 16:21:18 EDT
+Submission Type: D/A, Accession: 200799325000003, CIKs: ['2007993'], received_time: 2025-05-05 16:21:18 EDT
+Submission Type: 8-K, Accession: 89968925000021, CIKs: ['899689', '1040765'], received_time: 2025-05-05 16:21:21 EDT
+Submission Type: 4, Accession: 87532025000179, CIKs: ['1518973'], received_time: 2025-05-05 16:21:22 EDT
+Submission Type: 10-Q, Accession: 143774925014553, CIKs: ['1175535'], received_time: 2025-05-05 16:21:24 EDT
+Submission Type: 8-K, Accession: 128481225000158, CIKs: ['1284812'], received_time: 2025-05-05 16:21:33 EDT
+Submission Type: 4, Accession: 11047125000075, CIKs: ['1677473'], received_time: 2025-05-05 16:21:33 EDT
+Submission Type: 10-Q, Accession: 149609925000018, CIKs: ['1496099'], received_time: 2025-05-05 16:21:38 EDT
+Submission Type: 8-K, Accession: 132858125000057, CIKs: ['1328581'], received_time: 2025-05-05 16:21:44 EDT
+Submission Type: 497J, Accession: 119312525112805, CIKs: ['1098605'], received_time: 2025-05-05 16:21:50 EDT
+Submission Type: 4, Accession: 7430325000079, CIKs: ['1398213', '74303'], received_time: 2025-05-05 16:21:51 EDT
+Submission Type: 144, Accession: 200731725000301, CIKs: ['1569789', '913760'], received_time: 2025-05-05 16:21:51 EDT
+Submission Type: D, Accession: 206513325000002, CIKs: ['2065133'], received_time: 2025-05-05 16:21:58 EDT
+Submission Type: D, Accession: 176642925000004, CIKs: ['1766429'], received_time: 2025-05-05 16:21:59 EDT
+Submission Type: 3, Accession: 164117225008688, CIKs: ['2066590'], received_time: 2025-05-05 16:22:00 EDT
+Submission Type: S-4, Accession: 114036125017342, CIKs: ['1004724'], received_time: 2025-05-05 16:22:02 EDT
+Submission Type: 8-K, Accession: 194436625000063, CIKs: ['1944366'], received_time: 2025-05-05 16:22:02 EDT
+Submission Type: 10-Q, Accession: 157601825000019, CIKs: ['1576018'], received_time: 2025-05-05 16:22:23 EDT
+Submission Type: 4, Accession: 95017025063570, CIKs: ['1785553', '1116942'], received_time: 2025-05-05 16:22:27 EDT
+Submission Type: 10-Q, Accession: 189110125000012, CIKs: ['1891101'], received_time: 2025-05-05 16:22:29 EDT
+Submission Type: 4, Accession: 11047125000076, CIKs: ['1211265'], received_time: 2025-05-05 16:22:35 EDT
+Submission Type: 4, Accession: 121390025039706, CIKs: ['1555016'], received_time: 2025-05-05 16:22:40 EDT
+Submission Type: DEFA14A, Accession: 87786025000100, CIKs: ['877860'], received_time: 2025-05-05 16:22:49 EDT
+Submission Type: 4, Accession: 121390025039707, CIKs: ['2061848'], received_time: 2025-05-05 16:22:49 EDT
+Submission Type: 4, Accession: 162828025022192, CIKs: ['889900', '1469527'], received_time: 2025-05-05 16:22:49 EDT
+Submission Type: 10-Q, Accession: 95017025063571, CIKs: ['1320854'], received_time: 2025-05-05 16:22:57 EDT
+Submission Type: 497J, Accession: 80618025000039, CIKs: ['806180'], received_time: 2025-05-05 16:23:04 EDT
+Submission Type: 4, Accession: 156218025003592, CIKs: ['1580441'], received_time: 2025-05-05 16:23:14 EDT
+Submission Type: 497, Accession: 112199725000040, CIKs: ['948972'], received_time: 2025-05-05 16:23:14 EDT
+Submission Type: 497J, Accession: 83668725000106, CIKs: ['836687'], received_time: 2025-05-05 16:23:22 EDT
+Submission Type: 4, Accession: 159396825000592, CIKs: ['1325818'], received_time: 2025-05-05 16:23:24 EDT
+Submission Type: 4, Accession: 11047125000077, CIKs: ['1185940'], received_time: 2025-05-05 16:23:25 EDT
+Submission Type: 144, Accession: 194984625000178, CIKs: ['1783493', '1014473'], received_time: 2025-05-05 16:23:27 EDT
+Submission Type: 4, Accession: 162828025022193, CIKs: ['1788882', '2019852'], received_time: 2025-05-05 16:23:27 EDT
+Submission Type: 8-K, Accession: 118518525000398, CIKs: ['1879270'], received_time: 2025-05-05 16:23:28 EDT
+Submission Type: 4, Accession: 2841225000162, CIKs: ['1652659'], received_time: 2025-05-05 16:23:29 EDT
+Submission Type: 8-K, Accession: 129867525000023, CIKs: ['1300485', '1298675'], received_time: 2025-05-05 16:23:34 EDT
+Submission Type: 8-K, Accession: 128176125000039, CIKs: ['1281761'], received_time: 2025-05-05 16:23:34 EDT
+Submission Type: 4, Accession: 154571125000009, CIKs: ['1408467', '51644'], received_time: 2025-05-05 16:23:40 EDT
+Submission Type: 8-K, Accession: 95017025063574, CIKs: ['25475'], received_time: 2025-05-05 16:23:48 EDT
+Submission Type: 8-K, Accession: 169211525000107, CIKs: ['1692115'], received_time: 2025-05-05 16:23:53 EDT
+Submission Type: 13F-HR, Accession: 190679925000001, CIKs: ['1906799'], received_time: 2025-05-05 16:23:57 EDT
+Submission Type: 497, Accession: 112199725000041, CIKs: ['948972'], received_time: 2025-05-05 16:23:57 EDT
+Submission Type: 8-K, Accession: 158773225000027, CIKs: ['1587732'], received_time: 2025-05-05 16:23:57 EDT
+Submission Type: 4, Accession: 162828025022198, CIKs: ['889900', '1238210'], received_time: 2025-05-05 16:23:58 EDT
+Submission Type: 4, Accession: 122520825004668, CIKs: ['1456473'], received_time: 2025-05-05 16:24:09 EDT
+Submission Type: 8-K, Accession: 143757825000012, CIKs: ['1437578'], received_time: 2025-05-05 16:24:09 EDT
+Submission Type: 4, Accession: 112760225013348, CIKs: ['2003375'], received_time: 2025-05-05 16:24:12 EDT
+Submission Type: 10-Q, Accession: 162828025022195, CIKs: ['849395'], received_time: 2025-05-05 16:24:18 EDT
+Submission Type: 4, Accession: 121390025039708, CIKs: ['1273813', '1192374'], received_time: 2025-05-05 16:24:20 EDT
+Submission Type: 4, Accession: 11047125000078, CIKs: ['110471', '1525504'], received_time: 2025-05-05 16:24:22 EDT
+Submission Type: 8-K, Accession: 114036125017344, CIKs: ['790359'], received_time: 2025-05-05 16:24:32 EDT
+Submission Type: 497J, Accession: 139834425008662, CIKs: ['912900'], received_time: 2025-05-05 16:24:32 EDT
+Submission Type: 4, Accession: 156218025003593, CIKs: ['2014484'], received_time: 2025-05-05 16:24:34 EDT
+Submission Type: 497J, Accession: 119312525112809, CIKs: ['1479359'], received_time: 2025-05-05 16:24:46 EDT
+Submission Type: 4, Accession: 7430325000081, CIKs: ['1396130'], received_time: 2025-05-05 16:24:46 EDT
+Submission Type: 424B2, Accession: 191870425007687, CIKs: ['1682472'], received_time: 2025-05-05 16:24:49 EDT
+Submission Type: 144, Accession: 197248125000082, CIKs: ['1260221'], received_time: 2025-05-05 16:24:57 EDT
+Submission Type: 4, Accession: 162828025022200, CIKs: ['889900', '1453799'], received_time: 2025-05-05 16:25:01 EDT
+Submission Type: 4, Accession: 95017025063576, CIKs: ['1616437'], received_time: 2025-05-05 16:25:02 EDT
+Submission Type: 144, Accession: 165253625000059, CIKs: ['1732409'], received_time: 2025-05-05 16:25:10 EDT
+Submission Type: 144, Accession: 165253625000058, CIKs: ['1748945'], received_time: 2025-05-05 16:25:11 EDT
+Submission Type: 144, Accession: 165253625000057, CIKs: ['1720265'], received_time: 2025-05-05 16:25:12 EDT
+Submission Type: 3, Accession: 110820525000041, CIKs: ['1458506', '1108205'], received_time: 2025-05-05 16:25:14 EDT
+Submission Type: 8-K, Accession: 182709025000026, CIKs: ['1827090'], received_time: 2025-05-05 16:25:15 EDT
+Submission Type: 6-K, Accession: 107137125000090, CIKs: ['1071371'], received_time: 2025-05-05 16:25:25 EDT
+Submission Type: 13F-HR, Accession: 191130725000002, CIKs: ['1911307'], received_time: 2025-05-05 16:25:29 EDT
+Submission Type: FWP, Accession: 110465925044527, CIKs: ['83246'], received_time: 2025-05-05 16:25:31 EDT
+Submission Type: 10-Q, Accession: 155837025006304, CIKs: ['887905'], received_time: 2025-05-05 16:25:32 EDT
+Submission Type: 8-K, Accession: 186617525000077, CIKs: ['1866175'], received_time: 2025-05-05 16:25:33 EDT
+Submission Type: 8-K, Accession: 158064225002839, CIKs: ['2037804'], received_time: 2025-05-05 16:25:42 EDT
+Submission Type: 4, Accession: 112760225013350, CIKs: ['1430455'], received_time: 2025-05-05 16:25:45 EDT
+Submission Type: 4, Accession: 121390025039709, CIKs: ['1403442'], received_time: 2025-05-05 16:25:54 EDT
+Submission Type: 144, Accession: 195917325002886, CIKs: ['1495932'], received_time: 2025-05-05 16:25:56 EDT
+Submission Type: 144, Accession: 200731725000302, CIKs: ['1785553', '1116942'], received_time: 2025-05-05 16:25:57 EDT
+Submission Type: 10-Q, Accession: 10726325000102, CIKs: ['110019', '99250', '107263'], received_time: 2025-05-05 16:26:05 EDT
+Submission Type: 4, Accession: 159396825000593, CIKs: ['1990537'], received_time: 2025-05-05 16:26:23 EDT
+Submission Type: SCHEDULE 13G, Accession: 141588925011957, CIKs: ['1798749'], received_time: 2025-05-05 16:26:34 EDT
+Submission Type: 8-K, Accession: 160915125000055, CIKs: ['1609151'], received_time: 2025-05-05 16:26:35 EDT
+Submission Type: 4, Accession: 95017025063578, CIKs: ['1988943'], received_time: 2025-05-05 16:26:37 EDT
+Submission Type: 4, Accession: 110820525000042, CIKs: ['1458506', '1108205'], received_time: 2025-05-05 16:26:38 EDT
+Submission Type: 497, Accession: 112199725000042, CIKs: ['948972'], received_time: 2025-05-05 16:26:38 EDT
+Submission Type: 8-K, Accession: 119312525112812, CIKs: ['1521036'], received_time: 2025-05-05 16:26:41 EDT
+Submission Type: 144, Accession: 105407425000047, CIKs: ['1887944'], received_time: 2025-05-05 16:26:42 EDT
+Submission Type: 8-K, Accession: 32018725000020, CIKs: ['320187'], received_time: 2025-05-05 16:26:43 EDT
+Submission Type: 10-Q, Accession: 164033425000776, CIKs: ['1619227'], received_time: 2025-05-05 16:26:44 EDT
+Submission Type: 8-K, Accession: 155837025006305, CIKs: ['82020'], received_time: 2025-05-05 16:27:14 EDT
+Submission Type: 4, Accession: 154571125000010, CIKs: ['1640619'], received_time: 2025-05-05 16:27:23 EDT
+Submission Type: 4, Accession: 7430325000083, CIKs: ['1359647'], received_time: 2025-05-05 16:27:24 EDT
+Submission Type: 4, Accession: 110465925044528, CIKs: ['1772226'], received_time: 2025-05-05 16:27:25 EDT
+Submission Type: FWP, Accession: 119312525112815, CIKs: ['7323'], received_time: 2025-05-05 16:27:35 EDT
+Submission Type: D/A, Accession: 170231725000002, CIKs: ['1702317'], received_time: 2025-05-05 16:27:37 EDT
+Submission Type: 497, Accession: 113322825005265, CIKs: ['835663'], received_time: 2025-05-05 16:27:38 EDT
+Submission Type: 4, Accession: 3456325000040, CIKs: ['1923968', '34563'], received_time: 2025-05-05 16:27:39 EDT
+Submission Type: 10-Q, Accession: 160955025000020, CIKs: ['1609550'], received_time: 2025-05-05 16:27:47 EDT
+Submission Type: DEFA14A, Accession: 1961725000441, CIKs: ['19617'], received_time: 2025-05-05 16:27:50 EDT
+Submission Type: 497J, Accession: 119312525112816, CIKs: ['1047304'], received_time: 2025-05-05 16:27:50 EDT
+Submission Type: 4, Accession: 112760225013352, CIKs: ['1693925'], received_time: 2025-05-05 16:28:08 EDT
+Submission Type: 13F-HR, Accession: 194104025000259, CIKs: ['1535227'], received_time: 2025-05-05 16:28:08 EDT
+Submission Type: 10-Q, Accession: 186617525000078, CIKs: ['1866175'], received_time: 2025-05-05 16:28:13 EDT
+Submission Type: 424B2, Accession: 191870425007688, CIKs: ['1682472', '70858'], received_time: 2025-05-05 16:28:18 EDT
+Submission Type: 4, Accession: 106299325008477, CIKs: ['825542', '945527'], received_time: 2025-05-05 16:28:21 EDT
+Submission Type: D, Accession: 206527825000002, CIKs: ['2065278'], received_time: 2025-05-05 16:28:21 EDT
+Submission Type: DFAN14A, Accession: 92189525001281, CIKs: ['1814465', '1538716'], received_time: 2025-05-05 16:28:21 EDT
+Submission Type: 4, Accession: 153115225000046, CIKs: ['1510712'], received_time: 2025-05-05 16:28:21 EDT
+Submission Type: 10-Q, Accession: 148477825000051, CIKs: ['1484778'], received_time: 2025-05-05 16:28:22 EDT
+Submission Type: 4, Accession: 95017025063582, CIKs: ['1212892'], received_time: 2025-05-05 16:28:30 EDT
+Submission Type: 8-K, Accession: 155837025006307, CIKs: ['1610250'], received_time: 2025-05-05 16:28:30 EDT
+Submission Type: 497, Accession: 112199725000043, CIKs: ['948972'], received_time: 2025-05-05 16:28:30 EDT
+Submission Type: FWP, Accession: 119312525112817, CIKs: ['731288'], received_time: 2025-05-05 16:28:31 EDT
+Submission Type: 4, Accession: 121390025039710, CIKs: ['1273813', '1604913'], received_time: 2025-05-05 16:28:41 EDT
+Submission Type: 8-K, Accession: 164117225008690, CIKs: ['1342958'], received_time: 2025-05-05 16:29:03 EDT
+Submission Type: 4, Accession: 162828025022204, CIKs: ['1835856', '1614749'], received_time: 2025-05-05 16:29:03 EDT
+Submission Type: 4, Accession: 162828025022205, CIKs: ['1989210'], received_time: 2025-05-05 16:29:14 EDT
+Submission Type: 10-Q, Accession: 95017025063584, CIKs: ['25475'], received_time: 2025-05-05 16:29:21 EDT
+Submission Type: 8-K, Accession: 180297425000016, CIKs: ['1802974'], received_time: 2025-05-05 16:29:23 EDT
+Submission Type: 8-K, Accession: 162828025022206, CIKs: ['931015'], received_time: 2025-05-05 16:29:25 EDT
+Submission Type: 424B2, Accession: 121465925006955, CIKs: ['927971'], received_time: 2025-05-05 16:29:26 EDT
+Submission Type: 15-15D, Accession: 92963825001787, CIKs: ['1957889'], received_time: 2025-05-05 16:29:27 EDT
+Submission Type: 144, Accession: 195917325002887, CIKs: ['1581280', '1755970'], received_time: 2025-05-05 16:29:39 EDT
+Submission Type: 4, Accession: 95017025063587, CIKs: ['1377630', '2023502'], received_time: 2025-05-05 16:29:40 EDT
+Submission Type: 10-Q, Accession: 95017025063585, CIKs: ['910612'], received_time: 2025-05-05 16:29:46 EDT
+Submission Type: 10-Q, Accession: 132858125000058, CIKs: ['1328581'], received_time: 2025-05-05 16:29:46 EDT
+Submission Type: 4, Accession: 104277625000082, CIKs: ['1653251'], received_time: 2025-05-05 16:29:50 EDT
+Submission Type: 6-K, Accession: 203530425000014, CIKs: ['2035304'], received_time: 2025-05-05 16:29:52 EDT
+Submission Type: 3, Accession: 141588925011959, CIKs: ['2065269'], received_time: 2025-05-05 16:30:01 EDT
+Submission Type: 4, Accession: 104277625000083, CIKs: ['1657666'], received_time: 2025-05-05 16:30:03 EDT
+Submission Type: 4, Accession: 7430325000085, CIKs: ['1887503'], received_time: 2025-05-05 16:30:12 EDT
+Submission Type: 424B2, Accession: 183988225026964, CIKs: ['9631'], received_time: 2025-05-05 16:30:12 EDT
+Submission Type: D/A, Accession: 202340425000001, CIKs: ['2023404'], received_time: 2025-05-05 16:30:25 EDT
+Submission Type: 8-K, Accession: 119312525112820, CIKs: ['890926'], received_time: 2025-05-05 16:30:25 EDT
+Submission Type: SD, Accession: 162828025022207, CIKs: ['1418819'], received_time: 2025-05-05 16:30:25 EDT
+Submission Type: 144, Accession: 197745425000192, CIKs: ['1852040', '1977454'], received_time: 2025-05-05 16:30:25 EDT
+Submission Type: 144, Accession: 197745425000191, CIKs: ['1852039'], received_time: 2025-05-05 16:30:25 EDT
+Submission Type: 144, Accession: 197745425000187, CIKs: ['1852025'], received_time: 2025-05-05 16:30:25 EDT
+Submission Type: 4, Accession: 141588925011961, CIKs: ['1888813'], received_time: 2025-05-05 16:30:26 EDT
+Submission Type: 144, Accession: 197745425000189, CIKs: ['1977454', '1852024'], received_time: 2025-05-05 16:30:26 EDT
+Submission Type: 4, Accession: 141588925011960, CIKs: ['1875741'], received_time: 2025-05-05 16:30:27 EDT
+Submission Type: 144, Accession: 197745425000188, CIKs: ['1896677'], received_time: 2025-05-05 16:30:29 EDT
+Submission Type: 144, Accession: 197745425000190, CIKs: ['1874907'], received_time: 2025-05-05 16:30:29 EDT
+Submission Type: 144, Accession: 197745425000185, CIKs: ['1852023'], received_time: 2025-05-05 16:30:29 EDT
+Submission Type: 144, Accession: 197745425000186, CIKs: ['1720265'], received_time: 2025-05-05 16:30:29 EDT
+Submission Type: 4, Accession: 95017025063589, CIKs: ['1327567', '1882285'], received_time: 2025-05-05 16:30:30 EDT
+Submission Type: ARS, Accession: 95017025063591, CIKs: ['1468328'], received_time: 2025-05-05 16:30:31 EDT
+Submission Type: 424B2, Accession: 95017025063588, CIKs: ['886982'], received_time: 2025-05-05 16:30:31 EDT
+Submission Type: 8-K, Accession: 182912625003401, CIKs: ['1893311'], received_time: 2025-05-05 16:30:33 EDT
+Submission Type: 4, Accession: 95017025063592, CIKs: ['1774821'], received_time: 2025-05-05 16:30:33 EDT
+Submission Type: 4, Accession: 141588925011963, CIKs: ['1861795', '1878756'], received_time: 2025-05-05 16:30:33 EDT
+Submission Type: 497K, Accession: 113322825005268, CIKs: ['835663'], received_time: 2025-05-05 16:30:33 EDT
+Submission Type: 4, Accession: 95017025063590, CIKs: ['1250333'], received_time: 2025-05-05 16:30:33 EDT
+Submission Type: 4, Accession: 141588925011962, CIKs: ['1641054'], received_time: 2025-05-05 16:30:34 EDT
+Submission Type: 4, Accession: 110465925044530, CIKs: ['1657312', '1627642'], received_time: 2025-05-05 16:30:35 EDT
+Submission Type: 4, Accession: 141588925011964, CIKs: ['1879507', '1861795'], received_time: 2025-05-05 16:30:36 EDT
+Submission Type: 424B2, Accession: 119312525112819, CIKs: ['731288'], received_time: 2025-05-05 16:30:43 EDT
+Submission Type: 497, Accession: 112199725000044, CIKs: ['948972'], received_time: 2025-05-05 16:30:43 EDT
+Submission Type: 4, Accession: 110465925044531, CIKs: ['2061788'], received_time: 2025-05-05 16:30:45 EDT
+Submission Type: 3, Accession: 164033425000781, CIKs: ['2058327', '2033750'], received_time: 2025-05-05 16:30:46 EDT
+Submission Type: FWP, Accession: 119312525112821, CIKs: ['8670'], received_time: 2025-05-05 16:30:46 EDT
+Submission Type: DEF 14A, Accession: 164117225008692, CIKs: ['1412486'], received_time: 2025-05-05 16:30:50 EDT
+Submission Type: 8-K, Accession: 110465925044533, CIKs: ['1630805'], received_time: 2025-05-05 16:30:52 EDT
+Submission Type: 8-K, Accession: 110465925044532, CIKs: ['1497770'], received_time: 2025-05-05 16:30:52 EDT
+Submission Type: 10-Q, Accession: 155837025006308, CIKs: ['1325618'], received_time: 2025-05-05 16:30:55 EDT
+Submission Type: 424B3, Accession: 164117225008691, CIKs: ['1883788'], received_time: 2025-05-05 16:31:00 EDT
+Submission Type: 3, Accession: 164033425000782, CIKs: ['2033750', '2066385'], received_time: 2025-05-05 16:31:03 EDT
+Submission Type: 8-K, Accession: 121465925006956, CIKs: ['896493'], received_time: 2025-05-05 16:31:04 EDT
+Submission Type: 8-K, Accession: 119312525112822, CIKs: ['107263'], received_time: 2025-05-05 16:31:04 EDT
+Submission Type: 8-K, Accession: 114036125017345, CIKs: ['356309'], received_time: 2025-05-05 16:31:05 EDT
+Submission Type: 4, Accession: 110465925044534, CIKs: ['1207107'], received_time: 2025-05-05 16:31:11 EDT
+Submission Type: 4, Accession: 110465925044535, CIKs: ['1394093'], received_time: 2025-05-05 16:31:26 EDT
+Submission Type: 4, Accession: 121390025039715, CIKs: ['1859355'], received_time: 2025-05-05 16:31:27 EDT
+Submission Type: 4, Accession: 92037125000070, CIKs: ['1959616'], received_time: 2025-05-05 16:31:36 EDT
+Submission Type: 4, Accession: 112760225013354, CIKs: ['2038327', '731802'], received_time: 2025-05-05 16:31:39 EDT
+Submission Type: 8-K, Accession: 148695725000025, CIKs: ['1486957'], received_time: 2025-05-05 16:31:41 EDT
+Submission Type: 4, Accession: 162828025022210, CIKs: ['1502670'], received_time: 2025-05-05 16:31:41 EDT
+Submission Type: 424B2, Accession: 183988225026965, CIKs: ['9631'], received_time: 2025-05-05 16:31:43 EDT
+Submission Type: 4, Accession: 95017025063601, CIKs: ['1393584', '1714025'], received_time: 2025-05-05 16:31:44 EDT
+Submission Type: D/A, Accession: 203354825000015, CIKs: ['2060324'], received_time: 2025-05-05 16:31:44 EDT
+Submission Type: 10-Q, Accession: 143774925014559, CIKs: ['896156'], received_time: 2025-05-05 16:31:50 EDT
+Submission Type: 4, Accession: 110465925044536, CIKs: ['1408502'], received_time: 2025-05-05 16:31:54 EDT
+Submission Type: 3, Accession: 95017025063603, CIKs: ['1899671'], received_time: 2025-05-05 16:31:54 EDT
+Submission Type: 4, Accession: 95017025063604, CIKs: ['1393584', '1824038'], received_time: 2025-05-05 16:31:55 EDT
+Submission Type: 4, Accession: 110465925044537, CIKs: ['1220053'], received_time: 2025-05-05 16:32:03 EDT
+Submission Type: 8-K, Accession: 119312525112823, CIKs: ['2011498'], received_time: 2025-05-05 16:32:04 EDT
+Submission Type: 4, Accession: 128884725000121, CIKs: ['2000932', '1288847'], received_time: 2025-05-05 16:32:12 EDT
+Submission Type: 497, Accession: 112199725000045, CIKs: ['948972'], received_time: 2025-05-05 16:32:12 EDT
+Submission Type: 4, Accession: 167398525000067, CIKs: ['1806189'], received_time: 2025-05-05 16:32:23 EDT
+Submission Type: 4, Accession: 101730325000047, CIKs: ['1017303', '1800836'], received_time: 2025-05-05 16:32:23 EDT
+Submission Type: 10-Q, Accession: 182709025000028, CIKs: ['1827090'], received_time: 2025-05-05 16:32:29 EDT
+Submission Type: 8-K, Accession: 89541725000057, CIKs: ['895417'], received_time: 2025-05-05 16:32:39 EDT
+Submission Type: 4, Accession: 110465925044539, CIKs: ['1322858'], received_time: 2025-05-05 16:32:40 EDT
+Submission Type: 497K, Accession: 113322825005270, CIKs: ['835663'], received_time: 2025-05-05 16:32:42 EDT
+Submission Type: 4, Accession: 110465925044538, CIKs: ['1836883'], received_time: 2025-05-05 16:32:42 EDT
+Submission Type: 4, Accession: 95017025063607, CIKs: ['1899671'], received_time: 2025-05-05 16:32:52 EDT
+Submission Type: 4, Accession: 107041225000072, CIKs: ['1243788'], received_time: 2025-05-05 16:33:08 EDT
+Submission Type: 8-K, Accession: 95017025063610, CIKs: ['1984060'], received_time: 2025-05-05 16:33:10 EDT
+Submission Type: 497, Accession: 112199725000046, CIKs: ['948972'], received_time: 2025-05-05 16:33:11 EDT
+Submission Type: 4, Accession: 128941925000075, CIKs: ['1324069'], received_time: 2025-05-05 16:33:11 EDT
+Submission Type: 4, Accession: 141588925011966, CIKs: ['2065269'], received_time: 2025-05-05 16:33:12 EDT
+Submission Type: 4, Accession: 110465925044541, CIKs: ['1337679', '1670592'], received_time: 2025-05-05 16:33:21 EDT
+Submission Type: 4, Accession: 107041225000073, CIKs: ['1904493', '1070412'], received_time: 2025-05-05 16:33:23 EDT
+Submission Type: 4, Accession: 112760225013356, CIKs: ['1462918', '731802'], received_time: 2025-05-05 16:33:36 EDT
+Submission Type: 4, Accession: 75197825000008, CIKs: ['751978', '1654669'], received_time: 2025-05-05 16:33:42 EDT
+Submission Type: 10-Q, Accession: 95017025063596, CIKs: ['1655050'], received_time: 2025-05-05 16:33:53 EDT
+Submission Type: 4, Accession: 107041225000074, CIKs: ['1469912', '1070412'], received_time: 2025-05-05 16:33:57 EDT
+Submission Type: 4, Accession: 110465925044542, CIKs: ['1639857', '1670592'], received_time: 2025-05-05 16:33:59 EDT
+Submission Type: D, Accession: 206701025000001, CIKs: ['2067010'], received_time: 2025-05-05 16:34:11 EDT
+Submission Type: 10-Q, Accession: 148695725000026, CIKs: ['1486957'], received_time: 2025-05-05 16:34:15 EDT
+Submission Type: 4, Accession: 107041225000075, CIKs: ['1705595'], received_time: 2025-05-05 16:34:22 EDT
+Submission Type: 8-K, Accession: 110299325000044, CIKs: ['1102993'], received_time: 2025-05-05 16:34:22 EDT
+Submission Type: 4, Accession: 95017025063613, CIKs: ['1882162'], received_time: 2025-05-05 16:34:23 EDT
+Submission Type: 10-Q, Accession: 179034025000061, CIKs: ['1790340'], received_time: 2025-05-05 16:34:41 EDT
+Submission Type: 4, Accession: 110465925044543, CIKs: ['1670592', '2062646'], received_time: 2025-05-05 16:34:47 EDT
+Submission Type: SCHEDULE 13D/A, Accession: 147237525000039, CIKs: ['930245'], received_time: 2025-05-05 16:34:54 EDT
+Submission Type: 4, Accession: 1691825000045, CIKs: ['16918', '1808594'], received_time: 2025-05-05 16:34:57 EDT
+Submission Type: 4, Accession: 112760225013358, CIKs: ['1713954'], received_time: 2025-05-05 16:35:04 EDT
+Submission Type: 4, Accession: 121390025039716, CIKs: ['2000515'], received_time: 2025-05-05 16:35:06 EDT
+Submission Type: 497J, Accession: 112199725000047, CIKs: ['948972'], received_time: 2025-05-05 16:35:06 EDT
+Submission Type: 497K, Accession: 113322825005272, CIKs: ['835663'], received_time: 2025-05-05 16:35:15 EDT
+Submission Type: N-CSRS, Accession: 139834425008666, CIKs: ['701817'], received_time: 2025-05-05 16:35:22 EDT
+Submission Type: 4, Accession: 110465925044544, CIKs: ['824728'], received_time: 2025-05-05 16:35:25 EDT
+Submission Type: 8-K, Accession: 167433525000093, CIKs: ['1674335'], received_time: 2025-05-05 16:35:26 EDT
+Submission Type: 8-K, Accession: 86867125000072, CIKs: ['868671'], received_time: 2025-05-05 16:35:35 EDT
+Submission Type: 8-K, Accession: 107541525000021, CIKs: ['1075415'], received_time: 2025-05-05 16:35:36 EDT
+Submission Type: DEFA14A, Accession: 164117225008695, CIKs: ['1412486'], received_time: 2025-05-05 16:35:44 EDT
+Submission Type: 497J, Accession: 92349525000030, CIKs: ['923495'], received_time: 2025-05-05 16:35:44 EDT
+Submission Type: 4, Accession: 95017025063616, CIKs: ['2023508'], received_time: 2025-05-05 16:35:45 EDT
+Submission Type: S-3, Accession: 143774925014524, CIKs: ['917470'], received_time: 2025-05-05 16:35:51 EDT
+Submission Type: D, Accession: 206512625000002, CIKs: ['2065126'], received_time: 2025-05-05 16:36:01 EDT
+Submission Type: 4, Accession: 110465925044545, CIKs: ['1670592', '1234928'], received_time: 2025-05-05 16:36:02 EDT
+Submission Type: 424B3, Accession: 164117225008694, CIKs: ['1883788'], received_time: 2025-05-05 16:36:02 EDT
+Submission Type: 4, Accession: 132616025000133, CIKs: ['1718124'], received_time: 2025-05-05 16:36:13 EDT
+Submission Type: 8-K, Accession: 119312525112827, CIKs: ['1794669'], received_time: 2025-05-05 16:36:15 EDT
+Submission Type: 8-K, Accession: 2891725000008, CIKs: ['28917'], received_time: 2025-05-05 16:36:29 EDT
+Submission Type: 4, Accession: 132616025000134, CIKs: ['1181174', '1326160'], received_time: 2025-05-05 16:36:29 EDT
+Submission Type: 4, Accession: 121390025039718, CIKs: ['1771938'], received_time: 2025-05-05 16:36:40 EDT
+Submission Type: 4, Accession: 132616025000135, CIKs: ['1326160', '1231452'], received_time: 2025-05-05 16:36:41 EDT
+Submission Type: 8-K, Accession: 162828025022212, CIKs: ['1831840'], received_time: 2025-05-05 16:36:55 EDT
+Submission Type: 4, Accession: 132616025000136, CIKs: ['1861027'], received_time: 2025-05-05 16:36:56 EDT
+Submission Type: 4, Accession: 117992925000087, CIKs: ['1211493', '1179929'], received_time: 2025-05-05 16:37:15 EDT
+Submission Type: 4, Accession: 132616025000137, CIKs: ['1491154', '1326160'], received_time: 2025-05-05 16:37:17 EDT
+Submission Type: 4, Accession: 132616025000138, CIKs: ['1238180', '1326160'], received_time: 2025-05-05 16:37:25 EDT
+Submission Type: 13F-HR, Accession: 190817725000002, CIKs: ['1908177'], received_time: 2025-05-05 16:37:25 EDT
+Submission Type: 4, Accession: 132616025000139, CIKs: ['1363076'], received_time: 2025-05-05 16:37:34 EDT
+Submission Type: D/A, Accession: 203354825000016, CIKs: ['1922251'], received_time: 2025-05-05 16:37:45 EDT
+Submission Type: 4, Accession: 112760225013360, CIKs: ['731802', '1888751'], received_time: 2025-05-05 16:37:45 EDT
+Submission Type: 6-K, Accession: 110465925044547, CIKs: ['1123452'], received_time: 2025-05-05 16:37:55 EDT
+Submission Type: 4, Accession: 95017025063620, CIKs: ['1881162'], received_time: 2025-05-05 16:37:57 EDT
+Submission Type: DEFA14A, Accession: 2891725000009, CIKs: ['28917'], received_time: 2025-05-05 16:37:57 EDT
+Submission Type: 4, Accession: 165016425000153, CIKs: ['2004790'], received_time: 2025-05-05 16:38:05 EDT
+Submission Type: 4, Accession: 141588925011967, CIKs: ['1677721', '1114995'], received_time: 2025-05-05 16:38:07 EDT
+Submission Type: 4, Accession: 132616025000140, CIKs: ['1326160', '1683044'], received_time: 2025-05-05 16:38:14 EDT
+Submission Type: 4, Accession: 1691825000047, CIKs: ['1742352'], received_time: 2025-05-05 16:38:14 EDT
+Submission Type: 8-K, Accession: 106299325008479, CIKs: ['1099369'], received_time: 2025-05-05 16:38:16 EDT
+Submission Type: 144, Accession: 195004725002738, CIKs: ['1422930'], received_time: 2025-05-05 16:38:22 EDT
+Submission Type: 4, Accession: 121390025039721, CIKs: ['2000153'], received_time: 2025-05-05 16:38:25 EDT
+Submission Type: 4, Accession: 132616025000141, CIKs: ['1187019'], received_time: 2025-05-05 16:38:33 EDT
+Submission Type: 4, Accession: 7430325000087, CIKs: ['1472600'], received_time: 2025-05-05 16:38:34 EDT
+Submission Type: 144, Accession: 195004725002739, CIKs: ['1943896'], received_time: 2025-05-05 16:38:44 EDT
+Submission Type: 144, Accession: 195004725002740, CIKs: ['1783879'], received_time: 2025-05-05 16:38:54 EDT
+Submission Type: 4, Accession: 141588925011968, CIKs: ['1884996'], received_time: 2025-05-05 16:38:55 EDT
+Submission Type: 4, Accession: 132616025000142, CIKs: ['1471770', '1326160'], received_time: 2025-05-05 16:38:57 EDT
+Submission Type: 3, Accession: 7290325000093, CIKs: ['2061483', '72903'], received_time: 2025-05-05 16:38:57 EDT
+Submission Type: D/A, Accession: 159984625000002, CIKs: ['1599846'], received_time: 2025-05-05 16:38:57 EDT
+Submission Type: 144, Accession: 84986925000067, CIKs: ['849869'], received_time: 2025-05-05 16:38:58 EDT
+Submission Type: F-4, Accession: 114036125017348, CIKs: ['1159152'], received_time: 2025-05-05 16:39:03 EDT
+Submission Type: 4, Accession: 105079725000076, CIKs: ['1615914'], received_time: 2025-05-05 16:39:07 EDT
+Submission Type: 4, Accession: 132616025000143, CIKs: ['1305807'], received_time: 2025-05-05 16:39:08 EDT
+Submission Type: 144, Accession: 195004725002741, CIKs: ['1270710', '1177394'], received_time: 2025-05-05 16:39:09 EDT
+Submission Type: D, Accession: 206692125000001, CIKs: ['2066921'], received_time: 2025-05-05 16:39:11 EDT
+Submission Type: 4, Accession: 141588925011969, CIKs: ['1884062'], received_time: 2025-05-05 16:39:11 EDT
+Submission Type: 4, Accession: 105079725000077, CIKs: ['1529495', '1050797'], received_time: 2025-05-05 16:39:13 EDT
+Submission Type: 144, Accession: 195004725002742, CIKs: ['1315098'], received_time: 2025-05-05 16:39:20 EDT
+Submission Type: 4, Accession: 165016425000155, CIKs: ['1869139'], received_time: 2025-05-05 16:39:22 EDT
+Submission Type: 4, Accession: 132616025000144, CIKs: ['1326160', '1195421'], received_time: 2025-05-05 16:39:23 EDT
+Submission Type: 10-Q, Accession: 175392625000738, CIKs: ['822663'], received_time: 2025-05-05 16:39:26 EDT
+Submission Type: 4, Accession: 154571125000011, CIKs: ['1628995'], received_time: 2025-05-05 16:39:32 EDT
+Submission Type: 4, Accession: 105079725000078, CIKs: ['1876194', '1050797'], received_time: 2025-05-05 16:39:34 EDT
+Submission Type: 4, Accession: 132616025000145, CIKs: ['1478475'], received_time: 2025-05-05 16:39:43 EDT
+Submission Type: 4, Accession: 173956625000120, CIKs: ['1871546'], received_time: 2025-05-05 16:40:00 EDT
+Submission Type: D, Accession: 206656125000001, CIKs: ['2066561'], received_time: 2025-05-05 16:40:01 EDT
+Submission Type: 144, Accession: 195004725002743, CIKs: ['1217234'], received_time: 2025-05-05 16:40:01 EDT
+Submission Type: 4, Accession: 105079725000079, CIKs: ['1238809', '1050797'], received_time: 2025-05-05 16:40:02 EDT
+Submission Type: 8-K, Accession: 121390025039723, CIKs: ['1413891'], received_time: 2025-05-05 16:40:03 EDT
+Submission Type: 4, Accession: 105079725000080, CIKs: ['1239159', '1050797'], received_time: 2025-05-05 16:40:15 EDT
+Submission Type: 144, Accession: 195004725002744, CIKs: ['1315098'], received_time: 2025-05-05 16:40:21 EDT
+Submission Type: 144, Accession: 195917325002888, CIKs: ['1000753'], received_time: 2025-05-05 16:40:22 EDT
+Submission Type: 3, Accession: 7290325000095, CIKs: ['2062439'], received_time: 2025-05-05 16:40:23 EDT
+Submission Type: 144, Accession: 195004725002745, CIKs: ['914475', '1205903'], received_time: 2025-05-05 16:40:36 EDT
+Submission Type: 4, Accession: 165016425000157, CIKs: ['1674159', '1650164'], received_time: 2025-05-05 16:40:37 EDT
+Submission Type: 4, Accession: 105079725000081, CIKs: ['1411337', '1050797'], received_time: 2025-05-05 16:40:38 EDT
+Submission Type: 144, Accession: 195004725002746, CIKs: ['1315098'], received_time: 2025-05-05 16:40:46 EDT
+Submission Type: 10-D/A, Accession: 188852425008457, CIKs: ['1780859'], received_time: 2025-05-05 16:40:48 EDT
+Submission Type: 4, Accession: 1691825000049, CIKs: ['1531376'], received_time: 2025-05-05 16:40:49 EDT
+Submission Type: 4, Accession: 105079725000082, CIKs: ['1518939'], received_time: 2025-05-05 16:40:49 EDT
+Submission Type: 13F-HR, Accession: 117266125001576, CIKs: ['1923591'], received_time: 2025-05-05 16:40:50 EDT
+Submission Type: 4, Accession: 112760225013365, CIKs: ['1693927', '731802'], received_time: 2025-05-05 16:40:52 EDT
+Submission Type: 3, Accession: 112760225013364, CIKs: ['1951324'], received_time: 2025-05-05 16:40:52 EDT
+Submission Type: 4, Accession: 105079725000083, CIKs: ['1201101'], received_time: 2025-05-05 16:40:54 EDT
+Submission Type: 4, Accession: 105079725000084, CIKs: ['1456877', '1050797'], received_time: 2025-05-05 16:41:02 EDT
+Submission Type: 13F-HR, Accession: 135286025000003, CIKs: ['1352860'], received_time: 2025-05-05 16:41:02 EDT
+Submission Type: 144, Accession: 195004725002747, CIKs: ['1315098'], received_time: 2025-05-05 16:41:04 EDT
+Submission Type: 8-K, Accession: 119312525112831, CIKs: ['892553'], received_time: 2025-05-05 16:41:04 EDT
+Submission Type: 8-K, Accession: 114036125017352, CIKs: ['842518'], received_time: 2025-05-05 16:41:05 EDT
+Submission Type: 4, Accession: 93709825000076, CIKs: ['1659774', '937098'], received_time: 2025-05-05 16:41:14 EDT
+Submission Type: 424B2, Accession: 95017025063627, CIKs: ['1419828', '886982'], received_time: 2025-05-05 16:41:14 EDT
+Submission Type: 4, Accession: 105079725000085, CIKs: ['1131061', '1050797'], received_time: 2025-05-05 16:41:15 EDT
+Submission Type: POS EX, Accession: 119312525112832, CIKs: ['832327'], received_time: 2025-05-05 16:41:24 EDT
+Submission Type: DEF 14A, Accession: 114036125017353, CIKs: ['1393052'], received_time: 2025-05-05 16:41:26 EDT
+Submission Type: 4, Accession: 165016425000159, CIKs: ['1650164', '1869038'], received_time: 2025-05-05 16:41:34 EDT
+Submission Type: 497J, Accession: 112199725000048, CIKs: ['940338'], received_time: 2025-05-05 16:41:43 EDT
+Submission Type: 4, Accession: 173956625000121, CIKs: ['1609864'], received_time: 2025-05-05 16:41:43 EDT
+Submission Type: 8-K, Accession: 165495425005083, CIKs: ['31107'], received_time: 2025-05-05 16:42:03 EDT
+Submission Type: 4, Accession: 165016425000161, CIKs: ['1869299'], received_time: 2025-05-05 16:42:35 EDT
+Submission Type: F-6 POS, Accession: 101915525000154, CIKs: ['1201935', '1545057'], received_time: 2025-05-05 16:42:36 EDT
+Submission Type: 4, Accession: 9375125000230, CIKs: ['1782452', '93751'], received_time: 2025-05-05 16:42:38 EDT
+Submission Type: 4, Accession: 9375125000231, CIKs: ['1818588'], received_time: 2025-05-05 16:42:46 EDT
+Submission Type: 4, Accession: 147511525000062, CIKs: ['1475115', '1751075'], received_time: 2025-05-05 16:42:48 EDT
+Submission Type: 144/A, Accession: 200731725000303, CIKs: ['1065280'], received_time: 2025-05-05 16:42:49 EDT
+Submission Type: 4, Accession: 9375125000232, CIKs: ['2005081'], received_time: 2025-05-05 16:42:50 EDT
+Submission Type: 8-K, Accession: 81676125000101, CIKs: ['816761'], received_time: 2025-05-05 16:42:51 EDT
+Submission Type: 4, Accession: 161011125000010, CIKs: ['1610111'], received_time: 2025-05-05 16:42:52 EDT
+Submission Type: 144, Accession: 200731725000304, CIKs: ['1840776'], received_time: 2025-05-05 16:43:01 EDT
+Submission Type: 4, Accession: 147511525000063, CIKs: ['1969965'], received_time: 2025-05-05 16:43:02 EDT
+Submission Type: 3, Accession: 106299325008481, CIKs: ['1164727', '1392152'], received_time: 2025-05-05 16:43:14 EDT
+Submission Type: DEFA14A, Accession: 114036125017354, CIKs: ['1393052'], received_time: 2025-05-05 16:43:14 EDT
+Submission Type: 8-K, Accession: 10938025000062, CIKs: ['109380'], received_time: 2025-05-05 16:43:15 EDT
+Submission Type: 4, Accession: 147511525000064, CIKs: ['1970405'], received_time: 2025-05-05 16:43:25 EDT
+Submission Type: F-6 POS, Accession: 101915525000155, CIKs: ['1201935', '1545057'], received_time: 2025-05-05 16:43:35 EDT
+Submission Type: 13F-HR, Accession: 90572925000087, CIKs: ['2026480'], received_time: 2025-05-05 16:43:35 EDT
+Submission Type: 8-K, Accession: 110465925044549, CIKs: ['1994624'], received_time: 2025-05-05 16:43:35 EDT
+Submission Type: 4, Accession: 165016425000163, CIKs: ['1868272'], received_time: 2025-05-05 16:43:36 EDT
+Submission Type: D, Accession: 204859225000004, CIKs: ['2048592'], received_time: 2025-05-05 16:43:37 EDT
+Submission Type: 4, Accession: 147511525000065, CIKs: ['1819622'], received_time: 2025-05-05 16:43:39 EDT
+Submission Type: 4, Accession: 1691825000051, CIKs: ['1790492'], received_time: 2025-05-05 16:43:40 EDT
+Submission Type: 4, Accession: 154571125000012, CIKs: ['1184244'], received_time: 2025-05-05 16:43:40 EDT
+Submission Type: 10-Q, Accession: 181951625000028, CIKs: ['1819516'], received_time: 2025-05-05 16:44:14 EDT
+Submission Type: 4, Accession: 161071725000112, CIKs: ['1035267', '1330269'], received_time: 2025-05-05 16:44:20 EDT
+Submission Type: 4, Accession: 173956625000123, CIKs: ['1739566', '1821519'], received_time: 2025-05-05 16:44:49 EDT
+Submission Type: 4, Accession: 7290325000097, CIKs: ['2062439'], received_time: 2025-05-05 16:44:57 EDT
+Submission Type: 144, Accession: 195917325002889, CIKs: ['1710190', '1739940'], received_time: 2025-05-05 16:45:05 EDT
+Submission Type: 6-K, Accession: 87677925000005, CIKs: ['876779'], received_time: 2025-05-05 16:45:08 EDT
+Submission Type: 497J, Accession: 119312525112834, CIKs: ['1526787'], received_time: 2025-05-05 16:45:11 EDT
+Submission Type: 497K, Accession: 139834425008668, CIKs: ['1318342'], received_time: 2025-05-05 16:45:11 EDT
+Submission Type: 485BXT, Accession: 159290025001074, CIKs: ['1592900'], received_time: 2025-05-05 16:45:11 EDT
+Submission Type: 4, Accession: 141588925011971, CIKs: ['1494099'], received_time: 2025-05-05 16:45:27 EDT
+Submission Type: 144, Accession: 195917325002890, CIKs: ['78003'], received_time: 2025-05-05 16:45:28 EDT
+Submission Type: DEF 14A, Accession: 164117225008699, CIKs: ['1641631'], received_time: 2025-05-05 16:45:28 EDT
+Submission Type: 4, Accession: 106299325008483, CIKs: ['1936354', '1164727'], received_time: 2025-05-05 16:45:33 EDT
+Submission Type: 8-K, Accession: 119312525112835, CIKs: ['755001'], received_time: 2025-05-05 16:45:33 EDT
+Submission Type: 10-Q, Accession: 2107625000023, CIKs: ['21076'], received_time: 2025-05-05 16:45:40 EDT
+Submission Type: DEFA14A, Accession: 110465925044551, CIKs: ['793952'], received_time: 2025-05-05 16:45:43 EDT
+Submission Type: 8-K, Accession: 114036125017356, CIKs: ['1792044'], received_time: 2025-05-05 16:45:45 EDT
+Submission Type: 8-K, Accession: 143774925014562, CIKs: ['98222'], received_time: 2025-05-05 16:45:46 EDT
+Submission Type: 40-APP/A, Accession: 121390025039732, CIKs: ['1784700', '2064781'], received_time: 2025-05-05 16:46:08 EDT
+Submission Type: 4, Accession: 161071725000113, CIKs: ['1917389'], received_time: 2025-05-05 16:46:14 EDT
+Submission Type: 4, Accession: 143774925014563, CIKs: ['2043740'], received_time: 2025-05-05 16:46:24 EDT
+Submission Type: 4, Accession: 113031025000085, CIKs: ['1847454'], received_time: 2025-05-05 16:46:34 EDT
+Submission Type: 485BXT, Accession: 159290025001075, CIKs: ['1592900'], received_time: 2025-05-05 16:46:34 EDT
+Submission Type: 4, Accession: 1691825000053, CIKs: ['16918', '1797763'], received_time: 2025-05-05 16:46:36 EDT
+Submission Type: 144, Accession: 196858225000309, CIKs: ['1669162', '1715483'], received_time: 2025-05-05 16:46:46 EDT
+Submission Type: 6-K, Accession: 110465925044552, CIKs: ['1001085'], received_time: 2025-05-05 16:46:46 EDT
+Submission Type: 4, Accession: 141588925011973, CIKs: ['1320414', '1472553'], received_time: 2025-05-05 16:46:54 EDT
+Submission Type: 4, Accession: 7290325000099, CIKs: ['2061483', '72903'], received_time: 2025-05-05 16:46:54 EDT
+Submission Type: 10-Q, Accession: 162747525000033, CIKs: ['1627475'], received_time: 2025-05-05 16:47:08 EDT
+Submission Type: 8-K, Accession: 121390025039733, CIKs: ['1711754'], received_time: 2025-05-05 16:47:19 EDT
+Submission Type: 8-K, Accession: 142146125000014, CIKs: ['1421461'], received_time: 2025-05-05 16:47:20 EDT
+Submission Type: 4, Accession: 106299325008485, CIKs: ['1994131'], received_time: 2025-05-05 16:47:35 EDT
+Submission Type: 4, Accession: 154571125000013, CIKs: ['1227859'], received_time: 2025-05-05 16:47:35 EDT
+Submission Type: 4, Accession: 113031025000086, CIKs: ['1588011'], received_time: 2025-05-05 16:47:40 EDT
+Submission Type: 8-K, Accession: 70335125000020, CIKs: ['703351'], received_time: 2025-05-05 16:47:47 EDT
+Submission Type: 485BXT, Accession: 159290025001076, CIKs: ['1592900'], received_time: 2025-05-05 16:47:51 EDT
+Submission Type: 4, Accession: 141588925011975, CIKs: ['1741533'], received_time: 2025-05-05 16:48:04 EDT
+Submission Type: 10-Q, Accession: 95017025063634, CIKs: ['1579428'], received_time: 2025-05-05 16:48:11 EDT
+Submission Type: 10-Q, Accession: 143774925014565, CIKs: ['98222'], received_time: 2025-05-05 16:48:34 EDT
+Submission Type: 8-K, Accession: 119312525112839, CIKs: ['882184'], received_time: 2025-05-05 16:48:43 EDT
+Submission Type: 8-K, Accession: 2523225000033, CIKs: ['25232'], received_time: 2025-05-05 16:48:47 EDT
+Submission Type: DEFA14A, Accession: 114036125017358, CIKs: ['357301'], received_time: 2025-05-05 16:48:53 EDT
+Submission Type: 424B2, Accession: 191870425007689, CIKs: ['1682472', '70858'], received_time: 2025-05-05 16:48:53 EDT
+Submission Type: 4, Accession: 113031025000087, CIKs: ['1390811'], received_time: 2025-05-05 16:49:02 EDT
+Submission Type: 4, Accession: 141588925011978, CIKs: ['1200796'], received_time: 2025-05-05 16:49:03 EDT
+Submission Type: 8-K, Accession: 94337425000187, CIKs: ['1979332'], received_time: 2025-05-05 16:49:04 EDT
+Submission Type: 8-K, Accession: 119312525112841, CIKs: ['1418135'], received_time: 2025-05-05 16:49:22 EDT
+Submission Type: 10-Q, Accession: 107997325000745, CIKs: ['1807893'], received_time: 2025-05-05 16:49:25 EDT
+Submission Type: 4, Accession: 141588925011979, CIKs: ['1532218'], received_time: 2025-05-05 16:49:36 EDT
+Submission Type: 4, Accession: 106299325008487, CIKs: ['1265769'], received_time: 2025-05-05 16:49:45 EDT
+Submission Type: 4, Accession: 121465925006958, CIKs: ['1908015'], received_time: 2025-05-05 16:49:46 EDT
+Submission Type: 4, Accession: 178730625000077, CIKs: ['1801050'], received_time: 2025-05-05 16:49:54 EDT
+Submission Type: 4, Accession: 113031025000088, CIKs: ['1885873', '1130310'], received_time: 2025-05-05 16:49:56 EDT
+Submission Type: 497K, Accession: 139834425008673, CIKs: ['1318342'], received_time: 2025-05-05 16:49:59 EDT
+Submission Type: 10-Q, Accession: 95017025063636, CIKs: ['1675033'], received_time: 2025-05-05 16:49:59 EDT
+Submission Type: 4, Accession: 1691825000055, CIKs: ['16918', '2013420'], received_time: 2025-05-05 16:50:01 EDT
+Submission Type: ARS, Accession: 114036125017359, CIKs: ['1393052'], received_time: 2025-05-05 16:50:13 EDT
+Submission Type: 4, Accession: 3872525000090, CIKs: ['1189242'], received_time: 2025-05-05 16:50:13 EDT
+Submission Type: D, Accession: 206571825000002, CIKs: ['2065718'], received_time: 2025-05-05 16:50:22 EDT
+Submission Type: 8-K, Accession: 95017025063639, CIKs: ['1789029'], received_time: 2025-05-05 16:50:23 EDT
+Submission Type: 424B2, Accession: 183988225026969, CIKs: ['9631'], received_time: 2025-05-05 16:50:23 EDT
+Submission Type: 4, Accession: 168316825003136, CIKs: ['814586', '1227848'], received_time: 2025-05-05 16:50:25 EDT
+Submission Type: D/A, Accession: 196472625000001, CIKs: ['1964726'], received_time: 2025-05-05 16:50:33 EDT
+Submission Type: 3, Accession: 166427225000275, CIKs: ['2066653', '6201'], received_time: 2025-05-05 16:50:36 EDT
+Submission Type: 497J, Accession: 112199725000049, CIKs: ['948972'], received_time: 2025-05-05 16:50:38 EDT
+Submission Type: 4, Accession: 113031025000089, CIKs: ['1995519'], received_time: 2025-05-05 16:50:39 EDT
+Submission Type: 4, Accession: 154571125000014, CIKs: ['1068020', '51644'], received_time: 2025-05-05 16:50:39 EDT
+Submission Type: 13F-HR, Accession: 195175725000502, CIKs: ['1914515'], received_time: 2025-05-05 16:50:41 EDT
+Submission Type: 8-K, Accession: 136153825000022, CIKs: ['1361538'], received_time: 2025-05-05 16:50:41 EDT
+Submission Type: 4, Accession: 166427225000276, CIKs: ['2066653', '6201'], received_time: 2025-05-05 16:51:01 EDT
+Submission Type: 4, Accession: 141588925011981, CIKs: ['1835458'], received_time: 2025-05-05 16:51:02 EDT
+Submission Type: 497, Accession: 182912625003403, CIKs: ['1547576'], received_time: 2025-05-05 16:51:34 EDT
+Submission Type: 144, Accession: 196858225000311, CIKs: ['1535527'], received_time: 2025-05-05 16:51:36 EDT
+Submission Type: DEFR14A, Accession: 119312525112844, CIKs: ['1819253'], received_time: 2025-05-05 16:51:40 EDT
+Submission Type: 4, Accession: 113031025000090, CIKs: ['1403296'], received_time: 2025-05-05 16:51:48 EDT
+Submission Type: 4, Accession: 141588925011983, CIKs: ['1814777'], received_time: 2025-05-05 16:51:58 EDT
+Submission Type: 497K, Accession: 182912625003404, CIKs: ['1547576'], received_time: 2025-05-05 16:51:59 EDT
+Submission Type: 497K, Accession: 139834425008676, CIKs: ['1318342'], received_time: 2025-05-05 16:52:00 EDT
+Submission Type: 8-K, Accession: 118518525000400, CIKs: ['31667'], received_time: 2025-05-05 16:52:17 EDT
+Submission Type: 8-K, Accession: 119312525112846, CIKs: ['1649744'], received_time: 2025-05-05 16:52:19 EDT
+Submission Type: 4, Accession: 95017025063643, CIKs: ['1302110'], received_time: 2025-05-05 16:52:19 EDT
+Submission Type: 497J, Accession: 139834425008677, CIKs: ['882748'], received_time: 2025-05-05 16:52:21 EDT
+Submission Type: 4, Accession: 106299325008489, CIKs: ['1532580'], received_time: 2025-05-05 16:52:22 EDT
+Submission Type: 4, Accession: 1691825000057, CIKs: ['16918', '1721796'], received_time: 2025-05-05 16:52:22 EDT
+Submission Type: 497K, Accession: 182912625003405, CIKs: ['1547576'], received_time: 2025-05-05 16:52:38 EDT
+Submission Type: 4, Accession: 141588925011985, CIKs: ['1464583'], received_time: 2025-05-05 16:52:39 EDT
+Submission Type: 4, Accession: 113031025000091, CIKs: ['1602281'], received_time: 2025-05-05 16:52:48 EDT
+Submission Type: 4, Accession: 87532025000182, CIKs: ['1754648'], received_time: 2025-05-05 16:52:50 EDT
+Submission Type: 4, Accession: 141588925011986, CIKs: ['1254781'], received_time: 2025-05-05 16:52:51 EDT
+Submission Type: 8-K, Accession: 175392625000740, CIKs: ['822663'], received_time: 2025-05-05 16:53:01 EDT
+Submission Type: 13F-HR, Accession: 195175725000503, CIKs: ['1766157'], received_time: 2025-05-05 16:53:02 EDT
+Submission Type: 497K, Accession: 182912625003406, CIKs: ['1547576'], received_time: 2025-05-05 16:53:17 EDT
+Submission Type: 497K, Accession: 139834425008678, CIKs: ['1318342'], received_time: 2025-05-05 16:53:19 EDT
+Submission Type: 4, Accession: 166427225000280, CIKs: ['1934229', '6201'], received_time: 2025-05-05 16:53:20 EDT
+Submission Type: 4, Accession: 95017025063650, CIKs: ['1939432'], received_time: 2025-05-05 16:53:28 EDT
+Submission Type: 497K, Accession: 139834425008679, CIKs: ['1318342'], received_time: 2025-05-05 16:53:31 EDT
+Submission Type: 8-K, Accession: 95017025063649, CIKs: ['1675033'], received_time: 2025-05-05 16:53:31 EDT
+Submission Type: 4, Accession: 162828025022225, CIKs: ['1953001'], received_time: 2025-05-05 16:53:38 EDT
+Submission Type: 497J, Accession: 112199725000050, CIKs: ['940338'], received_time: 2025-05-05 16:53:40 EDT
+Submission Type: 8-K, Accession: 8596125000058, CIKs: ['85961'], received_time: 2025-05-05 16:53:41 EDT
+Submission Type: 4, Accession: 141588925011988, CIKs: ['1867899'], received_time: 2025-05-05 16:53:41 EDT
+Submission Type: 4, Accession: 113031025000092, CIKs: ['1304242'], received_time: 2025-05-05 16:53:41 EDT
+Submission Type: 4, Accession: 95017025063651, CIKs: ['1217234', '1931277'], received_time: 2025-05-05 16:53:43 EDT
+Submission Type: 497, Accession: 89418925003601, CIKs: ['1683471'], received_time: 2025-05-05 16:53:43 EDT
+Submission Type: 4, Accession: 112760225013366, CIKs: ['1842494'], received_time: 2025-05-05 16:53:52 EDT
+Submission Type: 4, Accession: 166427225000281, CIKs: ['1959309', '6201'], received_time: 2025-05-05 16:53:54 EDT
+Submission Type: 13F-HR, Accession: 195175725000504, CIKs: ['1970731'], received_time: 2025-05-05 16:54:02 EDT
+Submission Type: 497J, Accession: 91286925000035, CIKs: ['912869'], received_time: 2025-05-05 16:54:04 EDT
+Submission Type: 4, Accession: 95017025063652, CIKs: ['2019976'], received_time: 2025-05-05 16:54:04 EDT
+Submission Type: 4, Accession: 166427225000282, CIKs: ['1934073'], received_time: 2025-05-05 16:54:23 EDT
+Submission Type: 4, Accession: 141588925011989, CIKs: ['1107843', '1558242'], received_time: 2025-05-05 16:54:25 EDT
+Submission Type: 4, Accession: 113031025000093, CIKs: ['1130310', '2065237'], received_time: 2025-05-05 16:54:26 EDT
+Submission Type: 4, Accession: 88323725000046, CIKs: ['1860677', '883237'], received_time: 2025-05-05 16:54:26 EDT
+Submission Type: DEF 14A, Accession: 121390025039740, CIKs: ['1907223'], received_time: 2025-05-05 16:54:34 EDT
+Submission Type: 4, Accession: 156218025003595, CIKs: ['1666120'], received_time: 2025-05-05 16:54:36 EDT
+Submission Type: 4, Accession: 95017025063653, CIKs: ['1708571'], received_time: 2025-05-05 16:54:44 EDT
+Submission Type: 4, Accession: 95017025063655, CIKs: ['1823466', '1937743'], received_time: 2025-05-05 16:54:47 EDT
+Submission Type: 4, Accession: 156218025003596, CIKs: ['1650372', '1666121'], received_time: 2025-05-05 16:54:47 EDT
+Submission Type: 13F-HR, Accession: 195175725000505, CIKs: ['1919701'], received_time: 2025-05-05 16:54:56 EDT
+Submission Type: 4, Accession: 104869525000083, CIKs: ['1746640', '1048695'], received_time: 2025-05-05 16:54:58 EDT
+Submission Type: 497J, Accession: 112199725000051, CIKs: ['948972'], received_time: 2025-05-05 16:55:01 EDT
+Submission Type: 4, Accession: 104869525000084, CIKs: ['1526624', '1048695'], received_time: 2025-05-05 16:55:03 EDT
+Submission Type: 4, Accession: 104869525000085, CIKs: ['2060650'], received_time: 2025-05-05 16:55:19 EDT
+Submission Type: 8-K, Accession: 119312525112849, CIKs: ['1468328'], received_time: 2025-05-05 16:55:19 EDT
+Submission Type: 4, Accession: 113031025000094, CIKs: ['2065238'], received_time: 2025-05-05 16:55:20 EDT
+Submission Type: 4, Accession: 106299325008491, CIKs: ['1335913', '1164727'], received_time: 2025-05-05 16:55:21 EDT
+Submission Type: D, Accession: 206701125000001, CIKs: ['2067011'], received_time: 2025-05-05 16:55:21 EDT
+Submission Type: 4, Accession: 141588925011992, CIKs: ['1857177', '1730430'], received_time: 2025-05-05 16:55:21 EDT
+Submission Type: 4, Accession: 121465925006959, CIKs: ['1542675'], received_time: 2025-05-05 16:55:25 EDT
+Submission Type: 4, Accession: 104869525000086, CIKs: ['2015456'], received_time: 2025-05-05 16:55:26 EDT
+Submission Type: 4, Accession: 121465925006962, CIKs: ['39899', '1114638'], received_time: 2025-05-05 16:55:36 EDT
+Submission Type: 10-Q, Accession: 85277225000083, CIKs: ['852772'], received_time: 2025-05-05 16:55:37 EDT
+Submission Type: 4, Accession: 121465925006964, CIKs: ['1732117'], received_time: 2025-05-05 16:55:38 EDT
+Submission Type: 4, Accession: 165518025000002, CIKs: ['1655180'], received_time: 2025-05-05 16:55:38 EDT
+Submission Type: 4, Accession: 121465925006965, CIKs: ['1448752', '39899'], received_time: 2025-05-05 16:55:39 EDT
+Submission Type: 4, Accession: 121465925006963, CIKs: ['1448918', '39899'], received_time: 2025-05-05 16:55:39 EDT
+Submission Type: 4, Accession: 121465925006966, CIKs: ['1415919'], received_time: 2025-05-05 16:55:40 EDT
+Submission Type: 4, Accession: 121465925006960, CIKs: ['1770273', '39899'], received_time: 2025-05-05 16:55:41 EDT
+Submission Type: 4, Accession: 197155225000006, CIKs: ['1971552'], received_time: 2025-05-05 16:55:42 EDT
+Submission Type: 4, Accession: 121465925006961, CIKs: ['1828073'], received_time: 2025-05-05 16:55:42 EDT
+Submission Type: 13F-HR, Accession: 195175725000506, CIKs: ['1768095'], received_time: 2025-05-05 16:55:43 EDT
+Submission Type: 8-K, Accession: 143774925014567, CIKs: ['1095565'], received_time: 2025-05-05 16:55:45 EDT
+Submission Type: 4, Accession: 104869525000087, CIKs: ['1728330'], received_time: 2025-05-05 16:55:46 EDT
+Submission Type: 4, Accession: 104869525000088, CIKs: ['2042647'], received_time: 2025-05-05 16:55:54 EDT
+Submission Type: 4, Accession: 87532025000184, CIKs: ['1197036'], received_time: 2025-05-05 16:56:05 EDT
+Submission Type: 4, Accession: 104869525000089, CIKs: ['2016857', '1048695'], received_time: 2025-05-05 16:56:05 EDT
+Submission Type: 8-K, Accession: 162828025022226, CIKs: ['1606163'], received_time: 2025-05-05 16:56:11 EDT
+Submission Type: 497J, Accession: 112199725000052, CIKs: ['940338'], received_time: 2025-05-05 16:56:14 EDT
+Submission Type: SCHEDULE 13G, Accession: 142284925000027, CIKs: ['1842827'], received_time: 2025-05-05 16:56:15 EDT
+Submission Type: 497K, Accession: 139834425008684, CIKs: ['1318342'], received_time: 2025-05-05 16:56:31 EDT
+Submission Type: 497K, Accession: 139834425008683, CIKs: ['1318342'], received_time: 2025-05-05 16:56:31 EDT
+Submission Type: 144, Accession: 195004725002748, CIKs: ['1047058', '1039065'], received_time: 2025-05-05 16:56:32 EDT
+Submission Type: 13F-HR, Accession: 195175725000507, CIKs: ['2063211'], received_time: 2025-05-05 16:56:42 EDT
+Submission Type: 10-Q, Accession: 107541525000024, CIKs: ['1075415'], received_time: 2025-05-05 16:56:51 EDT
+Submission Type: 497, Accession: 110465925044558, CIKs: ['924727'], received_time: 2025-05-05 16:56:55 EDT
+Submission Type: SCHEDULE 13G/A, Accession: 126493125000011, CIKs: ['1804182', '1857086'], received_time: 2025-05-05 16:56:56 EDT
+Submission Type: 144, Accession: 195004725002749, CIKs: ['1107843'], received_time: 2025-05-05 16:57:03 EDT
+Submission Type: 4, Accession: 143774925014568, CIKs: ['1193016'], received_time: 2025-05-05 16:57:13 EDT
+Submission Type: 424B2, Accession: 183988225026971, CIKs: ['895421'], received_time: 2025-05-05 16:57:24 EDT
+Submission Type: FWP, Accession: 121390025039742, CIKs: ['19617'], received_time: 2025-05-05 16:57:33 EDT
+Submission Type: 497K, Accession: 139834425008685, CIKs: ['1318342'], received_time: 2025-05-05 16:57:33 EDT
+Submission Type: 497J, Accession: 199937125005437, CIKs: ['1396092'], received_time: 2025-05-05 16:57:33 EDT
+Submission Type: 13F-HR, Accession: 195175725000508, CIKs: ['2063211'], received_time: 2025-05-05 16:57:49 EDT
+Submission Type: 144, Accession: 195004725002750, CIKs: ['1597264'], received_time: 2025-05-05 16:57:51 EDT
+Submission Type: 10-Q, Accession: 182394525000037, CIKs: ['1823945'], received_time: 2025-05-05 16:57:59 EDT
+Submission Type: 3, Accession: 170364425000072, CIKs: ['2066886', '1703644'], received_time: 2025-05-05 16:58:02 EDT
+Submission Type: 8-K, Accession: 109690625000679, CIKs: ['706698'], received_time: 2025-05-05 16:58:04 EDT
+Submission Type: 4, Accession: 87532025000186, CIKs: ['875320', '1783060'], received_time: 2025-05-05 16:58:12 EDT
+Submission Type: FWP, Accession: 121390025039743, CIKs: ['1665650'], received_time: 2025-05-05 16:58:13 EDT
+Submission Type: 497J, Accession: 112199725000053, CIKs: ['948972'], received_time: 2025-05-05 16:58:13 EDT
+Submission Type: S-8 POS, Accession: 114036125017373, CIKs: ['842518'], received_time: 2025-05-05 16:58:23 EDT
+Submission Type: S-8 POS, Accession: 114036125017372, CIKs: ['842518'], received_time: 2025-05-05 16:58:25 EDT
+Submission Type: S-8 POS, Accession: 114036125017378, CIKs: ['842518'], received_time: 2025-05-05 16:58:34 EDT
+Submission Type: S-8 POS, Accession: 114036125017377, CIKs: ['842518'], received_time: 2025-05-05 16:58:34 EDT
+Submission Type: S-8 POS, Accession: 114036125017374, CIKs: ['842518'], received_time: 2025-05-05 16:58:35 EDT
+Submission Type: S-8 POS, Accession: 114036125017376, CIKs: ['842518'], received_time: 2025-05-05 16:58:37 EDT
+Submission Type: S-8 POS, Accession: 114036125017375, CIKs: ['842518'], received_time: 2025-05-05 16:58:37 EDT
+Submission Type: 424B2, Accession: 183988225026972, CIKs: ['895421', '1666268'], received_time: 2025-05-05 16:58:39 EDT
+Submission Type: 13F-HR, Accession: 195175725000509, CIKs: ['2031123'], received_time: 2025-05-05 16:58:57 EDT
+Submission Type: 3, Accession: 112760225013372, CIKs: ['2066897', '22356'], received_time: 2025-05-05 16:59:00 EDT
+Submission Type: 13F-NT, Accession: 71618725000004, CIKs: ['716187'], received_time: 2025-05-05 16:59:00 EDT
+Submission Type: 13F-HR, Accession: 90360325000003, CIKs: ['903603'], received_time: 2025-05-05 16:59:02 EDT
+Submission Type: FWP, Accession: 183988225026973, CIKs: ['927971'], received_time: 2025-05-05 16:59:13 EDT
+Submission Type: 424B3, Accession: 110465925044559, CIKs: ['2044519'], received_time: 2025-05-05 16:59:17 EDT
+Submission Type: 8-K, Accession: 91259325000156, CIKs: ['912593'], received_time: 2025-05-05 16:59:18 EDT
+Submission Type: 4, Accession: 106299325008493, CIKs: ['1665428'], received_time: 2025-05-05 16:59:24 EDT
+Submission Type: 497K, Accession: 119312525112858, CIKs: ['1026144'], received_time: 2025-05-05 16:59:25 EDT
+Submission Type: 497K, Accession: 119312525112862, CIKs: ['1026144'], received_time: 2025-05-05 16:59:26 EDT
+Submission Type: 497K, Accession: 119312525112859, CIKs: ['1026144'], received_time: 2025-05-05 16:59:26 EDT
+Submission Type: 497K, Accession: 119312525112860, CIKs: ['1026144'], received_time: 2025-05-05 16:59:27 EDT
+Submission Type: 497K, Accession: 119312525112857, CIKs: ['1026144'], received_time: 2025-05-05 16:59:27 EDT
+Submission Type: 497K, Accession: 119312525112856, CIKs: ['1026144'], received_time: 2025-05-05 16:59:27 EDT
+Submission Type: 497K, Accession: 119312525112861, CIKs: ['1026144'], received_time: 2025-05-05 16:59:28 EDT
+Submission Type: 13F-HR, Accession: 195175725000510, CIKs: ['1793904'], received_time: 2025-05-05 16:59:38 EDT
+Submission Type: 4, Accession: 87532025000188, CIKs: ['1797826'], received_time: 2025-05-05 16:59:39 EDT
+Submission Type: 8-K, Accession: 119312525112865, CIKs: ['1556898'], received_time: 2025-05-05 16:59:41 EDT
+Submission Type: 10-Q, Accession: 162828025022234, CIKs: ['1606163'], received_time: 2025-05-05 16:59:49 EDT
+Submission Type: 3, Accession: 162828025022235, CIKs: ['1805385', '2066930'], received_time: 2025-05-05 16:59:55 EDT
+Submission Type: FWP, Accession: 110465925044562, CIKs: ['83246'], received_time: 2025-05-05 17:00:13 EDT
+Submission Type: 13F-HR, Accession: 195175725000511, CIKs: ['1610580'], received_time: 2025-05-05 17:00:14 EDT
+Submission Type: 6-K, Accession: 117184325002754, CIKs: ['1935418'], received_time: 2025-05-05 17:00:25 EDT
+Submission Type: SCHEDULE 13D/A, Accession: 95017025063670, CIKs: ['1602065', '1539838'], received_time: 2025-05-05 17:00:26 EDT
+Submission Type: 4, Accession: 121390025039746, CIKs: ['1639300', '1858889'], received_time: 2025-05-05 17:00:26 EDT
+Submission Type: SCHEDULE 13D/A, Accession: 95017025063666, CIKs: ['1899017', '2055128'], received_time: 2025-05-05 17:00:27 EDT
+Submission Type: 4, Accession: 95017025063669, CIKs: ['1507498'], received_time: 2025-05-05 17:00:29 EDT
+Submission Type: 425, Accession: 121390025039747, CIKs: ['1865602'], received_time: 2025-05-05 17:00:29 EDT
+Submission Type: 4, Accession: 95017025063663, CIKs: ['2018946'], received_time: 2025-05-05 17:00:29 EDT
+Submission Type: 4, Accession: 95017025063665, CIKs: ['799288', '1553095'], received_time: 2025-05-05 17:00:31 EDT
+Submission Type: 4, Accession: 95017025063664, CIKs: ['2053965', '799288'], received_time: 2025-05-05 17:00:31 EDT
+Submission Type: 13F-HR, Accession: 190048125000004, CIKs: ['1900481'], received_time: 2025-05-05 17:00:40 EDT
+Submission Type: FWP, Accession: 121465925006968, CIKs: ['927971'], received_time: 2025-05-05 17:00:41 EDT
+Submission Type: 8-K, Accession: 95017025063667, CIKs: ['1674862'], received_time: 2025-05-05 17:00:41 EDT
+Submission Type: 497K, Accession: 139834425008690, CIKs: ['1318342'], received_time: 2025-05-05 17:00:42 EDT
+Submission Type: 497J, Accession: 112199725000054, CIKs: ['940338'], received_time: 2025-05-05 17:00:42 EDT
+Submission Type: 6-K, Accession: 110465925044564, CIKs: ['701818'], received_time: 2025-05-05 17:00:43 EDT
+Submission Type: 6-K, Accession: 119312525112868, CIKs: ['1794846'], received_time: 2025-05-05 17:00:43 EDT
+Submission Type: 4, Accession: 106299325008495, CIKs: ['1897252'], received_time: 2025-05-05 17:00:44 EDT
+Submission Type: 4, Accession: 162828025022236, CIKs: ['2066930'], received_time: 2025-05-05 17:00:44 EDT
+Submission Type: 4, Accession: 110465925044563, CIKs: ['1722503'], received_time: 2025-05-05 17:00:46 EDT
+Submission Type: 8-K, Accession: 164117225008700, CIKs: ['1378140'], received_time: 2025-05-05 17:00:46 EDT
+Submission Type: 8-K, Accession: 164117225008701, CIKs: ['1371128'], received_time: 2025-05-05 17:00:46 EDT
+Submission Type: 8-K, Accession: 119312525112869, CIKs: ['1692819'], received_time: 2025-05-05 17:00:47 EDT
+Submission Type: DEF 14A, Accession: 121390025039748, CIKs: ['857949'], received_time: 2025-05-05 17:00:47 EDT
+Submission Type: 4, Accession: 95017025063671, CIKs: ['79282', '1861040'], received_time: 2025-05-05 17:00:47 EDT
+Submission Type: 13F-HR, Accession: 195175725000512, CIKs: ['1637241'], received_time: 2025-05-05 17:00:58 EDT
+Submission Type: 8-K, Accession: 121390025039750, CIKs: ['1922947'], received_time: 2025-05-05 17:01:00 EDT
+Submission Type: 497K, Accession: 139834425008691, CIKs: ['912900'], received_time: 2025-05-05 17:01:00 EDT
+Submission Type: D, Accession: 181812525000005, CIKs: ['1818125'], received_time: 2025-05-05 17:01:09 EDT
+Submission Type: 424B2, Accession: 95017025063673, CIKs: ['886982'], received_time: 2025-05-05 17:01:12 EDT
+Submission Type: D, Accession: 206669825000002, CIKs: ['2066698'], received_time: 2025-05-05 17:01:20 EDT
+Submission Type: 13F-HR, Accession: 180338625000003, CIKs: ['1803386'], received_time: 2025-05-05 17:01:20 EDT
+Submission Type: 4, Accession: 87532025000190, CIKs: ['875320', '1533149'], received_time: 2025-05-05 17:01:23 EDT
+Submission Type: 10-Q, Accession: 141057825001073, CIKs: ['887596'], received_time: 2025-05-05 17:01:29 EDT
+Submission Type: 3, Accession: 95017025063675, CIKs: ['2061779', '1687932'], received_time: 2025-05-05 17:01:33 EDT
+Submission Type: 497J, Accession: 110465925044565, CIKs: ['1002427'], received_time: 2025-05-05 17:01:37 EDT
+Submission Type: D/A, Accession: 192009325000001, CIKs: ['1920093'], received_time: 2025-05-05 17:01:46 EDT
+Submission Type: 13F-HR, Accession: 195175725000513, CIKs: ['2059742'], received_time: 2025-05-05 17:01:46 EDT
+Submission Type: 485BPOS, Accession: 119312525112870, CIKs: ['1738074'], received_time: 2025-05-05 17:01:50 EDT
+Submission Type: 4, Accession: 110465925044566, CIKs: ['1526113', '2052643'], received_time: 2025-05-05 17:01:59 EDT
+Submission Type: 497J, Accession: 112199725000055, CIKs: ['948972'], received_time: 2025-05-05 17:02:06 EDT
+Submission Type: 4, Accession: 95017025063676, CIKs: ['1891613'], received_time: 2025-05-05 17:02:19 EDT
+Submission Type: POS EX, Accession: 158064225002841, CIKs: ['1750821'], received_time: 2025-05-05 17:02:19 EDT
+Submission Type: 424B2, Accession: 121390025039752, CIKs: ['19617'], received_time: 2025-05-05 17:02:19 EDT
+Submission Type: 13F-HR, Accession: 195175725000514, CIKs: ['2046179'], received_time: 2025-05-05 17:02:29 EDT
+Submission Type: 8-K, Accession: 119312525112873, CIKs: ['8146'], received_time: 2025-05-05 17:02:30 EDT
+Submission Type: X-17A-5, Accession: 70474425000002, CIKs: ['704744'], received_time: 2025-05-05 17:02:33 EDT
+Submission Type: 8-K, Accession: 102599625000136, CIKs: ['1025996'], received_time: 2025-05-05 17:02:36 EDT
+Submission Type: 4, Accession: 95017025063677, CIKs: ['1588559'], received_time: 2025-05-05 17:02:40 EDT
+Submission Type: DEFA14A, Accession: 110465925044567, CIKs: ['793952'], received_time: 2025-05-05 17:02:48 EDT
+Submission Type: 4, Accession: 95017025063679, CIKs: ['1920908'], received_time: 2025-05-05 17:02:49 EDT
+Submission Type: DEFA14A, Accession: 119312525112874, CIKs: ['1789029'], received_time: 2025-05-05 17:02:50 EDT
+Submission Type: 4, Accession: 95017025063680, CIKs: ['1578732', '939706'], received_time: 2025-05-05 17:02:52 EDT
+Submission Type: 4, Accession: 156218025003597, CIKs: ['1886793'], received_time: 2025-05-05 17:02:54 EDT
+Submission Type: 4, Accession: 112760225013375, CIKs: ['1444158'], received_time: 2025-05-05 17:02:55 EDT
+Submission Type: 10-Q, Accession: 183768625000056, CIKs: ['1837686'], received_time: 2025-05-05 17:03:02 EDT
+Submission Type: 144, Accession: 196858225000312, CIKs: ['1179585', '1299939'], received_time: 2025-05-05 17:03:04 EDT
+Submission Type: 4, Accession: 106299325008497, CIKs: ['1999732'], received_time: 2025-05-05 17:03:04 EDT
+Submission Type: D/A, Accession: 197410325000002, CIKs: ['1974103'], received_time: 2025-05-05 17:03:04 EDT
+Submission Type: 8-K, Accession: 114036125017381, CIKs: ['1784254'], received_time: 2025-05-05 17:03:18 EDT
+Submission Type: 8-K, Accession: 135059325000027, CIKs: ['1350593'], received_time: 2025-05-05 17:03:18 EDT
+Submission Type: 4, Accession: 95017025063682, CIKs: ['1164495'], received_time: 2025-05-05 17:03:26 EDT
+Submission Type: 144, Accession: 195917325002891, CIKs: ['816956', '1615538'], received_time: 2025-05-05 17:03:47 EDT
+Submission Type: 144, Accession: 196858225000313, CIKs: ['1299939'], received_time: 2025-05-05 17:03:55 EDT
+Submission Type: DEFA14A, Accession: 119312525112875, CIKs: ['8146'], received_time: 2025-05-05 17:03:55 EDT
+Submission Type: 4, Accession: 95017025063683, CIKs: ['1242465'], received_time: 2025-05-05 17:03:56 EDT
+Submission Type: 8-K, Accession: 143774925014571, CIKs: ['1213809'], received_time: 2025-05-05 17:03:57 EDT
+Submission Type: 8-K, Accession: 119312525112876, CIKs: ['1409375'], received_time: 2025-05-05 17:04:06 EDT
+Submission Type: 497, Accession: 113322825005277, CIKs: ['1002427'], received_time: 2025-05-05 17:04:09 EDT
+Submission Type: N-CSR, Accession: 158064225002842, CIKs: ['1208252'], received_time: 2025-05-05 17:04:20 EDT
+Submission Type: 10-Q, Accession: 4072925000011, CIKs: ['40729'], received_time: 2025-05-05 17:04:30 EDT
+Submission Type: 4, Accession: 95017025063684, CIKs: ['1578732', '1588281'], received_time: 2025-05-05 17:04:41 EDT
+Submission Type: D/A, Accession: 110465925044570, CIKs: ['1975736'], received_time: 2025-05-05 17:04:43 EDT
+Submission Type: 497J, Accession: 110465925044571, CIKs: ['730044'], received_time: 2025-05-05 17:04:47 EDT
+Submission Type: 4, Accession: 106299325008499, CIKs: ['1789014'], received_time: 2025-05-05 17:04:47 EDT
+Submission Type: 4, Accession: 162828025022248, CIKs: ['1768956'], received_time: 2025-05-05 17:04:48 EDT
+Submission Type: 4, Accession: 95017025063687, CIKs: ['1588453'], received_time: 2025-05-05 17:04:57 EDT
+Submission Type: 4, Accession: 162828025022249, CIKs: ['931015', '1331749'], received_time: 2025-05-05 17:04:59 EDT
+Submission Type: 4, Accession: 95017025063688, CIKs: ['2061779', '1687932'], received_time: 2025-05-05 17:04:59 EDT
+Submission Type: 424B2, Accession: 121390025039757, CIKs: ['19617'], received_time: 2025-05-05 17:05:00 EDT
+Submission Type: 4, Accession: 162828025022250, CIKs: ['1876062'], received_time: 2025-05-05 17:05:07 EDT
+Submission Type: 497K, Accession: 139834425008695, CIKs: ['912900'], received_time: 2025-05-05 17:05:08 EDT
+Submission Type: 4, Accession: 112760225013377, CIKs: ['1824865'], received_time: 2025-05-05 17:05:09 EDT
+Submission Type: 8-K, Accession: 95017025063690, CIKs: ['1590955'], received_time: 2025-05-05 17:05:28 EDT
+Submission Type: 4, Accession: 162828025022251, CIKs: ['1301427'], received_time: 2025-05-05 17:05:29 EDT
+Submission Type: 4, Accession: 162828025022252, CIKs: ['1714654'], received_time: 2025-05-05 17:05:35 EDT
+Submission Type: 4, Accession: 101385725000126, CIKs: ['1353196', '1013857'], received_time: 2025-05-05 17:05:37 EDT
+Submission Type: 3, Accession: 162828025022253, CIKs: ['1831840', '1628434'], received_time: 2025-05-05 17:05:39 EDT
+Submission Type: 4, Accession: 162828025022254, CIKs: ['1194262'], received_time: 2025-05-05 17:05:42 EDT
+Submission Type: 497K, Accession: 119312525112883, CIKs: ['893818'], received_time: 2025-05-05 17:05:44 EDT
+Submission Type: 15-12G, Accession: 147793225003323, CIKs: ['1730869'], received_time: 2025-05-05 17:05:44 EDT
+Submission Type: 497K, Accession: 139834425008696, CIKs: ['1318342'], received_time: 2025-05-05 17:05:56 EDT
+Submission Type: 497K, Accession: 139834425008697, CIKs: ['912900'], received_time: 2025-05-05 17:05:58 EDT
+Submission Type: 4, Accession: 162828025022255, CIKs: ['1481618', '931015'], received_time: 2025-05-05 17:05:59 EDT
+Submission Type: 4, Accession: 162828025022256, CIKs: ['1241113'], received_time: 2025-05-05 17:06:10 EDT
+Submission Type: 10-Q, Accession: 141057825001074, CIKs: ['1951667'], received_time: 2025-05-05 17:06:19 EDT
+Submission Type: 3, Accession: 95017025063691, CIKs: ['1469915'], received_time: 2025-05-05 17:06:20 EDT
+Submission Type: 424B2, Accession: 183988225026974, CIKs: ['1114446'], received_time: 2025-05-05 17:06:21 EDT
+Submission Type: 6-K, Accession: 162828025022257, CIKs: ['1853860'], received_time: 2025-05-05 17:06:22 EDT
+Submission Type: 4, Accession: 162828025022258, CIKs: ['1648204'], received_time: 2025-05-05 17:06:23 EDT
+Submission Type: 497VPI, Accession: 112199725000058, CIKs: ['940338'], received_time: 2025-05-05 17:06:27 EDT
+Submission Type: S-3DPOS, Accession: 114036125017386, CIKs: ['842518'], received_time: 2025-05-05 17:06:36 EDT
+Submission Type: 4, Accession: 112760225013379, CIKs: ['1677874'], received_time: 2025-05-05 17:06:38 EDT
+Submission Type: S-3DPOS, Accession: 114036125017389, CIKs: ['842518'], received_time: 2025-05-05 17:06:47 EDT
+Submission Type: S-3DPOS, Accession: 114036125017387, CIKs: ['842518'], received_time: 2025-05-05 17:06:47 EDT
+Submission Type: S-3DPOS, Accession: 114036125017388, CIKs: ['842518'], received_time: 2025-05-05 17:06:48 EDT
+Submission Type: 10-Q, Accession: 95017025063692, CIKs: ['1825024'], received_time: 2025-05-05 17:06:55 EDT
+Submission Type: 8-K, Accession: 130683025000100, CIKs: ['1306830'], received_time: 2025-05-05 17:06:59 EDT
+Submission Type: 4, Accession: 106299325008501, CIKs: ['1737747'], received_time: 2025-05-05 17:07:00 EDT
+Submission Type: D/A, Accession: 197410325000003, CIKs: ['2019972'], received_time: 2025-05-05 17:07:11 EDT
+Submission Type: D/A, Accession: 110465925044572, CIKs: ['1930679'], received_time: 2025-05-05 17:07:24 EDT
+Submission Type: 10-Q, Accession: 101532825000130, CIKs: ['1015328'], received_time: 2025-05-05 17:07:43 EDT
+Submission Type: 8-K, Accession: 9721625000097, CIKs: ['97216'], received_time: 2025-05-05 17:07:54 EDT
+Submission Type: 4, Accession: 112760225013381, CIKs: ['1228062'], received_time: 2025-05-05 17:08:14 EDT
+Submission Type: 497K, Accession: 113322825005280, CIKs: ['835663'], received_time: 2025-05-05 17:08:15 EDT
+Submission Type: 4, Accession: 146832725000074, CIKs: ['1737388'], received_time: 2025-05-05 17:08:27 EDT
+Submission Type: 4, Accession: 106299325008503, CIKs: ['1532497', '1164727'], received_time: 2025-05-05 17:08:38 EDT
+Submission Type: 144, Accession: 197236225000384, CIKs: ['1308547'], received_time: 2025-05-05 17:08:38 EDT
+Submission Type: 8-K, Accession: 106569625000031, CIKs: ['1065696'], received_time: 2025-05-05 17:08:39 EDT
+Submission Type: 497K, Accession: 139834425008700, CIKs: ['1318342'], received_time: 2025-05-05 17:08:40 EDT
+Submission Type: 8-K, Accession: 70878125000060, CIKs: ['708781'], received_time: 2025-05-05 17:08:40 EDT
+Submission Type: 10-Q, Accession: 147676525000040, CIKs: ['1476765'], received_time: 2025-05-05 17:08:46 EDT
+Submission Type: 497VPI, Accession: 112199725000060, CIKs: ['940338'], received_time: 2025-05-05 17:08:48 EDT
+Submission Type: 497, Accession: 113322825005281, CIKs: ['730044'], received_time: 2025-05-05 17:08:49 EDT
+Submission Type: 8-K, Accession: 91538925000126, CIKs: ['915389'], received_time: 2025-05-05 17:09:12 EDT
+Submission Type: 4, Accession: 135543525000006, CIKs: ['893847', '1355435'], received_time: 2025-05-05 17:09:12 EDT
+Submission Type: 8-K, Accession: 121390025039762, CIKs: ['1889123'], received_time: 2025-05-05 17:09:12 EDT
+Submission Type: 144, Accession: 197236225000385, CIKs: ['1883732', '1836981'], received_time: 2025-05-05 17:09:12 EDT
+Submission Type: C-AR, Accession: 201709625000001, CIKs: ['2017096'], received_time: 2025-05-05 17:09:24 EDT
+Submission Type: S-1/A, Accession: 119312525112887, CIKs: ['1673743'], received_time: 2025-05-05 17:09:27 EDT
+Submission Type: 4, Accession: 95017025063697, CIKs: ['1352573', '1260221'], received_time: 2025-05-05 17:09:40 EDT
+Submission Type: 497J, Accession: 158064225002843, CIKs: ['355767'], received_time: 2025-05-05 17:09:40 EDT
+Submission Type: FWP, Accession: 110465925044576, CIKs: ['1045610'], received_time: 2025-05-05 17:09:42 EDT
+Submission Type: 497K, Accession: 113322825005283, CIKs: ['835663'], received_time: 2025-05-05 17:09:44 EDT
+Submission Type: 4, Accession: 190273325000057, CIKs: ['1815194'], received_time: 2025-05-05 17:09:46 EDT
+Submission Type: 497VPI, Accession: 112199725000061, CIKs: ['940338'], received_time: 2025-05-05 17:09:48 EDT
+Submission Type: D, Accession: 197410325000004, CIKs: ['2064780'], received_time: 2025-05-05 17:09:58 EDT
+Submission Type: 497K, Accession: 139834425008702, CIKs: ['912900'], received_time: 2025-05-05 17:10:10 EDT
+Submission Type: SCHEDULE 13G, Accession: 146179025000036, CIKs: ['2033991'], received_time: 2025-05-05 17:10:11 EDT
+Submission Type: 8-K, Accession: 162828025022263, CIKs: ['58361'], received_time: 2025-05-05 17:10:14 EDT
+Submission Type: 8-K, Accession: 156918725000064, CIKs: ['1569187'], received_time: 2025-05-05 17:10:20 EDT
+Submission Type: 8-K, Accession: 182252325000011, CIKs: ['1822523'], received_time: 2025-05-05 17:10:33 EDT
+Submission Type: 4, Accession: 20040625000143, CIKs: ['1181561', '200406'], received_time: 2025-05-05 17:10:42 EDT
+Submission Type: SC 14D9/A, Accession: 119312525112889, CIKs: ['1293971'], received_time: 2025-05-05 17:10:44 EDT
+Submission Type: 4, Accession: 106299325008505, CIKs: ['1364531'], received_time: 2025-05-05 17:10:54 EDT
+Submission Type: 497K, Accession: 113322825005285, CIKs: ['835663'], received_time: 2025-05-05 17:10:55 EDT
+Submission Type: 4, Accession: 153081925000010, CIKs: ['1530819'], received_time: 2025-05-05 17:11:07 EDT
+Submission Type: 8-K, Accession: 117494725000692, CIKs: ['50292'], received_time: 2025-05-05 17:11:09 EDT
+Submission Type: 497K, Accession: 139834425008704, CIKs: ['912900'], received_time: 2025-05-05 17:11:18 EDT
+Submission Type: 4, Accession: 101385725000128, CIKs: ['1855325'], received_time: 2025-05-05 17:11:20 EDT
+Submission Type: 497VPI, Accession: 112199725000062, CIKs: ['940338'], received_time: 2025-05-05 17:11:25 EDT
+Submission Type: 144, Accession: 197236225000386, CIKs: ['64040'], received_time: 2025-05-05 17:11:35 EDT
+Submission Type: 4, Accession: 190273325000058, CIKs: ['1455186'], received_time: 2025-05-05 17:11:35 EDT
+Submission Type: 4, Accession: 112760225013383, CIKs: ['1928645'], received_time: 2025-05-05 17:11:37 EDT
+Submission Type: 144, Accession: 195004725002751, CIKs: ['1782170'], received_time: 2025-05-05 17:11:39 EDT
+Submission Type: 4, Accession: 95017025063701, CIKs: ['2018819'], received_time: 2025-05-05 17:11:57 EDT
+Submission Type: FWP, Accession: 110465925044580, CIKs: ['5272'], received_time: 2025-05-05 17:12:02 EDT
+Submission Type: 40-17G, Accession: 89418925003602, CIKs: ['1027596'], received_time: 2025-05-05 17:12:27 EDT
+Submission Type: PRER14A, Accession: 95017025063700, CIKs: ['1785592'], received_time: 2025-05-05 17:12:29 EDT
+Submission Type: 4, Accession: 122520825004694, CIKs: ['1734640', '1013871'], received_time: 2025-05-05 17:12:38 EDT
+Submission Type: 424B2, Accession: 191870425007690, CIKs: ['1682472', '70858'], received_time: 2025-05-05 17:12:38 EDT
+Submission Type: 144, Accession: 197236225000387, CIKs: ['943452'], received_time: 2025-05-05 17:12:38 EDT
+Submission Type: 4, Accession: 122520825004692, CIKs: ['1326633'], received_time: 2025-05-05 17:12:39 EDT
+Submission Type: 4, Accession: 122520825004693, CIKs: ['1013871', '1940921'], received_time: 2025-05-05 17:12:40 EDT
+Submission Type: DEFA14A, Accession: 95017025063703, CIKs: ['1021635'], received_time: 2025-05-05 17:12:40 EDT
+Submission Type: 4, Accession: 122520825004695, CIKs: ['1505252'], received_time: 2025-05-05 17:12:49 EDT
+Submission Type: 4, Accession: 122520825004698, CIKs: ['1735576'], received_time: 2025-05-05 17:12:50 EDT
+Submission Type: 4, Accession: 122520825004697, CIKs: ['2049789'], received_time: 2025-05-05 17:12:50 EDT
+Submission Type: FWP, Accession: 95010325005752, CIKs: ['1000275'], received_time: 2025-05-05 17:12:51 EDT
+Submission Type: 4, Accession: 122520825004701, CIKs: ['1734706'], received_time: 2025-05-05 17:12:52 EDT
+Submission Type: 4, Accession: 122520825004700, CIKs: ['1272898'], received_time: 2025-05-05 17:12:53 EDT
+Submission Type: 1-A POS, Accession: 182912625003408, CIKs: ['1919204'], received_time: 2025-05-05 17:12:54 EDT
+Submission Type: 4, Accession: 122520825004703, CIKs: ['1333101'], received_time: 2025-05-05 17:12:54 EDT
+Submission Type: 144, Accession: 100027525000069, CIKs: ['1141688'], received_time: 2025-05-05 17:12:54 EDT
+Submission Type: 4, Accession: 106299325008507, CIKs: ['1392152'], received_time: 2025-05-05 17:12:54 EDT
+Submission Type: 4, Accession: 122520825004702, CIKs: ['1707011'], received_time: 2025-05-05 17:12:56 EDT
+Submission Type: 4, Accession: 122520825004696, CIKs: ['2048902'], received_time: 2025-05-05 17:12:56 EDT
+Submission Type: D/A, Accession: 206024825000004, CIKs: ['2060248'], received_time: 2025-05-05 17:12:56 EDT
+Submission Type: 4, Accession: 190273325000059, CIKs: ['1455185'], received_time: 2025-05-05 17:12:57 EDT
+Submission Type: 4, Accession: 122520825004699, CIKs: ['1013871', '1481169'], received_time: 2025-05-05 17:12:57 EDT
+Submission Type: 4, Accession: 122520825004704, CIKs: ['1678964'], received_time: 2025-05-05 17:12:58 EDT
+Submission Type: 4, Accession: 122520825004707, CIKs: ['1925859'], received_time: 2025-05-05 17:13:06 EDT
+Submission Type: 4, Accession: 122520825004706, CIKs: ['1013871', '1260593'], received_time: 2025-05-05 17:13:09 EDT
+Submission Type: 4, Accession: 122520825004705, CIKs: ['1013871', '1759034'], received_time: 2025-05-05 17:13:09 EDT
+Submission Type: SC TO-I, Accession: 139834425008705, CIKs: ['1856156'], received_time: 2025-05-05 17:13:17 EDT
+Submission Type: 8-A12B, Accession: 119312525112892, CIKs: ['1794669'], received_time: 2025-05-05 17:13:25 EDT
+Submission Type: 8-K, Accession: 119312525112891, CIKs: ['2006191'], received_time: 2025-05-05 17:13:26 EDT
+Submission Type: 8-K, Accession: 10182925000018, CIKs: ['101829'], received_time: 2025-05-05 17:13:37 EDT
+Submission Type: 497K, Accession: 139834425008707, CIKs: ['912900'], received_time: 2025-05-05 17:13:42 EDT
+Submission Type: 4, Accession: 143774925014575, CIKs: ['1891509'], received_time: 2025-05-05 17:13:53 EDT
+Submission Type: 497J, Accession: 199937125005443, CIKs: ['1843263'], received_time: 2025-05-05 17:13:53 EDT
+Submission Type: 497, Accession: 182912625003411, CIKs: ['1831313'], received_time: 2025-05-05 17:13:53 EDT
+Submission Type: 8-K, Accession: 119312525112894, CIKs: ['929351'], received_time: 2025-05-05 17:14:26 EDT
+Submission Type: 424B2, Accession: 95010325005753, CIKs: ['312070'], received_time: 2025-05-05 17:14:26 EDT
+Submission Type: 497VPI, Accession: 112199725000064, CIKs: ['948972'], received_time: 2025-05-05 17:14:27 EDT
+Submission Type: 497, Accession: 199937125005444, CIKs: ['836267'], received_time: 2025-05-05 17:14:30 EDT
+Submission Type: 497K, Accession: 139834425008708, CIKs: ['912900'], received_time: 2025-05-05 17:14:35 EDT
+Submission Type: F-1/A, Accession: 164117225008703, CIKs: ['2013100'], received_time: 2025-05-05 17:14:44 EDT
+Submission Type: 13F-HR, Accession: 176699525000002, CIKs: ['1766995'], received_time: 2025-05-05 17:14:45 EDT
+Submission Type: 144, Accession: 197236225000388, CIKs: ['1438423', '1968509'], received_time: 2025-05-05 17:14:50 EDT
+Submission Type: 4, Accession: 112760225013384, CIKs: ['1719138'], received_time: 2025-05-05 17:14:50 EDT
+Submission Type: 4, Accession: 101385725000130, CIKs: ['1680115', '1013857'], received_time: 2025-05-05 17:14:59 EDT
+Submission Type: 4, Accession: 160206525000032, CIKs: ['1539838'], received_time: 2025-05-05 17:15:01 EDT
+Submission Type: 4, Accession: 190273325000060, CIKs: ['1902733', '1928630'], received_time: 2025-05-05 17:15:02 EDT
+Submission Type: 4, Accession: 187150925000081, CIKs: ['1871509', '1886715'], received_time: 2025-05-05 17:15:10 EDT
+Submission Type: 497, Accession: 119312525112895, CIKs: ['893818'], received_time: 2025-05-05 17:15:11 EDT
+Submission Type: D, Accession: 206693925000001, CIKs: ['2066939'], received_time: 2025-05-05 17:15:23 EDT
+Submission Type: DEFA14A, Accession: 165355825000057, CIKs: ['1653558'], received_time: 2025-05-05 17:15:23 EDT
+Submission Type: 8-K, Accession: 95017025063705, CIKs: ['1814215'], received_time: 2025-05-05 17:15:24 EDT
+Submission Type: 4, Accession: 107041225000077, CIKs: ['1297913', '1070412'], received_time: 2025-05-05 17:15:24 EDT
+Submission Type: 4, Accession: 187150925000083, CIKs: ['1871509', '1992312'], received_time: 2025-05-05 17:15:25 EDT
+Submission Type: 4, Accession: 187150925000082, CIKs: ['2020559', '1871509'], received_time: 2025-05-05 17:15:26 EDT
+Submission Type: 4/A, Accession: 143774925014576, CIKs: ['1070524', '2043740'], received_time: 2025-05-05 17:15:36 EDT
+Submission Type: 4, Accession: 187150925000084, CIKs: ['1886796'], received_time: 2025-05-05 17:15:36 EDT
+Submission Type: 8-K, Accession: 147793225003326, CIKs: ['1309082'], received_time: 2025-05-05 17:15:38 EDT
+Submission Type: 4, Accession: 110465925044584, CIKs: ['1104397'], received_time: 2025-05-05 17:15:49 EDT
+Submission Type: 4, Accession: 187150925000085, CIKs: ['1427740'], received_time: 2025-05-05 17:15:50 EDT
+Submission Type: 8-K, Accession: 110465925044583, CIKs: ['1951667'], received_time: 2025-05-05 17:15:51 EDT
+Submission Type: 497VPU, Accession: 112199725000066, CIKs: ['940338'], received_time: 2025-05-05 17:16:17 EDT
+Submission Type: 8-K, Accession: 130683025000102, CIKs: ['1306830'], received_time: 2025-05-05 17:16:21 EDT
+Submission Type: 4, Accession: 112760225013385, CIKs: ['2010096'], received_time: 2025-05-05 17:16:29 EDT
+Submission Type: 4, Accession: 110465925044585, CIKs: ['2026205', '1497770'], received_time: 2025-05-05 17:16:29 EDT
+Submission Type: FWP, Accession: 183988225026975, CIKs: ['927971'], received_time: 2025-05-05 17:16:40 EDT
+Submission Type: S-8, Accession: 4587625000049, CIKs: ['45876'], received_time: 2025-05-05 17:16:41 EDT
+Submission Type: 4, Accession: 122520825004717, CIKs: ['885725', '1533022'], received_time: 2025-05-05 17:16:51 EDT
+Submission Type: 4, Accession: 122520825004716, CIKs: ['1678249'], received_time: 2025-05-05 17:16:51 EDT
+Submission Type: SCHEDULE 13G/A, Accession: 205211325002087, CIKs: ['1660134'], received_time: 2025-05-05 17:16:58 EDT
+Submission Type: SCHEDULE 13G/A, Accession: 205211325002083, CIKs: ['1301787'], received_time: 2025-05-05 17:16:58 EDT
+Submission Type: SCHEDULE 13G/A, Accession: 205211325002080, CIKs: ['2012383', '1748790'], received_time: 2025-05-05 17:16:59 EDT
+Submission Type: SCHEDULE 13G, Accession: 205211325002081, CIKs: ['1705110'], received_time: 2025-05-05 17:16:59 EDT
+Submission Type: SCHEDULE 13G/A, Accession: 205211325002082, CIKs: ['883948'], received_time: 2025-05-05 17:16:59 EDT
+Submission Type: SCHEDULE 13G/A, Accession: 205211325002084, CIKs: ['800240'], received_time: 2025-05-05 17:17:00 EDT
+Submission Type: SCHEDULE 13G/A, Accession: 205211325002086, CIKs: ['1433642'], received_time: 2025-05-05 17:17:01 EDT
+Submission Type: SCHEDULE 13G/A, Accession: 205211325002088, CIKs: ['874238'], received_time: 2025-05-05 17:17:01 EDT
+Submission Type: SCHEDULE 13G/A, Accession: 205211325002085, CIKs: ['887936'], received_time: 2025-05-05 17:17:02 EDT
+Submission Type: 4, Accession: 110465925044587, CIKs: ['1657271'], received_time: 2025-05-05 17:17:12 EDT
+Submission Type: 144, Accession: 195004725002752, CIKs: ['1315098'], received_time: 2025-05-05 17:17:14 EDT
+Submission Type: 4, Accession: 190273325000061, CIKs: ['1902733', '1814499'], received_time: 2025-05-05 17:17:14 EDT
+Submission Type: 497VPU, Accession: 112199725000067, CIKs: ['940338'], received_time: 2025-05-05 17:17:29 EDT
+Submission Type: 4, Accession: 112760225013386, CIKs: ['1718790'], received_time: 2025-05-05 17:17:42 EDT
+Submission Type: 144, Accession: 195004725002753, CIKs: ['1315098'], received_time: 2025-05-05 17:17:46 EDT
+Submission Type: FWP, Accession: 110465925044590, CIKs: ['83246'], received_time: 2025-05-05 17:17:48 EDT
+Submission Type: 4, Accession: 110465925044589, CIKs: ['1503875'], received_time: 2025-05-05 17:17:49 EDT
+Submission Type: 8-K, Accession: 88734325000163, CIKs: ['887343'], received_time: 2025-05-05 17:17:56 EDT
+Submission Type: FWP, Accession: 121465925006970, CIKs: ['927971'], received_time: 2025-05-05 17:17:57 EDT
+Submission Type: 4, Accession: 122520825004719, CIKs: ['1668346'], received_time: 2025-05-05 17:17:58 EDT
+Submission Type: 4, Accession: 122520825004720, CIKs: ['101829', '1337906'], received_time: 2025-05-05 17:17:59 EDT
+Submission Type: 4, Accession: 122520825004721, CIKs: ['1403297'], received_time: 2025-05-05 17:18:01 EDT
+Submission Type: 497K, Accession: 139834425008710, CIKs: ['912900'], received_time: 2025-05-05 17:18:01 EDT
+Submission Type: 4, Accession: 122520825004718, CIKs: ['1338351'], received_time: 2025-05-05 17:18:01 EDT
+Submission Type: 4, Accession: 122520825004722, CIKs: ['1751642'], received_time: 2025-05-05 17:18:02 EDT
+Submission Type: FWP, Accession: 121465925006971, CIKs: ['927971'], received_time: 2025-05-05 17:18:02 EDT
+Submission Type: 4, Accession: 122520825004725, CIKs: ['1203074'], received_time: 2025-05-05 17:18:04 EDT
+Submission Type: 144, Accession: 195004725002754, CIKs: ['1315098'], received_time: 2025-05-05 17:18:04 EDT
+Submission Type: C-U, Accession: 166919125000304, CIKs: ['2030286'], received_time: 2025-05-05 17:18:05 EDT
+Submission Type: 4, Accession: 122520825004723, CIKs: ['1403773'], received_time: 2025-05-05 17:18:05 EDT
+Submission Type: 4, Accession: 122520825004724, CIKs: ['101829', '1347950'], received_time: 2025-05-05 17:18:07 EDT
+Submission Type: D/A, Accession: 182251725000002, CIKs: ['1822517'], received_time: 2025-05-05 17:18:08 EDT
+Submission Type: 4, Accession: 122520825004727, CIKs: ['1714048'], received_time: 2025-05-05 17:18:09 EDT
+Submission Type: 4, Accession: 122520825004726, CIKs: ['1695566'], received_time: 2025-05-05 17:18:09 EDT
+Submission Type: 10-Q, Accession: 159036425000011, CIKs: ['1590364'], received_time: 2025-05-05 17:18:18 EDT
+Submission Type: 144, Accession: 195004725002755, CIKs: ['1315098', '1834990'], received_time: 2025-05-05 17:18:19 EDT
+Submission Type: 8-K, Accession: 164117225008705, CIKs: ['1414767'], received_time: 2025-05-05 17:18:20 EDT
+Submission Type: C-U, Accession: 166919125000305, CIKs: ['2032789'], received_time: 2025-05-05 17:18:20 EDT
+Submission Type: 13F-HR, Accession: 153586225000002, CIKs: ['1535862'], received_time: 2025-05-05 17:18:20 EDT
+Submission Type: FWP, Accession: 121465925006973, CIKs: ['927971'], received_time: 2025-05-05 17:18:21 EDT
+Submission Type: DEFA14A, Accession: 119312525112898, CIKs: ['1534701'], received_time: 2025-05-05 17:18:22 EDT
+Submission Type: 4, Accession: 156218025003600, CIKs: ['1855767'], received_time: 2025-05-05 17:18:31 EDT
+Submission Type: 4, Accession: 110465925044592, CIKs: ['1540631', '1497770'], received_time: 2025-05-05 17:18:41 EDT
+Submission Type: 4, Accession: 141588925011993, CIKs: ['1525358', '1370637'], received_time: 2025-05-05 17:18:44 EDT
+Submission Type: 424B2, Accession: 121390025039769, CIKs: ['1665650', '19617'], received_time: 2025-05-05 17:18:46 EDT
+Submission Type: 497VPU, Accession: 112199725000068, CIKs: ['940338'], received_time: 2025-05-05 17:19:08 EDT
+Submission Type: FWP, Accession: 121465925006974, CIKs: ['927971'], received_time: 2025-05-05 17:19:09 EDT
+Submission Type: 4, Accession: 70928325000013, CIKs: ['1411509'], received_time: 2025-05-05 17:19:10 EDT
+Submission Type: 4, Accession: 132760725000040, CIKs: ['2025392', '1327607'], received_time: 2025-05-05 17:19:12 EDT
+Submission Type: 424B2, Accession: 95017025063708, CIKs: ['40729'], received_time: 2025-05-05 17:19:19 EDT
+Submission Type: 4, Accession: 112760225013387, CIKs: ['1939671'], received_time: 2025-05-05 17:19:21 EDT
+Submission Type: 497J, Accession: 110465925044593, CIKs: ['836487'], received_time: 2025-05-05 17:19:33 EDT
+Submission Type: 4, Accession: 122520825004728, CIKs: ['1520448', '1319947'], received_time: 2025-05-05 17:19:33 EDT
+Submission Type: 424B2, Accession: 191870425007691, CIKs: ['1682472', '70858'], received_time: 2025-05-05 17:19:34 EDT
+Submission Type: 4, Accession: 110465925044594, CIKs: ['1613921'], received_time: 2025-05-05 17:19:37 EDT
+Submission Type: 424B3, Accession: 121390025039770, CIKs: ['1855474'], received_time: 2025-05-05 17:19:38 EDT
+Submission Type: 13F-HR, Accession: 94371225000016, CIKs: ['943712'], received_time: 2025-05-05 17:19:38 EDT
+Submission Type: 4, Accession: 141588925011994, CIKs: ['2047113'], received_time: 2025-05-05 17:19:40 EDT
+Submission Type: 4, Accession: 7430325000089, CIKs: ['1996312'], received_time: 2025-05-05 17:19:49 EDT
+Submission Type: S-8, Accession: 4587625000051, CIKs: ['45876'], received_time: 2025-05-05 17:19:50 EDT
+Submission Type: 4, Accession: 92963825001789, CIKs: ['1580144'], received_time: 2025-05-05 17:20:01 EDT
+Submission Type: 4, Accession: 178730625000084, CIKs: ['1741987', '1787306'], received_time: 2025-05-05 17:20:38 EDT
+Submission Type: 4, Accession: 141588925011995, CIKs: ['1938056', '1370637'], received_time: 2025-05-05 17:20:39 EDT
+Submission Type: 144, Accession: 197236225000389, CIKs: ['1831608', '1350653'], received_time: 2025-05-05 17:20:39 EDT
+Submission Type: 497VPU, Accession: 112199725000069, CIKs: ['940338'], received_time: 2025-05-05 17:20:41 EDT
+Submission Type: 6-K, Accession: 110465925044597, CIKs: ['1756594'], received_time: 2025-05-05 17:20:52 EDT
+Submission Type: 4, Accession: 178730625000085, CIKs: ['1787306', '1801061'], received_time: 2025-05-05 17:20:52 EDT
+Submission Type: 8-K, Accession: 110465925044596, CIKs: ['1829635'], received_time: 2025-05-05 17:20:54 EDT
+Submission Type: 144, Accession: 197236225000390, CIKs: ['1636222'], received_time: 2025-05-05 17:21:01 EDT
+Submission Type: 4, Accession: 178730625000086, CIKs: ['1798679', '1787306'], received_time: 2025-05-05 17:21:03 EDT
+Submission Type: 10-K/A, Accession: 121390025039771, CIKs: ['1786108'], received_time: 2025-05-05 17:21:05 EDT
+Submission Type: 8-K, Accession: 93652825000066, CIKs: ['936528'], received_time: 2025-05-05 17:21:10 EDT
+Submission Type: 424B2, Accession: 183988225026977, CIKs: ['1114446'], received_time: 2025-05-05 17:21:30 EDT
+Submission Type: 4, Accession: 158176025000101, CIKs: ['1185999'], received_time: 2025-05-05 17:21:39 EDT
+Submission Type: 8-K/A, Accession: 119312525112901, CIKs: ['1828811'], received_time: 2025-05-05 17:21:40 EDT
+Submission Type: 424B2, Accession: 121390025039772, CIKs: ['19617'], received_time: 2025-05-05 17:21:41 EDT
+Submission Type: C-AR, Accession: 164692125000002, CIKs: ['1646921'], received_time: 2025-05-05 17:21:43 EDT
+Submission Type: ARS, Accession: 162828025022273, CIKs: ['910329'], received_time: 2025-05-05 17:21:47 EDT
+Submission Type: 4, Accession: 164033425000787, CIKs: ['1526251'], received_time: 2025-05-05 17:22:02 EDT
+Submission Type: 144, Accession: 197236225000391, CIKs: ['64040'], received_time: 2025-05-05 17:22:04 EDT
+Submission Type: 8-K, Accession: 119312525112902, CIKs: ['1655050'], received_time: 2025-05-05 17:22:04 EDT
+Submission Type: 497VPU, Accession: 112199725000070, CIKs: ['948972'], received_time: 2025-05-05 17:22:06 EDT
+Submission Type: 4, Accession: 164033425000788, CIKs: ['1236537'], received_time: 2025-05-05 17:22:16 EDT
+Submission Type: 8-K, Accession: 168316825003138, CIKs: ['889609'], received_time: 2025-05-05 17:22:16 EDT
+Submission Type: 497J, Accession: 119312525112903, CIKs: ['702340'], received_time: 2025-05-05 17:22:40 EDT
+Submission Type: DEF 14A, Accession: 118518525000402, CIKs: ['312257'], received_time: 2025-05-05 17:22:53 EDT
+Submission Type: 8-K, Accession: 85847025000103, CIKs: ['858470'], received_time: 2025-05-05 17:22:54 EDT
+Submission Type: FWP, Accession: 119312525112904, CIKs: ['1166691'], received_time: 2025-05-05 17:22:54 EDT
+Submission Type: 40-17G, Accession: 119312525112906, CIKs: ['1676197'], received_time: 2025-05-05 17:22:55 EDT
+Submission Type: SC 13E3/A, Accession: 147793225003329, CIKs: ['1785592'], received_time: 2025-05-05 17:22:55 EDT
+Submission Type: 144, Accession: 195824425003059, CIKs: ['804328', '1786420'], received_time: 2025-05-05 17:23:04 EDT
+Submission Type: 8-K, Accession: 110465925044598, CIKs: ['1682220'], received_time: 2025-05-05 17:23:20 EDT
+Submission Type: 144, Accession: 196858225000315, CIKs: ['1298675'], received_time: 2025-05-05 17:23:23 EDT
+Submission Type: 424B3, Accession: 110465925044599, CIKs: ['1805284'], received_time: 2025-05-05 17:23:34 EDT
+Submission Type: 4, Accession: 196768025000071, CIKs: ['1781229', '1967680'], received_time: 2025-05-05 17:23:34 EDT
+Submission Type: 13F-HR, Accession: 190982825000004, CIKs: ['1909828'], received_time: 2025-05-05 17:23:42 EDT
+Submission Type: 497VPU, Accession: 112199725000071, CIKs: ['948972'], received_time: 2025-05-05 17:23:43 EDT
+Submission Type: 424B2, Accession: 183988225026978, CIKs: ['895421'], received_time: 2025-05-05 17:23:45 EDT
+Submission Type: 497, Accession: 113322825005287, CIKs: ['1872253'], received_time: 2025-05-05 17:24:03 EDT
+Submission Type: FWP, Accession: 119312525112907, CIKs: ['902739'], received_time: 2025-05-05 17:24:07 EDT
+Submission Type: 4, Accession: 164033425000789, CIKs: ['1621221', '1288232'], received_time: 2025-05-05 17:24:30 EDT
+Submission Type: DFAN14A, Accession: 92189525001283, CIKs: ['1534701', '1791786'], received_time: 2025-05-05 17:24:32 EDT
+Submission Type: 4, Accession: 162828025022275, CIKs: ['1831840', '1628434'], received_time: 2025-05-05 17:24:43 EDT
+Submission Type: SCHEDULE 13G/A, Accession: 95017025063715, CIKs: ['1774342', '835271'], received_time: 2025-05-05 17:24:44 EDT
+Submission Type: 424B2, Accession: 121465925006976, CIKs: ['927971'], received_time: 2025-05-05 17:25:06 EDT
+Submission Type: 4, Accession: 154641725000098, CIKs: ['1546417', '1974919'], received_time: 2025-05-05 17:25:14 EDT
+Submission Type: 497VPU, Accession: 112199725000072, CIKs: ['948972'], received_time: 2025-05-05 17:25:14 EDT
+Submission Type: 253G2, Accession: 121390025039775, CIKs: ['1897152'], received_time: 2025-05-05 17:25:14 EDT
+Submission Type: 144, Accession: 195824425003061, CIKs: ['1943896', '2019143'], received_time: 2025-05-05 17:25:16 EDT
+Submission Type: 144, Accession: 196858225000316, CIKs: ['1535527'], received_time: 2025-05-05 17:25:16 EDT
+Submission Type: 424B2, Accession: 121390025039774, CIKs: ['19617'], received_time: 2025-05-05 17:25:16 EDT
+Submission Type: 4, Accession: 132760725000042, CIKs: ['1746056'], received_time: 2025-05-05 17:25:16 EDT
+Submission Type: 4, Accession: 196768025000073, CIKs: ['1991958'], received_time: 2025-05-05 17:25:19 EDT
+Submission Type: 144, Accession: 195824425003060, CIKs: ['1858985'], received_time: 2025-05-05 17:25:19 EDT
+Submission Type: 144, Accession: 195824425003064, CIKs: ['1682260', '1327567'], received_time: 2025-05-05 17:25:19 EDT
+Submission Type: 144, Accession: 195824425003065, CIKs: ['1679788'], received_time: 2025-05-05 17:25:19 EDT
+Submission Type: 4, Accession: 154641725000099, CIKs: ['1546417', '1938722'], received_time: 2025-05-05 17:25:23 EDT
+Submission Type: FWP, Accession: 119312525112908, CIKs: ['1040573'], received_time: 2025-05-05 17:25:23 EDT
+Submission Type: 144, Accession: 195824425003063, CIKs: ['1833511', '1422930'], received_time: 2025-05-05 17:25:23 EDT
+Submission Type: 144, Accession: 195824425003062, CIKs: ['8947', '1208749'], received_time: 2025-05-05 17:25:23 EDT
+Submission Type: 4, Accession: 122520825004730, CIKs: ['1252451'], received_time: 2025-05-05 17:25:28 EDT
+Submission Type: 4, Accession: 122520825004732, CIKs: ['49196', '1657175'], received_time: 2025-05-05 17:25:30 EDT
+Submission Type: 4, Accession: 122520825004731, CIKs: ['1979008'], received_time: 2025-05-05 17:25:30 EDT
+Submission Type: 4, Accession: 122520825004737, CIKs: ['49196', '1980959'], received_time: 2025-05-05 17:25:40 EDT
+Submission Type: 4, Accession: 122520825004736, CIKs: ['1267320', '49196'], received_time: 2025-05-05 17:25:40 EDT
+Submission Type: 4, Accession: 122520825004735, CIKs: ['49196', '1779467'], received_time: 2025-05-05 17:25:40 EDT
+Submission Type: 4, Accession: 122520825004739, CIKs: ['49196', '1699485'], received_time: 2025-05-05 17:25:41 EDT
+Submission Type: 4, Accession: 122520825004738, CIKs: ['1631446'], received_time: 2025-05-05 17:25:41 EDT
+Submission Type: N-14, Accession: 89843225000315, CIKs: ['1506001'], received_time: 2025-05-05 17:25:41 EDT
+Submission Type: 4, Accession: 122520825004734, CIKs: ['1220191'], received_time: 2025-05-05 17:25:41 EDT
+Submission Type: 4, Accession: 122520825004733, CIKs: ['1753616'], received_time: 2025-05-05 17:25:44 EDT
+Submission Type: FWP, Accession: 121465925006977, CIKs: ['927971'], received_time: 2025-05-05 17:25:53 EDT
+Submission Type: 4, Accession: 165642225000005, CIKs: ['1656422', '30625'], received_time: 2025-05-05 17:25:58 EDT
+Submission Type: 144, Accession: 196922325000270, CIKs: ['5272'], received_time: 2025-05-05 17:26:05 EDT
+Submission Type: FWP, Accession: 121465925006978, CIKs: ['927971'], received_time: 2025-05-05 17:26:28 EDT
+Submission Type: 4, Accession: 497725000069, CIKs: ['1722786'], received_time: 2025-05-05 17:26:38 EDT
+Submission Type: 497VPU, Accession: 112199725000073, CIKs: ['948972'], received_time: 2025-05-05 17:26:48 EDT
+Submission Type: 4, Accession: 143774925014582, CIKs: ['1556727', '1807005'], received_time: 2025-05-05 17:26:49 EDT
+Submission Type: FWP, Accession: 119312525112910, CIKs: ['28385'], received_time: 2025-05-05 17:26:58 EDT
+Submission Type: 4, Accession: 196768025000075, CIKs: ['1949551'], received_time: 2025-05-05 17:26:59 EDT
+Submission Type: FWP, Accession: 121465925006981, CIKs: ['927971'], received_time: 2025-05-05 17:27:26 EDT
+Submission Type: FWP, Accession: 121465925006980, CIKs: ['927971'], received_time: 2025-05-05 17:27:26 EDT
+Submission Type: DEFA14A, Accession: 84300625000015, CIKs: ['843006'], received_time: 2025-05-05 17:27:36 EDT
+Submission Type: N-14, Accession: 139834425008713, CIKs: ['831114'], received_time: 2025-05-05 17:27:38 EDT
+Submission Type: DEFM14A, Accession: 110465925044603, CIKs: ['1382821'], received_time: 2025-05-05 17:27:59 EDT
+Submission Type: 497VPU, Accession: 112199725000074, CIKs: ['948972'], received_time: 2025-05-05 17:27:59 EDT
+Submission Type: S-1, Accession: 164117225008712, CIKs: ['2030763'], received_time: 2025-05-05 17:28:00 EDT
+Submission Type: 144, Accession: 197236225000392, CIKs: ['1609711'], received_time: 2025-05-05 17:28:09 EDT
+Submission Type: 497J, Accession: 89418925003603, CIKs: ['1970751'], received_time: 2025-05-05 17:28:17 EDT
+Submission Type: D/A, Accession: 194539025000003, CIKs: ['1945390'], received_time: 2025-05-05 17:28:19 EDT
+Submission Type: 4, Accession: 106299325008509, CIKs: ['1780851', '1478320'], received_time: 2025-05-05 17:28:20 EDT
+Submission Type: 424B3, Accession: 95017025063722, CIKs: ['1802450'], received_time: 2025-05-05 17:28:38 EDT
+Submission Type: 424B3, Accession: 95017025063719, CIKs: ['1802450'], received_time: 2025-05-05 17:28:38 EDT
+Submission Type: 424B3, Accession: 95017025063726, CIKs: ['1802450'], received_time: 2025-05-05 17:28:48 EDT
+Submission Type: 424B3, Accession: 95017025063725, CIKs: ['1802450'], received_time: 2025-05-05 17:28:48 EDT
+Submission Type: 424B3, Accession: 95017025063724, CIKs: ['1802450'], received_time: 2025-05-05 17:28:48 EDT
+Submission Type: 424B3, Accession: 95017025063721, CIKs: ['1802450'], received_time: 2025-05-05 17:28:48 EDT
+Submission Type: 424B3, Accession: 95017025063723, CIKs: ['1802450'], received_time: 2025-05-05 17:28:50 EDT
+Submission Type: 424B3, Accession: 95017025063720, CIKs: ['1802450'], received_time: 2025-05-05 17:28:50 EDT
+Submission Type: 8-K, Accession: 85847025000106, CIKs: ['858470'], received_time: 2025-05-05 17:28:59 EDT
+Submission Type: 4, Accession: 95017025063727, CIKs: ['1942496'], received_time: 2025-05-05 17:28:59 EDT
+Submission Type: FWP, Accession: 121465925006982, CIKs: ['927971'], received_time: 2025-05-05 17:29:23 EDT
+Submission Type: PRE 14A, Accession: 164117225008715, CIKs: ['1857086'], received_time: 2025-05-05 17:29:25 EDT
+Submission Type: D/A, Accession: 199971225000001, CIKs: ['1999712'], received_time: 2025-05-05 17:29:26 EDT
+Submission Type: 144, Accession: 197236225000393, CIKs: ['1529864', '1621195'], received_time: 2025-05-05 17:29:27 EDT
+Submission Type: S-1, Accession: 182912625003414, CIKs: ['2043630'], received_time: 2025-05-05 17:29:27 EDT
+Submission Type: D, Accession: 206698925000001, CIKs: ['2066989'], received_time: 2025-05-05 17:29:37 EDT
+Submission Type: 4, Accession: 164117225008716, CIKs: ['1823522'], received_time: 2025-05-05 17:29:48 EDT
+Submission Type: D/A, Accession: 199971225000002, CIKs: ['2026854'], received_time: 2025-05-05 17:29:49 EDT
+Submission Type: DEFA14A, Accession: 110465925044604, CIKs: ['793952'], received_time: 2025-05-05 17:29:50 EDT
+Submission Type: DEFA14A, Accession: 119312525112913, CIKs: ['96869'], received_time: 2025-05-05 17:30:18 EDT
+Submission Type: 6-K, Accession: 127949525000019, CIKs: ['1279495'], received_time: 2025-05-05 17:30:18 EDT
+Submission Type: D, Accession: 205296125000001, CIKs: ['2052961'], received_time: 2025-05-05 17:30:18 EDT
+Submission Type: DEFA14A, Accession: 95017025063730, CIKs: ['1865782'], received_time: 2025-05-05 17:30:30 EDT
+Submission Type: 8-K, Accession: 160588825000010, CIKs: ['1605888'], received_time: 2025-05-05 17:30:52 EDT
+Submission Type: 4, Accession: 132760725000044, CIKs: ['1992720'], received_time: 2025-05-05 17:30:54 EDT
+Submission Type: 144, Accession: 197236225000394, CIKs: ['1562401', '1582573'], received_time: 2025-05-05 17:30:57 EDT
+Submission Type: 4, Accession: 135841925000006, CIKs: ['1358419'], received_time: 2025-05-05 17:31:07 EDT
+Submission Type: 497J, Accession: 89418925003605, CIKs: ['1511699'], received_time: 2025-05-05 17:31:07 EDT
+Submission Type: 4, Accession: 110465925044606, CIKs: ['2061883'], received_time: 2025-05-05 17:31:30 EDT
+Submission Type: 4, Accession: 110465925044607, CIKs: ['2016076', '1368622'], received_time: 2025-05-05 17:32:02 EDT
+Submission Type: 4, Accession: 163290925000003, CIKs: ['1632909', '1599117'], received_time: 2025-05-05 17:33:55 EDT
+Submission Type: 4, Accession: 132760725000046, CIKs: ['1965041'], received_time: 2025-05-05 17:34:05 EDT
+Submission Type: 4, Accession: 120497525000008, CIKs: ['1181012'], received_time: 2025-05-05 17:34:06 EDT
+Submission Type: 4, Accession: 155264925000004, CIKs: ['1552649'], received_time: 2025-05-05 17:34:07 EDT
+Submission Type: 3, Accession: 165347725000064, CIKs: ['2066872'], received_time: 2025-05-05 17:34:30 EDT
+Submission Type: 4, Accession: 110465925044611, CIKs: ['1867066', '1887515'], received_time: 2025-05-05 17:34:51 EDT
+Submission Type: 4, Accession: 110465925044612, CIKs: ['1893880'], received_time: 2025-05-05 17:35:22 EDT
+Submission Type: 4, Accession: 146555825000005, CIKs: ['30625', '1465558'], received_time: 2025-05-05 17:37:04 EDT
+Submission Type: 4, Accession: 110465925044614, CIKs: ['1527537'], received_time: 2025-05-05 17:37:48 EDT
+Submission Type: 4, Accession: 89706925000905, CIKs: ['1691936', '1570825'], received_time: 2025-05-05 17:37:49 EDT
+Submission Type: 4, Accession: 91228225000499, CIKs: ['1832935', '1966983'], received_time: 2025-05-05 17:38:26 EDT
+Submission Type: 144, Accession: 196922325000271, CIKs: ['5272', '2052374'], received_time: 2025-05-05 17:38:48 EDT
+Submission Type: 4, Accession: 150707925000097, CIKs: ['1752877'], received_time: 2025-05-05 17:38:58 EDT
+Submission Type: 4, Accession: 157856325000229, CIKs: ['1824584'], received_time: 2025-05-05 17:39:23 EDT
+Submission Type: 4, Accession: 157856325000230, CIKs: ['1462120', '1373716'], received_time: 2025-05-05 17:39:25 EDT
+Submission Type: 4, Accession: 157856325000231, CIKs: ['1545352', '1462120'], received_time: 2025-05-05 17:39:41 EDT
+Submission Type: 4, Accession: 165347725000066, CIKs: ['2066872', '1653477'], received_time: 2025-05-05 17:39:42 EDT
+Submission Type: 4, Accession: 157856325000232, CIKs: ['1647117'], received_time: 2025-05-05 17:39:50 EDT
+Submission Type: 4, Accession: 157856325000233, CIKs: ['1231645'], received_time: 2025-05-05 17:39:59 EDT
+Submission Type: 4, Accession: 110465925044616, CIKs: ['1901612', '1527537'], received_time: 2025-05-05 17:40:09 EDT
+Submission Type: 4, Accession: 157856325000234, CIKs: ['1647098'], received_time: 2025-05-05 17:40:09 EDT
+Submission Type: 4, Accession: 157856325000235, CIKs: ['1478836'], received_time: 2025-05-05 17:40:17 EDT
+Submission Type: 3, Accession: 147793225003334, CIKs: ['1806753', '1791145'], received_time: 2025-05-05 17:40:56 EDT
+Submission Type: 4, Accession: 120497525000009, CIKs: ['1941532'], received_time: 2025-05-05 17:41:17 EDT
+Submission Type: 3, Accession: 147793225003335, CIKs: ['1183302'], received_time: 2025-05-05 17:41:47 EDT
+Submission Type: 4, Accession: 110465925044618, CIKs: ['1527537', '1930087'], received_time: 2025-05-05 17:42:02 EDT
+Submission Type: 4, Accession: 1427225000095, CIKs: ['1975719'], received_time: 2025-05-05 17:42:05 EDT
+Submission Type: 4, Accession: 165495425005085, CIKs: ['1977418'], received_time: 2025-05-05 17:42:20 EDT
+Submission Type: 4, Accession: 177783525000093, CIKs: ['1416779'], received_time: 2025-05-05 17:42:51 EDT
+Submission Type: SCHEDULE 13G/A, Accession: 142284925000028, CIKs: ['1842827'], received_time: 2025-05-05 17:43:13 EDT
+Submission Type: 4, Accession: 122520825004742, CIKs: ['1464568'], received_time: 2025-05-05 17:43:14 EDT
+Submission Type: 4, Accession: 110465925044620, CIKs: ['1527537'], received_time: 2025-05-05 17:43:29 EDT
+Submission Type: 4, Accession: 132760725000048, CIKs: ['1745087', '1327607'], received_time: 2025-05-05 17:43:55 EDT
+Submission Type: 5, Accession: 110465925044621, CIKs: ['1546587', '1903070'], received_time: 2025-05-05 17:44:11 EDT
+Submission Type: 4, Accession: 110465925044622, CIKs: ['1527537', '1901606'], received_time: 2025-05-05 17:44:36 EDT
+Submission Type: 4, Accession: 112760225013391, CIKs: ['1924996'], received_time: 2025-05-05 17:45:03 EDT
+Submission Type: 5, Accession: 110465925044623, CIKs: ['1792601'], received_time: 2025-05-05 17:45:12 EDT
+Submission Type: 4, Accession: 165785325000048, CIKs: ['1879088'], received_time: 2025-05-05 17:45:14 EDT
+Submission Type: 4, Accession: 141588925011996, CIKs: ['1886388'], received_time: 2025-05-05 17:45:31 EDT
+Submission Type: 4, Accession: 165347725000068, CIKs: ['1575329'], received_time: 2025-05-05 17:45:47 EDT

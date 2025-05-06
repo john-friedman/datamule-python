@@ -48,7 +48,7 @@ async def poll_rss(limiter):
 
 def clean_efts_hits(hits):
     # clean hits
-    hits = [{'accession': int(hit['_source']['adsh'].replace('-','')), 'filing_date': hit['_source']['file_date'], 'ciks': hit['_source']['ciks']} for hit in hits]
+    hits = [{'accession': int(hit['_source']['adsh'].replace('-','')), 'filing_date': hit['_source']['file_date'], 'ciks': hit['_source']['ciks'], 'submission_type': hit['_source']['file_type']} for hit in hits]
     return hits
 
 class Monitor():

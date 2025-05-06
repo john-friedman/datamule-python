@@ -76,19 +76,20 @@ def _process_cik_and_metadata_filters(cik=None, ticker=None, **kwargs):
         # Input validation
         if cik is not None and ticker is not None:
             raise ValueError("Only one of cik or ticker should be provided, not both.")
+        
+        if 'tickers' in kwargs:
+            raise ValueError("Use 'ticker' instead of 'tickers'.")
 
         # Convert ticker to CIK if provided
         if ticker is not None:
             if isinstance(ticker, str):
                 ticker = [ticker]
-
-            ciks_from_ticker = []
+                
+            cik = []
             for t in ticker:
-                ciks = get_cik_from_dataset('listed_filer_metadata', 'ticker', t)
-                if ciks:
-                    ciks_from_ticker.extend(ciks)
-
-            cik = ciks
+                ticker_ciks = get_cik_from_dataset('listed_filer_metadata', 'ticker', t)
+                if ticker_ciks:
+                    cik.extend(ticker_ciks)
 
         # Normalize CIK format
         if cik is not None:
