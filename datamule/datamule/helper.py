@@ -5,28 +5,17 @@ import os
 
 def _load_package_csv(name):
     """Load CSV files from package data directory"""
-    # First try to load from the package data directory
-    try:
-        package_dir = os.path.dirname(os.path.dirname(__file__))
-        csv_path = os.path.join(package_dir, "data", f"{name}.csv")
-        
-        # Fallback to the legacy location
-        if not os.path.exists(csv_path):
-            csv_path = Path.home() / ".datamule" / f"{name}.csv"
-        
-        data = []
-        with open(csv_path, 'r') as csvfile:
-            csv_reader = csv.DictReader(csvfile)
-            for row in csv_reader:
-                data.append(row)
-        
-        return data
+    package_dir = os.path.dirname(os.path.dirname(__file__))
+    csv_path = os.path.join(package_dir,"datamule", "data", f"{name}.csv")
     
-    except FileNotFoundError:
-        raise FileNotFoundError(
-            f"Required data file '{name}.csv' not found. "
-            f"This file should be in the datamule package directory or in ~/.datamule/"
-        )
+    data = []
+    with open(csv_path, 'r') as csvfile:
+        csv_reader = csv.DictReader(csvfile)
+        for row in csv_reader:
+            data.append(row)
+    
+    return data
+    
 
 def load_package_dataset(dataset):
     if dataset =='listed_filer_metadata':
