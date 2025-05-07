@@ -1,20 +1,32 @@
 from functools import lru_cache
 import csv
 from pathlib import Path
+import os
 
 def _load_package_csv(name):
-    """Load CSV files from ~/.datamule/ directory"""
-    data_dir = Path.home() / ".datamule"
-    csv_path = data_dir / f"{name}.csv"
+    """Load CSV files from package data directory"""
+    # First try to load from the package data directory
+    try:
+        package_dir = os.path.dirname(os.path.dirname(__file__))
+        csv_path = os.path.join(package_dir, "data", f"{name}.csv")
+        
+        # Fallback to the legacy location
+        if not os.path.exists(csv_path):
+            csv_path = Path.home() / ".datamule" / f"{name}.csv"
+        
+        data = []
+        with open(csv_path, 'r') as csvfile:
+            csv_reader = csv.DictReader(csvfile)
+            for row in csv_reader:
+                data.append(row)
+        
+        return data
     
-    data = []
-    
-    with open(csv_path, 'r') as csvfile:
-        csv_reader = csv.DictReader(csvfile)
-        for row in csv_reader:
-            data.append(row)
-    
-    return data
+    except FileNotFoundError:
+        raise FileNotFoundError(
+            f"Required data file '{name}.csv' not found. "
+            f"This file should be in the datamule package directory or in ~/.datamule/"
+        )
 
 def load_package_dataset(dataset):
     if dataset =='listed_filer_metadata':
@@ -38,8 +50,6 @@ def get_cik_from_dataset(dataset_name, key, value):
             result.append(company['cik'])
     
     return result
-
-
 
 @lru_cache(maxsize=128)
 def get_ciks_from_metadata_filters(**kwargs):
@@ -67,47 +77,45 @@ def get_ciks_from_metadata_filters(**kwargs):
     
     return list(result_ciks)
 
-
 def _process_cik_and_metadata_filters(cik=None, ticker=None, **kwargs):
-        """ 
-        Helper method to process CIK, ticker, and metadata filters.
-        Returns a list of CIKs after processing.
-        """
-        # Input validation
-        if cik is not None and ticker is not None:
-            raise ValueError("Only one of cik or ticker should be provided, not both.")
-        
-        if 'tickers' in kwargs:
-            raise ValueError("Use 'ticker' instead of 'tickers'.")
+    """ 
+    Helper method to process CIK, ticker, and metadata filters.
+    Returns a list of CIKs after processing.
+    """
+    # Input validation
+    if cik is not None and ticker is not None:
+        raise ValueError("Only one of cik or ticker should be provided, not both.")
+    
+    if 'tickers' in kwargs:
+        raise ValueError("Use 'ticker' instead of 'tickers'.")
 
-        # Convert ticker to CIK if provided
-        if ticker is not None:
-            if isinstance(ticker, str):
-                ticker = [ticker]
-                
-            cik = []
-            for t in ticker:
-                ticker_ciks = get_cik_from_dataset('listed_filer_metadata', 'ticker', t)
-                if ticker_ciks:
-                    cik.extend(ticker_ciks)
+    # Convert ticker to CIK if provided
+    if ticker is not None:
+        if isinstance(ticker, str):
+            ticker = [ticker]
+            
+        cik = []
+        for t in ticker:
+            ticker_ciks = get_cik_from_dataset('listed_filer_metadata', 'ticker', t)
+            if ticker_ciks:
+                cik.extend(ticker_ciks)
 
-        # Normalize CIK format
+    # Normalize CIK format
+    if cik is not None:
+        if isinstance(cik, str):
+            cik = [int(cik)]
+        elif isinstance(cik, int):
+            cik = [cik]
+        elif isinstance(cik, list):
+            cik = [int(x) for x in cik]
+
+    # Process metadata filters if provided
+    if kwargs:
+        metadata_ciks = get_ciks_from_metadata_filters(**kwargs)
+
         if cik is not None:
-            if isinstance(cik, str):
-                cik = [int(cik)]
-            elif isinstance(cik, int):
-                cik = [cik]
-            elif isinstance(cik, list):
-                cik = [int(x) for x in cik]
-
-        # Process metadata filters if provided
-        if kwargs:
-            metadata_ciks = get_ciks_from_metadata_filters(**kwargs)
-
-            if cik is not None:
-                cik = list(set(cik).intersection(metadata_ciks))
-            else:
-                cik = metadata_ciks
-                
-        return cik
-        
+            cik = list(set(cik).intersection(metadata_ciks))
+        else:
+            cik = metadata_ciks
+            
+    return cik
