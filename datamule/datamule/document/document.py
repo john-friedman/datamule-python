@@ -3,11 +3,14 @@ import csv
 import re
 from doc2dict import xml2dict, txt2dict, dict2dict
 from doc2dict.mapping import flatten_hierarchy
+from doc2dict import html2dict, visualize_dict, get_title, unnest_dict
 from ..mapping_dicts.txt_mapping_dicts import dict_10k, dict_10q, dict_8k, dict_13d, dict_13g
 from ..mapping_dicts.xml_mapping_dicts import dict_345
+from ..mapping_dicts.html_mapping_dicts import dict_10k_html, dict_10q_html, dict_8k_html
 from selectolax.parser import HTMLParser
 from .processing import process_tabular_data
 from pathlib import Path
+import webbrowser
 
 class Document:
     def __init__(self, type, content, extension,accession,filing_date,path=None):
@@ -99,26 +102,10 @@ class Document:
         if self.data:
             return self.data
         
-        # preprocess content
-        if self.extension == '.txt':
-            self.content = self._preprocess_txt_content()
-        elif self.extension in ['.htm', '.html']:
-            self.content = self._preprocess_html_content()
-
         mapping_dict = None
-
-        if self.extension == '.xml':
-            if self.type in ['3', '4', '5', '3/A', '4/A', '5/A']:
-                mapping_dict = dict_345
-
-            self.data = xml2dict(content=self.content, mapping_dict=mapping_dict)
-
-
-
-        # will deprecate this when we add html2dict
-        elif self.extension in ['.htm', '.html','.txt']:
-
-
+        
+        if self.extension == '.txt':
+            content = self._preprocess_txt_content()
             if self.type == '10-Q':
                 mapping_dict = dict_10q
             elif self.type == '10-K':
@@ -131,8 +118,24 @@ class Document:
                 mapping_dict = dict_13g
             
             self.data = {}
-            self.data['document'] = dict2dict(txt2dict(content=self.content, mapping_dict=mapping_dict))
-        return self.data
+            self.data['document'] = dict2dict(txt2dict(content=content, mapping_dict=mapping_dict))
+        elif self.extension in ['.htm', '.html']:
+            if self.type == '10-K':
+                mapping_dict = dict_10k_html
+            elif self.type == '10-Q':
+                mapping_dict = dict_10q_html
+            elif self.type == '8-K':
+                mapping_dict = dict_8k_html
+            
+            dct = html2dict(content=self.content, mapping_dict=mapping_dict)
+            self.data = dct
+        elif self.extension == '.xml':
+            if self.type in ['3', '4', '5', '3/A', '4/A', '5/A']:
+                mapping_dict = dict_345
+            
+            self.data = xml2dict(content=self.content, mapping_dict=mapping_dict)
+        else:
+            pass
     
     def write_json(self, output_filename=None):
         if not self.data:
@@ -206,6 +209,30 @@ class Document:
                     })
         
         return items
+    
+    def visualize(self):
+        if not self.data:
+            self.parse()
+
+        if not self.data:
+            if self.extension in ['.jpg', '.png', '.pdf']:
+                webbrowser.open('file://' + str(self.path))
+            else:
+                pass
+        else:
+            visualize_dict(self.data)
+
+    def get_section(self, section_header, output_format='dict'):
+        if not self.data:
+            self.parse()
+
+        result = get_title(self.data,section_header)
+
+        if output_format == 'text':
+            result = unnest_dict(result)
+
+        return result
+
    
    # this will all have to be changed. default will be to flatten everything
    # candidate for deletion
