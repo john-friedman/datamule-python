@@ -9,6 +9,8 @@ s = time()
 for sub in portfolio:
     for doc in sub.document_type('10-K'):
         doc.parse()
+
+        print("Saving the parsed data to test.json")
         with open ('test.json','w',encoding='utf-8') as f:
             json.dump(doc.data, f, ensure_ascii=False, indent=4)
 
