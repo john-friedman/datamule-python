@@ -222,14 +222,15 @@ class Document:
         else:
             visualize_dict(self.data)
 
-    def get_section(self, section_header, output_format='dict'):
+    def get_section(self, title, format='dict'):
         if not self.data:
             self.parse()
 
-        result = get_title(self.data,section_header)
+        result = get_title(self.data,title)
 
-        if output_format == 'text':
-            result = unnest_dict(result)
+        if format == 'text':
+            result = [item[1] for item in result]
+            result = [unnest_dict(item) for item in result]
 
         return result
 
