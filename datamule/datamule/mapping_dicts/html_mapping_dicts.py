@@ -9,3 +9,9 @@ dict_8k_html = {
     ('signatures',r'^signatures?\.*$') : 0,
     ('item',r'^item\s*(\d+\.\d+)') : 0,
 }
+
+dict_abs15g_html = {
+    ('part',r'^part\s*([ivx]+)') : 0,
+    ('signatures',r'^signatures?\.*$') : 0,
+    ('item',r'^item\s*(\d+\.\d+)') : 1,
+}
