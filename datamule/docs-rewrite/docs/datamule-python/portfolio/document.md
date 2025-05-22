@@ -24,7 +24,7 @@ document.contains_string(pattern)
 
 ## `parse`
 
-Parses a document into dictionary form, and applies a mapping dict. Currently supports any file in `html`, `xml`, and some `txt` formats. Most do not have mapping dicts written yet, so are a bit less standardized.
+Parses a document into dictionary form, and applies a mapping dict. Currently supports any file in `html`, `xml`, has limited support for `.pdf`, and some `txt` formats. Most do not have mapping dicts written yet, so are a bit less standardized.
 
 ## `visualize`
 
