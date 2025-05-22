@@ -3,7 +3,7 @@ import csv
 import re
 from doc2dict import xml2dict, txt2dict, dict2dict
 from doc2dict.mapping import flatten_hierarchy
-from doc2dict import html2dict, visualize_dict, get_title, unnest_dict
+from doc2dict import html2dict, visualize_dict, get_title, unnest_dict, pdf2dict
 from ..mapping_dicts.txt_mapping_dicts import dict_10k, dict_10q, dict_8k, dict_13d, dict_13g
 from ..mapping_dicts.xml_mapping_dicts import dict_345
 from ..mapping_dicts.html_mapping_dicts import dict_10k_html, dict_10q_html, dict_8k_html
@@ -134,6 +134,8 @@ class Document:
                 mapping_dict = dict_345
             
             self.data = xml2dict(content=self.content, mapping_dict=mapping_dict)
+        elif self.extension == '.pdf':
+            self.data = pdf2dict(content=self.content, mapping_dict=mapping_dict)
         else:
             pass
     
@@ -235,8 +237,7 @@ class Document:
         return result
 
    
-   # this will all have to be changed. default will be to flatten everything
-   # candidate for deletion
+   # TODO CHANGE THIS
     def __iter__(self):
         self.parse()
 
