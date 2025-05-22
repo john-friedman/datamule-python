@@ -5,11 +5,9 @@ Below are the document types that datamule has standardized mapping for.
 ???+ note "placeholder"
     may be incomplete
 
-## 13F-HR
+# XML
 
-### 13F-HR
-
-### INFORMATION TABLE
+# HTML
 
 ## 10-K
 [Instructions](https://www.sec.gov/files/form10-k.pdf)
@@ -78,3 +76,32 @@ Item 9.01. Financial Statements and Exhibits
 * Item 1.01 Conflict Minerals Disclosure and Report * Item 1.02 Exhibit * Item 2.01 Resource Extraction Issuer Disclosure and Report * Item 3.01 Exhibits
 
 * **Signatures**
+
+## IRANNOTICE
+
+N/A.
+
+## NT-10K
+
+For notices look into 
+2024,NT 10-K,968
+2024,NT 10-K/A,10
+2024,NT 10-Q,1664
+2024,NT 10-Q/A,15
+2024,NT 11-K,18
+2024,NT 20-F,187
+2024,NT 20-F/A,2
+2024,NT N-CEN,18
+2024,NT N-MFP2,2
+2024,NT NPORT-P,109
+2024,NT-NCEN,11
+2024,NT-NCSR,22
+2024,NT-NCSR/A,8
+
+should all be the same?
+
+### NT-10K, NT 10-Q, NT 20-F
+* PART I — REGISTRANT INFORMATION
+* PART II — RULES 12b-25(b) AND (c)
+* PART III — NARRATIVE
+* PART IV — OTHER INFORMATION

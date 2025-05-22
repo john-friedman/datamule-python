@@ -20,3 +20,7 @@ dict_sd_html = {
     ('signatures',r'^signatures?\.*$') : 0,
     ('item',r'^item\s*(\d+\.\d+)') : 0,
 }
+
+dict_nt10k_html = {
+    ('part',r'^part\s*([ivx]+)') : 0,
+}

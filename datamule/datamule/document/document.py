@@ -6,7 +6,7 @@ from doc2dict.mapping import flatten_hierarchy
 from doc2dict import html2dict, visualize_dict, get_title, unnest_dict, pdf2dict
 from ..mapping_dicts.txt_mapping_dicts import dict_10k, dict_10q, dict_8k, dict_13d, dict_13g
 from ..mapping_dicts.xml_mapping_dicts import dict_345
-from ..mapping_dicts.html_mapping_dicts import dict_10k_html, dict_10q_html, dict_8k_html, dict_abs15g_html,dict_sd_html
+from ..mapping_dicts.html_mapping_dicts import dict_10k_html, dict_10q_html, dict_8k_html, dict_abs15g_html,dict_sd_html, dict_nt10k_html
 from selectolax.parser import HTMLParser
 from .processing import process_tabular_data
 from pathlib import Path
@@ -130,6 +130,8 @@ class Document:
                 mapping_dict = dict_abs15g_html
             elif self.type == 'SD':
                 mapping_dict = dict_sd_html
+            elif self.type in ['NT 10-K', 'NT 10-Q','NT 20-F']:
+                mapping_dict = dict_nt10k_html
             
             dct = html2dict(content=self.content, mapping_dict=mapping_dict)
             self.data = dct
