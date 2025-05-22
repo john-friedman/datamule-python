@@ -69,3 +69,12 @@ Item 9.01. Financial Statements and Exhibits
 **PART II: FINDINGS AND CONCLUSIONS OF THIRD-PARTY DUE DILIGENCE REPORTS:** * Item 2.01 Findings and Conclusions of a Third Party Due Diligence Report Obtained by the Issuer * Item 2.02 Findings and Conclusions of a Third-Party Due Diligence Report Obtained by the Underwriter 
 
 * **Signatures**
+
+## SD
+[Instructions](https://www.sec.gov/files/formsd.pdf)
+
+### SD
+
+* Item 1.01 Conflict Minerals Disclosure and Report * Item 1.02 Exhibit * Item 2.01 Resource Extraction Issuer Disclosure and Report * Item 3.01 Exhibits
+
+* **Signatures**

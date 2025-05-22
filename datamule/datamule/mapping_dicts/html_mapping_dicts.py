@@ -15,3 +15,8 @@ dict_abs15g_html = {
     ('signatures',r'^signatures?\.*$') : 0,
     ('item',r'^item\s*(\d+\.\d+)') : 1,
 }
+
+dict_sd_html = {
+    ('signatures',r'^signatures?\.*$') : 0,
+    ('item',r'^item\s*(\d+\.\d+)') : 0,
+}
