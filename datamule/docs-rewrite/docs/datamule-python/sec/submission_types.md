@@ -5,9 +5,152 @@ Below are the document types that datamule has standardized mapping for.
 ???+ note "placeholder"
     may be incomplete
 
-# XML
 
-# HTML
+[Google Sheets](https://docs.google.com/spreadsheets/d/1SPRhNh-CwOhG7R9lvuR5xsXJlxW8ZTHcKSWPSRY-zQE/edit?usp=sharing)
+
+## 1-A-W
+
+### 1-A-W
+
+## 1-A
+
+### 1-A
+
+This is XML, so should have table conversion but keys need to be standarized.
+
+### PART II AND III	
+
+Looks standardizable. Not sure what items to standardize.
+
+### EX1A-11 CONSENT	
+
+### EX1A-12 OPN CNSL	
+
+### EX1A-3 HLDRS RTS	
+
+### EX1A-4 SUBS AGMT	
+
+## 1
+
+### 1
+Paper. (Looks like nicely formatted PDF)
+
+## 1-K
+[Instructions](https://www.sec.gov/files/form1-k.pdf)
+
+### 1-K
+
+XML.
+
+### PART II	
+* Item 1. Business
+* Item 2. Management’s Discussion and Analysis of Financial Condition and Results of
+Operations
+* Item 3. Directors and Officers
+* Item 4. Security Ownership of Management and Certain Securityholders
+* Item 5. Interest of Management and Others in Certain Transactions
+* Item 6. Other Information
+* Item 7. Financial Statements
+
+### EX1K-11 CONSENT	
+
+## 1-SA
+I can't find good documentation on this online. Wayback machine saved a [version](https://web.archive.org/web/20250406031858/https://www.sec.gov/files/form1-sa.pdf) of the offical documentation, but it's clearly incomplete.
+
+### 1-SA
+
+Standardized, but not sure what the items are due to variation between documents.
+
+[See](https://www.sec.gov/Archives/edgar/data/1867925/000149315224038805/form1-sa.htm) and [this](https://www.sec.gov/Archives/edgar/data/1925674/000192567425000003/f1-sa2024.htm).
+
+## 1-U
+[Instructions](https://www.sec.gov/files/form1-u.pdf)
+### 1-U
+Item 1. Fundamental Changes
+Item 2. Bankruptcy or Receivership
+Item 3. Material Modification to Rights of Securityholders
+Item 4. Changes in Issuer’s Certifying Accountant
+Item 5. Non-reliance on Previously Issued Financial Statements or a Related Audit
+Report or Completed Interim Review
+Item 6. Changes in Control of Issuer 
+Item 7. Departure of Certain Officers
+Item 8. Certain Unregistered Sales of Equity Securities
+Item 9. Other Events
+Signatures
+
+## 1-Z
+
+### 1-Z
+XML.
+
+## 10-12B
+[Instructions](https://www.sec.gov/files/form10-12b.pdf)
+
+### 10-12B
+Item 1. Business. 
+Item 1A. Risk Factors. 
+Item 2. Financial Information. 
+
+Item 3. Properties. 
+Item 4. Security Ownership of Certain Beneficial Owners and Management. 
+Item 5. Directors and Executive Officers. 
+Item 6. Executive Compensation. 
+Item 7. Certain Relationships and Related Transactions, and Director Independence. 
+Item 8. Legal Proceedings. 
+Item 9. Market Price of and Dividends on the Registrant’s Common Equity and Related
+Stockholder Matters.
+Item 10. Recent Sales of Unregistered Securities. 
+Item 11. Description of Registrant’s Securities to be Registered. 
+Item 12. Indemnification of Directors and Officers. 
+Item 13. Financial Statements and Supplementary Data. 
+Item 14. Changes in and Disagreements with Accountants on Accounting and Financial
+Disclosure.
+Item 15. Financial Statements and Exhibits.
+SIGNATURES
+
+## 10-12G
+[Instructions](https://www.sec.gov/files/form10-12g.pdf)
+
+### 10-12G
+Item 1. Business	3
+Item 1A. Risk Factors	31
+Item 2. Financial Information	73
+Item 3. Properties	79
+Item 4. Security Ownership of Certain Beneficial Owners and Management	79
+Item 5. Directors and Executive Officers	80
+Item 6. Executive Compensation	83
+Item 7. Certain Relationships and Related Transactions, and Director Independence	84
+Item 8. Legal Proceedings	94
+Item 9. Market Price of and Dividends on the Registrant’s Common Equity and Related Shareholder Matters	94
+Item 10. Recent sales of Unregistered Securities	96
+Item 11. Description of Registrant’s Securities to Be Registered	96
+Item 12. Indemnification of Directors and Officers	99
+Item 13. Financial Statements and Supplementary Data	100
+Item 14. Changes in and Disagreements with Accountants on Accounting and Financial Disclosure	100
+Item 15. Financial Statements and Exhibits
+Signatures
+
+## 10-D
+[Instructions](https://www.sec.gov/files/form10d.pdf)
+
+### 10-D
+PART I – DISTRIBUTION INFORMATION 
+Item 1. Distribution and Pool Performance Information. 
+Item 1A. Asset-Level Information. 
+Item 1B. Asset Representations Reviewer and Investor Communication. 
+PART II – OTHER INFORMATION 
+Item 2. Legal Proceedings. 
+Item 3. Sales of Securities and Use of Proceeds. 
+Item 4. Defaults Upon Senior Securities. 
+Item 5. [Reserved]
+Item 6. Significant Obligors of Pool Assets. 
+Item 7. Change in Sponsor Interest in the Securities. 
+Item 8. Significant Enhancement Provider Information. 
+Item 9. Other Information. 
+Item 10. Exhibits. 
+Signatures
+
+
 
 ## 10-K
 [Instructions](https://www.sec.gov/files/form10-k.pdf)
@@ -105,3 +248,5 @@ should all be the same?
 * PART II — RULES 12b-25(b) AND (c)
 * PART III — NARRATIVE
 * PART IV — OTHER INFORMATION
+
+
