@@ -732,6 +732,164 @@ XML.
 ### EX-103	
 XML.
 
+## ANNLRPT
+### ANNLRPT
+Can't find docs.
+
+## APP NTC
+
+### APP NTC
+This has not been implemented yet - need to rejig pdf parser mapping dict to use underline
+agency
+action
+summary
+applicants
+filing
+hearing
+addresses
+further contact
+supplementary information
+
+## APP ORDR
+
+### APP ORDR
+After pdf parser rejig, look at this.
+
+## APP WD
+### APP WD
+Can't standardize.
+
+## APP WDG
+### APP WDG
+Can standardize, but not sure if need to?
+
+## ARS
+### ARS
+Can't find docs.
+
+# ATS-N
+Come back later.
+## ATS-N/CA
+
+## ATS-N/MA
+
+## ATS-N/OFA
+
+## ATS-N/UA
+
+## AW
+Huh, looks like it might be interesting to standardize this.
+### AW
+
+## AW WD
+Huh, looks like it might be interesting to standardize this.
+### AW WD
+
+## C
+### C
+XML.
+
+## C-AR
+
+### C-AR
+XML.
+
+## C-TR
+
+### C-TR
+XML.
+
+## C-TR-W
+
+### C-TR-W
+XML.
+
+## C-U
+
+### C-U
+XML.
+
+## C-U-W
+
+### C-U-W
+XML.
+
+## C-W
+
+### C-W
+XML.
+
+## CB
+[Instructions](https://www.sec.gov/files/formcb.pdf)
+
+### CB
+PART I - INFORMATION SENT TO SECURITY HOLDERS
+Item 1. Home Jurisdiction Documents
+Item 2. Informational Legends 
+PART II - INFORMATION NOT REQUIRED TO BE SENT TO SECURITY HOLDERS 
+PART III - CONSENT TO SERVICE OF PROCESS 
+PART IV - SIGNATURES 
+
+## CERT
+### CERT
+Can't standardize.
+
+## CFPORTAL
+### CFPORTAL
+XML.
+
+## CFPORTAL-W
+### CFPORTAL-W
+XML.
+
+## CORRESP
+Maybe standardize - same letter format so i think so?
+
+### CORRESP
+
+## CT ORDER
+Do not standardize yet. If someone asks.
+### CT ORDER
+
+## D
+### D
+XML
+
+# Proxy Statements
+DEF 14C
+DEFA14A
+DEFA14C
+DEFC14A
+DEFM14A
+DEFM14C
+DEFR14A
+DFAN14A
+DFRN14A
+Going to sit on these a bit. I need a valid use case from someone to justify time commitment.
+
+## DEL AM
+### DEL AM
+Letter format. might standardize.
+
+## DRS
+### DRS
+Standardization might be possible. DRS contains eg s1, f1 etc.
+
+## DRSLTR
+### DRSLTR
+Letter format
+
+
+## AUDITED FINANCIAL STATEMENTS	
+Might be possible? https://www.sec.gov/Archives/edgar/data/2044949/000109690625000882/ex_b_audited_financial.pdf
+
+## JOINT FIRM INTENTION ANNOUNCEMENT
+https://www.sec.gov/Archives/edgar/data/1921865/000147793225004069/aspi_ex993.htm
+
+## PRESS RELEASE
+https://www.sec.gov/Archives/edgar/data/1921865/000147793225004069/aspi_ex994.htm
+
+
 ## SD
 
 [Instructions](https://www.sec.gov/files/formsd.pdf)

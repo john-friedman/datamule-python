@@ -57,3 +57,19 @@ dict_8k15d5_html = dict_8k_html
 
 dict_absee_html = {('item',r'^item\s*(\d+)') : 0,
                 ('signatures',r'^signatures?\.*$') : 0,}
+
+dict_appntc_html = {('agency',r'^agency') : 0,
+                    ('action',r'^action') : 0,
+                    ('summary',r'^summary of application') : 0,
+                    ('applicants',r'^applicants') : 0,
+                    ('filing',r'^filing dates') : 0,
+                    ('hearing',r'^hearing or notification of hearing') : 0,
+                    ('addresses',r'^addresses') : 0,
+                    ('further contact',r'^for further information contact') : 0,
+                    ('supplementary information',r'^supplementary information') : 0,
+}
+
+dict_cb_html = {
+    ('part', r'^part\s*([ivx]+)') : 0,
+    ('item', r'^item\s*(\d+)') : 1,
+}

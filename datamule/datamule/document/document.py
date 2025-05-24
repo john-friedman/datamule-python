@@ -153,6 +153,10 @@ class Document:
                 mapping_dict = dict_abs15g_html
             elif self.type == 'ABS-EE':
                 mapping_dict = dict_absee_html
+            elif self.type == 'APP NTC':
+                dict_appntc_html
+            elif self.type == 'CB':
+                mapping_dict = dict_cb_html
             elif self.type == 'SD':
                 mapping_dict = dict_sd_html
             elif self.type in ['NT 10-K', 'NT 10-Q','NT 20-F']:
