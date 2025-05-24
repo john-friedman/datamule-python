@@ -4,7 +4,7 @@ Datamule currently can parse any html or xml document, as well as most PDF docum
 
 The result is a nested dictionary such as this [Parsed Microsoft 10-K](https://github.com/john-friedman/doc2dict/blob/main/example_output/html/dict.json).
 
-These dictionaries are further *standardized* using [doc2dict](https://github.com/john-friedman/doc2dict)'s *mapping dict* feature.
+These dictionaries are further *standardized* using [doc2dict](https://github.com/john-friedman/doc2dict)'s *mapping dict* feature. What *standardized* means is that e.g. 'ITEM 1A RISK FACTORS' is cleaned to 'item1a' to allow easy programmatic extraction.
 
 Below is the skeleton of what will be a complete glossary of every SEC submission type, with the corresponding document types. 
 
@@ -12,7 +12,9 @@ Information will include:
 1. Short Description of the submission type & document type.
 2. Whether the document type has been standardized.
 
-> **Note:** May be incomplete. Also these docs will have standardized layout later.
+> **Note:** There are a lot of SEC Submissions & Document Types. In the interests of preserving my sanity, I will be heavily using Claude Extended to standardize my notes on this page. I have a lot of documents to read, and many pages of technical pdfs.
+
+> **Note:** I plan to create a timeline for each document for when it is in xml, html, pdf, txt form etc to reflect changes in SEC system. This will be done using a de facto method done through parsing every file.
 
 [Google Sheets](https://docs.google.com/spreadsheets/d/1SPRhNh-CwOhG7R9lvuR5xsXJlxW8ZTHcKSWPSRY-zQE/edit?usp=sharing)
 
@@ -541,9 +543,114 @@ XML.
 XML.
 
 ## 305B2
+### 305B2
+Can't find docs.
 
+## 40-17F1, 40-17F2
+### 40-17F1, 40-17F2
+Doesn't look standardizable
 
+## 40-17G
+### 40-17G
+Doesn't look standardizable
 
+## 40-17GCS
+### 40-17GCS
+Doesn't look standardizable
+
+## 40-24B2
+### 40-24B2
+Doesn't look standardizable
+
+## 40-33
+### 40-33
+Doesn't look standardizable
+
+## 40-6B
+### 40-6B
+Can't find docs.
+
+## 40-8B25
+### 40-8B25
+Can't find docs
+
+## 40-APP
+### 40-APP
+Cant find docs
+
+## 40-F
+Looks standardizable as well as other documents besides root form
+## 40FR12B/A
+Can't find docs
+
+## 424B1 through 424B8
+Can't find docs
+
+## 424H
+Can't find docs
+
+## 424I
+Neat. Looks like will need a custom parser for exhibit tables.
+
+## 425
+Can't standardize - random biz communications.
+
+## 485APOS
+can't find docs
+
+## 485BPOS
+can't find docs
+
+## 486BXT
+
+### 486BXT
+Looks like it's checkboxes again! will be fun.
+
+## 487
+cant find docs
+
+## 497
+### 497
+Can't standardize.
+
+## 497AD
+### 497AD
+Can't standardize.
+
+## 497J
+### 497J
+Can't standardize.
+
+## 497K
+### 497K
+Can't standardize
+
+## 497VPI
+### 497VPI
+Can't standardize
+
+## 497VPSUB
+### 497VPSUB
+Can't standardize.
+
+## 497VPU
+### 497VPU
+Can't standardize.
+
+## 6-K
+### 6-K
+Can't standardize.
+
+## 8-A12B
+
+### 8-A12B
+Item 1. Description of Registrant’s Securities to be Registered.
+Item 2. Exhibits.
+
+## 8-A12G
+### 8-A12G
+Item 1. Description of Registrant’s Securities to be Registered.
+Item 2.	Exhibits.
 ## 8-K
 
 [Instructions](https://www.sec.gov/files/form8-k.pdf)
@@ -584,6 +691,21 @@ XML.
 - Item 8.01. Other Events
 - Item 9.01. Financial Statements and Exhibits
 
+## 8-K12B
+Pretty sure this is just a specific case of an [8-K](#8-k)
+### 8-K12B
+[See 8-K](#8-k)
+
+## 8-K12G3
+Pretty sure this is just a specific case of an [8-K](#8-k)
+### 8-K12G3
+[See 8-K](#8-k)
+
+## 8-K15D5
+Pretty sure this is just a specific case of an [8-K](#8-k)
+### 8-K15D5
+[See 8-K](#8-k)
+
 ## ABS-15G
 
 [Instructions](https://www.sec.gov/files/formabs-15g.pdf)
@@ -600,6 +722,15 @@ XML.
 - Item 2.02 Findings and Conclusions of a Third-Party Due Diligence Report Obtained by the Underwriter
 
 **Signatures**
+
+## ABS-EE
+### ABS-EE
+
+### EX-102	
+XML.
+
+### EX-103	
+XML.
 
 ## SD
 

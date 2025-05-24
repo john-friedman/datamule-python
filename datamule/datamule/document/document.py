@@ -137,10 +137,22 @@ class Document:
                 mapping_dict = dict_10q_html
             elif self.type == '20-F':
                 mapping_dict = dict_20f_html
+            elif self.type == '8-A12B':
+                mapping_dict = dict_8a12b_html
+            elif self.type == '8-A12G':
+                mapping_dict = dict_8a12g_html
             elif self.type == '8-K':
                 mapping_dict = dict_8k_html
+            elif self.type == '8-K12B':
+                mapping_dict = dict_8k12b_html
+            elif self.type == '8-K12G3':
+                mapping_dict = dict_8k12g3_html
+            elif self.type == '8-K15D5':
+                mapping_dict = dict_8k15d5_html
             elif self.type == 'ABS-15G':
                 mapping_dict = dict_abs15g_html
+            elif self.type == 'ABS-EE':
+                mapping_dict = dict_absee_html
             elif self.type == 'SD':
                 mapping_dict = dict_sd_html
             elif self.type in ['NT 10-K', 'NT 10-Q','NT 20-F']:

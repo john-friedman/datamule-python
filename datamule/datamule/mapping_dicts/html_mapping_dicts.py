@@ -28,13 +28,13 @@ dict_nt10k_html = {
 }
 
 dict_1kpartii_html = {
-    ('item',r'^item\s*(\d+)') : 1,
+    ('item',r'^item\s*(\d+)') : 0,
 }
 
 dict_1sa_html = dict_1kpartii_html
 
-dict_1u_html = {('item',r'^item\s*(\d+)') : 1,
-                ('signatures',r'^signatures?\.*$') : 1,}
+dict_1u_html = {('item',r'^item\s*(\d+)') : 0,
+                ('signatures',r'^signatures?\.*$') : 0,}
 
 dict_1012b_html = dict_1u_html
 
@@ -46,3 +46,14 @@ dict_20f_html = {
     ('letter',r'\d*\.?([a-z])') : 2,
     ('signatures',r'^signatures?\.*$') : 0,
 }
+
+dict_8a12b_html = dict_1kpartii_html
+dict_8a12g_html = dict_1kpartii_html
+
+dict_8k12b_html = dict_8k_html
+
+dict_8k12g3_html = dict_8k_html
+dict_8k15d5_html = dict_8k_html
+
+dict_absee_html = {('item',r'^item\s*(\d+)') : 0,
+                ('signatures',r'^signatures?\.*$') : 0,}
