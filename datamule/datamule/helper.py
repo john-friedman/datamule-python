@@ -89,6 +89,9 @@ def _process_cik_and_metadata_filters(cik=None, ticker=None, **kwargs):
             if ticker_ciks:
                 cik.extend(ticker_ciks)
 
+        if len(cik) == 0:
+            raise ValueError(f"No CIKs found for ticker: {ticker}")
+
     # Normalize CIK format
     if cik is not None:
         if isinstance(cik, str):

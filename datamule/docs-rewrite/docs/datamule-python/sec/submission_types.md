@@ -879,6 +879,11 @@ Standardization might be possible. DRS contains eg s1, f1 etc.
 ### DRSLTR
 Letter format
 
+## DSTRBRPT
+This looks neat will add basic standardization.
+### DSTRBRPT
+
+
 
 ## AUDITED FINANCIAL STATEMENTS	
 Might be possible? https://www.sec.gov/Archives/edgar/data/2044949/000109690625000882/ex_b_audited_financial.pdf
