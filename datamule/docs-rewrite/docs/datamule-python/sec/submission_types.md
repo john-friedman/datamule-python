@@ -882,6 +882,114 @@ Letter format
 ## DSTRBRPT
 This looks neat will add basic standardization.
 ### DSTRBRPT
+Item 1. Description of Securities
+Item 2. Distribution of Securities
+Item 3. Distribution Spread
+Item 4. Discounts and Commissions to Sub-Underwriters and Dealers
+Item 5. Other Expenses of Distribution
+Item 6. Application of Proceeds
+Item 7. Exhibits
+
+## EFFECT
+### EFFECT
+XML.
+
+## F-1
+F-1
+F-1/A
+F-10
+F-10/A
+F-1MEF
+F-3
+F-3/A
+F-3ASR
+F-3MEF
+F-4
+F-4/A
+F-6
+F-6 POS
+F-6/A
+F-6EF
+F-N
+F-X
+F-X/A
+Standardize this. Read the docs
+https://www.sec.gov/files/formf-1.pdf
+
+
+## FOCUSN
+### FOCUSN
+Nothing to standardize. It's just an empty PAPER document.
+
+## FWP
+
+### FWP
+Can't standardize this.
+
+## IRANNOTICE
+
+N/A.
+
+## MA
+### MA
+XML.
+
+## MA-I
+### MA-I
+XML.
+
+## MA-W
+### MA-W
+XML.
+
+## TODO
+N-14
+N-14 8C
+N-14 8C/A
+N-14/A
+N-1A
+N-2
+N-2/A
+N-23C-2
+N-23C3A
+N-23C3A/A
+N-2ASR
+N-2MEF
+N-30B-2
+N-30D
+N-4
+N-54A
+N-54C
+N-6
+N-6F/A
+N-8A
+N-8A/A
+N-8B-2/A
+N-8F
+N-8F NTC
+N-8F ORDR
+N-8F/A
+
+might be able to standardize. need use case.
+
+## N-18F1
+### N-18F1
+Notification of Election
+Signatures
+
+## N-CEN
+
+### N-CEN
+XML.
+
+## N-CSR
+I think I can standardize this?
+
+## N-CSRS
+https://www.sec.gov/edgar/search/#/filter_forms=N-CSRS
+TODO
+
+We can standardize multiple documents
 
 
 
@@ -908,9 +1016,7 @@ https://www.sec.gov/Archives/edgar/data/1921865/000147793225004069/aspi_ex994.ht
 
 **Signatures**
 
-## IRANNOTICE
 
-N/A.
 
 ## NT-10K
 

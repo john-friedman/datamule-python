@@ -157,6 +157,10 @@ class Document:
                 dict_appntc_html
             elif self.type == 'CB':
                 mapping_dict = dict_cb_html
+            elif self.type == 'DSTRBRPT':
+                mapping_dict = dict_dstrbrpt_html
+            elif self.type == 'N-18F1':
+                mapping_dict = dict_n18f1_html
             elif self.type == 'SD':
                 mapping_dict = dict_sd_html
             elif self.type in ['NT 10-K', 'NT 10-Q','NT 20-F']:

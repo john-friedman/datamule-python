@@ -73,3 +73,10 @@ dict_cb_html = {
     ('part', r'^part\s*([ivx]+)') : 0,
     ('item', r'^item\s*(\d+)') : 1,
 }
+
+dict_dstrbrpt_html = dict_1kpartii_html
+
+dict_n18f1_html = {
+    ('notification of election', r'^notification of election') : 0,
+    ('signatures', r'^signatures?\.*$') : 0,
+}
