@@ -120,9 +120,8 @@ class Document:
             self.data = {}
             self.data['document'] = dict2dict(txt2dict(content=content, mapping_dict=mapping_dict))
         elif self.extension in ['.htm', '.html']:
-            if self.type == '10-K':
-                mapping_dict = dict_10k_html
-            elif self.type == '1-K':
+            
+            if self.type == '1-K':
                 mapping_dict = dict_1kpartii_html
             elif self.type == '1-SA':
                 mapping_dict = dict_1sa_html
@@ -132,6 +131,8 @@ class Document:
                 mapping_dict = dict_1012b_html
             elif self.type == '10-D':
                 mapping_dict = dict_10d_html
+            elif self.type == '10-K':
+                mapping_dict = dict_10k_html
             elif self.type == '10-Q':
                 mapping_dict = dict_10q_html
             elif self.type == '8-K':

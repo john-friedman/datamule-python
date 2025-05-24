@@ -155,8 +155,8 @@ Signatures
 ## 10-K
 [Instructions](https://www.sec.gov/files/form10-k.pdf)
 
-
 ### 10-K
+
 * **Part I:** Item 1. Business • Item 1A. Risk Factors • Item 1B. Unresolved Staff Comments • Item 1C. Cybersecurity • Item 2. Properties • Item 3. Legal Proceedings • Item 4. Mine Safety Disclosures
 
 * **Part II:** Item 5. Market for Registrant's Common Equity, Related Stockholder Matters and Issuer Purchases of Equity Securities • Item 6. [Reserved] • Item 7. Management's Discussion and Analysis of Financial Condition and Results of Operations • Item 7A. Quantitative and Qualitative Disclosures About Market Risk • Item 8. Financial Statements and Supplementary Data • Item 9. Changes in and Disagreements With Accountants on Accounting and Financial Disclosure • Item 9A. Controls and Procedures • Item 9B. Other Information • Item 9C. Disclosure Regarding Foreign Jurisdictions that Prevent Inspections
@@ -166,6 +166,10 @@ Signatures
 * **Part IV:** Item 15. Exhibits and Financial Statement Schedules • Item 16. Form 10-K Summary
 
 * **Signatures**
+
+## 10-K
+
+[See 10-K](#10-k)
 
 ## 10-Q
 
@@ -177,6 +181,72 @@ Signatures
 * **Part II:** Item 1. Legal Proceedings • Item 1A. Risk Factors • Item 2. Unregistered Sales of Equity Securities and Use of Proceeds • Item 3. Defaults Upon Senior Securities • Item 4. Mine Safety Disclosures • Item 5. Other Information • Item 6. Exhibits
 
 * **Signatures**
+
+## 11-K
+
+### 11-K
+
+Doesn't seem standardizable.
+
+## 13F-HR
+
+### 13F-HR
+XML. 
+### INFORMATION TABLE
+XML. 
+
+## 13F-NT
+
+### 13F-NT
+XML.
+
+## 144
+### 144
+XML.
+
+## 15-12G
+
+### 15-12G
+Short html document - no need to standardize?
+
+## 15-15D
+### 15-15D
+Short html document - no need to standardize?
+
+## 15F-12B	
+### 15F-12B	
+PART I
+Item 1.	Exchange Act Reporting History
+Item 2.	Recent United States Market Activity
+Item 3.	Foreign Listing and Primary Trading Market
+Item 4.	Comparative Trading Volume Data
+Item 5.	Alternative Record Holder Information
+Item 6.	Debt Securities
+Item 7.	Notice Requirement
+Item 8.	Prior Form 15 Filers
+PART II
+Item 9.	Rule 12g3-2(b) Exemption
+PART III
+Item 10.	Exhibits
+Item 11.	Undertakings
+Signatures
+
+## 15F-15D
+### 15F-15D
+Short html document - no need to standardize?
+
+## 17AD-27
+### 17AD-27
+Doesn't seem standardizable.
+
+## 18-K
+### 18-K
+Might be standardizable.
+
+## 19B-4E
+### 19B-4E
+No documents with information in the SEC archive. Think I need to use the other archive.
+
 
 ## 8-K
 [Instructions](https://www.sec.gov/files/form8-k.pdf)
