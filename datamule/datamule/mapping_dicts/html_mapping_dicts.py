@@ -26,6 +26,12 @@ dict_abs15g_html = {
 dict_nt10k_html = {
     ('part',r'^part\s*([ivx]+)') : 0,
 }
+dict_nt10q_html = dict_nt10k_html
+dict_nt20f_html = dict_nt10k_html
+dict_ntncen_html = dict_nt10k_html
+dict_ntncsr_html = dict_nt10k_html
+dict_ntfcen_html = dict_nt10k_html
+dict_ntfncsr_html = dict_nt10k_html
 
 dict_1kpartii_html = {
     ('item',r'^item\s*(\d+)') : 0,
@@ -79,4 +85,14 @@ dict_dstrbrpt_html = dict_1kpartii_html
 dict_n18f1_html = {
     ('notification of election', r'^notification of election') : 0,
     ('signatures', r'^signatures?\.*$') : 0,
+}
+
+dict_ex99cert_html = {
+    ('item',r'^(\d+)') : 0,
+    ('letter',r'^\(?([a-z])') : 1,
+}
+
+dict_ncsrs_html = {
+    ('item',r'^(\d+)') : 0,
+    ('signatures',r'^signatures?\.*$') : 0,
 }

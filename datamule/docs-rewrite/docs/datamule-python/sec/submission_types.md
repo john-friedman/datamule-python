@@ -986,11 +986,87 @@ XML.
 I think I can standardize this?
 
 ## N-CSRS
-https://www.sec.gov/edgar/search/#/filter_forms=N-CSRS
-TODO
 
-We can standardize multiple documents
+### N-CSRS
+Item 1. Report to Stockholders
+Item 2. Code of Ethics
+Item 3. Audit Committee Financial Expert
+Item 4. Principal Accountant Fees and Services.
+Item 5. Audit Committee of Listed Registrants.
+Item 6. Investments.
+Item 7. Financial Statements and Financial Highlights for Open-End Management Investment Companies.
+Item 8. Changes in and Disagreements with Accountants for Open-End Management Investment Companies.
+Item 9. Proxy Disclosures for Open-End Management Investment Companies.
+Item 10. Remuneration Paid to Directors, Officers, and Others of Open-End Management Investment Companies.
+Item 11. Statement Regarding Basis for Approval of Investment Advisory Contract.
+Item 12. Disclosure of Proxy Voting Policies and Procedures for Closed-End Management Investment Companies.
+Item 13. Portfolio Managers of Closed-End Management Investment Companies.
+Item 14. Purchases of Equity Securities by Closed-End Management Investment Company and Affiliated Purchasers.
+Item 15. Submission of Matters to a Vote of Security Holders.
+Item 16. Controls and Procedures.
+Item 17. Disclosure of Securities Lending Activities for Closed-End Management Investment Companies
+Item 18. Recovery of Erroneously Awarded Compensation.
+Item 19. Exhibits.
+SIGNATURES
 
+### EX-99.CERT	
+I standardized this - don't think it matters as it is just legalese.
+
+### EX-99.906CT	
+
+
+## N-MFP3
+### N-MFP3
+XML.
+
+## N-PX
+### N-PX
+XML.
+### PROXY VOTING RECORD	
+XML.
+
+## N-VP
+### N-VP
+Can't standardize.
+
+## N-VPFS
+### N-VPFS
+Can't standardize. Would be fun to extract tables, and standardize them into a database.
+
+## NPORT-P
+### NPORT-P
+XML.
+
+### NPORT-EX
+I think we can do something cool here.
+
+## NRSRO-CE
+### NRSRO-CE
+This would be fun to standardize (pdf). Not sure I can justify time commitment.
+
+## NRSRO-UPD
+### NRSRO-UPD
+This would be fun to standardize (pdf). Not sure I can justify time commitment.
+
+
+# Notices
+
+Notices are a bit confusing and will require a more indepth look.
+
+Weird stuff:
+NT N-CEN
+NT NPORT-P
+
+## NT-10K, NT-10Q, NT 20-F, NT-NCEN, NT-NCSR, NTFNCEN, NTFNCSR
+- Part I — Registrant Information
+- Part II — Rules 12b-25(b) and (c)
+- Part III — Narrative
+- Part IV — Other Information
+
+
+## POS AM
+### POS AM
+Can't standardize?
 
 
 ## AUDITED FINANCIAL STATEMENTS	
@@ -1018,28 +1094,3 @@ https://www.sec.gov/Archives/edgar/data/1921865/000147793225004069/aspi_ex994.ht
 
 
 
-## NT-10K
-
-For notices look into:
-- 2024, NT 10-K, 968
-- 2024, NT 10-K/A, 10
-- 2024, NT 10-Q, 1664
-- 2024, NT 10-Q/A, 15
-- 2024, NT 11-K, 18
-- 2024, NT 20-F, 187
-- 2024, NT 20-F/A, 2
-- 2024, NT N-CEN, 18
-- 2024, NT N-MFP2, 2
-- 2024, NT NPORT-P, 109
-- 2024, NT-NCEN, 11
-- 2024, NT-NCSR, 22
-- 2024, NT-NCSR/A, 8
-
-Should all be the same?
-
-### NT-10K, NT 10-Q, NT 20-F
-
-- Part I — Registrant Information
-- Part II — Rules 12b-25(b) and (c)
-- Part III — Narrative
-- Part IV — Other Information

@@ -161,6 +161,24 @@ class Document:
                 mapping_dict = dict_dstrbrpt_html
             elif self.type == 'N-18F1':
                 mapping_dict = dict_n18f1_html
+            elif self.type == 'N-CSRS':
+                mapping_dict = dict_ncsrs_html
+            elif self.type == 'NT-10K':
+                mapping_dict = dict_nt10k_html
+            elif self.type == 'NT-10Q':
+                mapping_dict = dict_nt10q_html
+            elif self.type == 'NT 20-F':
+                mapping_dict = dict_nt20f_html
+            elif self.type == 'NT-NCEN':
+                mapping_dict = dict_ntncen_html
+            elif self.type == 'NT-NCSR':
+                mapping_dict = dict_ntncsr_html
+            elif self.type == 'NTFNCEN':
+                mapping_dict = dict_ntfcen_html
+            elif self.type == 'NTFNCSR':
+                mapping_dict = dict_ntfncsr_html
+            elif self.type == 'EX-99.CERT':
+                mapping_dict = dict_ex99cert_html
             elif self.type == 'SD':
                 mapping_dict = dict_sd_html
             elif self.type in ['NT 10-K', 'NT 10-Q','NT 20-F']:
