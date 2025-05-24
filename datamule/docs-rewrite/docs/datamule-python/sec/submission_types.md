@@ -1066,8 +1066,76 @@ NT NPORT-P
 
 ## POS AM
 ### POS AM
+Can't standardize? So neat things with these guys is that they contain different forms, which can be standardized, but I think to do so we have to extract form number from the html.
+
+## POS AMI
+### POS AMI
 Can't standardize?
 
+## POS EX
+### POS EX
+Can't standardize?
+
+## POSASR
+### POSASR
+Can't standardize?
+
+## PRE 14A
+### PRE 14A
+Might be able to standardize.
+
+## PRE 14C
+### PRE 14C
+Might be able to standardize.
+
+## PREC14A
+### PREC14A
+Might be able to standardize.
+
+## TODO
+PREM14A
+PREM14C
+PRER14A
+PRER14C
+PRRN14A
+
+## PX14A6G
+### PX14A6G
+Can't standardize
+
+## QRTLYRPT
+### QRTLYRPT
+Might be able to standardize.
+
+## QUALIF
+### QUALIF
+XML.
+
+## REVOKED
+### REVOKED
+PDF. we can standardize this - wait for the pdf2dict update.
+
+## RW
+### RW
+Letter format.
+
+## RW WD
+### RW WD
+Letter format.
+
+## S-1
+https://www.sec.gov/files/forms-1.pdf
+
+We can standardize. 
+
+## S-11
+we can standardize https://www.sec.gov/files/forms-11.pdf
+
+## S-11MEF, S-1MEF
+probably standardize.
+
+## S-3
+Yep, standardize like S-1.
 
 ## AUDITED FINANCIAL STATEMENTS	
 Might be possible? https://www.sec.gov/Archives/edgar/data/2044949/000109690625000882/ex_b_audited_financial.pdf
@@ -1077,6 +1145,9 @@ https://www.sec.gov/Archives/edgar/data/1921865/000147793225004069/aspi_ex993.ht
 
 ## PRESS RELEASE
 https://www.sec.gov/Archives/edgar/data/1921865/000147793225004069/aspi_ex994.htm
+
+## EX-FILING FEES	
+https://www.sec.gov/Archives/edgar/data/1775194/000147793225004119/upxi_ex107.htm
 
 
 ## SD
