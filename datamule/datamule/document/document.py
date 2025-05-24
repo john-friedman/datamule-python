@@ -135,6 +135,8 @@ class Document:
                 mapping_dict = dict_10k_html
             elif self.type == '10-Q':
                 mapping_dict = dict_10q_html
+            elif self.type == '20-F':
+                mapping_dict = dict_20f_html
             elif self.type == '8-K':
                 mapping_dict = dict_8k_html
             elif self.type == 'ABS-15G':
