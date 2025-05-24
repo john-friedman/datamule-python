@@ -1,8 +1,18 @@
 # Submission Types
 
-Below are the document types that datamule has standardized mapping for.
+Datamule currently can parse any html or xml document, as well as most PDF documents thanks to [doc2dict](https://github.com/john-friedman/doc2dict), which was written to support the [datamule](project). 
 
-> **Note:** May be incomplete
+The result is a nested dictionary such as this [Parsed Microsoft 10-K](https://github.com/john-friedman/doc2dict/blob/main/example_output/html/dict.json).
+
+These dictionaries are further *standardized* using [doc2dict](https://github.com/john-friedman/doc2dict)'s *mapping dict* feature.
+
+Below is the skeleton of what will be a complete glossary of every SEC submission type, with the corresponding document types. 
+
+Information will include:
+1. Short Description of the submission type & document type.
+2. Whether the document type has been standardized.
+
+> **Note:** May be incomplete. Also these docs will have standardized layout later.
 
 [Google Sheets](https://docs.google.com/spreadsheets/d/1SPRhNh-CwOhG7R9lvuR5xsXJlxW8ZTHcKSWPSRY-zQE/edit?usp=sharing)
 
@@ -164,10 +174,6 @@ XML.
 
 ### 10-K
 
-## 10-KT
-### 10-KT
-[See 10-K](#10-k)
-
 **Part I:**
 - Item 1. Business
 - Item 1A. Risk Factors
@@ -200,6 +206,10 @@ XML.
 - Item 16. Form 10-K Summary
 
 **Signatures**
+
+## 10-KT
+### 10-KT
+[See 10-K](#10-k)
 
 ## 10-Q
 
@@ -509,11 +519,30 @@ HTML. We can do something cool here with the checkmark.
 
 XML.
 
-## 253G1
+## 253G1, 253G2, 253G3
 
-### 253G1
+### 253G1, 253G2, 253G3
 
 Looks standardizable, can't find docs.
+
+# Insider Trading Disclosures
+## 3 
+
+### 3
+XML.
+
+## 4
+### 4
+
+XML.
+
+## 5
+### 5
+XML.
+
+## 305B2
+
+
 
 ## 8-K
 
