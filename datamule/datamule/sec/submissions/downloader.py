@@ -9,7 +9,7 @@ async def download_callback(hit, content, cik, accno, url, output_dir="filings",
     try:
         # Create a Submission object directly from the content
         # Note: the content needs to be decoded from bytes to string for the parser
-        submission = Submission(sgml_content=content.decode('utf-8', errors='replace'), 
+        submission = Submission(sgml_content=content, 
                                keep_document_types=keep_document_types)
         
         # Use the async save method to write the submission to disk

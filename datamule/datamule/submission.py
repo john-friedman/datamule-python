@@ -1,7 +1,7 @@
 from pathlib import Path
 import json
 from .document.document import Document
-from secsgml import parse_sgml_submission_into_memory
+from secsgml import parse_sgml_content_into_memory
 import os
 import aiofiles
 import tempfile
@@ -79,9 +79,8 @@ class Submission:
         
         if sgml_content is not None:
             self.path = None
-            metadata, raw_documents = parse_sgml_submission_into_memory(sgml_content)
+            metadata, raw_documents = parse_sgml_content_into_memory(sgml_content)
             self.metadata = Document(type='submission_metadata', content=metadata, extension='.json',filing_date=None,accession=None,path=None)
-
             # code dupe
             self.accession = self.metadata.content['accession-number']
             self.filing_date= f"{self.metadata.content['filing-date'][:4]}-{self.metadata.content['filing-date'][4:6]}-{self.metadata.content['filing-date'][6:8]}"
@@ -95,7 +94,9 @@ class Submission:
                 # Keep only specified types
                 if keep_document_types is not None and type not in keep_document_types:
                     continue
-                filename = doc.get('filename')
+
+                # write as txt if not declared
+                filename = doc.get('filename','.txt')
                 extension = Path(filename).suffix
                 self.documents.append(Document(type=type, content=raw_documents[idx], extension=extension,filing_date=self.filing_date,accession=self.accession))
 
@@ -190,12 +191,9 @@ class Submission:
             json.dump(self.metadata.content, f, indent=4)
         
         for idx, doc in enumerate(self.metadata.content['documents']):
-            try:
-                filename = doc.get('filename')
-                if filename is None:
-                    filename = f"{doc.get('sequence', idx)}.txt"
-            except (KeyError, IndexError):
-                filename = f"{idx}.txt"
+            filename = doc.get('filename')
+            if filename is None:
+                filename = f"{doc.get('sequence')}.txt"
             
             doc_path = file_dir / filename
             
@@ -231,12 +229,11 @@ class Submission:
             await f.write(json.dumps(self.metadata.content, indent=4))
         
         for idx, doc in enumerate(self.metadata.content['documents']):
-            try:
-                filename = doc.get('filename')
-                if filename is None:
-                    filename = f"{doc.get('sequence', idx)}.txt"
-            except (KeyError, IndexError):
-                filename = f"{idx}.txt"
+            filename = doc.get('filename')
+            # oh we need handling here for sequences case
+            if filename is None:
+                filename = doc['sequence'] + '.txt'
+
             
             doc_path = file_dir / filename
             

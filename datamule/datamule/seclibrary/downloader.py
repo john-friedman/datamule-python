@@ -99,6 +99,7 @@ class Downloader:
                 self.downloader._run_coroutine(submission.save_async(output_dir=self.output_dir))
                 self.pbar.update(1)
             except Exception as e:
+                print(f"Exception {e} in {filename}")
                 accession_dir = os.path.join(self.output_dir, filename.split('.')[0])  
                 if os.path.exists(accession_dir):
                     shutil.rmtree(accession_dir)
@@ -143,7 +144,7 @@ class Downloader:
             with dctx.stream_reader(input_buffer) as reader:
                 shutil.copyfileobj(reader, decompressed_content)
                 
-            content = decompressed_content.getvalue().decode('utf-8')
+            content = decompressed_content.getvalue()
             processor.processing_queue.put((filename, content))
             return True
                 
@@ -159,7 +160,7 @@ class Downloader:
 
     def save_regular_file(self, chunks, filename, output_dir, processor):
         try:
-            content = b''.join(chunks).decode('utf-8')
+            content = b''.join(chunks)
             processor.processing_queue.put((filename, content))
             return True
                 

@@ -13,7 +13,7 @@ A python package for working with SEC filings at scale.
 * [datamule-indicators](https://github.com/john-friedman/datamule-indicators/) Create economic indicators from SEC filings
 * [txt2dataset](https://github.com/john-friedman/txt2dataset/) Create datasets from unstructured text
 * [secsgml](https://github.com/john-friedman/secsgml/) Parse SEC filings in SGML format
-* [doc2dict](https://github.com/john-friedman/doc2dict) Convert documents to dictionaries. Not ready for public use.
+* [doc2dict](https://github.com/john-friedman/doc2dict) Convert documents to dictionaries.
 
 ## Installation
 ```
