@@ -1174,6 +1174,118 @@ XML.
 ### SC 13E3
 I standardized this. Can't find the docs for specific items.
 
+## SC 14D9
+
+### SC 14D9
+Items, Annex, Signatures
+
+## SC 14F1
+### SC 14F1
+Looks like I can standardize but weirdness in variation
+
+## SC 14N
+### SC 14N
+can standardize
+
+## SC TO-C
+### SC TO-C
+another filing which contains multiple filings
+
+## SC TO-I, SC TO-T, SC14D9C
+can standardize?
+
+## SCHEDULE 13D
+### SCHEDULE 13D
+XML.
+
+##  SCHEDULE 13G
+### SCHEDULE 13G
+XML
+
+## SD
+
+[Instructions](https://www.sec.gov/files/formsd.pdf)
+
+### SD
+
+- Item 1.01 Conflict Minerals Disclosure and Report
+- Item 1.02 Exhibit
+- Item 2.01 Resource Extraction Issuer Disclosure and Report
+- Item 3.01 Exhibits
+
+## SEC STAFF ACTION
+### SEC STAFF ACTION
+PDF. parser here looks fun!
+
+## SEC STAFF LETTER
+PDF. Lots of types here, looks fun!
+
+## SF-1, SF-3
+Same s-1 type standardization stuff
+
+## SP 15D2
+### SP 15D2
+This is basically a 10-K (has 10-K cover!) but filed under special circumstances
+[See](#10-k)
+
+## SUPPL
+### SUPPL
+Can't be standardized.
+
+## T-3
+
+### T-3
+GENERAL
+
+1. General Information
+2. Securities Act exemption applicable
+
+AFFILIATIONS
+
+3. Affiliates.
+
+MANAGEMENT AND CONTROL
+4. Directors and executive officers
+5. Principal owners of voting securities
+
+UNDERWRITERS
+
+6. Underwriters.
+
+CAPITAL SECURITIES
+
+7. Capitalization. 
+
+INDENTURE SECURITIES
+
+8. Analysis of indenture provisions.
+9. Other obligors.  
+SIGNATURE
+
+## TA-1
+### TA-1
+XML.
+
+## TA-2
+### TA-2
+XML.
+
+## TA-W
+### TA-W
+XML.
+
+## UPLOAD
+Huh, would be cool do to something here.
+### LETTER
+
+### TEXT-EXTRACT	
+
+## X-17A-5
+### X-17A-5
+XML.
+
+### FULL
+Seems like mix of scan and text pdf.
 
 ## AUDITED FINANCIAL STATEMENTS	
 Might be possible? https://www.sec.gov/Archives/edgar/data/2044949/000109690625000882/ex_b_audited_financial.pdf
@@ -1188,16 +1300,7 @@ https://www.sec.gov/Archives/edgar/data/1921865/000147793225004069/aspi_ex994.ht
 https://www.sec.gov/Archives/edgar/data/1775194/000147793225004119/upxi_ex107.htm
 
 
-## SD
 
-[Instructions](https://www.sec.gov/files/formsd.pdf)
-
-### SD
-
-- Item 1.01 Conflict Minerals Disclosure and Report
-- Item 1.02 Exhibit
-- Item 2.01 Resource Extraction Issuer Disclosure and Report
-- Item 3.01 Exhibits
 
 **Signatures**
 

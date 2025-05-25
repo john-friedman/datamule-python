@@ -102,3 +102,20 @@ dict_sc13e3_html = {
     ('signatures', r'^signatures?\.*$') : 0,
     ('letter', r'^\(?([a-z])') : 1,
 }
+
+dict_sc14d9_html = {
+    ('item', r'^item\s*(\d+)') : 0,
+    ('signatures', r'^signatures?\.*$') : 0,
+    ('annex', r'^annex') : 0,
+}
+
+dict_sp15d2_html = dict_10k_html
+
+dict_t3_html = {('general',r'^general'):0,
+                ('affiliations',r'^affiliations'):0,
+                ('management and control',r'^management and control'):0,
+                ('underwriters',r'^underwriters'):0,
+                ('capital securities',r'^capital securities'):0,
+                ('indenture securities',r'^indenture securities'):0,
+                ('signatures',r'^signatures?\.*$') : 0,
+                ('number',r'^(\d+)') : 1,}
