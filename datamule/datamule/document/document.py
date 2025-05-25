@@ -179,6 +179,9 @@ class Document:
                 mapping_dict = dict_ntfncsr_html
             elif self.type == 'EX-99.CERT':
                 mapping_dict = dict_ex99cert_html
+
+            elif self.type == 'SC 13E3':
+                mapping_dict = dict_sc13e3_html
             elif self.type == 'SD':
                 mapping_dict = dict_sd_html
             elif self.type in ['NT 10-K', 'NT 10-Q','NT 20-F']:

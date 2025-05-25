@@ -1,6 +1,6 @@
 # Submission Types
 
-Datamule currently can parse any html or xml document, as well as most PDF documents thanks to [doc2dict](https://github.com/john-friedman/doc2dict), which was written to support the [datamule](project). 
+Datamule currently can parse any html or xml document, as well as most PDF documents thanks to [doc2dict](https://github.com/john-friedman/doc2dict), which was written to support the datamule project. 
 
 The result is a nested dictionary such as this [Parsed Microsoft 10-K](https://github.com/john-friedman/doc2dict/blob/main/example_output/html/dict.json).
 
@@ -15,6 +15,10 @@ Information will include:
 > **Note:** There are a lot of SEC Submissions & Document Types. In the interests of preserving my sanity, I will be heavily using Claude Extended to standardize my notes on this page. I have a lot of documents to read, and many pages of technical pdfs.
 
 > **Note:** I plan to create a timeline for each document for when it is in xml, html, pdf, txt form etc to reflect changes in SEC system. This will be done using a de facto method done through parsing every file.
+
+> **Note:** some of the standardization will have to be de facto, using identified headers, then finding consistency across documents and standardizing names. this will be done due to lack of consistent documentation. Also, might be done for sections that are often shared between companies - huh that seems really cool. Also because we need to find all the different document types. This probably should be done after the archive speed update which will be done after the SGML robustness update.
+
+> **Note:** I should probably talk to a legal or business expert with domain knowledge on the variations.
 
 [Google Sheets](https://docs.google.com/spreadsheets/d/1SPRhNh-CwOhG7R9lvuR5xsXJlxW8ZTHcKSWPSRY-zQE/edit?usp=sharing)
 
@@ -1131,11 +1135,45 @@ We can standardize.
 ## S-11
 we can standardize https://www.sec.gov/files/forms-11.pdf
 
-## S-11MEF, S-1MEF
+## S-11MEF, S-1MEF, S-4MEF
 probably standardize.
 
-## S-3
+## S-3, S-3ASR, S-3MEF
 Yep, standardize like S-1.
+
+## S-3DPOS
+Can't standardize - multiple form thingy?
+
+# skipping some other S- documents bc lazy
+S-6
+S-6/A
+S-8
+S-8 POS
+S-B
+S-B/A
+
+## SBSE-A
+### SBSE-A
+XML.
+
+## SBSE-BD	
+### SBSE-BD	
+XML.
+
+## SBSE
+
+### SBSE
+XML.
+
+## SBSEF
+### SBSEF
+XML.
+
+## SC 13E3
+
+### SC 13E3
+I standardized this. Can't find the docs for specific items.
+
 
 ## AUDITED FINANCIAL STATEMENTS	
 Might be possible? https://www.sec.gov/Archives/edgar/data/2044949/000109690625000882/ex_b_audited_financial.pdf

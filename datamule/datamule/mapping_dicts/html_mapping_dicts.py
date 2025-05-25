@@ -96,3 +96,9 @@ dict_ncsrs_html = {
     ('item',r'^(\d+)') : 0,
     ('signatures',r'^signatures?\.*$') : 0,
 }
+
+dict_sc13e3_html = {
+    ('item', r'^item\s*(\d+)') : 0,
+    ('signatures', r'^signatures?\.*$') : 0,
+    ('letter', r'^\(?([a-z])') : 1,
+}
