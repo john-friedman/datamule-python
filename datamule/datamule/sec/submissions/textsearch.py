@@ -7,14 +7,16 @@ class TextSearchEFTSQuery(EFTSQuery):
     """
     def __init__(self, text_query, requests_per_second=5.0, quiet=False):
         super().__init__(requests_per_second=requests_per_second, quiet=quiet)
-        self.text_query = text_query
+        if text_query is not None:
+            self.text_query = text_query
         
     def _prepare_params(self, cik=None, submission_type=None, filing_date=None, location=None):
         # Get base parameters from parent class
         params = super()._prepare_params(cik, submission_type, filing_date, location)
         
         # Add text query parameter
-        params['q'] = self.text_query
+        if self.text_query is not None:
+            params['q'] = self.text_query
         
         return params
 
@@ -42,7 +44,7 @@ async def extract_accession_numbers(hits):
                 accession_numbers.append(acc_no)
     return accession_numbers
 
-def query(text_query, cik=None, submission_type=None, filing_date=None, location=None, 
+def query(text_query=None, cik=None, submission_type=None, filing_date=None, location=None, 
           name=None, requests_per_second=5.0, quiet=False):
     """
     Search SEC filings for text and return the full search results.

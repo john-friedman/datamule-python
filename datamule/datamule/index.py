@@ -9,7 +9,7 @@ class Index:
         
     def search_submissions(
         self,
-        text_query,
+        text_query=None,
         filing_date=None,
         submission_type=None,
         cik=None,

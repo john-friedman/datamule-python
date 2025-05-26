@@ -9,7 +9,7 @@ Index is a class that allows you to search SEC submissions using simple or compl
 ```python
 search_submissions(
         self,
-        text_query,
+        text_query=None,
         filing_date=None,
         submission_type=None,
         cik=None,
@@ -114,16 +114,13 @@ results = index.search_submissions(
     text_query='"risk factors"',
     submission_type="10-K",
     ticker="AAPL",
-    start_date="2020-01-01",
-    end_date="2023-12-31"
 )
 
 # Search for "war" but exclude "peace" in 10-K filings from January 2023
 results = index.search_submissions(
     text_query='war NOT peace',
     submission_type="10-K",
-    start_date="2023-01-01",
-    end_date="2023-01-31",
+    filing_date=("2023-01-01","2023-01-31")
     quiet=False,
     requests_per_second=3
 )

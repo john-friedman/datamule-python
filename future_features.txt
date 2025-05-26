@@ -1,0 +1,2 @@
+1. change to submissions.tar
+2. portfolio.compression()
