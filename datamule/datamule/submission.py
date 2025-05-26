@@ -4,8 +4,8 @@ from .document.document import Document
 from secsgml import parse_sgml_content_into_memory
 import os
 import aiofiles
+import tarfile
 
-# TODO add .tar path
 class Submission:
     def __init__(self, path=None,sgml_content=None,keep_document_types=None):
         if path is None and sgml_content is None:
@@ -42,12 +42,18 @@ class Submission:
 
         if path is not None:
             self.path = Path(path)  
-            metadata_path = self.path / 'metadata.json'
-            with metadata_path.open('r') as f:
-                metadata = json.load(f) 
-            self.metadata = Document(type='submission_metadata', content=metadata, extension='.json',filing_date=None,accession=None,path=metadata_path)
+            if self.path.suffix == '.tar':
+                with tarfile.open(self.path,'r') as tar:
+                    metadata_obj = tar.extractfile('metadata.json')
+                    metadata = json.loads(metadata_obj.read().decode('utf-8'))
 
-            # Code dupe
+                # tarpath
+                metadata_path = f"{self.path}::metadata.json"
+            else:
+                metadata_path = self.path / 'metadata.json'
+                with metadata_path.open('r') as f:
+                    metadata = json.load(f) 
+            self.metadata = Document(type='submission_metadata', content=metadata, extension='.json',filing_date=None,accession=None,path=metadata_path)
             self.accession = self.metadata.content['accession-number']
             self.filing_date= f"{self.metadata.content['filing-date'][:4]}-{self.metadata.content['filing-date'][4:6]}-{self.metadata.content['filing-date'][6:8]}"
     
@@ -70,52 +76,25 @@ class Submission:
                     # oh we need handling here for sequences case
                     if filename is None:
                         filename = doc['sequence'] + '.txt'
-                        
+
                     document_path = self.path / filename
                     extension = document_path.suffix
 
-                    with document_path.open('rb') as f:
-                        content = f.read()
+                    if self.path.suffix == '.tar':
+                        with tarfile.open(self.path,'r') as tar:
+                            content = tar.extractfile(filename).read()
+                    else:
+                        with document_path.open('rb') as f:
+                            content = f.read()
 
-                    if extension in ['.htm','.html','.txt','.xml']:
-                        content = content.decode('utf-8', errors='replace')
+                        # not sure why we are decoding here tbh.
+                        if extension in ['.htm','.html','.txt','.xml']:
+                            content = content.decode('utf-8', errors='replace')
 
                     yield Document(type=doc['type'].upper(), content=content, extension=extension,filing_date=self.filing_date,accession=self.accession,path=document_path)
                 # if loaded from sgml_content
                 else:
                     yield self.documents[idx]
-
-    
-    def __iter__(self):
-        for idx,doc in enumerate(self.metadata.content['documents']):
-            # if loaded from path
-            if self.path is not None:
-                filename = doc.get('filename')
-
-                # oh we need handling here for sequences case
-                if filename is None:
-                    filename = doc['sequence'] + '.txt'
-                    
-                document_path = self.path / filename
-                extension = document_path.suffix
-
-                # check if the file exists
-                if document_path.exists():
-                    with document_path.open('rb') as f:
-                        content = f.read()
-
-                    if extension in ['.htm','.html','.txt','.xml']:
-                        content = content.decode('utf-8', errors='replace')
-
-                    yield Document(type=doc['type'].upper(), content=content, extension=extension,filing_date=self.filing_date,accession=self.accession,path=document_path)
-                else:
-                    print(f"Warning: File {document_path} does not exist likely due to keep types in downloading.")
-
-            # if loaded from sgml_content
-            else:
-                yield self.documents[idx]
-
-
 
 
     def save(self, output_dir="filings"):
