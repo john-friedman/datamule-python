@@ -4,72 +4,8 @@ from .document.document import Document
 from secsgml import parse_sgml_content_into_memory
 import os
 import aiofiles
-import tempfile
 
-
-# # NEW CODE YAY. probably will remove
-
-# def save_metadata_atomically(metadata_file_path, metadata_content):
-#     """Save metadata to a JSONL file atomically, works on any filesystem"""
-    
-#     # Create directory if it doesn't exist
-#     os.makedirs(os.path.dirname(metadata_file_path), exist_ok=True)
-    
-#     # Format the JSON with newline
-#     json_str = json.dumps(metadata_content, indent=4) + "\n"
-    
-#     # Write complete content to a temporary file first
-#     fd, temp_path = tempfile.mkstemp(dir=os.path.dirname(metadata_file_path))
-#     try:
-#         with os.fdopen(fd, 'w') as temp_file:
-#             temp_file.write(json_str)
-#             temp_file.flush()
-#             os.fsync(temp_file.fileno())  # Force write to disk
-        
-#         # Append the temporary file to the main file
-#         with open(metadata_file_path, 'a') as target_file:
-#             with open(temp_path, 'r') as temp_read:
-#                 content = temp_read.read()
-#                 target_file.write(content)
-#                 target_file.flush()
-#                 os.fsync(target_file.fileno())  # Force write to disk
-#     finally:
-#         # Clean up the temporary file
-#         if os.path.exists(temp_path):
-#             os.unlink(temp_path)
-
-# async def save_metadata_atomically_async(metadata_file_path, metadata_content):
-#     """Save metadata to a JSONL file atomically in async mode"""
-    
-#     # Create directory if it doesn't exist
-#     os.makedirs(os.path.dirname(metadata_file_path), exist_ok=True)
-    
-#     # Format the JSON with newline
-#     json_str = json.dumps(metadata_content, indent=4) + "\n"
-    
-#     # Write to a temporary file first
-#     fd, temp_path = tempfile.mkstemp(dir=os.path.dirname(metadata_file_path))
-#     os.close(fd)  # Close the file descriptor
-    
-#     try:
-#         async with aiofiles.open(temp_path, 'w') as temp_file:
-#             await temp_file.write(json_str)
-#             await temp_file.flush()
-        
-#         # Append the temporary file to the main file
-#         async with aiofiles.open(metadata_file_path, 'a') as target_file:
-#             async with aiofiles.open(temp_path, 'r') as temp_read:
-#                 content = await temp_read.read()
-#                 await target_file.write(content)
-#                 await target_file.flush()
-#     finally:
-#         # Clean up the temporary file
-#         if os.path.exists(temp_path):
-#             os.unlink(temp_path)
-
-# # END OF NEW CODE
-
-
+# TODO add .tar path
 class Submission:
     def __init__(self, path=None,sgml_content=None,keep_document_types=None):
         if path is None and sgml_content is None:
@@ -89,7 +25,7 @@ class Submission:
             filtered_metadata_documents = []
 
             for idx,doc in enumerate(self.metadata.content['documents']):
-                type = doc.get('type')
+                type = doc.get('type').upper()
                 
                 # Keep only specified types
                 if keep_document_types is not None and type not in keep_document_types:
@@ -98,7 +34,7 @@ class Submission:
                 # write as txt if not declared
                 filename = doc.get('filename','.txt')
                 extension = Path(filename).suffix
-                self.documents.append(Document(type=type, content=raw_documents[idx], extension=extension,filing_date=self.filing_date,accession=self.accession))
+                self.documents.append(Document(type=type.upper(), content=raw_documents[idx], extension=extension,filing_date=self.filing_date,accession=self.accession))
 
                 filtered_metadata_documents.append(doc)
             
@@ -121,9 +57,9 @@ class Submission:
     def document_type(self, document_type):
         # Convert single document type to list for consistent handling
         if isinstance(document_type, str):
-            document_types = [document_type]
+            document_types = [document_type.lower()]
         else:
-            document_types = document_type
+            document_types = [item.lower() for item in document_type]
 
         for idx,doc in enumerate(self.metadata.content['documents']):
             if doc['type'] in document_types:
@@ -144,7 +80,7 @@ class Submission:
                     if extension in ['.htm','.html','.txt','.xml']:
                         content = content.decode('utf-8', errors='replace')
 
-                    yield Document(type=doc['type'], content=content, extension=extension,filing_date=self.filing_date,accession=self.accession,path=document_path)
+                    yield Document(type=doc['type'].upper(), content=content, extension=extension,filing_date=self.filing_date,accession=self.accession,path=document_path)
                 # if loaded from sgml_content
                 else:
                     yield self.documents[idx]
@@ -171,7 +107,7 @@ class Submission:
                     if extension in ['.htm','.html','.txt','.xml']:
                         content = content.decode('utf-8', errors='replace')
 
-                    yield Document(type=doc['type'], content=content, extension=extension,filing_date=self.filing_date,accession=self.accession,path=document_path)
+                    yield Document(type=doc['type'].upper(), content=content, extension=extension,filing_date=self.filing_date,accession=self.accession,path=document_path)
                 else:
                     print(f"Warning: File {document_path} does not exist likely due to keep types in downloading.")
 

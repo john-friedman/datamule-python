@@ -11,19 +11,7 @@ from selectolax.parser import HTMLParser
 from .processing import process_tabular_data
 from pathlib import Path
 import webbrowser
-
-def convert_bytes_keys(obj):
-    if isinstance(obj, dict):
-        return {
-            (k.decode('utf-8').lower() if isinstance(k, bytes) else k): convert_bytes_keys(v) 
-            for k, v in obj.items()
-        }
-    elif isinstance(obj, list):
-        return [convert_bytes_keys(item) for item in obj]
-    elif isinstance(obj, bytes):
-        return obj.decode('utf-8').lower()
-    else:
-        return obj
+from secsgml.utils import bytes_to_str
 
 class Document:
     def __init__(self, type, content, extension,accession,filing_date,path=None):
@@ -34,7 +22,8 @@ class Document:
         self.filing_date = filing_date
 
         if self.type == 'submission_metadata':
-            self.content = convert_bytes_keys(content)
+            # this converts to lower
+            self.content = bytes_to_str(content)
         else:
             self.content = content
 
