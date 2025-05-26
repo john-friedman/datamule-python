@@ -13,3 +13,4 @@ contributors:
 * paraknell
 * Vee
 * cardal4
+* Matthew Massicotte
