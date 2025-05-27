@@ -194,7 +194,8 @@ class Document:
 
             elif self.type == 'SD':
                 mapping_dict = dict_sd_html
-
+            elif self.type == 'S-1':
+                mapping_dict = dict_s1_html
             elif self.type == 'T-3':
                 mapping_dict = dict_t3_html
             elif self.type in ['NT 10-K', 'NT 10-Q','NT 20-F']:
