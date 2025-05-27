@@ -125,7 +125,7 @@ class Portfolio:
             # First query, just set the accession numbers
             self.accession_numbers = new_accession_numbers
 
-    def download_submissions(self, cik=None, ticker=None, submission_type=None, filing_date=None, provider=None,document_type=None,requests_per_second=5, **kwargs):
+    def download_submissions(self, cik=None, ticker=None, submission_type=None, filing_date=None, provider=None,document_type=[],requests_per_second=5, **kwargs):
         if provider is None:
             config = Config()
             provider = config.get_default_source()

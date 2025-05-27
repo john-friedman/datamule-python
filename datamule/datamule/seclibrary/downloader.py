@@ -15,6 +15,7 @@ from threading import Thread
 from .query import query
 from os import cpu_count
 from ..submission import Submission
+from secsgml import write_sgml_file_to_tar
 
 
 
@@ -73,7 +74,7 @@ class Downloader:
             print(f"Failed to log error to {error_file}: {str(e)}")
 
     class FileProcessor:
-        def __init__(self, output_dir, max_workers, queue_size, pbar, downloader, keep_document_types=None):
+        def __init__(self, output_dir, max_workers, queue_size, pbar, downloader, keep_document_types=[]):
             self.processing_queue = Queue(maxsize=queue_size)
             self.should_stop = False
             self.processing_workers = []
@@ -93,17 +94,9 @@ class Downloader:
 
         def _process_file(self, item):
             filename, content = item
-            try:
-                submission = Submission(sgml_content=content, keep_document_types=self.keep_document_types)
-                # Use the shared event loop to run save_async
-                self.downloader._run_coroutine(submission.save_async(output_dir=self.output_dir))
-                self.pbar.update(1)
-            except Exception as e:
-                print(f"Exception {e} in {filename}")
-                accession_dir = os.path.join(self.output_dir, filename.split('.')[0])  
-                if os.path.exists(accession_dir):
-                    shutil.rmtree(accession_dir)
-                self.downloader._log_error(self.output_dir, filename, str(e))
+            output_path = os.path.join(self.output_dir, filename.split('.')[0] + '.tar')
+            write_sgml_file_to_tar(output_path, bytes_content=content, filter_document_types=self.keep_document_types)
+            self.pbar.update(1)
 
         def _processing_worker(self):
             batch = []
@@ -211,7 +204,7 @@ class Downloader:
             except Exception as e:
                 self._log_error(output_dir, filename, str(e))
 
-    async def process_batch(self, urls, output_dir, keep_document_types=None):
+    async def process_batch(self, urls, output_dir, keep_document_types=[]):
         os.makedirs(output_dir, exist_ok=True)
         
         with tqdm(total=len(urls), desc="Processing files") as pbar:
@@ -238,7 +231,7 @@ class Downloader:
             processor.stop_workers()
             decompression_pool.shutdown()
 
-    def download(self, submission_type=None, cik=None, filing_date=None, output_dir="downloads", accession_numbers=None, keep_document_types=None):
+    def download(self, submission_type=None, cik=None, filing_date=None, output_dir="downloads", accession_numbers=None, keep_document_types=[]):
         """
         Query SEC filings and download/process them.
         
@@ -299,7 +292,7 @@ class Downloader:
             self.loop.call_soon_threadsafe(self.loop.stop)
 
 
-def download(submission_type=None, cik=None, filing_date=None, api_key=None, output_dir="downloads", accession_numbers=None, keep_document_types=None):
+def download(submission_type=None, cik=None, filing_date=None, api_key=None, output_dir="downloads", accession_numbers=None, keep_document_types=[]):
     """
     Query SEC filings and download/process them.
     
