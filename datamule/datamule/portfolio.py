@@ -33,7 +33,8 @@ class Portfolio:
         self.api_key = api_key
     
     def _load_submissions(self):
-        folders = [f for f in self.path.iterdir() if f.is_dir()]
+        folders = [f for f in self.path.iterdir() if f.is_dir() or f.suffix=='.tar']
+        print(folders)
         print(f"Loading {len(folders)} submissions")
         
         def load_submission(folder):
