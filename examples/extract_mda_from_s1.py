@@ -2,8 +2,6 @@ from datamule import Portfolio
 import json
 import os
 
-# Note: As of 5/27, I have not yet standardized the S-1 submission type's section titles. 
-
 port = Portfolio('s1')
 # Download the data
 #port.download_submissions(submission_type='S-1',document_type='S-1',filing_date=('2020-01-01','2020-01-05'))
