@@ -1,0 +1,1642 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../portfolio/table/types/">
+      
+      
+        <link rel="next" href="../../index/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Sheet - datamule</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sheet" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="datamule" class="md-header__button md-logo" aria-label="datamule" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            datamule
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Sheet
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="datamule" class="md-nav__button md-logo" aria-label="datamule" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    datamule
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../providers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Providers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    datamule-python
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            datamule-python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quickstart
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data_provider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setting a Data Provider
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../package_data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Package Data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    SEC Terminology
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            SEC Terminology
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sec/submission_types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Submission Types
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Portfolio
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Portfolio
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../portfolio/portfolio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Portfolio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../portfolio/submission/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Submission
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../portfolio/document/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Document
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6_4" id="__nav_3_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Table
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            Table
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../portfolio/table/table/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Table
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../portfolio/table/types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Table Types
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Sheet
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sheet
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xbrl-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      XBRL Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="XBRL Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download_xbrlciknone-tickernone-kwargs" class="md-nav__link">
+    <span class="md-ellipsis">
+      download_xbrl(cik=None, ticker=None, **kwargs)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#form-13f-hr-information-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Form 13F-HR Information Table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Form 13F-HR Information Table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Get Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_information_tablecolumnsnone-api_keynone-print_costtrue-verbosefalse" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_information_table(columns=None, ..., api_key=None, print_cost=True, verbose=False)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-to-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download to CSV
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Download to CSV">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download_information_tablefilepath-columnsnone-api_keynone-print_costtrue-verbosefalse" class="md-nav__link">
+    <span class="md-ellipsis">
+      download_information_table(filepath, columns=None, ..., api_key=None, print_cost=True, verbose=False)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#form-3-4-5-insider-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Form 3, 4, 5 (Insider Transactions)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Form 3, 4, 5 (Insider Transactions)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-data_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Get Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_345columnsnone-api_keynone-print_costtrue-verbosefalse" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_345(columns=None, ..., api_key=None, print_cost=True, verbose=False)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-to-csv_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download to CSV
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Download to CSV">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download_345filepath-columnsnone-api_keynone-print_costtrue-verbosefalse" class="md-nav__link">
+    <span class="md-ellipsis">
+      download_345(filepath, columns=None, ..., api_key=None, print_cost=True, verbose=False)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#form-npx-proxy-voting-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      Form NPX (Proxy Voting Records)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Form NPX (Proxy Voting Records)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-data_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Get Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_proxy_voting_recordcolumnsnone-api_keynone-print_costtrue-verbosefalse" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_proxy_voting_record(columns=None, ..., api_key=None, print_cost=True, verbose=False)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-to-csv_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download to CSV
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Download to CSV">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download_proxy_voting_recordfilepath-columnsnone-api_keynone-print_costtrue-verbosefalse" class="md-nav__link">
+    <span class="md-ellipsis">
+      download_proxy_voting_record(filepath, columns=None, ..., api_key=None, print_cost=True, verbose=False)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#available-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Available Datasets
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_10" id="__nav_3_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Utils
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_10">
+            <span class="md-nav__icon md-icon"></span>
+            Utils
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/_process_cik_and_metadata_filters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CIK Filtering
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xbrl-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      XBRL Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="XBRL Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download_xbrlciknone-tickernone-kwargs" class="md-nav__link">
+    <span class="md-ellipsis">
+      download_xbrl(cik=None, ticker=None, **kwargs)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#form-13f-hr-information-table" class="md-nav__link">
+    <span class="md-ellipsis">
+      Form 13F-HR Information Table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Form 13F-HR Information Table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-data" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Get Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_information_tablecolumnsnone-api_keynone-print_costtrue-verbosefalse" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_information_table(columns=None, ..., api_key=None, print_cost=True, verbose=False)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-to-csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download to CSV
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Download to CSV">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download_information_tablefilepath-columnsnone-api_keynone-print_costtrue-verbosefalse" class="md-nav__link">
+    <span class="md-ellipsis">
+      download_information_table(filepath, columns=None, ..., api_key=None, print_cost=True, verbose=False)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#form-3-4-5-insider-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Form 3, 4, 5 (Insider Transactions)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Form 3, 4, 5 (Insider Transactions)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-data_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Get Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_345columnsnone-api_keynone-print_costtrue-verbosefalse" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_345(columns=None, ..., api_key=None, print_cost=True, verbose=False)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-to-csv_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download to CSV
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Download to CSV">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download_345filepath-columnsnone-api_keynone-print_costtrue-verbosefalse" class="md-nav__link">
+    <span class="md-ellipsis">
+      download_345(filepath, columns=None, ..., api_key=None, print_cost=True, verbose=False)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#form-npx-proxy-voting-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      Form NPX (Proxy Voting Records)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Form NPX (Proxy Voting Records)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-data_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Get Data
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Get Data">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get_proxy_voting_recordcolumnsnone-api_keynone-print_costtrue-verbosefalse" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_proxy_voting_record(columns=None, ..., api_key=None, print_cost=True, verbose=False)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#download-to-csv_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Download to CSV
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Download to CSV">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#download_proxy_voting_recordfilepath-columnsnone-api_keynone-print_costtrue-verbosefalse" class="md-nav__link">
+    <span class="md-ellipsis">
+      download_proxy_voting_record(filepath, columns=None, ..., api_key=None, print_cost=True, verbose=False)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#available-datasets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Available Datasets
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="sheet">Sheet</h1>
+<details class="warning" open="open">
+<summary>Rewrite Coming</summary>
+<p>This code will be rewritten soon as part of an update that allows conversion of all SEC xml files into tabular form.</p>
+</details>
+<details class="warning" open="open">
+<summary>Data last updated in mid april 2025</summary>
+<p>This will be changed soon</p>
+</details>
+<p>Sheet is a class that allows you to download and work with tabular datasets from the SEC (Securities and Exchange Commission).</p>
+<h2 id="functions">Functions</h2>
+<h3 id="xbrl-data">XBRL Data</h3>
+<h4 id="download_xbrlciknone-tickernone-kwargs"><code>download_xbrl(cik=None, ticker=None, **kwargs)</code></h4>
+<p>Retrieves XBRL data for companies and saves it to disk.</p>
+<p>If <code>cik</code> and <code>ticker</code> are not provided, data for all companies with tickers will be downloaded.
+The data is saved to the directory specified when initializing the Sheet.</p>
+<p><strong>Parameters:</strong>
+- <code>cik</code>: Central Index Key identifier(s) for the company(ies) (str, int, list, or None)
+- <code>ticker</code>: Stock ticker symbol(s) (str, list, or None)
+- <code>**kwargs</code>: Additional search criteria including name, entityType, sic, sicDescription, ownerOrg, insiderTransactionForOwnerExists, insiderTransactionForIssuerExists, exchanges, ein, description, website, investorWebsite, category, fiscalYearEnd, stateOfIncorporation, stateOfIncorporationDescription, phone, flags, various address fields (mailing and business)</p>
+<p><strong>Example:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Download XBRL data for Tesla</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">download_xbrl</span><span class="p">(</span><span class="n">ticker</span><span class="o">=</span><span class="s2">&quot;TSLA&quot;</span><span class="p">)</span>
+
+<span class="c1"># Download XBRL data for multiple companies by CIK</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">download_xbrl</span><span class="p">(</span><span class="n">cik</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;1318605&quot;</span><span class="p">,</span> <span class="s2">&quot;320193&quot;</span><span class="p">])</span>  <span class="c1"># Tesla and Apple</span>
+</code></pre></div>
+<h3 id="form-13f-hr-information-table">Form 13F-HR Information Table</h3>
+<h4 id="get-data">Get Data</h4>
+<h5 id="get_information_tablecolumnsnone-api_keynone-print_costtrue-verbosefalse"><code>get_information_table(columns=None, ..., api_key=None, print_cost=True, verbose=False)</code></h5>
+<p>Query the SEC BigQuery API for 13F-HR information table data (institutional holdings).</p>
+<p><strong>Parameters:</strong>
+- <code>columns</code>: Specific columns to return (List[str], optional)
+- <code>name_of_issuer</code>: Name of the issuing company (string, list, or None)
+- <code>title_of_class</code>: Class of securities (string, list, or None)
+- <code>cusip</code>: CUSIP identifier (string, list, or None)
+- <code>value</code>: Value of holdings in $ (numeric, tuple for range, or None)
+- <code>ssh_prnamt</code>: Number of shares held (numeric, tuple for range, or None)
+- <code>ssh_prnamt_type</code>: Type of shares (e.g., SH for shares) (string, list, or None)
+- <code>investment_discretion</code>: Level of investment discretion (string, list, or None)
+- <code>voting_authority_sole</code>: Shares with sole voting authority (numeric, tuple for range, or None)
+- <code>voting_authority_shared</code>: Shares with shared voting authority (numeric, tuple for range, or None)
+- <code>voting_authority_none</code>: Shares with no voting authority (numeric, tuple for range, or None)
+- <code>reporting_owner_cik</code>: CIK of the reporting owner (string, list, or None)
+- <code>put_call</code>: Put or call indicator (string, list, or None)
+- <code>other_manager</code>: Other managers reporting the security (string, list, or None)
+- <code>figi</code>: Financial Instrument Global Identifier (string, list, or None)
+- <code>accession</code>: SEC filing accession number (string, list, or None)
+- <code>filing_date</code>: Date of filing (string, list, or tuple for date range)
+- <code>api_key</code>: SEC BigQuery API key. If None, looks for DATAMULE_API_KEY env variable (string, optional)
+- <code>print_cost</code>: Whether to print the query cost information (bool)
+- <code>verbose</code>: Whether to print additional information about the query (bool)</p>
+<p><strong>Return:</strong> Records matching the query (List[Dict])</p>
+<p><strong>Filter Format Options:</strong>
+* String filters: Exact match (e.g., <code>cusip="023135106"</code>)
+* List filters: Match any in list (e.g., <code>name_of_issuer=["Apple Inc", "Microsoft Corp"]</code>)
+* Numeric range filters: (min, max) tuple (e.g., <code>value=(1000000, 10000000)</code>)
+* Date range filters: (start_date, end_date) tuple (e.g., <code>filing_date=("2023-01-01", "2023-12-31")</code>)</p>
+<p><strong>Example:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get all BlackRock holdings of Apple stock</span>
+<span class="n">holdings</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get_information_table</span><span class="p">(</span>
+    <span class="n">name_of_issuer</span><span class="o">=</span><span class="s2">&quot;Apple Inc&quot;</span><span class="p">,</span>
+    <span class="n">reporting_owner_cik</span><span class="o">=</span><span class="s2">&quot;1364742&quot;</span><span class="p">,</span>  <span class="c1"># BlackRock</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="s2">&quot;ssh_prnamt&quot;</span><span class="p">,</span> <span class="s2">&quot;filing_date&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div>
+<h4 id="download-to-csv">Download to CSV</h4>
+<h5 id="download_information_tablefilepath-columnsnone-api_keynone-print_costtrue-verbosefalse"><code>download_information_table(filepath, columns=None, ..., api_key=None, print_cost=True, verbose=False)</code></h5>
+<p>Query the SEC BigQuery API for 13F-HR information table data and save to CSV.</p>
+<p><strong>Parameters:</strong>
+- <code>filepath</code>: Path where to save the CSV file (str)
+- <code>columns</code>: Specific columns to return (List[str], optional)
+- [All other parameters same as <code>get_information_table</code>]</p>
+<p><strong>Example:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Download all Vanguard holdings to CSV</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">download_information_table</span><span class="p">(</span>
+    <span class="n">filepath</span><span class="o">=</span><span class="s2">&quot;vanguard_holdings.csv&quot;</span><span class="p">,</span>
+    <span class="n">reporting_owner_cik</span><span class="o">=</span><span class="s2">&quot;0000102909&quot;</span><span class="p">,</span>  <span class="c1"># Vanguard</span>
+    <span class="n">filing_date</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;2023-01-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2023-12-31&quot;</span><span class="p">),</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="form-3-4-5-insider-transactions">Form 3, 4, 5 (Insider Transactions)</h3>
+<h4 id="get-data_1">Get Data</h4>
+<h5 id="get_345columnsnone-api_keynone-print_costtrue-verbosefalse"><code>get_345(columns=None, ..., api_key=None, print_cost=True, verbose=False)</code></h5>
+<p>Query the SEC BigQuery API for Form 3, 4, 5 insider transaction data.</p>
+<p><strong>Parameters:</strong>
+- <code>columns</code>: Specific columns to return (List[str], optional)
+- <code>is_derivative</code>: Whether transaction involves derivative securities (boolean)
+- <code>is_non_derivative</code>: Whether transaction involves non-derivative securities (boolean)
+- <code>security_title</code>: Title of security (string, list, or None)
+- <code>transaction_date</code>: Date of transaction (string, list, or tuple for date range)
+- <code>document_type</code>: Form type (3, 4, or 5) (string, list, or None)
+- <code>transaction_code</code>: Transaction code (e.g., P for purchase, S for sale) (string, list, or None)
+- <code>equity_swap_involved</code>: Whether equity swap was involved (boolean)
+- <code>transaction_timeliness</code>: Timeliness of reporting (string, list, or None)
+- <code>transaction_shares</code>: Number of shares in transaction (numeric, tuple for range, or None)
+- <code>transaction_price_per_share</code>: Price per share (numeric, tuple for range, or None)
+- <code>shares_owned_following_transaction</code>: Shares owned after transaction (numeric, tuple for range, or None)
+- <code>ownership_type</code>: Type of ownership (D for direct, I for indirect) (string, list, or None)
+- <code>deemed_execution_date</code>: Deemed execution date (string, list, or tuple for date range)
+- <code>conversion_or_exercise_price</code>: Price for conversion or exercise (numeric, tuple for range, or None)
+- <code>exercise_date</code>: Exercise date (string, list, or tuple for date range)
+- <code>expiration_date</code>: Expiration date (string, list, or tuple for date range)
+- <code>underlying_security_title</code>: Title of underlying security (string, list, or None)
+- <code>underlying_security_shares</code>: Shares of underlying security (numeric, tuple for range, or None)
+- <code>underlying_security_value</code>: Value of underlying security (numeric, tuple for range, or None)
+- <code>accession</code>: SEC filing accession number (string, list, or None)
+- <code>reporting_owner_cik</code>: CIK of the reporting insider (string, list, or None)
+- <code>issuer_cik</code>: CIK of the company (string, list, or None)
+- <code>filing_date</code>: Date of filing (string, list, or tuple for date range)
+- <code>api_key</code>: SEC BigQuery API key. If None, looks for DATAMULE_API_KEY env variable (string, optional)
+- <code>print_cost</code>: Whether to print the query cost information (bool)
+- <code>verbose</code>: Whether to print additional information about the query (bool)</p>
+<p><strong>Return:</strong> Records matching the query (List[Dict])</p>
+<p><strong>Example:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get all Elon Musk&#39;s Tesla transactions</span>
+<span class="n">transactions</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get_345</span><span class="p">(</span>
+    <span class="n">reporting_owner_cik</span><span class="o">=</span><span class="s2">&quot;1494730&quot;</span><span class="p">,</span>  <span class="c1"># Elon Musk&#39;s CIK</span>
+    <span class="n">issuer_cik</span><span class="o">=</span><span class="s2">&quot;1318605&quot;</span><span class="p">,</span>  <span class="c1"># Tesla&#39;s CIK</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;transaction_date&quot;</span><span class="p">,</span> <span class="s2">&quot;transaction_code&quot;</span><span class="p">,</span> <span class="s2">&quot;transaction_shares&quot;</span><span class="p">,</span> 
+             <span class="s2">&quot;transaction_price_per_share&quot;</span><span class="p">,</span> <span class="s2">&quot;is_derivative&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div>
+<h4 id="download-to-csv_1">Download to CSV</h4>
+<h5 id="download_345filepath-columnsnone-api_keynone-print_costtrue-verbosefalse"><code>download_345(filepath, columns=None, ..., api_key=None, print_cost=True, verbose=False)</code></h5>
+<p>Query the SEC BigQuery API for Form 3, 4, 5 insider transaction data and save to CSV.</p>
+<p><strong>Parameters:</strong>
+- <code>filepath</code>: Path where to save the CSV file (str)
+- <code>columns</code>: Specific columns to return (List[str], optional)
+- [All other parameters same as <code>get_345</code>]</p>
+<p><strong>Examples:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Download all Tesla insider transactions for a year</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">download_345</span><span class="p">(</span>
+    <span class="n">filepath</span><span class="o">=</span><span class="s2">&quot;tesla_insider_transactions.csv&quot;</span><span class="p">,</span>
+    <span class="n">issuer_cik</span><span class="o">=</span><span class="s2">&quot;1318605&quot;</span><span class="p">,</span>  <span class="c1"># Tesla&#39;s CIK</span>
+    <span class="n">filing_date</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;2023-01-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2023-12-31&quot;</span><span class="p">),</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;transaction_date&quot;</span><span class="p">,</span> <span class="s2">&quot;security_title&quot;</span><span class="p">,</span> <span class="s2">&quot;transaction_code&quot;</span><span class="p">,</span> 
+             <span class="s2">&quot;transaction_shares&quot;</span><span class="p">,</span> <span class="s2">&quot;transaction_price_per_share&quot;</span><span class="p">,</span> 
+             <span class="s2">&quot;reporting_owner_cik&quot;</span><span class="p">,</span> <span class="s2">&quot;is_derivative&quot;</span><span class="p">],</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># Download all Elon Musk&#39;s transactions to CSV</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">download_345</span><span class="p">(</span>
+    <span class="n">filepath</span><span class="o">=</span><span class="s2">&quot;elon_transactions.csv&quot;</span><span class="p">,</span>
+    <span class="n">reporting_owner_cik</span><span class="o">=</span><span class="s2">&quot;1494730&quot;</span><span class="p">,</span>  <span class="c1"># Elon Musk&#39;s CIK</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># Get all large insider acquisitions (over 10,000 shares)</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">download_345</span><span class="p">(</span>
+    <span class="n">filepath</span><span class="o">=</span><span class="s2">&quot;large_acquisitions.csv&quot;</span><span class="p">,</span>
+    <span class="n">transaction_code</span><span class="o">=</span><span class="s2">&quot;A&quot;</span><span class="p">,</span>  <span class="c1"># Acquisition/grant</span>
+    <span class="n">shares_owned_following_transaction</span><span class="o">=</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>  <span class="c1"># Minimum of 10,000 shares</span>
+    <span class="n">is_derivative</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>  <span class="c1"># Only non-derivative transactions</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+</code></pre></div>
+<h3 id="form-npx-proxy-voting-records">Form NPX (Proxy Voting Records)</h3>
+<h4 id="get-data_2">Get Data</h4>
+<h5 id="get_proxy_voting_recordcolumnsnone-api_keynone-print_costtrue-verbosefalse"><code>get_proxy_voting_record(columns=None, ..., api_key=None, print_cost=True, verbose=False)</code></h5>
+<p>Query the SEC BigQuery API for NPX proxy voting record data.</p>
+<p><strong>Parameters:</strong>
+- <code>columns</code>: Specific columns to return (List[str], optional)
+- <code>meeting_date</code>: Date of shareholder meeting (string, list, or tuple for date range)
+- <code>isin</code>: International Securities Identification Number (string, list, or None)
+- <code>cusip</code>: CUSIP identifier (string, list, or None)
+- <code>issuer_name</code>: Name of the issuing company (string, list, or None)
+- <code>vote_description</code>: Description of the vote (string, list, or None)
+- <code>shares_on_loan</code>: Number of shares on loan (numeric, tuple for range, or None)
+- <code>shares_voted</code>: Number of shares voted (numeric, tuple for range, or None)
+- <code>vote_category</code>: Category of vote (string, list, or None)
+- <code>vote_record</code>: Record of vote (string, list, or None)
+- <code>vote_source</code>: Source of vote (string, list, or None)
+- <code>how_voted</code>: How the vote was cast (e.g., FOR, AGAINST, ABSTAIN) (string, list, or None)
+- <code>figi</code>: Financial Instrument Global Identifier (string, list, or None)
+- <code>management_recommendation</code>: Management's recommendation for the vote (string, list, or None)
+- <code>accession</code>: SEC filing accession number (string, list, or None)
+- <code>reporting_owner_cik</code>: CIK of the reporting owner (string, list, or None)
+- <code>filing_date</code>: Date of filing (string, list, or tuple for date range)
+- <code>api_key</code>: SEC BigQuery API key. If None, looks for DATAMULE_API_KEY env variable (string, optional)
+- <code>print_cost</code>: Whether to print the query cost information (bool)
+- <code>verbose</code>: Whether to print additional information about the query (bool)</p>
+<p><strong>Return:</strong> Records matching the query (List[Dict])</p>
+<p><strong>Filter Format Options:</strong>
+* String filters: Exact match (e.g., <code>cusip="037833100"</code>)
+* List filters: Match any in list (e.g., <code>issuer_name=["Apple Inc", "Tesla, Inc"]</code>)
+* Numeric range filters: (min, max) tuple (e.g., <code>shares_voted=(1000000, None)</code>)
+* Date range filters: (start_date, end_date) tuple (e.g., <code>filing_date=("2023-01-01", "2023-12-31")</code>)</p>
+<p><strong>Example:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Get all BlackRock votes for Apple in 2023</span>
+<span class="n">votes</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get_proxy_voting_record</span><span class="p">(</span>
+    <span class="n">issuer_name</span><span class="o">=</span><span class="s2">&quot;Apple Inc&quot;</span><span class="p">,</span>
+    <span class="n">reporting_owner_cik</span><span class="o">=</span><span class="s2">&quot;1364742&quot;</span><span class="p">,</span>  <span class="c1"># BlackRock</span>
+    <span class="n">meeting_date</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;2023-01-01&quot;</span><span class="p">,</span> <span class="s2">&quot;2023-12-31&quot;</span><span class="p">),</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;vote_description&quot;</span><span class="p">,</span> <span class="s2">&quot;how_voted&quot;</span><span class="p">,</span> <span class="s2">&quot;management_recommendation&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div>
+<h4 id="download-to-csv_2">Download to CSV</h4>
+<h5 id="download_proxy_voting_recordfilepath-columnsnone-api_keynone-print_costtrue-verbosefalse"><code>download_proxy_voting_record(filepath, columns=None, ..., api_key=None, print_cost=True, verbose=False)</code></h5>
+<p>Query the SEC BigQuery API for NPX proxy voting record data and save to CSV.</p>
+<p><strong>Parameters:</strong>
+- <code>filepath</code>: Path where to save the CSV file (str)
+- <code>columns</code>: Specific columns to return (List[str], optional)
+- [All other parameters same as <code>get_proxy_voting_record</code>]</p>
+<p><strong>Examples:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Download recent proxy votes</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">download_proxy_voting_record</span><span class="p">(</span>
+    <span class="n">filepath</span><span class="o">=</span><span class="s2">&quot;recent_proxy_votes.csv&quot;</span><span class="p">,</span>
+    <span class="n">filing_date</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;2025-02-01&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>  <span class="c1"># From February 2025 to present</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># Download Apple and Microsoft proxy votes</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">download_proxy_voting_record</span><span class="p">(</span>
+    <span class="n">filepath</span><span class="o">=</span><span class="s2">&quot;apple_msft_votes.csv&quot;</span><span class="p">,</span>
+    <span class="n">cusip</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;037833100&quot;</span><span class="p">,</span> <span class="s2">&quot;594918104&quot;</span><span class="p">],</span>  <span class="c1"># Apple and Microsoft CUSIPs</span>
+    <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;meetingDate&quot;</span><span class="p">,</span> <span class="s2">&quot;issuerName&quot;</span><span class="p">,</span> <span class="s2">&quot;voteDescription&quot;</span><span class="p">,</span> <span class="s2">&quot;howVoted&quot;</span><span class="p">,</span> 
+             <span class="s2">&quot;sharesVoted&quot;</span><span class="p">,</span> <span class="s2">&quot;filingDate&quot;</span><span class="p">,</span> <span class="s2">&quot;reportingOwnerCIK&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Download votes against management recommendations</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">download_proxy_voting_record</span><span class="p">(</span>
+    <span class="n">filepath</span><span class="o">=</span><span class="s2">&quot;against_mgmt.csv&quot;</span><span class="p">,</span>
+    <span class="n">how_voted</span><span class="o">=</span><span class="s2">&quot;AGAINST&quot;</span><span class="p">,</span>
+    <span class="n">management_recommendation</span><span class="o">=</span><span class="s2">&quot;FOR&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Download all proxy votes for Tesla</span>
+<span class="n">sheet</span><span class="o">.</span><span class="n">download_proxy_voting_record</span><span class="p">(</span>
+    <span class="n">filepath</span><span class="o">=</span><span class="s2">&quot;tesla.csv&quot;</span><span class="p">,</span>
+    <span class="n">cusip</span><span class="o">=</span><span class="s2">&quot;88160R101&quot;</span>  <span class="c1"># Tesla&#39;s CUSIP</span>
+<span class="p">)</span>
+</code></pre></div>
+<h2 id="available-datasets">Available Datasets</h2>
+<ul>
+<li><strong>XBRL</strong> (via SEC, free): Company financial data in XBRL format</li>
+<li><strong>Institutional Holdings</strong> (via datamule, paid): Constructed from 13F-HR INFORMATION TABLE</li>
+<li><strong>Insider Transactions</strong> (via datamule, paid): Constructed from Forms 3, 4, and 5</li>
+<li><strong>Proxy Voting Records</strong> (via datamule, paid): Constructed from Form NPX</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>
