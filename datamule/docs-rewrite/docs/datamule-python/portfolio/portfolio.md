@@ -14,7 +14,7 @@ set_api_key(api_key)
 
 ## `download_submissions`
 ```python
-download_submissions(self, cik=None, ticker=None, submission_type=None, filing_date=None, provider=None,document_type=None,requests_per_second=5, **kwargs)
+download_submissions(self, cik=None, ticker=None, submission_type=None, filing_date=None, provider=None,document_type=None,keep_filtered_metadata=False, requests_per_second=5, **kwargs)
 ```
 
 ### Parameters
@@ -25,6 +25,7 @@ download_submissions(self, cik=None, ticker=None, submission_type=None, filing_d
 * filing_date - e.g. `'2023-05-09'` or `('2023-01-01','2024-01-01')` or `['2023-01-01','2024-21-11','2025-23-01']
 * provider - e.g. `sec` or `datamule`. will use defaults from [config](../data_provider.md)
 * requests_per_second - sec hard rate limit is 10/s, soft limit is 5/s over long durations.
+* keep_filtered_metadata - whether metadata on documents within a submission should be kept or discarded if documents are filtered.
 * [**kwargs](../utils/_process_cik_and_metadata_filters.md)
 
 ### Filtering
@@ -73,9 +74,7 @@ monitor_submissions(data_callback=None, interval_callback=None,
 ```
 ### hits format:
 ```python
-[{'accession': 95017022000796,
-'ciks': ['1318605']
-'filing_date':'2022-02-07'}...]
+[{'accession': 176693425000001, 'submission_type': 'D/A', 'ciks': ['1766934'], 'filing_date': '2025-05-28'}...]
 ```
 ### Parameters
 * data_callback - function that uses hits

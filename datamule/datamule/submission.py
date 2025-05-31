@@ -129,10 +129,14 @@ class Submission:
                 if member.isfile():
                     content = tar.extractfile(member).read()
                     
-                    # Decompress if gzipped
+                    # Decompress based on file extension
                     if member.name.endswith('.gz'):
                         content = gzip.decompress(content)
                         output_path = output_dir / member.name[:-3]  # Remove .gz extension
+                    elif member.name.endswith('.zst'):
+                        dctx = zstd.ZstdDecompressor()
+                        content = dctx.decompress(content)
+                        output_path = output_dir / member.name[:-4]  # Remove .zst extension
                     else:
                         output_path = output_dir / member.name
                     

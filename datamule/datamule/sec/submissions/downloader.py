@@ -5,7 +5,7 @@ from tqdm import tqdm
 
 def download(cik=None, submission_type=None, filing_date=None, location=None, name=None, 
              requests_per_second=5, output_dir="filings", accession_numbers=None, 
-             quiet=False, keep_document_types=[]):
+             quiet=False, keep_document_types=[],keep_filtered_metadata=False):
     # Make sure output directory exists
     os.makedirs(output_dir, exist_ok=True)
 
@@ -14,7 +14,7 @@ def download(cik=None, submission_type=None, filing_date=None, location=None, na
     # Create a wrapper for the download_callback that includes the output_dir
     async def callback_wrapper(hit, content, cik, accno, url):
         output_path = os.path.join(output_dir, accno.replace('-','') + '.tar')
-        write_sgml_file_to_tar(output_path, bytes_content=content, filter_document_types=keep_document_types)
+        write_sgml_file_to_tar(output_path, bytes_content=content, filter_document_types=keep_document_types,keep_filtered_metadata=keep_filtered_metadata)
         pbar.update(1)
 
 

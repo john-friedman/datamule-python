@@ -34,7 +34,6 @@ class Portfolio:
     
     def _load_submissions(self):
         folders = [f for f in self.path.iterdir() if f.is_dir() or f.suffix=='.tar']
-        print(folders)
         print(f"Loading {len(folders)} submissions")
         
         def load_submission(folder):
@@ -126,7 +125,7 @@ class Portfolio:
             # First query, just set the accession numbers
             self.accession_numbers = new_accession_numbers
 
-    def download_submissions(self, cik=None, ticker=None, submission_type=None, filing_date=None, provider=None,document_type=[],requests_per_second=5, **kwargs):
+    def download_submissions(self, cik=None, ticker=None, submission_type=None, filing_date=None, provider=None,document_type=[],requests_per_second=5,keep_filtered_metadata=False, **kwargs):
         if provider is None:
             config = Config()
             provider = config.get_default_source()
@@ -143,7 +142,8 @@ class Portfolio:
                 submission_type=submission_type,
                 filing_date=filing_date,
                 accession_numbers=self.accession_numbers if hasattr(self, 'accession_numbers') else None,
-                keep_document_types=document_type
+                keep_document_types=document_type,
+                keep_filtered_metadata=keep_filtered_metadata,
             )
         else:
             sec_download(
@@ -153,7 +153,8 @@ class Portfolio:
                 filing_date=filing_date,
                 requests_per_second=requests_per_second, 
                 accession_numbers=self.accession_numbers if hasattr(self, 'accession_numbers') else None,
-                keep_document_types=document_type
+                keep_document_types=document_type,
+                keep_filtered_metadata=keep_filtered_metadata
             )
 
         self.submissions_loaded = False
