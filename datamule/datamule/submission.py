@@ -2,11 +2,79 @@ from pathlib import Path
 import json
 from .document.document import Document
 from secsgml import parse_sgml_content_into_memory
+from secsgml.utils import bytes_to_str
 import tarfile
 import shutil
 import zstandard as zstd
-from io import BytesIO
 import gzip
+import io
+import copy
+
+
+def calculate_documents_locations_in_tar(metadata, documents):
+    # Step 1: Add placeholder byte positions to get accurate size (10-digit padded)
+    placeholder_metadata = copy.deepcopy(metadata)
+    
+    for file_num in range(len(documents)):
+        if 'documents' in placeholder_metadata:
+            placeholder_metadata['documents'][file_num]['secsgml_start_byte'] = "9999999999"  # 10 digits
+            placeholder_metadata['documents'][file_num]['secsgml_end_byte'] = "9999999999"    # 10 digits
+    
+    # Step 2: Calculate size with placeholders
+    placeholder_str = bytes_to_str(placeholder_metadata, lower=False)
+    placeholder_json = json.dumps(placeholder_str).encode('utf-8')
+    metadata_size = len(placeholder_json)
+    
+    # Step 3: Now calculate actual positions using this size
+    current_pos = 512 + metadata_size
+    current_pos += (512 - (current_pos % 512)) % 512
+    
+    # Step 4: Calculate real positions and update original metadata (10-digit padded)
+    for file_num, content in enumerate(documents):
+        start_byte = current_pos + 512
+        end_byte = start_byte + len(content)
+        
+        if 'documents' in metadata:
+            metadata['documents'][file_num]['secsgml_start_byte'] = f"{start_byte:010d}"  # 10-digit padding
+            metadata['documents'][file_num]['secsgml_end_byte'] = f"{end_byte:010d}"      # 10-digit padding
+
+        
+        file_total_size = 512 + len(content)
+        padded_size = file_total_size + (512 - (file_total_size % 512)) % 512
+        current_pos += padded_size
+    
+    return metadata
+
+
+def write_submission_to_tar(output_path,metadata,documents,standardize_metadata,compression_list):
+     # Write tar directly to disk
+    with tarfile.open(output_path, 'w') as tar:
+
+        # calculate document locations in tar
+        metadata = calculate_documents_locations_in_tar(metadata, documents)
+        
+        # serialize metadata
+        metadata_str  = bytes_to_str(metadata,lower=False)
+        metadata_json = json.dumps(metadata_str).encode('utf-8')
+        # save metadata
+        tarinfo = tarfile.TarInfo(name='metadata.json')
+        tarinfo.size = len(metadata_json)
+        tar.addfile(tarinfo, io.BytesIO(metadata_json))
+
+        for file_num, content in enumerate(documents, 0):
+            if standardize_metadata:
+                document_name = metadata['documents'][file_num]['filename'] if metadata['documents'][file_num].get('filename') else metadata['documents'][file_num]['sequence'] + '.txt'
+            
+            compression = compression_list[file_num]
+            if compression == 'gzip':
+                document_name = f'{document_name}.gz'
+            elif compression == 'zstd':
+                document_name = f'{document_name}.zst'
+
+           
+            tarinfo = tarfile.TarInfo(name=f'{document_name}')
+            tarinfo.size = len(content)
+            tar.addfile(tarinfo, io.BytesIO(content))
 
 class Submission:
     def __init__(self, path=None,sgml_content=None,keep_document_types=None):
@@ -68,51 +136,34 @@ class Submission:
         if compression is not None and compression not in ['gzip', 'zstd']:
             raise ValueError("compression must be 'gzip' or 'zstd'")
         
+        # check if we're loading from a dir or a tar file
+        is_dir_not_tar = True
+        if self.path.suffix == '.tar':
+            is_dir_not_tar = False
+        elif not self.path.is_dir():
+            raise ValueError("Path must be a directory to compress")
         # Create tar file (replace directory with .tar file)
         tar_path = self.path.with_suffix('.tar')
-        
-        with tarfile.open(tar_path, 'w') as tar:
-            # Add metadata.json first
-            metadata_path = self.path / 'metadata.json'
-            if metadata_path.exists():
-                tar.add(metadata_path, arcname='metadata.json')
-            
-            # Add documents in order
-            for doc in self.metadata.content['documents']:
-                filename = doc.get('filename')
-                if filename is None:
-                    filename = doc['sequence'] + '.txt'
-                
-                file_path = self.path / filename
-                if file_path.exists():
-                    file_size = file_path.stat().st_size
 
-                    
-                    # Compress if compression specified and over threshold
-                    if compression is not None and file_size >= threshold:
-                        content = file_path.read_bytes()
-                        
-                        if compression == 'gzip':
-                            compressed_content = gzip.compress(content, compresslevel=level or 6)
-                            compressed_filename = filename + '.gz'
-                        else:  # zstd
-                            cctx = zstd.ZstdCompressor(level=level or 3)
-                            compressed_content = cctx.compress(content)
-                            compressed_filename = filename + '.zst'
-                        
-                        # Add compressed file to tar
-                        tarinfo = tarfile.TarInfo(name=compressed_filename)
-                        tarinfo.size = len(compressed_content)
-                        tar.addfile(tarinfo, BytesIO(compressed_content))
-                    else:
-                        # Add uncompressed file
-                        tar.add(file_path, arcname=filename)
+        # load all files in the directory or tar file
+        documents = [doc.content.encode('utf-8') if isinstance(doc.content, str) else doc.content for doc in self]
         
+
+        # we should compress everything here first.
+        compression_list = [compression if len(doc) >= threshold else '' for doc in documents]
+        documents = [gzip.compress(doc, compresslevel=level or 6) if compression == 'gzip' and 
+            len(doc) >= threshold else zstd.ZstdCompressor(level=level or 3).compress(doc) if compression == 'zstd' and 
+            len(doc) >= threshold else doc for doc in documents]
+        
+        metadata = self.metadata.content.copy()
+        write_submission_to_tar(tar_path,metadata,documents,compression_list=compression_list,standardize_metadata=True)
+
         # Delete original folder
-        shutil.rmtree(self.path)
-        
-        # Update path to point to new tar file
-        self.path = tar_path
+        if is_dir_not_tar:
+            shutil.rmtree(self.path)
+            # otherwise, we already replaced the tar file
+            # Update path to point to new tar file
+            self.path = tar_path
 
     def decompress(self):
         if self.path is None:
