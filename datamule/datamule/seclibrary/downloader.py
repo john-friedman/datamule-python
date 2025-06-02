@@ -74,7 +74,7 @@ class Downloader:
             print(f"Failed to log error to {error_file}: {str(e)}")
 
     class FileProcessor:
-        def __init__(self, output_dir, max_workers, queue_size, pbar, downloader, keep_document_types=[], keep_filtered_metadata=False):
+        def __init__(self, output_dir, max_workers, queue_size, pbar, downloader, keep_document_types=[], keep_filtered_metadata=False,standardize_metadata=True):
             self.processing_queue = Queue(maxsize=queue_size)
             self.should_stop = False
             self.processing_workers = []
@@ -85,6 +85,7 @@ class Downloader:
             self.downloader = downloader
             self.keep_document_types = keep_document_types
             self.keep_filtered_metadata = keep_filtered_metadata
+            self.standardize_metadata = standardize_metadata
 
         def start_processing_workers(self):
             for _ in range(self.max_workers):
@@ -96,7 +97,7 @@ class Downloader:
         def _process_file(self, item):
             filename, content = item
             output_path = os.path.join(self.output_dir, filename.split('.')[0] + '.tar')
-            write_sgml_file_to_tar(output_path, bytes_content=content, filter_document_types=self.keep_document_types, keep_filtered_metadata=self.keep_filtered_metadata)
+            write_sgml_file_to_tar(output_path, bytes_content=content, filter_document_types=self.keep_document_types, keep_filtered_metadata=self.keep_filtered_metadata,standardize_metadata=self.standardize_metadata)
             self.pbar.update(1)
 
         def _processing_worker(self):
@@ -205,11 +206,12 @@ class Downloader:
             except Exception as e:
                 self._log_error(output_dir, filename, str(e))
 
-    async def process_batch(self, urls, output_dir, keep_document_types=[], keep_filtered_metadata=False):
+    async def process_batch(self, urls, output_dir, keep_document_types=[], keep_filtered_metadata=False, standardize_metadata=True):
         os.makedirs(output_dir, exist_ok=True)
         
         with tqdm(total=len(urls), desc="Processing files") as pbar:
-            processor = self.FileProcessor(output_dir, self.MAX_PROCESSING_WORKERS, self.QUEUE_SIZE, pbar, self, keep_document_types=keep_document_types, keep_filtered_metadata=keep_filtered_metadata)
+            processor = self.FileProcessor(output_dir, self.MAX_PROCESSING_WORKERS, self.QUEUE_SIZE, pbar, self, keep_document_types=keep_document_types,
+                                            keep_filtered_metadata=keep_filtered_metadata,standardize_metadata=standardize_metadata)
             processor.start_processing_workers()
 
             semaphore = asyncio.Semaphore(self.MAX_CONCURRENT_DOWNLOADS)
@@ -232,7 +234,7 @@ class Downloader:
             processor.stop_workers()
             decompression_pool.shutdown()
 
-    def download(self, submission_type=None, cik=None, filing_date=None, output_dir="downloads", accession_numbers=None, keep_document_types=[], keep_filtered_metadata=False):
+    def download(self, submission_type=None, cik=None, filing_date=None, output_dir="downloads", accession_numbers=None, keep_document_types=[], keep_filtered_metadata=False, standardize_metadata=True):
         """
         Query SEC filings and download/process them.
         
@@ -281,7 +283,7 @@ class Downloader:
         start_time = time.time()
         
         # Process the batch asynchronously
-        asyncio.run(self.process_batch(urls, output_dir, keep_document_types=keep_document_types, keep_filtered_metadata=keep_filtered_metadata))
+        asyncio.run(self.process_batch(urls, output_dir, keep_document_types=keep_document_types, keep_filtered_metadata=keep_filtered_metadata, standardize_metadata=standardize_metadata))
         
         # Calculate and display performance metrics
         elapsed_time = time.time() - start_time
@@ -294,7 +296,7 @@ class Downloader:
             self.loop.call_soon_threadsafe(self.loop.stop)
 
 
-def download(submission_type=None, cik=None, filing_date=None, api_key=None, output_dir="downloads", accession_numbers=None, keep_document_types=[],keep_filtered_metadata=False):
+def download(submission_type=None, cik=None, filing_date=None, api_key=None, output_dir="downloads", accession_numbers=None, keep_document_types=[],keep_filtered_metadata=False,standardize_metadata=True):
     """
     Query SEC filings and download/process them.
     
@@ -321,5 +323,6 @@ def download(submission_type=None, cik=None, filing_date=None, api_key=None, out
         output_dir=output_dir,
         accession_numbers=accession_numbers,
         keep_document_types=keep_document_types,
-        keep_filtered_metadata=keep_filtered_metadata
+        keep_filtered_metadata=keep_filtered_metadata,
+        standardize_metadata=standardize_metadata
     )

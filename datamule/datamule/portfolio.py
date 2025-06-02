@@ -125,7 +125,8 @@ class Portfolio:
             # First query, just set the accession numbers
             self.accession_numbers = new_accession_numbers
 
-    def download_submissions(self, cik=None, ticker=None, submission_type=None, filing_date=None, provider=None,document_type=[],requests_per_second=5,keep_filtered_metadata=False, **kwargs):
+    def download_submissions(self, cik=None, ticker=None, submission_type=None, filing_date=None, provider=None,document_type=[],
+                             requests_per_second=5,keep_filtered_metadata=False,standardize_metadata=True, **kwargs):
         if provider is None:
             config = Config()
             provider = config.get_default_source()
@@ -144,6 +145,7 @@ class Portfolio:
                 accession_numbers=self.accession_numbers if hasattr(self, 'accession_numbers') else None,
                 keep_document_types=document_type,
                 keep_filtered_metadata=keep_filtered_metadata,
+                standardize_metadata=standardize_metadata,
             )
         else:
             sec_download(
@@ -154,7 +156,8 @@ class Portfolio:
                 requests_per_second=requests_per_second, 
                 accession_numbers=self.accession_numbers if hasattr(self, 'accession_numbers') else None,
                 keep_document_types=document_type,
-                keep_filtered_metadata=keep_filtered_metadata
+                keep_filtered_metadata=keep_filtered_metadata,
+                standardize_metadata=standardize_metadata,
             )
 
         self.submissions_loaded = False

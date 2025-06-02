@@ -20,6 +20,8 @@ Information will include:
 
 > **Note:** I should probably talk to a legal or business expert with domain knowledge on the variations.
 
+> **Note:** [See:](https://www.sec.gov/files/edgar/filermanual/edgarfilermmanual-vol2-c8.pdf)
+
 [Google Sheets](https://docs.google.com/spreadsheets/d/1SPRhNh-CwOhG7R9lvuR5xsXJlxW8ZTHcKSWPSRY-zQE/edit?usp=sharing)
 
 ## 1-A-W

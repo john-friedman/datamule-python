@@ -140,10 +140,25 @@ class Submission:
                     else:
                         output_path = output_dir / member.name
                     
-                    # Write to output directory
-                    output_path.parent.mkdir(parents=True, exist_ok=True)
-                    with output_path.open('wb') as f:
-                        f.write(content)
+                    # check if it is metadata.json
+                    if output_path.name == 'metadata.json':
+                        # load as json
+                        metadata = json.loads(content.decode('utf-8'))
+                        # remove SECSGML_START_BYTE and SECSGML_END_BYTE from documents
+                        for doc in metadata['documents']:
+                            if 'secsgml_start_byte' in doc:
+                                del doc['secsgml_start_byte']
+                            
+                            if 'secsgml_end_byte' in doc:
+                                del doc['secsgml_end_byte']
+
+                        with output_path.open('w', encoding='utf-8') as f:
+                            json.dump(metadata, f)
+                    else:
+                        # Write to output directory
+                        output_path.parent.mkdir(parents=True, exist_ok=True)
+                        with output_path.open('wb') as f:
+                            f.write(content)
 
         # delete original file
         self.path.unlink()
