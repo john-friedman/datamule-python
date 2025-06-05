@@ -3,6 +3,7 @@ import json
 from .document.document import Document
 from secsgml import parse_sgml_content_into_memory
 from secsgml.utils import bytes_to_str
+from secsgml.parse_sgml import transform_metadata_string
 import tarfile
 import shutil
 import zstandard as zstd
@@ -86,6 +87,10 @@ class Submission:
         if sgml_content is not None:
             self.path = None
             metadata, raw_documents = parse_sgml_content_into_memory(sgml_content)
+
+            # standardize metadata
+            metadata = transform_metadata_string(metadata)
+
             self.metadata = Document(type='submission_metadata', content=metadata, extension='.json',filing_date=None,accession=None,path=None)
             # code dupe
             self.accession = self.metadata.content['accession-number']
@@ -123,6 +128,9 @@ class Submission:
                 metadata_path = self.path / 'metadata.json'
                 with metadata_path.open('r') as f:
                     metadata = json.load(f) 
+
+            # standardize metadata
+            metadata = transform_metadata_string(metadata)
             self.metadata = Document(type='submission_metadata', content=metadata, extension='.json',filing_date=None,accession=None,path=metadata_path)
             self.accession = self.metadata.content['accession-number']
             self.filing_date= f"{self.metadata.content['filing-date'][:4]}-{self.metadata.content['filing-date'][4:6]}-{self.metadata.content['filing-date'][6:8]}"

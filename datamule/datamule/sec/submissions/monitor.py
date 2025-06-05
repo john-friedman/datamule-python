@@ -77,11 +77,18 @@ class Monitor():
         )
 
     async def _async_monitor_submissions(self, data_callback=None, interval_callback=None,
-                            polling_interval=1000, quiet=True, start_date=None,
-                            validation_interval=60000):
+                        polling_interval=1000, quiet=True, start_date=None,
+                        validation_interval=60000):
         """
         Async implementation of monitor_submissions.
+        Either polling_interval or validation_interval (or both) must be specified.
+        If polling_interval is None, only EFTS validation will be performed.
+        If validation_interval is None, only RSS polling will be performed.
         """
+
+        # Validate that at least one interval is specified
+        if polling_interval is None and validation_interval is None:
+            raise ValueError("At least one of polling_interval or validation_interval must be specified")
 
         # Backfill if start_date is provided
         if start_date is not None:
@@ -100,24 +107,33 @@ class Monitor():
             if new_hits and data_callback:
                 data_callback(new_hits)
 
-        last_polling_time = time.time()
-        last_validation_time = last_polling_time
-        current_time = last_polling_time
-
+        # Initialize timing variables
+        current_time = time.time()
+        last_polling_time = current_time
+        last_validation_time = current_time
+        
+        # Determine which operations to perform
+        do_polling = polling_interval is not None
+        do_validation = validation_interval is not None
+        
         while True:
-            # RSS polling
-            if not quiet:
-                print(f"Polling RSS feed")
-            results = await poll_rss(self.ratelimiters['sec.gov'])
-            new_results = self._filter_new_accessions(results)
-            if new_results:
-                if not quiet:
-                    print(f"Found {len(new_results)} new submissions via RSS")
-                if data_callback:
-                    data_callback(new_results)
+            current_time = time.time()
             
-            # EFTS validation
-            if validation_interval and (current_time - last_validation_time) >= validation_interval/1000:
+            # RSS polling (if enabled)
+            if do_polling and (current_time - last_polling_time) >= polling_interval/1000:
+                if not quiet:
+                    print(f"Polling RSS feed")
+                results = await poll_rss(self.ratelimiters['sec.gov'])
+                new_results = self._filter_new_accessions(results)
+                if new_results:
+                    if not quiet:
+                        print(f"Found {len(new_results)} new submissions via RSS")
+                    if data_callback:
+                        data_callback(new_results)
+                last_polling_time = current_time
+            
+            # EFTS validation (if enabled)
+            if do_validation and (current_time - last_validation_time) >= validation_interval/1000:
                 # Get submissions from the last 24 hours for validation
                 today_date = datetime.now().strftime('%Y-%m-%d')
                 if not quiet:
@@ -134,19 +150,23 @@ class Monitor():
                         print(f"Found {len(new_hits)} new submissions via EFTS validation")
                     if data_callback:
                         data_callback(new_hits)
-                last_polling_time = time.time()
                 last_validation_time = current_time
             
             # Interval callback
             if interval_callback:
                 interval_callback()
 
-            next_poll_time = last_polling_time + (polling_interval / 1000)
+            # Calculate next wake-up time
+            next_times = []
+            if do_polling:
+                next_times.append(last_polling_time + (polling_interval / 1000))
+            if do_validation:
+                next_times.append(last_validation_time + (validation_interval / 1000))
+            
+            next_wake_time = min(next_times)
             current_time = time.time()
-            time_to_sleep = max(0, next_poll_time - current_time)
+            time_to_sleep = max(0, next_wake_time - current_time)
             await asyncio.sleep(time_to_sleep)
-            last_polling_time = next_poll_time
-
 
     def monitor_submissions(self, data_callback=None, interval_callback=None,
                             polling_interval=1000, quiet=True, start_date=None,

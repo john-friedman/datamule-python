@@ -14,3 +14,4 @@ contributors:
 * Vee
 * cardal4
 * Matthew Massicotte
+* Benedetto Leto

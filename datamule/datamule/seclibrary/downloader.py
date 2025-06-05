@@ -98,6 +98,7 @@ class Downloader:
             filename, content = item
             output_path = os.path.join(self.output_dir, filename.split('.')[0] + '.tar')
             write_sgml_file_to_tar(output_path, bytes_content=content, filter_document_types=self.keep_document_types, keep_filtered_metadata=self.keep_filtered_metadata,standardize_metadata=self.standardize_metadata)
+
             self.pbar.update(1)
 
         def _processing_worker(self):
