@@ -11,7 +11,8 @@ contributors:
 * xingren23
 * Norman Niemer
 * paraknell
-* Vee
+* Wanxuan Li, sinceraxuan@gmail.com
 * cardal4
 * Matthew Massicotte
 * Benedetto Leto
+
