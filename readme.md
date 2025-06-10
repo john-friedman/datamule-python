@@ -5,15 +5,20 @@
 A python package for working with SEC filings at scale.
 
 * [Documentation](https://john-friedman.github.io/datamule-python/datamule-python/quickstart/)
-* [Website](https://datamule.xyz)
 
-## Related packages:
 
+## Related:
+
+### Packages
 * [datamule-data](https://github.com/john-friedman/datamule-data/) Contains datasets for use with datamule-python
 * [datamule-indicators](https://github.com/john-friedman/datamule-indicators/) Create economic indicators from SEC filings
 * [txt2dataset](https://github.com/john-friedman/txt2dataset/) Create datasets from unstructured text
 * [secsgml](https://github.com/john-friedman/secsgml/) Parse SEC filings in SGML format
 * [doc2dict](https://github.com/john-friedman/doc2dict) Convert documents to dictionaries.
+
+### Articles/Cloud
+* [Website](https://datamule.xyz)
+* [SEC Census](https://github.com/john-friedman/SEC-Census)
 
 ## Installation
 ```

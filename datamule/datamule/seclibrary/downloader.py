@@ -297,6 +297,64 @@ class Downloader:
             self.loop.call_soon_threadsafe(self.loop.stop)
 
 
+    
+    def download_files_using_filename(self, filenames, output_dir="downloads", keep_document_types=[], keep_filtered_metadata=False, standardize_metadata=True):
+        """
+        Download and process SEC filings using specific filenames.
+        
+        Parameters:
+        - filenames: List of specific filenames to download (e.g., ['000091205797006494.sgml', '000100704297000007.sgml.zst'])
+        - output_dir: Directory to save downloaded files
+        - keep_document_types: List of document types to keep (e.g., ['10-K', 'EX-10.1'])
+        - keep_filtered_metadata: Whether to keep metadata for filtered documents
+        - standardize_metadata: Whether to standardize metadata format
+        """
+        if self.api_key is None:
+            raise ValueError("No API key found. Please set DATAMULE_API_KEY environment variable or provide api_key in constructor")
+        
+        if not filenames:
+            raise ValueError("No filenames provided")
+        
+        if not isinstance(filenames, (list, tuple)):
+            filenames = [filenames]
+        
+        # Validate filenames format
+        for filename in filenames:
+            if not isinstance(filename, str):
+                raise ValueError(f"Invalid filename type: {type(filename)}. Expected string.")
+            if not (filename.endswith('.sgml') or filename.endswith('.sgml.zst')):
+                raise ValueError(f"Invalid filename format: {filename}. Expected .sgml or .sgml.zst extension.")
+        
+        # Generate URLs directly from filenames
+        print(f"Generating URLs for {len(filenames)} files...")
+        urls = []
+        for filename in filenames:
+            url = f"{self.BASE_URL}{filename}"
+            urls.append(url)
+        
+        # Remove duplicates while preserving order
+        seen = set()
+        urls = [url for url in urls if not (url in seen or seen.add(url))]
+        
+        print(f"Downloading {len(urls)} files...")
+        
+        # Process the batch asynchronously using existing infrastructure
+        start_time = time.time()
+        
+        asyncio.run(self.process_batch(
+            urls, 
+            output_dir, 
+            keep_document_types=keep_document_types, 
+            keep_filtered_metadata=keep_filtered_metadata, 
+            standardize_metadata=standardize_metadata
+        ))
+        
+        # Calculate and display performance metrics
+        elapsed_time = time.time() - start_time
+        print(f"\nProcessing completed in {elapsed_time:.2f} seconds")
+        print(f"Processing speed: {len(urls)/elapsed_time:.2f} files/second")
+
+
 def download(submission_type=None, cik=None, filing_date=None, api_key=None, output_dir="downloads", accession_numbers=None, keep_document_types=[],keep_filtered_metadata=False,standardize_metadata=True):
     """
     Query SEC filings and download/process them.
@@ -323,6 +381,29 @@ def download(submission_type=None, cik=None, filing_date=None, api_key=None, out
         filing_date=filing_date,
         output_dir=output_dir,
         accession_numbers=accession_numbers,
+        keep_document_types=keep_document_types,
+        keep_filtered_metadata=keep_filtered_metadata,
+        standardize_metadata=standardize_metadata
+    )
+
+def download_files_using_filename(filenames, api_key=None, output_dir="downloads", keep_document_types=[], keep_filtered_metadata=False, standardize_metadata=True):
+    """
+    Download and process SEC filings using specific filenames.
+    
+    Parameters:
+    - filenames: List of specific filenames to download (e.g., ['000091205797006494.sgml', '000100704297000007.sgml.zst'])
+    - api_key: API key for datamule service (optional if DATAMULE_API_KEY env var is set)
+    - output_dir: Directory to save downloaded files
+    - keep_document_types: List of document types to keep (e.g., ['10-K', 'EX-10.1'])
+    - keep_filtered_metadata: Whether to keep metadata for filtered documents
+    - standardize_metadata: Whether to standardize metadata format
+    """
+    downloader = Downloader(api_key=api_key)
+    downloader.QUEUE_SIZE = 1
+    downloader.MAX_CONCURRENT_DOWNLOADS = 1
+    downloader.download_files_using_filename(
+        filenames=filenames,
+        output_dir=output_dir,
         keep_document_types=keep_document_types,
         keep_filtered_metadata=keep_filtered_metadata,
         standardize_metadata=standardize_metadata
