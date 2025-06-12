@@ -47,9 +47,22 @@ async def poll_rss(limiter):
     return results
 
 def clean_efts_hits(hits):
-    # clean hits
-    hits = [{'accession': int(hit['_source']['adsh'].replace('-','')), 'filing_date': hit['_source']['file_date'], 'ciks': hit['_source']['ciks'], 'submission_type': hit['_source']['file_type']} for hit in hits]
-    return hits
+    # clean hits and standardize CIKs to string(int)
+    cleaned_hits = []
+    for hit in hits:
+        # Get CIKs from the source, ensure it's a list
+        raw_ciks = hit['_source'].get('ciks', []) 
+        
+        # Standardize each CIK: convert to int (removes leading zeros) then back to string
+        standardized_ciks = [str(int(cik)) for cik in raw_ciks if cik.isdigit()] # Added .isdigit() for robustness
+        
+        cleaned_hits.append({
+            'accession': int(hit['_source']['adsh'].replace('-','')),
+            'filing_date': hit['_source']['file_date'],
+            'ciks': standardized_ciks, # Use the standardized CIKs here
+            'submission_type': hit['_source']['file_type']
+        })
+    return cleaned_hits
 
 class Monitor():
     def __init__(self):
