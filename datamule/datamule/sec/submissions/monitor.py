@@ -7,7 +7,7 @@ import asyncio
 from ..utils import headers, PreciseRateLimiter
 from .eftsquery import EFTSQuery
 import aiohttp
-
+from zoneinfo import ZoneInfo 
 
 async def poll_rss(limiter):
     base_url = 'https://www.sec.gov/cgi-bin/browse-edgar?count=100&action=getcurrent&output=rss'
@@ -92,7 +92,7 @@ class Monitor():
 
         # Backfill if start_date is provided
         if start_date is not None:
-            today_date = datetime.now().date().strftime('%Y-%m-%d')
+            today_date = datetime.now(ZoneInfo("America/New_York")).strftime('%Y-%m-%d')
             if not quiet:
                 print(f"Backfilling from {start_date} to {today_date}")
 
@@ -135,7 +135,7 @@ class Monitor():
             # EFTS validation (if enabled)
             if do_validation and (current_time - last_validation_time) >= validation_interval/1000:
                 # Get submissions from the last 24 hours for validation
-                today_date = datetime.now().strftime('%Y-%m-%d')
+                today_date = datetime.now(ZoneInfo("America/New_York")).strftime('%Y-%m-%d')
                 if not quiet:
                     print(f"Validating submissions from {today_date}")
 
