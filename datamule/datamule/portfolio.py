@@ -11,6 +11,7 @@ from .seclibrary.downloader import download as seclibrary_download
 from .sec.xbrl.filter_xbrl import filter_xbrl
 from .sec.submissions.monitor import Monitor
 #from .sec.xbrl.xbrlmonitor import XBRLMonitor
+from .datamule.sec_connector import SecConnector
 
 
 class Portfolio:
@@ -174,6 +175,11 @@ class Portfolio:
             start_date=start_date,
             validation_interval=validation_interval
         )
+
+    def stream_submissions(self,data_callback=None,quiet=False):
+
+        connector = SecConnector(api_key=self.api_key,quiet=quiet)
+        connector.connect(data_callback=data_callback)
 
         
     def __iter__(self):

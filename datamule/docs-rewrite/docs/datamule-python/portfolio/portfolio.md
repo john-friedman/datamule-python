@@ -67,6 +67,7 @@ For help filling out args, see [this](https://www.sec.gov/search-filings/edgar-a
 * logic - `'>'`,`'>='`,`'=='`,`'!='`, `'<='`, `'<'`
 
 ## `monitor_submissions`
+Monitor the SEC for new submissions.
 ```python
 monitor_submissions(data_callback=None, interval_callback=None,
                             polling_interval=1000, quiet=True, start_date=None,
@@ -113,6 +114,35 @@ portfolio.monitor_submissions(validation_interval=60000,start_date='2025-04-25',
     1. RSS - ~25% of submissions are missed
     2. EFTS - often 30-50s slower than the RSS feed
     The `Monitor` class is a compromise that uses both systems. I will likely do a write up on how it works later on, because both systems are annoying to work with. If you have a use-case that requires insane levels of speed, feel free to email me for advice.
+
+
+## `stream_submissions`
+Get new SEC submissions by listening to datamule's websocket. Requires an [API Key](https://datamule.xyz/dashboard2).
+```python
+stream_submissions(data_callback=None,api_key=None,quiet=False)
+```
+
+### hits format:
+```python
+[{'accession': '95017025085535', 'submission_type': '4', 'ciks': ['109198', '1278731'], 'filing_date': '2025-06-12', 'detected_time': 1749762028168, 'source': 'rss'}...]
+```
+
+### Parameters
+* data_callback - function that uses hits
+* quiet - whether to print output
+
+### Example
+```
+portfolio = Portfolio('websockettest')
+
+def data_callback(hits):
+    for hit in hits:
+        print(hit)
+portfolio.stream_submissions(data_callback=data_callback)
+```
+
+
+
 
 ## `document_type`
 
