@@ -5,8 +5,6 @@ from ..utils import headers
 def fetch_frame(taxonomy, concept, unit, period):
     url = f"https://data.sec.gov/api/xbrl/frames/{taxonomy}/{concept}/{unit}/{period}.json"
     response = requests.get(url, headers=headers)
-    print(url)
-    print(response)
     return response.json()
 
 

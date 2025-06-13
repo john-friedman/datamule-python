@@ -21,7 +21,7 @@ def fix_filing_url(url):
     return url
 
 class Streamer(EFTSQuery):
-    def __init__(self, requests_per_second=5.0, document_callback=None, accession_numbers=None, quiet=False):
+    def __init__(self, requests_per_second=5.0, document_callback=None, accession_numbers=None,skip_accession_numbers=None, quiet=False):
         super().__init__(requests_per_second=requests_per_second, quiet=quiet)
         self.document_callback = document_callback
         self.document_queue = asyncio.Queue()
@@ -32,6 +32,7 @@ class Streamer(EFTSQuery):
         self.documents_processed = 0
         self.total_documents = 0
         self.accession_numbers = accession_numbers
+        self.skip_accession_numbers = skip_accession_numbers
         self.skipped_documents = 0
         
     async def _fetch_worker(self):
@@ -79,6 +80,9 @@ class Streamer(EFTSQuery):
             
             # Check if we should filter by accession numbers
             if self.accession_numbers is not None and accno_w_dash not in self.accession_numbers:
+                return None, None, None
+            
+            if self.skip_accession_numbers is not None and accno_w_dash in self.skip_accession_numbers:
                 return None, None, None
             
             # Construct the URL
@@ -218,7 +222,7 @@ class Streamer(EFTSQuery):
         return results
 
 def stream(cik=None, submission_type=None, filing_date=None, location=None, 
-           requests_per_second=5.0, document_callback=None, accession_numbers=None,
+           requests_per_second=5.0, document_callback=None, accession_numbers=None,skip_accession_numbers=[],
            quiet=False, name=None):
     """
     Stream EFTS results and download documents into memory.
@@ -257,6 +261,7 @@ def stream(cik=None, submission_type=None, filing_date=None, location=None,
             requests_per_second=requests_per_second, 
             document_callback=document_callback,
             accession_numbers=accession_numbers,
+            skip_accession_numbers=skip_accession_numbers,
             quiet=quiet
         )
         return await streamer.stream(cik, submission_type, filing_date, location, name)

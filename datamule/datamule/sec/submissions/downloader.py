@@ -5,7 +5,8 @@ from tqdm import tqdm
 
 def download(cik=None, submission_type=None, filing_date=None, location=None, name=None, 
              requests_per_second=5, output_dir="filings", accession_numbers=None, 
-             quiet=False, keep_document_types=[],keep_filtered_metadata=False,standardize_metadata=True):
+             quiet=False, keep_document_types=[],keep_filtered_metadata=False,standardize_metadata=True,
+             skip_accession_numbers=[]):
     # Make sure output directory exists
     os.makedirs(output_dir, exist_ok=True)
 
@@ -29,5 +30,6 @@ def download(cik=None, submission_type=None, filing_date=None, location=None, na
         requests_per_second=requests_per_second,
         document_callback=callback_wrapper,
         accession_numbers=accession_numbers,
+        skip_accession_numbers=skip_accession_numbers,
         quiet=quiet
     )

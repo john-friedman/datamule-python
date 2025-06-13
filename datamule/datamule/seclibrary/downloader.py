@@ -14,7 +14,6 @@ from queue import Queue, Empty
 from threading import Thread
 from .query import query
 from os import cpu_count
-from ..submission import Submission
 from secsgml import write_sgml_file_to_tar
 
 
@@ -235,7 +234,8 @@ class Downloader:
             processor.stop_workers()
             decompression_pool.shutdown()
 
-    def download(self, submission_type=None, cik=None, filing_date=None, output_dir="downloads", accession_numbers=None, keep_document_types=[], keep_filtered_metadata=False, standardize_metadata=True):
+    def download(self, submission_type=None, cik=None, filing_date=None, output_dir="downloads", accession_numbers=None, keep_document_types=[], keep_filtered_metadata=False, standardize_metadata=True,
+                 skip_accession_numbers=[]):
         """
         Query SEC filings and download/process them.
         
@@ -259,10 +259,18 @@ class Downloader:
             filing_date=filing_date,
             api_key=self.api_key
         )
+
+
         # After querying but before generating URLs
         if accession_numbers:
+            accession_numbers = [str(int(item.replace('-',''))) for item in accession_numbers]
             filings = [filing for filing in filings if filing['accession_number'] in accession_numbers]
         
+
+        if skip_accession_numbers:
+            skip_accession_numbers = [int(item.replace('-','')) for item in skip_accession_numbers]
+            filings = [filing for filing in filings if filing['accession_number'] not in skip_accession_numbers]
+
         # Generate URLs from the query results
         
         print(f"Generating URLs for {len(filings)} filings...")
@@ -355,7 +363,8 @@ class Downloader:
         print(f"Processing speed: {len(urls)/elapsed_time:.2f} files/second")
 
 
-def download(submission_type=None, cik=None, filing_date=None, api_key=None, output_dir="downloads", accession_numbers=None, keep_document_types=[],keep_filtered_metadata=False,standardize_metadata=True):
+def download(submission_type=None, cik=None, filing_date=None, api_key=None, output_dir="downloads", accession_numbers=None, keep_document_types=[],keep_filtered_metadata=False,standardize_metadata=True,
+             skip_accession_numbers=[]):
     """
     Query SEC filings and download/process them.
     
@@ -383,28 +392,6 @@ def download(submission_type=None, cik=None, filing_date=None, api_key=None, out
         accession_numbers=accession_numbers,
         keep_document_types=keep_document_types,
         keep_filtered_metadata=keep_filtered_metadata,
-        standardize_metadata=standardize_metadata
-    )
-
-def download_files_using_filename(filenames, api_key=None, output_dir="downloads", keep_document_types=[], keep_filtered_metadata=False, standardize_metadata=True):
-    """
-    Download and process SEC filings using specific filenames.
-    
-    Parameters:
-    - filenames: List of specific filenames to download (e.g., ['000091205797006494.sgml', '000100704297000007.sgml.zst'])
-    - api_key: API key for datamule service (optional if DATAMULE_API_KEY env var is set)
-    - output_dir: Directory to save downloaded files
-    - keep_document_types: List of document types to keep (e.g., ['10-K', 'EX-10.1'])
-    - keep_filtered_metadata: Whether to keep metadata for filtered documents
-    - standardize_metadata: Whether to standardize metadata format
-    """
-    downloader = Downloader(api_key=api_key)
-    downloader.QUEUE_SIZE = 1
-    downloader.MAX_CONCURRENT_DOWNLOADS = 1
-    downloader.download_files_using_filename(
-        filenames=filenames,
-        output_dir=output_dir,
-        keep_document_types=keep_document_types,
-        keep_filtered_metadata=keep_filtered_metadata,
-        standardize_metadata=standardize_metadata
+        standardize_metadata=standardize_metadata,
+        skip_accession_numbers=skip_accession_numbers
     )

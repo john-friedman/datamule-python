@@ -14,7 +14,7 @@ set_api_key(api_key)
 
 ## `download_submissions`
 ```python
-download_submissions(self, cik=None, ticker=None, submission_type=None, filing_date=None, provider=None,document_type=None,keep_filtered_metadata=False, requests_per_second=5, **kwargs)
+download_submissions(self, cik=None, ticker=None, submission_type=None, filing_date=None, provider=None,document_type=None,keep_filtered_metadata=False, requests_per_second=5,skip_existing=True, **kwargs)
 ```
 
 ### Parameters
@@ -26,6 +26,7 @@ download_submissions(self, cik=None, ticker=None, submission_type=None, filing_d
 * provider - e.g. `sec` or `datamule`. will use defaults from [config](../data_provider.md)
 * requests_per_second - sec hard rate limit is 10/s, soft limit is 5/s over long durations.
 * keep_filtered_metadata - whether metadata on documents within a submission should be kept or discarded if documents are filtered.
+* skip_existing - whether to download submissions already in the Portfolio.
 * [**kwargs](../utils/_process_cik_and_metadata_filters.md)
 
 ### Filtering
