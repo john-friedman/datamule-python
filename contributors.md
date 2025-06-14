@@ -15,4 +15,5 @@ contributors:
 * cardal4
 * Matthew Massicotte
 * Benedetto Leto
+* everling
 
