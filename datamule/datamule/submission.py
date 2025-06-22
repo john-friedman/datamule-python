@@ -251,7 +251,8 @@ class Submission:
                         try: 
                             content = tar.extractfile(filename+'.zst').read()
                         except:
-                            raise ValueError("Something went wrong with tar")
+                            # some of these issues are on SEC data end, will fix when I setup cloud.
+                            raise ValueError(f"Something went wrong with tar: {self.path}")
                 # Decompress if compressed
                 if filename.endswith('.gz'):
                     content = gzip.decompress(content)

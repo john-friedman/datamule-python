@@ -26,6 +26,12 @@ document.contains_string(pattern)
 
 Parses a document into dictionary form, and applies a mapping dict. Currently supports any file in `html`, `xml`, has limited support for `.pdf`, and some `txt` formats. Most do not have mapping dicts written yet, so are a bit less standardized.
 
+## `parse_xbrl`
+
+Parses the inline XBRL of a html document. Feature requests welcome.
+
+[Example](https://github.com/john-friedman/datamule-python/blob/main/examples/parse_xbrl.ipynb)
+
 ## `visualize`
 
 Opens a document using webbrowser. Only works for certain file extensions.

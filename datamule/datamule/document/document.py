@@ -12,6 +12,7 @@ from .processing import process_tabular_data
 from pathlib import Path
 import webbrowser
 from secsgml.utils import bytes_to_str
+from secxbrl import parse_inline_xbrl
 
 class Document:
     def __init__(self, type, content, extension,accession,filing_date,path=None):
@@ -33,6 +34,7 @@ class Document:
         self.extension = extension
         # this will be filled by parsed
         self.data = None
+        self.xbrl = None
 
     #_load_text_content
     def _preprocess_txt_content(self):
@@ -101,12 +103,23 @@ class Document:
         if self.extension in ['.htm', '.html', '.txt','.xml']:
             return bool(re.search(pattern, self.content))
         return False
+    
+    def parse_xbrl(self,type='inline'):
+        if self.xbrl:
+            return
+        if type =='inline':
+            if self.extension not in ['.htm','.html']:
+                return
+            
+            self.xbrl = parse_inline_xbrl(self.content)
+        else:
+            raise ValueError("Only inline has been implemented so far.")
 
     # Note: this method will be heavily modified in the future
     def parse(self):
         # check if we have already parsed the content
         if self.data:
-            return self.data
+            return
         
         mapping_dict = None
         
