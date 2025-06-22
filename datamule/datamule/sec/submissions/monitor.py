@@ -9,16 +9,14 @@ from .eftsquery import EFTSQuery
 import aiohttp
 from zoneinfo import ZoneInfo 
 
-async def poll_rss(limiter):
+async def poll_rss(limiter, session):
     base_url = 'https://www.sec.gov/cgi-bin/browse-edgar?count=100&action=getcurrent&output=rss'
     
-    # Create a session specifically for this RSS polling operation
-    async with aiohttp.ClientSession(headers=headers) as session:
-        # Use the rate limiter before making the request
-        async with limiter:
-            # Make the HTTP request with the session
-            async with session.get(base_url) as response:
-                content = await response.read()
+    # Use the rate limiter before making the request
+    async with limiter:
+        # Use the provided session instead of creating a new one
+        async with session.get(base_url) as response:
+            content = await response.read()
     
     # Process the content
     content_str = content.decode('utf-8')
@@ -70,11 +68,30 @@ class Monitor():
         self.ratelimiters = {'sec.gov': PreciseRateLimiter(rate=5)}
         self.efts_query = EFTSQuery(quiet=True)
         self.efts_query.limiter = self.ratelimiters['sec.gov']
+        self.session = None
+        self.session_created_at = 0
+        self.session_lifetime = 300  # 5 minutes in seconds
 
     def set_domain_rate_limit(self, domain, rate):
         self.ratelimiters[domain] = PreciseRateLimiter(rate=rate)
         if domain == 'sec.gov':
             self.efts_query.limiter = self.ratelimiters[domain]
+    
+    async def _ensure_fresh_session(self):
+        """Ensure we have a fresh session, recreating if expired or missing"""
+        current_time = time.time()
+        
+        # Check if we need a new session
+        if (self.session is None or 
+            current_time - self.session_created_at > self.session_lifetime):
+            
+            # Close old session if it exists
+            if self.session:
+                await self.session.close()
+            
+            # Create new session
+            self.session = aiohttp.ClientSession(headers=headers)
+            self.session_created_at = current_time
     
     async def _async_run_efts_query(self, **kwargs):
         """Async helper method to run EFTS query without creating a new event loop"""
@@ -103,83 +120,106 @@ class Monitor():
         if polling_interval is None and validation_interval is None:
             raise ValueError("At least one of polling_interval or validation_interval must be specified")
 
-        # Backfill if start_date is provided
-        if start_date is not None:
-            today_date = datetime.now(ZoneInfo("America/New_York")).strftime('%Y-%m-%d')
-            if not quiet:
-                print(f"Backfilling from {start_date} to {today_date}")
-
-            hits = clean_efts_hits(await self._async_run_efts_query(
-                filing_date=(start_date, today_date),
-                quiet=quiet
-            ))
-
-            new_hits = self._filter_new_accessions(hits)
-            if not quiet:
-                print(f"New submissions found: {len(new_hits)}")
-            if new_hits and data_callback:
-                data_callback(new_hits)
-
-        # Initialize timing variables
-        current_time = time.time()
-        last_polling_time = current_time
-        last_validation_time = current_time
+        # Ensure we have a fresh session
+        await self._ensure_fresh_session()
         
-        # Determine which operations to perform
-        do_polling = polling_interval is not None
-        do_validation = validation_interval is not None
-        
-        while True:
-            current_time = time.time()
-            
-            # RSS polling (if enabled)
-            if do_polling and (current_time - last_polling_time) >= polling_interval/1000:
-                if not quiet:
-                    print(f"Polling RSS feed")
-                results = await poll_rss(self.ratelimiters['sec.gov'])
-                new_results = self._filter_new_accessions(results)
-                if new_results:
-                    if not quiet:
-                        print(f"Found {len(new_results)} new submissions via RSS")
-                    if data_callback:
-                        data_callback(new_results)
-                last_polling_time = current_time
-            
-            # EFTS validation (if enabled)
-            if do_validation and (current_time - last_validation_time) >= validation_interval/1000:
-                # Get submissions from the last 24 hours for validation
+        try:
+            # Backfill if start_date is provided
+            if start_date is not None:
                 today_date = datetime.now(ZoneInfo("America/New_York")).strftime('%Y-%m-%d')
                 if not quiet:
-                    print(f"Validating submissions from {today_date}")
+                    print(f"Backfilling from {start_date} to {today_date}")
 
                 hits = clean_efts_hits(await self._async_run_efts_query(
-                    filing_date=(today_date, today_date),
+                    filing_date=(start_date, today_date),
                     quiet=quiet
                 ))
-                
-                new_hits = self._filter_new_accessions(hits)
-                if new_hits:
-                    if not quiet:
-                        print(f"Found {len(new_hits)} new submissions via EFTS validation")
-                    if data_callback:
-                        data_callback(new_hits)
-                last_validation_time = current_time
-            
-            # Interval callback
-            if interval_callback:
-                interval_callback()
 
-            # Calculate next wake-up time
-            next_times = []
-            if do_polling:
-                next_times.append(last_polling_time + (polling_interval / 1000))
-            if do_validation:
-                next_times.append(last_validation_time + (validation_interval / 1000))
-            
-            next_wake_time = min(next_times)
+                new_hits = self._filter_new_accessions(hits)
+                if not quiet:
+                    print(f"New submissions found: {len(new_hits)}")
+                if new_hits and data_callback:
+                    data_callback(new_hits)
+
+            # Initialize timing variables
             current_time = time.time()
-            time_to_sleep = max(0, next_wake_time - current_time)
-            await asyncio.sleep(time_to_sleep)
+            last_polling_time = current_time
+            last_validation_time = current_time
+            
+            # Determine which operations to perform
+            do_polling = polling_interval is not None
+            do_validation = validation_interval is not None
+            
+            while True:
+                current_time = time.time()
+                
+                # RSS polling (if enabled)
+                if do_polling and (current_time - last_polling_time) >= polling_interval/1000:
+                    if not quiet:
+                        print(f"Polling RSS feed")
+                    
+                    # Ensure session is fresh before polling
+                    await self._ensure_fresh_session()
+                    
+                    try:
+                        results = await poll_rss(self.ratelimiters['sec.gov'], self.session)
+                        new_results = self._filter_new_accessions(results)
+                        if new_results:
+                            if not quiet:
+                                print(f"Found {len(new_results)} new submissions via RSS")
+                            if data_callback:
+                                data_callback(new_results)
+                    except Exception as e:
+                        if not quiet:
+                            print(f"RSS polling error: {e}, will recreate session on next poll")
+                        # Force session recreation on next poll
+                        if self.session:
+                            await self.session.close()
+                            self.session = None
+                    
+                    last_polling_time = current_time
+                
+                # EFTS validation (if enabled)
+                if do_validation and (current_time - last_validation_time) >= validation_interval/1000:
+                    # Get submissions from the last 24 hours for validation
+                    today_date = datetime.now(ZoneInfo("America/New_York")).strftime('%Y-%m-%d')
+                    if not quiet:
+                        print(f"Validating submissions from {today_date}")
+
+                    hits = clean_efts_hits(await self._async_run_efts_query(
+                        filing_date=(today_date, today_date),
+                        quiet=quiet
+                    ))
+                    
+                    new_hits = self._filter_new_accessions(hits)
+                    if new_hits:
+                        if not quiet:
+                            print(f"Found {len(new_hits)} new submissions via EFTS validation")
+                        if data_callback:
+                            data_callback(new_hits)
+                    last_validation_time = current_time
+                
+                # Interval callback
+                if interval_callback:
+                    interval_callback()
+
+                # Calculate next wake-up time
+                next_times = []
+                if do_polling:
+                    next_times.append(last_polling_time + (polling_interval / 1000))
+                if do_validation:
+                    next_times.append(last_validation_time + (validation_interval / 1000))
+                
+                next_wake_time = min(next_times)
+                current_time = time.time()
+                time_to_sleep = max(0, next_wake_time - current_time)
+                await asyncio.sleep(time_to_sleep)
+                
+        finally:
+            # Clean up the session when done
+            if self.session:
+                await self.session.close()
+                self.session = None
 
     def monitor_submissions(self, data_callback=None, interval_callback=None,
                             polling_interval=1000, quiet=True, start_date=None,
