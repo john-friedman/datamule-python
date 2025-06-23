@@ -2,49 +2,14 @@ from pathlib import Path
 import json
 from .document.document import Document
 from secsgml import parse_sgml_content_into_memory
-from secsgml.utils import bytes_to_str
+from secsgml.utils import bytes_to_str, calculate_documents_locations_in_tar
 from secsgml.parse_sgml import transform_metadata_string
 import tarfile
 import shutil
 import zstandard as zstd
 import gzip
 import io
-import copy
 
-
-def calculate_documents_locations_in_tar(metadata, documents):
-    # Step 1: Add placeholder byte positions to get accurate size (10-digit padded)
-    placeholder_metadata = copy.deepcopy(metadata)
-    
-    for file_num in range(len(documents)):
-        if 'documents' in placeholder_metadata:
-            placeholder_metadata['documents'][file_num]['secsgml_start_byte'] = "9999999999"  # 10 digits
-            placeholder_metadata['documents'][file_num]['secsgml_end_byte'] = "9999999999"    # 10 digits
-    
-    # Step 2: Calculate size with placeholders
-    placeholder_str = bytes_to_str(placeholder_metadata, lower=False)
-    placeholder_json = json.dumps(placeholder_str).encode('utf-8')
-    metadata_size = len(placeholder_json)
-    
-    # Step 3: Now calculate actual positions using this size
-    current_pos = 512 + metadata_size
-    current_pos += (512 - (current_pos % 512)) % 512
-    
-    # Step 4: Calculate real positions and update original metadata (10-digit padded)
-    for file_num, content in enumerate(documents):
-        start_byte = current_pos + 512
-        end_byte = start_byte + len(content)
-        
-        if 'documents' in metadata:
-            metadata['documents'][file_num]['secsgml_start_byte'] = f"{start_byte:010d}"  # 10-digit padding
-            metadata['documents'][file_num]['secsgml_end_byte'] = f"{end_byte:010d}"      # 10-digit padding
-
-        
-        file_total_size = 512 + len(content)
-        padded_size = file_total_size + (512 - (file_total_size % 512)) % 512
-        current_pos += padded_size
-    
-    return metadata
 
 
 def write_submission_to_tar(output_path,metadata,documents,standardize_metadata,compression_list):

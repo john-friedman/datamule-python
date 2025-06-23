@@ -15,6 +15,7 @@ A python package for working with SEC filings at scale.
 * [txt2dataset](https://github.com/john-friedman/txt2dataset/) Create datasets from unstructured text
 * [secsgml](https://github.com/john-friedman/secsgml/) Parse SEC filings in SGML format
 * [doc2dict](https://github.com/john-friedman/doc2dict) Convert documents to dictionaries.
+* [secxbrl](https://github.com/john-friedman/secxbrl) Fast, lightweight parser designed for SEC InLine XBRL.
 
 ### Articles/Cloud
 * [Website](https://datamule.xyz)

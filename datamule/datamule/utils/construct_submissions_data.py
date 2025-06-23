@@ -41,9 +41,9 @@ def process_file_batch(zip_file, filenames_batch):
             # Create filing records for this file
             for j in range(len(accession_numbers)):
                 filing_record = {
-                    'accessionNumber': accession_numbers[j],
+                    'accessionNumber': int(accession_numbers[j].replace('-','')),
                     'filingDate': filing_dates[j],
-                    'form': forms[j],
+                    'submissionType': forms[j],
                     'cik': cik
                 }
                 batch_filings.append(filing_record)
@@ -59,13 +59,13 @@ def write_csv_chunk(output_path, filings_data, is_first_write, write_lock):
     with write_lock:
         if is_first_write:
             with open(output_path, 'w', newline='') as csvfile:
-                fieldnames = ['accessionNumber', 'filingDate', 'form', 'cik']
+                fieldnames = ['accessionNumber', 'filingDate', 'submissionType', 'cik']
                 writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
                 writer.writeheader()
                 writer.writerows(filings_data)
         else:
             with open(output_path, 'a', newline='') as csvfile:
-                fieldnames = ['accessionNumber', 'filingDate', 'form', 'cik']
+                fieldnames = ['accessionNumber', 'filingDate', 'submissionType', 'cik']
                 writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
                 writer.writerows(filings_data)
 
