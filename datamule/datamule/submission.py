@@ -144,24 +144,57 @@ class Submission:
         
         # Handle regular path case
         else:
-            # Use exact filename from metadata
-            document_path = self.path / filename
+            # Check if path is a tar file (old format)
+            if self.path.suffix == '.tar':
+                with tarfile.open(self.path, 'r') as tar:
+                    # Try to extract the file, handling compression
+                    try:
+                        content = tar.extractfile(filename).read()
+                        actual_filename = filename
+                    except:
+                        try:
+                            content = tar.extractfile(filename + '.gz').read()
+                            actual_filename = filename + '.gz'
+                            is_compressed = 'gzip'
+                        except:
+                            try:
+                                content = tar.extractfile(filename + '.zst').read()
+                                actual_filename = filename + '.zst'
+                                is_compressed = 'zstd'
+                            except:
+                                raise FileNotFoundError(f"Document file not found in tar: {filename}")
+                    
+                    # Decompress if compressed
+                    if is_compressed == 'gzip':
+                        content = gzip.decompress(content)
+                    elif is_compressed == 'zstd':
+                        content = zstd.ZstdDecompressor().decompress(content)
+                    
+                    # Decode text files
+                    if extension in ['.htm', '.html', '.txt', '.xml']:
+                        content = content.decode('utf-8', errors='replace')
+                    
+                    document_path = f"{self.path}::{actual_filename}"
             
-            if not document_path.exists():
-                raise FileNotFoundError(f"Document file not found: {document_path}")
-            
-            with document_path.open('rb') as f:
-                content = f.read()
-            
-            # Decompress if needed based on filename extension
-            if is_compressed == 'gzip':
-                content = gzip.decompress(content)
-            elif is_compressed == 'zstd':
-                content = zstd.ZstdDecompressor().decompress(content)
-            
-            # Decode text files
-            if extension in ['.htm', '.html', '.txt', '.xml']:
-                content = content.decode('utf-8', errors='replace')
+            else:
+                # Regular directory case
+                document_path = self.path / filename
+                
+                if not document_path.exists():
+                    raise FileNotFoundError(f"Document file not found: {document_path}")
+                
+                with document_path.open('rb') as f:
+                    content = f.read()
+                
+                # Decompress if needed based on filename extension
+                if is_compressed == 'gzip':
+                    content = gzip.decompress(content)
+                elif is_compressed == 'zstd':
+                    content = zstd.ZstdDecompressor().decompress(content)
+                
+                # Decode text files
+                if extension in ['.htm', '.html', '.txt', '.xml']:
+                    content = content.decode('utf-8', errors='replace')
 
         return Document(
             type=doc['type'], 
@@ -171,7 +204,6 @@ class Submission:
             accession=self.accession,
             path=document_path
         )
-
     def __iter__(self):
         """Make Submission iterable by yielding all documents."""
         for idx in range(len(self.metadata.content['documents'])):
