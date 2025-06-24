@@ -29,18 +29,3 @@ Access documents in a submission without filtering.
 for document in submission:
     print(document.path)
 ```
-
-## Decompress
-Converts a submission in `.tar` format into a directory that contains each file. Useful for manual inspection.
-```python
-submission.decompress()
-```
-
-## Compress
-Compresses a submission in directory format into a `.tar` file. `compression` can be set to `gzip` or `zstd`, and if set will compress files that are above the `threshold` in bytes, before bundling into the `.tar`. These files can be interacted with normally, as `Submission` decompresses files when needed. Useful for saving space.
-
-Higher `levels` take up less space, but take longer to compress.
-
-```python
-submission.compress(compression=None, level=None, threshold=1048576)
-```

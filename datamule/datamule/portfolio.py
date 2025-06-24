@@ -12,9 +12,12 @@ from .helper import _process_cik_and_metadata_filters
 from .seclibrary.downloader import download as seclibrary_download
 from .sec.xbrl.filter_xbrl import filter_xbrl
 from .sec.submissions.monitor import Monitor
+from .portfolio_compression_utils import CompressionManager
 #from .sec.xbrl.xbrlmonitor import XBRLMonitor
 from .datamule.sec_connector import SecConnector
-
+from secsgml.utils import bytes_to_str, calculate_documents_locations_in_tar
+import json
+import io
 
 class Portfolio:
     def __init__(self, path):
@@ -119,6 +122,56 @@ class Portfolio:
         except Exception as e:
             print(f"Error loading batch tar {batch_tar_path}: {str(e)}")
             return []
+
+    def compress(self, compression='zstd', threshold=1048576, max_batch_size=1024*1024*1024):
+        """
+        Compress all individual submissions into batch tar files.
+        
+        Args:
+            compression: 'gzip', 'zstd', or None for document compression
+            threshold: Size threshold for compressing individual documents (default: 1MB)
+            max_batch_size: Maximum size per batch tar file (default: 1GB)
+        """
+        CompressionManager().compress_portfolio(self, compression, threshold, max_batch_size)
+
+    def _write_submission_to_tar(self, tar_handle, submission, documents, compression_list, accession_prefix):
+        """Write a submission to a tar file with optional document compression."""
+        # Prepare metadata
+        metadata = submission.metadata.content.copy()
+        metadata = calculate_documents_locations_in_tar(metadata, documents)
+        
+        # Update filenames for compressed documents
+        for i, compression in enumerate(compression_list):
+            if compression:
+                doc = metadata['documents'][i]
+                filename = doc.get('filename', doc['sequence'] + '.txt')
+                if compression == 'gzip':
+                    doc['filename'] = filename + '.gz'
+                elif compression == 'zstd':
+                    doc['filename'] = filename + '.zst'
+        
+        # Write metadata
+        metadata_str = bytes_to_str(metadata, lower=False)
+        metadata_json = json.dumps(metadata_str).encode('utf-8')
+        
+        tarinfo = tarfile.TarInfo(name=f'{accession_prefix}/metadata.json')
+        tarinfo.size = len(metadata_json)
+        tar_handle.addfile(tarinfo, io.BytesIO(metadata_json))
+        
+        # Write documents
+        for i, content in enumerate(documents):
+            doc = metadata['documents'][i]
+            filename = doc.get('filename', doc['sequence'] + '.txt')
+            
+            tarinfo = tarfile.TarInfo(name=f'{accession_prefix}/{filename}')
+            tarinfo.size = len(content)
+            tar_handle.addfile(tarinfo, io.BytesIO(content))
+
+    def decompress(self):
+        """
+        Decompress all batch tar files back to individual submission directories.
+        """
+        CompressionManager().decompress_portfolio(self)
 
     def _close_batch_handles(self):
         """Close all open batch tar handles to free resources"""
