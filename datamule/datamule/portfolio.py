@@ -51,11 +51,7 @@ class Portfolio:
         
         # Load regular submissions (existing logic)
         def load_submission(folder):
-            try:
-                return Submission(folder)
-            except Exception as e:
-                print(f"Error loading submission from {folder}: {str(e)}")
-                return None
+            return Submission(folder)
         
         regular_submissions = []
         if regular_items:
@@ -79,10 +75,7 @@ class Portfolio:
                     
                     # Collect results as they complete
                     for future in as_completed(futures):
-                        try:
-                            batch_submissions.extend(future.result())
-                        except Exception as e:
-                            print(f"Error in batch processing: {str(e)}")
+                        batch_submissions.extend(future.result())
         
         # Combine and filter None values  
         self.submissions = [s for s in (regular_submissions + batch_submissions) if s is not None]
@@ -90,96 +83,54 @@ class Portfolio:
 
     def _load_batch_submissions_worker(self, batch_tar_path, pbar):
         """Worker function to load submissions from one batch tar with progress updates"""
-        try:
-            # Open tar handle and store it
-            tar_handle = tarfile.open(batch_tar_path, 'r')
-            self.batch_tar_handles[batch_tar_path] = tar_handle
-            self.batch_tar_locks[batch_tar_path] = Lock()
+        # Open tar handle and store it
+        tar_handle = tarfile.open(batch_tar_path, 'r')
+        self.batch_tar_handles[batch_tar_path] = tar_handle
+        self.batch_tar_locks[batch_tar_path] = Lock()
+        
+        # Find all accession directories
+        accession_prefixes = set()
+        for member in tar_handle.getmembers():
+            if '/' in member.name and member.name.endswith('metadata.json'):
+                accession_prefix = member.name.split('/')[0]
+                accession_prefixes.add(accession_prefix)
+        
+        # Create submissions for each accession
+        submissions = []
+        for accession_prefix in accession_prefixes:
+            submission = Submission(
+                batch_tar_path=batch_tar_path,
+                accession_prefix=accession_prefix,
+                portfolio_ref=self
+            )
+            submissions.append(submission)
+            pbar.update(1)  # Update progress for each successful submission
+        
+        return submissions
             
-            # Find all accession directories
-            accession_prefixes = set()
-            for member in tar_handle.getmembers():
-                if '/' in member.name and member.name.endswith('metadata.json'):
-                    accession_prefix = member.name.split('/')[0]
-                    accession_prefixes.add(accession_prefix)
-            
-            # Create submissions for each accession
-            submissions = []
-            for accession_prefix in accession_prefixes:
-                try:
-                    submission = Submission(
-                        batch_tar_path=batch_tar_path,
-                        accession_prefix=accession_prefix,
-                        portfolio_ref=self
-                    )
-                    submissions.append(submission)
-                    pbar.update(1)  # Update progress for each successful submission
-                except Exception as e:
-                    print(f"Error loading batch submission {accession_prefix} from {batch_tar_path.name}: {str(e)}")
-            
-            return submissions
-            
-        except Exception as e:
-            print(f"Error loading batch tar {batch_tar_path}: {str(e)}")
-            return []
 
-    def compress(self, compression='zstd', threshold=1048576, max_batch_size=1024*1024*1024):
+    def compress(self, compression=None, compression_level=None, threshold=1048576, max_batch_size=1024*1024*1024):
         """
         Compress all individual submissions into batch tar files.
         
         Args:
-            compression: 'gzip', 'zstd', or None for document compression
+            compression: None, 'gzip', or 'zstd' for document compression (default: None)
+            compression_level: Compression level, if None uses defaults (gzip=6, zstd=3)
             threshold: Size threshold for compressing individual documents (default: 1MB)
             max_batch_size: Maximum size per batch tar file (default: 1GB)
         """
-        CompressionManager().compress_portfolio(self, compression, threshold, max_batch_size)
-
-    def _write_submission_to_tar(self, tar_handle, submission, documents, compression_list, accession_prefix):
-        """Write a submission to a tar file with optional document compression."""
-        # Prepare metadata
-        metadata = submission.metadata.content.copy()
-        metadata = calculate_documents_locations_in_tar(metadata, documents)
-        
-        # Update filenames for compressed documents
-        for i, compression in enumerate(compression_list):
-            if compression:
-                doc = metadata['documents'][i]
-                filename = doc.get('filename', doc['sequence'] + '.txt')
-                if compression == 'gzip':
-                    doc['filename'] = filename + '.gz'
-                elif compression == 'zstd':
-                    doc['filename'] = filename + '.zst'
-        
-        # Write metadata
-        metadata_str = bytes_to_str(metadata, lower=False)
-        metadata_json = json.dumps(metadata_str).encode('utf-8')
-        
-        tarinfo = tarfile.TarInfo(name=f'{accession_prefix}/metadata.json')
-        tarinfo.size = len(metadata_json)
-        tar_handle.addfile(tarinfo, io.BytesIO(metadata_json))
-        
-        # Write documents
-        for i, content in enumerate(documents):
-            doc = metadata['documents'][i]
-            filename = doc.get('filename', doc['sequence'] + '.txt')
-            
-            tarinfo = tarfile.TarInfo(name=f'{accession_prefix}/{filename}')
-            tarinfo.size = len(content)
-            tar_handle.addfile(tarinfo, io.BytesIO(content))
+        CompressionManager().compress_portfolio(self, compression, compression_level, threshold, max_batch_size, self.MAX_WORKERS)
 
     def decompress(self):
         """
         Decompress all batch tar files back to individual submission directories.
         """
-        CompressionManager().decompress_portfolio(self)
+        CompressionManager().decompress_portfolio(self, self.MAX_WORKERS)
 
     def _close_batch_handles(self):
         """Close all open batch tar handles to free resources"""
         for handle in self.batch_tar_handles.values():
-            try:
-                handle.close()
-            except Exception as e:
-                print(f"Error closing batch tar handle: {str(e)}")
+            handle.close()
         self.batch_tar_handles.clear()
         self.batch_tar_locks.clear()
 

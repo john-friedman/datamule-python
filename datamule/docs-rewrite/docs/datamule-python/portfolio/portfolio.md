@@ -175,24 +175,29 @@ process_submissions(self, callback)
 ## `compress`
 Compress all individual submissions into batch tar files for efficient storage.
 ```python
-compress(self, compression='zstd', threshold=1048576, max_batch_size=1024*1024*1024)
+compress(self, compression=None, compression_level=None, threshold=1048576, max_batch_size=1024*1024*1024, max_workers=None)
 ```
 
 ### Parameters
-* compression - Compression algorithm for large documents: `'gzip'`, `'zstd'`, or `None` (default: `'zstd'`)
+* compression - Compression algorithm for large documents: `'gzip'`, `'zstd'`, or `None` (default: `None`)
+* compression_level - Compression level, if None uses defaults (gzip=6, zstd=3)
 * threshold - Size threshold for compressing individual documents in bytes (default: `1048576` = 1MB)
 * max_batch_size - Maximum size per batch tar file in bytes (default: `1024*1024*1024` = 1GB)
+* max_workers - Number of threads for parallel document processing (default: portfolio.MAX_WORKERS)
 
 ### Example
 ```python
 # Compress all submissions using zstd compression
-portfolio.compress()
+portfolio.compress(compression='zstd')
 
-# Use gzip compression with custom threshold
-portfolio.compress(compression='gzip', threshold=500000)
+# Use gzip compression with custom threshold and compression level
+portfolio.compress(compression='gzip', compression_level=9, threshold=500000)
 
 # No document compression, just bundle into batch tars
 portfolio.compress(compression=None)
+
+# Use custom number of worker threads
+portfolio.compress(compression='zstd', max_workers=4)
 ```
 
 ???+ note "Storage Efficiency"
@@ -201,13 +206,19 @@ portfolio.compress(compression=None)
 ## `decompress`
 Decompress all batch tar files back to individual submission directories.
 ```python
-decompress(self)
+decompress(self, max_workers=None)
 ```
+
+### Parameters
+* max_workers - Number of threads for parallel file processing (default: portfolio.MAX_WORKERS)
 
 ### Example
 ```python
 # Extract all batch tar files to individual submission directories
 portfolio.decompress()
+
+# Use custom number of worker threads
+portfolio.decompress(max_workers=4)
 ```
 
 ???+ note "Complete Extraction"

@@ -103,44 +103,38 @@ class Submission:
         if self.path is None and self.batch_tar_path is None:
             return self.documents[idx]
         
-        # Get filename
+        # Get filename from metadata - this is the source of truth
         filename = doc.get('filename')
         if filename is None:
             filename = doc['sequence'] + '.txt'
 
-        extension = Path(filename).suffix
+        # Get the base extension (before any compression extension)
+        # If filename ends with .gz or .zst, the real extension is before that
+        if filename.endswith('.gz'):
+            extension = Path(filename[:-3]).suffix
+            is_compressed = 'gzip'
+        elif filename.endswith('.zst'):
+            extension = Path(filename[:-4]).suffix
+            is_compressed = 'zstd'
+        else:
+            extension = Path(filename).suffix
+            is_compressed = False
 
         # Handle batch tar case
         if self.batch_tar_path is not None:
             with self.portfolio_ref.batch_tar_locks[self.batch_tar_path]:
                 tar_handle = self.portfolio_ref.batch_tar_handles[self.batch_tar_path]
                 
-                # Try different filename variations for compressed files
-                possible_filenames = [
-                    f'{self.accession_prefix}/{filename}',
-                    f'{self.accession_prefix}/{filename}.gz',
-                    f'{self.accession_prefix}/{filename}.zst'
-                ]
+                # Use exact filename from metadata
+                tar_path = f'{self.accession_prefix}/{filename}'
+                content = tar_handle.extractfile(tar_path).read()
+    
                 
-                content = None
-                actual_filename = None
-                for attempt_filename in possible_filenames:
-                    try:
-                        content = tar_handle.extractfile(attempt_filename).read()
-                        actual_filename = attempt_filename
-                        break
-                    except:
-                        continue
-                
-                if content is None:
-                    raise ValueError(f"Could not find document in batch tar: {self.batch_tar_path}, accession: {self.accession_prefix}, filename: {filename}")
-                
-                # Decompress if compressed
-                if actual_filename.endswith('.gz'):
+                # Decompress if needed based on filename extension
+                if is_compressed == 'gzip':
                     content = gzip.decompress(content)
-                elif actual_filename.endswith('.zst'):
-                    dctx = zstd.ZstdDecompressor()
-                    content = dctx.decompress(content)
+                elif is_compressed == 'zstd':
+                    content = zstd.ZstdDecompressor().decompress(content)
                 
                 # Decode text files
                 if extension in ['.htm', '.html', '.txt', '.xml']:
@@ -148,38 +142,26 @@ class Submission:
                 
                 document_path = f"{self.batch_tar_path}::{self.accession_prefix}/{filename}"
         
-        # Handle regular path case (existing logic)
+        # Handle regular path case
         else:
+            # Use exact filename from metadata
             document_path = self.path / filename
-
-            if self.path.suffix == '.tar':
-                with tarfile.open(self.path, 'r') as tar:
-                    # so here is where we should use bytes instead with byte offset.
-                    # bandaid fix TODO
-                    try:
-                        content = tar.extractfile(filename).read()
-                    except:
-                        try:
-                            content = tar.extractfile(filename+'.gz').read()
-                        except:
-                            try: 
-                                content = tar.extractfile(filename+'.zst').read()
-                            except:
-                                # some of these issues are on SEC data end, will fix when I setup cloud.
-                                raise ValueError(f"Something went wrong with tar: {self.path}")
-                    # Decompress if compressed
-                    if filename.endswith('.gz'):
-                        content = gzip.decompress(content)
-                    elif filename.endswith('.zst'):
-                        dctx = zstd.ZstdDecompressor()
-                        content = dctx.decompress(content)
-            else:
-                with document_path.open('rb') as f:
-                    content = f.read()
-
-                # Decode text files
-                if extension in ['.htm', '.html', '.txt', '.xml']:
-                    content = content.decode('utf-8', errors='replace')
+            
+            if not document_path.exists():
+                raise FileNotFoundError(f"Document file not found: {document_path}")
+            
+            with document_path.open('rb') as f:
+                content = f.read()
+            
+            # Decompress if needed based on filename extension
+            if is_compressed == 'gzip':
+                content = gzip.decompress(content)
+            elif is_compressed == 'zstd':
+                content = zstd.ZstdDecompressor().decompress(content)
+            
+            # Decode text files
+            if extension in ['.htm', '.html', '.txt', '.xml']:
+                content = content.decode('utf-8', errors='replace')
 
         return Document(
             type=doc['type'], 
