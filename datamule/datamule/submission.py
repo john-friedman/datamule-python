@@ -43,11 +43,21 @@ def write_submission_to_tar(output_path,metadata,documents,standardize_metadata,
             tar.addfile(tarinfo, io.BytesIO(content))
 
 class Submission:
-    def __init__(self, path=None,sgml_content=None,keep_document_types=None):
-        if path is None and sgml_content is None:
-            raise ValueError("Either path or sgml_content must be provided")
-        if path is not None and sgml_content is not None:
-            raise ValueError("Only one of path or sgml_content must be provided")
+    def __init__(self, path=None, sgml_content=None, keep_document_types=None,
+                 batch_tar_path=None, accession_prefix=None, portfolio_ref=None):
+        
+        # Validate parameters
+        param_count = sum(x is not None for x in [path, sgml_content, batch_tar_path])
+        if param_count != 1:
+            raise ValueError("Exactly one of path, sgml_content, or batch_tar_path must be provided")
+        
+        if batch_tar_path is not None and (accession_prefix is None or portfolio_ref is None):
+            raise ValueError("batch_tar_path requires both accession_prefix and portfolio_ref")
+        
+        # Initialize batch tar attributes
+        self.batch_tar_path = batch_tar_path
+        self.accession_prefix = accession_prefix
+        self.portfolio_ref = portfolio_ref
         
         if sgml_content is not None:
             self.path = None
@@ -65,7 +75,7 @@ class Submission:
             filtered_metadata_documents = []
 
             for idx,doc in enumerate(self.metadata.content['documents']):
-                type = doc.get('type')()
+                type = doc.get('type')
                 
                 # Keep only specified types
                 if keep_document_types is not None and type not in keep_document_types:
@@ -80,7 +90,26 @@ class Submission:
             
             self.metadata.content['documents'] = filtered_metadata_documents
 
-        if path is not None:
+        elif batch_tar_path is not None:
+            # Batch tar case
+            self.path = None
+            
+            # Load metadata from batch tar
+            with self.portfolio_ref.batch_tar_locks[batch_tar_path]:
+                tar_handle = self.portfolio_ref.batch_tar_handles[batch_tar_path]
+                metadata_obj = tar_handle.extractfile(f'{accession_prefix}/metadata.json')
+                metadata = json.loads(metadata_obj.read().decode('utf-8'))
+
+            # Set metadata path using :: notation
+            metadata_path = f"{batch_tar_path}::{accession_prefix}/metadata.json"
+            
+            # standardize metadata
+            metadata = transform_metadata_string(metadata)
+            self.metadata = Document(type='submission_metadata', content=metadata, extension='.json',filing_date=None,accession=None,path=metadata_path)
+            self.accession = self.metadata.content['accession-number']
+            self.filing_date= f"{self.metadata.content['filing-date'][:4]}-{self.metadata.content['filing-date'][4:6]}-{self.metadata.content['filing-date'][6:8]}"
+
+        elif path is not None:
             self.path = Path(path)  
             if self.path.suffix == '.tar':
                 with tarfile.open(self.path,'r') as tar:
@@ -193,44 +222,86 @@ class Submission:
         doc = self.metadata.content['documents'][idx]
         
         # If loaded from sgml_content, return pre-loaded document
-        if self.path is None:
+        if self.path is None and self.batch_tar_path is None:
             return self.documents[idx]
         
-        # If loaded from path, load document on-demand
+        # Get filename
         filename = doc.get('filename')
         if filename is None:
             filename = doc['sequence'] + '.txt'
 
-        document_path = self.path / filename
-        extension = document_path.suffix
+        extension = Path(filename).suffix
 
-        if self.path.suffix == '.tar':
-            with tarfile.open(self.path, 'r') as tar:
-                # bandaid fix TODO
-                try:
-                    content = tar.extractfile(filename).read()
-                except:
+        # Handle batch tar case
+        if self.batch_tar_path is not None:
+            with self.portfolio_ref.batch_tar_locks[self.batch_tar_path]:
+                tar_handle = self.portfolio_ref.batch_tar_handles[self.batch_tar_path]
+                
+                # Try different filename variations for compressed files
+                possible_filenames = [
+                    f'{self.accession_prefix}/{filename}',
+                    f'{self.accession_prefix}/{filename}.gz',
+                    f'{self.accession_prefix}/{filename}.zst'
+                ]
+                
+                content = None
+                actual_filename = None
+                for attempt_filename in possible_filenames:
                     try:
-                        content = tar.extractfile(filename+'.gz').read()
+                        content = tar_handle.extractfile(attempt_filename).read()
+                        actual_filename = attempt_filename
+                        break
                     except:
-                        try: 
-                            content = tar.extractfile(filename+'.zst').read()
-                        except:
-                            # some of these issues are on SEC data end, will fix when I setup cloud.
-                            raise ValueError(f"Something went wrong with tar: {self.path}")
+                        continue
+                
+                if content is None:
+                    raise ValueError(f"Could not find document in batch tar: {self.batch_tar_path}, accession: {self.accession_prefix}, filename: {filename}")
+                
                 # Decompress if compressed
-                if filename.endswith('.gz'):
+                if actual_filename.endswith('.gz'):
                     content = gzip.decompress(content)
-                elif filename.endswith('.zst'):
+                elif actual_filename.endswith('.zst'):
                     dctx = zstd.ZstdDecompressor()
                     content = dctx.decompress(content)
+                
+                # Decode text files
+                if extension in ['.htm', '.html', '.txt', '.xml']:
+                    content = content.decode('utf-8', errors='replace')
+                
+                document_path = f"{self.batch_tar_path}::{self.accession_prefix}/{filename}"
+        
+        # Handle regular path case (existing logic)
         else:
-            with document_path.open('rb') as f:
-                content = f.read()
+            document_path = self.path / filename
 
-            # Decode text files
-            if extension in ['.htm', '.html', '.txt', '.xml']:
-                content = content.decode('utf-8', errors='replace')
+            if self.path.suffix == '.tar':
+                with tarfile.open(self.path, 'r') as tar:
+                    # so here is where we should use bytes instead with byte offset.
+                    # bandaid fix TODO
+                    try:
+                        content = tar.extractfile(filename).read()
+                    except:
+                        try:
+                            content = tar.extractfile(filename+'.gz').read()
+                        except:
+                            try: 
+                                content = tar.extractfile(filename+'.zst').read()
+                            except:
+                                # some of these issues are on SEC data end, will fix when I setup cloud.
+                                raise ValueError(f"Something went wrong with tar: {self.path}")
+                    # Decompress if compressed
+                    if filename.endswith('.gz'):
+                        content = gzip.decompress(content)
+                    elif filename.endswith('.zst'):
+                        dctx = zstd.ZstdDecompressor()
+                        content = dctx.decompress(content)
+            else:
+                with document_path.open('rb') as f:
+                    content = f.read()
+
+                # Decode text files
+                if extension in ['.htm', '.html', '.txt', '.xml']:
+                    content = content.decode('utf-8', errors='replace')
 
         return Document(
             type=doc['type'], 

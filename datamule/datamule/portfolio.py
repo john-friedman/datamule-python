@@ -1,11 +1,13 @@
 from pathlib import Path
 from tqdm import tqdm
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from .submission import Submission
 from .sec.submissions.downloader import download as sec_download
 from .sec.submissions.textsearch import filter_text
 from .config import Config
 import os
+import tarfile
+from threading import Lock
 from .helper import _process_cik_and_metadata_filters
 from .seclibrary.downloader import download as seclibrary_download
 from .sec.xbrl.filter_xbrl import filter_xbrl
@@ -21,6 +23,10 @@ class Portfolio:
         self.submissions = []
         self.submissions_loaded = False
         self.MAX_WORKERS = os.cpu_count() - 1 
+        
+        # Batch tar support
+        self.batch_tar_handles = {}  # {batch_tar_path: tarfile_handle}
+        self.batch_tar_locks = {}    # {batch_tar_path: threading.Lock}
 
         self.monitor = Monitor()
         
@@ -34,9 +40,13 @@ class Portfolio:
         self.api_key = api_key
     
     def _load_submissions(self):
-        folders = [f for f in self.path.iterdir() if f.is_dir() or f.suffix=='.tar']
-        print(f"Loading {len(folders)} submissions")
+        print(f"Loading submissions")
         
+        # Separate regular and batch items
+        regular_items = [f for f in self.path.iterdir() if (f.is_dir() or f.suffix=='.tar') and 'batch' not in f.name]
+        batch_tars = [f for f in self.path.iterdir() if f.is_file() and 'batch' in f.name and f.suffix == '.tar']
+        
+        # Load regular submissions (existing logic)
         def load_submission(folder):
             try:
                 return Submission(folder)
@@ -44,16 +54,85 @@ class Portfolio:
                 print(f"Error loading submission from {folder}: {str(e)}")
                 return None
         
-        with ThreadPoolExecutor(max_workers=self.MAX_WORKERS) as executor:
-            self.submissions = list(tqdm(
-                executor.map(load_submission, folders),
-                total=len(folders),
-                desc="Loading submissions"
-            ))
-            
-        # Filter out None values from failed submissions
-        self.submissions = [s for s in self.submissions if s is not None]
+        regular_submissions = []
+        if regular_items:
+            with ThreadPoolExecutor(max_workers=self.MAX_WORKERS) as executor:
+                regular_submissions = list(tqdm(
+                    executor.map(load_submission, regular_items),
+                    total=len(regular_items),
+                    desc="Loading regular submissions"
+                ))
+        
+        # Load batch submissions with parallel processing + progress
+        batch_submissions = []
+        if batch_tars:
+            with tqdm(desc="Loading batch submissions", unit="submissions") as pbar:
+                with ThreadPoolExecutor(max_workers=self.MAX_WORKERS) as executor:
+                    # Submit all batch tar jobs
+                    futures = [
+                        executor.submit(self._load_batch_submissions_worker, batch_tar, pbar) 
+                        for batch_tar in batch_tars
+                    ]
+                    
+                    # Collect results as they complete
+                    for future in as_completed(futures):
+                        try:
+                            batch_submissions.extend(future.result())
+                        except Exception as e:
+                            print(f"Error in batch processing: {str(e)}")
+        
+        # Combine and filter None values  
+        self.submissions = [s for s in (regular_submissions + batch_submissions) if s is not None]
         print(f"Successfully loaded {len(self.submissions)} submissions")
+
+    def _load_batch_submissions_worker(self, batch_tar_path, pbar):
+        """Worker function to load submissions from one batch tar with progress updates"""
+        try:
+            # Open tar handle and store it
+            tar_handle = tarfile.open(batch_tar_path, 'r')
+            self.batch_tar_handles[batch_tar_path] = tar_handle
+            self.batch_tar_locks[batch_tar_path] = Lock()
+            
+            # Find all accession directories
+            accession_prefixes = set()
+            for member in tar_handle.getmembers():
+                if '/' in member.name and member.name.endswith('metadata.json'):
+                    accession_prefix = member.name.split('/')[0]
+                    accession_prefixes.add(accession_prefix)
+            
+            # Create submissions for each accession
+            submissions = []
+            for accession_prefix in accession_prefixes:
+                try:
+                    submission = Submission(
+                        batch_tar_path=batch_tar_path,
+                        accession_prefix=accession_prefix,
+                        portfolio_ref=self
+                    )
+                    submissions.append(submission)
+                    pbar.update(1)  # Update progress for each successful submission
+                except Exception as e:
+                    print(f"Error loading batch submission {accession_prefix} from {batch_tar_path.name}: {str(e)}")
+            
+            return submissions
+            
+        except Exception as e:
+            print(f"Error loading batch tar {batch_tar_path}: {str(e)}")
+            return []
+
+    def _close_batch_handles(self):
+        """Close all open batch tar handles to free resources"""
+        for handle in self.batch_tar_handles.values():
+            try:
+                handle.close()
+            except Exception as e:
+                print(f"Error closing batch tar handle: {str(e)}")
+        self.batch_tar_handles.clear()
+        self.batch_tar_locks.clear()
+
+    def __del__(self):
+        """Cleanup batch tar handles on destruction"""
+        self._close_batch_handles()
 
     def process_submissions(self, callback):
         """Process all submissions using a thread pool."""
@@ -169,6 +248,7 @@ class Portfolio:
             )
 
         self.submissions_loaded = False
+        
     def monitor_submissions(self, data_callback=None, interval_callback=None,
                             polling_interval=1000, quiet=True, start_date=None,
                             validation_interval=600000):
