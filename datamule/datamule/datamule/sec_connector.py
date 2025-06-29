@@ -37,7 +37,6 @@ class SecConnector:
     def connect(self, data_callback=None):
         token,websocket_ip = self._get_jwt_token_and_ip()
         ws_url = f"ws://{websocket_ip}/ws?token={token}"
-        print(ws_url)
         
         if not self.quiet:
             print("Connecting to WebSocket...")
