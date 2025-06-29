@@ -65,6 +65,7 @@ def clean_efts_hits(hits):
 class Monitor():
     def __init__(self):
         self.accessions = deque(maxlen=50000)
+        self.accessions_set = set()
         self.ratelimiters = {'sec.gov': PreciseRateLimiter(rate=5)}
         self.efts_query = EFTSQuery(quiet=True)
         self.efts_query.limiter = self.ratelimiters['sec.gov']
@@ -250,7 +251,14 @@ class Monitor():
         new_items = []
         for item in items:
             accession = item['accession']
-            if accession not in self.accessions:
+            if accession not in self.accessions_set:  # O(1) lookup instead of O(n)
+                # Check if deque is at capacity and will evict an item
+                if len(self.accessions) == self.accessions.maxlen:
+                    evicted_accession = self.accessions[0]  # Get leftmost item that will be evicted
+                    self.accessions_set.discard(evicted_accession)  # Remove from set
+                
+                # Add to both structures
                 self.accessions.append(accession)
+                self.accessions_set.add(accession)
                 new_items.append(item)
         return new_items
