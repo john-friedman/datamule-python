@@ -12,9 +12,8 @@ class SecConnector:
         
         self.quiet = quiet
         self.auth_url = "https://sec-websocket-auth-worker.jgfriedman99.workers.dev/"
-        self.websocket_url = "ws://3.80.249.191:8080/ws"
         
-    def _get_jwt_token(self):
+    def _get_jwt_token_and_ip(self):
         if not self.quiet:
             print("Getting JWT token...")
             
@@ -33,11 +32,12 @@ class SecConnector:
         if not self.quiet:
             print("JWT token obtained")
             
-        return data['token']
+        return data['token'], data['websocket_ip']
     
     def connect(self, data_callback=None):
-        token = self._get_jwt_token()
-        ws_url = f"{self.websocket_url}?token={token}"
+        token,websocket_ip = self._get_jwt_token_and_ip()
+        ws_url = f"ws://{websocket_ip}/ws?token={token}"
+        print(ws_url)
         
         if not self.quiet:
             print("Connecting to WebSocket...")
