@@ -86,7 +86,7 @@ class Downloader:
             
             for i in range(num_tar_files):
                 tar_path = os.path.join(output_dir, f'batch_{i:03d}_001.tar')
-                self.tar_files[i] = tarfile.open(tar_path, 'w')
+                self.tar_files[i] = tarfile.open(tar_path, 'a')
                 self.tar_locks[i] = Lock()
                 self.file_counters[i] = 0
                 self.tar_sizes[i] = 0
@@ -110,7 +110,7 @@ class Downloader:
 
                     self.tar_sequences[tar_index] += 1
                     new_tar_path = os.path.join(self.output_dir, f'batch_{tar_index:03d}_{self.tar_sequences[tar_index]:03d}.tar')
-                    self.tar_files[tar_index] = tarfile.open(new_tar_path, 'w')
+                    self.tar_files[tar_index] = tarfile.open(new_tar_path, 'a')
                     self.file_counters[tar_index] = 0
                     self.tar_sizes[tar_index] = 0
                 
@@ -302,13 +302,7 @@ class Downloader:
         if self.api_key is None:
             raise ValueError("No API key found. Please set DATAMULE_API_KEY environment variable or provide api_key in constructor")
 
-        logger.info("Querying SEC filings...")
-        filings = query(
-            submission_type=submission_type,
-            cik=cik,
-            filing_date=filing_date,
-            api_key=self.api_key
-        )
+        logger.debug("Querying SEC filings...")
 
         filings = datamule_lookup(cik=cik, submission_type=submission_type, filing_date=filing_date, 
                    columns=['accessionNumber'], distinct=True, page_size=25000, quiet=False)
@@ -321,7 +315,7 @@ class Downloader:
             skip_accession_numbers = [int(item.replace('-','')) for item in skip_accession_numbers]
             filings = [filing for filing in filings if filing['accessionNumber'] not in skip_accession_numbers]
 
-        logger.info(f"Generating URLs for {len(filings)} filings...")
+        logger.debug(f"Generating URLs for {len(filings)} filings...")
         urls = []
         for item in filings:
             url = f"{self.BASE_URL}{str(item['accessionNumber']).zfill(18)}.sgml"
@@ -338,8 +332,8 @@ class Downloader:
         asyncio.run(self.process_batch(urls, output_dir, keep_document_types=keep_document_types, keep_filtered_metadata=keep_filtered_metadata, standardize_metadata=standardize_metadata, max_batch_size=max_batch_size))
         
         elapsed_time = time.time() - start_time
-        logger.info(f"Processing completed in {elapsed_time:.2f} seconds")
-        logger.info(f"Processing speed: {len(urls)/elapsed_time:.2f} files/second")
+        logger.debug(f"Processing completed in {elapsed_time:.2f} seconds")
+        logger.debug(f"Processing speed: {len(urls)/elapsed_time:.2f} files/second")
     
     def __del__(self):
         if hasattr(self, 'loop') and self.loop.is_running():
@@ -361,7 +355,7 @@ class Downloader:
             if not filename.endswith('.sgml'):
                 raise ValueError(f"Invalid filename format: {filename}. Expected .sgml extension.")
         
-        logger.info(f"Generating URLs for {len(filenames)} files...")
+        logger.debug(f"Generating URLs for {len(filenames)} files...")
         urls = []
         for filename in filenames:
             url = f"{self.BASE_URL}{filename}"
@@ -370,7 +364,7 @@ class Downloader:
         seen = set()
         urls = [url for url in urls if not (url in seen or seen.add(url))]
         
-        logger.info(f"Downloading {len(urls)} files...")
+        logger.debug(f"Downloading {len(urls)} files...")
         
         start_time = time.time()
         
@@ -384,12 +378,13 @@ class Downloader:
         ))
         
         elapsed_time = time.time() - start_time
-        logger.info(f"Processing completed in {elapsed_time:.2f} seconds")
-        logger.info(f"Processing speed: {len(urls)/elapsed_time:.2f} files/second")
+        logger.debug(f"Processing completed in {elapsed_time:.2f} seconds")
+        logger.debug(f"Processing speed: {len(urls)/elapsed_time:.2f} files/second")
 
 
 def download(submission_type=None, cik=None, filing_date=None, api_key=None, output_dir="downloads", accession_numbers=None, keep_document_types=[],keep_filtered_metadata=False,standardize_metadata=True,
              skip_accession_numbers=[], max_batch_size=1024*1024*1024):
+    
     if accession_numbers:
         accession_numbers = [int(str(x).replace('-', '')) for x in accession_numbers]
     elif accession_numbers == []:
