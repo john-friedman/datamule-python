@@ -9,20 +9,25 @@ import zstandard as zstd
 import io
 import json
 import tarfile
+import logging
 from concurrent.futures import ThreadPoolExecutor
 from functools import partial
-from queue import Queue, Empty
+from queue import Queue
 from threading import Thread, Lock
 from .query import query
 from os import cpu_count
 from secsgml import parse_sgml_content_into_memory
 from secsgml.utils import bytes_to_str
+from .datamule_lookup import datamule_lookup
 
+# Set up logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 
 class Downloader:
     def __init__(self, api_key=None):
-        self.BASE_URL = "https://library.datamule.xyz/original/nc/"
+        self.BASE_URL = "https://sec-library.datamule.xyz/"
         self.CHUNK_SIZE = 2 * 1024 * 1024
         self.MAX_CONCURRENT_DOWNLOADS = 100
         self.MAX_DECOMPRESSION_WORKERS = cpu_count()
@@ -66,7 +71,7 @@ class Downloader:
             with open(error_file, 'w') as f:
                 json.dump(errors, f, indent=2)
         except Exception as e:
-            print(f"Failed to log error to {error_file}: {str(e)}")
+            logger.error(f"Failed to log error to {error_file}: {str(e)}")
 
     class TarManager:
         def __init__(self, output_dir, num_tar_files, max_batch_size=1024*1024*1024):
@@ -127,7 +132,7 @@ class Downloader:
                     return True
                     
                 except Exception as e:
-                    print(f"Error writing {filename} to tar {tar_index}: {str(e)}")
+                    logger.error(f"Error writing {filename} to tar {tar_index}: {str(e)}")
                     return False
         
         def _get_document_name(self, metadata, file_num, standardize_metadata):
@@ -153,7 +158,7 @@ class Downloader:
                 try:
                     tar.close()
                 except Exception as e:
-                    print(f"Error closing tar {i}: {str(e)}")
+                    logger.error(f"Error closing tar {i}: {str(e)}")
 
     def decompress_and_parse_and_write(self, compressed_chunks, filename, keep_document_types, keep_filtered_metadata, standardize_metadata, tar_manager, output_dir):
         dctx = zstd.ZstdDecompressor()
@@ -221,17 +226,21 @@ class Downloader:
                 }
                 
                 async with session.get(url, headers=headers) as response:
+                    content_type = response.headers.get('Content-Type', '')
+                    
                     if response.status == 200:
                         async for chunk in response.content.iter_chunked(self.CHUNK_SIZE):
                             chunks.append(chunk)
 
                         loop = asyncio.get_running_loop()
-                        if filename.endswith('.zst'):
+                        if content_type == 'application/zstd':
+                            logger.debug(f"Processing {filename} as compressed (zstd)")
                             success = await loop.run_in_executor(
                                 decompression_pool,
                                 partial(self.decompress_and_parse_and_write, chunks, filename, keep_document_types, keep_filtered_metadata, standardize_metadata, tar_manager, output_dir)
                             )
                         else:
+                            logger.debug(f"Processing {filename} as uncompressed")
                             success = await loop.run_in_executor(
                                 decompression_pool,
                                 partial(self.parse_and_write_regular_file, chunks, filename, keep_document_types, keep_filtered_metadata, standardize_metadata, tar_manager, output_dir)
@@ -293,7 +302,7 @@ class Downloader:
         if self.api_key is None:
             raise ValueError("No API key found. Please set DATAMULE_API_KEY environment variable or provide api_key in constructor")
 
-        print("Querying SEC filings...")
+        logger.info("Querying SEC filings...")
         filings = query(
             submission_type=submission_type,
             cik=cik,
@@ -301,24 +310,25 @@ class Downloader:
             api_key=self.api_key
         )
 
+        filings = datamule_lookup(cik=cik, submission_type=submission_type, filing_date=filing_date, 
+                   columns=['accessionNumber'], distinct=True, page_size=25000, quiet=False)
+
         if accession_numbers:
             accession_numbers = [str(int(item.replace('-',''))) for item in accession_numbers]
-            filings = [filing for filing in filings if filing['accession_number'] in accession_numbers]
+            filings = [filing for filing in filings if filing['accessionNumber'] in accession_numbers]
         
         if skip_accession_numbers:
             skip_accession_numbers = [int(item.replace('-','')) for item in skip_accession_numbers]
-            filings = [filing for filing in filings if filing['accession_number'] not in skip_accession_numbers]
+            filings = [filing for filing in filings if filing['accessionNumber'] not in skip_accession_numbers]
 
-        print(f"Generating URLs for {len(filings)} filings...")
+        logger.info(f"Generating URLs for {len(filings)} filings...")
         urls = []
         for item in filings:
-            url = f"{self.BASE_URL}{str(item['accession_number']).zfill(18)}.sgml"
-            if item['compressed'] == True or item['compressed'] == 'true' or item['compressed'] == 'True':
-                url += '.zst'
+            url = f"{self.BASE_URL}{str(item['accessionNumber']).zfill(18)}.sgml"
             urls.append(url)
         
         if not urls:
-            print("No submissions found matching the criteria")
+            logger.warning("No submissions found matching the criteria")
             return
 
         urls = list(set(urls))
@@ -328,8 +338,8 @@ class Downloader:
         asyncio.run(self.process_batch(urls, output_dir, keep_document_types=keep_document_types, keep_filtered_metadata=keep_filtered_metadata, standardize_metadata=standardize_metadata, max_batch_size=max_batch_size))
         
         elapsed_time = time.time() - start_time
-        print(f"\nProcessing completed in {elapsed_time:.2f} seconds")
-        print(f"Processing speed: {len(urls)/elapsed_time:.2f} files/second")
+        logger.info(f"Processing completed in {elapsed_time:.2f} seconds")
+        logger.info(f"Processing speed: {len(urls)/elapsed_time:.2f} files/second")
     
     def __del__(self):
         if hasattr(self, 'loop') and self.loop.is_running():
@@ -348,10 +358,10 @@ class Downloader:
         for filename in filenames:
             if not isinstance(filename, str):
                 raise ValueError(f"Invalid filename type: {type(filename)}. Expected string.")
-            if not (filename.endswith('.sgml') or filename.endswith('.sgml.zst')):
-                raise ValueError(f"Invalid filename format: {filename}. Expected .sgml or .sgml.zst extension.")
+            if not filename.endswith('.sgml'):
+                raise ValueError(f"Invalid filename format: {filename}. Expected .sgml extension.")
         
-        print(f"Generating URLs for {len(filenames)} files...")
+        logger.info(f"Generating URLs for {len(filenames)} files...")
         urls = []
         for filename in filenames:
             url = f"{self.BASE_URL}{filename}"
@@ -360,7 +370,7 @@ class Downloader:
         seen = set()
         urls = [url for url in urls if not (url in seen or seen.add(url))]
         
-        print(f"Downloading {len(urls)} files...")
+        logger.info(f"Downloading {len(urls)} files...")
         
         start_time = time.time()
         
@@ -374,8 +384,8 @@ class Downloader:
         ))
         
         elapsed_time = time.time() - start_time
-        print(f"\nProcessing completed in {elapsed_time:.2f} seconds")
-        print(f"Processing speed: {len(urls)/elapsed_time:.2f} files/second")
+        logger.info(f"Processing completed in {elapsed_time:.2f} seconds")
+        logger.info(f"Processing speed: {len(urls)/elapsed_time:.2f} files/second")
 
 
 def download(submission_type=None, cik=None, filing_date=None, api_key=None, output_dir="downloads", accession_numbers=None, keep_document_types=[],keep_filtered_metadata=False,standardize_metadata=True,
