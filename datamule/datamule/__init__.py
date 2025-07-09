@@ -7,7 +7,7 @@ from .sheet import Sheet
 from .index import Index
 from .package_updater import PackageUpdater
 from .utils.format_accession import format_accession
-
+from .utils.construct_submissions_data import construct_submissions_data
 
 
 # Keep the notebook environment setup

@@ -12,7 +12,7 @@ class Sheet:
     def __init__(self, path):
         self.path = Path(path)
 
-    def get_submissions(cik=None, accession_number=None, submission_type=None, filing_date=None, 
+    def get_submissions(self,cik=None, accession_number=None, submission_type=None, filing_date=None, 
                    columns=None, distinct=False, page_size=25000, quiet=False, api_key=None):
         
         return datamule_lookup(cik, accession_number, submission_type, filing_date, 
