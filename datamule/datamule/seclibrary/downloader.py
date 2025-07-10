@@ -14,7 +14,6 @@ from concurrent.futures import ThreadPoolExecutor
 from functools import partial
 from queue import Queue
 from threading import Thread, Lock
-from .query import query
 from os import cpu_count
 from secsgml import parse_sgml_content_into_memory
 from secsgml.utils import bytes_to_str
