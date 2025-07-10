@@ -16,4 +16,6 @@ contributors:
 * Matthew Massicotte
 * Benedetto Leto
 * everling
+* Alex Braid
+* Muhsin Tcheifa
 

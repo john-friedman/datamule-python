@@ -3,17 +3,21 @@ import json
 from .document.document import Document
 from secsgml import parse_sgml_content_into_memory
 from secsgml.parse_sgml import transform_metadata_string
+from secsgml.utils import bytes_to_str
+from .sec.utils import headers
 import tarfile
 import zstandard as zstd
 import gzip
+import urllib.request
+
 
 
 class Submission:
     def __init__(self, path=None, sgml_content=None, keep_document_types=None,
-                 batch_tar_path=None, accession_prefix=None, portfolio_ref=None):
+                 batch_tar_path=None, accession_prefix=None, portfolio_ref=None,url=None):
         
         # Validate parameters
-        param_count = sum(x is not None for x in [path, sgml_content, batch_tar_path])
+        param_count = sum(x is not None for x in [path, sgml_content, batch_tar_path,url])
         if param_count != 1:
             raise ValueError("Exactly one of path, sgml_content, or batch_tar_path must be provided")
         
@@ -25,9 +29,19 @@ class Submission:
         self.accession_prefix = accession_prefix
         self.portfolio_ref = portfolio_ref
         
-        if sgml_content is not None:
+        if url is not None or sgml_content is not None:
+            if url is not None:
+                request = urllib.request.Request(url, headers=headers)
+                response = urllib.request.urlopen(request)
+
+                if response.getcode() == 200:
+                    sgml_content=response.read()
+                else:
+                    raise ValueError(f"URL: {url}, Error: {response.getcode()}")
+
             self.path = None
             metadata, raw_documents = parse_sgml_content_into_memory(sgml_content)
+            metadata = bytes_to_str(metadata)
 
             # standardize metadata
             metadata = transform_metadata_string(metadata)
