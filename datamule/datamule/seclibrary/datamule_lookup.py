@@ -218,7 +218,7 @@ def datamule_lookup(cik=None, accession_number=None, submission_type=None, filin
     
     # Set default columns if none specified
     if columns is None:
-        columns = ['accessionNumber', 'cik', 'filingDate', 'submissionType']
+        columns = ['accessionNumber', 'cik', 'filingDate', 'submissionType','detectedTime']
     
     # Validate page_size
     page_size = min(max(1, page_size), 25000)
