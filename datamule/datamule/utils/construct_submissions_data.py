@@ -10,7 +10,7 @@ import urllib.request
 
 headers = {'User-Agent': 'John Smith johnsmith@gmail.com'}
 
-def process_file_batch(zip_file, filenames_batch):
+def process_file_batch(zip_file, filenames_batch, columns, mapping):
     """Process a batch of files from the zip archive"""
     batch_filings = []
     
@@ -33,19 +33,17 @@ def process_file_batch(zip_file, filenames_batch):
             else:
                 filings_data = submissions_dct['filings']['recent']
             
-            # Extract required data
-            accession_numbers = filings_data['accessionNumber']
-            filing_dates = filings_data['filingDate']
-            forms = filings_data['form']
-            
+            # Extract required data using mapping
+            lst_lst = [filings_data[column] for column in columns]
+
             # Create filing records for this file
-            for j in range(len(accession_numbers)):
-                filing_record = {
-                    'accessionNumber': int(accession_numbers[j].replace('-','')),
-                    'filingDate': filing_dates[j],
-                    'submissionType': forms[j],
-                    'cik': cik
-                }
+            for j in range(len(filings_data['accessionNumber'])):
+                filing_record = {'cik': cik}
+
+                for i, column in enumerate(columns):
+                    mapped_key = mapping.get(column, column)
+                    filing_record[mapped_key] = lst_lst[i][j]
+
                 batch_filings.append(filing_record)
                 
         except Exception as e:
@@ -54,24 +52,26 @@ def process_file_batch(zip_file, filenames_batch):
     
     return batch_filings
 
-def write_csv_chunk(output_path, filings_data, is_first_write, write_lock):
+def write_csv_chunk(output_path, filings_data, is_first_write, write_lock, fieldnames):
     """Thread-safe CSV writing with lock"""
     with write_lock:
         if is_first_write:
             with open(output_path, 'w', newline='') as csvfile:
-                fieldnames = ['accessionNumber', 'filingDate', 'submissionType', 'cik']
                 writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
                 writer.writeheader()
                 writer.writerows(filings_data)
         else:
             with open(output_path, 'a', newline='') as csvfile:
-                fieldnames = ['accessionNumber', 'filingDate', 'submissionType', 'cik']
                 writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
                 writer.writerows(filings_data)
 
-def construct_submissions_data(output_path, submissions_zip_path=None, max_workers=4, batch_size=100):
+def construct_submissions_data(output_path, submissions_zip_path=None, max_workers=4, batch_size=100,
+                               columns = ['accessionNumber', 'filingDate', 'form'], mapping = {'form': 'submissionType'}):
     """Creates a list of dicts of every accession number, with filing date, submission type, and ciks"""
-    
+
+    # declare fieldnames
+    fieldnames = ['cik'] + [mapping.get(col, col) for col in columns]
+
     if submissions_zip_path is None:
         url = "https://www.sec.gov/Archives/edgar/daily-index/bulkdata/submissions.zip"
         
@@ -121,7 +121,7 @@ def construct_submissions_data(output_path, submissions_zip_path=None, max_worke
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
             # Submit all batch jobs
             future_to_batch = {
-                executor.submit(process_file_batch, zip_file, batch): i 
+                executor.submit(process_file_batch, zip_file, batch, columns, mapping): i 
                 for i, batch in enumerate(filename_batches)
             }
             
@@ -132,7 +132,7 @@ def construct_submissions_data(output_path, submissions_zip_path=None, max_worke
                         batch_filings = future.result()
                         
                         if batch_filings:  # Only write if we have data
-                            write_csv_chunk(output_path, batch_filings, is_first_write, write_lock)
+                            write_csv_chunk(output_path, batch_filings, is_first_write, write_lock, fieldnames)
                             is_first_write = False
                             total_filings += len(batch_filings)
                         

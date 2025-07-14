@@ -18,6 +18,7 @@ from os import cpu_count
 from secsgml import parse_sgml_content_into_memory
 from secsgml.utils import bytes_to_str
 from .datamule_lookup import datamule_lookup
+from ..utils.format_accession import format_accession
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -296,29 +297,35 @@ class Downloader:
         finally:
             tar_manager.close_all()
 
-    def download(self, submission_type=None, cik=None, filing_date=None, output_dir="downloads", accession_numbers=None, keep_document_types=[], keep_filtered_metadata=False, standardize_metadata=True,
-                 skip_accession_numbers=[], max_batch_size=1024*1024*1024):
+    def download(self, submission_type=None, cik=None, filing_date=None, output_dir="downloads", filtered_accession_numbers=None, keep_document_types=[], keep_filtered_metadata=False, standardize_metadata=True,
+                 skip_accession_numbers=[], max_batch_size=1024*1024*1024,accession_numbers=None):
         if self.api_key is None:
             raise ValueError("No API key found. Please set DATAMULE_API_KEY environment variable or provide api_key in constructor")
 
         logger.debug("Querying SEC filings...")
 
-        filings = datamule_lookup(cik=cik, submission_type=submission_type, filing_date=filing_date, 
-                   columns=['accessionNumber'], distinct=True, page_size=25000, quiet=False)
+        if not accession_numbers:
+            filings = datamule_lookup(cik=cik, submission_type=submission_type, filing_date=filing_date, 
+                    columns=['accessionNumber'], distinct=True, page_size=25000, quiet=False)
 
-        if accession_numbers:
-            accession_numbers = [str(int(item.replace('-',''))) for item in accession_numbers]
-            filings = [filing for filing in filings if filing['accessionNumber'] in accession_numbers]
-        
-        if skip_accession_numbers:
-            skip_accession_numbers = [int(item.replace('-','')) for item in skip_accession_numbers]
-            filings = [filing for filing in filings if filing['accessionNumber'] not in skip_accession_numbers]
+            if filtered_accession_numbers:
+                filtered_accession_numbers = [str(int(item.replace('-',''))) for item in filtered_accession_numbers]
+                filings = [filing for filing in filings if filing['accessionNumber'] in filtered_accession_numbers]
+            
+            if skip_accession_numbers:
+                skip_accession_numbers = [int(item.replace('-','')) for item in skip_accession_numbers]
+                filings = [filing for filing in filings if filing['accessionNumber'] not in skip_accession_numbers]
 
-        logger.debug(f"Generating URLs for {len(filings)} filings...")
-        urls = []
-        for item in filings:
-            url = f"{self.BASE_URL}{str(item['accessionNumber']).zfill(18)}.sgml"
-            urls.append(url)
+            logger.debug(f"Generating URLs for {len(filings)} filings...")
+            urls = []
+            for item in filings:
+                url = f"{self.BASE_URL}{str(item['accessionNumber']).zfill(18)}.sgml"
+                urls.append(url)
+        else:
+            urls = []
+            for accession in accession_numbers:
+                url = f"{self.BASE_URL}{format_accession(accession,'no-dash').zfill(18)}.sgml"
+                urls.append(url)
         
         if not urls:
             logger.warning("No submissions found matching the criteria")
@@ -381,12 +388,12 @@ class Downloader:
         logger.debug(f"Processing speed: {len(urls)/elapsed_time:.2f} files/second")
 
 
-def download(submission_type=None, cik=None, filing_date=None, api_key=None, output_dir="downloads", accession_numbers=None, keep_document_types=[],keep_filtered_metadata=False,standardize_metadata=True,
-             skip_accession_numbers=[], max_batch_size=1024*1024*1024):
+def download(submission_type=None, cik=None, filing_date=None, api_key=None, output_dir="downloads", filtered_accession_numbers=None, keep_document_types=[],keep_filtered_metadata=False,standardize_metadata=True,
+             skip_accession_numbers=[], max_batch_size=1024*1024*1024,accession_numbers=None):
     
-    if accession_numbers:
-        accession_numbers = [int(str(x).replace('-', '')) for x in accession_numbers]
-    elif accession_numbers == []:
+    if filtered_accession_numbers:
+        filtered_accession_numbers = [int(str(x).replace('-', '')) for x in filtered_accession_numbers]
+    elif filtered_accession_numbers == []:
         raise ValueError("Applied filter resulted in empty accession numbers list")
     downloader = Downloader(api_key=api_key)
     downloader.download(
@@ -394,10 +401,11 @@ def download(submission_type=None, cik=None, filing_date=None, api_key=None, out
         cik=cik,
         filing_date=filing_date,
         output_dir=output_dir,
-        accession_numbers=accession_numbers,
+        filtered_accession_numbers=filtered_accession_numbers,
         keep_document_types=keep_document_types,
         keep_filtered_metadata=keep_filtered_metadata,
         standardize_metadata=standardize_metadata,
         skip_accession_numbers=skip_accession_numbers,
-        max_batch_size=max_batch_size
+        max_batch_size=max_batch_size,
+        accession_numbers=accession_numbers
     )

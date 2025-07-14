@@ -210,7 +210,8 @@ class Portfolio:
             self.accession_numbers = new_accession_numbers
 
     def download_submissions(self, cik=None, ticker=None, submission_type=None, filing_date=None, provider=None,document_type=[],
-                             requests_per_second=5,keep_filtered_metadata=False,standardize_metadata=True,skip_existing=True, **kwargs):
+                             requests_per_second=5,keep_filtered_metadata=False,standardize_metadata=True,skip_existing=True,
+                              accession_numbers=None, **kwargs):
         if provider is None:
             config = Config()
             provider = config.get_default_source()
@@ -218,7 +219,8 @@ class Portfolio:
         # Process CIK and metadata filters
         cik = _process_cik_and_metadata_filters(cik, ticker, **kwargs)
 
-        accession_numbers = self.accession_numbers if hasattr(self, 'accession_numbers') else None
+        filtered_accession_numbers = self.accession_numbers if hasattr(self, 'accession_numbers') else None
+
         skip_accession_numbers = []
         if skip_existing:
             skip_accession_numbers = [sub.accession for sub in self]
@@ -231,20 +233,22 @@ class Portfolio:
                 api_key=self.api_key,
                 submission_type=submission_type,
                 filing_date=filing_date,
-                accession_numbers=accession_numbers,
+                filtered_accession_numbers=filtered_accession_numbers,
                 keep_document_types=document_type,
                 keep_filtered_metadata=keep_filtered_metadata,
                 standardize_metadata=standardize_metadata,
-                skip_accession_numbers=skip_accession_numbers
+                skip_accession_numbers=skip_accession_numbers,
+                accession_numbers = accession_numbers
             )
         else:
+            # will later add accession_numbers arg in the free update.
             sec_download(
                 output_dir=self.path,
                 cik=cik,
                 submission_type=submission_type,
                 filing_date=filing_date,
                 requests_per_second=requests_per_second, 
-                accession_numbers=accession_numbers,
+                filtered_accession_numbers=filtered_accession_numbers,
                 keep_document_types=document_type,
                 keep_filtered_metadata=keep_filtered_metadata,
                 standardize_metadata=standardize_metadata,

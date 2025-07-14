@@ -222,7 +222,7 @@ class Streamer(EFTSQuery):
         return results
 
 def stream(cik=None, submission_type=None, filing_date=None, location=None, 
-           requests_per_second=5.0, document_callback=None, accession_numbers=None,skip_accession_numbers=[],
+           requests_per_second=5.0, document_callback=None, filtered_accession_numbers=None,skip_accession_numbers=[],
            quiet=False, name=None):
     """
     Stream EFTS results and download documents into memory.
@@ -253,14 +253,14 @@ def stream(cik=None, submission_type=None, filing_date=None, location=None,
     """
     
     # Check if acc no is empty list
-    if accession_numbers == []:
+    if filtered_accession_numbers == []:
         raise ValueError("Applied filter resulted in empty accession numbers list")
     
     async def run_stream():
         streamer = Streamer(
             requests_per_second=requests_per_second, 
             document_callback=document_callback,
-            accession_numbers=accession_numbers,
+            accession_numbers=filtered_accession_numbers,
             skip_accession_numbers=skip_accession_numbers,
             quiet=quiet
         )

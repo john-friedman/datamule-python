@@ -239,3 +239,5 @@ class Submission:
         for idx, doc in enumerate(self.metadata.content['documents']):
             if doc['type'] in document_types:
                 yield self._load_document_by_index(idx)
+
+
