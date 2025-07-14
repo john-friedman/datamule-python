@@ -87,6 +87,11 @@ class Submission:
             metadata = transform_metadata_string(metadata)
             self.metadata = Document(type='submission_metadata', content=metadata, extension='.json',filing_date=None,accession=None,path=metadata_path)
             self.accession = self.metadata.content['accession-number']
+            
+            # Band-aid fix: some SGML files in the SEC are bad lol, so they have TWO header sections. Will fix post w/ my cleaned archive
+            if isinstance(self.accession,list):
+                self.accession = self.accession[0]
+            #print(f"s: {self.metadata.content['accession-number']} : {batch_tar_path}")
             self.filing_date= f"{self.metadata.content['filing-date'][:4]}-{self.metadata.content['filing-date'][4:6]}-{self.metadata.content['filing-date'][6:8]}"
 
         elif path is not None:
