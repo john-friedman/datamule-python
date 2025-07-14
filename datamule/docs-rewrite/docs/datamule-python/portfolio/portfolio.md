@@ -248,3 +248,18 @@ def callback_function(document):
 portfolio.process_documents(callback=callback_function)
 ```
 
+## `delete`
+Deletes the portfolio's folder and reinitializes an empty Portfolio object.
+```python
+delete()
+```
+
+### Example
+```python
+from datamule import Portfolio
+port = Portfolio('deletetest')
+port.delete()
+port.download_submissions(ticker='MSFT',submission_type='10-K')
+port.delete()
+port.download_submissions(ticker='MSFT',submission_type='10-K')
+```

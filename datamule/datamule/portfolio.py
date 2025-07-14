@@ -13,11 +13,12 @@ from .seclibrary.downloader import download as seclibrary_download
 from .sec.xbrl.filter_xbrl import filter_xbrl
 from .sec.submissions.monitor import Monitor
 from .portfolio_compression_utils import CompressionManager
-#from .sec.xbrl.xbrlmonitor import XBRLMonitor
 from .datamule.sec_connector import SecConnector
 from secsgml.utils import bytes_to_str, calculate_documents_locations_in_tar
 import json
 import io
+import shutil
+
 
 class Portfolio:
     def __init__(self, path):
@@ -212,6 +213,8 @@ class Portfolio:
     def download_submissions(self, cik=None, ticker=None, submission_type=None, filing_date=None, provider=None,document_type=[],
                              requests_per_second=5,keep_filtered_metadata=False,standardize_metadata=True,skip_existing=True,
                               accession_numbers=None, **kwargs):
+        
+
         if provider is None:
             config = Config()
             provider = config.get_default_source()
@@ -291,3 +294,10 @@ class Portfolio:
             
         for submission in self.submissions:
             yield from submission.document_type(document_types)
+
+    def delete(self):
+        self._close_batch_handles()
+        shutil.rmtree(self.path)
+
+        # reinit
+        self.__dict__.update(Portfolio(self.path).__dict__)

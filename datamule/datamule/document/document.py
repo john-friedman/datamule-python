@@ -110,7 +110,6 @@ class Document:
         if type =='inline':
             if self.extension not in ['.htm','.html']:
                 return
-            
             self.xbrl = parse_inline_xbrl(self.content)
         else:
             raise ValueError("Only inline has been implemented so far.")
