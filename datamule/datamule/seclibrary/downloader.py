@@ -20,6 +20,8 @@ from secsgml.utils import bytes_to_str
 from .datamule_lookup import datamule_lookup
 from ..utils.format_accession import format_accession
 
+# could be cleaned up
+
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
@@ -306,7 +308,7 @@ class Downloader:
 
         if not accession_numbers:
             filings = datamule_lookup(cik=cik, submission_type=submission_type, filing_date=filing_date, 
-                    columns=['accessionNumber'], distinct=True, page_size=25000, quiet=False)
+                    columns=['accessionNumber'], distinct=True, page_size=25000, quiet=False,api_key=self.api_key)
 
             if filtered_accession_numbers:
                 filtered_accession_numbers = [str(int(item.replace('-',''))) for item in filtered_accession_numbers]

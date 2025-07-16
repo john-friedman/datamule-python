@@ -229,7 +229,6 @@ class Portfolio:
             skip_accession_numbers = [sub.accession for sub in self]
             
         if provider == 'datamule':
-
             seclibrary_download(
                 output_dir=self.path,
                 cik=cik,
