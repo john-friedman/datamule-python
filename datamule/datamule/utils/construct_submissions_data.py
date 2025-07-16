@@ -7,8 +7,7 @@ from concurrent.futures import ThreadPoolExecutor
 import threading
 from tqdm import tqdm
 import urllib.request
-
-headers = {'User-Agent': 'John Smith johnsmith@gmail.com'}
+from ..sec.utils import headers
 
 def process_file_batch(zip_file, filenames_batch, columns, mapping):
     """Process a batch of files from the zip archive"""

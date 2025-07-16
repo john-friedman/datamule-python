@@ -1,7 +1,7 @@
 import asyncio
 import time
 from collections import deque
-
+import os
 
 class RetryException(Exception):
     def __init__(self, url, retry_after=601): # SEC Rate limit is typically 10 minutes.
@@ -61,4 +61,9 @@ class RateMonitor:
         
         return round(requests_per_second, 1), round(mb_per_second, 2)
 
-headers = {'User-Agent': 'John Smith johnsmith@gmail.com'}
+
+user_agent = os.environ.get('DATAMULE_SEC_USER_AGENT')
+if user_agent is None:
+    user_agent = 'John Smith johnsmith@gmail.com'
+
+headers = {'User-Agent': user_agent}
