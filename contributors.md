@@ -1,5 +1,5 @@
 contributors:
-* john-friedman
+* John Friedman
 * dermonito
 * AnirudhJM24
 * GuangzheLeLe Wang
@@ -18,4 +18,5 @@ contributors:
 * everling
 * Alex Braid
 * Muhsin Tcheifa
+* Benjamin Cance
 

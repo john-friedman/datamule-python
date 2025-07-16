@@ -269,7 +269,7 @@ class Downloader:
         tar_manager = self.TarManager(output_dir, num_tar_files, max_batch_size)
         
         try:
-            with tqdm(total=len(urls), desc="Processing files") as pbar:
+            with tqdm(total=len(urls), desc="Downloading files") as pbar:
                 semaphore = asyncio.Semaphore(self.MAX_CONCURRENT_DOWNLOADS)
                 decompression_pool = ThreadPoolExecutor(max_workers=self.MAX_DECOMPRESSION_WORKERS)
 
