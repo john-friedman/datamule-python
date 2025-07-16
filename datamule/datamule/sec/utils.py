@@ -1,4 +1,5 @@
 import asyncio
+import os
 import time
 from collections import deque
 
@@ -61,4 +62,8 @@ class RateMonitor:
         
         return round(requests_per_second, 1), round(mb_per_second, 2)
 
-headers = {'User-Agent': 'John Smith johnsmith@gmail.com'}
+user_agent = os.environ.get('DATAMULE_USER_AGENT')
+if user_agent is None:
+    user_agent = 'John Smith johnsmith@gmail.com'
+
+headers = {'User-Agent': user_agent}
