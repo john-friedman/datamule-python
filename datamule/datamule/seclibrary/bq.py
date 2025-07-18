@@ -1,6 +1,9 @@
 import os
 import requests
 import json
+import logging
+
+logger = logging.getLogger(__name__)
 
 def get_information_table(
     # Optional filtering parameters
@@ -333,7 +336,7 @@ def _make_api_request(params, api_key, print_cost=True, verbose=False):
     }
     
     if verbose:
-        print(f"Making request to {BASE_URL} with params: {params}")
+        logger.info(f"Making request to {BASE_URL} with params: {params}")
     
     try:
         response = requests.get(BASE_URL, params=params, headers=headers)
@@ -365,15 +368,15 @@ def _make_api_request(params, api_key, print_cost=True, verbose=False):
             billing = metadata['billing']
             query_info = metadata.get('query_info', {})
             
-            print("\n=== Query Cost Information ===")
-            print(f"Bytes Processed: {query_info.get('bytes_processed', 0):,} bytes")
-            print(f"Data Processed: {billing.get('tb_processed', 0):.10f} TB")
-            print(f"Cost Rate: ${billing.get('cost_per_tb', 0):.2f}/TB")
-            print(f"Query Cost: ${billing.get('total_charge', 0):.6f}")
-            print(f"Remaining Balance: ${billing.get('remaining_balance', 0):.2f}")
-            print(f"Execution Time: {query_info.get('execution_time_ms', 0)} ms")
-            print(f"Cache Hit: {query_info.get('cache_hit', False)}")
-            print("==============================\n")
+            logger.info("\n=== Query Cost Information ===")
+            logger.info(f"Bytes Processed: {query_info.get('bytes_processed', 0):,} bytes")
+            logger.info(f"Data Processed: {billing.get('tb_processed', 0):.10f} TB")
+            logger.info(f"Cost Rate: ${billing.get('cost_per_tb', 0):.2f}/TB")
+            logger.info(f"Query Cost: ${billing.get('total_charge', 0):.6f}")
+            logger.info(f"Remaining Balance: ${billing.get('remaining_balance', 0):.2f}")
+            logger.info(f"Execution Time: {query_info.get('execution_time_ms', 0)} ms")
+            logger.info(f"Cache Hit: {query_info.get('cache_hit', False)}")
+            logger.info("==============================\n")
         
         # Return data
         return data

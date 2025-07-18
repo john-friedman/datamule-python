@@ -7,7 +7,9 @@ import shutil
 from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from secsgml.utils import bytes_to_str, calculate_documents_locations_in_tar
+import logging
 
+logger = logging.getLogger(__name__)
 
 class CompressionManager:
     
@@ -35,10 +37,10 @@ class CompressionManager:
         submissions = [s for s in portfolio.submissions if s.batch_tar_path is None]
         
         if not submissions:
-            print("No submissions to compress")
+            logger.info("No submissions to compress")
             return
         
-        print(f"Compressing {len(submissions)} submissions...")
+        logger.info(f"Compressing {len(submissions)} submissions...")
         
         # Set default compression level if not specified
         if compression_level is None:
@@ -113,7 +115,7 @@ class CompressionManager:
         portfolio.submissions_loaded = False
         portfolio._load_submissions()
         
-        print("Compression complete.")
+        logger.info("Compression complete.")
 
     def decompress_portfolio(self, portfolio, max_workers=None):
         """
@@ -133,10 +135,10 @@ class CompressionManager:
         batch_tars = [f for f in portfolio.path.iterdir() if f.is_file() and 'batch' in f.name and f.suffix == '.tar']
         
         if not batch_tars:
-            print("No batch tar files found to decompress")
+            logger.info("No batch tar files found to decompress")
             return
         
-        print(f"Decompressing {len(batch_tars)} batch tar files...")
+        logger.info(f"Decompressing {len(batch_tars)} batch tar files...")
         
         # FIRST: Close all batch tar handles to free the files
         portfolio._close_batch_handles()
@@ -186,7 +188,7 @@ class CompressionManager:
         portfolio.submissions_loaded = False
         portfolio._load_submissions()
         
-        print(f"Decompression complete. Extracted {total_extracted} submissions.")
+        logger.info(f"Decompression complete. Extracted {total_extracted} submissions.")
 
     def _process_document(self, doc, compression, threshold, compression_level):
         """Process a single document: load content and apply compression if needed."""

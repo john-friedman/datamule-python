@@ -1,12 +1,15 @@
 from pathlib import Path
 import csv
 import os
+import logging
 from .helper import _process_cik_and_metadata_filters, load_package_dataset
 from .sec.xbrl.downloadcompanyfacts import download_company_facts
 from .seclibrary.datamule_lookup import datamule_lookup
 
 # slated for deprecation?
 from .seclibrary.bq import get_information_table, get_345, get_proxy_voting_record
+
+logger = logging.getLogger(__name__)
 
 class Sheet:
     def __init__(self, path):
@@ -258,7 +261,7 @@ class Sheet:
         # If no data returned, nothing to save
         if not data:
             if verbose:
-                print("No data returned from API. No file was created.")
+                logger.info("No data returned from API. No file was created.")
             return data
         
         # Resolve filepath - if it's not absolute, make it relative to self.path
@@ -279,7 +282,7 @@ class Sheet:
             writer.writerows(data)
             
         if verbose:
-            print(f"Saved {len(data)} records to {filepath_obj}")
+            logger.info(f"Saved {len(data)} records to {filepath_obj}")
             
         
     def download_information_table(

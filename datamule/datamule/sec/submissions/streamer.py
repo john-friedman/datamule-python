@@ -2,9 +2,11 @@ import asyncio
 from urllib.parse import urlencode
 from tqdm import tqdm
 import re
+import logging
 
 from .eftsquery import EFTSQuery
 
+logger = logging.getLogger(__name__)
 
 # This is to fix some broken SEC URLS. There's a better way to do this, but this is a quick fix.
 def fix_filing_url(url):
@@ -59,13 +61,13 @@ class Streamer(EFTSQuery):
                     self.fetch_queue.task_done()
                 except Exception as e:
                     if not self.quiet:
-                        print(f"\nError fetching {url}: {str(e)}")
+                        logger.info(f"\nError fetching {url}: {str(e)}")
                     self.fetch_queue.task_done()
             except asyncio.CancelledError:
                 break
             except Exception as e:
                 if not self.quiet:
-                    print(f"\nWorker error: {str(e)}")
+                    logger.info(f"\nWorker error: {str(e)}")
                 self.fetch_queue.task_done()
 
     def _construct_submission_url(self, hit):
@@ -92,7 +94,7 @@ class Streamer(EFTSQuery):
             return url, cik, accno_w_dash
         except (KeyError, IndexError) as e:
             if not self.quiet:
-                print(f"Error constructing URL for hit: {hit}. Error: {str(e)}")
+                logger.info(f"Error constructing URL for hit: {hit}. Error: {str(e)}")
             return None, None, None
 
     async def _document_download_worker(self):
@@ -123,14 +125,14 @@ class Streamer(EFTSQuery):
                     self.document_queue.task_done()
                 except Exception as e:
                     if not self.quiet:
-                        print(f"\nError streaming document {doc_url}: {str(e)}")
+                        logger.info(f"\nError streaming document {doc_url}: {str(e)}")
                     self.document_queue.task_done()
                     
             except asyncio.CancelledError:
                 break
             except Exception as e:
                 if not self.quiet:
-                    print(f"\nDocument worker error: {str(e)}")
+                    logger.info(f"\nDocument worker error: {str(e)}")
                 self.document_queue.task_done()
 
     async def document_download_callback(self, hits):
@@ -200,7 +202,7 @@ class Streamer(EFTSQuery):
         # Make sure all document downloads are complete
         if self.download_in_progress.is_set():
             if not self.quiet:
-                print("Waiting for remaining document downloads to complete...")
+                logger.info("Waiting for remaining document downloads to complete...")
             await self.document_queue.join()
         
         # Clean up document workers
@@ -215,9 +217,9 @@ class Streamer(EFTSQuery):
             self.document_pbar = None  # Set to None to prevent reuse
         
         if not self.quiet:
-            print(f"\n--- Streaming complete: {len(results)} EFTS results processed ---")
+            logger.info(f"\n--- Streaming complete: {len(results)} EFTS results processed ---")
             if self.accession_numbers is not None:
-                print(f"--- {self.documents_processed} documents downloaded, {self.skipped_documents} skipped due to accession number filter ---")
+                logger.info(f"--- {self.documents_processed} documents downloaded, {self.skipped_documents} skipped due to accession number filter ---")
         
         return results
 

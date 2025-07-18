@@ -7,7 +7,10 @@ from concurrent.futures import ThreadPoolExecutor
 import threading
 from tqdm import tqdm
 import urllib.request
+import logging
 from ..sec.utils import headers
+
+logger = logging.getLogger(__name__)
 
 def process_file_batch(zip_file, filenames_batch, columns, mapping):
     """Process a batch of files from the zip archive"""
@@ -46,7 +49,7 @@ def process_file_batch(zip_file, filenames_batch, columns, mapping):
                 batch_filings.append(filing_record)
                 
         except Exception as e:
-            print(f"Error processing {filename}: {e}")
+            logger.info(f"Error processing {filename}: {e}")
             continue
     
     return batch_filings
@@ -103,7 +106,7 @@ def construct_submissions_data(output_path, submissions_zip_path=None, max_worke
         # Get all CIK filenames
         all_filenames = [f for f in zip_file.namelist() if f.startswith('CIK')]
         
-        print(f"Processing {len(all_filenames)} files with {max_workers} workers...")
+        logger.info(f"Processing {len(all_filenames)} files with {max_workers} workers...")
         
         # Create batches of filenames
         filename_batches = []
@@ -142,8 +145,8 @@ def construct_submissions_data(output_path, submissions_zip_path=None, max_worke
                         })
                         
                     except Exception as e:
-                        print(f"Error processing batch: {e}")
+                        logger.info(f"Error processing batch: {e}")
                         pbar.update(1)
     
-    print(f"Complete! Processed {total_filings} total filings")
-    print(f"Data saved to {output_path}")
+    logger.info(f"Complete! Processed {total_filings} total filings")
+    logger.info(f"Data saved to {output_path}")

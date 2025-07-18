@@ -7,8 +7,11 @@ import asyncio
 import aiohttp
 import tempfile
 from tqdm import tqdm
+import logging
 from datetime import datetime
 from ..utils import headers
+
+logger = logging.getLogger(__name__)
 
 async def download_sec_file(url, target_path):
     """Download submissions.zip from SEC website with progress bar."""
@@ -30,7 +33,7 @@ async def download_sec_file(url, target_path):
                         downloaded += len(chunk)
                         progress_bar.update(len(chunk))
     
-    print(f"Download complete: {target_path}")
+    logger.info(f"Download complete: {target_path}")
     return target_path
 
 def extract_metadata(data):
@@ -171,7 +174,7 @@ def write_metadata_to_csv(metadata_list, output_path):
         writer.writeheader()
         writer.writerows(metadata_list)
     
-    print(f"Wrote {len(metadata_list)} records to {output_path}")
+    logger.info(f"Wrote {len(metadata_list)} records to {output_path}")
 
 def write_names_to_csv(names_list, output_path):
     """Write name records to CSV and compress with gzip."""
@@ -191,7 +194,7 @@ def write_names_to_csv(names_list, output_path):
         writer.writeheader()
         writer.writerows(names_list)
     
-    print(f"Wrote {len(names_list)} records to {output_path}")
+    logger.info(f"Wrote {len(names_list)} records to {output_path}")
 
 async def extract_and_process_metadata(output_dir, local_zip_path=None, sec_url="https://www.sec.gov/Archives/edgar/daily-index/bulkdata/submissions.zip", max_bytes=2000):
     """
@@ -227,12 +230,12 @@ async def extract_and_process_metadata(output_dir, local_zip_path=None, sec_url=
     # Use provided ZIP file or download to temporary file
     if local_zip_path:
         # Use local file
-        print(f"Using local ZIP file: {local_zip_path}")
+        logger.info(f"Using local ZIP file: {local_zip_path}")
         zip_path = local_zip_path
         temp_file = None
     else:
         # Download to temporary file
-        print(f"Downloading from SEC to temporary file: {sec_url}")
+        logger.info(f"Downloading from SEC to temporary file: {sec_url}")
         temp_file = tempfile.NamedTemporaryFile(suffix='.zip', delete=False)
         temp_file.close()  # Close the file so we can download to it
         zip_path = temp_file.name
@@ -306,7 +309,7 @@ async def extract_and_process_metadata(output_dir, local_zip_path=None, sec_url=
                                             json_data = json.loads(full_content)
                                         except json.JSONDecodeError:
                                             # If full content can't be parsed, stick with partial data
-                                            print(f"Warning: Could not parse full content of {file_info.filename}, using partial data")
+                                            logger.info(f"Warning: Could not parse full content of {file_info.filename}, using partial data")
                                 
                                 # Extract metadata (without former names)
                                 metadata = extract_metadata(json_data)
@@ -339,11 +342,11 @@ async def extract_and_process_metadata(output_dir, local_zip_path=None, sec_url=
                                 stats['total_processed'] += 1
                                 
                             except json.JSONDecodeError as je:
-                                print(f"JSON parsing error in {file_info.filename}: {str(je)}")
+                                logger.info(f"JSON parsing error in {file_info.filename}: {str(je)}")
                     
                     except Exception as e:
                         # Handle any errors
-                        print(f"Error processing {file_info.filename}: {str(e)}")
+                        logger.info(f"Error processing {file_info.filename}: {str(e)}")
                     
                     # Update the progress bar
                     pbar.update(1)
@@ -351,7 +354,7 @@ async def extract_and_process_metadata(output_dir, local_zip_path=None, sec_url=
     finally:
         # Clean up temporary file if we created one
         if temp_file and os.path.exists(zip_path):
-            print(f"Removing temporary file: {zip_path}")
+            logger.info(f"Removing temporary file: {zip_path}")
             os.unlink(zip_path)
     
     # Define output file paths (without .gz extension, it will be added in the write functions)
@@ -377,11 +380,11 @@ async def extract_and_process_metadata(output_dir, local_zip_path=None, sec_url=
         write_names_to_csv(unlisted_names, unlisted_names_path)
     
     # Print summary
-    print(f"\nTotal files processed: {stats['total_processed']}")
-    print(f"Listed companies found: {stats['listed_companies']}")
-    print(f"Unlisted companies found: {stats['unlisted_companies']}")
-    print(f"Files requiring full content read: {stats['full_content_reads']}")
-    print(f"Output files written to {output_dir}")
+    logger.info(f"\nTotal files processed: {stats['total_processed']}")
+    logger.info(f"Listed companies found: {stats['listed_companies']}")
+    logger.info(f"Unlisted companies found: {stats['unlisted_companies']}")
+    logger.info(f"Files requiring full content read: {stats['full_content_reads']}")
+    logger.info(f"Output files written to {output_dir}")
     
     return stats
 

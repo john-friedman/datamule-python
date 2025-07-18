@@ -8,6 +8,9 @@ from ..utils import headers, PreciseRateLimiter
 from .eftsquery import EFTSQuery
 import aiohttp
 from zoneinfo import ZoneInfo 
+import logging
+
+logger = logging.getLogger(__name__)
 
 async def poll_rss(limiter, session):
     base_url = 'https://www.sec.gov/cgi-bin/browse-edgar?count=100&action=getcurrent&output=rss'
@@ -129,7 +132,7 @@ class Monitor():
             if start_date is not None:
                 today_date = datetime.now(ZoneInfo("America/New_York")).strftime('%Y-%m-%d')
                 if not quiet:
-                    print(f"Backfilling from {start_date} to {today_date}")
+                    logger.info(f"Backfilling from {start_date} to {today_date}")
 
                 hits = clean_efts_hits(await self._async_run_efts_query(
                     filing_date=(start_date, today_date),
@@ -138,7 +141,7 @@ class Monitor():
 
                 new_hits = self._filter_new_accessions(hits)
                 if not quiet:
-                    print(f"New submissions found: {len(new_hits)}")
+                    logger.info(f"New submissions found: {len(new_hits)}")
                 if new_hits and data_callback:
                     data_callback(new_hits)
 
@@ -157,7 +160,7 @@ class Monitor():
                 # RSS polling (if enabled)
                 if do_polling and (current_time - last_polling_time) >= polling_interval/1000:
                     if not quiet:
-                        print(f"Polling RSS feed")
+                        logger.info(f"Polling RSS feed")
                     
                     # Ensure session is fresh before polling
                     await self._ensure_fresh_session()
@@ -167,12 +170,12 @@ class Monitor():
                         new_results = self._filter_new_accessions(results)
                         if new_results:
                             if not quiet:
-                                print(f"Found {len(new_results)} new submissions via RSS")
+                                logger.info(f"Found {len(new_results)} new submissions via RSS")
                             if data_callback:
                                 data_callback(new_results)
                     except Exception as e:
                         if not quiet:
-                            print(f"RSS polling error: {e}, will recreate session on next poll")
+                            logger.info(f"RSS polling error: {e}, will recreate session on next poll")
                         # Force session recreation on next poll
                         if self.session:
                             await self.session.close()
@@ -185,7 +188,7 @@ class Monitor():
                     # Get submissions from the last 24 hours for validation
                     today_date = datetime.now(ZoneInfo("America/New_York")).strftime('%Y-%m-%d')
                     if not quiet:
-                        print(f"Validating submissions from {today_date}")
+                        logger.info(f"Validating submissions from {today_date}")
 
                     hits = clean_efts_hits(await self._async_run_efts_query(
                         filing_date=(today_date, today_date),
@@ -195,7 +198,7 @@ class Monitor():
                     new_hits = self._filter_new_accessions(hits)
                     if new_hits:
                         if not quiet:
-                            print(f"Found {len(new_hits)} new submissions via EFTS validation")
+                            logger.info(f"Found {len(new_hits)} new submissions via EFTS validation")
                         if data_callback:
                             data_callback(new_hits)
                     last_validation_time = current_time

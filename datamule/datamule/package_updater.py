@@ -4,6 +4,9 @@ import urllib.request
 import gzip
 import shutil
 import os
+import logging
+
+logger = logging.getLogger(__name__)
 
 class PackageUpdater():
     def __init__(self):
@@ -19,7 +22,7 @@ class PackageUpdater():
         file_path = data_dir / "listed_filer_metadata.csv"
         temp_gz_path = data_dir / "listed_filer_metadata.csv.gz"
 
-        print(f"Downloading data to {data_dir}")
+        logger.info(f"Downloading data to {data_dir}")
         urllib.request.urlretrieve(file_url, temp_gz_path)
         
         with gzip.open(temp_gz_path, 'rb') as f_in:
@@ -27,4 +30,4 @@ class PackageUpdater():
                 shutil.copyfileobj(f_in, f_out)
                 
         os.remove(temp_gz_path)
-        print(f"Data downloaded to {file_path}")
+        logger.info(f"Data downloaded to {file_path}")

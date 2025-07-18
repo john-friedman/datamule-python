@@ -3,6 +3,9 @@ import json
 import urllib.request
 import websocket
 import re
+import logging
+
+logger = logging.getLogger(__name__)
 
 class SecConnector:
     def __init__(self, api_key=None, quiet=False):
@@ -15,7 +18,7 @@ class SecConnector:
         
     def _get_jwt_token_and_ip(self):
         if not self.quiet:
-            print("Getting JWT token...")
+            logger.info("Getting JWT token...")
             
         url = self.auth_url
         
@@ -31,7 +34,7 @@ class SecConnector:
             raise Exception(f"Auth failed: {data.get('error')}")
             
         if not self.quiet:
-            print("JWT token obtained")
+            logger.info("JWT token obtained")
             
         return data['token'], data['websocket_ip']
     
@@ -40,28 +43,28 @@ class SecConnector:
         ws_url = f"ws://{websocket_ip}/ws"
         
         if not self.quiet:
-            print("Connecting to WebSocket...")
+            logger.info("Connecting to WebSocket...")
         
         def on_open(ws):
             if not self.quiet:
-                print("WebSocket connected")
+                logger.info("WebSocket connected")
         
         def on_message(ws, message):
             response = json.loads(message)
             data = response.get('data', [])
             if not self.quiet:
-                print(f"Received data: {len(data)} items")
+                logger.info(f"Received data: {len(data)} items")
             if data_callback:
                 data_callback(data) 
         
         def on_error(ws, error):
             if not self.quiet:
                 sanitized_error = self._sanitize_error_message(str(error))
-                print(f"WebSocket error: {sanitized_error}")
+                logger.info(f"WebSocket error: {sanitized_error}")
         
         def on_close(ws, close_status_code, close_msg):
             if not self.quiet:
-                print("WebSocket closed")
+                logger.info("WebSocket closed")
         
         # Use Authorization header for WebSocket connection
         headers = {'Authorization': f'Bearer {token}'}

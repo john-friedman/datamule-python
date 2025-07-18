@@ -18,7 +18,9 @@ from secsgml.utils import bytes_to_str, calculate_documents_locations_in_tar
 import json
 import io
 import shutil
+import logging
 
+logger = logging.getLogger(__name__)
 
 class Portfolio:
     def __init__(self, path):
@@ -44,7 +46,7 @@ class Portfolio:
         self.api_key = api_key
     
     def _load_submissions(self):
-        print(f"Loading submissions")
+        logger.info(f"Loading submissions")
         
         # Separate regular and batch items
         regular_items = [f for f in self.path.iterdir() if (f.is_dir() or f.suffix=='.tar') and 'batch' not in f.name]
@@ -80,7 +82,7 @@ class Portfolio:
         
         # Combine and filter None values  
         self.submissions = [s for s in (regular_submissions + batch_submissions) if s is not None]
-        print(f"Successfully loaded {len(self.submissions)} submissions")
+        logger.info(f"Successfully loaded {len(self.submissions)} submissions")
 
     def _load_batch_submissions_worker(self, batch_tar_path, pbar):
         """Worker function to load submissions from one batch tar with progress updates"""

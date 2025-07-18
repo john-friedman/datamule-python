@@ -6,6 +6,9 @@ import ssl
 import json
 import time
 from tqdm import tqdm
+import logging
+
+logger = logging.getLogger(__name__)
 
 class Query:
     def __init__(self, api_key=None):
@@ -92,7 +95,7 @@ class Query:
                 query_desc.append(f"Date={filing_date}")
         
         if query_desc:
-            print(f"QUERY: {', '.join(query_desc)}")
+            logger.info(f"QUERY: {', '.join(query_desc)}")
         
         connector = aiohttp.TCPConnector(ssl=ssl.create_default_context())
         async with aiohttp.ClientSession(connector=connector) as session:
@@ -140,11 +143,11 @@ class Query:
             
             # Final summary
             elapsed_time = time.time() - self.start_time
-            print("\nQuery complete:")
-            print(f"- Retrieved {total_items} filings across {pages_processed} pages")
-            print(f"- Total cost: ${self.total_cost:.2f}")
-            print(f"- Remaining balance: ${self.remaining_balance:.2f}")
-            print(f"- Time: {elapsed_time:.1f} seconds")
+            logger.info("\nQuery complete:")
+            logger.info(f"- Retrieved {total_items} filings across {pages_processed} pages")
+            logger.info(f"- Total cost: ${self.total_cost:.2f}")
+            logger.info(f"- Remaining balance: ${self.remaining_balance:.2f}")
+            logger.info(f"- Time: {elapsed_time:.1f} seconds")
             
             return results
 
@@ -172,7 +175,7 @@ def query(cik=None, submission_type=None, filing_date=None, api_key=None):
     elif isinstance(filing_date, list):
         filing_date = [x.replace('-', '') for x in filing_date]
 
-    print(filing_date)
+    logger.info(filing_date)
     # Run the query and return results
     return asyncio.run(q.execute_query(
         submission_type=submission_type,

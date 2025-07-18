@@ -1,12 +1,15 @@
 import os
 import csv
 from pathlib import Path
+import logging
 from .streamcompanyfacts import stream_company_facts
+
+logger = logging.getLogger(__name__)
 
 def process_company_data(data, output_path):
     # Check for errors in data
     if data and 'error' in data:
-        print(f"Error processing CIK {data.get('cik')}: {data.get('error')}")
+        logger.info(f"Error processing CIK {data.get('cik')}: {data.get('error')}")
         return False
         
     # Define CSV output path

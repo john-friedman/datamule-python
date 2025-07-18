@@ -9,8 +9,9 @@ import tarfile
 import zstandard as zstd
 import gzip
 import urllib.request
+import logging
 
-
+logger = logging.getLogger(__name__)
 
 class Submission:
     def __init__(self, path=None, sgml_content=None, keep_document_types=None,
@@ -91,7 +92,7 @@ class Submission:
             # Band-aid fix: some SGML files in the SEC are bad lol, so they have TWO header sections. Will fix post w/ my cleaned archive
             if isinstance(self.accession,list):
                 self.accession = self.accession[0]
-            #print(f"s: {self.metadata.content['accession-number']} : {batch_tar_path}")
+            #logger.info(f"s: {self.metadata.content['accession-number']} : {batch_tar_path}")
             self.filing_date= f"{self.metadata.content['filing-date'][:4]}-{self.metadata.content['filing-date'][4:6]}-{self.metadata.content['filing-date'][6:8]}"
 
         elif path is not None:

@@ -6,6 +6,9 @@ import ssl
 import json
 import time
 from tqdm import tqdm
+import logging
+
+logger = logging.getLogger(__name__)
 
 class DatamuleLookup:
     def __init__(self, api_key=None):
@@ -119,7 +122,7 @@ class DatamuleLookup:
             query_desc.append("DISTINCT=True")
         
         if query_desc and not quiet:
-            print(f"QUERY: {', '.join(query_desc)}")
+            logger.info(f"QUERY: {', '.join(query_desc)}")
         
         connector = aiohttp.TCPConnector(ssl=ssl.create_default_context())
         async with aiohttp.ClientSession(connector=connector) as session:
@@ -177,11 +180,11 @@ class DatamuleLookup:
             # Final summary only if not quiet
             if not quiet:
                 elapsed_time = time.time() - self.start_time
-                print("\nQuery complete:")
-                print(f"- Retrieved {total_items} records across {pages_processed} pages")
-                print(f"- Total cost: ${self.total_cost:.4f}")
-                print(f"- Remaining balance: ${self.remaining_balance:.2f}")
-                print(f"- Time: {elapsed_time:.1f} seconds")
+                logger.info("\nQuery complete:")
+                logger.info(f"- Retrieved {total_items} records across {pages_processed} pages")
+                logger.info(f"- Total cost: ${self.total_cost:.4f}")
+                logger.info(f"- Remaining balance: ${self.remaining_balance:.2f}")
+                logger.info(f"- Time: {elapsed_time:.1f} seconds")
             
             return results
 

@@ -51,6 +51,7 @@ setup(
         'secxbrl',
         'secsgml',
         'websocket-client',
+        'logging',
     ],
     # Include the data directory in the package
     package_data={

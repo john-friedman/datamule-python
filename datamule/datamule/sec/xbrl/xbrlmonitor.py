@@ -4,6 +4,9 @@ import time
 from collections import deque
 from lxml import etree
 from ..utils import PreciseRateLimiter, headers
+import logging
+
+logger = logging.getLogger(__name__)
 
 class XBRLMonitor:
     """
@@ -27,7 +30,7 @@ class XBRLMonitor:
                     response.raise_for_status()
                     return await response.text()
             except Exception as e:
-                print(f"Error fetching RSS feed: {str(e)}")
+                logger.info(f"Error fetching RSS feed: {str(e)}")
                 return None
     
     def _parse_rss(self, xml_content):
@@ -69,7 +72,7 @@ class XBRLMonitor:
     async def _poll_once(self, data_callback=None, quiet=True):
         """Internal async implementation of poll_once."""
         if not quiet:
-            print(f"Polling {self.url}")
+            logger.info(f"Polling {self.url}")
         
         async with aiohttp.ClientSession(headers=self.headers) as session:
             xml_content = await self._fetch_rss(session)
@@ -86,7 +89,7 @@ class XBRLMonitor:
                     new_entries.append(entry)
 
             if new_entries and not quiet:
-                print(f"Found {len(new_entries)} new XBRL filings")
+                logger.info(f"Found {len(new_entries)} new XBRL filings")
             
             # Call the callback if provided and if we have new entries
             if new_entries and data_callback:
@@ -115,7 +118,7 @@ class XBRLMonitor:
                     try:
                         await poll_callback()
                     except Exception as e:
-                        print(f"Error in poll callback: {str(e)}")
+                        logger.info(f"Error in poll callback: {str(e)}")
                 
                 # Sleep for the remaining interval time
                 elapsed = (time.time() - start_wait) * 1000
@@ -123,7 +126,7 @@ class XBRLMonitor:
                     await asyncio.sleep((polling_interval - elapsed) / 1000)
                 
             except Exception as e:
-                print(f"Error in monitoring: {str(e)}")
+                logger.info(f"Error in monitoring: {str(e)}")
                 await asyncio.sleep(polling_interval / 1000)
     
     def monitor(self, data_callback=None, poll_callback=None, polling_interval=600000, quiet=True):
