@@ -19,4 +19,5 @@ contributors:
 * Alex Braid
 * Muhsin Tcheifa
 * Benjamin Cance
+* mjc0608
 

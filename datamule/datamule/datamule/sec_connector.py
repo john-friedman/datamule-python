@@ -23,6 +23,8 @@ class SecConnector:
         req = urllib.request.Request(url, method='GET')
         req.add_header('Accept', 'application/json')
         req.add_header('Authorization', f'Bearer {self.api_key}')  # API key in header
+        req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36')
+
         
         with urllib.request.urlopen(req) as response:
             data = json.loads(response.read().decode())

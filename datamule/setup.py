@@ -32,7 +32,7 @@ if not os.path.exists(file_path):
 setup(
     name="datamule",
     author="John Friedman",
-    version="1.8.5",
+    version="1.8.6",
     description="Work with SEC submissions at scale.",
     packages=find_packages(include=['datamule', 'datamule.*']),
     url="https://github.com/john-friedman/datamule-python",
