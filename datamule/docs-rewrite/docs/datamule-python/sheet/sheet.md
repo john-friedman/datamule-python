@@ -2,11 +2,12 @@
 
 Sheet is a class for downloading and working with tabular datasets from the SEC.
 
-**Note (7/23/25):** Sheet is being remade to interact with [datamule-cloud](https://datamule.xyz/products) features. Old functionality will move to a new class.
+???+ note "7/23/25 Update"
+    Sheet is being remade to interact with datamule-cloud features. Old functionality will move to a new class.
 
 ## get_table
 
-Access datamule's MySQL RDS.
+Access datamule's MySQL RDS offerings.
 
 ```python
 get_table(self, table, cik=None, ticker=None, **kwargs)
@@ -14,16 +15,18 @@ get_table(self, table, cik=None, ticker=None, **kwargs)
 
 ### Databases
 
-**Lookup Database**
+#### Lookup Database
 All tables use the lookup database's parameters for filtering before the main query.
 
 **accession_cik**
+
 - accessionNumber: BIGINT UNSIGNED NOT NULL
 - cik: BIGINT UNSIGNED NOT NULL
 - Primary Key: Composite key on (accessionNumber, cik)
 - Index: idx_cik on cik column
 
 **submission_details**
+
 - accessionNumber: BIGINT UNSIGNED PRIMARY KEY
 - submissionType: VARCHAR(16) NOT NULL
 - filingDate: DATE NOT NULL
@@ -35,9 +38,10 @@ Example:
 print(sheet.get_table('accession_cik', ticker=['F']))
 ```
 
-**Simple XBRL**
+#### Simple XBRL
 
 **simple_xbrl**
+
 - id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
 - accessionNumber: BIGINT UNSIGNED NOT NULL
 - context_id: INT UNSIGNED NOT NULL
