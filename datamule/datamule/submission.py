@@ -10,8 +10,6 @@ import zstandard as zstd
 import gzip
 import urllib.request
 
-
-
 class Submission:
     def __init__(self, path=None, sgml_content=None, keep_document_types=None,
                  batch_tar_path=None, accession_prefix=None, portfolio_ref=None,url=None):
