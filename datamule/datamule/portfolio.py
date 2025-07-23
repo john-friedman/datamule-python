@@ -9,14 +9,11 @@ import os
 import tarfile
 from threading import Lock
 from .helper import _process_cik_and_metadata_filters
-from .seclibrary.downloader import download as seclibrary_download
+from .datamule.downloader import download as seclibrary_download
 from .sec.xbrl.filter_xbrl import filter_xbrl
 from .sec.submissions.monitor import Monitor
 from .portfolio_compression_utils import CompressionManager
 from .datamule.sec_connector import SecConnector
-from secsgml.utils import bytes_to_str, calculate_documents_locations_in_tar
-import json
-import io
 import shutil
 
 

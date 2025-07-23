@@ -3,7 +3,6 @@ import asyncio
 import aiohttp
 import urllib.parse
 import ssl
-import json
 import time
 from tqdm import tqdm
 

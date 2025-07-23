@@ -32,6 +32,14 @@ Parses the inline XBRL of a html document. Feature requests welcome.
 
 [Example](https://github.com/john-friedman/datamule-python/blob/main/examples/parse_xbrl.ipynb)
 
+## `parse_fundamentals`
+
+```
+parse_fundamentals(categories=None) # optional, e.g. ['balanceSheet']
+```
+[Example](https://github.com/john-friedman/datamule-python/blob/main/examples/fundamentals.ipynb)
+
+
 ## `visualize`
 
 Opens a document using webbrowser. Only works for certain file extensions.

@@ -3,7 +3,7 @@ import csv
 import os
 from .helper import _process_cik_and_metadata_filters, load_package_dataset
 from .sec.xbrl.downloadcompanyfacts import download_company_facts
-from .seclibrary.datamule_lookup import datamule_lookup
+from .datamule.datamule_lookup import datamule_lookup
 
 # slated for deprecation?
 from .seclibrary.bq import get_information_table, get_345, get_proxy_voting_record
@@ -12,11 +12,16 @@ class Sheet:
     def __init__(self, path):
         self.path = Path(path)
 
+    # Keep
     def get_submissions(self,cik=None, accession_number=None, submission_type=None, filing_date=None, 
                    columns=None, distinct=False, page_size=25000, quiet=False, api_key=None):
         
         return datamule_lookup(cik, accession_number, submission_type, filing_date, 
                    columns, distinct, page_size, quiet, api_key)
+    
+    # Implement
+    def get_table(self,table,**kwargs):
+        pass
 
     def download_xbrl(
         self, 
