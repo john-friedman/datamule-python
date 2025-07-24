@@ -5,6 +5,8 @@ from .helper import _process_cik_and_metadata_filters, load_package_dataset
 from .sec.xbrl.downloadcompanyfacts import download_company_facts
 from .datamule.datamule_lookup import datamule_lookup
 from .datamule.datamule_mysql_rds import query_mysql_rds
+from company_fundamentals.utils import get_fundamental_mappings
+from company_fundamentals import construct_fundamentals
 # slated for deprecation?
 from .seclibrary.bq import get_information_table, get_345, get_proxy_voting_record
 
@@ -21,7 +23,25 @@ class Sheet:
     
     def get_table(self,table,cik=None,ticker=None,**kwargs):
         cik = _process_cik_and_metadata_filters(cik, ticker)
-        return query_mysql_rds(table=table,cik=cik,**kwargs)
+
+        if table == 'fundamentals':
+            fundamentals = kwargs.pop('fundamentals', None)
+            if fundamentals is None:
+                raise ValueError("fundamentals parameter required for fundamentals table")
+            
+            categories = kwargs.pop('categories',None)
+            
+            mappings = get_fundamental_mappings(fundamentals=fundamentals)
+            #print(mappings)
+            taxonomies = [item[0] for item in mappings]
+            names = [item[1] for item in mappings]
+            xbrl = query_mysql_rds(table='simple_xbrl',cik=cik,taxonomy=taxonomies,name=names,**kwargs)
+            #print(xbrl)
+
+            return construct_fundamentals(xbrl, 'taxonomy', 'name', 'period_start_date', 'period_end_date', categories=categories,fundamentals=fundamentals)
+            
+        else:
+            return query_mysql_rds(table=table,cik=cik,**kwargs)
 
     def download_xbrl(
         self, 

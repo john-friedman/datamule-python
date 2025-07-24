@@ -61,3 +61,19 @@ jan_2020 = sheet.get_table('simple_xbrl', taxonomy="us-gaap",
                           name="NetIncomeLoss", 
                           filingDate=('2020-01-01','2020-01-31'))
 ```
+
+#### Fundamentals
+
+**fundamentals**
+
+Fundamentals is a convenience function that uses [company-fundamentals](https://github.com/john-friedman/company-fundamentals) to construct fundamentals on the fly using **simple_xbrl**.
+
+Example:
+```
+print(sheet.get_table('fundamentals',fundamentals=['freeCashFlow'],ticker=['TSLA'],filingDate=('2020-01-01','2020-12-31'),
+      submissionType='10-K'))
+```
+Result
+```
+{'CashFlowStatement': {'freeCashFlow': [{'value': 1078000000.0, 'period_start_date': '2019-01-01T00:00:00.000Z', 'period_end_date': '2019-12-31T00:00:00.000Z'}, {'value': -3000000.0, 'period_start_date': '2018-01-01T00:00:00.000Z', 'period_end_date': '2018-12-31T00:00:00.000Z'}, {'value': -3354000000.0, 'period_start_date': '2017-01-01T00:00:00.000Z', 'period_end_date': '2017-12-31T00:00:00.000Z'}]}}
+```
