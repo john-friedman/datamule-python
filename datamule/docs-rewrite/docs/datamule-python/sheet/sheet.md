@@ -68,6 +68,8 @@ jan_2020 = sheet.get_table('simple_xbrl', taxonomy="us-gaap",
 
 Fundamentals is a convenience function that uses [company-fundamentals](https://github.com/john-friedman/company-fundamentals) to construct fundamentals on the fly using **simple_xbrl**.
 
+Full list of fundamentals [here](https://github.com/john-friedman/company-fundamentals/blob/master/company_fundamentals/calculations/calculations.py).
+
 Example:
 ```
 print(sheet.get_table('fundamentals',fundamentals=['freeCashFlow'],ticker=['TSLA'],filingDate=('2020-01-01','2020-12-31'),
