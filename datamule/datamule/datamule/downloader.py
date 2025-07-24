@@ -311,11 +311,11 @@ class Downloader:
                     columns=['accessionNumber'], distinct=True, page_size=25000, quiet=False,api_key=self.api_key)
 
             if filtered_accession_numbers:
-                filtered_accession_numbers = [str(int(item.replace('-',''))) for item in filtered_accession_numbers]
+                filtered_accession_numbers = [format_accession(item,'int') for item in filtered_accession_numbers]
                 filings = [filing for filing in filings if filing['accessionNumber'] in filtered_accession_numbers]
             
             if skip_accession_numbers:
-                skip_accession_numbers = [int(item.replace('-','')) for item in skip_accession_numbers]
+                skip_accession_numbers = [format(item,'int') for item in skip_accession_numbers]
                 filings = [filing for filing in filings if filing['accessionNumber'] not in skip_accession_numbers]
 
             logger.debug(f"Generating URLs for {len(filings)} filings...")
@@ -394,7 +394,7 @@ def download(submission_type=None, cik=None, filing_date=None, api_key=None, out
              skip_accession_numbers=[], max_batch_size=1024*1024*1024,accession_numbers=None):
     
     if filtered_accession_numbers:
-        filtered_accession_numbers = [int(str(x).replace('-', '')) for x in filtered_accession_numbers]
+        filtered_accession_numbers = [format_accession(x,'int') for x in filtered_accession_numbers]
     elif filtered_accession_numbers == []:
         raise ValueError("Applied filter resulted in empty accession numbers list")
     downloader = Downloader(api_key=api_key)
