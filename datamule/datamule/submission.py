@@ -14,6 +14,10 @@ class Submission:
     def __init__(self, path=None, sgml_content=None, keep_document_types=None,
                  batch_tar_path=None, accession_prefix=None, portfolio_ref=None,url=None):
         
+
+        # declare vars to be filled later
+        self.xbrl = None
+        
         # Validate parameters
         param_count = sum(x is not None for x in [path, sgml_content, batch_tar_path,url])
         if param_count != 1:
@@ -238,4 +242,18 @@ class Submission:
             if doc['type'] in document_types:
                 yield self._load_document_by_index(idx)
 
+    # def parse_xbrl(self):
+    #     for idx, doc in enumerate(self.metadata.content['documents']):
+    #         if doc['type'] in ['EX-100.INS','EX-101.INS']:
+    #             document = self._load_document_by_index(idx)
+    #             break
 
+    #         if doc['filename'].endswith('_htm.xml'):
+    #             document = self._load_document_by_index(idx)
+    #             break
+        
+    #     print(doc['type'])
+    #     if not document:
+    #         return
+        
+    #     self.xbrl = document.parse_xbrl()

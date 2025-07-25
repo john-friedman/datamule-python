@@ -106,6 +106,7 @@ class Document:
             return bool(re.search(pattern, self.content))
         return False
     
+    # slated for removal
     def parse_xbrl(self,type='inline'):
         if self.xbrl:
             return

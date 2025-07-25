@@ -315,7 +315,7 @@ class Downloader:
                 filings = [filing for filing in filings if filing['accessionNumber'] in filtered_accession_numbers]
             
             if skip_accession_numbers:
-                skip_accession_numbers = [format(item,'int') for item in skip_accession_numbers]
+                skip_accession_numbers = [format_accession(item,'int') for item in skip_accession_numbers]
                 filings = [filing for filing in filings if filing['accessionNumber'] not in skip_accession_numbers]
 
             logger.debug(f"Generating URLs for {len(filings)} filings...")
