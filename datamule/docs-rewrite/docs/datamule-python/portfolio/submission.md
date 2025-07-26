@@ -14,18 +14,34 @@ The `Submission` class represents a SEC filing. The name `Submission` comes from
 
 Access all documents in a submission by document type.
 
-### Example
 ```python
 for document in submission.document_type('10-K'):
     print(document.path)
 ```
 
-### Iterable
+## Iterable
 
 Access documents in a submission without filtering.
 
-## Example
 ```python
 for document in submission:
     print(document.path)
+```
+
+### `parse_xbrl`
+
+Get a submission's xbrl.
+
+```python
+submission.parse_xbrl()
+print(self.xbrl)
+```
+
+### `parse_fundamentals`
+
+Construct fundamental data such as EBITDA from a submission's xbrl.
+
+```python
+submission.parse_fundamentals(categories=None) # optional, e.g. ['balanceSheet']
+print(self.fundamentals)
 ```

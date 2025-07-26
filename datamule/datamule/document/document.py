@@ -12,8 +12,7 @@ from .processing import process_tabular_data
 from pathlib import Path
 import webbrowser
 from secsgml.utils import bytes_to_str
-from secxbrl import parse_inline_xbrl
-from company_fundamentals import construct_fundamentals
+
 
 class Document:
     def __init__(self, type, content, extension,accession,filing_date,path=None):
@@ -35,8 +34,7 @@ class Document:
         self.extension = extension
         # this will be filled by parsed
         self.data = None
-        self.xbrl = None
-        self.fundamentals = None
+
 
     #_load_text_content
     def _preprocess_txt_content(self):
@@ -106,70 +104,6 @@ class Document:
             return bool(re.search(pattern, self.content))
         return False
     
-    # slated for removal
-    def parse_xbrl(self,type='inline'):
-        if self.xbrl:
-            return
-        if type =='inline':
-            if self.extension not in ['.htm','.html']:
-                return
-            self.xbrl = parse_inline_xbrl(self.content)
-        else:
-            raise ValueError("Only inline has been implemented so far.")
-        
-    def parse_fundamentals(self,categories=None):
-        self.parse_xbrl()
-        # Transform XBRL records into the format needed by construct_fundamentals
-        xbrl = []
-        
-        for xbrl_record in self.xbrl:
-            try:
-                # Extract basic fields
-                value = xbrl_record.get('_val', None)
-                taxonomy, name = xbrl_record['_attributes']['name'].split(':')
-                
-                # Handle scaling if present
-                if xbrl_record.get('_attributes', {}).get('scale') is not None:
-                    scale = int(xbrl_record['_attributes']['scale'])
-                    try:
-                        value = str(Decimal(value.replace(',', '')) * (Decimal(10) ** scale))
-                    except:
-                        pass
-                
-                # Extract period dates
-                period_start_date = None
-                period_end_date = None
-                
-                if xbrl_record.get('_context'):
-                    context = xbrl_record['_context']
-                    period_start_date = context.get('context_period_instant') or context.get('context_period_startdate')
-                    period_end_date = context.get('context_period_enddate')
-                
-                # Create record in the format expected by construct_fundamentals
-                record = {
-                    'taxonomy': taxonomy,
-                    'name': name,
-                    'value': value,
-                    'period_start_date': period_start_date,
-                    'period_end_date': period_end_date
-                }
-                
-                xbrl.append(record)
-                
-            except Exception as e:
-                # Skip malformed records
-                continue
-        
-        # Call construct_fundamentals with the transformed data
-        fundamentals = construct_fundamentals(xbrl, 
-                            taxonomy_key='taxonomy', 
-                            concept_key='name', 
-                            start_date_key='period_start_date', 
-                            end_date_key='period_end_date',
-                            categories=categories)
-        
-        self.fundamentals = fundamentals
-
     # Note: this method will be heavily modified in the future
     def parse(self):
         # check if we have already parsed the content

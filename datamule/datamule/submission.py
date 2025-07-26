@@ -9,6 +9,10 @@ import tarfile
 import zstandard as zstd
 import gzip
 import urllib.request
+from secxbrl import parse_inline_xbrl
+from company_fundamentals import construct_fundamentals
+from decimal import Decimal
+
 
 class Submission:
     def __init__(self, path=None, sgml_content=None, keep_document_types=None,
@@ -17,6 +21,7 @@ class Submission:
 
         # declare vars to be filled later
         self.xbrl = None
+        self.fundamentals = None
         
         # Validate parameters
         param_count = sum(x is not None for x in [path, sgml_content, batch_tar_path,url])
@@ -242,18 +247,81 @@ class Submission:
             if doc['type'] in document_types:
                 yield self._load_document_by_index(idx)
 
-    # def parse_xbrl(self):
-    #     for idx, doc in enumerate(self.metadata.content['documents']):
-    #         if doc['type'] in ['EX-100.INS','EX-101.INS']:
-    #             document = self._load_document_by_index(idx)
-    #             break
+    def parse_xbrl(self):
+        if self.xbrl:
+            return
+        
+        for idx, doc in enumerate(self.metadata.content['documents']):
+            if doc['type'] in ['EX-100.INS','EX-101.INS']:
+                document = self._load_document_by_index(idx)
+                self.xbrl = parse_inline_xbrl(content=document.content,file_type='extracted_inline')
+                return
 
-    #         if doc['filename'].endswith('_htm.xml'):
-    #             document = self._load_document_by_index(idx)
-    #             break
+            if doc['filename'].endswith('_htm.xml'):
+                document = self._load_document_by_index(idx)
+                self.xbrl = parse_inline_xbrl(content=document.content,file_type='extracted_inline')
+                return
+
         
-    #     print(doc['type'])
-    #     if not document:
-    #         return
+    def parse_fundamentals(self,categories=None):
+        self.parse_xbrl()
+
+        # if no xbrl return
+        if not self.xbrl:
+            return
+        # Transform XBRL records into the format needed by construct_fundamentals
+        xbrl = []
         
-    #     self.xbrl = document.parse_xbrl()
+        for xbrl_record in self.xbrl:
+            try:
+                # Extract basic fields
+                value = xbrl_record.get('_val', None)
+                
+                taxonomy, name = xbrl_record['_attributes']['name'].split(':')
+                
+
+                # Handle scaling if present
+                if xbrl_record.get('_attributes', {}).get('scale') is not None:
+                    scale = int(xbrl_record['_attributes']['scale'])
+                    try:
+                        value = str(Decimal(value.replace(',', '')) * (Decimal(10) ** scale))
+                    except:
+                        pass
+                
+
+                # Extract period dates
+                period_start_date = None
+                period_end_date = None
+                
+                if xbrl_record.get('_context'):
+                    context = xbrl_record['_context']
+                    period_start_date = context.get('context_period_instant') or context.get('context_period_startdate')
+                    period_end_date = context.get('context_period_enddate')
+                
+                # Create record in the format expected by construct_fundamentals
+                record = {
+                    'taxonomy': taxonomy,
+                    'name': name,
+                    'value': value,
+                    'period_start_date': period_start_date,
+                    'period_end_date': period_end_date
+                }
+                
+                xbrl.append(record)
+                
+            except Exception as e:
+                # Skip malformed records
+                continue
+        
+  
+        # Call construct_fundamentals with the transformed data
+        fundamentals = construct_fundamentals(xbrl, 
+                            taxonomy_key='taxonomy', 
+                            concept_key='name', 
+                            start_date_key='period_start_date', 
+                            end_date_key='period_end_date',
+                            categories=categories)
+        
+        self.fundamentals = fundamentals
+        
+        

@@ -28,17 +28,11 @@ Parses a document into dictionary form, and applies a mapping dict. Currently su
 
 ## `parse_xbrl`
 
-Parses the inline XBRL of a html document. Feature requests welcome.
-
-[Example](https://github.com/john-friedman/datamule-python/blob/main/examples/parse_xbrl.ipynb)
+Functionality moved to the [Submission Class](submission.md#parse_xbrl)
 
 ## `parse_fundamentals`
 
-```
-parse_fundamentals(categories=None) # optional, e.g. ['balanceSheet']
-```
-[Example](https://github.com/john-friedman/datamule-python/blob/main/examples/fundamentals.ipynb)
-
+Functionality moved to the [Submission Class](submission.md#parse_xbrl)
 
 ## `visualize`
 
