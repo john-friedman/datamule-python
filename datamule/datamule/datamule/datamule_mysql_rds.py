@@ -77,8 +77,14 @@ class DatamuleMySQL:
             if value is None:
                 continue
                 
+            # *** HIGHLIGHTED CHANGE: Special logic for members in simple_xbrl table ***
+            if table == 'simple_xbrl' and key == 'members':
+                if isinstance(value, list):
+                    filters[key] = {"type": "find_in_set", "values": value}
+                else:
+                    filters[key] = {"type": "find_in_set", "values": [value]}
             # Special logic for cik
-            if key == 'cik':
+            elif key == 'cik':
                 if isinstance(value, list):
                     value = [int(val) for val in value]
                 else:
@@ -100,6 +106,12 @@ class DatamuleMySQL:
         for key, filter_obj in filters.items():
             if filter_obj["type"] == "range":
                 query_desc.append(f"{key}={filter_obj['values'][0]} to {filter_obj['values'][1]}")
+            # *** HIGHLIGHTED CHANGE: Display logic for find_in_set type ***
+            elif filter_obj["type"] == "find_in_set":
+                if len(filter_obj["values"]) == 1:
+                    query_desc.append(f"{key} contains {filter_obj['values'][0]}")
+                else:
+                    query_desc.append(f"{key} contains any of {filter_obj['values']}")
             elif len(filter_obj["values"]) == 1:
                 query_desc.append(f"{key}={filter_obj['values'][0]}")
             else:
@@ -177,6 +189,7 @@ def query_mysql_rds(table, api_key=None, **kwargs):
     Parameters:
     - table: Table name (e.g., 'simple_xbrl')
     - cik: Company CIK number(s), can be int, string, or list
+    - members: For simple_xbrl table, search within comma-separated member strings
     - Any other filter parameters as keyword arguments
     - page_size: Number of records per page (max 25000, default 25000)
     - quiet: Boolean, whether to suppress progress output and summary (default False)
@@ -186,6 +199,7 @@ def query_mysql_rds(table, api_key=None, **kwargs):
     - Single value: Exact match
     - List: OR condition (any of the values)
     - Tuple: Range condition (between first and second values)
+    - members (simple_xbrl only): Searches within comma-separated strings using FIND_IN_SET
     
     Returns:
     - List of dictionaries containing the requested data (ready for pandas DataFrame)
@@ -224,8 +238,14 @@ def _query_mysql_rds_single(table, api_key=None, **kwargs):
         if value is None:
             continue
             
+        # *** HIGHLIGHTED CHANGE: Special logic for members in simple_xbrl table ***
+        if table == 'simple_xbrl' and key == 'members':
+            if isinstance(value, list):
+                filters[key] = {"type": "find_in_set", "values": value}
+            else:
+                filters[key] = {"type": "find_in_set", "values": [value]}
         # special logic for cik
-        if key == 'cik':
+        elif key == 'cik':
             if isinstance(value, list):
                 value = [int(val) for val in value]
             else:

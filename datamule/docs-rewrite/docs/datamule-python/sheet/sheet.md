@@ -22,8 +22,11 @@ All tables use the lookup database's parameters for filtering before the main qu
 
 - accessionNumber: BIGINT UNSIGNED NOT NULL
 - cik: BIGINT UNSIGNED NOT NULL
-- Primary Key: Composite key on (accessionNumber, cik)
-- Index: idx_cik on cik column
+- PRIMARY KEY: (accessionNumber, cik)
+- Indexes:
+    - idx_cik (cik)
+
+
 
 **submission_details**
 
@@ -31,7 +34,13 @@ All tables use the lookup database's parameters for filtering before the main qu
 - submissionType: VARCHAR(16) NOT NULL
 - filingDate: DATE NOT NULL
 - isInlineXBRL: BOOLEAN NOT NULL DEFAULT FALSE
-- Indexes: idx_submission_filing, idx_filing_date, idx_inline_xbrl
+- isXBRL: BOOLEAN NOT NULL DEFAULT FALSE
+- Indexes:
+    - idx_submission_filing (submissionType, filingDate)
+    - idx_filing_date (filingDate)
+    - idx_inline_xbrl (isInlineXBRL)
+    - idx_xbrl (isXBRL)
+
 
 Example:
 ```python
@@ -41,16 +50,22 @@ print(sheet.get_table('accession_cik', ticker=['F']))
 #### Simple XBRL
 
 **simple_xbrl**
-
 - id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
 - accessionNumber: BIGINT UNSIGNED NOT NULL
 - context_id: INT UNSIGNED NOT NULL
 - taxonomy: VARCHAR(16) NOT NULL
 - name: VARCHAR(256) NOT NULL
 - value: TEXT NOT NULL
-- period_start_date: DATE NOT NULL
-- period_end_date: DATE NOT NULL
-- Indexes: Multiple indexes on accession, taxonomy, name, and period combinations
+- period_start_date: DATE
+- period_end_date: DATE
+- members: TEXT
+- Indexes:
+    - idx_accession_name (accessionNumber, name)
+    - idx_accession_period_range (accessionNumber, period_start_date, period_end_date)
+    - idx_accession_taxonomy_name (accessionNumber, taxonomy, name)
+    - idx_taxonomy_name (taxonomy, name)
+    - idx_period_range (period_start_date, period_end_date)
+    - idx_accession_name_members (accessionNumber, name, members(255))
 
 Examples:
 ```python
@@ -60,6 +75,8 @@ ford_netincome = sheet.get_table('simple_xbrl', taxonomy="us-gaap",
 jan_2020 = sheet.get_table('simple_xbrl', taxonomy="us-gaap", 
                           name="NetIncomeLoss", 
                           filingDate=('2020-01-01','2020-01-31'))
+
+sheet.get_table('simple_xbrl', filingDate=('2024-01-01','2024-01-31'),members=['us-gaap:CommonStockMember','exch:XCHI'])
 ```
 
 #### Fundamentals
