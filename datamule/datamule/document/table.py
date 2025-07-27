@@ -24,7 +24,6 @@ from .mappings.d import *
 
 from pathlib import Path
 import csv
-# need to check if mappings correctly create new columns
 class Table():
     def __init__(self, data, type,accession):
         if isinstance(data,dict):
