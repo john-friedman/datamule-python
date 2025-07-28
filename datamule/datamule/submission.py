@@ -250,7 +250,7 @@ class Submission:
     def parse_xbrl(self):
         if self._xbrl:
             return
-        
+
         for idx, doc in enumerate(self.metadata.content['documents']):
             if doc['type'] in ['EX-100.INS','EX-101.INS']:
                 document = self._load_document_by_index(idx)
@@ -310,8 +310,8 @@ class Submission:
                 
                 if xbrl_record.get('_context'):
                     context = xbrl_record['_context']
-                    period_start_date = context.get('context_period_instant') or context.get('context_period_startdate')
-                    period_end_date = context.get('context_period_enddate')
+                    period_start_date = context.get('period_instant') or context.get('period_startdate')
+                    period_end_date = context.get('period_enddate')
                 
                 # Create record in the format expected by construct_fundamentals
                 record = {
