@@ -61,3 +61,10 @@ sdr_dict = {
     'headerData_filerInfo_liveTestFlag': 'headerLiveTestFlag',
     'headerData_submissionType': 'headerSubmissionType'
 }
+
+config_sdr = {
+   'sdr': {
+       'path': 'edgarSubmission',
+       'mapping': sdr_dict
+   }
+}

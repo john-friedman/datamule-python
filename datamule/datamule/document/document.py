@@ -8,11 +8,12 @@ from ..mapping_dicts.txt_mapping_dicts import dict_10k, dict_10q, dict_8k, dict_
 from ..mapping_dicts.xml_mapping_dicts import dict_345
 from ..mapping_dicts.html_mapping_dicts import *
 from selectolax.parser import HTMLParser
-from .processing import process_tabular_data
+
 from pathlib import Path
 import webbrowser
 from secsgml.utils import bytes_to_str
 
+from .tables.tables import Tables
 
 class Document:
     def __init__(self, type, content, extension,accession,filing_date,path=None):
@@ -33,7 +34,9 @@ class Document:
 
         self.extension = extension
         # this will be filled by parsed
-        self.data = None
+        self._data = None
+        self._tables = None
+
 
 
     #_load_text_content
@@ -107,7 +110,7 @@ class Document:
     # Note: this method will be heavily modified in the future
     def parse(self):
         # check if we have already parsed the content
-        if self.data:
+        if self._data:
             return
         
         mapping_dict = None
@@ -125,8 +128,8 @@ class Document:
             elif self.type == 'SC 13G':
                 mapping_dict = dict_13g
             
-            self.data = {}
-            self.data['document'] = dict2dict(txt2dict(content=content, mapping_dict=mapping_dict))
+            self._data = {}
+            self._data['document'] = dict2dict(txt2dict(content=content, mapping_dict=mapping_dict))
         elif self.extension in ['.htm', '.html']:
             
             if self.type == '1-K':
@@ -204,16 +207,22 @@ class Document:
                 mapping_dict = dict_nt10k_html
             
             dct = html2dict(content=self.content, mapping_dict=mapping_dict)
-            self.data = dct
+            self._data = dct
         elif self.extension == '.xml':
             if self.type in ['3', '4', '5', '3/A', '4/A', '5/A']:
                 mapping_dict = dict_345
             
-            self.data = xml2dict(content=self.content, mapping_dict=mapping_dict)
+            self._data = xml2dict(content=self.content, mapping_dict=mapping_dict)
         elif self.extension == '.pdf':
-            self.data = pdf2dict(content=self.content, mapping_dict=mapping_dict)
+            self._data = pdf2dict(content=self.content, mapping_dict=mapping_dict)
         else:
             pass
+
+    @property
+    def data(self):
+        if self._data is None:
+            self.parse()
+        return self._data
     
     def write_json(self, output_filename=None):
         if not self.data:
@@ -222,21 +231,27 @@ class Document:
         with open(output_filename, 'w',encoding='utf-8') as f:
             json.dump(self.data, f, indent=2)
 
-    def tables(self):
-        if self.type == 'submission_metadata':
-            return process_tabular_data(self)
-        elif self.extension != '.xml':
-            return []
+    def parse_tables(self):
+        if self.extension != '.xml':
+            self._tables = []
         else:
-            self.parse()
-            return process_tabular_data(self)
+            # Use the property to trigger parsing if needed
+            data = self.data
+            tables = Tables(document_type = self.type, accession=self.accession, data=data)
+            self._tables = tables.tables
+
+    @property
+    def tables(self):
+        if self._tables is None:
+            self.parse_tables()
+        return self._tables
 
 
     def write_csv(self, output_folder):
         output_folder = Path(output_folder)
         output_folder.mkdir(exist_ok=True)
             
-        tables = self.tables()
+        tables = self.tables
 
         if not tables:
             return
@@ -315,13 +330,13 @@ class Document:
    
    # TODO CHANGE THIS
     def __iter__(self):
-        self.parse()
+        # Use the property to trigger parsing if needed
+        document_data = self.data
 
         # Let's remove XML iterable for now
 
         # Handle text-based documents
         if self.extension in ['.txt', '.htm', '.html']:
-            document_data = self.data
             if not document_data:
                 return iter([])
                 

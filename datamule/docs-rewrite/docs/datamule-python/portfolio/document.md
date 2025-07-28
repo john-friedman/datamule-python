@@ -8,72 +8,109 @@ The `Document` class represents a single file in a SEC Submission.
 * `document.path` - document file path
 * `document.filing_date` - submission filing date
 * `document.extension` - document file extension, e.g. '.xml'
-* `document.content` - document in either string or bytes format.
-* `document.data` - parsed document content created after `document.parse()`
+* `document.content` - document in either string or bytes format
+* `document.data` - parsed document content (automatically parsed when first accessed)
+* `document.tables` - parsed tables from XML documents (automatically parsed when first accessed)
 
-##  `contains_string`
+## Lazy Loading
+
+The Document class uses lazy loading for both `data` and `tables` attributes. This means:
+
+- `document.data` automatically calls `parse()` when first accessed
+- `document.tables` automatically calls `parse_tables()` when first accessed  
+- You don't need to manually call `parse()` before accessing document content
+- Parsing only happens once - subsequent accesses return the cached result
+
+### Example
+```python
+doc = Document(...)
+
+# This automatically parses the document
+content = doc.data
+
+# This automatically parses tables (if XML) or returns empty list
+tables = doc.tables
+
+# No manual parsing needed
+doc.visualize()  # Works automatically
+sections = doc.get_section("item1")  # Works automatically
+```
+
+## Methods
+
+### `contains_string`
 ```python
 contains_string(self, pattern)
 ```
 
-### Example
+Checks if the document content contains a specified pattern. Works for HTML, XML, and TXT files.
+
+#### Example
 ```python
 pattern = r'(?i)chatgpt'
 document.contains_string(pattern)
 ```
 
-## `parse`
+### `parse`
 
-Parses a document into dictionary form, and applies a mapping dict. Currently supports any file in `html`, `xml`, has limited support for `.pdf`, and some `txt` formats. Most do not have mapping dicts written yet, so are a bit less standardized.
+Parses a document into dictionary form and applies a mapping dict. Currently supports files in `html`, `xml`, has limited support for `.pdf`, and some `txt` formats. Most do not have mapping dicts written yet, so are less standardized.
 
-## `parse_xbrl`
+**Note:** You typically don't need to call `parse()` manually - accessing `document.data` will automatically trigger parsing if needed.
 
-Functionality moved to the [Submission Class](submission.md#parse_xbrl)
-
-## `parse_fundamentals`
-
-Functionality moved to the [Submission Class](submission.md#parse_xbrl)
-
-## `visualize`
+### `visualize`
 
 Opens a document using webbrowser. Only works for certain file extensions.
 
-## `get_section`
+### `get_section`
 
 Gets section by title.
+
 ```python
-# returns a list of dictionaries preserving hierarcy - a list in case there are multiple sections with the same title
-get_section(title='parti', format='dict'):
+# returns a list of dictionaries preserving hierarchy - a list in case there are multiple sections with the same title
+get_section(title='parti', format='dict')
+
 # returns a list of flattened version of dict form
-get_section(title='signatures', format='text'):
+get_section(title='signatures', format='text')
 
 # return all sections with title including item1, e.g. item1, item1a,...
-get_section(r"item1.*",format='dict')
+get_section(r"item1.*", format='dict')
 
 # returns all sections starting with income
-get_section(r"income.*",format='dict')
+get_section(r"income.*", format='dict')
 ```
 
-Note that `get_section` will return matches for `title` (original title) or `standardized_title` (standarized title - e.g. "ITEM 1A. RISK FACTORS" -> 'item1a').
+Note that `get_section` will return matches for `title` (original title) or `standardized_title` (standardized title - e.g. "ITEM 1A. RISK FACTORS" -> 'item1a').
 
+### `tables`
 
-
-
-## `tables`
 ```python
-document.tables()
+document.tables
 ```
 
-If the document has extension '.xml', parses the xml into tables.
+If the document has extension '.xml', automatically parses the XML into tables when first accessed. For non-XML documents, returns an empty list.
 
-## `write_csv`
+### `write_csv`
+
 ```python
 write_csv(self, output_folder)
 ```
-If the document has extension '.xml', parses the xml into tables, then writes to disk using append.
 
-## `write_json`
+If the document has extension '.xml', parses the XML into tables, then writes to disk using append mode.
 
-Writes `self.data` to json.
+### `write_json`
 
+```python
+write_json(self, output_filename)
+```
 
+Writes `document.data` to JSON format (automatically parses document if not already parsed).
+
+## Deprecated Methods
+
+### `parse_xbrl`
+
+Functionality moved to the [Submission Class](submission.md#parse_xbrl)
+
+### `parse_fundamentals`
+
+Functionality moved to the [Submission Class](submission.md#parse_xbrl)

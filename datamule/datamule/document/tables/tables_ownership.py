@@ -1,6 +1,3 @@
-
-
-
 # Non-derivative transaction ownership mapping
 non_derivative_transaction_mapping = {
     'securityTitle_value': 'securityTitle',
@@ -162,7 +159,7 @@ owner_signature_mapping = {
     'signatureDate': 'signatureDate'
 }
 
-ownership_tables_dict = {
+config_ownership = {
     'non_derivative_holding_ownership': {
         'path': 'ownershipDocument.nonDerivativeTable.nonDerivativeHolding',
         'mapping': non_derivative_holding_mapping

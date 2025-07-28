@@ -20,8 +20,8 @@ class Submission:
         
 
         # declare vars to be filled later
-        self.xbrl = None
-        self.fundamentals = None
+        self._xbrl = None
+        self._fundamentals_cache = {}
         
         # Validate parameters
         param_count = sum(x is not None for x in [path, sgml_content, batch_tar_path,url])
@@ -248,31 +248,46 @@ class Submission:
                 yield self._load_document_by_index(idx)
 
     def parse_xbrl(self):
-        if self.xbrl:
+        if self._xbrl:
             return
         
         for idx, doc in enumerate(self.metadata.content['documents']):
             if doc['type'] in ['EX-100.INS','EX-101.INS']:
                 document = self._load_document_by_index(idx)
-                self.xbrl = parse_inline_xbrl(content=document.content,file_type='extracted_inline')
+                self._xbrl = parse_inline_xbrl(content=document.content,file_type='extracted_inline')
                 return
 
             if doc['filename'].endswith('_htm.xml'):
                 document = self._load_document_by_index(idx)
-                self.xbrl = parse_inline_xbrl(content=document.content,file_type='extracted_inline')
+                self._xbrl = parse_inline_xbrl(content=document.content,file_type='extracted_inline')
                 return
 
+    @property
+    def xbrl(self):
+        if self._xbrl is None:
+            self.parse_xbrl()
+        return self._xbrl
         
-    def parse_fundamentals(self,categories=None):
-        self.parse_xbrl()
+    def parse_fundamentals(self, categories=None):
+        # Create cache key based on categories
+        categories_key = tuple(sorted(categories)) if categories else 'all'
+        
+        # Return cached result if available
+        if categories_key in self._fundamentals_cache:
+            return self._fundamentals_cache[categories_key]
+        
+        # Use the property to trigger XBRL parsing if needed
+        xbrl_data = self.xbrl
 
-        # if no xbrl return
-        if not self.xbrl:
-            return
+        # if no xbrl return None
+        if not xbrl_data:
+            self._fundamentals_cache[categories_key] = None
+            return None
+            
         # Transform XBRL records into the format needed by construct_fundamentals
         xbrl = []
         
-        for xbrl_record in self.xbrl:
+        for xbrl_record in xbrl_data:
             try:
                 # Extract basic fields
                 value = xbrl_record.get('_val', None)
@@ -322,6 +337,26 @@ class Submission:
                             end_date_key='period_end_date',
                             categories=categories)
         
-        self.fundamentals = fundamentals
+        # Cache the result
+        self._fundamentals_cache[categories_key] = fundamentals
+        return fundamentals
+
+    @property
+    def fundamentals(self):
+        """Get all fundamental data"""
+        return self.parse_fundamentals(categories=None)
+
+    def __getattr__(self, name):
+        # Check if it's a fundamentals property request
+        if name.endswith('_fundamentals'):
+            category = name.replace('_fundamentals', '')
+            return self.parse_fundamentals(categories=[category])
         
+        # For any other unknown attribute, try it as a fundamentals category
+        # Let parse_fundamentals handle whether it's valid or not
+        result = self.parse_fundamentals(categories=[name])
+        if result is not None:
+            return result
         
+        # Only raise AttributeError if parse_fundamentals returns None/empty
+        raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{name}'")

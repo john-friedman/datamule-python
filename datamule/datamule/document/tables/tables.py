@@ -1,15 +1,44 @@
-from .ownership_tables import ownership_tables_dict
+from .tables_ownership import config_ownership
+from .tables_13fhr import mapping_13fhr 
+from .tables_informationtable import config_information_table
+from .tables_25nse import config_25nse
+from .tables_npx import config_npx
+from .tables_sbsef import config_sbsef
+from .tables_sdr import config_sdr
+from .tables_proxyvotingrecord import config_proxyvotingrecord
+ 
 from .utils import safe_get, flatten_dict
 # will add filing date param later? or extension
 all_tables_dict = {
-    ('3','3') : ownership_tables_dict,
-    ('3/A','3/A') : ownership_tables_dict,
-    ('4','4') : ownership_tables_dict,
-    ('4/A','4/A') : ownership_tables_dict,
-    ('5','5') : ownership_tables_dict,
-    ('5/A','5/A') : ownership_tables_dict,
+    '3' : config_ownership,
+    '3/A' : config_ownership,
+    '4' : config_ownership,
+    '4/A' : config_ownership,
+    '5' : config_ownership,
+    '5/A' : config_ownership,
+    '13F-HR' : mapping_13fhr,
+    '13F-HR/A' : mapping_13fhr,
+    '13F-NT' : mapping_13fhr,
+    '13F-NT/A' : mapping_13fhr,
+    'INFORMATION TABLE' : config_information_table,
+    '25-NSE' : config_25nse,
+    '25-NSE/A' : config_25nse,
+    'N-PX' : config_npx,
+    'N-PX/A' : config_npx,
+    'SBSEF' : config_sbsef,
+    'SBSEF/A' : config_sbsef,
+    'SBSEF-V' : config_sbsef,
+    'SBSEF-W' : config_sbsef,
+    'SDR' : config_sdr,
+    'SDR/A' : config_sdr,
+    'SDR-W' : config_sdr,
+    'SDR-A' : config_sdr,
+    'PROXY VOTING RECORD' : config_proxyvotingrecord,
 }
 
+# process_ex102_abs will need to be done later
+# process d
+# 144
 
 def seperate_data(tables_dict, data):
     data_list = []
@@ -37,15 +66,25 @@ def seperate_data(tables_dict, data):
 
 def apply_mapping(flattened_data, mapping_dict, accession):
     """Apply mapping to flattened data and add accession"""
-    # Create ordered row starting with accession
+    
+    # Handle case where flattened_data is a list of dictionaries
+    if isinstance(flattened_data, list):
+        results = []
+        for data_dict in flattened_data:
+            results.append(apply_mapping(data_dict, mapping_dict, accession))
+        return results
+    
+    # Original logic for single dictionary
     ordered_row = {'accession': accession}
     
     # Apply mapping for all other keys
     for old_key, new_key in mapping_dict.items():
         if old_key in flattened_data:
             ordered_row[new_key] = flattened_data.pop(old_key)
+        else:
+            ordered_row[new_key] = None
     
-    # Then add any remaining keys that weren't in the mapping
+    # Add any remaining keys that weren't in the mapping
     for key, value in flattened_data.items():
         ordered_row[key] = value
     
@@ -60,8 +99,7 @@ class Table:
 
 
 class Tables():
-    def __init__(self, submission_type,document_type,accession,data):
-        self.submission_type = submission_type
+    def __init__(self,document_type,accession,data):
         self.document_type = document_type
         self.accession = accession
         self.data = data
@@ -75,9 +113,9 @@ class Tables():
         # first select dict
 
         try:
-            tables_dict = all_tables_dict[(self.submission_type,self.document_type)]
+            tables_dict = all_tables_dict[self.document_type]
         except:
-            raise ValueError(f"Table not found: {self.submission_type,self.document_type}")
+            raise ValueError(f"Table not found: {self.document_type}.")
         
         # now get the dicts from the data
         data_dicts = seperate_data(tables_dict,self.data)
