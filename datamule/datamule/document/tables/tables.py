@@ -64,14 +64,14 @@ def seperate_data(tables_dict, data):
     
     return data_list
 
-def apply_mapping(flattened_data, mapping_dict, accession):
+def apply_mapping(flattened_data, mapping_dict, accession, must_exist_in_mapping=False):
     """Apply mapping to flattened data and add accession"""
     
     # Handle case where flattened_data is a list of dictionaries
     if isinstance(flattened_data, list):
         results = []
         for data_dict in flattened_data:
-            results.append(apply_mapping(data_dict, mapping_dict, accession))
+            results.extend(apply_mapping(data_dict, mapping_dict, accession,must_exist_in_mapping))
         return results
     
     # Original logic for single dictionary
@@ -85,10 +85,11 @@ def apply_mapping(flattened_data, mapping_dict, accession):
             ordered_row[new_key] = None
     
     # Add any remaining keys that weren't in the mapping
-    for key, value in flattened_data.items():
-        ordered_row[key] = value
+    if not must_exist_in_mapping:
+        for key, value in flattened_data.items():
+            ordered_row[key] = value
     
-    return ordered_row
+    return [ordered_row]
 
 # should have table type, accession, data
 class Table:
@@ -99,7 +100,7 @@ class Table:
 
 
 class Tables():
-    def __init__(self,document_type,accession,data):
+    def __init__(self,document_type,accession,data,must_exist_in_mapping=True):
         self.document_type = document_type
         self.accession = accession
         self.data = data
@@ -107,9 +108,9 @@ class Tables():
         # to fill in
         self.tables = []
 
-        self.parse_tables()
+        self.parse_tables(must_exist_in_mapping=must_exist_in_mapping)
 
-    def parse_tables(self):
+    def parse_tables(self,must_exist_in_mapping=True):
         # first select dict
 
         try:
@@ -125,5 +126,5 @@ class Tables():
         
         for table_name, flattened_data in data_dicts:
             mapping_dict = tables_dict[table_name]['mapping']
-            mapped_data = apply_mapping(flattened_data, mapping_dict, self.accession)
+            mapped_data = apply_mapping(flattened_data, mapping_dict, self.accession,must_exist_in_mapping)
             self.tables.append(Table(mapped_data, table_name, self.accession))

@@ -231,13 +231,13 @@ class Document:
         with open(output_filename, 'w',encoding='utf-8') as f:
             json.dump(self.data, f, indent=2)
 
-    def parse_tables(self):
+    def parse_tables(self,must_exist_in_mapping=True):
         if self.extension != '.xml':
             self._tables = []
         else:
             # Use the property to trigger parsing if needed
             data = self.data
-            tables = Tables(document_type = self.type, accession=self.accession, data=data)
+            tables = Tables(document_type = self.type, accession=self.accession, data=data,must_exist_in_mapping=must_exist_in_mapping)
             self._tables = tables.tables
 
     @property
