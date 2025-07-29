@@ -67,6 +67,8 @@ class DatamuleMySQL:
             database = 'lookup_db'
         elif table == 'submission_details':
             database = 'lookup_db'
+        elif table == 'proxy_voting_record':
+            database = 'npx_db'
         else:
             raise ValueError(f"Unsupported table: {table}")
         

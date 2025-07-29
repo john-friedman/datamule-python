@@ -26,8 +26,6 @@ All tables use the lookup database's parameters for filtering before the main qu
 - Indexes:
     - idx_cik (cik)
 
-
-
 **submission_details**
 
 - accessionNumber: BIGINT UNSIGNED PRIMARY KEY
@@ -95,4 +93,47 @@ print(sheet.get_table('fundamentals',fundamentals=['freeCashFlow'],ticker=['TSLA
 Result
 ```
 {'CashFlowStatement': {'freeCashFlow': [{'value': 1078000000.0, 'period_start_date': '2019-01-01T00:00:00.000Z', 'period_end_date': '2019-12-31T00:00:00.000Z'}, {'value': -3000000.0, 'period_start_date': '2018-01-01T00:00:00.000Z', 'period_end_date': '2018-12-31T00:00:00.000Z'}, {'value': -3354000000.0, 'period_start_date': '2017-01-01T00:00:00.000Z', 'period_end_date': '2017-12-31T00:00:00.000Z'}]}}
+```
+
+#### Proxy Voting Records
+
+**proxy_voting_record**
+
+- id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+- accessionNumber: BIGINT UNSIGNED NOT NULL
+- meetingDate: DATE
+- managementRecommendation: VARCHAR(16)
+- sharesVoted: BIGINT UNSIGNED
+- howVoted: VARCHAR(16)
+- sharesOnLoan: BIGINT UNSIGNED
+- cusip: CHAR(9)
+- issuerName: VARCHAR(256)
+- categoryType: VARCHAR(256)
+- voteDescription: VARCHAR(8192)
+- Indexes:
+    - idx_cusip (cusip)
+    - idx_meeting_date (meetingDate)
+    - idx_category_type (categoryType)
+    - idx_management_recommendation (managementRecommendation)
+    - idx_how_voted (howVoted)
+    - idx_shares_voted (sharesVoted)
+    - idx_issuer_name (issuerName)
+    - idx_accession_number (accessionNumber)
+
+Examples:
+```python
+# Get voting records for a date range
+recent_votes = sheet.get_table('proxy_voting_record', 
+                              meetingDate=('2023-01-01', '2023-01-31'))
+
+# Filter by voting behavior
+against_mgmt = sheet.get_table('proxy_voting_record', 
+                              managementRecommendation='For',
+                              howVoted='Against', 
+                              meetingDate=('2023-01-01', '2023-01-31'))
+
+
+# Get executive compensation votes
+exec_comp = sheet.get_table('proxy_voting_record', 
+                           categoryType='COMPENSATION',cik='2024532')
 ```
