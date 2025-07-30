@@ -137,3 +137,39 @@ against_mgmt = sheet.get_table('proxy_voting_record',
 exec_comp = sheet.get_table('proxy_voting_record', 
                            categoryType='COMPENSATION',cik='2024532')
 ```
+
+#### 13F-HR
+
+**information_table**
+
+- id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+- accessionNumber: BIGINT UNSIGNED NOT NULL
+- nameOfIssuer: VARCHAR(256)
+- titleOfClass: VARCHAR(256)
+- cusip: CHAR(9)
+- value: BIGINT UNSIGNED
+- sharesOrPrincipalAmount: BIGINT UNSIGNED
+- sharesOrPrincipalAmountType: VARCHAR(16)
+- investmentDiscretion: VARCHAR(16)
+- votingAuthoritySole: BIGINT UNSIGNED
+- votingAuthorityShared: BIGINT UNSIGNED
+- votingAuthorityNone: BIGINT UNSIGNED
+- putCall: VARCHAR(16)
+- otherManager: VARCHAR(256)
+- Indexes:
+    - idx_cusip (cusip)
+    - idx_accession_number (accessionNumber)
+    - idx_voting_authority (votingAuthoritySole, votingAuthorityShared, votingAuthorityNone)
+    - idx_name_of_issuer (nameOfIssuer)
+    - idx_title_of_class (titleOfClass)
+    - idx_value (value)
+    - idx_shares_or_principal_amount (sharesOrPrincipalAmount)
+    - idx_shares_or_principal_amount_type (sharesOrPrincipalAmountType)
+    - idx_investment_discretion (investmentDiscretion)
+
+Examples:
+```python
+
+# Find all holdings of a specific security by CUSIP
+aapl_holders = sheet.get_table('information_table', cusip='037833100',filingDate=('2024-01-01', '2024-01-07'))
+```

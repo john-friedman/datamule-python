@@ -10,25 +10,6 @@ information_table_dict = {
     'votingAuthority_Shared': 'votingAuthorityShared',
     'votingAuthority_None': 'votingAuthorityNone',
     'putCall': 'putCall',
-    'otherManager': 'otherManager',
-    'entityName': 'entityName',
-    'entityIdentifier': 'entityIdentifier',
-    'entityIdentifierType': 'entityIdentifierType',
-    'infoTable': 'infoTable',
-    'infoTable_cusip': 'infoTableCusip',
-    'infoTable_figi': 'infoTableFigi',
-    'infoTable_investmentDiscretion': 'infoTableInvestmentDiscretion',
-    'infoTable_nameOfIssuer': 'infoTableNameOfIssuer',
-    'infoTable_otherManager': 'infoTableOtherManager',
-    'infoTable_putCall': 'infoTablePutCall',
-    'infoTable_shrsOrPrnAmt_sshPrnamt': 'infoTableSharesOrPrincipalAmount',
-    'infoTable_shrsOrPrnAmt_sshPrnamtType': 'infoTableSharesOrPrincipalAmountType',
-    'infoTable_titleOfClass': 'infoTableTitleOfClass',
-    'infoTable_value': 'infoTableValue',
-    'infoTable_votingAuthority_None': 'infoTableVotingAuthorityNone',
-    'infoTable_votingAuthority_Shared': 'infoTableVotingAuthorityShared',
-    'infoTable_votingAuthority_Sole': 'infoTableVotingAuthoritySole',
-    'schemaLocation': 'schemaLocation'
 }
 
 config_information_table = {
