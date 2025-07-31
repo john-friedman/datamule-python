@@ -15,7 +15,7 @@ get_table(self, table, cik=None, ticker=None, **kwargs)
 
 ### Databases
 
-#### Lookup Database
+#### Lookup
 All tables use the lookup database's parameters for filtering before the main query.
 
 Sources:
@@ -54,6 +54,7 @@ Sources:
 - All submissions containing inline XBRL or XBRL.
 
 **simple_xbrl**
+
 - id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
 - accessionNumber: BIGINT UNSIGNED NOT NULL
 - context_id: INT UNSIGNED NOT NULL
@@ -189,7 +190,7 @@ Examples:
 aapl_holders = sheet.get_table('information_table', cusip='037833100',filingDate=('2024-01-01', '2024-01-07'))
 ```
 
-#### Ownership Database
+#### Ownership
 
 Sources:
 - Submission Type: 3, 4, 5, 3/A, 4/A and 5/A. Document Type: 3, 4, 5, 3/A, 4/A and 5/A.
