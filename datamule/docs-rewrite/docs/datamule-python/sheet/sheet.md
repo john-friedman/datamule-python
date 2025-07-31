@@ -18,6 +18,9 @@ get_table(self, table, cik=None, ticker=None, **kwargs)
 #### Lookup Database
 All tables use the lookup database's parameters for filtering before the main query.
 
+Sources:
+- SEC's public EDGAR filing history for all filers from the Submissions API. Recompiled nightly. [ZIP](https://www.sec.gov/Archives/edgar/daily-index/bulkdata/submissions.zip)
+
 **accession_cik**
 
 - accessionNumber: BIGINT UNSIGNED NOT NULL
@@ -46,6 +49,9 @@ print(sheet.get_table('accession_cik', ticker=['F']))
 ```
 
 #### Simple XBRL
+
+Sources:
+- All submissions containing inline XBRL or XBRL.
 
 **simple_xbrl**
 - id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
@@ -79,6 +85,9 @@ sheet.get_table('simple_xbrl', filingDate=('2024-01-01','2024-01-31'),members=['
 
 #### Fundamentals
 
+Sources:
+- All submissions containing inline XBRL or XBRL.
+
 **fundamentals**
 
 Fundamentals is a convenience function that uses [company-fundamentals](https://github.com/john-friedman/company-fundamentals) to construct fundamentals on the fly using **simple_xbrl**.
@@ -98,6 +107,9 @@ Result
 #### Proxy Voting Records
 
 **proxy_voting_record**
+
+Sources:
+- Submission Type: N-PX, N-PX/A. Document Type: PROXY VOTING RECORD.
 
 - id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
 - accessionNumber: BIGINT UNSIGNED NOT NULL
@@ -142,6 +154,9 @@ exec_comp = sheet.get_table('proxy_voting_record',
 
 **information_table**
 
+Sources:
+- Submission Type: 13F-HR, 13F-HR/A. Document Type: INFORMATION TABLE.
+
 - id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
 - accessionNumber: BIGINT UNSIGNED NOT NULL
 - nameOfIssuer: VARCHAR(256)
@@ -172,4 +187,241 @@ Examples:
 
 # Find all holdings of a specific security by CUSIP
 aapl_holders = sheet.get_table('information_table', cusip='037833100',filingDate=('2024-01-01', '2024-01-07'))
+```
+
+#### Ownership Database
+
+Sources:
+- Submission Type: 3, 4, 5, 3/A, 4/A and 5/A. Document Type: 3, 4, 5, 3/A, 4/A and 5/A.
+
+
+**derivative_holding_ownership**
+
+- id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+- accessionNumber: BIGINT UNSIGNED NOT NULL
+- securityTitle: VARCHAR(128)
+- securityTitleFootnote: TEXT
+- conversionOrExercisePrice: BIGINT UNSIGNED
+- conversionOrExercisePriceFootnote: TEXT
+- exerciseDate: DATE
+- exerciseDateFootnote: TEXT
+- expirationDate: DATE
+- expirationDateFootnote: TEXT
+- underlyingSecurityTitle: VARCHAR(128)
+- underlyingSecurityTitleFootnote: TEXT
+- underlyingSecurityShares: BIGINT UNSIGNED
+- underlyingSecuritySharesFootnote: TEXT
+- underlyingSecurityValue: BIGINT UNSIGNED
+- underlyingSecurityValueFootnote: TEXT
+- directOrIndirectOwnership: CHAR(1)
+- directOrIndirectOwnershipFootnote: TEXT
+- natureOfOwnership: VARCHAR(256)
+- natureOfOwnershipFootnote: TEXT
+- sharesOwnedFollowingTransaction: BIGINT UNSIGNED
+- sharesOwnedFollowingTransactionFootnote: TEXT
+- valueOwnedFollowingTransaction: BIGINT UNSIGNED
+- valueOwnedFollowingTransactionFootnote: TEXT
+- transactionFormType: TINYINT
+- transactionCodingFootnote: TEXT
+- Indexes:
+    - idx_accession_number (accessionNumber)
+    - idx_underlying_security_title (underlyingSecurityTitle)
+    - idx_expiration_date (expirationDate)
+    - idx_security_title (securityTitle)
+
+**derivative_transaction_ownership**
+
+- id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+- accessionNumber: BIGINT UNSIGNED NOT NULL
+- securityTitle: VARCHAR(128)
+- securityTitleFootnote: TEXT
+- conversionOrExercisePrice: BIGINT UNSIGNED
+- conversionOrExercisePriceFootnote: TEXT
+- transactionDate: DATE
+- transactionDateFootnote: TEXT
+- deemedExecutionDate: DATE
+- deemedExecutionDateFootnote: TEXT
+- transactionFormType: TINYINT
+- transactionCode: CHAR(1)
+- equitySwapInvolved: VARCHAR(8)
+- transactionCodingFootnote: TEXT
+- transactionShares: BIGINT UNSIGNED
+- transactionSharesFootnote: TEXT
+- transactionPricePerShare: BIGINT UNSIGNED
+- transactionPricePerShareFootnote: TEXT
+- transactionAcquiredDisposedCode: CHAR(1)
+- transactionTotalValue: BIGINT UNSIGNED
+- transactionTotalValueFootnote: TEXT
+- exerciseDate: DATE
+- exerciseDateFootnote: TEXT
+- expirationDate: DATE
+- expirationDateFootnote: TEXT
+- underlyingSecurityTitle: VARCHAR(128)
+- underlyingSecurityTitleFootnote: TEXT
+- underlyingSecurityShares: BIGINT UNSIGNED
+- underlyingSecuritySharesFootnote: TEXT
+- underlyingSecurityValue: BIGINT UNSIGNED
+- sharesOwnedFollowingTransaction: BIGINT UNSIGNED
+- sharesOwnedFollowingTransactionFootnote: TEXT
+- directOrIndirectOwnership: CHAR(1)
+- directOrIndirectOwnershipFootnote: TEXT
+- natureOfOwnership: VARCHAR(256)
+- natureOfOwnershipFootnote: TEXT
+- transactionTimeliness: CHAR(1)
+- transactionTimelinessFootnote: TEXT
+- valueOwnedFollowingTransaction: BIGINT UNSIGNED
+- valueOwnedFollowingTransactionFootnote: TEXT
+- transactionAcquiredDisposedCodeFootnote: TEXT
+- underlyingSecurityValueFootnote: TEXT
+- Indexes:
+    - idx_accession_number (accessionNumber)
+    - idx_transaction_date (transactionDate)
+    - idx_transaction_code (transactionCode)
+    - idx_underlying_security_title (underlyingSecurityTitle)
+    - idx_expiration_date (expirationDate)
+
+**metadata_ownership**
+
+- id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+- accessionNumber: BIGINT UNSIGNED NOT NULL
+- periodOfReport: DATE
+- issuerCik: BIGINT UNSIGNED
+- issuerName: VARCHAR(128)
+- issuerTradingSymbol: VARCHAR(16)
+- documentType: VARCHAR(8)
+- remarks: TEXT
+- documentDescription: TEXT
+- footnotes: TEXT
+- notSubjectToSection16: VARCHAR(8)
+- form3HoldingsReported: TINYINT
+- form4TransactionsReported: TINYINT
+- noSecuritiesOwned: TINYINT
+- aff10b5One: VARCHAR(8)
+- dateOfOriginalSubmission: DATE
+- schemaVersion: VARCHAR(8)
+- Indexes:
+    - idx_accession_number (accessionNumber)
+    - idx_issuer_cik (issuerCik)
+    - idx_period_of_report (periodOfReport)
+
+**non_derivative_holding_ownership**
+
+- id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+- accessionNumber: BIGINT UNSIGNED NOT NULL
+- securityTitle: VARCHAR(128)
+- securityTitleFootnote: TEXT
+- sharesOwnedFollowingTransaction: BIGINT UNSIGNED
+- sharesOwnedFollowingTransactionFootnote: TEXT
+- directOrIndirectOwnership: CHAR(1)
+- directOrIndirectOwnershipFootnote: TEXT
+- natureOfOwnership: VARCHAR(256)
+- natureOfOwnershipFootnote: TEXT
+- valueOwnedFollowingTransaction: BIGINT UNSIGNED
+- transactionCodingFootnote: TEXT
+- transactionFormType: TINYINT
+- valueOwnedFollowingTransactionFootnote: TEXT
+- Indexes:
+    - idx_accession_number (accessionNumber)
+    - idx_security_title (securityTitle)
+    - idx_direct_or_indirect_ownership (directOrIndirectOwnership)
+
+**non_derivative_transaction_ownership**
+
+- id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+- accessionNumber: BIGINT UNSIGNED NOT NULL
+- securityTitle: VARCHAR(128)
+- securityTitleFootnote: TEXT
+- transactionDate: DATE
+- transactionDateFootnote: TEXT
+- deemedExecutionDate: DATE
+- deemedExecutionDateFootnote: TEXT
+- transactionFormType: TINYINT
+- transactionCode: CHAR(1)
+- equitySwapInvolved: VARCHAR(8)
+- transactionCodingFootnote: TEXT
+- transactionShares: BIGINT UNSIGNED
+- transactionSharesFootnote: TEXT
+- transactionPricePerShare: BIGINT UNSIGNED
+- transactionPricePerShareFootnote: TEXT
+- transactionAcquiredDisposedCode: CHAR(1)
+- transactionAcquiredDisposedCodeFootnote: TEXT
+- sharesOwnedFollowingTransaction: BIGINT UNSIGNED
+- sharesOwnedFollowingTransactionFootnote: TEXT
+- directOrIndirectOwnership: CHAR(1)
+- directOrIndirectOwnershipFootnote: TEXT
+- natureOfOwnership: VARCHAR(256)
+- natureOfOwnershipFootnote: TEXT
+- transactionTimeliness: CHAR(1)
+- transactionTimelinessFootnote: TEXT
+- valueOwnedFollowingTransaction: BIGINT UNSIGNED
+- valueOwnedFollowingTransactionFootnote: TEXT
+- Indexes:
+    - idx_accession_number (accessionNumber)
+    - idx_transaction_date (transactionDate)
+    - idx_transaction_code (transactionCode)
+    - idx_transaction_acquired_disposed_code (transactionAcquiredDisposedCode)
+    - idx_security_title (securityTitle)
+
+**owner_signature_ownership**
+
+- id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+- accessionNumber: BIGINT UNSIGNED NOT NULL
+- signatureName: VARCHAR(256)
+- signatureDate: DATE
+- Indexes:
+    - idx_accession_number (accessionNumber)
+    - idx_signature_date (signatureDate)
+    - idx_signature_name (signatureName)
+
+**reporting_owner_ownership**
+
+- id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+- accessionNumber: BIGINT UNSIGNED NOT NULL
+- rptOwnerCity: VARCHAR(64)
+- rptOwnerState: VARCHAR(4)
+- rptOwnerStateDescription: VARCHAR(64)
+- rptOwnerStreet1: VARCHAR(64)
+- rptOwnerStreet2: VARCHAR(64)
+- rptOwnerZipCode: VARCHAR(16)
+- rptOwnerCik: BIGINT UNSIGNED
+- rptOwnerName: VARCHAR(256)
+- rptOwnerIsDirector: VARCHAR(8)
+- rptOwnerIsOfficer: VARCHAR(8)
+- rptOwnerIsTenPercentOwner: VARCHAR(8)
+- rptOwnerIsOther: VARCHAR(8)
+- rptOwnerOfficerTitle: VARCHAR(64)
+- rptOwnerOtherText: VARCHAR(64)
+- Indexes:
+    - idx_accession_number (accessionNumber)
+    - idx_rpt_owner_name (rptOwnerName)
+    - idx_rpt_owner_is_director (rptOwnerIsDirector)
+    - idx_rpt_owner_is_officer (rptOwnerIsOfficer)
+    - idx_rpt_owner_is_ten_percent_owner (rptOwnerIsTenPercentOwner)
+    - idx_rpt_owner_is_other (rptOwnerIsOther)
+    - idx_rpt_owner_officer_title (rptOwnerOfficerTitle)
+
+Examples:
+```python
+# Get all Tesla insider transactions for a date range
+tesla_transactions = sheet.get_table('non_derivative_transaction_ownership', 
+                                    ticker=['TSLA'], 
+                                    transactionDate=('2024-01-01', '2024-03-31'))
+
+# Find all stock options expiring soon
+expiring_options = sheet.get_table('derivative_holding_ownership',
+                                  expirationDate=('2024-12-01', '2024-12-31'))
+
+# Get reporting owner details for specific filings
+owner_info = sheet.get_table('reporting_owner_ownership',
+                            cik=['1318605'])  # Tesla CIK
+
+# Find all buy transactions (A = Acquired)
+buy_transactions = sheet.get_table('non_derivative_transaction_ownership',
+                                  transactionAcquiredDisposedCode='A',
+                                  transactionDate=('2024-01-01', '2024-01-31'))
+
+# Get metadata for all Form 4 filings
+form4_metadata = sheet.get_table('metadata_ownership',
+                                 documentType='4',
+                                 periodOfReport=('2024-01-01', '2024-01-31'))
 ```

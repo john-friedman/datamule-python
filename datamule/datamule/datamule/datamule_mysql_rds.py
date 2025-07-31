@@ -71,6 +71,9 @@ class DatamuleMySQL:
             database = 'npx_db'
         elif table == 'information_table':
             database = '13fhr_db'
+        elif table in ['derivative_holding_ownership','derivative_transaction_ownership', 'metadata_ownership','non_derivative_holding_ownership',
+                       'non_derivative_transaction_ownership','owner_signature_ownership','reporting_owner_ownership']:
+            database = 'ownership_db'
         else:
             raise ValueError(f"Unsupported table: {table}")
         
