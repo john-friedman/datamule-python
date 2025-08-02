@@ -14,7 +14,9 @@ I host a bunch of useful stuff in the cloud, such as:
 * SEC MySQL RDS ($1/million rows retrieved)
     - SEC XBRL
     - Company Fundamentals
-    - Proxy Voting Records
+    - Proxy Voting Records: (N-PX)
+    - Institutional Holdings: (13F-HR)
+    - Insider Transactions: (3,4,5)
 
 Pricing is meant to cover usage + if I make money that's cool. 
 

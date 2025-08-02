@@ -315,11 +315,11 @@ class Document:
         else:
             visualize_dict(self.data)
 
-    def get_section(self, title, format='dict'):
+    def get_section(self, title=None, title_regex=None,title_class=None, format='dict'):
         if not self.data:
             self.parse()
 
-        result = get_title(self.data,title)
+        result = get_title(self.data,title=title,title_regex=title_regex,title_class=title_class)
 
         if format == 'text':
             result = [item[1] for item in result]

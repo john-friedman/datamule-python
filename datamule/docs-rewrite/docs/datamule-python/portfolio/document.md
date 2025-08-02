@@ -65,6 +65,10 @@ Opens a document using webbrowser. Only works for certain file extensions.
 
 Gets section by title.
 
+```
+get_section(title=None, title_regex=None,title_class=None, format='dict'):
+```
+
 ```python
 # returns a list of dictionaries preserving hierarchy - a list in case there are multiple sections with the same title
 get_section(title='parti', format='dict')
@@ -72,11 +76,11 @@ get_section(title='parti', format='dict')
 # returns a list of flattened version of dict form
 get_section(title='signatures', format='text')
 
-# return all sections with title including item1, e.g. item1, item1a,...
-get_section(r"item1.*", format='dict')
+# return all sections with title including item1, e.g. item1, item1a,... title_class restricts to nodes where class is 'item'
+get_section(title_regex= r"item1.*", format='dict',title_class='item')
 
 # returns all sections starting with income
-get_section(r"income.*", format='dict')
+get_section(title_regex= r"income.*", format='dict')
 ```
 
 Note that `get_section` will return matches for `title` (original title) or `standardized_title` (standardized title - e.g. "ITEM 1A. RISK FACTORS" -> 'item1a').
