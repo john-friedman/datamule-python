@@ -23,7 +23,11 @@ from ..utils.format_accession import format_accession
 # could be cleaned up
 
 # Set up logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=logging.getLogger().handlers,
+)
 logger = logging.getLogger(__name__)
 
 
