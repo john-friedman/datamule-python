@@ -163,8 +163,8 @@ class Submission:
                     content = zstd.ZstdDecompressor().decompress(content)
                 
                 # Decode text files
-                if extension in ['.htm', '.html', '.txt', '.xml']:
-                    content = content.decode('utf-8', errors='replace')
+                # if extension in ['.htm', '.html', '.txt', '.xml']:
+                #     content = content.decode('utf-8', errors='replace')
                 
                 document_path = f"{self.batch_tar_path}::{self.accession_prefix}/{filename}"
         
@@ -197,8 +197,8 @@ class Submission:
                         content = zstd.ZstdDecompressor().decompress(content)
                     
                     # Decode text files
-                    if extension in ['.htm', '.html', '.txt', '.xml']:
-                        content = content.decode('utf-8', errors='replace')
+                    # if extension in ['.htm', '.html', '.txt', '.xml']:
+                    #     content = content.decode('utf-8', errors='replace')
                     
                     document_path = f"{self.path}::{actual_filename}"
             
@@ -219,8 +219,8 @@ class Submission:
                     content = zstd.ZstdDecompressor().decompress(content)
                 
                 # Decode text files
-                if extension in ['.htm', '.html', '.txt', '.xml']:
-                    content = content.decode('utf-8', errors='replace')
+                # if extension in ['.htm', '.html', '.txt', '.xml']:
+                #     content = content.decode('utf-8', errors='replace')
 
         return Document(
             type=doc['type'], 
