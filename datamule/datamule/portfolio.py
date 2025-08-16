@@ -96,12 +96,16 @@ class Portfolio:
         # Create submissions for each accession
         submissions = []
         for accession_prefix in accession_prefixes:
-            submission = Submission(
-                batch_tar_path=batch_tar_path,
-                accession_prefix=accession_prefix,
-                portfolio_ref=self
-            )
-            submissions.append(submission)
+            try:
+                submission = Submission(
+                    batch_tar_path=batch_tar_path,
+                    accession_prefix=accession_prefix,
+                    portfolio_ref=self
+                )
+                submissions.append(submission)
+            except Exception as e:
+                pass
+                #print(f"Path: {batch_tar_path}. Exception: {e}")
             pbar.update(1)  # Update progress for each successful submission
         
         return submissions

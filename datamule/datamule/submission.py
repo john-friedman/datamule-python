@@ -12,6 +12,7 @@ import urllib.request
 from secxbrl import parse_inline_xbrl
 from company_fundamentals import construct_fundamentals
 from decimal import Decimal
+from .utils.format_accession import format_accession
 
 
 class Submission:
@@ -93,11 +94,10 @@ class Submission:
             # standardize metadata
             metadata = transform_metadata_string(metadata)
             self.metadata = Document(type='submission_metadata', content=metadata, extension='.json',filing_date=None,accession=None,path=metadata_path)
-            self.accession = self.metadata.content['accession-number']
+
+            # lets just use accesion-prefix, to get around malformed metadata files (1995 has a lot!)
+            self.accession = format_accession(self.accession_prefix,'dash')
             
-            # Band-aid fix: some SGML files in the SEC are bad lol, so they have TWO header sections. Will fix post w/ my cleaned archive
-            if isinstance(self.accession,list):
-                self.accession = self.accession[0]
             #print(f"s: {self.metadata.content['accession-number']} : {batch_tar_path}")
             self.filing_date= f"{self.metadata.content['filing-date'][:4]}-{self.metadata.content['filing-date'][4:6]}-{self.metadata.content['filing-date'][6:8]}"
 
