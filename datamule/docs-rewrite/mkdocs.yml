@@ -9,6 +9,7 @@ nav:
       - Quickstart: datamule-python/quickstart.md
       - Setting a Data Provider: datamule-python/data_provider.md
       - Package Data: datamule-python/package_data.md
+      - Datasets: datamule-python/datasets.md
       - SEC Terminology:
           - Submission Types: datamule-python/sec/submission_types.md
       - Portfolio:
