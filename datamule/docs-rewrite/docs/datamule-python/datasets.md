@@ -3,7 +3,7 @@
 ## Usage
 ```python
 from datamule.datasets import cik_cusip_crosswalk
-import pandas as p
+import pandas as pd
 
 print(pd.DataFrame(cik_cusip_crosswalk).head())
 ```
