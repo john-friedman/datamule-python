@@ -12,6 +12,7 @@ from selectolax.parser import HTMLParser
 from pathlib import Path
 import webbrowser
 from secsgml.utils import bytes_to_str
+import tempfile
 
 from .tables.tables import Tables
 
@@ -36,18 +37,19 @@ class Document:
         # this will be filled by parsed
         self._data = None
         self._tables = None
+        self._text = None
 
 
 
     #_load_text_content
     def _preprocess_txt_content(self):
-            return self.content.translate(str.maketrans({
+            self._text = self.content.decode().translate(str.maketrans({
                 '\xa0': ' ', '\u2003': ' ',
                 '\u2018': "'", '\u2019': "'",
                 '\u201c': '"', '\u201d': '"'
             }))
 
-    # will deprecate this when we add html2dict
+    # needs work
     def _preprocess_html_content(self):
         parser = HTMLParser(self.content,detect_encoding=True,decode_errors='ignore')
     
@@ -95,7 +97,7 @@ class Document:
         while '\n\n\n' in text:
             text = text.replace('\n\n\n', '\n\n')
         
-        return text.translate(str.maketrans({
+        self._text = text.translate(str.maketrans({
             '\xa0': ' ', '\u2003': ' ',
             '\u2018': "'", '\u2019': "'",
             '\u201c': '"', '\u201d': '"'
@@ -116,7 +118,7 @@ class Document:
         mapping_dict = None
         
         if self.extension == '.txt':
-            content = self._preprocess_txt_content()
+            content = self.text
             if self.type == '10-Q':
                 mapping_dict = dict_10q
             elif self.type == '10-K':
@@ -224,6 +226,15 @@ class Document:
             self.parse()
         return self._data
     
+    @property
+    def text(self):
+        if self._text is None:
+            if self.extension in ['.htm','.html']:
+                self._preprocess_html_content()
+            elif self.extension == '.txt':
+                self._preprocess_txt_content()
+            return self._text
+    
     def write_json(self, output_filename=None):
         if not self.data:
             self.parse()
@@ -308,12 +319,22 @@ class Document:
             self.parse()
 
         if not self.data:
-            if self.extension in ['.jpg', '.png', '.pdf']:
-                webbrowser.open('file://' + str(self.path))
-            else:
-                pass
+            pass
         else:
             visualize_dict(self.data)
+
+    # alpha feature
+    def open(self):
+        """Open the document. Experimental. Creates copy in temp, rather than use tar path for now."""
+        if self.extension in ['.htm', '.html','.txt','.jpg','.png', '.pdf']:
+            # Create a temporary file with the content and open it
+
+            with tempfile.NamedTemporaryFile(mode='wb', suffix=self.extension, delete=False) as f:
+                f.write(self.content)
+                temp_path = f.name
+            webbrowser.open('file://' + temp_path)
+        else:
+            print(f"Cannot open files with extension {self.extension}")
 
     def get_section(self, title=None, title_regex=None,title_class=None, format='dict'):
         if not self.data:

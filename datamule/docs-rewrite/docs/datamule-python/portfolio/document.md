@@ -59,7 +59,11 @@ Parses a document into dictionary form and applies a mapping dict. Currently sup
 
 ### `visualize`
 
-Opens a document using webbrowser. Only works for certain file extensions.
+Opens the parser version of a document using webbrowser. Only works for certain file extensions.
+
+### `open`
+
+Opens the document using webbrowser.
 
 ### `get_section`
 
