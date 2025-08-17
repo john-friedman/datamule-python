@@ -10,6 +10,7 @@ The `Document` class represents a single file in a SEC Submission.
 * `document.extension` - document file extension, e.g. '.xml'
 * `document.content` - document in either string or bytes format
 * `document.data` - parsed document content (automatically parsed when first accessed)
+* `document.text` - available for html or txt files. Returns the text without formatting such as tags. (automatically parsed when first accessed)
 * `document.tables` - parsed tables from XML documents (automatically parsed when first accessed)
 
 ## Lazy Loading

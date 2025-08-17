@@ -13,7 +13,8 @@ proxy_voting_record_dict = {
     'vote_voteRecord_sharesVoted': 'recordSharesVoted',  # To distinguish from top-level sharesVoted
     'isin': 'isin',
     'voteSource': 'voteSource',
-    'voteSeries': 'voteSeries'
+    'voteSeries': 'voteSeries',
+    'figi': 'figi',
 }
 
 config_proxyvotingrecord = {

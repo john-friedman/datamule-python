@@ -16,6 +16,7 @@ Datasets are locally stored in the User's home. e.g. for Windows: `C:\Users\{use
 
 ## List of Datasets
 * cik_cusip_crosswalk
+* financial_security_identifiers_crosswalk
 
 ## Updating Local Datasets
 ```python
