@@ -119,93 +119,92 @@ class Document:
         
         if self.extension == '.txt':
             content = self.text
-            if self.type == '10-Q':
+            if self.type in ['10-Q', '10-Q/A']:
                 mapping_dict = dict_10q
-            elif self.type == '10-K':
+            elif self.type in ['10-K','10-K/A']:
                 mapping_dict = dict_10k
-            elif self.type == '8-K':
+            elif self.type in ['8-K', '8-K/A']:
                 mapping_dict = dict_8k
-            elif self.type == 'SC 13D':
+            elif self.type in ['SC 13D', 'SC 13D/A']:
                 mapping_dict = dict_13d
-            elif self.type == 'SC 13G':
+            elif self.type in ['SC 13G', 'SC 13G/A']:
                 mapping_dict = dict_13g
             
             self._data = {}
             self._data['document'] = dict2dict(txt2dict(content=content, mapping_dict=mapping_dict))
         elif self.extension in ['.htm', '.html']:
             
-            if self.type == '1-K':
+            if self.type in ['1-K', '1-K/A']:
                 mapping_dict = dict_1kpartii_html
-            elif self.type == '1-SA':
+            elif self.type in ['1-SA', '1-SA/A']:
                 mapping_dict = dict_1sa_html
-            elif self.type == '1-U':
+            elif self.type in ['1-U', '1-U/A']:
                 mapping_dict = dict_1u_html
-            elif self.type == '10-12B':
+            elif self.type in ['10-12B', '10-12B/A']:
                 mapping_dict = dict_1012b_html
-            elif self.type == '10-D':
+            elif self.type in ['10-D', '10-D/A']:
                 mapping_dict = dict_10d_html
-            elif self.type == '10-K':
+            elif self.type in ['10-K', '10-K/A']:
                 mapping_dict = dict_10k_html
-            elif self.type == '10-Q':
+            elif self.type in ['10-Q', '10-Q/A']:
                 mapping_dict = dict_10q_html
-            elif self.type == '20-F':
+            elif self.type in ['20-F', '20-F/A']:
                 mapping_dict = dict_20f_html
-            elif self.type == '8-A12B':
+            elif self.type in ['8-A12B', '8-A12B/A']:
                 mapping_dict = dict_8a12b_html
-            elif self.type == '8-A12G':
+            elif self.type in ['8-A12G', '8-A12G/A']:
                 mapping_dict = dict_8a12g_html
-            elif self.type == '8-K':
+            elif self.type in ['8-K', '8-K/A']:
                 mapping_dict = dict_8k_html
-            elif self.type == '8-K12B':
+            elif self.type in ['8-K12B', '8-K12B/A']:
                 mapping_dict = dict_8k12b_html
-            elif self.type == '8-K12G3':
+            elif self.type in ['8-K12G3', '8-K12G3/A']:
                 mapping_dict = dict_8k12g3_html
-            elif self.type == '8-K15D5':
+            elif self.type in ['8-K15D5', '8-K15D5/A']:
                 mapping_dict = dict_8k15d5_html
-            elif self.type == 'ABS-15G':
+            elif self.type in ['ABS-15G', 'ABS-15G/A']:
                 mapping_dict = dict_abs15g_html
-            elif self.type == 'ABS-EE':
+            elif self.type in ['ABS-EE', 'ABS-EE/A']:
                 mapping_dict = dict_absee_html
-            elif self.type == 'APP NTC':
-                dict_appntc_html
-            elif self.type == 'CB':
+            elif self.type in ['APP NTC', 'APP NTC/A']:
+                mapping_dict = dict_appntc_html
+            elif self.type in ['CB', 'CB/A']:
                 mapping_dict = dict_cb_html
-            elif self.type == 'DSTRBRPT':
+            elif self.type in ['DSTRBRPT', 'DSTRBRPT/A']:
                 mapping_dict = dict_dstrbrpt_html
-            elif self.type == 'N-18F1':
+            elif self.type in ['N-18F1', 'N-18F1/A']:
                 mapping_dict = dict_n18f1_html
-            elif self.type == 'N-CSRS':
+            elif self.type in ['N-CSRS', 'N-CSRS/A']:
                 mapping_dict = dict_ncsrs_html
-            elif self.type == 'NT-10K':
+            elif self.type in ['NT-10K', 'NT-10K/A']:
                 mapping_dict = dict_nt10k_html
-            elif self.type == 'NT-10Q':
+            elif self.type in ['NT-10Q', 'NT-10Q/A']:
                 mapping_dict = dict_nt10q_html
-            elif self.type == 'NT 20-F':
+            elif self.type in ['NT 20-F', 'NT 20-F/A']:
                 mapping_dict = dict_nt20f_html
-            elif self.type == 'NT-NCEN':
+            elif self.type in ['NT-NCEN', 'NT-NCEN/A']:
                 mapping_dict = dict_ntncen_html
-            elif self.type == 'NT-NCSR':
+            elif self.type in ['NT-NCSR', 'NT-NCSR/A']:
                 mapping_dict = dict_ntncsr_html
-            elif self.type == 'NTFNCEN':
+            elif self.type in ['NTFNCEN', 'NTFNCEN/A']:
                 mapping_dict = dict_ntfcen_html
-            elif self.type == 'NTFNCSR':
+            elif self.type in ['NTFNCSR', 'NTFNCSR/A']:
                 mapping_dict = dict_ntfncsr_html
-            elif self.type == 'EX-99.CERT':
+            elif self.type in ['EX-99.CERT', 'EX-99.CERT/A']:
                 mapping_dict = dict_ex99cert_html
-            elif self.type == 'SC 13E3':
+            elif self.type in ['SC 13E3', 'SC 13E3/A']:
                 mapping_dict = dict_sc13e3_html
-            elif self.type == 'SC 14D9':
+            elif self.type in ['SC 14D9', 'SC 14D9/A']:
                 mapping_dict = dict_sc14d9_html
-            elif self.type == 'SP 15D2':
+            elif self.type in ['SP 15D2', 'SP 15D2/A']:
                 mapping_dict = dict_sp15d2_html
-
-            elif self.type == 'SD':
+            elif self.type in ['SD', 'SD/A']:
                 mapping_dict = dict_sd_html
-            elif self.type == 'S-1':
+            elif self.type in ['S-1', 'S-1/A']:
                 mapping_dict = dict_s1_html
-            elif self.type == 'T-3':
+            elif self.type in ['T-3', 'T-3/A']:
                 mapping_dict = dict_t3_html
-            elif self.type in ['NT 10-K', 'NT 10-Q','NT 20-F']:
+            elif self.type in ['NT 10-K', 'NT 10-K/A', 'NT 10-Q', 'NT 10-Q/A', 'NT 20-F', 'NT 20-F/A']:
                 mapping_dict = dict_nt10k_html
             
             dct = html2dict(content=self.content, mapping_dict=mapping_dict)
@@ -233,7 +232,7 @@ class Document:
                 self._preprocess_html_content()
             elif self.extension == '.txt':
                 self._preprocess_txt_content()
-            return self._text
+        return self._text
     
     def write_json(self, output_filename=None):
         if not self.data:
