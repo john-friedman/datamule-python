@@ -16,6 +16,8 @@ import tempfile
 
 from .tables.tables import Tables
 
+from ..regex import *
+
 class Document:
     def __init__(self, type, content, extension,accession,filing_date,path=None):
         
