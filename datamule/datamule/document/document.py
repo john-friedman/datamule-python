@@ -18,7 +18,26 @@ from .tables.tables import Tables
 
 from ..tags.utils import get_cusip_using_regex, get_isin_using_regex, get_figi_using_regex,get_all_tickers, get_full_names,get_full_names_dictionary_lookup
 
-
+class TextWithTags(str):
+    """
+    A string subclass that adds a .tags property while maintaining 
+    full string compatibility.
+    """
+    def __new__(cls, content, document):
+        # Create the string instance
+        instance = str.__new__(cls, content)
+        # Store reference to document for tags functionality
+        instance._document = document
+        instance._tags = None
+        return instance
+    
+    @property
+    def tags(self):
+        """Access to tags functionality"""
+        if self._tags is None:
+            self._tags = Tags(self._document)
+        return self._tags
+    
 class Tickers:
     def __init__(self, document):
         self.document = document
@@ -171,8 +190,6 @@ class Document:
         self._tables = None
         self._text = None
         
-        self.tags = Tags(self)
-
 
 
     #_load_text_content
@@ -363,9 +380,13 @@ class Document:
     def text(self):
         if self._text is None:
             if self.extension in ['.htm','.html']:
-                self._preprocess_html_content()
+                self._preprocess_html_content()  # Still sets self._text to plain string
             elif self.extension == '.txt':
-                self._preprocess_txt_content()
+                self._preprocess_txt_content()   # Still sets self._text to plain string
+            
+            # Convert the plain string to TextWithTags
+            plain_text = self._text
+            self._text = TextWithTags(plain_text, self)
         return self._text
     
     def write_json(self, output_filename=None):
