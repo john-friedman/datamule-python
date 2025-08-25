@@ -64,11 +64,15 @@ class Tags:
         self.document = document
         self._tickers = None
         self.dictionaries = {}
+        self.processors = {}
         
-        # Load global dictionaries with their data
+        # Load global dictionaries with their data and processors
         active_dicts = _active_dictionaries
         for dict_name in active_dicts:
-            self.dictionaries[dict_name] = _loaded_dictionaries[dict_name]
+            dict_info = _loaded_dictionaries[dict_name]
+            self.dictionaries[dict_name] = dict_info['data']
+            if dict_info['processor'] is not None:
+                self.processors[dict_name] = dict_info['processor']
             
     
     def _check_support(self):
@@ -128,9 +132,9 @@ class Tags:
             return None
         
         if not hasattr(self, '_persons'):
-            if '8k_2024_persons' in self.dictionaries:
-                # Use FlashText dictionary lookup for 8K persons
-                self._persons = get_full_names_dictionary_lookup(self.document.text, self.dictionaries['8k_2024_persons'])
+            if '8k_2024_persons' in self.processors:
+                # Use pre-built processor
+                self._persons = get_full_names_dictionary_lookup(self.document.text, self.processors['8k_2024_persons'])
             elif 'ssa_baby_first_names' in self.dictionaries:
                 # Use regex with SSA names for validation
                 self._persons = get_full_names(self.document.text, self.dictionaries['ssa_baby_first_names'])

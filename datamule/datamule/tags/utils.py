@@ -134,14 +134,10 @@ def get_full_names(text,keywords=None):
     return full_names
 
 # add dictionary lookup based on precomputed lists
-def get_full_names_dictionary_lookup(text, dictionary):
-    keyword_processor = KeywordProcessor(case_sensitive=True)
-    
-    for key in dictionary.keys():
-        keyword_processor.add_keyword(key, key)
-    
+def get_full_names_dictionary_lookup(text, processor):
+    """Use pre-built KeywordProcessor instead of creating new one"""
     matches = []
-    keywords_found = keyword_processor.extract_keywords(text, span_info=True)
+    keywords_found = processor.extract_keywords(text, span_info=True)
     
     for keyword, start_pos, end_pos in keywords_found:
         matches.append((keyword, start_pos, end_pos))

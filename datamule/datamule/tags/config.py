@@ -12,5 +12,22 @@ def set_dictionaries(dictionaries, overwrite=False):
     for dict_name in dictionaries:
         # Download if needed
         download_dictionary(dict_name, overwrite=overwrite)
-        # Load into memory
-        _loaded_dictionaries[dict_name] = load_dictionary(dict_name)
+        # Load raw data
+        raw_data = load_dictionary(dict_name)
+        
+        # Create processor for dictionary lookup methods
+        if dict_name in ['8k_2024_persons']:  # Add other dict names as needed
+            from flashtext import KeywordProcessor
+            processor = KeywordProcessor(case_sensitive=True)
+            for key in raw_data.keys():
+                processor.add_keyword(key, key)
+            
+            _loaded_dictionaries[dict_name] = {
+                'data': raw_data,
+                'processor': processor
+            }
+        else:
+            _loaded_dictionaries[dict_name] = {
+                'data': raw_data,
+                'processor': None
+            }
