@@ -143,3 +143,30 @@ def get_full_names_dictionary_lookup(text, processor):
         matches.append((keyword, start_pos, end_pos))
     
     return matches
+
+
+def create_lm_processors(lm_dict):
+    processors = {}
+    
+    for category_key, word_set in lm_dict.items():
+        processor = KeywordProcessor(case_sensitive=False)
+        for word in word_set:
+            processor.add_keyword(word)
+        processors[category_key] = processor
+    
+    return processors
+
+def analyze_lm_sentiment_fragment(text, processors):
+    """Analyze sentiment for a single text fragment"""
+    if not text or not text.strip():
+        return {}
+    
+    word_count = len(text.split())
+    results = {}
+    
+    for category, processor in processors.items():
+        matches = processor.extract_keywords(text.lower(), span_info=True)
+        results[category] = len(matches)
+    
+    results['total_words'] = word_count
+    return results

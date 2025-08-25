@@ -15,7 +15,7 @@ from secsgml.utils import bytes_to_str
 import tempfile
 from .tables.tables import Tables
 
-from ..tags.utils import get_cusip_using_regex, get_isin_using_regex, get_figi_using_regex,get_all_tickers, get_full_names,get_full_names_dictionary_lookup
+from ..tags.utils import get_cusip_using_regex, get_isin_using_regex, get_figi_using_regex,get_all_tickers, get_full_names,get_full_names_dictionary_lookup, analyze_lm_sentiment_fragment
 
 class DataWithTags(dict):
     def __init__(self, data, document):
@@ -28,6 +28,12 @@ class DataWithTags(dict):
         if self._tags is None:
             self._tags = Tags(self._document, mode='data')  # New fragment-based behavior
         return self._tags
+    
+    @property
+    def similarity(self):
+        if not hasattr(self, '_similarity'):
+            self._similarity = Similarity(self._document, mode='data')
+        return self._similarity
     
 class TextWithTags(str):
     def __new__(cls, content, document):
@@ -42,6 +48,12 @@ class TextWithTags(str):
             self._tags = Tags(self._document, mode='text')  # Original behavior
         return self._tags
     
+    @property
+    def similarity(self):
+        if not hasattr(self, '_similarity'):
+            self._similarity = Similarity(self._document, mode='text')
+        return self._similarity
+        
 
 class Tickers:
     def __init__(self, document):
@@ -77,12 +89,11 @@ class Tickers:
         data = self._get_tickers_data()
         return str(data)
     
-class Tags:
+class TextAnalysisBase:
     def __init__(self, document, mode='text'):
         from ..tags.config import _active_dictionaries,_loaded_dictionaries
         self.document = document
         self.mode = mode  # 'text' or 'data'
-        self._tickers = None
         self.dictionaries = {}
         self.processors = {}
         self._text_sources = None
@@ -133,6 +144,11 @@ class Tags:
         else:
             # New format: (match, fragment_id, start, end)
             return [(match, fragment_id, start, end) for match, start, end in results]
+
+class Tags(TextAnalysisBase):
+    def __init__(self, document, mode='text'):
+        super().__init__(document, mode)
+        self._tickers = None
     
     @property
     def cusips(self):
@@ -218,7 +234,38 @@ class Tags:
                 self._persons.extend(formatted_results)
                     
         return self._persons
-    
+
+class Similarity(TextAnalysisBase):
+    @property
+    def loughran_mcdonald(self):
+        if not hasattr(self, '_loughran_mcdonald'):
+            self._loughran_mcdonald = []
+            sources = self._get_text_sources()
+            
+            if 'loughran_mcdonald' in self.processors:
+                lm_processors = self.processors['loughran_mcdonald']
+                
+                for source in sources:
+                    results = analyze_lm_sentiment_fragment(source['text'], lm_processors)
+                    
+                    if self.mode == 'text':
+                        # Single result for whole document
+                        self._loughran_mcdonald = results
+                        break
+                    else:
+                        # Per-fragment results with fragment_id
+                        fragment_result = {
+                            'fragment_id': source['id'],
+                            **results
+                        }
+                        self._loughran_mcdonald.append(fragment_result)
+            else:
+                # No processors available
+                self._loughran_mcdonald = [] if self.mode == 'data' else {}
+                    
+        return self._loughran_mcdonald
+
+
 class Document:
     def __init__(self, type, content, extension,accession,filing_date,path=None):
         

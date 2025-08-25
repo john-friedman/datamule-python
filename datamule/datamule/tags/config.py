@@ -1,4 +1,4 @@
-from ..utils.dictionaries import download_dictionary, load_dictionary
+from .dictionaries import download_dictionary, load_dictionary
 
 _active_dictionaries = []
 _loaded_dictionaries = {}
@@ -25,6 +25,14 @@ def set_dictionaries(dictionaries, overwrite=False):
             _loaded_dictionaries[dict_name] = {
                 'data': raw_data,
                 'processor': processor
+            }
+        elif dict_name == 'loughran_mcdonald':
+            from .utils import create_lm_processors
+            processors = create_lm_processors(raw_data)
+            
+            _loaded_dictionaries[dict_name] = {
+                'data': raw_data,
+                'processor': processors 
             }
         else:
             _loaded_dictionaries[dict_name] = {
