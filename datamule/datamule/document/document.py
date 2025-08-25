@@ -17,26 +17,32 @@ from .tables.tables import Tables
 
 from ..tags.utils import get_cusip_using_regex, get_isin_using_regex, get_figi_using_regex,get_all_tickers, get_full_names,get_full_names_dictionary_lookup
 
+class DataWithTags(dict):
+    def __init__(self, data, document):
+        super().__init__(data)
+        self._document = document
+        self._tags = None
+    
+    @property
+    def tags(self):
+        if self._tags is None:
+            self._tags = Tags(self._document, mode='data')  # New fragment-based behavior
+        return self._tags
+    
 class TextWithTags(str):
-    """
-    A string subclass that adds a .tags property while maintaining 
-    full string compatibility.
-    """
     def __new__(cls, content, document):
-        # Create the string instance
         instance = str.__new__(cls, content)
-        # Store reference to document for tags functionality
         instance._document = document
         instance._tags = None
         return instance
     
     @property
     def tags(self):
-        """Access to tags functionality"""
         if self._tags is None:
-            self._tags = Tags(self._document)
+            self._tags = Tags(self._document, mode='text')  # Original behavior
         return self._tags
     
+
 class Tickers:
     def __init__(self, document):
         self.document = document
@@ -72,12 +78,14 @@ class Tickers:
         return str(data)
     
 class Tags:
-    def __init__(self, document):
+    def __init__(self, document, mode='text'):
         from ..tags.config import _active_dictionaries,_loaded_dictionaries
         self.document = document
+        self.mode = mode  # 'text' or 'data'
         self._tickers = None
         self.dictionaries = {}
         self.processors = {}
+        self._text_sources = None
         
         # Load global dictionaries with their data and processors
         active_dicts = _active_dictionaries
@@ -87,43 +95,107 @@ class Tags:
             if dict_info['processor'] is not None:
                 self.processors[dict_name] = dict_info['processor']
     
+    def _get_text_sources(self):
+        """Get text sources based on mode - either single text or multiple fragments"""
+        if self._text_sources is None:
+            if self.mode == 'text':
+                # Original behavior - single text source
+                self._text_sources = [{'id': None, 'text': str(self.document.text)}]
+            else:  # mode == 'data'
+                # New behavior - multiple text fragments
+                self._text_sources = []
+                self._extract_text_fragments(self.document.data, '')
+        return self._text_sources
+    
+    def _extract_text_fragments(self, data, parent_id=''):
+        """Extract all text fragments with their document IDs from parsed data"""
+        if isinstance(data, dict):
+            for key, value in data.items():
+                if key in ["text", "title"] and isinstance(value, str):
+                    # Use the current dictionary's parent key as the fragment ID
+                    self._text_sources.append({
+                        'id': parent_id,
+                        'text': value
+                    })
+                elif isinstance(value, (dict, list)):
+                    # Pass the current key as the parent_id for the next level
+                    self._extract_text_fragments(value, key)
+        elif isinstance(data, list):
+            for i, item in enumerate(data):
+                if isinstance(item, (dict, list)):
+                    self._extract_text_fragments(item, parent_id)
+    
+    def _format_results(self, results, fragment_id):
+        """Format results based on mode"""
+        if self.mode == 'text':
+            # Original format: (match, start, end)
+            return results
+        else:
+            # New format: (match, fragment_id, start, end)
+            return [(match, fragment_id, start, end) for match, start, end in results]
+    
     @property
     def cusips(self):
         if not hasattr(self, '_cusips'):
-            if 'sc13dg_cusips' in self.dictionaries:
-                keywords = self.dictionaries['sc13dg_cusips']
-                self._cusips = get_cusip_using_regex(self.document.text, keywords)
-            elif "13fhr_information_table_cusips" in self.dictionaries:
-                keywords = self.dictionaries['13fhr_information_table_cusips']
-                self._cusips = get_cusip_using_regex(self.document.text,keywords)
-            else:
-                self._cusips = get_cusip_using_regex(self.document.text)
-        return self._cusips 
+            self._cusips = []
+            sources = self._get_text_sources()
+            
+            for source in sources:
+                if 'sc13dg_cusips' in self.dictionaries:
+                    keywords = self.dictionaries['sc13dg_cusips']
+                    results = get_cusip_using_regex(source['text'], keywords)
+                elif "13fhr_information_table_cusips" in self.dictionaries:
+                    keywords = self.dictionaries['13fhr_information_table_cusips']
+                    results = get_cusip_using_regex(source['text'], keywords)
+                else:
+                    results = get_cusip_using_regex(source['text'])
+                
+                # Format results based on mode
+                formatted_results = self._format_results(results, source['id'])
+                self._cusips.extend(formatted_results)
+                    
+        return self._cusips
     
     @property
     def isins(self):
-            
         if not hasattr(self, '_isins'):
-            if 'npx_isins' in self.dictionaries:
-                keywords = self.dictionaries['npx_isins']
-                self._isins = get_isin_using_regex(self.document.text, keywords)
-            else:
-                self._isins = get_isin_using_regex(self.document.text)
+            self._isins = []
+            sources = self._get_text_sources()
+            
+            for source in sources:
+                if 'npx_isins' in self.dictionaries:
+                    keywords = self.dictionaries['npx_isins']
+                    results = get_isin_using_regex(source['text'], keywords)
+                else:
+                    results = get_isin_using_regex(source['text'])
+                
+                formatted_results = self._format_results(results, source['id'])
+                self._isins.extend(formatted_results)
+                    
         return self._isins
 
     @property
     def figis(self):
-            
         if not hasattr(self, '_figis'):
-            if 'npx_figis' in self.dictionaries:
-                keywords = self.dictionaries['npx_figis']
-                self._figis = get_figi_using_regex(self.document.text, keywords)
-            else:
-                self._figis = get_figi_using_regex(self.document.text)
+            self._figis = []
+            sources = self._get_text_sources()
+            
+            for source in sources:
+                if 'npx_figis' in self.dictionaries:
+                    keywords = self.dictionaries['npx_figis']
+                    results = get_figi_using_regex(source['text'], keywords)
+                else:
+                    results = get_figi_using_regex(source['text'])
+                
+                formatted_results = self._format_results(results, source['id'])
+                self._figis.extend(formatted_results)
+                    
         return self._figis
     
     @property
     def tickers(self):
+        # Tickers work differently - they need the full document context
+        # Keep original behavior for now
         if self._tickers is None:
             self._tickers = Tickers(self.document)
         return self._tickers
@@ -131,18 +203,22 @@ class Tags:
     @property
     def persons(self):
         if not hasattr(self, '_persons'):
-            if '8k_2024_persons' in self.processors:
-                # Use pre-built processor
-                self._persons = get_full_names_dictionary_lookup(self.document.text, self.processors['8k_2024_persons'])
-            elif 'ssa_baby_first_names' in self.dictionaries:
-                # Use regex with SSA names for validation
-                self._persons = get_full_names(self.document.text, self.dictionaries['ssa_baby_first_names'])
-            else:
-                # Fallback to regex without validation
-                self._persons = get_full_names(self.document.text)
+            self._persons = []
+            sources = self._get_text_sources()
+            
+            for source in sources:
+                if '8k_2024_persons' in self.processors:
+                    results = get_full_names_dictionary_lookup(source['text'], self.processors['8k_2024_persons'])
+                elif 'ssa_baby_first_names' in self.dictionaries:
+                    results = get_full_names(source['text'], self.dictionaries['ssa_baby_first_names'])
+                else:
+                    results = get_full_names(source['text'])
+                
+                formatted_results = self._format_results(results, source['id'])
+                self._persons.extend(formatted_results)
+                    
         return self._persons
     
-
 class Document:
     def __init__(self, type, content, extension,accession,filing_date,path=None):
         
@@ -351,6 +427,13 @@ class Document:
     def data(self):
         if self._data is None:
             self.parse()
+
+        if self._data is None:
+            self._data = {}
+        
+        if not isinstance(self._data, DataWithTags):
+            self._data = DataWithTags(self._data, self)
+            
         return self._data
     
     @property

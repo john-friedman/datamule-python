@@ -120,6 +120,12 @@ Writes `document.data` to JSON format (automatically parses document if not alre
 
 Tags is an experimental attribute to add decent NLP to the SEC corpus, without compromising speed or bloating the package. How tags work is that they leverage basic pattern matching (fast + lightweight) alongside dictionary lookup of pre-computed NLP datasets.
 
+Usage:
+```
+document.text.tags
+document.data.tags
+```
+
 It is highly recommended to use a pre computed dataset to improve quality. Or don't, if you want to see how bad older forms of NLP can be.
 
 ### Attributes
@@ -173,18 +179,11 @@ set_dictionaries(['13fhr_information_table_cusips'])
 portfolio = Portfolio('13fhr')
 portfolio.download_submissions(submission_type=['13F-HR'],filing_date=('2008-09-01','2008-09-30'))
 
-s =time()
-chars = 0
 for sub in portfolio:
     for doc in sub:
-        if doc.extension in ['.htm','.html','.txt']:
-            results = doc.text.tags.cusips
-            if results:
-                print(results)
-            chars += len(doc.text)
-
-print("time taken:",time()-s)
-print("total chars:",chars)
+        results = doc.text.tags.cusips
+        if results is not None:
+            print(results)
 ```
 ## Deprecated Methods
 
