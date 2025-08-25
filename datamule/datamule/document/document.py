@@ -16,8 +16,8 @@ import tempfile
 import warnings
 from .tables.tables import Tables
 
-from ..tags.utils import get_cusip_using_regex, get_isin_using_regex, get_figi_using_regex, get_all_tickers, get_full_names
-from ..tags.config import _active_dictionaries,_loaded_dictionaries
+from ..tags.utils import get_cusip_using_regex, get_isin_using_regex, get_figi_using_regex,get_all_tickers, get_full_names,get_full_names_dictionary_lookup
+
 
 class Tickers:
     def __init__(self, document):
@@ -59,6 +59,7 @@ class Tickers:
     
 class Tags:
     def __init__(self, document):
+        from ..tags.config import _active_dictionaries,_loaded_dictionaries
         self.not_supported = document.extension not in ['.htm', '.html', '.txt']
         self.document = document
         self._tickers = None
@@ -67,8 +68,8 @@ class Tags:
         # Load global dictionaries with their data
         active_dicts = _active_dictionaries
         for dict_name in active_dicts:
-            if dict_name == 'ssa_baby_names':
-                self.dictionaries['persons'] = _loaded_dictionaries['ssa_baby_names']
+            self.dictionaries[dict_name] = _loaded_dictionaries[dict_name]
+            
     
     def _check_support(self):
         if self.not_supported:
@@ -77,30 +78,42 @@ class Tags:
         return True
     
     @property
-    def cusip(self):
+    def cusips(self):
         if not self._check_support():
             return None
             
         if not hasattr(self, '_cusip'):
-            self._cusip = get_cusip_using_regex(self.document.text)
+            if 'sc13dg_cusips' in self.dictionaries:
+                keywords = self.dictionaries['sc13dg_cusips']
+                self._cusip = get_cusip_using_regex(self.document.text, keywords)
+            else:
+                self._cusip = get_cusip_using_regex(self.document.text)
         return self._cusip
     
     @property
-    def isin(self):
+    def isins(self):
         if not self._check_support():
             return None
             
         if not hasattr(self, '_isin'):
-            self._isin = get_isin_using_regex(self.document.text)
+            if 'npx_isins' in self.dictionaries:
+                keywords = self.dictionaries['npx_isins']
+                self._isin = get_isin_using_regex(self.document.text, keywords)
+            else:
+                self._isin = get_isin_using_regex(self.document.text)
         return self._isin
-    
+
     @property
-    def figi(self):
+    def figis(self):
         if not self._check_support():
             return None
             
         if not hasattr(self, '_figi'):
-            self._figi = get_figi_using_regex(self.document.text)
+            if 'npx_figis' in self.dictionaries:
+                keywords = self.dictionaries['npx_figis']
+                self._figi = get_figi_using_regex(self.document.text, keywords)
+            else:
+                self._figi = get_figi_using_regex(self.document.text)
         return self._figi
     
     @property
@@ -115,10 +128,14 @@ class Tags:
             return None
         
         if not hasattr(self, '_persons'):
-            keywords = self.dictionaries.get('persons')
-            if keywords is not None:
-                self._persons = get_full_names(self.document.text, keywords)
+            if '8k_2024_persons' in self.dictionaries:
+                # Use FlashText dictionary lookup for 8K persons
+                self._persons = get_full_names_dictionary_lookup(self.document.text, self.dictionaries['8k_2024_persons'])
+            elif 'ssa_baby_first_names' in self.dictionaries:
+                # Use regex with SSA names for validation
+                self._persons = get_full_names(self.document.text, self.dictionaries['ssa_baby_first_names'])
             else:
+                # Fallback to regex without validation
                 self._persons = get_full_names(self.document.text)
         return self._persons
     

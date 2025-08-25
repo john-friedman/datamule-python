@@ -1,23 +1,36 @@
 import re
 from .regex import cusip_regex, isin_regex, figi_regex, ticker_regex_list
 from .regex import particles
+from flashtext import KeywordProcessor
 
-def get_cusip_using_regex(text):
+def get_cusip_using_regex(text,keywords=None):
     matches = []
     for match in re.finditer(cusip_regex, text):
-        matches.append((match.group(), match.start(), match.end()))
+        if keywords is not None:
+            if match.group() in keywords:
+                matches.append((match.group(), match.start(), match.end()))
+        else:
+            matches.append((match.group(), match.start(), match.end()))
     return matches
 
-def get_isin_using_regex(text):
+def get_isin_using_regex(text,keywords=None):
     matches = []
     for match in re.finditer(isin_regex, text):
-        matches.append((match.group(), match.start(), match.end()))
+        if keywords is not None:
+            if match.group() in keywords:
+                matches.append((match.group(), match.start(), match.end()))
+        else:
+            matches.append((match.group(), match.start(), match.end()))
     return matches
 
-def get_figi_using_regex(text):
+def get_figi_using_regex(text,keywords=None):
     matches = []
     for match in re.finditer(figi_regex, text):
-        matches.append((match.group(), match.start(), match.end()))
+        if keywords is not None:
+            if match.group() in keywords:
+                matches.append((match.group(), match.start(), match.end()))
+        else:
+            matches.append((match.group(), match.start(), match.end()))
     return matches
 
 def get_tickers_using_regex(text, regex_pattern):
@@ -121,3 +134,16 @@ def get_full_names(text,keywords=None):
     return full_names
 
 # add dictionary lookup based on precomputed lists
+def get_full_names_dictionary_lookup(text, dictionary):
+    keyword_processor = KeywordProcessor(case_sensitive=True)
+    
+    for key in dictionary.keys():
+        keyword_processor.add_keyword(key, key)
+    
+    matches = []
+    keywords_found = keyword_processor.extract_keywords(text, span_info=True)
+    
+    for keyword, start_pos, end_pos in keywords_found:
+        matches.append((keyword, start_pos, end_pos))
+    
+    return matches

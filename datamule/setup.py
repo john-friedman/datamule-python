@@ -32,7 +32,7 @@ if not os.path.exists(file_path):
 setup(
     name="datamule",
     author="John Friedman",
-    version="2.1.6",
+    version="2.2.0",
     description="Work with SEC submissions at scale.",
     packages=find_packages(include=['datamule', 'datamule.*']),
     url="https://github.com/john-friedman/datamule-python",
@@ -51,7 +51,8 @@ setup(
         'secxbrl',
         'secsgml',
         'websocket-client',
-        'company_fundamentals'
+        'company_fundamentals',
+        'flashtext'
     ],
     # Include the data directory in the package
     package_data={

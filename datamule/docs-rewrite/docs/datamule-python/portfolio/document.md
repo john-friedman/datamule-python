@@ -124,9 +124,9 @@ It is highly recommended to use a pre computed dataset to improve quality. Or do
 ### Attributes
 These attributes are built in.
 
-- cusip
-- isin
-- figi
+- cusips
+- isins
+- figis
 - persons
 - tickers
     - nyse
@@ -143,7 +143,7 @@ set_dictionaries(['ssa_baby_names'], overwrite=False) # set this to true, to dow
 
 Persons
 - ssa_baby_names (Uses all baby first names since 1880, where there are more than 5 names per year.)
-- (Planned) 8k_2024_persons (Uses multistage spacy, human parser pipeline to extract names from all documents within 2024 8-K filings)
+- 8k_2024_persons (Uses multistage spacy, human parser pipeline to extract names from all documents within 2024 8-K filings)
 
 CUSIP
 - sc13dg_cusips (Uses SC 13D/G, somewhat incomplete)
@@ -153,7 +153,7 @@ ISIN
 - npx_isins (Uses isins detected in N-PX filings, very incomplete)
 
 FIGI
-- npx_figi (Uses figis detected in N-PX filings, very incomplete)
+- npx_figis (Uses figis detected in N-PX filings, very incomplete)
 
 
 
