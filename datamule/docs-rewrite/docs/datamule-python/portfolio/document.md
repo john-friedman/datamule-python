@@ -12,6 +12,7 @@ The `Document` class represents a single file in a SEC Submission.
 * `document.data` - parsed document content (automatically parsed when first accessed)
 * `document.text` - available for html or txt files. Returns the text without formatting such as tags. (automatically parsed when first accessed)
 * `document.tables` - parsed tables from XML documents (automatically parsed when first accessed)
+* `document.tags` - e.g. `tags.ticker.nyse`, `tags.cusip`. See [Tags](#tags).
 
 ## Lazy Loading
 
@@ -113,6 +114,51 @@ write_json(self, output_filename)
 ```
 
 Writes `document.data` to JSON format (automatically parses document if not already parsed).
+
+## Tags
+
+Tags is an experimental attribute to add decent NLP to the SEC corpus, without compromising speed or bloating the package. How tags work is that they leverage basic pattern matching (fast + lightweight) alongside dictionary lookup of pre-computed NLP datasets.
+
+It is highly recommended to use a pre computed dataset to improve quality. Or don't, if you want to see how bad older forms of NLP can be.
+
+### Attributes
+These attributes are built in.
+
+- cusip
+- isin
+- figi
+- persons
+- tickers
+    - nyse
+    - nasdaq
+    - etc.
+
+### Dictionaries
+To improve tag quality, use a dictionary. On first load, these dictionaries are downloaded into the User's home. e.g. for Windows: `C:\Users\{username}\.datamule\dictionaries`.
+
+```python
+from datamule.tags.config import set_dictionaries
+set_dictionaries(['ssa_baby_names'], overwrite=False) # set this to true, to download the latest dataset.
+```
+
+Persons
+- ssa_baby_names (Uses all baby first names since 1880, where there are more than 5 names per year.)
+- (Planned) 8k_2024_persons (Uses multistage spacy, human parser pipeline to extract names from all documents within 2024 8-K filings)
+
+CUSIP
+- sc13dg_cusips (Uses SC 13D/G, somewhat incomplete)
+- (Planned) information_table_cusips (Uses 13F-HR INFORMATION TABLE, should be better)
+
+ISIN
+- npx_isins (Uses isins detected in N-PX filings, very incomplete)
+
+FIGI
+- npx_figi (Uses figis detected in N-PX filings, very incomplete)
+
+
+
+
+
 
 ## Deprecated Methods
 

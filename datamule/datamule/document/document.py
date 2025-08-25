@@ -13,10 +13,115 @@ from pathlib import Path
 import webbrowser
 from secsgml.utils import bytes_to_str
 import tempfile
-
+import warnings
 from .tables.tables import Tables
 
-from ..regex import *
+from ..tags.utils import get_cusip_using_regex, get_isin_using_regex, get_figi_using_regex, get_all_tickers, get_full_names
+from ..tags.config import _active_dictionaries,_loaded_dictionaries
+
+class Tickers:
+    def __init__(self, document):
+        self.document = document
+        self._tickers_data = None
+    
+    def _get_tickers_data(self):
+        """Get all tickers data once and cache it"""
+        if self._tickers_data is None:
+            # Check if document extension is supported
+            if self.document.extension not in ['.htm', '.html', '.txt']:
+                self._tickers_data = {}
+            else:
+                self._tickers_data = get_all_tickers(self.document.text)
+        return self._tickers_data
+    
+    def __getattr__(self, exchange_name):
+        data = self._get_tickers_data()
+        
+        if exchange_name in data:
+            return data[exchange_name]
+        
+        return []
+    
+    def __bool__(self):
+        """Return True if any tickers were found"""
+        data = self._get_tickers_data()
+        return bool(data.get('all', []))
+    
+    def __repr__(self):
+        """Show the full ticker data when printed or accessed directly"""
+        data = self._get_tickers_data()
+        return str(data)
+    
+    def __str__(self):
+        """Show the full ticker data when printed"""
+        data = self._get_tickers_data()
+        return str(data)
+    
+class Tags:
+    def __init__(self, document):
+        self.not_supported = document.extension not in ['.htm', '.html', '.txt']
+        self.document = document
+        self._tickers = None
+        self.dictionaries = {}
+        
+        # Load global dictionaries with their data
+        active_dicts = _active_dictionaries
+        for dict_name in active_dicts:
+            if dict_name == 'ssa_baby_names':
+                self.dictionaries['persons'] = _loaded_dictionaries['ssa_baby_names']
+    
+    def _check_support(self):
+        if self.not_supported:
+            warnings.warn(f"Document extension '{self.document.extension}' is not supported. Supported formats: .htm, .html, .txt")
+            return False
+        return True
+    
+    @property
+    def cusip(self):
+        if not self._check_support():
+            return None
+            
+        if not hasattr(self, '_cusip'):
+            self._cusip = get_cusip_using_regex(self.document.text)
+        return self._cusip
+    
+    @property
+    def isin(self):
+        if not self._check_support():
+            return None
+            
+        if not hasattr(self, '_isin'):
+            self._isin = get_isin_using_regex(self.document.text)
+        return self._isin
+    
+    @property
+    def figi(self):
+        if not self._check_support():
+            return None
+            
+        if not hasattr(self, '_figi'):
+            self._figi = get_figi_using_regex(self.document.text)
+        return self._figi
+    
+    @property
+    def tickers(self):
+        if self._tickers is None:
+            self._tickers = Tickers(self.document)
+        return self._tickers
+    
+    @property
+    def persons(self):
+        if not self._check_support():
+            return None
+        
+        if not hasattr(self, '_persons'):
+            keywords = self.dictionaries.get('persons')
+            if keywords is not None:
+                self._persons = get_full_names(self.document.text, keywords)
+            else:
+                self._persons = get_full_names(self.document.text)
+        return self._persons
+    
 
 class Document:
     def __init__(self, type, content, extension,accession,filing_date,path=None):
@@ -36,10 +141,13 @@ class Document:
             self.path = path
 
         self.extension = extension
+
         # this will be filled by parsed
         self._data = None
         self._tables = None
         self._text = None
+        
+        self.tags = Tags(self)
 
 
 
