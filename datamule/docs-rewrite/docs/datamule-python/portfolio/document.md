@@ -149,7 +149,7 @@ Persons
 CUSIP
 
 - sc13dg_cusips (Uses SC 13D/G, somewhat incomplete)
-- (Planned) information_table_cusips (Uses 13F-HR INFORMATION TABLE, should be better)
+- 13fhr_information_table_cusips.txt (Uses 13F-HR INFORMATION TABLE, should be better)
 
 ISIN
 

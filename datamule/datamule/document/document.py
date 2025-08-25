@@ -86,39 +86,42 @@ class Tags:
         if not self._check_support():
             return None
             
-        if not hasattr(self, '_cusip'):
+        if not hasattr(self, '_cusips'):
             if 'sc13dg_cusips' in self.dictionaries:
                 keywords = self.dictionaries['sc13dg_cusips']
-                self._cusip = get_cusip_using_regex(self.document.text, keywords)
+                self._cusips = get_cusip_using_regex(self.document.text, keywords)
+            elif "13fhr_information_table_cusips" in self.dictionaries:
+                keywords = self.dictionaries['13fhr_information_table_cusips']
+                self._cusips = get_cusip_using_regex(self.document.text,keywords)
             else:
-                self._cusip = get_cusip_using_regex(self.document.text)
-        return self._cusip
+                self._cusips = get_cusip_using_regex(self.document.text)
+        return self._cusips 
     
     @property
     def isins(self):
         if not self._check_support():
             return None
             
-        if not hasattr(self, '_isin'):
+        if not hasattr(self, '_isins'):
             if 'npx_isins' in self.dictionaries:
                 keywords = self.dictionaries['npx_isins']
-                self._isin = get_isin_using_regex(self.document.text, keywords)
+                self._isins = get_isin_using_regex(self.document.text, keywords)
             else:
-                self._isin = get_isin_using_regex(self.document.text)
-        return self._isin
+                self._isins = get_isin_using_regex(self.document.text)
+        return self._isins
 
     @property
     def figis(self):
         if not self._check_support():
             return None
             
-        if not hasattr(self, '_figi'):
+        if not hasattr(self, '_figis'):
             if 'npx_figis' in self.dictionaries:
                 keywords = self.dictionaries['npx_figis']
-                self._figi = get_figi_using_regex(self.document.text, keywords)
+                self._figis = get_figi_using_regex(self.document.text, keywords)
             else:
-                self._figi = get_figi_using_regex(self.document.text)
-        return self._figi
+                self._figis = get_figi_using_regex(self.document.text)
+        return self._figis
     
     @property
     def tickers(self):

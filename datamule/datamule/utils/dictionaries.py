@@ -6,7 +6,8 @@ urls = {
     "npx_figis" : "https://raw.githubusercontent.com/john-friedman/datamule-data/master/data/dictionaries/npx_figis.txt",
     "npx_isins" : "https://raw.githubusercontent.com/john-friedman/datamule-data/master/data/dictionaries/npx_isins.txt",
     "sc13dg_cusips" : "https://raw.githubusercontent.com/john-friedman/datamule-data/master/data/dictionaries/sc13dg_cusips.txt",
-    "8k_2024_persons" : "https://raw.githubusercontent.com/john-friedman/datamule-data/master/data/dictionaries/8k_2024_persons.json"
+    "8k_2024_persons" : "https://raw.githubusercontent.com/john-friedman/datamule-data/master/data/dictionaries/8k_2024_persons.json",
+    "13fhr_information_table_cusips" : "https://raw.githubusercontent.com/john-friedman/datamule-data/refs/heads/master/data/dictionaries/13fhr_information_table_cusips.txt"
 }
 
 
@@ -62,6 +63,12 @@ def load_dictionary(name):
                 isin_set.add(line.strip())
         return isin_set
     elif name == "sc13dg_cusips":
+        cusip_set = set()
+        with open(file_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                cusip_set.add(line.strip())
+        return cusip_set
+    elif name == "13fhr_information_table_cusips":
         cusip_set = set()
         with open(file_path, 'r', encoding='utf-8') as f:
             for line in f:
