@@ -13,7 +13,6 @@ from pathlib import Path
 import webbrowser
 from secsgml.utils import bytes_to_str
 import tempfile
-import warnings
 from .tables.tables import Tables
 
 from ..tags.utils import get_cusip_using_regex, get_isin_using_regex, get_figi_using_regex,get_all_tickers, get_full_names,get_full_names_dictionary_lookup
@@ -46,11 +45,7 @@ class Tickers:
     def _get_tickers_data(self):
         """Get all tickers data once and cache it"""
         if self._tickers_data is None:
-            # Check if document extension is supported
-            if self.document.extension not in ['.htm', '.html', '.txt']:
-                self._tickers_data = {}
-            else:
-                self._tickers_data = get_all_tickers(self.document.text)
+           self._tickers_data = get_all_tickers(self.document.text)
         return self._tickers_data
     
     def __getattr__(self, exchange_name):
@@ -79,7 +74,6 @@ class Tickers:
 class Tags:
     def __init__(self, document):
         from ..tags.config import _active_dictionaries,_loaded_dictionaries
-        self.not_supported = document.extension not in ['.htm', '.html', '.txt']
         self.document = document
         self._tickers = None
         self.dictionaries = {}
@@ -92,19 +86,9 @@ class Tags:
             self.dictionaries[dict_name] = dict_info['data']
             if dict_info['processor'] is not None:
                 self.processors[dict_name] = dict_info['processor']
-            
-    
-    def _check_support(self):
-        if self.not_supported:
-            warnings.warn(f"Document extension '{self.document.extension}' is not supported. Supported formats: .htm, .html, .txt")
-            return False
-        return True
     
     @property
     def cusips(self):
-        if not self._check_support():
-            return None
-            
         if not hasattr(self, '_cusips'):
             if 'sc13dg_cusips' in self.dictionaries:
                 keywords = self.dictionaries['sc13dg_cusips']
@@ -118,8 +102,6 @@ class Tags:
     
     @property
     def isins(self):
-        if not self._check_support():
-            return None
             
         if not hasattr(self, '_isins'):
             if 'npx_isins' in self.dictionaries:
@@ -131,8 +113,6 @@ class Tags:
 
     @property
     def figis(self):
-        if not self._check_support():
-            return None
             
         if not hasattr(self, '_figis'):
             if 'npx_figis' in self.dictionaries:
@@ -150,9 +130,6 @@ class Tags:
     
     @property
     def persons(self):
-        if not self._check_support():
-            return None
-        
         if not hasattr(self, '_persons'):
             if '8k_2024_persons' in self.processors:
                 # Use pre-built processor

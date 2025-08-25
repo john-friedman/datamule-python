@@ -12,7 +12,8 @@ The `Document` class represents a single file in a SEC Submission.
 * `document.data` - parsed document content (automatically parsed when first accessed)
 * `document.text` - available for html or txt files. Returns the text without formatting such as tags. (automatically parsed when first accessed)
 * `document.tables` - parsed tables from XML documents (automatically parsed when first accessed)
-* `document.tags` - e.g. `tags.ticker.nyse`, `tags.cusip`. See [Tags](#tags).
+* `document.text.tags` - e.g. `tags.ticker.nyse`, `tags.cusip`. See [Tags](#tags).
+* `document.data.tags` - similar, but using the parsed layout.
 
 ## Lazy Loading
 
@@ -159,11 +160,32 @@ FIGI
 
 - npx_figis (Uses figis detected in N-PX filings, very incomplete)
 
+### Example
+```
+from datamule import Portfolio
+from time import time
+
+from datamule.tags.config import set_dictionaries
+
+set_dictionaries(['13fhr_information_table_cusips'])
 
 
+portfolio = Portfolio('13fhr')
+portfolio.download_submissions(submission_type=['13F-HR'],filing_date=('2008-09-01','2008-09-30'))
 
+s =time()
+chars = 0
+for sub in portfolio:
+    for doc in sub:
+        if doc.extension in ['.htm','.html','.txt']:
+            results = doc.text.tags.cusips
+            if results:
+                print(results)
+            chars += len(doc.text)
 
-
+print("time taken:",time()-s)
+print("total chars:",chars)
+```
 ## Deprecated Methods
 
 ### `parse_xbrl`
