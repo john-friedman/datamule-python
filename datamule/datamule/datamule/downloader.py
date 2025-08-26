@@ -287,7 +287,7 @@ class Downloader:
                     keepalive_timeout=60
                 )
 
-                async with aiohttp.ClientSession(connector=connector, timeout=aiohttp.ClientTimeout(total=30)) as session:
+                async with aiohttp.ClientSession(connector=connector, timeout=aiohttp.ClientTimeout(total=600)) as session:
                     tasks = [
                         self.download_and_process(
                             session, url, semaphore, decompression_pool, 
