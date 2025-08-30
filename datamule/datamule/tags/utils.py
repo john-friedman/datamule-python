@@ -67,24 +67,30 @@ def get_ticker_regex_dict():
     return dict(ticker_regex_list)
 
 # will change in future to accomodate other datasets
-def validate_full_name(full_name,keywords):
+def validate_full_name(full_name, keywords):
     if len(full_name) == 1:
         return False
-    # check all is upper
-    if all(word.isupper() for word in full_name):
+    
+    # Clean punctuation before validation
+    cleaned_name = [word.rstrip(".,;:!?()[]") for word in full_name]
+    
+    # Skip validation if cleaning removed everything
+    if not all(cleaned_name):
         return False
+    
+    # Apply existing checks to cleaned words
+    if all(word.isupper() for word in cleaned_name):
+        return False
+    
     # check if any number in word
-    if any(any(char.isdigit() for char in word) for word in full_name):
-        return False
-    if any(any(char in ".,;:!?()[]" for char in word) for word in full_name):
+    if any(any(char.isdigit() for char in word) for word in cleaned_name):
         return False
     
     # add optional set lookups
     if keywords is not None:
         # return false if first word is not in keywords set
-        if full_name[0] not in keywords:
+        if cleaned_name[0] not in keywords:
             return False
-    
     
     return True
 

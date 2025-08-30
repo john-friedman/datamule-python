@@ -221,7 +221,6 @@ class Tags(TextAnalysisBase):
         if not hasattr(self, '_persons'):
             self._persons = []
             sources = self._get_text_sources()
-            
             for source in sources:
                 if '8k_2024_persons' in self.processors:
                     results = get_full_names_dictionary_lookup(source['text'], self.processors['8k_2024_persons'])
@@ -544,6 +543,17 @@ class Document:
                     writer.writeheader()
                     writer.writerows(table.data)
 
+    def reset_nlp(self):
+        """Reset all NLP analysis by creating fresh wrapper objects"""
+        # Reset data wrapper
+        if hasattr(self, '_data') and self._data is not None:
+            raw_data = dict(self._data)  # Extract the underlying dict
+            self._data = DataWithTags(raw_data, self)
+        
+        # Reset text wrapper
+        if hasattr(self, '_text') and self._text is not None:
+            raw_text = str(self._text)  # Extract the underlying string
+            self._text = TextWithTags(raw_text, self)
         
     def _document_to_section_text(self, document_data, parent_key=''):
         items = []
