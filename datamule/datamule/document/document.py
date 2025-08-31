@@ -288,6 +288,12 @@ class Document:
         self._data = None
         self._tables = None
         self._text = None
+
+        # booleans
+        self._text_bool = self.extension in ('.htm', '.html','.txt')
+        self._data_bool = self.extension in ('.htm', '.html','.txt')
+        self._visualize_bool = self._data_bool
+        self._tables_bool = self.extension in ('.xml')
         
 
 

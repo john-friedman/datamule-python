@@ -121,6 +121,16 @@ class Submission:
             self.accession = self.metadata.content['accession-number']
             self.filing_date= f"{self.metadata.content['filing-date'][:4]}-{self.metadata.content['filing-date'][4:6]}-{self.metadata.content['filing-date'][6:8]}"
 
+
+        # booleans
+        self._has_xbrl = any(
+                doc['type'] in ('EX-100.INS', 'EX-101.INS') or 
+                doc.get('filename', '').endswith('_htm.xml')
+                for doc in self.metadata.content['documents']
+            )
+        
+        self._has_fundamentals = self._has_xbrl
+        
     def _load_document_by_index(self, idx):
         """Load a document by its index in the metadata documents list."""
         doc = self.metadata.content['documents'][idx]
