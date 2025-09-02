@@ -17,7 +17,7 @@ nav:
           - Submission: datamule-python/portfolio/submission.md
           - Document: datamule-python/portfolio/document.md
           - Tables: 
-              - Tables: datamule-python/portfolio/table/tables.md
+              - Tables: datamule-python/portfolio/tables/tables.md
               - Table Types: datamule-python/portfolio/tables/types.md
       - Sheet: datamule-python/sheet/sheet.md
       - Index: datamule-python/index/index.md
