@@ -16,11 +16,15 @@ Document in either string or bytes format.
 ### `document.data`
 Available for html, text and some pdf files. Document content parsed into dictionary form. 
 
+### `document.data_tuples`
+Available for html, text and some pdf files. `document.data` flattened into form: (id,type,content,level).
+
 ### `document.text`
 Available for html, text and some pdf files. Returns the document's text.
 
 ### `document.markdown`
 Available for html, text and some pdf files. Returns the document in markdown format.
+
 
 ### `document.tables`
 Tabular data extracted from XML documents.

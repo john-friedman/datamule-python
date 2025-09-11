@@ -16,6 +16,7 @@ import tempfile
 from .tables.tables import Tables
 
 from ..tags.utils import get_cusip_using_regex, get_isin_using_regex, get_figi_using_regex,get_all_tickers, get_full_names,get_full_names_dictionary_lookup, analyze_lm_sentiment_fragment
+from ..utils.pdf import has_extractable_text
 
 class DataWithTags(dict):
     def __init__(self, data, document):
@@ -113,28 +114,8 @@ class TextAnalysisBase:
                 # Original behavior - single text source
                 self._text_sources = [{'id': None, 'text': str(self.document.text)}]
             else:  # mode == 'data'
-                # New behavior - multiple text fragments
-                self._text_sources = []
-                self._extract_text_fragments(self.document.data, '')
+                self._text_sources = [{'id':data_tuple[0],'text':data_tuple[2]} for data_tuple in self.document.data_tuples if data_tuple[1] in ['text','title','textsmall']]
         return self._text_sources
-    
-    def _extract_text_fragments(self, data, parent_id=''):
-        """Extract all text fragments with their document IDs from parsed data"""
-        if isinstance(data, dict):
-            for key, value in data.items():
-                if key in ["text", "title"] and isinstance(value, str):
-                    # Use the current dictionary's parent key as the fragment ID
-                    self._text_sources.append({
-                        'id': parent_id,
-                        'text': value
-                    })
-                elif isinstance(value, (dict, list)):
-                    # Pass the current key as the parent_id for the next level
-                    self._extract_text_fragments(value, key)
-        elif isinstance(data, list):
-            for i, item in enumerate(data):
-                if isinstance(item, (dict, list)):
-                    self._extract_text_fragments(item, parent_id)
     
     def _format_results(self, results, fragment_id):
         """Format results based on mode"""
@@ -286,12 +267,20 @@ class Document:
 
         # this will be filled by parsed
         self._data = None
+        self._data_tuples = None
         self._tables = None
         self._text = None
         self._markdown = None
 
         # booleans
         self._data_bool = self.extension in ('.htm', '.html','.txt')
+
+        # may slow things down?
+        if self.extension == '.pdf':
+            if has_extractable_text(pdf_bytes=self.content):
+                self._data_bool = True
+
+        self._data_tuples_bool = self._data_bool
         self._text_bool = self._data_bool
         self._markdown_bool = self._data_bool
         self._visualize_bool = self._data_bool
@@ -430,10 +419,17 @@ class Document:
         return self._data
     
     @property
+    def data_tuples(self):
+        if self._data_bool:
+            if self._data_tuples is None:
+                self._data_tuples = unnest_dict(self.data)
+        return self._data_tuples
+    
+    @property
     def text(self):
         if self._text_bool:
             if self._text is None:
-                text = flatten_dict(self.data,'text')
+                text = flatten_dict(tuples_list=self.data_tuples,format='text')
                 self._text = TextWithTags(text, self)
         return self._text
     
@@ -441,7 +437,7 @@ class Document:
     def markdown(self):
         if self._markdown_bool:
             if self._markdown is None:
-                self._markdown = flatten_dict(self.data,'markdown')
+                self._markdown = flatten_dict(tuples_list=self.data_tuples,format='markdown')
 
         return self._markdown
 
