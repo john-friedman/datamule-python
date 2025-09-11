@@ -14,10 +14,13 @@ The `Document` class represents a single file in a SEC Submission.
 Document in either string or bytes format.
 
 ### `document.data`
-Document content parsed into dictionary form. 
+Available for html, text and some pdf files. Document content parsed into dictionary form. 
 
 ### `document.text`
-Available for html or text files. Returns the document's text.
+Available for html, text and some pdf files. Returns the document's text.
+
+### `document.markdown`
+Available for html, text and some pdf files. Returns the document in markdown format.
 
 ### `document.tables`
 Tabular data extracted from XML documents.

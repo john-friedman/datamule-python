@@ -3,7 +3,7 @@ import csv
 import re
 from doc2dict import xml2dict, txt2dict, dict2dict
 from doc2dict.mapping import flatten_hierarchy
-from doc2dict import html2dict, visualize_dict, get_title, unnest_dict, pdf2dict
+from doc2dict import html2dict, visualize_dict, get_title, unnest_dict, pdf2dict, flatten_dict
 from ..mapping_dicts.txt_mapping_dicts import dict_10k, dict_10q, dict_8k, dict_13d, dict_13g
 from ..mapping_dicts.xml_mapping_dicts import dict_345
 from ..mapping_dicts.html_mapping_dicts import *
@@ -288,76 +288,16 @@ class Document:
         self._data = None
         self._tables = None
         self._text = None
+        self._markdown = None
 
         # booleans
-        self._text_bool = self.extension in ('.htm', '.html','.txt')
         self._data_bool = self.extension in ('.htm', '.html','.txt')
+        self._text_bool = self._data_bool
+        self._markdown_bool = self._data_bool
         self._visualize_bool = self._data_bool
         self._tables_bool = self.extension in ('.xml')
         
 
-
-    #_load_text_content
-    def _preprocess_txt_content(self):
-            self._text = self.content.decode().translate(str.maketrans({
-                '\xa0': ' ', '\u2003': ' ',
-                '\u2018': "'", '\u2019': "'",
-                '\u201c': '"', '\u201d': '"'
-            }))
-
-    # needs work
-    def _preprocess_html_content(self):
-        parser = HTMLParser(self.content,detect_encoding=True,decode_errors='ignore')
-    
-        # Remove hidden elements first
-        hidden_nodes = parser.css('[style*="display: none"], [style*="display:none"], .hidden, .hide, .d-none')
-        for node in hidden_nodes:
-            node.decompose()
-        
-        blocks = {'p', 'div', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'article', 'section', 'li', 'td'}
-        lines = []
-        current_line = []
-        
-        def flush_line():
-            if current_line:
-                # Don't add spaces between adjacent spans
-                lines.append(''.join(current_line))
-                current_line.clear()
-        
-        for node in parser.root.traverse(include_text=True):
-            if node.tag in ('script', 'style', 'css'):
-                continue
-                
-            if node.tag in blocks:
-                flush_line()
-                lines.append('')
-                
-            if node.text_content:
-                text = node.text_content.strip()
-                if text:
-                    if node.tag in blocks:
-                        flush_line()
-                        lines.append(text)
-                        lines.append('')
-                    else:
-                        # Only add space if nodes aren't directly adjacent
-                        if current_line and not current_line[-1].endswith(' '):
-                            if node.prev and node.prev.text_content:
-                                if node.parent != node.prev.parent or node.prev.next != node:
-                                    current_line.append(' ')
-                        current_line.append(text)
-        
-        flush_line()
-        
-        text = '\n'.join(lines)
-        while '\n\n\n' in text:
-            text = text.replace('\n\n\n', '\n\n')
-        
-        self._text = text.translate(str.maketrans({
-            '\xa0': ' ', '\u2003': ' ',
-            '\u2018': "'", '\u2019': "'",
-            '\u201c': '"', '\u201d': '"'
-        }))
 
     def contains_string(self, pattern):
         """Works for select files"""
@@ -490,16 +430,20 @@ class Document:
     
     @property
     def text(self):
-        if self._text is None:
-            if self.extension in ['.htm','.html']:
-                self._preprocess_html_content()  # Still sets self._text to plain string
-            elif self.extension == '.txt':
-                self._preprocess_txt_content()   # Still sets self._text to plain string
-            
-            # Convert the plain string to TextWithTags
-            plain_text = self._text
-            self._text = TextWithTags(plain_text, self)
+        if self._text_bool:
+            if self._text is None:
+                text = flatten_dict(self.data,'text')
+                self._text = TextWithTags(text, self)
         return self._text
+    
+    @property
+    def markdown(self):
+        if self._markdown_bool:
+            if self._markdown is None:
+                self._markdown = flatten_dict(self.data,'markdown')
+
+        return self._markdown
+
     
     def write_json(self, output_filename=None):
         if not self.data:
