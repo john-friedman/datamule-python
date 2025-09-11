@@ -417,14 +417,15 @@ class Document:
 
     @property
     def data(self):
-        if self._data is None:
-            self.parse()
+        if self._data_bool:
+            if self._data is None:
+                self.parse()
 
-        if self._data is None:
-            self._data = {}
-        
-        if not isinstance(self._data, DataWithTags):
-            self._data = DataWithTags(self._data, self)
+            if self._data is None:
+                self._data = {}
+            
+            if not isinstance(self._data, DataWithTags):
+                self._data = DataWithTags(self._data, self)
             
         return self._data
     
@@ -556,18 +557,16 @@ class Document:
             webbrowser.open('file://' + temp_path)
         else:
             print(f"Cannot open files with extension {self.extension}")
-
     def get_section(self, title=None, title_regex=None,title_class=None, format='dict'):
-        if not self.data:
-            self.parse()
+        if self._data_bool:
+            if not self.data:
+                self.parse()
 
-        result = get_title(self.data,title=title,title_regex=title_regex,title_class=title_class)
-
-        if format == 'text':
-            result = [item[1] for item in result]
-            result = [unnest_dict(item) for item in result]
-
-        return result
+            result = get_title(self.data,title=title,title_regex=title_regex,title_class=title_class)
+            if format == 'dict':
+                return [item[1] for item in result]
+            else:
+                return [flatten_dict(item[1],format) for item in result]
 
    
    # TODO CHANGE THIS

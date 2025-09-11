@@ -150,7 +150,7 @@ Checks if the document content contains a specified pattern. Works for HTML, XML
 
 ### `get_section`
 
-Gets section by title.
+Gets section by title. Formats are: `text`, `markdown`, `dict`.
 
 ```
 get_section(title=None, title_regex=None,title_class=None, format='dict'):
