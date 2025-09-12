@@ -108,7 +108,7 @@ class Table:
             table_str = '\n'.join(formatted_table)
         else:
             table_str = str(formatted_table)
-        return f"Table '{self.name}' ({self.accession}) - {len(self.data) if isinstance(self.data, list) else 'N/A'} rows\ndescription: {self.description}\n{table_str}"
+        return f"Table '{self.name}' ({self.accession}) - {len(self.data) if isinstance(self.data, list) else 'N/A'} rows\ndescription: {self.description if self.description else ''}\n{table_str}"
 
 
 class Tables():
