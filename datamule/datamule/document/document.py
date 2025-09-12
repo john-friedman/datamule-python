@@ -7,8 +7,6 @@ from doc2dict import html2dict, visualize_dict, get_title, unnest_dict, pdf2dict
 from ..mapping_dicts.txt_mapping_dicts import dict_10k, dict_10q, dict_8k, dict_13d, dict_13g
 from ..mapping_dicts.xml_mapping_dicts import dict_345
 from ..mapping_dicts.html_mapping_dicts import *
-from selectolax.parser import HTMLParser
-
 from pathlib import Path
 import webbrowser
 from secsgml.utils import bytes_to_str
@@ -294,7 +292,6 @@ class Document:
             return bool(re.search(pattern, self.content))
         return False
     
-    # Note: this method will be heavily modified in the future
     def parse(self):
         # check if we have already parsed the content
         if self._data:
@@ -384,6 +381,8 @@ class Document:
                 dct = html2dict(content=self.content, mapping_dict=mapping_dict)
             elif self.extension in ['.txt']:
                 dct = txt2dict(content=self.content, mapping_dict=mapping_dict)
+            elif self.extension == '.pdf':
+                dct = pdf2dict(content=self.content, mapping_dict=mapping_dict)
             else:
                 dct = {}
             
@@ -391,10 +390,8 @@ class Document:
         elif self.extension == '.xml':
             if self.type in ['3', '4', '5', '3/A', '4/A', '5/A']:
                 mapping_dict = dict_345
-            
             self._data = xml2dict(content=self.content, mapping_dict=mapping_dict)
-        elif self.extension == '.pdf':
-            self._data = pdf2dict(content=self.content, mapping_dict=mapping_dict)
+
         else:
             pass
 
@@ -409,6 +406,12 @@ class Document:
             
             if not isinstance(self._data, DataWithTags):
                 self._data = DataWithTags(self._data, self)
+        elif self.extension == '.xml':
+            if self._data is None:
+                self.parse()
+
+            if self._data is None:
+                self._data = {}
             
         return self._data
     
@@ -444,19 +447,46 @@ class Document:
             json.dump(self.data, f, indent=2)
 
     def parse_tables(self,must_exist_in_mapping=True):
-        if self.extension != '.xml':
-            self._tables = []
+        """Must exist in mapping means columns must occur in mapping schema."""
+        if self.extension == '.xml':
+            tables = Tables(document_type = self.type, accession=self.accession)
+            tables.parse_tables(data=self.data,must_exist_in_mapping=must_exist_in_mapping)
+            self._tables = tables
+
+        elif self._data_bool:
+            tables = Tables(document_type = self.type, accession=self.accession)
+            data_tuples = self.data_tuples
+            
+            for i, (id, type, content, level) in enumerate(data_tuples):
+                if type == "table" and i > 0:
+                    description = None
+                    
+                    # Look at previous element
+                    prev_id, prev_type, prev_content, prev_level = data_tuples[i-1]
+                    
+                    # Case 1: Same level + text content
+                    if prev_level == level and prev_type in ["text", "textsmall"]:
+                        description = prev_content
+                    
+                    # Case 2: Higher level (lower number) + title
+                    elif prev_level < level and prev_type == "title":
+                        description = prev_content
+                    
+                    # Case 3: No matching description - add table without description
+                    # (description remains None)
+                    
+                    tables.add_table(data=content, description=description, name="extracted_table")
+
+            self._tables = tables
+
         else:
-            # Use the property to trigger parsing if needed
-            data = self.data
-            tables = Tables(document_type = self.type, accession=self.accession, data=data,must_exist_in_mapping=must_exist_in_mapping)
-            self._tables = tables.tables
+            self._tables = []
 
     @property
     def tables(self):
         if self._tables is None:
             self.parse_tables()
-        return self._tables
+        return self._tables.tables
 
 
     def write_csv(self, output_folder):
@@ -547,6 +577,7 @@ class Document:
             webbrowser.open('file://' + temp_path)
         else:
             print(f"Cannot open files with extension {self.extension}")
+
     def get_section(self, title=None, title_regex=None,title_class=None, format='dict'):
         if self._data_bool:
             if not self.data:
@@ -557,3 +588,9 @@ class Document:
                 return [item[1] for item in result]
             else:
                 return [flatten_dict(item[1],format) for item in result]
+
+    # TODO
+    def get_tables(self,description_regex=None,name=None):
+        # make sure tables is initialized
+        self.tables
+        return self._tables.get_tables(description_regex=description_regex, name=name)

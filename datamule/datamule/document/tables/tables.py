@@ -6,8 +6,10 @@ from .tables_npx import config_npx
 from .tables_sbsef import config_sbsef
 from .tables_sdr import config_sdr
 from .tables_proxyvotingrecord import config_proxyvotingrecord
+from doc2dict.utils.format_dict import _format_table
  
 from .utils import safe_get, flatten_dict
+import re
 # will add filing date param later? or extension
 all_tables_dict = {
     '3' : config_ownership,
@@ -93,25 +95,30 @@ def apply_mapping(flattened_data, mapping_dict, accession, must_exist_in_mapping
 
 # should have table type, accession, data
 class Table:
-    def __init__(self,data,name,accession):
+    def __init__(self,data,name,accession,description = None):
         self.data = data
         self.name = name
         self.accession = accession
+        self.description = description
+
+    # TODO MADE IN A HURRY #
+    def __str__(self):
+        formatted_table = _format_table(self.data)
+        if isinstance(formatted_table, list):
+            table_str = '\n'.join(formatted_table)
+        else:
+            table_str = str(formatted_table)
+        return f"Table '{self.name}' ({self.accession}) - {len(self.data) if isinstance(self.data, list) else 'N/A'} rows\ndescription: {self.description}\n{table_str}"
 
 
 class Tables():
-    def __init__(self,document_type,accession,data,must_exist_in_mapping=True):
+    def __init__(self,document_type,accession):
         self.document_type = document_type
         self.accession = accession
-        self.data = data
-
-        # to fill in
         self.tables = []
 
-        self.parse_tables(must_exist_in_mapping=must_exist_in_mapping)
-
-    def parse_tables(self,must_exist_in_mapping=True):
-        # first select dict
+    def parse_tables(self,data,must_exist_in_mapping=True):
+        self.data = data
 
         try:
             tables_dict = all_tables_dict[self.document_type]
@@ -120,7 +127,7 @@ class Tables():
         
         # now get the dicts from the data
         data_dicts = seperate_data(tables_dict,self.data)
-        
+
         # now flatten
         data_dicts = [(x,flatten_dict(y)) for x,y in data_dicts]
         
@@ -128,3 +135,24 @@ class Tables():
             mapping_dict = tables_dict[table_name]['mapping']
             mapped_data = apply_mapping(flattened_data, mapping_dict, self.accession,must_exist_in_mapping)
             self.tables.append(Table(mapped_data, table_name, self.accession))
+        
+    def add_table(self,data,name,description=None):
+        self.tables.append(Table(data=data,name=name,accession=self.accession,description=description))
+
+    def get_tables(self, description_regex=None, name=None):
+        matching_tables = []
+        
+        for table in self.tables:
+            # Check name match (exact match)
+            if name is not None:
+                if table.name == name:
+                    matching_tables.append(table)
+                    continue
+            
+            # Check description regex match
+            if description_regex is not None and table.description is not None:
+                if re.search(description_regex, table.description):
+                    matching_tables.append(table)
+                    continue
+        
+        return matching_tables
