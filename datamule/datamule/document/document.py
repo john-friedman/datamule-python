@@ -301,23 +301,7 @@ class Document:
             return
         
         mapping_dict = None
-        
-        if self.extension == '.txt':
-            content = self.text
-            if self.type in ['10-Q', '10-Q/A']:
-                mapping_dict = dict_10q
-            elif self.type in ['10-K','10-K/A']:
-                mapping_dict = dict_10k
-            elif self.type in ['8-K', '8-K/A']:
-                mapping_dict = dict_8k
-            elif self.type in ['SC 13D', 'SC 13D/A']:
-                mapping_dict = dict_13d
-            elif self.type in ['SC 13G', 'SC 13G/A']:
-                mapping_dict = dict_13g
-            
-            self._data = {}
-            self._data['document'] = dict2dict(txt2dict(content=content, mapping_dict=mapping_dict))
-        elif self.extension in ['.htm', '.html']:
+        if self._data_bool:
             
             if self.type in ['1-K', '1-K/A']:
                 mapping_dict = dict_1kpartii_html
@@ -391,8 +375,18 @@ class Document:
                 mapping_dict = dict_t3_html
             elif self.type in ['NT 10-K', 'NT 10-K/A', 'NT 10-Q', 'NT 10-Q/A', 'NT 20-F', 'NT 20-F/A']:
                 mapping_dict = dict_nt10k_html
+            elif self.type in ['SC 13G', 'SC 13G/A']:
+                mapping_dict = dict_13g
+            elif self.type in ['SC 13D', 'SC 13D/A']:
+                mapping_dict = dict_13d
             
-            dct = html2dict(content=self.content, mapping_dict=mapping_dict)
+            if self.extension in ['.htm','.html']:
+                dct = html2dict(content=self.content, mapping_dict=mapping_dict)
+            elif self.extension in ['.txt']:
+                dct = txt2dict(content=self.content, mapping_dict=mapping_dict)
+            else:
+                dct = {}
+            
             self._data = dct
         elif self.extension == '.xml':
             if self.type in ['3', '4', '5', '3/A', '4/A', '5/A']:
@@ -563,63 +557,3 @@ class Document:
                 return [item[1] for item in result]
             else:
                 return [flatten_dict(item[1],format) for item in result]
-
-   
-   # TODO CHANGE THIS
-    def __iter__(self):
-        # Use the property to trigger parsing if needed
-        document_data = self.data
-
-        # Let's remove XML iterable for now
-
-        # Handle text-based documents
-        if self.extension in ['.txt', '.htm', '.html']:
-            if not document_data:
-                return iter([])
-                
-            # Find highest hierarchy level from mapping dict
-            highest_hierarchy = float('inf')
-            section_type = None
-            
-            if self.type in ['10-K', '10-Q']:
-                mapping_dict = dict_10k if self.type == '10-K' else dict_10q
-            elif self.type == '8-K':
-                mapping_dict = dict_8k
-            elif self.type == 'SC 13D':
-                mapping_dict = dict_13d
-            elif self.type == 'SC 13G':
-                mapping_dict = dict_13g
-            else:
-                return iter([])
-                
-            # Find section type with highest hierarchy number
-            highest_hierarchy = -1  # Start at -1 to find highest
-            for mapping in mapping_dict['rules']['mappings']:
-                if mapping.get('hierarchy') is not None:
-                    if mapping['hierarchy'] > highest_hierarchy:
-                        highest_hierarchy = mapping['hierarchy']
-                        section_type = mapping['name']
-                        
-            if not section_type:
-                return iter([])
-                
-            # Extract sections of the identified type
-            def find_sections(data, target_type):
-                sections = []
-                if isinstance(data, dict):
-                    if data.get('type') == target_type:
-                        sections.append({
-                            'item': data.get('text', ''),
-                            'text': flatten_hierarchy(data.get('content', []))
-                        })
-                    for value in data.values():
-                        if isinstance(value, (dict, list)):
-                            sections.extend(find_sections(value, target_type))
-                elif isinstance(data, list):
-                    for item in data:
-                        sections.extend(find_sections(item, target_type))
-                return sections
-                
-            return iter(find_sections(document_data, section_type))
-            
-        return iter([])
