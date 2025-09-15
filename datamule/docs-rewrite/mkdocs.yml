@@ -21,6 +21,7 @@ nav:
               - Table Types: datamule-python/portfolio/tables/types.md
       - Sheet: datamule-python/sheet/sheet.md
       - Index: datamule-python/index/index.md
+      - Book: datamule-python/book/book.md
       - Config: datamule-python/config/config.md
       - Utils: 
           - 'CIK Filtering': datamule-python/utils/_process_cik_and_metadata_filters.md

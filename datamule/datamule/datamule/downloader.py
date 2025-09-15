@@ -228,7 +228,7 @@ class Downloader:
                 headers = {
                     'Connection': 'keep-alive',
                     'Accept-Encoding': 'gzip, deflate, br',
-                    'Authorization': f'Bearer {api_key}'
+                    #'Authorization': f'Bearer {api_key}'
                 }
                 
                 async with session.get(url, headers=headers) as response:
