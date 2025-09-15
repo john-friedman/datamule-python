@@ -7,7 +7,7 @@ dict_10q_html = dict_10k_html
 
 dict_8k_html = {
     ('signatures',r'^signatures?\.*$') : 0,
-    ('item',r'^item\s*(\d+\.\d+)') : 0,
+    ('item',r'^item\s*(\d+(?:\.\d+)?)') : 0,
 }
 
 dict_sd_html = {
