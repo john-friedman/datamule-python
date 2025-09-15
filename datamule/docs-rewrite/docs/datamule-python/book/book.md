@@ -12,6 +12,7 @@ Supported buckets:
 - **filings_sgml_r2**: Every SEC submission in .sgml or .sgml.zst form. Type is included in metadata.
 
 Supported providers:
+
 - AWS
 
 Easy to add more providers, if you have a preferred one please submit it [here](https://github.com/john-friedman/datamule-python/issues).
@@ -38,6 +39,12 @@ book = Book()
 
 book.s3_transfer(datamule_bucket='filings_sgml_r2',s3_credentials=s3_credentials,force_daily=True,filing_date=('2025-09-03','2025-09-11'),
                  max_workers=128,errors_json_filename='s3_transfer_errors.json',retry_errors=3)
+```
+
+Fill in missing from errors.json.
+```python
+book.s3_transfer(datamule_bucket='filings_sgml_r2',s3_credentials=s3_credentials,accession=['000000000025002258'],
+                 max_workers=128)
 ```
 
 ### Parameters
