@@ -8,7 +8,8 @@ import csv
 # Dataset URLs
 DATASET_URLS = {
     "cik_cusip_crosswalk": "https://github.com/john-friedman/datamule-data/raw/refs/heads/master/data/datasets/cik_cusip_crosswalk.csv.gz",
-    "financial_security_identifiers_crosswalk" : "https://github.com/john-friedman/datamule-data/raw/refs/heads/master/data/datasets/financial_security_identifiers_crosswalk.csv.gz"
+    "financial_security_identifiers_crosswalk" : "https://github.com/john-friedman/datamule-data/raw/refs/heads/master/data/datasets/financial_security_identifiers_crosswalk.csv.gz",
+    "proposal_results" : "https://github.com/Structured-Output/SEC/raw/refs/heads/main/datasets/proposal_results.csv.gz"
 }
 
 def update_dataset(name):
@@ -43,9 +44,10 @@ def _get_dataset(name, update=False):
         gz_path.unlink()
     
     # Read CSV and return as list of dicts
-    with open(file_path, 'r') as f:
+    with open(file_path, 'r',encoding='utf-8') as f:
         return list(csv.DictReader(f))
 
 # Dataset available as list of dicts on import
 cik_cusip_crosswalk = _get_dataset("cik_cusip_crosswalk")
 financial_security_identifiers_crosswalk = _get_dataset("financial_security_identifiers_crosswalk")
+proposal_results = _get_dataset('proposal_results')
