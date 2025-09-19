@@ -1,5 +1,5 @@
 from .tables_ownership import config_ownership
-from .tables_13fhr import mapping_13fhr 
+from .tables_13fhr import config_13fhr
 from .tables_informationtable import config_information_table
 from .tables_25nse import config_25nse
 from .tables_npx import config_npx
@@ -18,10 +18,10 @@ all_tables_dict = {
     '4/A' : config_ownership,
     '5' : config_ownership,
     '5/A' : config_ownership,
-    '13F-HR' : mapping_13fhr,
-    '13F-HR/A' : mapping_13fhr,
-    '13F-NT' : mapping_13fhr,
-    '13F-NT/A' : mapping_13fhr,
+    '13F-HR' : config_13fhr,
+    '13F-HR/A' : config_13fhr,
+    '13F-NT' : config_13fhr,
+    '13F-NT/A' : config_13fhr,
     'INFORMATION TABLE' : config_information_table,
     '25-NSE' : config_25nse,
     '25-NSE/A' : config_25nse,
