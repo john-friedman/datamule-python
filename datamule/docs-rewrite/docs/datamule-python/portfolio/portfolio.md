@@ -172,37 +172,6 @@ Process submissions within a portfolio using threading (faster).
 process_submissions(self, callback)
 ```
 
-## `compress`
-Compress all individual submissions into batch tar files for efficient storage.
-```python
-compress(self, compression=None, compression_level=None, threshold=1048576, max_batch_size=1024*1024*1024, max_workers=None)
-```
-
-### Parameters
-* compression - Compression algorithm for large documents: `'gzip'`, `'zstd'`, or `None` (default: `None`)
-* compression_level - Compression level, if None uses defaults (gzip=6, zstd=3)
-* threshold - Size threshold for compressing individual documents in bytes (default: `1048576` = 1MB)
-* max_batch_size - Maximum size per batch tar file in bytes (default: `1024*1024*1024` = 1GB)
-* max_workers - Number of threads for parallel document processing (default: portfolio.MAX_WORKERS)
-
-### Example
-```python
-# Compress all submissions using zstd compression
-portfolio.compress(compression='zstd')
-
-# Use gzip compression with custom threshold and compression level
-portfolio.compress(compression='gzip', compression_level=9, threshold=500000)
-
-# No document compression, just bundle into batch tars
-portfolio.compress(compression=None)
-
-# Use custom number of worker threads
-portfolio.compress(compression='zstd', max_workers=4)
-```
-
-???+ note "Storage Efficiency"
-    This method combines document-level compression (gzip/zstd for large files) with batch tar creation following the downloader's naming convention (`batch_000_001.tar`, `batch_000_002.tar`, etc.). Original individual submission directories/tars are removed after successful compression.
-
 ## `decompress`
 Decompress all batch tar files back to individual submission directories.
 ```python
@@ -222,7 +191,7 @@ portfolio.decompress(max_workers=4)
 ```
 
 ???+ note "Complete Extraction"
-    This method extracts all submissions from batch tar files back to individual `accession_number/` directories in the portfolio root. Compressed documents (.gz/.zst) are automatically decompressed during extraction. Batch tar files are removed after successful extraction.
+    This method extracts all submissions from batch tar files back to individual `accession_number/` directories in the portfolio root. Batch tar files are removed after successful extraction.
 
 ### Example
 ```python

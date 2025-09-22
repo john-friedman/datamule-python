@@ -10,7 +10,7 @@ from pathlib import Path
 import webbrowser
 from secsgml.utils import bytes_to_str
 import tempfile
-from .tables.tables import Tables
+from ..tables.tables import Tables
 
 from ..tags.utils import get_cusip_using_regex, get_isin_using_regex, get_figi_using_regex,get_all_tickers, get_full_names,get_full_names_dictionary_lookup, analyze_lm_sentiment_fragment
 from ..utils.pdf import has_extractable_text

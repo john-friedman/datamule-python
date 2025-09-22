@@ -8,6 +8,8 @@ from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from secsgml.utils import bytes_to_str, calculate_documents_locations_in_tar
 
+# probably can delete much of this TODO
+
 
 class CompressionManager:
     

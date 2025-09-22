@@ -2,6 +2,8 @@ import os
 import requests
 import json
 
+# slated for deletion
+
 def get_information_table(
     # Optional filtering parameters
     columns=None,

@@ -20,3 +20,6 @@ Deals with programmatic access to datamule's databases such as ownership or inst
 
 ## Index
 Currently used to provide programmatic access to search the SEC by keyword. Will likely be rewritten as a general store of functions using sec.gov.
+
+## Cloud (API_KEY required)
+- Provides programmatic access to misc datamule APIs

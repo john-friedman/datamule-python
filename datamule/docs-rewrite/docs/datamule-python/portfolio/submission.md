@@ -27,9 +27,9 @@ You can access specific financial statement categories directly as attributes:
 
 ```python
 # All of these work automatically
-balance_sheet = submission.balanceSheet
-income_stmt = submission.incomeStatement  
-cash_flow = submission.CashFlowStatement
+balance_sheet = submission.fundamentals.balanceSheet
+income_stmt = submission.fundamentals.incomeStatement  
+cash_flow = submission.fundamentals.CashFlowStatement
 ```
 
 The category names depend on what your fundamentals data contains - the system dynamically tries any attribute name as a potential category.

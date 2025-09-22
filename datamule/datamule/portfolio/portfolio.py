@@ -1,19 +1,19 @@
 from pathlib import Path
 from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from .submission import Submission
-from .sec.submissions.downloader import download as sec_download
-from .sec.submissions.textsearch import filter_text
-from .config import Config
+from ..submission.submission import Submission
+from ..sec.submissions.downloader import download as sec_download
+from ..sec.submissions.textsearch import filter_text
+from ..config import Config
 import os
 import tarfile
 from threading import Lock
-from .helper import _process_cik_and_metadata_filters
-from .datamule.downloader import download as seclibrary_download
-from .sec.xbrl.filter_xbrl import filter_xbrl
-from .sec.submissions.monitor import Monitor
-from .portfolio_compression_utils import CompressionManager
-from .datamule.sec_connector import SecConnector
+from ..helper import _process_cik_and_metadata_filters
+from ..datamule.downloader import download as seclibrary_download
+from ..sec.xbrl.filter_xbrl import filter_xbrl
+from ..sec.submissions.monitor import Monitor
+from .portfolio_compression_utils_legacy import CompressionManager
+from ..datamule.sec_connector import SecConnector
 import shutil
 
 
@@ -31,6 +31,7 @@ class Portfolio:
 
         self.monitor = Monitor()
         
+        
         if self.path.exists():
             self._load_submissions()
             self.submissions_loaded = True
@@ -46,6 +47,7 @@ class Portfolio:
         # Separate regular and batch items
         regular_items = [f for f in self.path.iterdir() if (f.is_dir() or f.suffix=='.tar') and 'batch' not in f.name]
         batch_tars = [f for f in self.path.iterdir() if f.is_file() and 'batch' in f.name and f.suffix == '.tar']
+        
         
         # Load regular submissions (existing logic)
         def load_submission(folder):
@@ -99,29 +101,18 @@ class Portfolio:
             try:
                 submission = Submission(
                     batch_tar_path=batch_tar_path,
-                    accession_prefix=accession_prefix,
+                    accession=accession_prefix,
                     portfolio_ref=self
                 )
                 submissions.append(submission)
             except Exception as e:
+                print(f"Path: {batch_tar_path}. Exception: {e}")
                 pass
                 #print(f"Path: {batch_tar_path}. Exception: {e}")
             pbar.update(1)  # Update progress for each successful submission
         
         return submissions
             
-
-    def compress(self, compression=None, compression_level=None, threshold=1048576, max_batch_size=1024*1024*1024):
-        """
-        Compress all individual submissions into batch tar files.
-        
-        Args:
-            compression: None, 'gzip', or 'zstd' for document compression (default: None)
-            compression_level: Compression level, if None uses defaults (gzip=6, zstd=3)
-            threshold: Size threshold for compressing individual documents (default: 1MB)
-            max_batch_size: Maximum size per batch tar file (default: 1GB)
-        """
-        CompressionManager().compress_portfolio(self, compression, compression_level, threshold, max_batch_size, self.MAX_WORKERS)
 
     def decompress(self):
         """

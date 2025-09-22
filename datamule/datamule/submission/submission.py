@@ -1,10 +1,10 @@
 from pathlib import Path
 import json
-from .document.document import Document
+from ..document.document import Document
 from secsgml import parse_sgml_content_into_memory
 from secsgml.parse_sgml import transform_metadata_string
 from secsgml.utils import bytes_to_str
-from .sec.utils import headers
+from ..sec.utils import headers
 import tarfile
 import zstandard as zstd
 import gzip
@@ -12,31 +12,87 @@ import urllib.request
 from secxbrl import parse_inline_xbrl
 from company_fundamentals import construct_fundamentals
 from decimal import Decimal
-from .utils.format_accession import format_accession
+from ..utils.format_accession import format_accession
+from .tar_submission import tar_submission
 
+# probably needs rework later
+class FundamentalsAccessor:
+    def __init__(self, submission):
+        self.submission = submission
+        self._cache = {}
+        self._all_data = None
+    
+    def __getattr__(self, category):
+        if category not in self._cache:
+            self._cache[category] = self.submission.parse_fundamentals(categories=[category])
+        return self._cache[category]
+    
+    def _get_all_data(self):
+        if self._all_data is None:
+            self._all_data = self.submission.parse_fundamentals(categories=None)
+        return self._all_data
+    
+    # Make the accessor behave like the underlying data
+    def __getitem__(self, key):
+        return self._get_all_data()[key]
+    
+    def __repr__(self):
+        return repr(self._get_all_data())
+    
+    def __str__(self):
+        return str(self._get_all_data())
+    
+    def __iter__(self):
+        return iter(self._get_all_data())
+    
+    def __len__(self):
+        return len(self._get_all_data()) if self._get_all_data() else 0
+    
+    def __bool__(self):
+        return bool(self._get_all_data())
 
 class Submission:
     def __init__(self, path=None, sgml_content=None, keep_document_types=None,
-                 batch_tar_path=None, accession_prefix=None, portfolio_ref=None,url=None):
+                 batch_tar_path=None, accession=None, portfolio_ref=None,url=None):
         
+        
+        
+        # get accession number
+        # lets just use accesion-prefix, to get around malformed metadata files (1995 has a lot!)
+        if path is not None:
+            self.accession = format_accession(path.stem,'no-dash')
+        elif batch_tar_path is not None:
+            self.accession = format_accession(accession,'no-dash')
+        elif url is not None or sgml_content is not None:
+            if accession is None:
+                raise ValueError("If using url or sgml_content, accession must be specified.")
+            self.accession = format_accession(accession,'no-dash')
+        else:
+            raise ValueError("If this appears, please post an issue: https://github.com/john-friedman/datamule-python/issues.")
+
 
         # declare vars to be filled later
         self._xbrl = None
         self._fundamentals_cache = {}
+        self._tar = None
+        self._tar_compression_type = 'zstd'
+        self._tar_compression_level = 3
+        self._accession_year_2d = None
+        self._documents = None
         
         # Validate parameters
         param_count = sum(x is not None for x in [path, sgml_content, batch_tar_path,url])
         if param_count != 1:
             raise ValueError("Exactly one of path, sgml_content, or batch_tar_path must be provided")
         
-        if batch_tar_path is not None and (accession_prefix is None or portfolio_ref is None):
-            raise ValueError("batch_tar_path requires both accession_prefix and portfolio_ref")
+        if batch_tar_path is not None and (self.accession is None or portfolio_ref is None):
+            raise ValueError("batch_tar_path requires both accession and portfolio_ref")
         
         # Initialize batch tar attributes
         self.batch_tar_path = batch_tar_path
-        self.accession_prefix = accession_prefix
         self.portfolio_ref = portfolio_ref
         
+        # here should set accession either from url or make it a required argument if sgml content
         if url is not None or sgml_content is not None:
             if url is not None:
                 request = urllib.request.Request(url, headers=headers)
@@ -55,11 +111,9 @@ class Submission:
             metadata = transform_metadata_string(metadata)
 
             self.metadata = Document(type='submission_metadata', content=metadata, extension='.json',filing_date=None,accession=None,path=None)
-            # code dupe
-            self.accession = self.metadata.content['accession-number']
             self.filing_date= f"{self.metadata.content['filing-date'][:4]}-{self.metadata.content['filing-date'][4:6]}-{self.metadata.content['filing-date'][6:8]}"
     
-            self.documents = []
+            self.documents_obj_list = []
             filtered_metadata_documents = []
 
             for idx,doc in enumerate(self.metadata.content['documents']):
@@ -72,7 +126,7 @@ class Submission:
                 # write as txt if not declared
                 filename = doc.get('filename','.txt')
                 extension = Path(filename).suffix
-                self.documents.append(Document(type=type, content=raw_documents[idx], extension=extension,filing_date=self.filing_date,accession=self.accession))
+                self.documents_obj_list.append(Document(type=type, content=raw_documents[idx], extension=extension,filing_date=self.filing_date,accession=self.accession))
 
                 filtered_metadata_documents.append(doc)
             
@@ -85,24 +139,22 @@ class Submission:
             # Load metadata from batch tar
             with self.portfolio_ref.batch_tar_locks[batch_tar_path]:
                 tar_handle = self.portfolio_ref.batch_tar_handles[batch_tar_path]
-                metadata_obj = tar_handle.extractfile(f'{accession_prefix}/metadata.json')
+                metadata_obj = tar_handle.extractfile(f'{self.accession}/metadata.json')
                 metadata = json.loads(metadata_obj.read().decode('utf-8'))
 
             # Set metadata path using :: notation
-            metadata_path = f"{batch_tar_path}::{accession_prefix}/metadata.json"
+            metadata_path = f"{batch_tar_path}::{self.accession}/metadata.json"
             
             # standardize metadata
             metadata = transform_metadata_string(metadata)
             self.metadata = Document(type='submission_metadata', content=metadata, extension='.json',filing_date=None,accession=None,path=metadata_path)
-
-            # lets just use accesion-prefix, to get around malformed metadata files (1995 has a lot!)
-            self.accession = format_accession(self.accession_prefix,'dash')
             
-            #print(f"s: {self.metadata.content['accession-number']} : {batch_tar_path}")
             self.filing_date= f"{self.metadata.content['filing-date'][:4]}-{self.metadata.content['filing-date'][4:6]}-{self.metadata.content['filing-date'][6:8]}"
 
         elif path is not None:
             self.path = Path(path)  
+
+
             if self.path.suffix == '.tar':
                 with tarfile.open(self.path,'r') as tar:
                     metadata_obj = tar.extractfile('metadata.json')
@@ -118,7 +170,6 @@ class Submission:
             # standardize metadata
             metadata = transform_metadata_string(metadata)
             self.metadata = Document(type='submission_metadata', content=metadata, extension='.json',filing_date=None,accession=None,path=metadata_path)
-            self.accession = self.metadata.content['accession-number']
             self.filing_date= f"{self.metadata.content['filing-date'][:4]}-{self.metadata.content['filing-date'][4:6]}-{self.metadata.content['filing-date'][6:8]}"
 
 
@@ -131,52 +182,33 @@ class Submission:
         
         self._has_fundamentals = self._has_xbrl
         
+
+    # TODO rework for better metadata accessing
     def _load_document_by_index(self, idx):
         """Load a document by its index in the metadata documents list."""
         doc = self.metadata.content['documents'][idx]
         
         # If loaded from sgml_content, return pre-loaded document
         if self.path is None and self.batch_tar_path is None:
-            return self.documents[idx]
+            return self.documents_obj_list[idx]
         
         # Get filename from metadata - this is the source of truth
         filename = doc.get('filename')
         if filename is None:
             filename = doc['sequence'] + '.txt'
 
-        # Get the base extension (before any compression extension)
-        # If filename ends with .gz or .zst, the real extension is before that
-        if filename.endswith('.gz'):
-            extension = Path(filename[:-3]).suffix
-            is_compressed = 'gzip'
-        elif filename.endswith('.zst'):
-            extension = Path(filename[:-4]).suffix
-            is_compressed = 'zstd'
-        else:
-            extension = Path(filename).suffix
-            is_compressed = False
-
+        extension = Path(filename).suffix
         # Handle batch tar case
         if self.batch_tar_path is not None:
             with self.portfolio_ref.batch_tar_locks[self.batch_tar_path]:
                 tar_handle = self.portfolio_ref.batch_tar_handles[self.batch_tar_path]
                 
                 # Use exact filename from metadata
-                tar_path = f'{self.accession_prefix}/{filename}'
+                tar_path = f'{self.accession}/{filename}'
                 content = tar_handle.extractfile(tar_path).read()
     
                 
-                # Decompress if needed based on filename extension
-                if is_compressed == 'gzip':
-                    content = gzip.decompress(content)
-                elif is_compressed == 'zstd':
-                    content = zstd.ZstdDecompressor().decompress(content)
-                
-                # Decode text files
-                # if extension in ['.htm', '.html', '.txt', '.xml']:
-                #     content = content.decode('utf-8', errors='replace')
-                
-                document_path = f"{self.batch_tar_path}::{self.accession_prefix}/{filename}"
+                document_path = f"{self.batch_tar_path}::{self.accession}/{filename}"
         
         # Handle regular path case
         else:
@@ -188,27 +220,7 @@ class Submission:
                         content = tar.extractfile(filename).read()
                         actual_filename = filename
                     except:
-                        try:
-                            content = tar.extractfile(filename + '.gz').read()
-                            actual_filename = filename + '.gz'
-                            is_compressed = 'gzip'
-                        except:
-                            try:
-                                content = tar.extractfile(filename + '.zst').read()
-                                actual_filename = filename + '.zst'
-                                is_compressed = 'zstd'
-                            except:
-                                raise FileNotFoundError(f"Document file not found in tar: {filename}")
-                    
-                    # Decompress if compressed
-                    if is_compressed == 'gzip':
-                        content = gzip.decompress(content)
-                    elif is_compressed == 'zstd':
-                        content = zstd.ZstdDecompressor().decompress(content)
-                    
-                    # Decode text files
-                    # if extension in ['.htm', '.html', '.txt', '.xml']:
-                    #     content = content.decode('utf-8', errors='replace')
+                        raise FileNotFoundError(f"Document file not found in tar: {filename}")
                     
                     document_path = f"{self.path}::{actual_filename}"
             
@@ -222,15 +234,6 @@ class Submission:
                 with document_path.open('rb') as f:
                     content = f.read()
                 
-                # Decompress if needed based on filename extension
-                if is_compressed == 'gzip':
-                    content = gzip.decompress(content)
-                elif is_compressed == 'zstd':
-                    content = zstd.ZstdDecompressor().decompress(content)
-                
-                # Decode text files
-                # if extension in ['.htm', '.html', '.txt', '.xml']:
-                #     content = content.decode('utf-8', errors='replace')
 
         return Document(
             type=doc['type'], 
@@ -273,7 +276,7 @@ class Submission:
                 return
 
     @property
-    def xbrl(self):
+    def xbrl(self): 
         if self._xbrl is None:
             self.parse_xbrl()
         return self._xbrl
@@ -353,20 +356,61 @@ class Submission:
 
     @property
     def fundamentals(self):
-        """Get all fundamental data"""
-        return self.parse_fundamentals(categories=None)
+        """Access fundamentals via attributes: sub.fundamentals.incomeStatement"""
+        if not hasattr(self, '_fundamentals_accessor'):
+            self._fundamentals_accessor = FundamentalsAccessor(self)
+        return self._fundamentals_accessor
+    
+    @property
+    def tar(self):
+        return self._tar_submission().getvalue()
+    
+    def set_tar_compression(self,compression_type='zstd',level=3):
+        self._tar_compression_type = compression_type
+        self._tar_compression_level = level
+    
+    def _tar_submission(self):
+        if self._tar is not None:
+            return self._tar
+        else:
+            documents_obj_list = self._get_documents_obj_list()
+            self._tar = tar_submission(
+                documents_obj_list=documents_obj_list,
+                metadata=self.metadata.content,
+                compression_type=self._tar_compression_type,
+                level=self._tar_compression_level
+            )
+            return self._tar
+        
+    @property
+    def accession_year_2d(self):
+        return self._get_accession_year_2d()
+    
+    def _get_accession_year_2d(self):
+        if self._accession_year_2d is not None:
+            return self._accession_year_2d
+        self._accession_year_2d = format_accession(self.accession,'dash').split('-')[1]
+        return self._accession_year_2d
+    
+    @property
+    def documents(self):
+        return self._get_documents()
+    
+    def _get_documents(self):
+        if self._documents is not None:
+            return self._documents
+        
+        self._documents = self.metadata.content['documents']
+        return self._documents
 
-    def __getattr__(self, name):
-        # Check if it's a fundamentals property request
-        if name.endswith('_fundamentals'):
-            category = name.replace('_fundamentals', '')
-            return self.parse_fundamentals(categories=[category])
+    def _get_documents_obj_list(self):
+        """Get all documents as Document objects"""
+        if hasattr(self, 'documents_obj_list'):
+            return self.documents_obj_list
         
-        # For any other unknown attribute, try it as a fundamentals category
-        # Let parse_fundamentals handle whether it's valid or not
-        result = self.parse_fundamentals(categories=[name])
-        if result is not None:
-            return result
+        # Generate documents_obj_list for batch tar and path cases
+        documents_obj_list = []
+        for idx in range(len(self.metadata.content['documents'])):
+            documents_obj_list.append(self._load_document_by_index(idx))
         
-        # Only raise AttributeError if parse_fundamentals returns None/empty
-        raise AttributeError(f"'{self.__class__.__name__}' object has no attribute '{name}'")
+        return documents_obj_list

@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 from urllib.parse import urlparse
 from tqdm import tqdm
 import logging
-from ..sheet import Sheet
+from ..sheet.sheet import Sheet
 from ..utils.format_accession import format_accession
 
 # Set up logging
