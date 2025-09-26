@@ -55,8 +55,6 @@ class Submission:
     def __init__(self, path=None, sgml_content=None, keep_document_types=None,
                  batch_tar_path=None, accession=None, portfolio_ref=None,url=None):
         
-        
-        
         # get accession number
         # lets just use accesion-prefix, to get around malformed metadata files (1995 has a lot!)
         if path is not None:
@@ -105,7 +103,7 @@ class Submission:
 
             self.path = None
             metadata, raw_documents = parse_sgml_content_into_memory(sgml_content)
-            metadata = bytes_to_str(metadata)
+            metadata = bytes_to_str(metadata,lower=False)
 
             # standardize metadata
             metadata = transform_metadata_string(metadata)
@@ -174,13 +172,13 @@ class Submission:
 
 
         # booleans
-        self._has_xbrl = any(
+        self._xbrl_bool = any(
                 doc['type'] in ('EX-100.INS', 'EX-101.INS') or 
                 doc.get('filename', '').endswith('_htm.xml')
                 for doc in self.metadata.content['documents']
             )
         
-        self._has_fundamentals = self._has_xbrl
+        self._has_fundamentals = self._xbrl_bool
         
 
     # TODO rework for better metadata accessing
@@ -263,13 +261,17 @@ class Submission:
     def parse_xbrl(self):
         if self._xbrl:
             return
-
+        
+        if not self._xbrl_bool:
+            print(f"Submission: {self.accession} has no xbrl")
+            return
+        
         for idx, doc in enumerate(self.metadata.content['documents']):
             if doc['type'] in ['EX-100.INS','EX-101.INS']:
                 document = self._load_document_by_index(idx)
                 self._xbrl = parse_inline_xbrl(content=document.content,file_type='extracted_inline')
-                return
-
+                return  
+            
             if doc['filename'].endswith('_htm.xml'):
                 document = self._load_document_by_index(idx)
                 self._xbrl = parse_inline_xbrl(content=document.content,file_type='extracted_inline')
