@@ -1,0 +1,1691 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../submission/">
+      
+      
+        <link rel="next" href="../tables/tables/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Document - datamule</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#document" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="datamule" class="md-header__button md-logo" aria-label="datamule" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            datamule
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Document
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="datamule" class="md-nav__button md-logo" aria-label="datamule" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    datamule
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../providers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Providers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    datamule-python
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            datamule-python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quickstart
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data_provider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setting a Data Provider
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../package_data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Package Data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datasets
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    SEC Terminology
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            SEC Terminology
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sec/submission_types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Submission Types
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Portfolio
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            Portfolio
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../portfolio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Portfolio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../submission/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Submission
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Document
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Document
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metadata
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentcontent" class="md-nav__link">
+    <span class="md-ellipsis">
+      document.content
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentdata" class="md-nav__link">
+    <span class="md-ellipsis">
+      document.data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentdata_tuples" class="md-nav__link">
+    <span class="md-ellipsis">
+      document.data_tuples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documenttext" class="md-nav__link">
+    <span class="md-ellipsis">
+      document.text
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentmarkdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      document.markdown
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documenttables" class="md-nav__link">
+    <span class="md-ellipsis">
+      document.tables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      tags
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="tags">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#supported-tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supported Tags:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#similarity" class="md-nav__link">
+    <span class="md-ellipsis">
+      similarity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dictionaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dictionaries
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dictionaries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tags_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tags
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#similarity_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Similarity
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contains_string" class="md-nav__link">
+    <span class="md-ellipsis">
+      contains_string
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_section" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_section
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_tables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visualize" class="md-nav__link">
+    <span class="md-ellipsis">
+      visualize
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open" class="md-nav__link">
+    <span class="md-ellipsis">
+      open
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write_csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      write_csv
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write_json" class="md-nav__link">
+    <span class="md-ellipsis">
+      write_json
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#legacy-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Legacy Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Legacy Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parse" class="md-nav__link">
+    <span class="md-ellipsis">
+      parse
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lazy-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lazy Loading
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7_4" id="__nav_3_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tables
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            Tables
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tables/tables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tables
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tables/types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Table Types
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sheet/sheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sheet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../book/book/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Book
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_12" id="__nav_3_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Utils
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_12">
+            <span class="md-nav__icon md-icon"></span>
+            Utils
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/_process_cik_and_metadata_filters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CIK Filtering
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metadata" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metadata
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentcontent" class="md-nav__link">
+    <span class="md-ellipsis">
+      document.content
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentdata" class="md-nav__link">
+    <span class="md-ellipsis">
+      document.data
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentdata_tuples" class="md-nav__link">
+    <span class="md-ellipsis">
+      document.data_tuples
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documenttext" class="md-nav__link">
+    <span class="md-ellipsis">
+      document.text
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentmarkdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      document.markdown
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documenttables" class="md-nav__link">
+    <span class="md-ellipsis">
+      document.tables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      tags
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="tags">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#supported-tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Supported Tags:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#similarity" class="md-nav__link">
+    <span class="md-ellipsis">
+      similarity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dictionaries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dictionaries
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dictionaries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tags_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tags
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#similarity_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Similarity
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#contains_string" class="md-nav__link">
+    <span class="md-ellipsis">
+      contains_string
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_section" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_section
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get_tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_tables
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#visualize" class="md-nav__link">
+    <span class="md-ellipsis">
+      visualize
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#open" class="md-nav__link">
+    <span class="md-ellipsis">
+      open
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write_csv" class="md-nav__link">
+    <span class="md-ellipsis">
+      write_csv
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#write_json" class="md-nav__link">
+    <span class="md-ellipsis">
+      write_json
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#legacy-methods" class="md-nav__link">
+    <span class="md-ellipsis">
+      Legacy Methods
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Legacy Methods">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parse" class="md-nav__link">
+    <span class="md-ellipsis">
+      parse
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lazy-loading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lazy Loading
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="document">Document</h1>
+<p>The <code>Document</code> class represents a single file in a SEC Submission.</p>
+<h2 id="attributes">Attributes</h2>
+<h3 id="metadata">Metadata</h3>
+<ul>
+<li><code>document.accession</code> - submission accession number</li>
+<li><code>document.path</code> - document file path</li>
+<li><code>document.filing_date</code> - submission filing date</li>
+<li><code>document.extension</code> - document file extension, e.g. '.xml'</li>
+</ul>
+<h3 id="documentcontent"><code>document.content</code></h3>
+<p>Document in either string or bytes format.</p>
+<h3 id="documentdata"><code>document.data</code></h3>
+<p>Available for html, text and some pdf files. Document content parsed into dictionary form. </p>
+<h3 id="documentdata_tuples"><code>document.data_tuples</code></h3>
+<p>Available for html, text and some pdf files. <code>document.data</code> flattened into form: (id,type,content,level).</p>
+<h3 id="documenttext"><code>document.text</code></h3>
+<p>Available for html, text and some pdf files. Returns the document's text.</p>
+<h3 id="documentmarkdown"><code>document.markdown</code></h3>
+<p>Available for html, text and some pdf files. Returns the document in markdown format.</p>
+<h3 id="documenttables"><code>document.tables</code></h3>
+<p>Available for xml and html files. In the case of xml files, the document is flattened into multiple tables. In the case of html files, tables are extracted with basic cleaning using doc2dict, then the local context is included as description. Should be useful for LLMs.</p>
+<h3 id="tags"><code>tags</code></h3>
+<p>Tags extracted from documents. For example: cusips, persons, etc. Only works for html or text files currently.</p>
+<p>Tags are an experimental feature to add "good enough" NLP to the SEC corpus, without compromising speed or bloating the package. How tags work is that they leverage basic pattern matching (fast + lightweight) alongside dictionary lookup of pre-computed NLP datasets.</p>
+<p>It is highly recommended to use a <a href="#dictionaries">pre computed dataset</a> to improve quality. Or don't, if you want to see how bad older forms of NLP can be.</p>
+<p>Usage
+<div class="highlight"><pre><span></span><code>document.text.tags.cusip # Get cusips from text in form (match,start position, end position)
+document.data.tags.cusip # Get cusips from data in form (match, id of text or title segment, start position, end position)
+</code></pre></div></p>
+<p>Example
+<div class="highlight"><pre><span></span><code>from datamule import Portfolio
+from time import time
+from datamule.tags.config import set_dictionaries
+
+set_dictionaries([&#39;13fhr_information_table_cusips&#39;])
+
+portfolio = Portfolio(&#39;13fhr&#39;)
+portfolio.download_submissions(submission_type=[&#39;13F-HR&#39;],filing_date=(&#39;2008-09-01&#39;,&#39;2008-09-30&#39;))
+
+for sub in portfolio:
+    for doc in sub:
+        results = doc.text.tags.cusips
+        if results is not None:
+            print(results)
+</code></pre></div></p>
+<h4 id="supported-tags">Supported Tags:</h4>
+<ul>
+<li>cusips</li>
+<li>isins</li>
+<li>figis</li>
+<li>persons</li>
+<li>tickers<ul>
+<li>nyse</li>
+<li>nasdaq</li>
+<li>nyse_american</li>
+<li>london_stock_exchange</li>
+<li>toronto_stock_exchange</li>
+<li>euronext_paris</li>
+<li>euronext_amsterdam</li>
+<li>euronext_brussels</li>
+<li>euronext_lisbon</li>
+<li>euronext_milan</li>
+<li>deutsche_borse_xetra</li>
+<li>six_swiss_exchange</li>
+<li>tokyo_stock_exchange</li>
+<li>hong_kong_stock_exchange</li>
+<li>shanghai_stock_exchange</li>
+<li>shenzhen_stock_exchange</li>
+<li>australian_securities_exchange</li>
+<li>singapore_exchange</li>
+<li>nse_bse</li>
+<li>sao_paulo_b3</li>
+<li>mexico_bmv</li>
+<li>korea_exchange</li>
+<li>taiwan_stock_exchange</li>
+<li>johannesburg_stock_exchange</li>
+<li>tel_aviv_stock_exchange</li>
+<li>moscow_exchange</li>
+<li>istanbul_stock_exchange</li>
+<li>nasdaq_stockholm</li>
+<li>oslo_bors</li>
+<li>otc_markets_us</li>
+<li>pink_sheets</li>
+</ul>
+</li>
+</ul>
+<h3 id="similarity"><code>similarity</code></h3>
+<p>Usage
+<div class="highlight"><pre><span></span><code>document.text.similarity.loughran_mcdonald 
+document.data.similarity.loughran_mcdonald # get similarity by section
+</code></pre></div></p>
+<h3 id="dictionaries">Dictionaries</h3>
+<p>To improve tag quality, use a dictionary. On first load, these dictionaries are downloaded into the User's home. e.g. for Windows: <code>C:\Users\{username}\.datamule\dictionaries</code>.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datamule.tags.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">set_dictionaries</span>
+<span class="n">set_dictionaries</span><span class="p">([</span><span class="s1">&#39;ssa_baby_names&#39;</span><span class="p">],</span> <span class="n">overwrite</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># set this to true, to download the latest dataset.</span>
+</code></pre></div>
+<h4 id="tags_1">Tags</h4>
+<p>Persons</p>
+<ul>
+<li>ssa_baby_names (Uses all baby first names since 1880, where there are more than 5 names per year.)</li>
+<li>8k_2024_persons (Uses multistage spacy, human parser pipeline to extract names from all documents within 2024 8-K filings)</li>
+</ul>
+<p>CUSIP</p>
+<ul>
+<li>sc13dg_cusips (Uses SC 13D/G, somewhat incomplete)</li>
+<li>13fhr_information_table_cusips.txt (Uses 13F-HR INFORMATION TABLE, should be better)</li>
+</ul>
+<p>ISIN</p>
+<ul>
+<li>npx_isins (Uses isins detected in N-PX filings, very incomplete)</li>
+</ul>
+<p>FIGI</p>
+<ul>
+<li>npx_figis (Uses figis detected in N-PX filings, very incomplete)</li>
+</ul>
+<h4 id="similarity_1">Similarity</h4>
+<p>Loughran McDonald</p>
+<ul>
+<li>loughran_mcdonald (<a href="https://sraf.nd.edu/loughranmcdonald-master-dictionary/">Link</a>)</li>
+</ul>
+<h2 id="methods">Methods</h2>
+<h3 id="contains_string"><code>contains_string</code></h3>
+<div class="highlight"><pre><span></span><code><span class="n">contains_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pattern</span><span class="p">)</span>
+</code></pre></div>
+<p>Checks if the document content contains a specified pattern. Works for HTML, XML, and TXT files.</p>
+<h3 id="get_section"><code>get_section</code></h3>
+<p>Gets section by title. Formats are: <code>text</code>, <code>markdown</code>, <code>dict</code>.</p>
+<div class="highlight"><pre><span></span><code>get_section(title=None, title_regex=None,title_class=None, format=&#39;dict&#39;):
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># returns a list of dictionaries preserving hierarchy - a list in case there are multiple sections with the same title</span>
+<span class="n">get_section</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;parti&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;dict&#39;</span><span class="p">)</span>
+
+<span class="c1"># returns a list of flattened version of dict form</span>
+<span class="n">get_section</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;signatures&#39;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;text&#39;</span><span class="p">)</span>
+
+<span class="c1"># return all sections with title including item1, e.g. item1, item1a,... title_class restricts to nodes where class is &#39;item&#39;</span>
+<span class="n">get_section</span><span class="p">(</span><span class="n">title_regex</span><span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;item1.*&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;dict&#39;</span><span class="p">,</span><span class="n">title_class</span><span class="o">=</span><span class="s1">&#39;item&#39;</span><span class="p">)</span>
+
+<span class="c1"># returns all sections starting with income</span>
+<span class="n">get_section</span><span class="p">(</span><span class="n">title_regex</span><span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;income.*&quot;</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;dict&#39;</span><span class="p">)</span>
+</code></pre></div>
+<p>Note that <code>get_section</code> will return matches for <code>title</code> (original title) or <code>standardized_title</code> (standardized title - e.g. "ITEM 1A. RISK FACTORS" -&gt; 'item1a').</p>
+<h3 id="get_tables"><code>get_tables</code></h3>
+<p>Gets table by exact name or by regex of description. Description is autogenerated from nearby context for html files.
+<div class="highlight"><pre><span></span><code>get_tables(description_regex=None,name=None)
+</code></pre></div></p>
+<p>Example
+<div class="highlight"><pre><span></span><code>from datamule import Portfolio
+portfolio= Portfolio(&#39;DEFM14A&#39;)
+portfolio.download_submissions(cik=&#39;943324&#39;,submission_type=&#39;DEFM14A&#39;,document_type=&#39;DEFM14A&#39;,filing_date=(&#39;2011-10-25&#39;,&#39;2011-10-25&#39;))
+for doc in portfolio.document_type(&#39;DEFM14A&#39;):
+    print(str(doc.get_tables(description_regex=r&#39;(?i)golden parachute&#39;)[0]))
+</code></pre></div></p>
+<h3 id="visualize"><code>visualize</code></h3>
+<p>Opens the parser version of a document using webbrowser. Only works for certain file extensions.</p>
+<h3 id="open"><code>open</code></h3>
+<p>Opens the document using webbrowser.</p>
+<p>Example
+<div class="highlight"><pre><span></span><code><span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;(?i)chatgpt&#39;</span>
+<span class="n">document</span><span class="o">.</span><span class="n">contains_string</span><span class="p">(</span><span class="n">pattern</span><span class="p">)</span>
+</code></pre></div></p>
+<h3 id="write_csv"><code>write_csv</code></h3>
+<div class="highlight"><pre><span></span><code><span class="n">write_csv</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_folder</span><span class="p">)</span>
+</code></pre></div>
+<p>If the document has extension '.xml', parses the XML into tables, then writes to disk using append mode.</p>
+<h3 id="write_json"><code>write_json</code></h3>
+<div class="highlight"><pre><span></span><code><span class="n">write_json</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">output_filename</span><span class="p">)</span>
+</code></pre></div>
+<p>Writes <code>document.data</code> to JSON format (automatically parses document if not already parsed).</p>
+<h2 id="legacy-methods">Legacy Methods</h2>
+<h3 id="parse"><code>parse</code></h3>
+<p>Parses a document into dictionary form and applies a mapping dict. Currently supports files in <code>html</code>, <code>xml</code>, has limited support for <code>.pdf</code>, and some <code>txt</code> formats. Most do not have mapping dicts written yet, so are less standardized.</p>
+<p>Note: You typically don't need to call <code>parse()</code> manually - accessing <code>document.data</code> will automatically trigger parsing if needed.</p>
+<h2 id="architecture">Architecture</h2>
+<h3 id="lazy-loading">Lazy Loading</h3>
+<p>The Document class uses lazy loading.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

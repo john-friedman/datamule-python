@@ -1,0 +1,1556 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../portfolio/tables/types/">
+      
+      
+        <link rel="next" href="../../index/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.20">
+    
+    
+      
+        <title>Sheet - datamule</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.e53b48f4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sheet" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="datamule" class="md-header__button md-logo" aria-label="datamule" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            datamule
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Sheet
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="datamule" class="md-nav__button md-logo" aria-label="datamule" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    datamule
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../providers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Data Providers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    datamule-python
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            datamule-python
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Quickstart
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data_provider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setting a Data Provider
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../package_data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Package Data
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datasets
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    SEC Terminology
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            SEC Terminology
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sec/submission_types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Submission Types
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Portfolio
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            Portfolio
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../portfolio/portfolio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Portfolio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../portfolio/submission/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Submission
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../portfolio/document/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Document
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7_4" id="__nav_3_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tables
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            Tables
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../portfolio/tables/tables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tables
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../portfolio/tables/types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Table Types
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Sheet
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sheet
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#get_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Databases
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Databases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lookup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lookup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simple-xbrl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simple XBRL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fundamentals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fundamentals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proxy-voting-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proxy Voting Records
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13f-hr" class="md-nav__link">
+    <span class="md-ellipsis">
+      13F-HR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ownership" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ownership
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Index
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../book/book/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Book
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Config
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_12" id="__nav_3_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Utils
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_12">
+            <span class="md-nav__icon md-icon"></span>
+            Utils
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/_process_cik_and_metadata_filters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CIK Filtering
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#get_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_table
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="get_table">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Databases
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Databases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lookup" class="md-nav__link">
+    <span class="md-ellipsis">
+      Lookup
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simple-xbrl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simple XBRL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fundamentals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fundamentals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proxy-voting-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proxy Voting Records
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13f-hr" class="md-nav__link">
+    <span class="md-ellipsis">
+      13F-HR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ownership" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ownership
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="sheet">Sheet</h1>
+<p>Sheet is a class for downloading and working with tabular datasets from the SEC.</p>
+<details class="note" open="open">
+<summary>7/23/25 Update</summary>
+<p>Sheet is being remade to interact with datamule-cloud features. Old functionality will move to a new class.</p>
+</details>
+<h2 id="get_table">get_table</h2>
+<p>Access datamule's MySQL RDS offerings.</p>
+<div class="highlight"><pre><span></span><code><span class="n">get_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">table</span><span class="p">,</span> <span class="n">cik</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">ticker</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="databases">Databases</h3>
+<h4 id="lookup">Lookup</h4>
+<p>All tables use the lookup database's parameters for filtering before the main query.</p>
+<p>Sources:
+- SEC's public EDGAR filing history for all filers from the Submissions API. Recompiled nightly. <a href="https://www.sec.gov/Archives/edgar/daily-index/bulkdata/submissions.zip">ZIP</a></p>
+<p><strong>accession_cik</strong></p>
+<ul>
+<li>accessionNumber: BIGINT UNSIGNED NOT NULL</li>
+<li>cik: BIGINT UNSIGNED NOT NULL</li>
+<li>PRIMARY KEY: (accessionNumber, cik)</li>
+<li>Indexes:<ul>
+<li>idx_cik (cik)</li>
+</ul>
+</li>
+</ul>
+<p><strong>submission_details</strong></p>
+<ul>
+<li>accessionNumber: BIGINT UNSIGNED PRIMARY KEY</li>
+<li>submissionType: VARCHAR(16) NOT NULL</li>
+<li>filingDate: DATE NOT NULL</li>
+<li>isInlineXBRL: BOOLEAN NOT NULL DEFAULT FALSE</li>
+<li>isXBRL: BOOLEAN NOT NULL DEFAULT FALSE</li>
+<li>Indexes:<ul>
+<li>idx_submission_filing (submissionType, filingDate)</li>
+<li>idx_filing_date (filingDate)</li>
+<li>idx_inline_xbrl (isInlineXBRL)</li>
+<li>idx_xbrl (isXBRL)</li>
+</ul>
+</li>
+</ul>
+<p>Example:
+<div class="highlight"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="n">sheet</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="s1">&#39;accession_cik&#39;</span><span class="p">,</span> <span class="n">ticker</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;F&#39;</span><span class="p">]))</span>
+</code></pre></div></p>
+<h4 id="simple-xbrl">Simple XBRL</h4>
+<p>Sources:
+- All submissions containing inline XBRL or XBRL.</p>
+<p><strong>simple_xbrl</strong></p>
+<ul>
+<li>id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY</li>
+<li>accessionNumber: BIGINT UNSIGNED NOT NULL</li>
+<li>context_id: INT UNSIGNED NOT NULL</li>
+<li>taxonomy: VARCHAR(16) NOT NULL</li>
+<li>name: VARCHAR(256) NOT NULL</li>
+<li>value: TEXT NOT NULL</li>
+<li>period_start_date: DATE</li>
+<li>period_end_date: DATE</li>
+<li>members: TEXT</li>
+<li>Indexes:<ul>
+<li>idx_accession_name (accessionNumber, name)</li>
+<li>idx_accession_period_range (accessionNumber, period_start_date, period_end_date)</li>
+<li>idx_accession_taxonomy_name (accessionNumber, taxonomy, name)</li>
+<li>idx_taxonomy_name (taxonomy, name)</li>
+<li>idx_period_range (period_start_date, period_end_date)</li>
+<li>idx_accession_name_members (accessionNumber, name, members(255))</li>
+</ul>
+</li>
+</ul>
+<p>Examples:
+<div class="highlight"><pre><span></span><code><span class="n">ford_netincome</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="s1">&#39;simple_xbrl&#39;</span><span class="p">,</span> <span class="n">taxonomy</span><span class="o">=</span><span class="s2">&quot;us-gaap&quot;</span><span class="p">,</span> 
+                                <span class="n">name</span><span class="o">=</span><span class="s2">&quot;NetIncomeLoss&quot;</span><span class="p">,</span> <span class="n">ticker</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;META&#39;</span><span class="p">])</span>
+
+<span class="n">jan_2020</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="s1">&#39;simple_xbrl&#39;</span><span class="p">,</span> <span class="n">taxonomy</span><span class="o">=</span><span class="s2">&quot;us-gaap&quot;</span><span class="p">,</span> 
+                          <span class="n">name</span><span class="o">=</span><span class="s2">&quot;NetIncomeLoss&quot;</span><span class="p">,</span> 
+                          <span class="n">filingDate</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;2020-01-01&#39;</span><span class="p">,</span><span class="s1">&#39;2020-01-31&#39;</span><span class="p">))</span>
+
+<span class="n">sheet</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="s1">&#39;simple_xbrl&#39;</span><span class="p">,</span> <span class="n">filingDate</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span><span class="s1">&#39;2024-01-31&#39;</span><span class="p">),</span><span class="n">members</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;us-gaap:CommonStockMember&#39;</span><span class="p">,</span><span class="s1">&#39;exch:XCHI&#39;</span><span class="p">])</span>
+</code></pre></div></p>
+<h4 id="fundamentals">Fundamentals</h4>
+<p>Sources:
+- All submissions containing inline XBRL or XBRL.</p>
+<p><strong>fundamentals</strong></p>
+<p>Fundamentals is a convenience function that uses <a href="https://github.com/john-friedman/company-fundamentals">company-fundamentals</a> to construct fundamentals on the fly using <strong>simple_xbrl</strong>.</p>
+<p>Full list of fundamentals <a href="https://github.com/john-friedman/company-fundamentals/blob/master/company_fundamentals/calculations/calculations.py">here</a>.</p>
+<p>Example:
+<div class="highlight"><pre><span></span><code>print(sheet.get_table(&#39;fundamentals&#39;,fundamentals=[&#39;freeCashFlow&#39;],ticker=[&#39;TSLA&#39;],filingDate=(&#39;2020-01-01&#39;,&#39;2020-12-31&#39;),
+      submissionType=&#39;10-K&#39;))
+</code></pre></div>
+Result
+<div class="highlight"><pre><span></span><code>{&#39;CashFlowStatement&#39;: {&#39;freeCashFlow&#39;: [{&#39;value&#39;: 1078000000.0, &#39;period_start_date&#39;: &#39;2019-01-01T00:00:00.000Z&#39;, &#39;period_end_date&#39;: &#39;2019-12-31T00:00:00.000Z&#39;}, {&#39;value&#39;: -3000000.0, &#39;period_start_date&#39;: &#39;2018-01-01T00:00:00.000Z&#39;, &#39;period_end_date&#39;: &#39;2018-12-31T00:00:00.000Z&#39;}, {&#39;value&#39;: -3354000000.0, &#39;period_start_date&#39;: &#39;2017-01-01T00:00:00.000Z&#39;, &#39;period_end_date&#39;: &#39;2017-12-31T00:00:00.000Z&#39;}]}}
+</code></pre></div></p>
+<h4 id="proxy-voting-records">Proxy Voting Records</h4>
+<p><strong>proxy_voting_record</strong></p>
+<p>Sources:
+- Submission Type: N-PX, N-PX/A. Document Type: PROXY VOTING RECORD.</p>
+<ul>
+<li>id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY</li>
+<li>accessionNumber: BIGINT UNSIGNED NOT NULL</li>
+<li>meetingDate: DATE</li>
+<li>managementRecommendation: VARCHAR(16)</li>
+<li>sharesVoted: BIGINT UNSIGNED</li>
+<li>howVoted: VARCHAR(16)</li>
+<li>sharesOnLoan: BIGINT UNSIGNED</li>
+<li>cusip: CHAR(9)</li>
+<li>issuerName: VARCHAR(256)</li>
+<li>categoryType: VARCHAR(256)</li>
+<li>voteDescription: VARCHAR(8192)</li>
+<li>Indexes:<ul>
+<li>idx_cusip (cusip)</li>
+<li>idx_meeting_date (meetingDate)</li>
+<li>idx_category_type (categoryType)</li>
+<li>idx_management_recommendation (managementRecommendation)</li>
+<li>idx_how_voted (howVoted)</li>
+<li>idx_shares_voted (sharesVoted)</li>
+<li>idx_issuer_name (issuerName)</li>
+<li>idx_accession_number (accessionNumber)</li>
+</ul>
+</li>
+</ul>
+<p>Examples:
+<div class="highlight"><pre><span></span><code><span class="c1"># Get voting records for a date range</span>
+<span class="n">recent_votes</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="s1">&#39;proxy_voting_record&#39;</span><span class="p">,</span> 
+                              <span class="n">meetingDate</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;2023-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2023-01-31&#39;</span><span class="p">))</span>
+
+<span class="c1"># Filter by voting behavior</span>
+<span class="n">against_mgmt</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="s1">&#39;proxy_voting_record&#39;</span><span class="p">,</span> 
+                              <span class="n">managementRecommendation</span><span class="o">=</span><span class="s1">&#39;For&#39;</span><span class="p">,</span>
+                              <span class="n">howVoted</span><span class="o">=</span><span class="s1">&#39;Against&#39;</span><span class="p">,</span> 
+                              <span class="n">meetingDate</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;2023-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2023-01-31&#39;</span><span class="p">))</span>
+
+
+<span class="c1"># Get executive compensation votes</span>
+<span class="n">exec_comp</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="s1">&#39;proxy_voting_record&#39;</span><span class="p">,</span> 
+                           <span class="n">categoryType</span><span class="o">=</span><span class="s1">&#39;COMPENSATION&#39;</span><span class="p">,</span><span class="n">cik</span><span class="o">=</span><span class="s1">&#39;2024532&#39;</span><span class="p">)</span>
+</code></pre></div></p>
+<h4 id="13f-hr">13F-HR</h4>
+<p><strong>information_table</strong></p>
+<p>Sources:
+- Submission Type: 13F-HR, 13F-HR/A. Document Type: INFORMATION TABLE.</p>
+<ul>
+<li>id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY</li>
+<li>accessionNumber: BIGINT UNSIGNED NOT NULL</li>
+<li>nameOfIssuer: VARCHAR(256)</li>
+<li>titleOfClass: VARCHAR(256)</li>
+<li>cusip: CHAR(9)</li>
+<li>value: BIGINT UNSIGNED</li>
+<li>sharesOrPrincipalAmount: BIGINT UNSIGNED</li>
+<li>sharesOrPrincipalAmountType: VARCHAR(16)</li>
+<li>investmentDiscretion: VARCHAR(16)</li>
+<li>votingAuthoritySole: BIGINT UNSIGNED</li>
+<li>votingAuthorityShared: BIGINT UNSIGNED</li>
+<li>votingAuthorityNone: BIGINT UNSIGNED</li>
+<li>putCall: VARCHAR(16)</li>
+<li>otherManager: VARCHAR(256)</li>
+<li>Indexes:<ul>
+<li>idx_cusip (cusip)</li>
+<li>idx_accession_number (accessionNumber)</li>
+<li>idx_voting_authority (votingAuthoritySole, votingAuthorityShared, votingAuthorityNone)</li>
+<li>idx_name_of_issuer (nameOfIssuer)</li>
+<li>idx_title_of_class (titleOfClass)</li>
+<li>idx_value (value)</li>
+<li>idx_shares_or_principal_amount (sharesOrPrincipalAmount)</li>
+<li>idx_shares_or_principal_amount_type (sharesOrPrincipalAmountType)</li>
+<li>idx_investment_discretion (investmentDiscretion)</li>
+</ul>
+</li>
+</ul>
+<p>Examples:
+<div class="highlight"><pre><span></span><code><span class="c1"># Find all holdings of a specific security by CUSIP</span>
+<span class="n">aapl_holders</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="s1">&#39;information_table&#39;</span><span class="p">,</span> <span class="n">cusip</span><span class="o">=</span><span class="s1">&#39;037833100&#39;</span><span class="p">,</span><span class="n">filingDate</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-07&#39;</span><span class="p">))</span>
+</code></pre></div></p>
+<h4 id="ownership">Ownership</h4>
+<p>Sources:
+- Submission Type: 3, 4, 5, 3/A, 4/A and 5/A. Document Type: 3, 4, 5, 3/A, 4/A and 5/A.</p>
+<p><strong>derivative_holding_ownership</strong></p>
+<ul>
+<li>id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY</li>
+<li>accessionNumber: BIGINT UNSIGNED NOT NULL</li>
+<li>securityTitle: VARCHAR(128)</li>
+<li>securityTitleFootnote: TEXT</li>
+<li>conversionOrExercisePrice: BIGINT UNSIGNED</li>
+<li>conversionOrExercisePriceFootnote: TEXT</li>
+<li>exerciseDate: DATE</li>
+<li>exerciseDateFootnote: TEXT</li>
+<li>expirationDate: DATE</li>
+<li>expirationDateFootnote: TEXT</li>
+<li>underlyingSecurityTitle: VARCHAR(128)</li>
+<li>underlyingSecurityTitleFootnote: TEXT</li>
+<li>underlyingSecurityShares: BIGINT UNSIGNED</li>
+<li>underlyingSecuritySharesFootnote: TEXT</li>
+<li>underlyingSecurityValue: BIGINT UNSIGNED</li>
+<li>underlyingSecurityValueFootnote: TEXT</li>
+<li>directOrIndirectOwnership: CHAR(1)</li>
+<li>directOrIndirectOwnershipFootnote: TEXT</li>
+<li>natureOfOwnership: VARCHAR(256)</li>
+<li>natureOfOwnershipFootnote: TEXT</li>
+<li>sharesOwnedFollowingTransaction: BIGINT UNSIGNED</li>
+<li>sharesOwnedFollowingTransactionFootnote: TEXT</li>
+<li>valueOwnedFollowingTransaction: BIGINT UNSIGNED</li>
+<li>valueOwnedFollowingTransactionFootnote: TEXT</li>
+<li>transactionFormType: TINYINT</li>
+<li>transactionCodingFootnote: TEXT</li>
+<li>Indexes:<ul>
+<li>idx_accession_number (accessionNumber)</li>
+<li>idx_underlying_security_title (underlyingSecurityTitle)</li>
+<li>idx_expiration_date (expirationDate)</li>
+<li>idx_security_title (securityTitle)</li>
+</ul>
+</li>
+</ul>
+<p><strong>derivative_transaction_ownership</strong></p>
+<ul>
+<li>id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY</li>
+<li>accessionNumber: BIGINT UNSIGNED NOT NULL</li>
+<li>securityTitle: VARCHAR(128)</li>
+<li>securityTitleFootnote: TEXT</li>
+<li>conversionOrExercisePrice: BIGINT UNSIGNED</li>
+<li>conversionOrExercisePriceFootnote: TEXT</li>
+<li>transactionDate: DATE</li>
+<li>transactionDateFootnote: TEXT</li>
+<li>deemedExecutionDate: DATE</li>
+<li>deemedExecutionDateFootnote: TEXT</li>
+<li>transactionFormType: TINYINT</li>
+<li>transactionCode: CHAR(1)</li>
+<li>equitySwapInvolved: VARCHAR(8)</li>
+<li>transactionCodingFootnote: TEXT</li>
+<li>transactionShares: BIGINT UNSIGNED</li>
+<li>transactionSharesFootnote: TEXT</li>
+<li>transactionPricePerShare: BIGINT UNSIGNED</li>
+<li>transactionPricePerShareFootnote: TEXT</li>
+<li>transactionAcquiredDisposedCode: CHAR(1)</li>
+<li>transactionTotalValue: BIGINT UNSIGNED</li>
+<li>transactionTotalValueFootnote: TEXT</li>
+<li>exerciseDate: DATE</li>
+<li>exerciseDateFootnote: TEXT</li>
+<li>expirationDate: DATE</li>
+<li>expirationDateFootnote: TEXT</li>
+<li>underlyingSecurityTitle: VARCHAR(128)</li>
+<li>underlyingSecurityTitleFootnote: TEXT</li>
+<li>underlyingSecurityShares: BIGINT UNSIGNED</li>
+<li>underlyingSecuritySharesFootnote: TEXT</li>
+<li>underlyingSecurityValue: BIGINT UNSIGNED</li>
+<li>sharesOwnedFollowingTransaction: BIGINT UNSIGNED</li>
+<li>sharesOwnedFollowingTransactionFootnote: TEXT</li>
+<li>directOrIndirectOwnership: CHAR(1)</li>
+<li>directOrIndirectOwnershipFootnote: TEXT</li>
+<li>natureOfOwnership: VARCHAR(256)</li>
+<li>natureOfOwnershipFootnote: TEXT</li>
+<li>transactionTimeliness: CHAR(1)</li>
+<li>transactionTimelinessFootnote: TEXT</li>
+<li>valueOwnedFollowingTransaction: BIGINT UNSIGNED</li>
+<li>valueOwnedFollowingTransactionFootnote: TEXT</li>
+<li>transactionAcquiredDisposedCodeFootnote: TEXT</li>
+<li>underlyingSecurityValueFootnote: TEXT</li>
+<li>Indexes:<ul>
+<li>idx_accession_number (accessionNumber)</li>
+<li>idx_transaction_date (transactionDate)</li>
+<li>idx_transaction_code (transactionCode)</li>
+<li>idx_underlying_security_title (underlyingSecurityTitle)</li>
+<li>idx_expiration_date (expirationDate)</li>
+</ul>
+</li>
+</ul>
+<p><strong>metadata_ownership</strong></p>
+<ul>
+<li>id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY</li>
+<li>accessionNumber: BIGINT UNSIGNED NOT NULL</li>
+<li>periodOfReport: DATE</li>
+<li>issuerCik: BIGINT UNSIGNED</li>
+<li>issuerName: VARCHAR(128)</li>
+<li>issuerTradingSymbol: VARCHAR(16)</li>
+<li>documentType: VARCHAR(8)</li>
+<li>remarks: TEXT</li>
+<li>documentDescription: TEXT</li>
+<li>footnotes: TEXT</li>
+<li>notSubjectToSection16: VARCHAR(8)</li>
+<li>form3HoldingsReported: TINYINT</li>
+<li>form4TransactionsReported: TINYINT</li>
+<li>noSecuritiesOwned: TINYINT</li>
+<li>aff10b5One: VARCHAR(8)</li>
+<li>dateOfOriginalSubmission: DATE</li>
+<li>schemaVersion: VARCHAR(8)</li>
+<li>Indexes:<ul>
+<li>idx_accession_number (accessionNumber)</li>
+<li>idx_issuer_cik (issuerCik)</li>
+<li>idx_period_of_report (periodOfReport)</li>
+</ul>
+</li>
+</ul>
+<p><strong>non_derivative_holding_ownership</strong></p>
+<ul>
+<li>id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY</li>
+<li>accessionNumber: BIGINT UNSIGNED NOT NULL</li>
+<li>securityTitle: VARCHAR(128)</li>
+<li>securityTitleFootnote: TEXT</li>
+<li>sharesOwnedFollowingTransaction: BIGINT UNSIGNED</li>
+<li>sharesOwnedFollowingTransactionFootnote: TEXT</li>
+<li>directOrIndirectOwnership: CHAR(1)</li>
+<li>directOrIndirectOwnershipFootnote: TEXT</li>
+<li>natureOfOwnership: VARCHAR(256)</li>
+<li>natureOfOwnershipFootnote: TEXT</li>
+<li>valueOwnedFollowingTransaction: BIGINT UNSIGNED</li>
+<li>transactionCodingFootnote: TEXT</li>
+<li>transactionFormType: TINYINT</li>
+<li>valueOwnedFollowingTransactionFootnote: TEXT</li>
+<li>Indexes:<ul>
+<li>idx_accession_number (accessionNumber)</li>
+<li>idx_security_title (securityTitle)</li>
+<li>idx_direct_or_indirect_ownership (directOrIndirectOwnership)</li>
+</ul>
+</li>
+</ul>
+<p><strong>non_derivative_transaction_ownership</strong></p>
+<ul>
+<li>id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY</li>
+<li>accessionNumber: BIGINT UNSIGNED NOT NULL</li>
+<li>securityTitle: VARCHAR(128)</li>
+<li>securityTitleFootnote: TEXT</li>
+<li>transactionDate: DATE</li>
+<li>transactionDateFootnote: TEXT</li>
+<li>deemedExecutionDate: DATE</li>
+<li>deemedExecutionDateFootnote: TEXT</li>
+<li>transactionFormType: TINYINT</li>
+<li>transactionCode: CHAR(1)</li>
+<li>equitySwapInvolved: VARCHAR(8)</li>
+<li>transactionCodingFootnote: TEXT</li>
+<li>transactionShares: BIGINT UNSIGNED</li>
+<li>transactionSharesFootnote: TEXT</li>
+<li>transactionPricePerShare: BIGINT UNSIGNED</li>
+<li>transactionPricePerShareFootnote: TEXT</li>
+<li>transactionAcquiredDisposedCode: CHAR(1)</li>
+<li>transactionAcquiredDisposedCodeFootnote: TEXT</li>
+<li>sharesOwnedFollowingTransaction: BIGINT UNSIGNED</li>
+<li>sharesOwnedFollowingTransactionFootnote: TEXT</li>
+<li>directOrIndirectOwnership: CHAR(1)</li>
+<li>directOrIndirectOwnershipFootnote: TEXT</li>
+<li>natureOfOwnership: VARCHAR(256)</li>
+<li>natureOfOwnershipFootnote: TEXT</li>
+<li>transactionTimeliness: CHAR(1)</li>
+<li>transactionTimelinessFootnote: TEXT</li>
+<li>valueOwnedFollowingTransaction: BIGINT UNSIGNED</li>
+<li>valueOwnedFollowingTransactionFootnote: TEXT</li>
+<li>Indexes:<ul>
+<li>idx_accession_number (accessionNumber)</li>
+<li>idx_transaction_date (transactionDate)</li>
+<li>idx_transaction_code (transactionCode)</li>
+<li>idx_transaction_acquired_disposed_code (transactionAcquiredDisposedCode)</li>
+<li>idx_security_title (securityTitle)</li>
+</ul>
+</li>
+</ul>
+<p><strong>owner_signature_ownership</strong></p>
+<ul>
+<li>id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY</li>
+<li>accessionNumber: BIGINT UNSIGNED NOT NULL</li>
+<li>signatureName: VARCHAR(256)</li>
+<li>signatureDate: DATE</li>
+<li>Indexes:<ul>
+<li>idx_accession_number (accessionNumber)</li>
+<li>idx_signature_date (signatureDate)</li>
+<li>idx_signature_name (signatureName)</li>
+</ul>
+</li>
+</ul>
+<p><strong>reporting_owner_ownership</strong></p>
+<ul>
+<li>id: BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY</li>
+<li>accessionNumber: BIGINT UNSIGNED NOT NULL</li>
+<li>rptOwnerCity: VARCHAR(64)</li>
+<li>rptOwnerState: VARCHAR(4)</li>
+<li>rptOwnerStateDescription: VARCHAR(64)</li>
+<li>rptOwnerStreet1: VARCHAR(64)</li>
+<li>rptOwnerStreet2: VARCHAR(64)</li>
+<li>rptOwnerZipCode: VARCHAR(16)</li>
+<li>rptOwnerCik: BIGINT UNSIGNED</li>
+<li>rptOwnerName: VARCHAR(256)</li>
+<li>rptOwnerIsDirector: VARCHAR(8)</li>
+<li>rptOwnerIsOfficer: VARCHAR(8)</li>
+<li>rptOwnerIsTenPercentOwner: VARCHAR(8)</li>
+<li>rptOwnerIsOther: VARCHAR(8)</li>
+<li>rptOwnerOfficerTitle: VARCHAR(64)</li>
+<li>rptOwnerOtherText: VARCHAR(64)</li>
+<li>Indexes:<ul>
+<li>idx_accession_number (accessionNumber)</li>
+<li>idx_rpt_owner_name (rptOwnerName)</li>
+<li>idx_rpt_owner_is_director (rptOwnerIsDirector)</li>
+<li>idx_rpt_owner_is_officer (rptOwnerIsOfficer)</li>
+<li>idx_rpt_owner_is_ten_percent_owner (rptOwnerIsTenPercentOwner)</li>
+<li>idx_rpt_owner_is_other (rptOwnerIsOther)</li>
+<li>idx_rpt_owner_officer_title (rptOwnerOfficerTitle)</li>
+</ul>
+</li>
+</ul>
+<p>Examples:
+<div class="highlight"><pre><span></span><code><span class="c1"># Get all Tesla insider transactions for a date range</span>
+<span class="n">tesla_transactions</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="s1">&#39;non_derivative_transaction_ownership&#39;</span><span class="p">,</span> 
+                                    <span class="n">ticker</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;TSLA&#39;</span><span class="p">],</span> 
+                                    <span class="n">transactionDate</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-03-31&#39;</span><span class="p">))</span>
+
+<span class="c1"># Find all stock options expiring soon</span>
+<span class="n">expiring_options</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="s1">&#39;derivative_holding_ownership&#39;</span><span class="p">,</span>
+                                  <span class="n">expirationDate</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;2024-12-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-12-31&#39;</span><span class="p">))</span>
+
+<span class="c1"># Get reporting owner details for specific filings</span>
+<span class="n">owner_info</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="s1">&#39;reporting_owner_ownership&#39;</span><span class="p">,</span>
+                            <span class="n">cik</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;1318605&#39;</span><span class="p">])</span>  <span class="c1"># Tesla CIK</span>
+
+<span class="c1"># Find all buy transactions (A = Acquired)</span>
+<span class="n">buy_transactions</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="s1">&#39;non_derivative_transaction_ownership&#39;</span><span class="p">,</span>
+                                  <span class="n">transactionAcquiredDisposedCode</span><span class="o">=</span><span class="s1">&#39;A&#39;</span><span class="p">,</span>
+                                  <span class="n">transactionDate</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-31&#39;</span><span class="p">))</span>
+
+<span class="c1"># Get metadata for all Form 4 filings</span>
+<span class="n">form4_metadata</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="s1">&#39;metadata_ownership&#39;</span><span class="p">,</span>
+                                 <span class="n">documentType</span><span class="o">=</span><span class="s1">&#39;4&#39;</span><span class="p">,</span>
+                                 <span class="n">periodOfReport</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-31&#39;</span><span class="p">))</span>
+</code></pre></div></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
