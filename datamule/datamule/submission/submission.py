@@ -6,8 +6,6 @@ from secsgml.parse_sgml import transform_metadata_string
 from secsgml.utils import bytes_to_str
 from ..sec.utils import headers
 import tarfile
-import zstandard as zstd
-import gzip
 import urllib.request
 from secxbrl import parse_inline_xbrl
 from company_fundamentals import construct_fundamentals
@@ -22,10 +20,19 @@ class FundamentalsAccessor:
         self._cache = {}
         self._all_data = None
     
-    def __getattr__(self, category):
-        if category not in self._cache:
-            self._cache[category] = self.submission.parse_fundamentals(categories=[category])
-        return self._cache[category]
+    def __getattr__(self, name):
+        # Try as category first
+        try:
+            if name not in self._cache:
+                result = self.submission.parse_fundamentals(categories=[name])
+                if result:  # Only cache if we got actual data
+                    self._cache[name] = result
+                    return result
+        except:
+            pass
+    
+        # Fall back to dict behavior
+        return getattr(self._get_all_data(), name)
     
     def _get_all_data(self):
         if self._all_data is None:
