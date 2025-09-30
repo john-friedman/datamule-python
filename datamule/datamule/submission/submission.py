@@ -12,6 +12,7 @@ from company_fundamentals import construct_fundamentals
 from decimal import Decimal
 from ..utils.format_accession import format_accession
 from .tar_submission import tar_submission
+import zstandard as zstd
 
 # probably needs rework later
 class FundamentalsAccessor:
@@ -105,6 +106,10 @@ class Submission:
 
                 if response.getcode() == 200:
                     sgml_content=response.read()
+                    content_type = response.headers.get('Content-Type', '')
+                    if content_type == 'application/zstd':
+                        dctx = zstd.ZstdDecompressor()
+                        sgml_content = dctx.decompress(sgml_content)
                 else:
                     raise ValueError(f"URL: {url}, Error: {response.getcode()}")
 
@@ -116,6 +121,7 @@ class Submission:
             metadata = transform_metadata_string(metadata)
 
             self.metadata = Document(type='submission_metadata', content=metadata, extension='.json',filing_date=None,accession=None,path=None)
+
             self.filing_date= f"{self.metadata.content['filing-date'][:4]}-{self.metadata.content['filing-date'][4:6]}-{self.metadata.content['filing-date'][6:8]}"
     
             self.documents_obj_list = []
