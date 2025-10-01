@@ -82,7 +82,7 @@ class Streamer(EFTSQuery):
             if self.accession_numbers is not None and accno_w_dash not in self.accession_numbers:
                 return None, None, None
             
-            if self.skip_accession_numbers is not None and accno_w_dash in self.skip_accession_numbers:
+            if self.skip_accession_numbers is not None and accno_no_dash in self.skip_accession_numbers:
                 return None, None, None
             
             # Construct the URL

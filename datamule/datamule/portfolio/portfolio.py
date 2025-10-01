@@ -34,7 +34,6 @@ class Portfolio:
         
         if self.path.exists():
             self._load_submissions()
-            self.submissions_loaded = True
         else:
             self.path.mkdir(parents=True, exist_ok=True)
 
@@ -80,6 +79,8 @@ class Portfolio:
         # Combine and filter None values  
         self.submissions = [s for s in (regular_submissions + batch_submissions) if s is not None]
         print(f"Successfully loaded {len(self.submissions)} submissions")
+
+        self.submissions_loaded = True
 
     def _load_batch_submissions_worker(self, batch_tar_path, pbar):
         """Worker function to load submissions from one batch tar with progress updates"""
