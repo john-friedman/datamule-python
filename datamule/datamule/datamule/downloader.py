@@ -19,8 +19,9 @@ from secsgml import parse_sgml_content_into_memory
 from secsgml.utils import bytes_to_str
 from .datamule_lookup import datamule_lookup
 from ..utils.format_accession import format_accession
+from ..providers.providers import SEC_FILINGS_SGML_BUCKET_ENDPOINT
 
-# could be cleaned up
+# TODO could be cleaned up
 
 # Set up logging
 logging.basicConfig(
@@ -33,7 +34,7 @@ logger = logging.getLogger(__name__)
 
 class Downloader:
     def __init__(self, api_key=None):
-        self.BASE_URL = "https://sec-library.datamule.xyz/"
+        self.BASE_URL = SEC_FILINGS_SGML_BUCKET_ENDPOINT
         self.CHUNK_SIZE = 2 * 1024 * 1024
         self.MAX_CONCURRENT_DOWNLOADS = 100
         self.MAX_DECOMPRESSION_WORKERS = cpu_count()

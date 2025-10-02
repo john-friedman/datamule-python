@@ -4,42 +4,41 @@ import tarfile
 import io
 import json
 
-# Note: we don't actually need accession at this level. TODO
 
-def compress_content(content, compression_type, level):
+def compress_content(content, compression_type, level, threshold):
     if compression_type == 'zstd':
-        # Create compressor with specified level
-        compressor = zstd.ZstdCompressor(level=level)
-        
         # Handle string content
-        # This should never be called
         if isinstance(content, str):
             content_bytes = content.encode('utf-8')
         else:
             content_bytes = content
-            
-        # Compress and return
+
+        # If content smaller than threshold, return uncompressed
+        if threshold is not None and len(content_bytes) < threshold:
+            return content_bytes
+
+        # Compress with specified level
+        compressor = zstd.ZstdCompressor(level=level)
         return compressor.compress(content_bytes)
-    
+
     # Return uncompressed if not zstd
     return content
 
-def compress_content_list(document_tuple_list, compression_type, level):
+
+def compress_content_list(document_tuple_list, compression_type, level, threshold):
     if compression_type is None:
         return document_tuple_list
     
     if level is None:
         level = 3
 
-    # Create new list to avoid modifying original
     compressed_list = []
-    for document_tuple in document_tuple_list:
-        content = document_tuple[0]  
-        accession = document_tuple[1]
-        compressed_content = compress_content(content, compression_type, level)
+    for content, accession in document_tuple_list:
+        compressed_content = compress_content(content, compression_type, level, threshold)
         compressed_list.append((compressed_content, accession))
     
     return compressed_list
+
 
 def tar_content_list(metadata, document_tuple_list_compressed):
     # Update metadata with compressed sizes
@@ -65,15 +64,18 @@ def tar_content_list(metadata, document_tuple_list_compressed):
             tarinfo.size = len(content)
             tar.addfile(tarinfo, io.BytesIO(content)) 
     
-    # Return the tar buffer
-    tar_buffer.seek(0)  # Reset buffer position to beginning
+    tar_buffer.seek(0)  # Reset buffer position
     return tar_buffer
 
-def tar_submission(metadata, documents_obj_list, compression_type=None, level=None):
-    """Takes a list of documents, compresses them, then tars them."""
+
+def tar_submission(metadata, documents_obj_list, compression_type=None, level=None, threshold=None):
+    """Takes a list of documents, compresses them (if above threshold), then tars them."""
     document_tuple_list = [(doc.content, doc.accession) for doc in documents_obj_list]
-    document_tuple_list_compressed = compress_content_list(document_tuple_list,  # Fixed: correct parameter name
-                                                          compression_type=compression_type, 
-                                                          level=level)
+    document_tuple_list_compressed = compress_content_list(
+        document_tuple_list,
+        compression_type=compression_type, 
+        level=level,
+        threshold=threshold
+    )
 
     return tar_content_list(metadata, document_tuple_list_compressed)

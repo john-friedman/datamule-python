@@ -83,6 +83,7 @@ class Submission:
         self._tar = None
         self._tar_compression_type = 'zstd'
         self._tar_compression_level = 3
+        self._tar_compression_threshold = None
         self._accession_year_2d = None
         self._documents = None
         
@@ -380,9 +381,10 @@ class Submission:
     def tar(self):
         return self._tar_submission().getvalue()
     
-    def set_tar_compression(self,compression_type='zstd',level=3):
+    def set_tar_compression(self,compression_type='zstd',level=3,threshold=None):
         self._tar_compression_type = compression_type
         self._tar_compression_level = level
+        self._tar_compression_threshold = threshold
     
     def _tar_submission(self):
         if self._tar is not None:
@@ -393,7 +395,8 @@ class Submission:
                 documents_obj_list=documents_obj_list,
                 metadata=self.metadata.content,
                 compression_type=self._tar_compression_type,
-                level=self._tar_compression_level
+                level=self._tar_compression_level,
+                threshold=self._tar_compression_threshold
             )
             return self._tar
         

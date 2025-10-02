@@ -14,6 +14,7 @@ from ..sec.xbrl.filter_xbrl import filter_xbrl
 from ..sec.submissions.monitor import Monitor
 from .portfolio_compression_utils_legacy import CompressionManager
 from ..datamule.sec_connector import SecConnector
+from ..datamule.tar_downloader import download_tar
 import shutil
 
 
@@ -220,8 +221,12 @@ class Portfolio:
         skip_accession_numbers = []
         if skip_existing:
             skip_accession_numbers = [sub.accession for sub in self]
-            
+
+        # map legacy provider
         if provider == 'datamule':
+            provider = 'datamule-sgml'
+            
+        if provider == 'datamule-sgml':
             seclibrary_download(
                 output_dir=self.path,
                 cik=cik,
@@ -234,6 +239,18 @@ class Portfolio:
                 standardize_metadata=standardize_metadata,
                 skip_accession_numbers=skip_accession_numbers,
                 accession_numbers = accession_numbers
+            )
+        elif provider == 'datamule-tar':
+            download_tar(
+                output_dir=self.path,
+                cik=cik,
+                api_key=self.api_key,
+                submission_type=submission_type,
+                filing_date=filing_date,
+                filtered_accession_numbers=filtered_accession_numbers,
+                skip_accession_numbers=skip_accession_numbers,
+                accession_numbers = accession_numbers,
+                keep_document_types=document_type
             )
         else:
             # will later add accession_numbers arg in the free update.
