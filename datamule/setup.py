@@ -32,7 +32,7 @@ if not os.path.exists(file_path):
 setup(
     name="datamule",
     author="John Friedman",
-    version="2.4.0",
+    version="2.4.1",
     description="Work with SEC submissions at scale.",
     packages=find_packages(include=['datamule', 'datamule.*']),
     url="https://github.com/john-friedman/datamule-python",
@@ -53,7 +53,7 @@ setup(
         'websocket-client',
         'company_fundamentals',
         'flashtext',
-        'aioboto3'
+        'aioboto3',
     ],
     # Include the data directory in the package
     package_data={

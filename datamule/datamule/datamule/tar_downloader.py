@@ -11,8 +11,7 @@ import tarfile
 import logging
 from concurrent.futures import ThreadPoolExecutor
 from functools import partial
-from queue import Queue
-from threading import Thread, Lock
+from threading import Lock
 from os import cpu_count
 from .datamule_lookup import datamule_lookup
 from ..utils.format_accession import format_accession
@@ -37,19 +36,7 @@ class TarDownloader:
         self.RANGE_MERGE_THRESHOLD = 1024  # Merge ranges if gap <= 1024 bytes
         if api_key is not None:
             self._api_key = api_key
-        self.loop = asyncio.new_event_loop()
-        self.loop_thread = Thread(target=self._run_event_loop, daemon=True)
-        self.loop_thread.start()
-        self.async_queue = Queue()
         self.error_log_lock = Lock()
-        
-    def _run_event_loop(self):
-        asyncio.set_event_loop(self.loop)
-        self.loop.run_forever()
-    
-    def _run_coroutine(self, coro):
-        future = asyncio.run_coroutine_threadsafe(coro, self.loop)
-        return future.result()
 
     @property
     def api_key(self):
@@ -286,6 +273,11 @@ class TarDownloader:
                 filtered.append(doc)
         
         return filtered
+    
+    def _decompress_zstd(self, compressed_content):
+        """Decompress zstd content"""
+        dctx = zstd.ZstdDecompressor()
+        return dctx.decompress(compressed_content)
 
     class TarManager:
         def __init__(self, output_dir, num_tar_files, max_batch_size=1024*1024*1024):
@@ -357,6 +349,8 @@ class TarDownloader:
     def _parse_multipart_byteranges(self, content, content_type):
         """
         Parse multipart/byteranges response.
+        Currently simplified for single-range responses.
+        Future: implement full multipart parsing when using database with multiple ranges.
         
         Args:
             content: Response body bytes
@@ -365,49 +359,12 @@ class TarDownloader:
         Returns:
             list of (start_byte, end_byte, data) tuples
         """
-        # Extract boundary from content type
+        # For now, handle single range responses only
         if 'boundary=' not in content_type:
-            # Single range response, not multipart
             return [(None, None, content)]
         
-        boundary = content_type.split('boundary=')[1].strip()
-        boundary_bytes = f'--{boundary}'.encode('utf-8')
-        end_boundary_bytes = f'--{boundary}--'.encode('utf-8')
-        
-        parts = []
-        sections = content.split(boundary_bytes)
-        
-        for section in sections[1:]:  # Skip first empty section
-            if section.startswith(end_boundary_bytes) or not section.strip():
-                continue
-            
-            # Split headers from body
-            header_end = section.find(b'\r\n\r\n')
-            if header_end == -1:
-                header_end = section.find(b'\n\n')
-                if header_end == -1:
-                    continue
-                body_start = header_end + 2
-            else:
-                body_start = header_end + 4
-            
-            headers = section[:header_end].decode('utf-8', errors='ignore')
-            body = section[body_start:].rstrip(b'\r\n')
-            
-            # Parse Content-Range header
-            start_byte = None
-            end_byte = None
-            for line in headers.split('\n'):
-                if line.lower().startswith('content-range:'):
-                    # Format: "Content-Range: bytes START-END/TOTAL"
-                    range_part = line.split(':')[1].strip()
-                    if 'bytes ' in range_part:
-                        byte_range = range_part.split('bytes ')[1].split('/')[0]
-                        start_byte, end_byte = map(int, byte_range.split('-'))
-            
-            parts.append((start_byte, end_byte, body))
-        
-        return parts
+        # TODO: Implement full multipart parsing when database returns multiple discontinuous ranges
+        return [(None, None, content)]
 
     def extract_and_process_tar(self, tar_content, filename, tar_manager, output_dir, keep_document_types, is_partial=False):
         """Extract tar file and process its contents"""
@@ -422,9 +379,14 @@ class TarDownloader:
                     self._log_error(output_dir, filename, "No files found in partial tar")
                     return False
                 
-                # First file should be metadata
+                # First file is metadata (never compressed)
                 metadata_content = files[0]['content']
-                documents = files[1:] if len(files) > 1 else []
+                
+                # Remaining files are documents (always compressed)
+                documents = []
+                for file in files[1:]:
+                    file['content'] = self._decompress_zstd(file['content'])
+                    documents.append(file)
                 
                 # Build filename to type mapping from metadata
                 filename_map = self._build_filename_to_type_map(metadata_content)
@@ -452,17 +414,14 @@ class TarDownloader:
                             file_content = tar.extractfile(member).read()
                             
                             if idx == 0:
-                                # First file is always metadata (never compressed)
+                                # First file is metadata (never compressed)
                                 metadata_content = file_content
                             else:
-                                member_name = os.path.basename(member.name)
-                                
-                                # Check if file is zstd compressed
-                                if self._is_zstd_compressed(file_content):
-                                    file_content = self._decompress_zstd(file_content)
+                                # All other files are documents (always compressed)
+                                file_content = self._decompress_zstd(file_content)
                                 
                                 documents.append({
-                                    'name': member_name,
+                                    'name': os.path.basename(member.name),
                                     'content': file_content
                                 })
                     
@@ -488,15 +447,6 @@ class TarDownloader:
         except Exception as e:
             self._log_error(output_dir, filename, f"Tar extraction error: {str(e)}")
             return False
-    
-    def _is_zstd_compressed(self, content):
-        """Check if content is zstd compressed by magic number"""
-        return len(content) >= 4 and content[:4] == b'\x28\xb5\x2f\xfd'
-    
-    def _decompress_zstd(self, compressed_content):
-        """Decompress zstd content"""
-        dctx = zstd.ZstdDecompressor()
-        return dctx.decompress(compressed_content)
 
     async def download_and_process(self, session, url, semaphore, extraction_pool, tar_manager, output_dir, pbar, keep_document_types, range_lookup_db=None):
         async with semaphore:
@@ -654,10 +604,6 @@ class TarDownloader:
         elapsed_time = time.time() - start_time
         logger.debug(f"Processing completed in {elapsed_time:.2f} seconds")
         logger.debug(f"Processing speed: {len(urls)/elapsed_time:.2f} files/second")
-    
-    def __del__(self):
-        if hasattr(self, 'loop') and self.loop.is_running():
-            self.loop.call_soon_threadsafe(self.loop.stop)
 
     def download_files_using_filename(self, filenames, output_dir="downloads", max_batch_size=1024*1024*1024, keep_document_types=[], range_lookup_db=None):
         if self.api_key is None:
@@ -681,8 +627,7 @@ class TarDownloader:
             url = f"{self.BASE_URL}{filename}"
             urls.append(url)
         
-        seen = set()
-        urls = [url for url in urls if not (url in seen or seen.add(url))]
+        urls = list(set(urls))
         
         logger.debug(f"Downloading {len(urls)} tar files...")
         

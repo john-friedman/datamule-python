@@ -110,7 +110,7 @@ class Submission:
                     content_type = response.headers.get('Content-Type', '')
                     if content_type == 'application/zstd':
                         dctx = zstd.ZstdDecompressor()
-                        sgml_content = dctx.decompress(sgml_content)
+                        sgml_content = dctx.decompressobj().decompress(sgml_content)
                 else:
                     raise ValueError(f"URL: {url}, Error: {response.getcode()}")
 
@@ -122,7 +122,6 @@ class Submission:
             metadata = transform_metadata_string(metadata)
 
             self.metadata = Document(type='submission_metadata', content=metadata, extension='.json',filing_date=None,accession=None,path=None)
-
             self.filing_date= f"{self.metadata.content['filing-date'][:4]}-{self.metadata.content['filing-date'][4:6]}-{self.metadata.content['filing-date'][6:8]}"
     
             self.documents_obj_list = []
@@ -341,6 +340,8 @@ class Submission:
                     context = xbrl_record['_context']
                     period_start_date = context.get('period_instant') or context.get('period_startdate')
                     period_end_date = context.get('period_enddate')
+                else:
+                    context = None
                 
                 # Create record in the format expected by construct_fundamentals
                 record = {
@@ -348,7 +349,8 @@ class Submission:
                     'name': name,
                     'value': value,
                     'period_start_date': period_start_date,
-                    'period_end_date': period_end_date
+                    'period_end_date': period_end_date,
+                    'context' : context
                 }
                 
                 xbrl.append(record)

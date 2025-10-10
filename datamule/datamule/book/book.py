@@ -11,3 +11,8 @@ class Book:
                           errors_json_filename=errors_json_filename, retry_errors=retry_errors,
                           force_daily=force_daily, cik=cik, submission_type=submission_type, 
                           filing_date=filing_date, datamule_api_key=datamule_api_key,accession_number=accession)
+        
+
+    def download_filings_processed_r2():
+        pass
+
