@@ -13,7 +13,7 @@ information_table_dict = {
 }
 
 config_information_table = {
-   'informationtable': {
+   'information_table': {
        'path': 'informationTable.infoTable',
        'mapping': information_table_dict
    }

@@ -18,7 +18,7 @@ proxy_voting_record_dict = {
 }
 
 config_proxyvotingrecord = {
-    'proxyvotingrecord': {
+    'proxy_voting_record': {
         'path': 'proxyVoteTable.proxyTable',
         'mapping': proxy_voting_record_dict
     }
