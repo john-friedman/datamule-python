@@ -178,7 +178,7 @@ class TarDownloader:
                 
                 # Check if document is in probe
                 if end_byte > len(probe_bytes):
-                    logger.warning(f"Document {filename} extends beyond probe, skipping")
+                    #logger.warning(f"Document {filename} extends beyond probe, skipping")
                     continue
                 
                 # Extract compressed bytes
@@ -230,7 +230,7 @@ class TarDownloader:
                 docs_beyond_probe.append(doc_info)
             else:
                 # Document spans probe boundary - treat as beyond probe
-                logger.warning(f"Document {doc_info['name']} spans probe boundary, downloading fully")
+                #logger.warning(f"Document {doc_info['name']} spans probe boundary, downloading fully")
                 docs_beyond_probe.append(doc_info)
         
         return docs_in_probe, docs_beyond_probe

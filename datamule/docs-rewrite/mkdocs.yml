@@ -25,6 +25,7 @@ nav:
       - Config: datamule-python/config/config.md
       - Utils: 
           - 'CIK Filtering': datamule-python/utils/_process_cik_and_metadata_filters.md
+          - 'Convenient Functions': 'datamule-python/utils/convenience.md' 
 
 markdown_extensions:
   - pymdownx.superfences
