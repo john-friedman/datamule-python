@@ -40,7 +40,7 @@ def datamule_lookup(cik=None, ticker=None, submission_type=None, filing_date=Non
     lookup_args = {}
     
     # Direct mappings
-    #cik =  _process_cik_and_metadata_filters(cik, ticker, **kwargs)
+    cik =  _process_cik_and_metadata_filters(cik, ticker, **kwargs)
     if cik is not None:
         lookup_args['cik'] = cik
     

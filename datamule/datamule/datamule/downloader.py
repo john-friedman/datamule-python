@@ -373,7 +373,6 @@ def download(cik=None, ticker=None, submission_type=None, filing_date=None,
     # Get accession numbers if not provided
     if accession_numbers is None:
         accession_numbers = datamule_lookup(
-            database='sgml-archive',
             cik=cik, 
             ticker=ticker, 
             submission_type=submission_type, 
@@ -386,8 +385,6 @@ def download(cik=None, ticker=None, submission_type=None, filing_date=None,
             sequence=sequence, 
             filtered_accession_numbers=filtered_accession_numbers,
             skip_accession_numbers=skip_accession_numbers,
-            columns=['accessionNumber'],
-            distinct=True,
             quiet=quiet, 
             api_key=api_key,
             **kwargs
