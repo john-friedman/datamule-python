@@ -3,6 +3,7 @@ import json
 import urllib.request
 import websocket
 import re
+from ..providers.providers import MAIN_API_ENDPOINT
 
 class SecConnector:
     def __init__(self, api_key=None, quiet=False):
@@ -11,27 +12,28 @@ class SecConnector:
             raise ValueError("API key not found. Set DATAMULE_API_KEY or provide api_key parameter.")
         
         self.quiet = quiet
-        self.auth_url = "https://sec-websocket-auth-worker.jgfriedman99.workers.dev/"
+        self.auth_url = MAIN_API_ENDPOINT
         
     def _get_jwt_token_and_ip(self):
         if not self.quiet:
             print("Getting JWT token...")
             
-        url = self.auth_url
-        
-        # Send API key in Authorization header instead of POST body
+        url = f"{self.auth_url}sec-websocket/"
+
         req = urllib.request.Request(url, method='GET')
         req.add_header('Accept', 'application/json')
-        req.add_header('Authorization', f'Bearer {self.api_key}')  # API key in header
+        req.add_header('Authorization', f'Bearer {self.api_key}')
         req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36')
 
-        
         with urllib.request.urlopen(req) as response:
-            data = json.loads(response.read().decode())
+            response_data = json.loads(response.read().decode())
             
-        if not data.get('success'):
-            raise Exception(f"Auth failed: {data.get('error')}")
-            
+        if not response_data.get('success'):
+            raise Exception(f"Auth failed: {response_data.get('error')}")
+        
+        # Extract from nested 'data' object
+        data = response_data['data']
+        
         if not self.quiet:
             print("JWT token obtained")
             
@@ -39,7 +41,7 @@ class SecConnector:
     
     def connect(self, data_callback=None):
         token, websocket_ip = self._get_jwt_token_and_ip()
-        ws_url = f"ws://{websocket_ip}/ws"
+        ws_url = f"ws://{websocket_ip}:8080/ws?token={token}"
         
         if not self.quiet:
             print("Connecting to WebSocket...")
