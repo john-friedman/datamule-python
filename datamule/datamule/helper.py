@@ -1,6 +1,5 @@
 from functools import lru_cache
 import csv
-from pathlib import Path
 import os
 
 def _load_package_csv(name):

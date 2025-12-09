@@ -13,7 +13,6 @@ from concurrent.futures import ThreadPoolExecutor
 from functools import partial
 from threading import Lock
 from os import cpu_count
-from .datamule_lookup import datamule_lookup
 from ..utils.format_accession import format_accession
 from ..providers.providers import SEC_FILINGS_TAR_BUCKET_ENDPOINT
 

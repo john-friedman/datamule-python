@@ -17,9 +17,9 @@ from threading import Thread, Lock
 from os import cpu_count
 from secsgml import parse_sgml_content_into_memory
 from secsgml.utils import bytes_to_str
-from .datamule_lookup import datamule_lookup
 from ..utils.format_accession import format_accession
 from ..providers.providers import SEC_FILINGS_SGML_BUCKET_ENDPOINT
+from .datamule_lookup import datamule_lookup
 
 # TODO could be cleaned up
 
@@ -36,7 +36,7 @@ class Downloader:
     def __init__(self, api_key=None):
         self.BASE_URL = SEC_FILINGS_SGML_BUCKET_ENDPOINT
         self.CHUNK_SIZE = 2 * 1024 * 1024
-        self.MAX_CONCURRENT_DOWNLOADS = 100
+        self.MAX_CONCURRENT_DOWNLOADS = 10
         self.MAX_DECOMPRESSION_WORKERS = cpu_count()
         self.MAX_TAR_WORKERS = cpu_count()
         if api_key is not None:
@@ -304,45 +304,46 @@ class Downloader:
         finally:
             tar_manager.close_all()
 
-    def download(self, submission_type=None, cik=None, filing_date=None, output_dir="downloads", filtered_accession_numbers=None, keep_document_types=[], keep_filtered_metadata=False, standardize_metadata=True,
-                 skip_accession_numbers=[], max_batch_size=1024*1024*1024,accession_numbers=None):
+    def download(self, accession_numbers, output_dir="downloads", keep_document_types=[], 
+                 keep_filtered_metadata=False, standardize_metadata=True, 
+                 max_batch_size=1024*1024*1024):
+        """
+        Download SEC filings for the given accession numbers.
+        
+        Args:
+            accession_numbers: List of accession numbers to download
+            output_dir: Directory to save downloaded files
+            keep_document_types: List of document types to keep (empty = keep all)
+            keep_filtered_metadata: Whether to keep metadata for filtered documents
+            standardize_metadata: Whether to standardize metadata keys to lowercase
+            max_batch_size: Maximum size of each batch tar file in bytes
+        """
         if self.api_key is None:
             raise ValueError("No API key found. Please set DATAMULE_API_KEY environment variable or provide api_key in constructor")
 
-        logger.debug("Querying SEC filings...")
-
-        if not accession_numbers:
-            filings = datamule_lookup(cik=cik, submission_type=submission_type, filing_date=filing_date, 
-                    columns=['accessionNumber'], distinct=True, page_size=25000, quiet=False,api_key=self.api_key)
-
-            if filtered_accession_numbers:
-                filtered_accession_numbers = [format_accession(item,'int') for item in filtered_accession_numbers]
-                filings = [filing for filing in filings if filing['accessionNumber'] in filtered_accession_numbers]
-            
-            if skip_accession_numbers:
-                skip_accession_numbers = [format_accession(item,'int') for item in skip_accession_numbers]
-                filings = [filing for filing in filings if filing['accessionNumber'] not in skip_accession_numbers]
-
-            logger.debug(f"Generating URLs for {len(filings)} filings...")
-            urls = []
-            for item in filings:
-                url = f"{self.BASE_URL}{str(item['accessionNumber']).zfill(18)}.sgml"
-                urls.append(url)
-        else:
-            urls = []
-            for accession in accession_numbers:
-                url = f"{self.BASE_URL}{format_accession(accession,'no-dash').zfill(18)}.sgml"
-                urls.append(url)
+        logger.debug(f"Generating URLs for {len(accession_numbers)} filings...")
+        
+        urls = []
+        for accession in accession_numbers:
+            url = f"{self.BASE_URL}{format_accession(accession,'no-dash')}.sgml"
+            urls.append(url)
+        
+        # Deduplicate URLs
+        urls = list(set(urls))
         
         if not urls:
             logger.warning("No submissions found matching the criteria")
             return
 
-        urls = list(set(urls))
-        
         start_time = time.time()
         
-        asyncio.run(self.process_batch(urls, output_dir, keep_document_types=keep_document_types, keep_filtered_metadata=keep_filtered_metadata, standardize_metadata=standardize_metadata, max_batch_size=max_batch_size))
+        asyncio.run(self.process_batch(
+            urls, output_dir, 
+            keep_document_types=keep_document_types, 
+            keep_filtered_metadata=keep_filtered_metadata, 
+            standardize_metadata=standardize_metadata, 
+            max_batch_size=max_batch_size
+        ))
         
         elapsed_time = time.time() - start_time
         logger.debug(f"Processing completed in {elapsed_time:.2f} seconds")
@@ -352,67 +353,57 @@ class Downloader:
         if hasattr(self, 'loop') and self.loop.is_running():
             self.loop.call_soon_threadsafe(self.loop.stop)
 
-    def download_files_using_filename(self, filenames, output_dir="downloads", keep_document_types=[], keep_filtered_metadata=False, standardize_metadata=True, max_batch_size=1024*1024*1024):
-        if self.api_key is None:
-            raise ValueError("No API key found. Please set DATAMULE_API_KEY environment variable or provide api_key in constructor")
-        
-        if not filenames:
-            raise ValueError("No filenames provided")
-        
-        if not isinstance(filenames, (list, tuple)):
-            filenames = [filenames]
-        
-        for filename in filenames:
-            if not isinstance(filename, str):
-                raise ValueError(f"Invalid filename type: {type(filename)}. Expected string.")
-            if not filename.endswith('.sgml'):
-                raise ValueError(f"Invalid filename format: {filename}. Expected .sgml extension.")
-        
-        logger.debug(f"Generating URLs for {len(filenames)} files...")
-        urls = []
-        for filename in filenames:
-            url = f"{self.BASE_URL}{filename}"
-            urls.append(url)
-        
-        seen = set()
-        urls = [url for url in urls if not (url in seen or seen.add(url))]
-        
-        logger.debug(f"Downloading {len(urls)} files...")
-        
-        start_time = time.time()
-        
-        asyncio.run(self.process_batch(
-            urls, 
-            output_dir, 
-            keep_document_types=keep_document_types, 
-            keep_filtered_metadata=keep_filtered_metadata, 
-            standardize_metadata=standardize_metadata,
-            max_batch_size=max_batch_size
-        ))
-        
-        elapsed_time = time.time() - start_time
-        logger.debug(f"Processing completed in {elapsed_time:.2f} seconds")
-        logger.debug(f"Processing speed: {len(urls)/elapsed_time:.2f} files/second")
-
-
-def download(submission_type=None, cik=None, filing_date=None, api_key=None, output_dir="downloads", filtered_accession_numbers=None, keep_document_types=[],keep_filtered_metadata=False,standardize_metadata=True,
-             skip_accession_numbers=[], max_batch_size=1024*1024*1024,accession_numbers=None):
+def download(cik=None, ticker=None, submission_type=None, filing_date=None, 
+             report_date=None, detected_time=None, contains_xbrl=None,
+             document_type=None, filename=None, sequence=None, 
+             api_key=None, output_dir="downloads", 
+             filtered_accession_numbers=None, skip_accession_numbers=None,
+             keep_document_types=[], keep_filtered_metadata=False, 
+             standardize_metadata=True, max_batch_size=1024*1024*1024,
+             accession_numbers=None, quiet=False, **kwargs):
+    """
+    Download SEC filings from DataMule.
     
-    if filtered_accession_numbers:
-        filtered_accession_numbers = [format_accession(x,'int') for x in filtered_accession_numbers]
-    elif filtered_accession_numbers == []:
-        raise ValueError("Applied filter resulted in empty accession numbers list")
+    If accession_numbers is provided, downloads those directly.
+    Otherwise, queries datamule_lookup with the provided filters to get accession numbers.
+    """
+    
     downloader = Downloader(api_key=api_key)
+
+    # Get accession numbers if not provided
+    if accession_numbers is None:
+        accession_numbers = datamule_lookup(
+            database='sgml-archive',
+            cik=cik, 
+            ticker=ticker, 
+            submission_type=submission_type, 
+            filing_date=filing_date, 
+            report_date=report_date, 
+            detected_time=detected_time,
+            contains_xbrl=contains_xbrl, 
+            document_type=document_type, 
+            filename=filename, 
+            sequence=sequence, 
+            filtered_accession_numbers=filtered_accession_numbers,
+            skip_accession_numbers=skip_accession_numbers,
+            columns=['accessionNumber'],
+            distinct=True,
+            quiet=quiet, 
+            api_key=api_key,
+            **kwargs
+        )
+
+        
+        if not accession_numbers:
+            logger.warning("No submissions found matching the criteria")
+            return
+    
+    # Download the filings
     downloader.download(
-        submission_type=submission_type,
-        cik=cik,
-        filing_date=filing_date,
+        accession_numbers=accession_numbers,
         output_dir=output_dir,
-        filtered_accession_numbers=filtered_accession_numbers,
         keep_document_types=keep_document_types,
         keep_filtered_metadata=keep_filtered_metadata,
         standardize_metadata=standardize_metadata,
-        skip_accession_numbers=skip_accession_numbers,
-        max_batch_size=max_batch_size,
-        accession_numbers=accession_numbers
+        max_batch_size=max_batch_size
     )

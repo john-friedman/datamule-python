@@ -5,10 +5,10 @@ import json
 import ssl
 import time
 from tqdm import tqdm
-
+from ..providers.providers import MAIN_API_ENDPOINT
 class DatamuleMySQL:
     def __init__(self, api_key=None):
-        self.API_BASE_URL = "https://datamule-mysql-rds.jgfriedman99.workers.dev"
+        self.API_BASE_URL = MAIN_API_ENDPOINT
         self._api_key = api_key
         self.total_cost = 0
         self.remaining_balance = None
@@ -24,35 +24,44 @@ class DatamuleMySQL:
             raise ValueError("API key cannot be empty")
         self._api_key = value
 
-    async def _fetch_page(self, session, table, database, filters, page=1, page_size=25000):
-        payload = {
-            "table": table,
-            "database": database,
-            "filters": filters,
-            "page": page,
-            "pageSize": page_size
-        }
+    async def _fetch_page(self, session, database, params, page=1, page_size=25000):
+        # Construct the URL with database name
+        url = f"{self.API_BASE_URL}{database}"
+        
+        # Build query parameters, copy needed to prevent changing original over multiple executions.
+        query_params = params.copy()
+        
+        # Add pagination and auth
+        query_params["page"] = page
+        query_params["pageSize"] = page_size
+        query_params["api_key"] = self.api_key
         
         headers = {
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {self.api_key}",
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
         }
         
-        async with session.post(self.API_BASE_URL, json=payload, headers=headers) as response:
+        async with session.get(url, params=query_params, headers=headers) as response:
             data = await response.json()
+            print(response.url)
             if not data.get('success'):
                 raise ValueError(f"API request failed: {data.get('error')}")
             
-            # Track costs and balance
-            billing = data['metadata']['billing']
-            page_cost = billing['total_charge']
+            # Track costs and balance from billing metadata
+            billing = data.get('metadata', {}).get('billing', {})
+            page_cost = billing.get('total_charge', 0)
             self.total_cost += page_cost
-            self.remaining_balance = billing['remaining_balance']
+            self.remaining_balance = billing.get('remaining_balance')
             
-            return data['data'], data['metadata']['pagination'], page_cost
+            # Get pagination info
+            pagination = data.get('metadata', {}).get('pagination', {})
+            
+            result_data = data.get('data', [])
+            # If data is a dict with a 'data' key, unwrap it
+            if isinstance(result_data, dict) and 'data' in result_data:
+                result_data = result_data['data']
+            return result_data, pagination, page_cost
 
-    async def execute_query(self, table, **kwargs):
+    async def execute_query(self, database,  **kwargs):
         if self.api_key is None:
             raise ValueError("No API key found. Please set DATAMULE_API_KEY environment variable or provide api_key in constructor")
         
@@ -60,73 +69,27 @@ class DatamuleMySQL:
         page_size = kwargs.pop('page_size', 25000)
         quiet = kwargs.pop('quiet', False)
         
-        # Determine database from table
-        if table == 'simple_xbrl':
-            database = 'xbrl_db'
-        elif table == 'accession_cik':
-            database = 'lookup_db'
-        elif table == 'submission_details':
-            database = 'lookup_db'
-        elif table == 'proxy_voting_record':
-            database = 'npx_db'
-        elif table == 'information_table':
-            database = '13fhr_db'
-        elif table in ['derivative_holding_ownership','derivative_transaction_ownership', 'metadata_ownership','non_derivative_holding_ownership',
-                       'non_derivative_transaction_ownership','owner_signature_ownership','reporting_owner_ownership']:
-            database = 'ownership_db'
-        else:
-            raise ValueError(f"Unsupported table: {table}")
-        
         # Process filters: tuples = range, lists = OR, single = exact
-        filters = {}
+        params = {}
         for key, value in kwargs.items():
             # Skip None values entirely
             if value is None:
                 continue
-                
-            # *** HIGHLIGHTED CHANGE: Special logic for members in simple_xbrl table ***
-            if table == 'simple_xbrl' and key == 'members':
-                if isinstance(value, list):
-                    filters[key] = {"type": "find_in_set", "values": value}
-                else:
-                    filters[key] = {"type": "find_in_set", "values": [value]}
-            # Special logic for cik
-            elif key == 'cik':
-                if isinstance(value, list):
-                    value = [int(val) for val in value]
-                else:
-                    value = [int(value)]
-                filters[key] = {"type": "or", "values": value}
-            elif isinstance(value, tuple):
-                filters[key] = {"type": "range", "values": list(value)}
-            elif isinstance(value, list):
-                filters[key] = {"type": "or", "values": value}
+
+            elif isinstance(value,list):
+                params[key] = ','.join([str(val) for val in value])
+            elif isinstance(value,tuple):
+                params[f"{key}_START"] = value[0]
+                params[f"{key}_END"] = value[1]
             else:
-                filters[key] = {"type": "or", "values": [value]}
+                params[key] = value
+
         
         self.start_time = time.time()
         total_items = 0
         pages_processed = 0
         
-        # Display query parameters
-        query_desc = [f"Table={table}"]
-        for key, filter_obj in filters.items():
-            if filter_obj["type"] == "range":
-                query_desc.append(f"{key}={filter_obj['values'][0]} to {filter_obj['values'][1]}")
-            # *** HIGHLIGHTED CHANGE: Display logic for find_in_set type ***
-            elif filter_obj["type"] == "find_in_set":
-                if len(filter_obj["values"]) == 1:
-                    query_desc.append(f"{key} contains {filter_obj['values'][0]}")
-                else:
-                    query_desc.append(f"{key} contains any of {filter_obj['values']}")
-            elif len(filter_obj["values"]) == 1:
-                query_desc.append(f"{key}={filter_obj['values'][0]}")
-            else:
-                query_desc.append(f"{key}={filter_obj['values']}")
-        
-        if not quiet:
-            print(f"QUERY: {', '.join(query_desc)}")
-        
+  
         connector = aiohttp.TCPConnector(ssl=ssl.create_default_context())
         async with aiohttp.ClientSession(connector=connector) as session:
             # Initialize progress bar only if not quiet
@@ -141,10 +104,9 @@ class DatamuleMySQL:
             while has_more:
                 # Fetch page
                 page_results, pagination, page_cost = await self._fetch_page(
-                    session, 
-                    table=table,
-                    database=database,
-                    filters=filters,
+                    session,
+                    database,
+                    params,
                     page=current_page,
                     page_size=page_size
                 )
@@ -189,114 +151,10 @@ class DatamuleMySQL:
             return results
 
 
-def query_mysql_rds(table, api_key=None, **kwargs):
-    """
-    Query MySQL RDS data from Datamule with optional filtering and automatic pagination
-    
-    Parameters:
-    - table: Table name (e.g., 'simple_xbrl')
-    - cik: Company CIK number(s), can be int, string, or list
-    - members: For simple_xbrl table, search within comma-separated member strings
-    - Any other filter parameters as keyword arguments
-    - page_size: Number of records per page (max 25000, default 25000)
-    - quiet: Boolean, whether to suppress progress output and summary (default False)
-    - api_key: Optional API key (can also use DATAMULE_API_KEY environment variable)
-    
-    Filter value types:
-    - Single value: Exact match
-    - List: OR condition (any of the values)
-    - Tuple: Range condition (between first and second values)
-    - members (simple_xbrl only): Searches within comma-separated strings using FIND_IN_SET
-    
-    Returns:
-    - List of dictionaries containing the requested data (ready for pandas DataFrame)
-    """
-    # For backwards compatibility, handle non-paginated single requests
-    if kwargs.get('_single_page', False):
-        # Remove the flag and use original synchronous implementation
-        kwargs.pop('_single_page')
-        return _query_mysql_rds_single(table, api_key, **kwargs)
-    
+def query_mysql_rds(database, api_key=None, **kwargs):
+
     # Create a DatamuleMySQL instance for this request
     dm = DatamuleMySQL(api_key=api_key)
     
     # Run the paginated query and return results
-    return asyncio.run(dm.execute_query(table=table, **kwargs))
-
-
-def _query_mysql_rds_single(table, api_key=None, **kwargs):
-    """Original synchronous implementation for single page requests"""
-    import urllib.request
-    import urllib.error
-    
-    endpoint_url = "https://datamule-mysql-rds.jgfriedman99.workers.dev"
-    
-    # Get API key from parameter or environment
-    if api_key is None:
-        api_key = os.getenv('DATAMULE_API_KEY')
-    
-    if not api_key:
-        return {"error": "API key required. Pass api_key parameter or set DATAMULE_API_KEY environment variable"}
-
-    # Process filters: tuples = range, lists = OR, single = exact
-    filters = {}
-    for key, value in kwargs.items():
-        # Skip None values entirely
-        if value is None:
-            continue
-            
-        # *** HIGHLIGHTED CHANGE: Special logic for members in simple_xbrl table ***
-        if table == 'simple_xbrl' and key == 'members':
-            if isinstance(value, list):
-                filters[key] = {"type": "find_in_set", "values": value}
-            else:
-                filters[key] = {"type": "find_in_set", "values": [value]}
-        # special logic for cik
-        elif key == 'cik':
-            if isinstance(value, list):
-                value = [int(val) for val in value]
-            else:
-                value = [int(value)]
-            filters[key] = {"type": "or", "values": value}
-        elif isinstance(value, tuple):
-            filters[key] = {"type": "range", "values": list(value)}
-        elif isinstance(value, list):
-            filters[key] = {"type": "or", "values": value}
-        else:
-            filters[key] = {"type": "or", "values": [value]}
-    
-    payload = {"filters": filters}
-    # add table to payload
-    payload['table'] = table
-
-    if table == 'simple_xbrl':
-        payload['database'] = 'xbrl_db'
-    else:
-        raise ValueError("table not found")
-
-    data = json.dumps(payload).encode('utf-8')
-    req = urllib.request.Request(
-        endpoint_url,
-        data=data,
-        headers={
-            "Content-Type": "application/json",
-            "Authorization": f"Bearer {api_key}",
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-        }
-    )
-
-    try:
-        with urllib.request.urlopen(req, timeout=6000) as response:
-            result = json.loads(response.read().decode('utf-8'))
-            # Return just the data for single page requests
-            return result.get('data', []) if result.get('success') else result
-    except urllib.error.HTTPError as e:
-        # Print the error response body
-        error_body = e.read().decode('utf-8')
-        print(f"HTTP Error {e.code}: {error_body}")
-        try:
-            error_json = json.loads(error_body)
-            print(f"Error details: {error_json}")
-        except json.JSONDecodeError:
-            print(f"Raw error response: {error_body}")
-        raise
+    return asyncio.run(dm.execute_query(database=database, **kwargs))

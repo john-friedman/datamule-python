@@ -18,6 +18,7 @@ from ..datamule.tar_downloader import download_tar
 import shutil
 
 
+
 class Portfolio:
     def __init__(self, path):
         self.path = Path(path)
@@ -204,17 +205,14 @@ class Portfolio:
             # First query, just set the accession numbers
             self.accession_numbers = new_accession_numbers
 
-    def download_submissions(self, cik=None, ticker=None, submission_type=None, filing_date=None, provider=None,document_type=[],
-                             requests_per_second=5,keep_filtered_metadata=False,standardize_metadata=True,skip_existing=True,
-                              accession_numbers=None, **kwargs):
-        
+    def download_submissions(self, cik=None, ticker=None, submission_type=None, filing_date=None, provider=None, document_type=[],
+                         requests_per_second=5, keep_filtered_metadata=False, standardize_metadata=True, skip_existing=True,
+                         accession_numbers=None, report_date=None, detected_time=None, contains_xbrl=None, sequence=None,
+                         quiet=False, filename=None, **kwargs):
 
         if provider is None:
             config = Config()
             provider = config.get_default_source()
-
-        # Process CIK and metadata filters
-        cik = _process_cik_and_metadata_filters(cik, ticker, **kwargs)
 
         filtered_accession_numbers = self.accession_numbers if hasattr(self, 'accession_numbers') else None
 
@@ -228,30 +226,50 @@ class Portfolio:
             
         if provider == 'datamule-sgml':
             seclibrary_download(
-                output_dir=self.path,
                 cik=cik,
-                api_key=self.api_key,
+                ticker=ticker,
                 submission_type=submission_type,
                 filing_date=filing_date,
+                report_date=report_date,
+                detected_time=detected_time,
+                contains_xbrl=contains_xbrl,
+                document_type=document_type,
+                filename=filename,
+                sequence=sequence,
+                accession_numbers=accession_numbers,
                 filtered_accession_numbers=filtered_accession_numbers,
+                skip_accession_numbers=skip_accession_numbers,
+                output_dir=self.path,
+                api_key=self.api_key,
                 keep_document_types=document_type,
                 keep_filtered_metadata=keep_filtered_metadata,
                 standardize_metadata=standardize_metadata,
-                skip_accession_numbers=skip_accession_numbers,
-                accession_numbers = accession_numbers
+                quiet=quiet,
+                **kwargs
             )
+            
         elif provider == 'datamule-tar':
             download_tar(
-                output_dir=self.path,
                 cik=cik,
-                api_key=self.api_key,
+                ticker=ticker,
                 submission_type=submission_type,
                 filing_date=filing_date,
+                report_date=report_date,
+                detected_time=detected_time,
+                contains_xbrl=contains_xbrl,
+                document_type=document_type,
+                filename=filename,
+                sequence=sequence,
+                accession_numbers=accession_numbers,
                 filtered_accession_numbers=filtered_accession_numbers,
                 skip_accession_numbers=skip_accession_numbers,
-                accession_numbers = accession_numbers,
-                keep_document_types=document_type
+                output_dir=self.path,
+                api_key=self.api_key,
+                keep_document_types=document_type,
+                quiet=quiet,
+                **kwargs
             )
+            
         else:
             # will later add accession_numbers arg in the free update.
             sec_download(
