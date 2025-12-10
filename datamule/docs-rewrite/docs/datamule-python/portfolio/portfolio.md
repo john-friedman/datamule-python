@@ -13,9 +13,29 @@ set_api_key(api_key)
 ```
 
 ## `download_submissions`
+
+There are three providers to download from:
+- `sec`, which has a rate limit of 5/s over long durations, 10/s over short durations.
+- `datamule-sgml`, which has no rate limit and depends on your internet speed/cpu. Users have reported getting 1gbps while running in the Cloud. See [How to host the SEC archive for $20/month](https://medium.com/@jgfriedman99/how-to-host-the-sec-archive-for-20-month-da374cc3c3fb).
+- `datamule-tar`, which is like `datamule` but much faster when you only need some documents within a submission. New, may have bugs. See [Programmatically downloading SEC attachments in bulk](https://medium.com/@jgfriedman99/programmatically-downloading-sec-attachments-in-bulk-a072489002fb).
+
+`datamule-sgml` and `datamule-tar` also have more args to filter on. This is because they datamule's internal databases instead of the SEC.
+
+Note that: `datamule` -> `datamule-sgml`.
+
+### `provider='sec'`
 ```python
 download_submissions(self, cik=None, ticker=None, submission_type=None, filing_date=None, provider=None,document_type=None,keep_filtered_metadata=False, requests_per_second=5,skip_existing=True, **kwargs)
 ```
+
+### Example
+Download every IBM 10-K between 2019 and 2024
+```
+portfolio = Portfolio('ibm')
+portfolio.download_submissions(filing_date=('2019-01-01', '2024-01-01'), submission_type='10-K',
+                          provider='sec')
+```
+
 
 ### Parameters
 * cik - company CIK, e.g. `0001318605` or `1318605` or `['0001318605','789019']`
@@ -28,6 +48,36 @@ download_submissions(self, cik=None, ticker=None, submission_type=None, filing_d
 * keep_filtered_metadata - whether metadata on documents within a submission should be kept or discarded if documents are filtered.
 * skip_existing - whether to download submissions already in the Portfolio.
 * [**kwargs](../utils/_process_cik_and_metadata_filters.md)
+
+## `provider='datamule'`
+```python
+download_submissions(self, cik=None, ticker=None, submission_type=None, filing_date=None, provider=None, document_type=[],
+                         keep_filtered_metadata=False, standardize_metadata=True, skip_existing=True,
+                         accession_numbers=None, report_date=None, detected_time=None, contains_xbrl=None, sequence=None,
+                         quiet=False, filename=None, **kwargs)
+```
+
+### Example
+
+Only download the graphics from Apple's submissions.
+```
+portfolio = Portfolio('apple_graphics')
+portfolio.download_submissions(ticker='AAPL',document_type="GRAPHIC",
+                          provider='datamule-tar')
+```
+
+Download every IBM Form 4 since 1994.
+```
+portfolio = Portfolio('ibm')
+portfolio.download_submissions(submission_type=['4','4/A'],
+                          provider='datamule-sgml')
+```
+
+### Additional Parameters
+* report_date - Report period of the Submission.
+* contains_xbrl - Whether the Submission contains XBRL.
+* sequence - order of documents within a Submission.
+* filename - filename of a document within the Submission.
 
 ### Filtering
 
@@ -118,7 +168,7 @@ portfolio.monitor_submissions(validation_interval=60000,start_date='2025-04-25',
 
 
 ## `stream_submissions`
-Get new SEC submissions by listening to datamule's websocket. Requires an [API Key](https://datamule.xyz/dashboard2).
+Get new SEC submissions by listening to datamule's websocket. Requires an [API Key](https://datamule.xyz/dashboard2). 
 ```python
 stream_submissions(data_callback=None,api_key=None,quiet=False)
 ```
