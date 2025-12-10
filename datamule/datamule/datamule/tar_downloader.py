@@ -68,6 +68,35 @@ class TarDownloader:
             except Exception as e:
                 logger.error(f"Failed to log error to {error_file}: {str(e)}")
 
+    def _filter_metadata_documents(self, metadata_dict, downloaded_document_names, keep_filtered_metadata):
+        """
+        Filter metadata's documents list to match downloaded documents.
+        Mimics the behavior of parse_sgml_content_into_memory's filtering.
+        
+        Args:
+            metadata_dict: Original metadata dictionary with 'documents' list
+            downloaded_document_names: Set of document filenames that were actually downloaded
+            keep_filtered_metadata: If True, keep all metadata. If False, only keep metadata for downloaded docs.
+        
+        Returns:
+            Filtered metadata dictionary
+        """
+        if keep_filtered_metadata or 'documents' not in metadata_dict:
+            # Keep all metadata entries, just downloaded subset of actual documents
+            return metadata_dict
+        
+        # Filter documents list to only include downloaded documents
+        filtered_metadata = metadata_dict.copy()
+        filtered_documents = []
+        
+        for doc in metadata_dict.get('documents', []):
+            doc_filename = doc.get('filename', f"{doc.get('sequence', 'unknown')}.txt")
+            if doc_filename in downloaded_document_names:
+                filtered_documents.append(doc)
+        
+        filtered_metadata['documents'] = filtered_documents
+        return filtered_metadata
+
     def _parse_tar_header(self, header_bytes):
         """
         Parse a 512-byte tar header.
@@ -174,11 +203,10 @@ class TarDownloader:
             for doc in wanted_docs:
                 start_byte = int(doc['secsgml_start_byte'])
                 end_byte = int(doc['secsgml_end_byte'])
-                filename = doc.get('filename', 'unknown')
+                filename = doc.get('filename', f"{doc['sequence']}.txt")
                 
                 # Check if document is in probe
                 if end_byte > len(probe_bytes):
-                    #logger.warning(f"Document {filename} extends beyond probe, skipping")
                     continue
                 
                 # Extract compressed bytes
@@ -216,7 +244,7 @@ class TarDownloader:
                 continue
             
             doc_info = {
-                'name': doc.get('filename', 'unknown'),
+                'name': doc.get('filename', f"{doc['sequence']}.txt"),
                 'type': doc_type,
                 'start': int(doc['secsgml_start_byte']),
                 'end': int(doc['secsgml_end_byte']),
@@ -230,7 +258,6 @@ class TarDownloader:
                 docs_beyond_probe.append(doc_info)
             else:
                 # Document spans probe boundary - treat as beyond probe
-                #logger.warning(f"Document {doc_info['name']} spans probe boundary, downloading fully")
                 docs_beyond_probe.append(doc_info)
         
         return docs_in_probe, docs_beyond_probe
@@ -272,105 +299,6 @@ class TarDownloader:
                     
         except Exception as e:
             logger.error(f"Error extracting documents from probe: {str(e)}")
-        
-        return documents
-
-    def _merge_ranges(self, ranges):
-        """
-        Merge overlapping or close ranges.
-        
-        Args:
-            ranges: list of (start_byte, end_byte) tuples
-        
-        Returns:
-            list of merged (start_byte, end_byte) tuples, sorted
-        """
-        if not ranges:
-            return []
-        
-        # Sort ranges by start byte
-        range_list = sorted(ranges, key=lambda x: x[0])
-        
-        merged = []
-        current_start, current_end = range_list[0]
-        
-        for start, end in range_list[1:]:
-            # Check if ranges overlap or are within merge threshold
-            if start <= current_end + self.RANGE_MERGE_THRESHOLD:
-                # Merge: extend current range
-                current_end = max(current_end, end)
-            else:
-                # No merge: save current range and start new one
-                merged.append((current_start, current_end))
-                current_start, current_end = start, end
-        
-        # Add the last range
-        merged.append((current_start, current_end))
-        
-        return merged
-
-    def _build_range_header(self, merged_ranges):
-        """
-        Build HTTP Range header from merged ranges.
-        
-        Args:
-            merged_ranges: list of (start_byte, end_byte) tuples
-        
-        Returns:
-            Range header string, e.g., "bytes=0-131071,200000-300000"
-        """
-        if not merged_ranges:
-            return None
-        
-        range_specs = [f"{start}-{end-1}" for start, end in merged_ranges]  # HTTP ranges are inclusive
-        return f"bytes={','.join(range_specs)}"
-
-    def _extract_documents_from_ranges(self, response_content, docs_beyond_probe, range_start):
-        """
-        Extract documents from range response content.
-        
-        Args:
-            response_content: Raw bytes from HTTP response
-            docs_beyond_probe: List of document info dicts with absolute positions
-            range_start: Where in the original tar this response starts (for offset adjustment)
-        
-        Returns:
-            list of dicts with 'name' and 'content' (decompressed)
-        """
-        documents = []
-        
-        try:
-            for doc in docs_beyond_probe:
-                start = doc['start']
-                end = doc['end']
-                name = doc['name']
-                
-                # Adjust for response offset
-                adjusted_start = start - range_start
-                adjusted_end = end - range_start
-                
-                logger.debug(f"Extracting {name}: abs={start}-{end}, adjusted={adjusted_start}-{adjusted_end}, range_start={range_start}")
-                
-                try:
-                    # Bounds check
-                    if adjusted_start < 0 or adjusted_end > len(response_content):
-                        logger.error(f"Document {name} out of bounds: adjusted_start={adjusted_start}, adjusted_end={adjusted_end}, response_len={len(response_content)}")
-                        continue
-                    
-                    compressed_content = response_content[adjusted_start:adjusted_end]
-                    
-                    # Decompress
-                    content = self._decompress_zstd(compressed_content)
-                    
-                    documents.append({
-                        'name': name,
-                        'content': content
-                    })
-                except Exception as e:
-                    logger.error(f"Failed to extract document {name}: {str(e)}")
-                    
-        except Exception as e:
-            logger.error(f"Error extracting documents from ranges: {str(e)}")
         
         return documents
 
@@ -461,7 +389,7 @@ class TarDownloader:
                 except Exception as e:
                     logger.error(f"Error closing tar {i}: {str(e)}")
 
-    async def download_and_process(self, session, url, semaphore, extraction_pool, tar_manager, output_dir, pbar, keep_document_types):
+    async def download_and_process(self, session, url, semaphore, extraction_pool, tar_manager, output_dir, pbar, keep_document_types, keep_filtered_metadata):
         async with semaphore:
             filename = url.split('/')[-1]
             accession_num = filename.replace('.tar', '').split('/')[-1]
@@ -510,7 +438,7 @@ class TarDownloader:
                         partial(self._extract_documents_from_probe, probe_bytes, metadata_with_positions, keep_document_types)
                     )
                     
-                elif not keep_document_types or keep_document_types == ['metadata']:
+                elif keep_document_types == ['metadata']:
                     # Only metadata requested
                     logger.debug(f"{filename}: Metadata only")
                     documents = []
@@ -531,44 +459,57 @@ class TarDownloader:
                         )
                         documents.extend(probe_documents)
                     
-                    # Download and extract documents beyond probe
+                    # Download each document beyond probe individually
                     if docs_beyond_probe:
-                        # Build ranges for documents beyond probe
-                        ranges = [(doc['start'], doc['end']) for doc in docs_beyond_probe]
-                        merged_ranges = self._merge_ranges(ranges)
-                        
-                        # Build range header
-                        range_header = self._build_range_header(merged_ranges)
-                        range_headers = headers.copy()
-                        range_headers['Range'] = range_header
-                        
-                        # Track where response starts (first merged range start)
-                        range_start = merged_ranges[0][0]
-                        
-                        logger.debug(f"{filename}: Downloading ranges: {range_header}")
-                        
-                        async with session.get(url, headers=range_headers) as range_response:
-                            if range_response.status not in (200, 206):
-                                self._log_error(output_dir, filename, f"Range download failed: Status {range_response.status}")
-                                pbar.update(1)
-                                return
+                        for doc in docs_beyond_probe:
+                            doc_start = doc['start']
+                            doc_end = doc['end']
+                            doc_name = doc['name']
                             
-                            range_chunks = []
-                            async for chunk in range_response.content.iter_chunked(self.CHUNK_SIZE):
-                                range_chunks.append(chunk)
-                            range_content = b''.join(range_chunks)
-                        
-                        # Extract documents from ranges
-                        range_documents = await loop.run_in_executor(
-                            extraction_pool,
-                            partial(self._extract_documents_from_ranges, range_content, docs_beyond_probe, range_start)
-                        )
-                        documents.extend(range_documents)
+                            try:
+                                # Single range request for this document
+                                doc_range_headers = headers.copy()
+                                doc_range_headers['Range'] = f'bytes={doc_start}-{doc_end-1}'
+                                
+                                logger.debug(f"{filename}: Downloading {doc_name} bytes {doc_start}-{doc_end-1}")
+                                
+                                async with session.get(url, headers=doc_range_headers) as doc_response:
+                                    if doc_response.status not in (200, 206):
+                                        logger.error(f"Failed to download {doc_name}: Status {doc_response.status}")
+                                        continue
+                                    
+                                    doc_chunks = []
+                                    async for chunk in doc_response.content.iter_chunked(self.CHUNK_SIZE):
+                                        doc_chunks.append(chunk)
+                                    doc_content = b''.join(doc_chunks)
+                                
+                                # Decompress this single document
+                                decompressed = await loop.run_in_executor(
+                                    extraction_pool,
+                                    partial(self._decompress_zstd, doc_content)
+                                )
+                                
+                                documents.append({
+                                    'name': doc_name,
+                                    'content': decompressed
+                                })
+                                
+                            except Exception as e:
+                                logger.error(f"Failed to download/extract {doc_name}: {str(e)}")
+                
+                # Filter metadata to match downloaded documents
+                downloaded_names = {doc['name'] for doc in documents}
+                filtered_metadata_dict = self._filter_metadata_documents(
+                    metadata_with_positions, 
+                    downloaded_names, 
+                    keep_filtered_metadata
+                )
+                filtered_metadata_bytes = json.dumps(filtered_metadata_dict).encode('utf-8')
                 
                 # Step 4: Write to output tar
                 success = await loop.run_in_executor(
                     extraction_pool,
-                    partial(tar_manager.write_submission, accession_num, metadata_bytes, documents)
+                    partial(tar_manager.write_submission, accession_num, filtered_metadata_bytes, documents)
                 )
                 
                 if not success:
@@ -580,7 +521,7 @@ class TarDownloader:
                 self._log_error(output_dir, filename, str(e))
                 pbar.update(1)
 
-    async def process_batch(self, urls, output_dir, max_batch_size=1024*1024*1024, keep_document_types=[]):
+    async def process_batch(self, urls, output_dir, max_batch_size=1024*1024*1024, keep_document_types=[], keep_filtered_metadata=False):
         os.makedirs(output_dir, exist_ok=True)
         
         num_tar_files = min(self.MAX_TAR_WORKERS, len(urls))
@@ -604,7 +545,7 @@ class TarDownloader:
                     tasks = [
                         self.download_and_process(
                             session, url, semaphore, extraction_pool,
-                            tar_manager, output_dir, pbar, keep_document_types
+                            tar_manager, output_dir, pbar, keep_document_types, keep_filtered_metadata
                         ) 
                         for url in urls
                     ]
@@ -616,7 +557,7 @@ class TarDownloader:
             tar_manager.close_all()
 
     def download(self, accession_numbers, output_dir="downloads", 
-                 keep_document_types=[], max_batch_size=1024*1024*1024):
+                 keep_document_types=[], max_batch_size=1024*1024*1024, keep_filtered_metadata=False):
         """
         Download SEC filings in tar format for the given accession numbers.
         
@@ -625,6 +566,7 @@ class TarDownloader:
             output_dir: Directory to save downloaded files
             keep_document_types: List of document types to keep (empty = keep all)
             max_batch_size: Maximum size of each batch tar file in bytes
+            keep_filtered_metadata: If True, keep metadata for all documents. If False, only keep metadata for downloaded docs.
         """
         if self.api_key is None:
             raise ValueError("No API key found. Please set DATAMULE_API_KEY environment variable or provide api_key in constructor")
@@ -648,7 +590,8 @@ class TarDownloader:
         asyncio.run(self.process_batch(
             urls, output_dir, 
             max_batch_size=max_batch_size, 
-            keep_document_types=keep_document_types
+            keep_document_types=keep_document_types,
+            keep_filtered_metadata=keep_filtered_metadata
         ))
         
         elapsed_time = time.time() - start_time
@@ -662,7 +605,7 @@ def download_tar(cik=None, ticker=None, submission_type=None, filing_date=None,
                  api_key=None, output_dir="downloads", 
                  filtered_accession_numbers=None, skip_accession_numbers=None,
                  keep_document_types=[], max_batch_size=1024*1024*1024,
-                 accession_numbers=None, quiet=False, **kwargs):
+                 keep_filtered_metadata=False, accession_numbers=None, quiet=False, **kwargs):
     """
     Download SEC filings in tar format from DataMule.
     
@@ -692,8 +635,6 @@ def download_tar(cik=None, ticker=None, submission_type=None, filing_date=None,
             **kwargs
         )
         
-
-        
         if not accession_numbers:
             logger.warning("No submissions found matching the criteria")
             return
@@ -703,5 +644,6 @@ def download_tar(cik=None, ticker=None, submission_type=None, filing_date=None,
         accession_numbers=accession_numbers,
         output_dir=output_dir,
         keep_document_types=keep_document_types,
-        max_batch_size=max_batch_size
+        max_batch_size=max_batch_size,
+        keep_filtered_metadata=keep_filtered_metadata
     )
