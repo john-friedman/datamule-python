@@ -139,7 +139,7 @@ class Tables():
     def add_table(self,data,name,description=None):
         self.tables.append(Table(data=data,name=name,accession=self.accession,description=description))
 
-    def get_tables(self, description_regex=None, name=None):
+    def get_tables(self, description_regex=None, name=None, contains_regex=None):
         matching_tables = []
         
         for table in self.tables:
@@ -152,7 +152,43 @@ class Tables():
             # Check description regex match
             if description_regex is not None and table.description is not None:
                 if re.search(description_regex, table.description):
-                    matching_tables.append(table)
+                    # If contains_regex is also specified, need to check that too
+                    if contains_regex is not None:
+                        if self._check_contains_regex(table, contains_regex):
+                            matching_tables.append(table)
+                    else:
+                        matching_tables.append(table)
                     continue
+            
+            # Check contains_regex match (only if description_regex didn't already handle it)
+            if contains_regex is not None and description_regex is None and name is None:
+                if self._check_contains_regex(table, contains_regex):
+                    matching_tables.append(table)
         
         return matching_tables
+
+    def _check_contains_regex(self, table, contains_regex):
+        # Convert all patterns to compiled regex objects
+        compiled_patterns = [re.compile(pattern) for pattern in contains_regex]
+        
+        # Track which patterns have been matched
+        patterns_matched = [False] * len(compiled_patterns)
+        
+        # Iterate through all cells in table.data
+        for row in table.data:
+            for cell in row:
+                # Convert cell to string for regex matching
+                cell_str = str(cell)
+                
+                # Check each pattern that hasn't been matched yet
+                for i, pattern in enumerate(compiled_patterns):
+                    if not patterns_matched[i]:
+                        if pattern.search(cell_str):
+                            patterns_matched[i] = True
+                
+                # Early exit if all patterns have been matched
+                if all(patterns_matched):
+                    return True
+        
+        # Return True only if all patterns were matched
+        return all(patterns_matched)
