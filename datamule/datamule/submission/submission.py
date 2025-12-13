@@ -69,7 +69,10 @@ class Submission:
             self.accession = format_accession(path.stem,'no-dash')
         elif batch_tar_path is not None:
             self.accession = format_accession(accession,'no-dash')
-        elif url is not None or sgml_content is not None:
+        elif url is not None:
+            if accession is None:
+                self.accession = format_accession(Path(url).stem,'no-dash') 
+        elif sgml_content is not None:
             if accession is None:
                 raise ValueError("If using url or sgml_content, accession must be specified.")
             self.accession = format_accession(accession,'no-dash')

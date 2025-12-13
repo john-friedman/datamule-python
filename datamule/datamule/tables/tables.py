@@ -93,10 +93,15 @@ def apply_mapping(flattened_data, mapping_dict, accession, must_exist_in_mapping
     
     return [ordered_row]
 
-# should have table type, accession, data
+# TODO, move from dict {} to [[]]
 class Table:
     def __init__(self,data,name,accession,description = None):
         self.data = data
+        if data != []:
+            try:
+                self.columns = data[0].keys() # handle xml tables
+            except:
+                self.columns = data[0] # handle html tables
         self.name = name
         self.accession = accession
         self.description = description

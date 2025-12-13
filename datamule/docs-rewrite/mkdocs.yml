@@ -23,6 +23,7 @@ nav:
       - Index: datamule-python/index/index.md
       - Book: datamule-python/book/book.md
       - Config: datamule-python/config/config.md
+      - Filings Constructor: datamule-python/filings_constructor/filings_constructor.md
       - Utils: 
           - 'CIK Filtering': datamule-python/utils/_process_cik_and_metadata_filters.md
           - 'Convenient Functions': 'datamule-python/utils/convenience.md' 

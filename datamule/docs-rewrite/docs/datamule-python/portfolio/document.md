@@ -215,6 +215,14 @@ pattern = r'(?i)chatgpt'
 document.contains_string(pattern)
 ```
 
+### `write`
+
+Writes the document to disk.
+
+```python
+write(self,file)
+```
+
 ### `write_csv`
 
 ```python

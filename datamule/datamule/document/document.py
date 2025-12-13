@@ -486,6 +486,11 @@ class Document:
         if self._tables is None:
             self.parse_tables()
         return self._tables.tables
+    
+
+    def write(self,file):
+        with open(file, 'wb') as f:
+            f.write(self.content)
 
 
     def write_csv(self, output_folder):
@@ -499,7 +504,7 @@ class Document:
         
         for table in tables:
             fieldnames = table.columns
-            output_filename = output_folder / f"{table.type}.csv"
+            output_filename = output_folder / f"{table.name}.csv"
 
             # Check if the file already exists
             if output_filename.exists():
@@ -588,8 +593,8 @@ class Document:
             else:
                 return [flatten_dict(item[1],format) for item in result]
 
-    # TODO
-    def get_tables(self,description_regex=None,name=None):
+
+    def get_tables(self, description_regex=None, name=None, contains_regex=None):
         # make sure tables is initialized
         self.tables
-        return self._tables.get_tables(description_regex=description_regex, name=name)
+        return self._tables.get_tables(description_regex=description_regex, name=name, contains_regex=contains_regex)
