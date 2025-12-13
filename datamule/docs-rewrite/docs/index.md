@@ -9,4 +9,7 @@
 4. [secsgml](https://github.com/john-friedman/secsgml/) - parse SEC Standardized Generalized Markup Language.
 5. [doc2dict](https://github.com/john-friedman/doc2dict) - convert documents to dictionaries.
 6. [txt2dataset](https://github.com/john-friedman/txt2dataset/) - create datasets from unstructured text.
+7. [secxbrl](https://github.com/john-friedman/secxbrl) - fast, lightweight parser designed for SEC InLine XBRL.
+8. [company-fundamentals](https://github.com/john-friedman/company-fundamentals) - standardize SEC XBRL into fundamentals data, such as EBITDA.
+9. [secbrowser](https://github.com/john-friedman/secbrowser) - a simple flask interface to interact with SEC filings.
 

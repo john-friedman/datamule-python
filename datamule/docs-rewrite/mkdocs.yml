@@ -6,7 +6,9 @@ nav:
   - Data Providers: providers.md
   - datamule-python:
       - Overview: datamule-python/index.md
-      - Quickstart: datamule-python/quickstart.md
+      - Examples: 
+          - Quickstart: datamule-python/examples/quickstart.md
+          - Tesla Risk Factor Language Score: datamule-python/examples/tesla_risk_factor_language_score.md
       - Setting a Data Provider: datamule-python/data_provider.md
       - Package Data: datamule-python/package_data.md
       - Datasets: datamule-python/datasets.md
