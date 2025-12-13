@@ -89,6 +89,7 @@ class Submission:
         self._tar_compression_threshold = None
         self._accession_year_2d = None
         self._documents = None
+        self._filer_cik = None
         
         # Validate parameters
         param_count = sum(x is not None for x in [path, sgml_content, batch_tar_path,url])
@@ -195,6 +196,10 @@ class Submission:
             )
         
         self._has_fundamentals = self._xbrl_bool
+        try:
+            self._filer_cik = self.metadata.content.get('filer').get('company-data').get('cik')
+        except:
+            self._filer_cik = None
         
 
     # TODO rework for better metadata accessing

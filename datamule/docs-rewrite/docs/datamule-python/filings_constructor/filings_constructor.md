@@ -24,5 +24,6 @@ construct_document(input_file='13fhr/information_table.csv', output_file='inform
 ```
 
 Currently supports:
+
 - 13F-HR
     - INFORMATION TABLE
