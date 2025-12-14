@@ -139,9 +139,6 @@ with open('nt10k_final_dataset.csv', 'w', encoding='utf-8', newline='') as csvfi
 ```
 
 ## Results
-# NT 10-K Filing Delays Analysis
-
-## Summary of Late Filing Reasons
 
 | Accession | Document Type | Filing Date | Filer CIK | Type of Delay | Explanation |
 |-----------|--------------|-------------|-----------|---------------|-------------|
