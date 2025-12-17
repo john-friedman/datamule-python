@@ -3,7 +3,6 @@ import csv
 import re
 from doc2dict import xml2dict, txt2dict
 from doc2dict import html2dict, visualize_dict, get_title, unnest_dict, pdf2dict, flatten_dict
-from ..mapping_dicts.txt_mapping_dicts import dict_13d, dict_13g
 from ..mapping_dicts.xml_mapping_dicts import dict_345
 from ..mapping_dicts.html_mapping_dicts import *
 from pathlib import Path

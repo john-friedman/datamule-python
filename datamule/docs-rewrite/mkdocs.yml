@@ -8,6 +8,7 @@ nav:
       - Overview: datamule-python/index.md
       - Examples: 
           - Quickstart: datamule-python/examples/quickstart.md
+          - Articles: datamule-python/examples/articles.md
           - Tesla Risk Factor Language Score: datamule-python/examples/tesla_risk_factor_language_score.md
           - Meta Risk Factor Semantic Drift:  datamule-python/examples/meta_risk_factor_semantic_drift.md
           - Costco Audit Complexity: datamule-python/examples/costco_audit_complexity.md

@@ -153,3 +153,10 @@ dict_s1_html ={
     ('controls and procedures', r'^(?:disclosure\s+)?controls\s+and\s+procedures') : 0,
     ('corporate governance', r'^corporate\s+governance') : 0,
                }
+
+
+dict_13d = {
+    ('item', r'^item\s+(\d+)'): 0,
+}
+
+dict_13g = dict_13d
