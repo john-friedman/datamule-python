@@ -35,7 +35,7 @@ def datamule_lookup(cik=None, ticker=None, submission_type=None, filing_date=Non
                    report_date=None, detected_time=None,
                    contains_xbrl=None, document_type=None, filename=None, 
                    sequence=None, quiet=False, api_key=None,filtered_accession_numbers=None,
-                   skip_accession_numbers= None, **kwargs):
+                   skip_accession_numbers= None, provider='datamule-tar', **kwargs):
     
     lookup_args = {}
     
@@ -74,8 +74,12 @@ def datamule_lookup(cik=None, ticker=None, submission_type=None, filing_date=Non
         lookup_args['sequence'] = sequence
     
     sheet = Sheet('')
+    if provider == 'datamule-sgml':
+        database = 'sgml-archive'
+    else:
+        database = 'tar-archive'
     accessions = sheet.get_table(
-        database='tar-archive', **lookup_args
+        database = database, **lookup_args
     )
     accessions = _filters(accession_numbers=accessions, filtered_accession_numbers=filtered_accession_numbers,
                            skip_accession_numbers=skip_accession_numbers)

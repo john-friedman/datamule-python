@@ -632,6 +632,7 @@ def download_tar(cik=None, ticker=None, submission_type=None, filing_date=None,
             skip_accession_numbers=skip_accession_numbers,
             quiet=quiet, 
             api_key=api_key,
+            provider='datamule-tar',
             **kwargs
         )
         
