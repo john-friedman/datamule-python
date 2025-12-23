@@ -1,5 +1,13 @@
 # Datasets
 
+Note: This page will get a major update soon. Other datasets not yet listed:
+
+- when sec filings are detected: https://github.com/john-friedman/datamule-data/blob/master/data/datasets/detected_time_2025_12_03.csv.gz
+- Filings erroneously marked as XBRL by the SEC https://github.com/john-friedman/datamule-data/blob/master/data/datasets/recorded_as_xbrl_but_no_xbrl.csv
+- Every 10-K MDA up to 12/21/2025: https://github.com/john-friedman/Every-10-K-MDA-01-01-1993-12-21-2025.
+- SEC Filing Wordcounts: https://github.com/john-friedman/sec-filing-wordcounts-1993-2000
+
+
 ## Usage
 ```python
 from datamule.datasets import cik_cusip_crosswalk
