@@ -1,6 +1,6 @@
 # Products
 
-Some features of datamule require an api_key. See [products](datamule.xyz/product).
+Some features of datamule require an api_key. See [products](https://datamule.xyz/product).
 
 ## SEC Filings SGML R2
 
