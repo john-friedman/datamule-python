@@ -226,8 +226,7 @@ def transfer_cached_urls_to_s3(urls, s3_credentials, max_workers=4, errors_json_
 def s3_transfer(datamule_bucket, s3_credentials, max_workers=4, errors_json_filename='s3_transfer_errors.json', retry_errors=3,
                 force_daily=True, cik=None, submission_type=None, filing_date=None, datamule_api_key=None,accession_number=None):
 
-    if datamule_bucket == 'filings_sgml_r2':
-
+    if datamule_bucket in ['filings_sgml_r2','sec_filings_sgml_r2']:
 
         if accession_number is not None:
             if any(param is not None for param in [cik, submission_type, filing_date]):
