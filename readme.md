@@ -4,7 +4,7 @@
 
 A python package for working with SEC filings at scale. Integrated with [datamule's endpoints](https://datamule.xyz/products).
 
-* [Documentation](https://john-friedman.github.io/datamule-python/datamule-python/quickstart/)
+* [Documentation](https://john-friedman.github.io/datamule-python/datamule-python/examples/quickstart/)
 
 ## Datamule's Endpoints (requires API Key)
 
