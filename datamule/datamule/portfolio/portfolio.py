@@ -282,7 +282,9 @@ class Portfolio:
                 keep_document_types=document_type,
                 keep_filtered_metadata=keep_filtered_metadata,
                 standardize_metadata=standardize_metadata,
-                skip_accession_numbers=skip_accession_numbers
+                skip_accession_numbers=skip_accession_numbers,
+                ticker = ticker,
+                **kwargs
             )
 
         self.submissions_loaded = False

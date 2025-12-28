@@ -1,12 +1,15 @@
 import os
 from .streamer import stream
 from secsgml import write_sgml_file_to_tar
-from tqdm import tqdm
+from tqdm import tqdm 
+
+from ...helper import _process_cik_and_metadata_filters
+
 
 def download(cik=None, submission_type=None, filing_date=None, location=None, name=None, 
              requests_per_second=5, output_dir="filings", filtered_accession_numbers=None, 
              quiet=False, keep_document_types=[],keep_filtered_metadata=False,standardize_metadata=True,
-             skip_accession_numbers=[]):
+             skip_accession_numbers=[],ticker=None,**kwargs):
     # Make sure output directory exists
     os.makedirs(output_dir, exist_ok=True)
 
@@ -19,6 +22,7 @@ def download(cik=None, submission_type=None, filing_date=None, location=None, na
                                standardize_metadata=standardize_metadata)
         pbar.update(1)
 
+    cik =  _process_cik_and_metadata_filters(cik, ticker, **kwargs)
 
     # Call the stream function with our callback
     return stream(
