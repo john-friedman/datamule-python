@@ -222,7 +222,7 @@ class Portfolio:
 
         # map legacy provider
         if provider == 'datamule':
-            provider = 'datamule-sgml'
+            provider = 'datamule-tar'
             
         if provider == 'datamule-sgml':
             seclibrary_download(
