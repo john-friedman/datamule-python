@@ -581,16 +581,33 @@ class Document:
         else:
             print(f"Cannot open files with extension {self.extension}")
 
-    def get_section(self, title=None, title_regex=None,title_class=None, format='dict'):
+    def get_section(self, title=None, title_regex=None,title_class=None, format='dict',simplify=True):
         if self._data_bool:
             if not self.data:
                 self.parse()
 
             result = get_title(self.data,title=title,title_regex=title_regex,title_class=title_class)
-            if format == 'dict':
-                return [item[1] for item in result]
+            if simplify == False:
+                if format == 'dict':
+                    return result
+                else:
+                    # Extract fields before flattening
+                    processed = []
+                    for item in result:
+                        original_dict = item[1]
+                        processed.append({
+                            'id': item[0],
+                            'title': original_dict.get('title', ''),
+                            'standardized_title': original_dict.get('standardized_title', ''),
+                            'class': original_dict.get('class', ''),
+                            'text': flatten_dict(original_dict, format)
+                        })
+                    return processed
             else:
-                return [flatten_dict(item[1],format) for item in result]
+                if format == 'dict':
+                    return [item[1] for item in result]
+                else:
+                    return [flatten_dict(item[1],format) for item in result]
 
 
     def get_tables(self, description_regex=None, name=None, contains_regex=None):
