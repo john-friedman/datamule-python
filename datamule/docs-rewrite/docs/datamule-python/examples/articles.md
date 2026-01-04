@@ -11,3 +11,4 @@
 - [Downloading every 10-K MDA + applying Loughran McDonald](https://github.com/john-friedman/Every-10-K-MDA-01-01-1993-12-21-2025.)
 - [Getting SEC filings minutes faster](https://github.com/john-friedman/The-fastest-way-to-get-SEC-filings)
 - [Who Submits SEC Filings Over Time](https://github.com/john-friedman/Who-Submits-SEC-Filings-Over-Time)
+- [Do Companies have more green pixels in their graphics to appear "Green"?](https://github.com/john-friedman/sectorgreenwashing)
