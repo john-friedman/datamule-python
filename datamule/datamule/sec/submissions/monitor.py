@@ -32,8 +32,9 @@ async def poll_rss(limiter, session):
         cik = re.search(r'/data/(\d+)/', url).group(1)
         
         if accession not in grouped:
-            grouped[accession] = {'submission_type': '', 'ciks': set(), 'filing_date': ''}
+            grouped[accession] = {'submission_type': '', 'ciks': set(), 'filing_date': '', 'url': ''}
         
+        grouped[accession]['url'] = url
         grouped[accession]['ciks'].add(cik)
         grouped[accession]['submission_type'] = entry.find('atom:category', namespace).get('term')
         summary_text = entry.find('atom:summary', namespace).text
@@ -41,7 +42,7 @@ async def poll_rss(limiter, session):
         if filing_date_match:
             grouped[accession]['filing_date'] = filing_date_match.group(1)
 
-    results = [{'accession': int(k.replace('-', '')), 'submission_type': v['submission_type'], 'ciks': list(v['ciks']), 'filing_date': v['filing_date']} for k, v in grouped.items()]
+    results = [{'accession': int(k.replace('-', '')), 'submission_type': v['submission_type'], 'ciks': list(v['ciks']), 'filing_date': v['filing_date'], 'url': v['url']} for k, v in grouped.items()]
     return results
 
 def clean_efts_hits(hits):
