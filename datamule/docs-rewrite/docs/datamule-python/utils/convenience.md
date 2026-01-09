@@ -42,3 +42,24 @@ construct_submissions_data(
     ],
 )
 ```
+
+## URL construction
+
+```python
+from datamule.utils.convenience import construct_index_url, construct_sgml_url, construct_folder_url, construct_document_url
+cik = "878719"
+accession = "000139834426000514"
+filename = "idf66131687d57b800fc7cc59.jpg"
+
+construct_index_url(accession)
+# https://www.sec.gov/Archives/edgar/data/139834426000514/0001398344-26-000514-index.html
+
+construct_sgml_url(accession,cik):
+# https://www.sec.gov/Archives/edgar/data/878719/000139834426000514/0001398344-26-000514.txt
+
+construct_folder_url(accession,cik)
+# https://www.sec.gov/Archives/edgar/data/878719/000139834426000514/
+
+construct_document_url(accession,cik,filename)
+# https://www.sec.gov/Archives/edgar/data/878719/000139834426000514/idf66131687d57b800fc7cc59.jpg
+```

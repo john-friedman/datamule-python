@@ -16,6 +16,7 @@ nav:
           - General Motors Impairment Event: datamule-python/examples/gm_impairment_event.md
           - General Electric Covenant Breach Risk: datamule-python/examples/ge_covenant_breach_risk.md
           - Late Filing Reasons: datamule-python/examples/late_filing_reasons.md
+          - Monitor New Filings: datamule-python/examples/monitor_new_filings.md
       - Setting a Data Provider: datamule-python/data_provider.md
       - Package Data: datamule-python/package_data.md
       - Datasets: datamule-python/datasets.md

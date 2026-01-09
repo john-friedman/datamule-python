@@ -10,3 +10,12 @@ def format_accession(accession, format):
     else:
         raise ValueError("unrecognized format")
     return accession
+
+def detect_accession_type(accession):
+    accession = str(accession)
+    if '-' in accession:
+        return 'dash'
+    elif len(accession) == 18:
+        return 'no-dash'
+    else:
+        return 'int'
