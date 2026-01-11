@@ -93,36 +93,65 @@ def apply_mapping(flattened_data, mapping_dict, accession, must_exist_in_mapping
     
     return [ordered_row]
 
-# TODO, move from dict {} to [[]]
+
 class Table:
-    def __init__(self,data,name,accession,description = None):
+    def __init__(self, data, name, accession, description=None, preamble=None, footnotes=None, postamble=None):
         self.data = data
         if data != []:
             try:
                 self.columns = data[0].keys() # handle xml tables
             except:
                 self.columns = data[0] # handle html tables
+                
         self.name = name
         self.accession = accession
         self.description = description
+        self.preamble = preamble
+        self.footnotes = footnotes if footnotes is not None else []
+        self.postamble = postamble
 
-    # TODO MADE IN A HURRY #
     def __str__(self):
+        parts = []
+        
+        # Header with name and accession
+        parts.append(f"Table '{self.name}' ({self.accession}) - {len(self.data) if isinstance(self.data, list) else 'N/A'} rows")
+        
+        # Description
+        if self.description:
+            parts.append(f"Description: {self.description}")
+        
+        # Preamble
+        if self.preamble:
+            parts.append(f"\nPreamble: {' '.join([item['text'] for item in self.preamble])}")
+        
+        # The actual table
         formatted_table = _format_table(self.data)
         if isinstance(formatted_table, list):
             table_str = '\n'.join(formatted_table)
         else:
             table_str = str(formatted_table)
-        return f"Table '{self.name}' ({self.accession}) - {len(self.data) if isinstance(self.data, list) else 'N/A'} rows\ndescription: {self.description if self.description else ''}\n{table_str}"
+        parts.append(f"\n{table_str}")
+        
+        # Footnotes
+        if self.footnotes:
+            parts.append("\nFootnotes:")
+            for footnote in self.footnotes:
+                parts.append(f" {footnote['footnote_id']}: {footnote['text']}")
+        
+        # Postamble
+        if self.postamble:
+            parts.append(f"\nPostamble: {' '.join([item['text'] for item in self.postamble])}")
+        
+        return '\n'.join(parts)
 
 
 class Tables():
-    def __init__(self,document_type,accession):
+    def __init__(self, document_type, accession):
         self.document_type = document_type
         self.accession = accession
         self.tables = []
 
-    def parse_tables(self,data,must_exist_in_mapping=True):
+    def parse_tables(self, data, must_exist_in_mapping=True):
         self.data = data
 
         try:
@@ -131,21 +160,31 @@ class Tables():
             raise ValueError(f"Table not found: {self.document_type}.")
         
         # now get the dicts from the data
-        data_dicts = seperate_data(tables_dict,self.data)
+        data_dicts = seperate_data(tables_dict, self.data)
 
         # now flatten
-        data_dicts = [(x,flatten_dict(y)) for x,y in data_dicts]
+        data_dicts = [(x, flatten_dict(y)) for x, y in data_dicts]
         
         for table_name, flattened_data in data_dicts:
             mapping_dict = tables_dict[table_name]['mapping']
-            mapped_data = apply_mapping(flattened_data, mapping_dict, self.accession,must_exist_in_mapping)
+            mapped_data = apply_mapping(flattened_data, mapping_dict, self.accession, must_exist_in_mapping)
             self.tables.append(Table(mapped_data, table_name, self.accession))
         
-    def add_table(self,data,name,description=None):
-        self.tables.append(Table(data=data,name=name,accession=self.accession,description=description))
+    def add_table(self, data, name, description=None, preamble=None, footnotes=None, postamble=None):
+        """Add a table with optional metadata components"""
+        self.tables.append(Table(
+            data=data,
+            name=name,
+            accession=self.accession,
+            description=description,
+            preamble=preamble,
+            footnotes=footnotes,
+            postamble=postamble
+        ))
 
-    def get_tables(self, description_regex=None, name=None, contains_regex=None):
+    def get_tables(self, description_regex=None, description_fields=['preamble', 'postamble', 'footnotes'], name=None, contains_regex=None):
         matching_tables = []
+
         
         for table in self.tables:
             # Check name match (exact match)
@@ -155,8 +194,26 @@ class Tables():
                     continue
             
             # Check description regex match
-            if description_regex is not None and table.description is not None:
-                if re.search(description_regex, table.description):
+            if description_regex is not None:
+                description_matched = False
+                
+                # Search in specified fields
+                for field in description_fields:
+                    field_value = getattr(table, field, None)
+                    if field_value is not None:
+                        # Handle both string and list formats
+                        if isinstance(field_value, str):
+                            if re.search(description_regex, field_value):
+                                description_matched = True
+                                break
+                        elif isinstance(field_value, list):
+                            # Join list items and search
+                            combined_text = ' '.join(str(item) for item in field_value)
+                            if re.search(description_regex, combined_text):
+                                description_matched = True
+                                break
+                
+                if description_matched:
                     # If contains_regex is also specified, need to check that too
                     if contains_regex is not None:
                         if self._check_contains_regex(table, contains_regex):

@@ -110,7 +110,7 @@ class TextAnalysisBase:
                 # Original behavior - single text source
                 self._text_sources = [{'id': None, 'text': str(self.document.text)}]
             else:  # mode == 'data'
-                self._text_sources = [{'id':data_tuple[0],'text':data_tuple[2]} for data_tuple in self.document.data_tuples if data_tuple[1] in ['text','title','textsmall']]
+                self._text_sources = [{'id':data_tuple[0],'text':data_tuple[2]} for data_tuple in self.document.data_tuples if data_tuple[1] in ['text','title','textsmall','table_preamble', 'table_footnote', 'table_postamble']]
         return self._text_sources
     
     def _format_results(self, results, fragment_id):
@@ -444,42 +444,63 @@ class Document:
         with open(output_filename, 'w',encoding='utf-8') as f:
             json.dump(self.data, f, indent=2)
 
-    def parse_tables(self,must_exist_in_mapping=True):
+    def parse_tables(self, must_exist_in_mapping=True):
         """Must exist in mapping means columns must occur in mapping schema."""
         if self.extension == '.xml':
-            tables = Tables(document_type = self.type, accession=self.accession)
-            tables.parse_tables(data=self.data,must_exist_in_mapping=must_exist_in_mapping)
+            tables = Tables(document_type=self.type, accession=self.accession)
+            tables.parse_tables(data=self.data, must_exist_in_mapping=must_exist_in_mapping)
             self._tables = tables
 
         elif self._data_bool:
-            tables = Tables(document_type = self.type, accession=self.accession)
+            tables = Tables(document_type=self.type, accession=self.accession)
             data_tuples = self.data_tuples
             
-            for i, (id, type, content, level) in enumerate(data_tuples):
-                if type == "table" and i > 0:
-                    description = None
+            # Group table components by id
+            i = 0
+            while i < len(data_tuples):
+                id, type, content, level = data_tuples[i]
+                
+                if type == "table_data":
+                    # Start collecting table components
+                    table_data = content
+                    preamble = None
+                    footnotes = []
+                    postamble = None
                     
-                    # Look at previous element
-                    prev_id, prev_type, prev_content, prev_level = data_tuples[i-1]
+                    # Look backwards for preamble (same id, comes before table_data)
+                    j = i - 1
+                    while j >= 0 and data_tuples[j][0] == id:
+                        _, comp_type, comp_content, _ = data_tuples[j]
+                        if comp_type == "table_preamble":
+                            preamble = comp_content
+                            break
+                        j -= 1
                     
-                    # Case 1: Same level + text content
-                    if prev_level == level and prev_type in ["text", "textsmall"]:
-                        description = prev_content
+                    # Look forwards for footnotes and postamble (same id, comes after table_data)
+                    j = i + 1
+                    while j < len(data_tuples) and data_tuples[j][0] == id:
+                        _, comp_type, comp_content, _ = data_tuples[j]
+                        if comp_type == "table_footnote":
+                            footnotes.append(comp_content)
+                        elif comp_type == "table_postamble":
+                            postamble = comp_content
+                        j += 1
                     
-                    # Case 2: Higher level (lower number) + title
-                    elif prev_level < level and prev_type == "title":
-                        description = prev_content
-                    
-                    # Case 3: No matching description - add table without description
-                    # (description remains None)
-                    
-                    tables.add_table(data=content, description=description, name="extracted_table")
+                    # Add the complete table with all components
+                    tables.add_table(
+                        data=table_data,
+                        name="extracted_table",
+                        preamble=preamble,
+                        footnotes=footnotes if footnotes else None,
+                        postamble=postamble
+                    )
+                
+                i += 1
 
             self._tables = tables
 
         else:
             self._tables = []
-
     @property
     def tables(self):
         if self._tables is None:
@@ -610,7 +631,12 @@ class Document:
                     return [flatten_dict(item[1],format) for item in result]
 
 
-    def get_tables(self, description_regex=None, name=None, contains_regex=None):
+    def get_tables(self, description_regex=None, description_fields=None, name=None, contains_regex=None):
         # make sure tables is initialized
         self.tables
-        return self._tables.get_tables(description_regex=description_regex, name=name, contains_regex=contains_regex)
+        return self._tables.get_tables(
+            description_regex=description_regex, 
+            description_fields=description_fields,
+            name=name, 
+            contains_regex=contains_regex
+        )
