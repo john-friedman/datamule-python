@@ -122,7 +122,8 @@ class Table:
         
         # Preamble
         if self.preamble:
-            parts.append(f"\nPreamble: {' '.join([item['text'] for item in self.preamble])}")
+            preamble_texts = [item.get('text') or item.get('textsmall', '') for item in self.preamble]
+            parts.append(f"\nPreamble: {' '.join(preamble_texts)}")
         
         # The actual table
         formatted_table = _format_table(self.data)
@@ -136,11 +137,13 @@ class Table:
         if self.footnotes:
             parts.append("\nFootnotes:")
             for footnote in self.footnotes:
-                parts.append(f" {footnote['footnote_id']}: {footnote['text']}")
+                footnote_text = footnote.get('text') or footnote.get('textsmall', '')
+                parts.append(f" {footnote['footnote_id']}: {footnote_text}")
         
         # Postamble
         if self.postamble:
-            parts.append(f"\nPostamble: {' '.join([item['text'] for item in self.postamble])}")
+            postamble_texts = [item.get('text') or item.get('textsmall', '') for item in self.postamble]
+            parts.append(f"\nPostamble: {' '.join(postamble_texts)}")
         
         return '\n'.join(parts)
 

@@ -8,6 +8,11 @@ STANDARD_CONFIG = {
         "postprocessing": {}
     },
     "dct": {
+        "preprocessing" : {
+            "page_numbers" : {
+                "remove_regex" : r"^\d+$"
+            }
+        },
         "processing": {
             "table": {
                 "detect_fake_tables": True,
@@ -27,16 +32,17 @@ STANDARD_CONFIG = {
                     "remove_subset_columns_left_to_right",
                     "remove_subset_columns_right_to_left",
                     "simplify_cells",
-                    "disallow_single_row_tables"
+                    "disallow_single_row_tables",
+                    "merge_duplicate_header_rows_down"
                 ],
                 "footnotes": {
                     "regex": r"^(\*|\(\d+\)|\d+|†+)"
                 },
                 "preamble": {
-                    "lines": 3
+                    "lines": 7
                 },
                 "postamble": {
-                    "lines": 3
+                    "lines": 7
                 }
             }
         }
