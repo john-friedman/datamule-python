@@ -631,7 +631,7 @@ class Document:
                     return [flatten_dict(item[1],format) for item in result]
 
 
-    def get_tables(self, description_regex=None, description_fields=None, name=None, contains_regex=None):
+    def get_tables(self, description_regex=None, description_fields=['preamble', 'postamble', 'footnotes'], name=None, contains_regex=None):
         # make sure tables is initialized
         self.tables
         return self._tables.get_tables(
