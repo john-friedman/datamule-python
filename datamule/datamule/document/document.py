@@ -374,6 +374,8 @@ class Document:
                 mapping_dict = dict_13g
             elif self.type in ['SC 13D', 'SC 13D/A']:
                 mapping_dict = dict_13d
+            else:
+                mapping_dict = STANDARD_CONFIG
             
             if self.extension in ['.htm','.html']:
                 dct = html2dict(content=self.content, mapping_dict=mapping_dict)
