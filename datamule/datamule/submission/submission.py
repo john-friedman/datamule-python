@@ -265,7 +265,11 @@ class Submission:
     def __iter__(self):
         """Make Submission iterable by yielding all documents."""
         for idx in range(len(self.metadata.content['documents'])):
-            yield self._load_document_by_index(idx)
+            try:
+                yield self._load_document_by_index(idx)
+            except Exception as e:
+                print(f"Skipped: {idx} due to {e}. Possible malformed filing.")
+                continue
 
     def document_type(self, document_type):
         """Yield documents matching the specified type(s)."""

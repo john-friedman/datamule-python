@@ -39,7 +39,7 @@ def download_dataset(dataset, api_key, filename=None):
     
     # Get download URL from API
     api_url = f"https://api.datamule.xyz/dataset/{urllib.parse.quote(dataset_name)}?api_key={api_key}"
-    
+
     # Create request with headers
     req = urllib.request.Request(
         api_url,
