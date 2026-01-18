@@ -9,9 +9,12 @@ STANDARD_CONFIG = {
     },
     "dct": {
         "preprocessing" : {
-            "page_numbers" : {
-                "remove_regex" : r"^\d+$"
-            }
+            "remove_strings" : [
+                {"regex":r"^\d+$"}, 
+                {"regex":r"^_+$"}, 
+                {"regex":r"^●(\s*●)*"},
+                {"regex": r"^table\s+of\s+contents$", "has_href":True}
+            ]
         },
         "processing": {
             "table": {
@@ -36,7 +39,7 @@ STANDARD_CONFIG = {
                     "merge_duplicate_header_rows_down"
                 ],
                 "footnotes": {
-                    "regex": r"^(\*|\(\d+\)|\d+|†+)"
+                    "regex": r"^(\*|\(.{1,2}\)|\d+|†+)"
                 },
                 "preamble": {
                     "lines": 7
