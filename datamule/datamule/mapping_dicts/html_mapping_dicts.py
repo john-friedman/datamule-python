@@ -11,6 +11,8 @@ STANDARD_CONFIG = {
         "preprocessing" : {
             "remove_strings" : [
                 {"regex":r"^\d+$"}, 
+                {"regex":r"^-\d+-$"}, 
+                {"regex":r"(^\s*\d+\s*\||\|\s*\d+\s*$)"}, # e.g. BRYN MAWR BANK CORPORATION |   2020 PROXY STATEMENT |  45
                 {"regex":r"^_+$"}, 
                 {"regex":r"^●(\s*●)*"},
                 {"regex": r"^table\s+of\s+contents$", "has_href":True}
@@ -39,7 +41,8 @@ STANDARD_CONFIG = {
                     "merge_duplicate_header_rows_down"
                 ],
                 "footnotes": {
-                    "regex": r"^(\*|\(.{1,2}\)|\d+|†+)"
+                    "regex": r"^(\*|\(.{1,2}\)|\d+|†+)",
+                    "check_next_n_lines": 3
                 },
                 "preamble": {
                     "lines": 7
