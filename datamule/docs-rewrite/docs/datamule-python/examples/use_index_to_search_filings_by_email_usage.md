@@ -72,8 +72,8 @@ print("\nCSV file created successfully!")
 ```
 
 ## Plots
-![Email Domain Race](/docs/datamule-python/images/email_domain_race_lines.gif)
-![Email Domain Race Cumulative](/docs/datamule-python/images/email_domain_race_cumulative.gif)
+![Email Domain Race](../images/email_domain_race_lines.gif)
+![Email Domain Race Cumulative](../images/email_domain_race_cumulative.gif)
 
 
 ## Plotting code
