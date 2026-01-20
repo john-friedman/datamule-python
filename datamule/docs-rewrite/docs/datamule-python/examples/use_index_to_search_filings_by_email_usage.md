@@ -1,5 +1,9 @@
 # Using Index() to search filings by email usage
 
+![Email Domain Race](../images/email_domain_race_lines.gif)
+![Email Domain Race Cumulative](../images/email_domain_race_cumulative.gif)
+
+
 Construct data using `Index()`.
 
 ```
@@ -70,11 +74,6 @@ with open('sec_email_findings.csv', 'w', newline='', encoding='utf-8') as csvfil
 
 print("\nCSV file created successfully!")
 ```
-
-## Plots
-![Email Domain Race](../images/email_domain_race_lines.gif)
-![Email Domain Race Cumulative](../images/email_domain_race_cumulative.gif)
-
 
 ## Plotting code
 
