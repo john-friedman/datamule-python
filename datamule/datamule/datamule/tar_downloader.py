@@ -541,7 +541,8 @@ class TarDownloader:
                     keepalive_timeout=60
                 )
 
-                async with aiohttp.ClientSession(connector=connector, timeout=aiohttp.ClientTimeout(total=600)) as session:
+                # timeout
+                async with aiohttp.ClientSession(connector=connector, timeout=aiohttp.ClientTimeout(total=60)) as session:
                     tasks = [
                         self.download_and_process(
                             session, url, semaphore, extraction_pool,
