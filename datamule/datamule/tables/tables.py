@@ -95,13 +95,22 @@ def apply_mapping(flattened_data, mapping_dict, accession, must_exist_in_mapping
 
 
 class Table:
-    def __init__(self, data, name, accession, description=None, preamble=None, footnotes=None, postamble=None):
-        self.data = data
-        if data != []:
+    def __init__(self, data_raw, name, accession, description=None, preamble=None, footnotes=None, postamble=None):
+        self.data_raw = data_raw
+        
+        # Clean the data - strip dict wrappers and keep just table content
+        if data_raw != []:
             try:
-                self.columns = data[0].keys() # handle xml tables
+                # Handle xml tables - already list of dicts
+                self.columns = data_raw[0].keys()
+                self.data = data_raw
             except:
-                self.columns = data[0] # handle html tables
+                # Handle html tables - already list of lists
+                self.columns = data_raw[0]
+                self.data = data_raw
+        else:
+            self.columns = []
+            self.data = []
                 
         self.name = name
         self.accession = accession
@@ -122,8 +131,7 @@ class Table:
         
         # Preamble
         if self.preamble:
-            preamble_texts = [item.get('text') or item.get('textsmall', '') for item in self.preamble]
-            parts.append(f"\nPreamble: {' '.join(preamble_texts)}")
+            parts.append(f"\nPreamble: {self.preamble}")
         
         # The actual table
         formatted_table = _format_table(self.data)
@@ -135,15 +143,11 @@ class Table:
         
         # Footnotes
         if self.footnotes:
-            parts.append("\nFootnotes:")
-            for footnote in self.footnotes:
-                footnote_text = footnote.get('text') or footnote.get('textsmall', '')
-                parts.append(f" {footnote['footnote_id']}: {footnote_text}")
+            parts.append(f"\nFootnotes: {self.footnotes}")
         
         # Postamble
         if self.postamble:
-            postamble_texts = [item.get('text') or item.get('textsmall', '') for item in self.postamble]
-            parts.append(f"\nPostamble: {' '.join(postamble_texts)}")
+            parts.append(f"\nPostamble: {self.postamble}")
         
         return '\n'.join(parts)
 
@@ -176,7 +180,7 @@ class Tables():
     def add_table(self, data, name, description=None, preamble=None, footnotes=None, postamble=None):
         """Add a table with optional metadata components"""
         self.tables.append(Table(
-            data=data,
+            data_raw=data,
             name=name,
             accession=self.accession,
             description=description,
