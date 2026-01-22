@@ -110,7 +110,8 @@ class TextAnalysisBase:
                 # Original behavior - single text source
                 self._text_sources = [{'id': None, 'text': str(self.document.text)}]
             else:  # mode == 'data'
-                self._text_sources = [{'id':data_tuple[0],'text':data_tuple[2]} for data_tuple in self.document.data_tuples if data_tuple[1] in ['text','title','textsmall','table_preamble', 'table_footnote', 'table_postamble']]
+                self._text_sources = [{'id':data_tuple[0],'text':data_tuple[2]} for data_tuple in self.document.data_tuples if data_tuple[1] in ['text','title','textsmall','table_preamble', 'table_footnote', 'table_postamble'] and data_tuple[2] is not None]
+
         return self._text_sources
     
     def _format_results(self, results, fragment_id):
@@ -457,50 +458,48 @@ class Document:
             tables = Tables(document_type=self.type, accession=self.accession)
             data_tuples = self.data_tuples
             
-            # Group table components by id
-            i = 0
-            while i < len(data_tuples):
-                id, type, content, level = data_tuples[i]
+            # Group all tuples by ID first
+            tuples_by_id = {}
+            for id, type, content, level in data_tuples:
+                if id not in tuples_by_id:
+                    tuples_by_id[id] = []
+                tuples_by_id[id].append((type, content))
+            
+            # Now process each ID that has table_data
+            for id, tuples in tuples_by_id.items():
+                # Check if this ID contains a table
+                if not any(t[0] == 'table_data' for t in tuples):
+                    continue
                 
-                if type == "table_data":
-                    # Start collecting table components
-                    table_data = content
-                    preamble = None
-                    footnotes = []
-                    postamble = None
-                    
-                    # Look backwards for preamble (same id, comes before table_data)
-                    j = i - 1
-                    while j >= 0 and data_tuples[j][0] == id:
-                        _, comp_type, comp_content, _ = data_tuples[j]
-                        if comp_type == "table_preamble":
-                            preamble = comp_content
-                            break
-                        j -= 1
-                    
-                    # Look forwards for footnotes and postamble (same id, comes after table_data)
-                    j = i + 1
-                    while j < len(data_tuples) and data_tuples[j][0] == id:
-                        _, comp_type, comp_content, _ = data_tuples[j]
-                        if comp_type == "table_footnote":
-                            footnotes.append(comp_content)
-                        elif comp_type == "table_postamble":
-                            postamble = comp_content
-                        j += 1
-                    
-                    # Add the complete table with all components
-                    tables.add_table(
-                        data=table_data,
-                        name="extracted_table",
-                        preamble=preamble,
-                        footnotes=footnotes if footnotes else None,
-                        postamble=postamble
-                    )
+                # Extract all components
+                table_title = None
+                table_data = None
+                preamble = None
+                footnotes = []
+                postamble = None
                 
-                i += 1
-
+                for type, content in tuples:
+                    if type == 'table_title':
+                        table_title = content
+                    elif type == 'table_data':
+                        table_data = content
+                    elif type == 'table_preamble':
+                        preamble = content
+                    elif type == 'table_footnote':
+                        footnotes.append(content)
+                    elif type == 'table_postamble':
+                        postamble = content
+                
+                # Add the complete table
+                tables.add_table(
+                    data=table_data,
+                    name=table_title if table_title is not None else "extracted_table",
+                    preamble=preamble,
+                    footnotes=footnotes if footnotes else None,
+                    postamble=postamble
+                )
+            
             self._tables = tables
-
         else:
             self._tables = []
     @property
@@ -633,12 +632,13 @@ class Document:
                     return [flatten_dict(item[1],format) for item in result]
 
 
-    def get_tables(self, description_regex=None, description_fields=['preamble', 'postamble', 'footnotes'], name=None, contains_regex=None):
+    def get_tables(self, description_regex=None, description_fields=['preamble', 'postamble', 'footnotes'], name=None, contains_regex=None,title_regex=None):
         # make sure tables is initialized
         self.tables
         return self._tables.get_tables(
             description_regex=description_regex, 
             description_fields=description_fields,
             name=name, 
-            contains_regex=contains_regex
+            contains_regex=contains_regex,
+            title_regex=title_regex
         )

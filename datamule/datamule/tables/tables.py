@@ -185,14 +185,19 @@ class Tables():
             postamble=postamble
         ))
 
-    def get_tables(self, description_regex=None, description_fields=['preamble', 'postamble', 'footnotes'], name=None, contains_regex=None):
+    def get_tables(self, description_regex=None, description_fields=['preamble', 'postamble', 'footnotes'], name=None, contains_regex=None, title_regex=None):
         matching_tables = []
-
         
         for table in self.tables:
             # Check name match (exact match)
             if name is not None:
                 if table.name == name:
+                    matching_tables.append(table)
+                    continue
+            
+
+            if title_regex is not None:
+                if table.name and re.search(title_regex, table.name):
                     matching_tables.append(table)
                     continue
             
@@ -226,7 +231,7 @@ class Tables():
                     continue
             
             # Check contains_regex match (only if description_regex didn't already handle it)
-            if contains_regex is not None and description_regex is None and name is None:
+            if contains_regex is not None and description_regex is None and name is None and title_regex is None:
                 if self._check_contains_regex(table, contains_regex):
                     matching_tables.append(table)
         
