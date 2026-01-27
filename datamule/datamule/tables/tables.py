@@ -38,9 +38,11 @@ all_tables_dict = {
     'PROXY VOTING RECORD' : config_proxyvotingrecord,
 }
 
-# process_ex102_abs will need to be done later
-# process d
-# 144
+# may need to move to doc2dict
+def extract_text(dict_list):
+    if isinstance(dict_list, dict):
+        dict_list = [dict_list]
+    return '\n'.join(filter(None, [d.get('text') or d.get('textsmall') for d in dict_list]))
 
 def seperate_data(tables_dict, data):
     data_list = []
@@ -115,9 +117,23 @@ class Table:
         self.name = name
         self.accession = accession
         self.description = description
-        self.preamble = preamble
-        self.footnotes = footnotes if footnotes is not None else []
-        self.postamble = postamble
+        
+        # Store raw versions
+        self.preamble_raw = preamble
+        self.footnotes_raw = footnotes if footnotes is not None else []
+        self.postamble_raw = postamble
+        
+        # Process into clean versions
+        self.preamble = extract_text(preamble) if preamble is not None else None
+        self.postamble = extract_text(postamble) if postamble is not None else None
+        
+        # Process footnotes into list of (id, text) tuples
+        self.footnotes = []
+        if footnotes is not None:
+            for footnote in footnotes:
+                footnote_id = footnote.get('footnote_id', '')
+                footnote_text = extract_text(footnote)
+                self.footnotes.append((footnote_id, footnote_text))
 
     def __str__(self):
         parts = []
@@ -129,7 +145,7 @@ class Table:
         if self.description:
             parts.append(f"Description: {self.description}")
         
-        # Preamble
+        # Preamble - now just use the string directly
         if self.preamble:
             parts.append(f"\nPreamble: {self.preamble}")
         
@@ -141,11 +157,13 @@ class Table:
             table_str = str(formatted_table)
         parts.append(f"\n{table_str}")
         
-        # Footnotes
+        # Footnotes - now iterate over (id, text) tuples
         if self.footnotes:
-            parts.append(f"\nFootnotes: {self.footnotes}")
+            parts.append(f"\nFootnotes:")
+            for footnote_id, footnote_text in self.footnotes:
+                parts.append(f"{footnote_id}: {footnote_text}")
         
-        # Postamble
+        # Postamble - now just use the string directly
         if self.postamble:
             parts.append(f"\nPostamble: {self.postamble}")
         
@@ -219,8 +237,9 @@ class Tables():
                                 description_matched = True
                                 break
                         elif isinstance(field_value, list):
-                            # Join list items and search
-                            combined_text = ' '.join(str(item) for item in field_value)
+                            # For footnotes, it's now a list of tuples (id, text)
+                            # Join the text parts and search
+                            combined_text = ' '.join(text for _, text in field_value)
                             if re.search(description_regex, combined_text):
                                 description_matched = True
                                 break

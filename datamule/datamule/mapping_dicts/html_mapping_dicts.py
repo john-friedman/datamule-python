@@ -1,7 +1,3 @@
-# ============================================================================
-# STANDARD PROCESSING CONFIGURATION
-# ============================================================================
-
 from doc2dict import STANDARD_CONFIG
 
 
@@ -21,9 +17,6 @@ def get_mapping(levels_dict):
     }
 
 
-# ============================================================================
-# MAPPING DICTIONARIES
-# ============================================================================
 
 dict_10k_html = get_mapping({
     0: [
@@ -234,3 +227,85 @@ dict_13d = get_mapping({
     ]
 })
 dict_13g = dict_13d
+
+MAPPING_DICTS_BY_TYPE = {
+    "1-K": dict_1kpartii_html,
+    "1-K/A": dict_1kpartii_html,
+    "1-SA": dict_1sa_html,
+    "1-SA/A": dict_1sa_html,
+    "1-U": dict_1u_html,
+    "1-U/A": dict_1u_html,
+    "10-12B": dict_1012b_html,
+    "10-12B/A": dict_1012b_html,
+    "10-D": dict_10d_html,
+    "10-D/A": dict_10d_html,
+    "10-K": dict_10k_html,
+    "10-K/A": dict_10k_html,
+    "10-Q": dict_10q_html,
+    "10-Q/A": dict_10q_html,
+    "20-F": dict_20f_html,
+    "20-F/A": dict_20f_html,
+    "8-A12B": dict_8a12b_html,
+    "8-A12B/A": dict_8a12b_html,
+    "8-A12G": dict_8a12g_html,
+    "8-A12G/A": dict_8a12g_html,
+    "8-K": dict_8k_html,
+    "8-K/A": dict_8k_html,
+    "8-K12B": dict_8k12b_html,
+    "8-K12B/A": dict_8k12b_html,
+    "8-K12G3": dict_8k12g3_html,
+    "8-K12G3/A": dict_8k12g3_html,
+    "8-K15D5": dict_8k15d5_html,
+    "8-K15D5/A": dict_8k15d5_html,
+    "ABS-15G": dict_abs15g_html,
+    "ABS-15G/A": dict_abs15g_html,
+    "ABS-EE": dict_absee_html,
+    "ABS-EE/A": dict_absee_html,
+    "APP NTC": dict_appntc_html,
+    "APP NTC/A": dict_appntc_html,
+    "CB": dict_cb_html,
+    "CB/A": dict_cb_html,
+    "DSTRBRPT": dict_dstrbrpt_html,
+    "DSTRBRPT/A": dict_dstrbrpt_html,
+    "N-18F1": dict_n18f1_html,
+    "N-18F1/A": dict_n18f1_html,
+    "N-CSRS": dict_ncsrs_html,
+    "N-CSRS/A": dict_ncsrs_html,
+    "NT-10K": dict_nt10k_html,
+    "NT-10K/A": dict_nt10k_html,
+    "NT-10Q": dict_nt10q_html,
+    "NT-10Q/A": dict_nt10q_html,
+    "NT 20-F": dict_nt20f_html,
+    "NT 20-F/A": dict_nt20f_html,
+    "NT-NCEN": dict_ntncen_html,
+    "NT-NCEN/A": dict_ntncen_html,
+    "NT-NCSR": dict_ntncsr_html,
+    "NT-NCSR/A": dict_ntncsr_html,
+    "NTFNCEN": dict_ntfcen_html,
+    "NTFNCEN/A": dict_ntfcen_html,
+    "NTFNCSR": dict_ntfncsr_html,
+    "NTFNCSR/A": dict_ntfncsr_html,
+    "EX-99.CERT": dict_ex99cert_html,
+    "EX-99.CERT/A": dict_ex99cert_html,
+    "SC 13E3": dict_sc13e3_html,
+    "SC 13E3/A": dict_sc13e3_html,
+    "SC 14D9": dict_sc14d9_html,
+    "SC 14D9/A": dict_sc14d9_html,
+    "SP 15D2": dict_sp15d2_html,
+    "SP 15D2/A": dict_sp15d2_html,
+    "SD": dict_sd_html,
+    "SD/A": dict_sd_html,
+    "S-1": dict_s1_html,
+    "S-1/A": dict_s1_html,
+    "T-3": dict_t3_html,
+    "T-3/A": dict_t3_html,
+    "NT 10-K": dict_nt10k_html,
+    "NT 10-K/A": dict_nt10k_html,
+    "NT 10-Q": dict_nt10k_html,
+    "NT 10-Q/A": dict_nt10k_html,
+    "SC 13G": dict_13g,
+    "SC 13G/A": dict_13g,
+    "SC 13D": dict_13d,
+    "SC 13D/A": dict_13d,
+}
+

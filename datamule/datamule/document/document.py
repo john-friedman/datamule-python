@@ -4,7 +4,7 @@ import re
 from doc2dict import xml2dict, txt2dict
 from doc2dict import html2dict, visualize_dict, get_title, unnest_dict, pdf2dict, flatten_dict
 from ..mapping_dicts.xml_mapping_dicts import dict_345
-from ..mapping_dicts.html_mapping_dicts import *
+from ..mapping_dicts.html_mapping_dicts import MAPPING_DICTS_BY_TYPE, STANDARD_CONFIG
 from pathlib import Path
 import webbrowser
 from secsgml.utils import bytes_to_str
@@ -258,7 +258,10 @@ class Document:
             self.content = content
 
         if path is not None:
+            # need to think through document parsing w/ and w/o path... e.g. from url, metadata should fill it
             self.path = path
+            self.filename = self.path.split('/')[-1]
+
 
         self.extension = extension
 
@@ -299,84 +302,7 @@ class Document:
         mapping_dict = None
         if self._data_bool:
             
-            if self.type in ['1-K', '1-K/A']:
-                mapping_dict = dict_1kpartii_html
-            elif self.type in ['1-SA', '1-SA/A']:
-                mapping_dict = dict_1sa_html
-            elif self.type in ['1-U', '1-U/A']:
-                mapping_dict = dict_1u_html
-            elif self.type in ['10-12B', '10-12B/A']:
-                mapping_dict = dict_1012b_html
-            elif self.type in ['10-D', '10-D/A']:
-                mapping_dict = dict_10d_html
-            elif self.type in ['10-K', '10-K/A']:
-                mapping_dict = dict_10k_html
-            elif self.type in ['10-Q', '10-Q/A']:
-                mapping_dict = dict_10q_html
-            elif self.type in ['20-F', '20-F/A']:
-                mapping_dict = dict_20f_html
-            elif self.type in ['8-A12B', '8-A12B/A']:
-                mapping_dict = dict_8a12b_html
-            elif self.type in ['8-A12G', '8-A12G/A']:
-                mapping_dict = dict_8a12g_html
-            elif self.type in ['8-K', '8-K/A']:
-                mapping_dict = dict_8k_html
-            elif self.type in ['8-K12B', '8-K12B/A']:
-                mapping_dict = dict_8k12b_html
-            elif self.type in ['8-K12G3', '8-K12G3/A']:
-                mapping_dict = dict_8k12g3_html
-            elif self.type in ['8-K15D5', '8-K15D5/A']:
-                mapping_dict = dict_8k15d5_html
-            elif self.type in ['ABS-15G', 'ABS-15G/A']:
-                mapping_dict = dict_abs15g_html
-            elif self.type in ['ABS-EE', 'ABS-EE/A']:
-                mapping_dict = dict_absee_html
-            elif self.type in ['APP NTC', 'APP NTC/A']:
-                mapping_dict = dict_appntc_html
-            elif self.type in ['CB', 'CB/A']:
-                mapping_dict = dict_cb_html
-            elif self.type in ['DSTRBRPT', 'DSTRBRPT/A']:
-                mapping_dict = dict_dstrbrpt_html
-            elif self.type in ['N-18F1', 'N-18F1/A']:
-                mapping_dict = dict_n18f1_html
-            elif self.type in ['N-CSRS', 'N-CSRS/A']:
-                mapping_dict = dict_ncsrs_html
-            elif self.type in ['NT-10K', 'NT-10K/A']:
-                mapping_dict = dict_nt10k_html
-            elif self.type in ['NT-10Q', 'NT-10Q/A']:
-                mapping_dict = dict_nt10q_html
-            elif self.type in ['NT 20-F', 'NT 20-F/A']:
-                mapping_dict = dict_nt20f_html
-            elif self.type in ['NT-NCEN', 'NT-NCEN/A']:
-                mapping_dict = dict_ntncen_html
-            elif self.type in ['NT-NCSR', 'NT-NCSR/A']:
-                mapping_dict = dict_ntncsr_html
-            elif self.type in ['NTFNCEN', 'NTFNCEN/A']:
-                mapping_dict = dict_ntfcen_html
-            elif self.type in ['NTFNCSR', 'NTFNCSR/A']:
-                mapping_dict = dict_ntfncsr_html
-            elif self.type in ['EX-99.CERT', 'EX-99.CERT/A']:
-                mapping_dict = dict_ex99cert_html
-            elif self.type in ['SC 13E3', 'SC 13E3/A']:
-                mapping_dict = dict_sc13e3_html
-            elif self.type in ['SC 14D9', 'SC 14D9/A']:
-                mapping_dict = dict_sc14d9_html
-            elif self.type in ['SP 15D2', 'SP 15D2/A']:
-                mapping_dict = dict_sp15d2_html
-            elif self.type in ['SD', 'SD/A']:
-                mapping_dict = dict_sd_html
-            elif self.type in ['S-1', 'S-1/A']:
-                mapping_dict = dict_s1_html
-            elif self.type in ['T-3', 'T-3/A']:
-                mapping_dict = dict_t3_html
-            elif self.type in ['NT 10-K', 'NT 10-K/A', 'NT 10-Q', 'NT 10-Q/A', 'NT 20-F', 'NT 20-F/A']:
-                mapping_dict = dict_nt10k_html
-            elif self.type in ['SC 13G', 'SC 13G/A']:
-                mapping_dict = dict_13g
-            elif self.type in ['SC 13D', 'SC 13D/A']:
-                mapping_dict = dict_13d
-            else:
-                mapping_dict = STANDARD_CONFIG
+            mapping_dict = MAPPING_DICTS_BY_TYPE.get(self.type, STANDARD_CONFIG)
             
             if self.extension in ['.htm','.html']:
                 dct = html2dict(content=self.content, mapping_dict=mapping_dict)
