@@ -1,25 +1,30 @@
-def has_extractable_text(pdf_bytes, search_range=50000):
+import pypdfium2 as pdfium
+
+def has_extractable_text(pdf_bytes):
     """
-    Check if PDF contains extractable text within first N bytes
-    Returns True if found in range, False otherwise
-    
-    Args:
-        pdf_bytes: PDF content as bytes
-        search_range: Number of bytes to search from start (default 50KB)
+    Lightweight check if PDF has extractable text.
+    Only checks first page.
     """
-    # Text indicators to search for
-    indicators = [
-        b'BT',  # Begin text - most common
-        b'Tj',  # Show text
-        b'TJ',  # Show text with positioning
-        b'Tf',  # Set font
-    ]
-    
-    # Search only within the specified range
-    search_data = pdf_bytes[:search_range]
-    
-    for indicator in indicators:
-        if indicator in search_data:
-            return True
-    
-    return False
+    try:
+        # Load PDF from bytes
+        pdf = pdfium.PdfDocument(pdf_bytes)
+        
+        # Only check first page
+        if len(pdf) == 0:
+            return False
+        
+        page = pdf[0]
+        textpage = page.get_textpage()
+        text = textpage.get_text_range()
+        
+        # Close resources
+        textpage.close()
+        page.close()
+        pdf.close()
+        
+        # Check if we got any text (after stripping whitespace)
+        return len(text.strip()) > 0
+        
+    except Exception as e:
+        # If can't open/parse, assume no text
+        return False

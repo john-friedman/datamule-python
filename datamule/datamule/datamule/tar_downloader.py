@@ -393,6 +393,7 @@ class TarDownloader:
     async def download_and_process(self, session, url, semaphore, extraction_pool, tar_manager, output_dir, pbar, keep_document_types, keep_filtered_metadata):
         async with semaphore:
             filename = url.split('/')[-1]
+
             accession_num = filename.replace('.tar', '').split('/')[-1]
 
             api_key = self.api_key
@@ -438,6 +439,9 @@ class TarDownloader:
                         extraction_pool,
                         partial(self._extract_documents_from_probe, probe_bytes, metadata_with_positions, keep_document_types)
                     )
+
+                    for doc in documents:
+                        doc['content'] = should_decode_file_from_content(doc['content'])
                     
                 elif keep_document_types == ['metadata']:
                     # Only metadata requested
@@ -462,7 +466,7 @@ class TarDownloader:
                         for doc in probe_documents:
                             doc['content'] = should_decode_file_from_content(doc['content'])
                         documents.extend(probe_documents)
-                    
+
                     # Download each document beyond probe individually
                     if docs_beyond_probe:
                         for doc in docs_beyond_probe:
@@ -492,8 +496,9 @@ class TarDownloader:
                                     extraction_pool,
                                     partial(self._decompress_zstd, doc_content)
                                 )
-
+                            
                                 decompressed = should_decode_file_from_content(decompressed)
+
                                 
                                 documents.append({
                                     'name': doc_name,
@@ -584,7 +589,6 @@ class TarDownloader:
         for accession in accession_numbers:
             url = f"{self.BASE_URL}{format_accession(accession,'no-dash').zfill(18)}.tar"
             urls.append(url)
-        
         # Deduplicate URLs
         urls = list(set(urls))
         
