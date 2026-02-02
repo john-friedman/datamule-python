@@ -17,7 +17,7 @@ Document in either string or bytes format.
 Available for html, text and some pdf files. Document content parsed into dictionary form. 
 
 ### `document.data_tuples`
-Available for html, text and some pdf files. `document.data` flattened into form: (id,type,content,level).
+Available for html, text and some pdf files. `document.data_tuples` flattened into form: (id, type, content, level, class).
 
 ### `document.text`
 Available for html, text and some pdf files. Returns the document's text.

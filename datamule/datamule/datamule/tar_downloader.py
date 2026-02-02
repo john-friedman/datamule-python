@@ -14,6 +14,7 @@ from functools import partial
 from threading import Lock
 from os import cpu_count
 from secsgml.utils import calculate_documents_locations_in_tar
+from secsgml.parse_sgml import decode_uuencoded_content
 from ..utils.format_accession import format_accession
 from ..providers.providers import SEC_FILINGS_TAR_BUCKET_ENDPOINT
 from .datamule_lookup import datamule_lookup
@@ -457,6 +458,9 @@ class TarDownloader:
                             extraction_pool,
                             partial(self._extract_documents_from_probe_by_list, probe_bytes, docs_in_probe)
                         )
+
+                        for doc in probe_documents:
+                            doc['content'] = should_decode_file_from_content(doc['content'])
                         documents.extend(probe_documents)
                     
                     # Download each document beyond probe individually
@@ -488,6 +492,8 @@ class TarDownloader:
                                     extraction_pool,
                                     partial(self._decompress_zstd, doc_content)
                                 )
+
+                                decompressed = should_decode_file_from_content(decompressed)
                                 
                                 documents.append({
                                     'name': doc_name,
@@ -649,3 +655,25 @@ def download_tar(cik=None, ticker=None, submission_type=None, filing_date=None,
         max_batch_size=max_batch_size,
         keep_filtered_metadata=keep_filtered_metadata
     )
+
+
+# band aid fix for tar archive initial sgml processing screw up
+# PDF was not always detected due to tags on new line.
+def should_decode_file_from_content(content):
+    """
+    Bandaid fix: Check if content is UU-encoded and decode if needed.
+    This catches any documents that slipped through without decoding.
+    """
+    # Quick check: does content start with 'begin ' in first 200 bytes?
+    if b'begin ' in content[:200]:
+        try:
+            # Attempt to decode
+            decoded = decode_uuencoded_content(content)
+            # Verify we got valid binary (not empty, different from input)
+            if decoded and decoded != content:
+                logger.debug(f"Post-decode applied: {len(content)} -> {len(decoded)} bytes")
+                return decoded
+        except Exception as e:
+            logger.debug(f"Post-decode attempted but failed: {str(e)}")
+    
+    return content

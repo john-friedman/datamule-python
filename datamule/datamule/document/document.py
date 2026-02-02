@@ -1,8 +1,7 @@
 import json
 import csv
 import re
-from doc2dict import xml2dict, txt2dict
-from doc2dict import html2dict, visualize_dict, get_title, unnest_dict, pdf2dict, flatten_dict
+from doc2dict import xml2dict, txt2dict, html2dict, visualize_dict, get_title, unnest_dict, pdf2dict, flatten_dict, convert_dict_to_columnar
 from ..mapping_dicts.xml_mapping_dicts import dict_345
 from ..mapping_dicts.html_mapping_dicts import MAPPING_DICTS_BY_TYPE, STANDARD_CONFIG
 from pathlib import Path
@@ -271,6 +270,8 @@ class Document:
         self._tables = None
         self._text = None
         self._markdown = None
+        self._data_tuples_columnar = None 
+
 
         # booleans
         self._data_bool = self.extension in ('.htm', '.html','.txt')
@@ -342,6 +343,7 @@ class Document:
             
         return self._data
     
+    
     @property
     def data_tuples(self):
         if self._data_bool:
@@ -349,6 +351,14 @@ class Document:
                 self._data_tuples = unnest_dict(self.data)
         return self._data_tuples
     
+    @property
+    def data_tuples_columnar(self):
+        if self._data_bool:
+            if self._data_tuples_columnar is None:
+                self._data_tuples_columnar = convert_dict_to_columnar(self.data)
+        return self._data_tuples_columnar
+    
+
     @property
     def text(self):
         if self._text_bool:
