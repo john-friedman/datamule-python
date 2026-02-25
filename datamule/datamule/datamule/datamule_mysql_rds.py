@@ -42,7 +42,6 @@ class DatamuleMySQL:
         
         async with session.get(url, params=query_params, headers=headers) as response:
             data = await response.json()
-            print(response.url)
             if not data.get('success'):
                 raise ValueError(f"API request failed: {data.get('error')}")
             

@@ -6,7 +6,7 @@ import tarfile
 import shutil
 from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from secsgml.utils import bytes_to_str, calculate_documents_locations_in_tar
+from secsgml2.utils import calculate_documents_locations_in_tar
 
 # probably can delete much of this TODO
 
@@ -70,9 +70,7 @@ class CompressionManager:
                         compression_list.append(compression_type)
                 
                 # Calculate submission size
-                metadata_str = bytes_to_str(submission.metadata.content, lower=False)
-                metadata_json = json.dumps(metadata_str).encode('utf-8')
-                submission_size = len(metadata_json) + sum(len(doc) for doc in documents)
+                submission_size = len(submission.metadata.content) + sum(len(doc) for doc in documents)
                 
                 # Check if we need a new batch tar
                 if current_size > 0 and current_size + submission_size > max_batch_size:
@@ -275,13 +273,10 @@ class CompressionManager:
         # NOW calculate document positions with the correct filenames
         metadata = calculate_documents_locations_in_tar(metadata)
         
-        # Write metadata
-        metadata_str = bytes_to_str(metadata, lower=False)
-        metadata_json = json.dumps(metadata_str).encode('utf-8')
         
         tarinfo = tarfile.TarInfo(name=f'{accession_prefix}/metadata.json')
-        tarinfo.size = len(metadata_json)
-        tar_handle.addfile(tarinfo, io.BytesIO(metadata_json))
+        tarinfo.size = len(metadata)
+        tar_handle.addfile(tarinfo, io.BytesIO(metadata))
         
         # Write documents
         for i, content in enumerate(documents):

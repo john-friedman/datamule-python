@@ -49,7 +49,7 @@ setup(
         'zstandard',
         'doc2dict',
         'secxbrl',
-        'secsgml',
+        'secsgml2',
         'websocket-client',
         'company_fundamentals',
         'flashtext',

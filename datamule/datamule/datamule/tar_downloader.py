@@ -13,8 +13,8 @@ from concurrent.futures import ThreadPoolExecutor
 from functools import partial
 from threading import Lock
 from os import cpu_count
-from secsgml.utils import calculate_documents_locations_in_tar
-from secsgml.parse_sgml import decode_uuencoded_content
+from secsgml2.utils import calculate_documents_locations_in_tar
+from secsgml2 import decode_uuencoded_content
 from ..utils.format_accession import format_accession
 from ..providers.providers import SEC_FILINGS_TAR_BUCKET_ENDPOINT
 from .datamule_lookup import datamule_lookup
@@ -69,7 +69,7 @@ class TarDownloader:
             except Exception as e:
                 logger.error(f"Failed to log error to {error_file}: {str(e)}")
 
-    def _filter_metadata_documents(self, metadata_dict, downloaded_document_names, keep_filtered_metadata):
+    def _filter_metadata_documents(self, metadata_dict, downloaded_document_names):
         """
         Filter metadata's documents list to match downloaded documents.
         Mimics the behavior of parse_sgml_content_into_memory's filtering.
@@ -77,13 +77,11 @@ class TarDownloader:
         Args:
             metadata_dict: Original metadata dictionary with 'documents' list
             downloaded_document_names: Set of document filenames that were actually downloaded
-            keep_filtered_metadata: If True, keep all metadata. If False, only keep metadata for downloaded docs.
         
         Returns:
             Filtered metadata dictionary
         """
-        if keep_filtered_metadata or 'documents' not in metadata_dict:
-            # Keep all metadata entries, just downloaded subset of actual documents
+        if 'documents' not in metadata_dict:
             return metadata_dict
         
         # Filter documents list to only include downloaded documents
@@ -390,7 +388,7 @@ class TarDownloader:
                 except Exception as e:
                     logger.error(f"Error closing tar {i}: {str(e)}")
 
-    async def download_and_process(self, session, url, semaphore, extraction_pool, tar_manager, output_dir, pbar, keep_document_types, keep_filtered_metadata):
+    async def download_and_process(self, session, url, semaphore, extraction_pool, tar_manager, output_dir, pbar, keep_document_types):
         async with semaphore:
             filename = url.split('/')[-1]
 
@@ -441,7 +439,7 @@ class TarDownloader:
                     )
 
                     for doc in documents:
-                        doc['content'] = should_decode_file_from_content(doc['content'])
+                        doc['content'] = decode_uuencoded_content(doc['content'])
                     
                 elif keep_document_types == ['metadata']:
                     # Only metadata requested
@@ -464,7 +462,7 @@ class TarDownloader:
                         )
 
                         for doc in probe_documents:
-                            doc['content'] = should_decode_file_from_content(doc['content'])
+                            doc['content'] = decode_uuencoded_content(doc['content'])
                         documents.extend(probe_documents)
 
                     # Download each document beyond probe individually
@@ -497,7 +495,7 @@ class TarDownloader:
                                     partial(self._decompress_zstd, doc_content)
                                 )
                             
-                                decompressed = should_decode_file_from_content(decompressed)
+                                decompressed = decode_uuencoded_content(decompressed)
 
                                 
                                 documents.append({
@@ -512,8 +510,7 @@ class TarDownloader:
                 downloaded_names = {doc['name'] for doc in documents}
                 filtered_metadata_dict = self._filter_metadata_documents(
                     metadata_with_positions, 
-                    downloaded_names, 
-                    keep_filtered_metadata
+                    downloaded_names
                 )
                 filtered_metadata_bytes = json.dumps(filtered_metadata_dict).encode('utf-8')
                 
@@ -532,7 +529,7 @@ class TarDownloader:
                 self._log_error(output_dir, filename, str(e))
                 pbar.update(1)
 
-    async def process_batch(self, urls, output_dir, max_batch_size=1024*1024*1024, keep_document_types=[], keep_filtered_metadata=False):
+    async def process_batch(self, urls, output_dir, max_batch_size=1024*1024*1024, keep_document_types=[]):
         os.makedirs(output_dir, exist_ok=True)
         
         num_tar_files = min(self.MAX_TAR_WORKERS, len(urls))
@@ -557,7 +554,7 @@ class TarDownloader:
                     tasks = [
                         self.download_and_process(
                             session, url, semaphore, extraction_pool,
-                            tar_manager, output_dir, pbar, keep_document_types, keep_filtered_metadata
+                            tar_manager, output_dir, pbar, keep_document_types
                         ) 
                         for url in urls
                     ]
@@ -569,7 +566,7 @@ class TarDownloader:
             tar_manager.close_all()
 
     def download(self, accession_numbers, output_dir="downloads", 
-                 keep_document_types=[], max_batch_size=1024*1024*1024, keep_filtered_metadata=False):
+                 keep_document_types=[], max_batch_size=1024*1024*1024):
         """
         Download SEC filings in tar format for the given accession numbers.
         
@@ -578,7 +575,6 @@ class TarDownloader:
             output_dir: Directory to save downloaded files
             keep_document_types: List of document types to keep (empty = keep all)
             max_batch_size: Maximum size of each batch tar file in bytes
-            keep_filtered_metadata: If True, keep metadata for all documents. If False, only keep metadata for downloaded docs.
         """
         if self.api_key is None:
             raise ValueError("No API key found. Please set DATAMULE_API_KEY environment variable or provide api_key in constructor")
@@ -601,8 +597,7 @@ class TarDownloader:
         asyncio.run(self.process_batch(
             urls, output_dir, 
             max_batch_size=max_batch_size, 
-            keep_document_types=keep_document_types,
-            keep_filtered_metadata=keep_filtered_metadata
+            keep_document_types=keep_document_types
         ))
         
         elapsed_time = time.time() - start_time
@@ -616,7 +611,7 @@ def download_tar(cik=None, ticker=None, submission_type=None, filing_date=None,
                  api_key=None, output_dir="downloads", 
                  filtered_accession_numbers=None, skip_accession_numbers=None,
                  keep_document_types=[], max_batch_size=1024*1024*1024,
-                 keep_filtered_metadata=False, accession_numbers=None, quiet=False, **kwargs):
+                 accession_numbers=None, quiet=False, **kwargs):
     """
     Download SEC filings in tar format from DataMule.
     
@@ -656,28 +651,5 @@ def download_tar(cik=None, ticker=None, submission_type=None, filing_date=None,
         accession_numbers=accession_numbers,
         output_dir=output_dir,
         keep_document_types=keep_document_types,
-        max_batch_size=max_batch_size,
-        keep_filtered_metadata=keep_filtered_metadata
+        max_batch_size=max_batch_size
     )
-
-
-# band aid fix for tar archive initial sgml processing screw up
-# PDF was not always detected due to tags on new line.
-def should_decode_file_from_content(content):
-    """
-    Bandaid fix: Check if content is UU-encoded and decode if needed.
-    This catches any documents that slipped through without decoding.
-    """
-    # Quick check: does content start with 'begin ' in first 200 bytes?
-    if b'begin ' in content[:200]:
-        try:
-            # Attempt to decode
-            decoded = decode_uuencoded_content(content)
-            # Verify we got valid binary (not empty, different from input)
-            if decoded and decoded != content:
-                logger.debug(f"Post-decode applied: {len(content)} -> {len(decoded)} bytes")
-                return decoded
-        except Exception as e:
-            logger.debug(f"Post-decode attempted but failed: {str(e)}")
-    
-    return content

@@ -6,7 +6,6 @@ from ..mapping_dicts.xml_mapping_dicts import dict_345
 from ..mapping_dicts.html_mapping_dicts import MAPPING_DICTS_BY_TYPE, STANDARD_CONFIG
 from pathlib import Path
 import webbrowser
-from secsgml.utils import bytes_to_str
 import tempfile
 from ..tables.tables import Tables
 
@@ -250,16 +249,13 @@ class Document:
         self.accession = accession
         self.filing_date = filing_date
 
-        if self.type == 'submission_metadata':
-            # this converts to lower
-            self.content = bytes_to_str(content)
-        else:
-            self.content = content
+        self.content = content
 
         if path is not None:
             # need to think through document parsing w/ and w/o path... e.g. from url, metadata should fill it
-            self.path = path
-            self.filename = self.path.split('/')[-1]
+            self.path = Path(path)
+            self.filename = self.path.stem
+
 
 
         self.extension = extension

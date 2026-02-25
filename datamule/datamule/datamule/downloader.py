@@ -15,13 +15,10 @@ from functools import partial
 from queue import Queue
 from threading import Thread, Lock
 from os import cpu_count
-from secsgml import parse_sgml_content_into_memory
-from secsgml.utils import bytes_to_str
+from secsgml2 import parse_sgml_content_into_memory
 from ..utils.format_accession import format_accession
 from ..providers.providers import SEC_FILINGS_SGML_BUCKET_ENDPOINT
 from .datamule_lookup import datamule_lookup
-
-# TODO could be cleaned up
 
 # Set up logging
 logging.basicConfig(
@@ -102,12 +99,10 @@ class Downloader:
         def get_tar_index(self, filename):
             return hash(filename) % self.num_tar_files
         
-        def write_submission(self, filename, metadata, documents, standardize_metadata):
+        def write_submission(self, filename, metadata, documents):
             tar_index = self.get_tar_index(filename)
             accession_num = filename.split('.')[0]
-            
-            metadata_str = bytes_to_str(metadata, lower=False)
-            metadata_json = json.dumps(metadata_str).encode('utf-8')
+            metadata_json = json.dumps(metadata).encode('utf-8')
             submission_size = len(metadata_json) + sum(len(doc) for doc in documents)
             
             with self.tar_locks[tar_index]:
@@ -129,7 +124,7 @@ class Downloader:
                     tar.addfile(tarinfo, io.BytesIO(metadata_json))
                     
                     for file_num, content in enumerate(documents):
-                        doc_name = self._get_document_name(metadata, file_num, standardize_metadata)
+                        doc_name = self._get_document_name(metadata, file_num)
                         tarinfo = tarfile.TarInfo(name=f'{accession_num}/{doc_name}')
                         tarinfo.size = len(content)
                         tar.addfile(tarinfo, io.BytesIO(content))
@@ -142,23 +137,14 @@ class Downloader:
                     logger.error(f"Error writing {filename} to tar {tar_index}: {str(e)}")
                     return False
         
-        def _get_document_name(self, metadata, file_num, standardize_metadata):
-            if standardize_metadata:
-                documents_key = b'documents'
-                filename_key = b'filename'
-                sequence_key = b'sequence'
-            else:
-                documents_key = b'DOCUMENTS'
-                filename_key = b'FILENAME'
-                sequence_key = b'SEQUENCE'
-            
-            doc_metadata = metadata[documents_key][file_num]
-            filename = doc_metadata.get(filename_key)
+        def _get_document_name(self, metadata, file_num):
+            doc_metadata = metadata['documents'][file_num]
+            filename = doc_metadata.get('filename')
             if filename:
-                return filename.decode('utf-8')
+                return filename
             else:
-                sequence = doc_metadata.get(sequence_key, b'document')
-                return sequence.decode('utf-8') + '.txt'
+                sequence = doc_metadata.get('sequence', 'document')
+                return sequence + '.txt'
         
         def close_all(self):
             for i, tar in self.tar_files.items():
@@ -167,7 +153,7 @@ class Downloader:
                 except Exception as e:
                     logger.error(f"Error closing tar {i}: {str(e)}")
 
-    def decompress_and_parse_and_write(self, compressed_chunks, filename, keep_document_types, keep_filtered_metadata, standardize_metadata, tar_manager, output_dir):
+    def decompress_and_parse_and_write(self, compressed_chunks, filename, keep_document_types, tar_manager, output_dir):
         dctx = zstd.ZstdDecompressor()
         try:
             input_buffer = io.BytesIO(b''.join(compressed_chunks))
@@ -180,12 +166,10 @@ class Downloader:
             
             metadata, documents = parse_sgml_content_into_memory(
                 bytes_content=content,
-                filter_document_types=keep_document_types,
-                keep_filtered_metadata=keep_filtered_metadata,
-                standardize_metadata=standardize_metadata
+                filter_document_types=keep_document_types
             )
             
-            success = tar_manager.write_submission(filename, metadata, documents, standardize_metadata)
+            success = tar_manager.write_submission(filename, metadata, documents)
             return success
                 
         except Exception as e:
@@ -198,25 +182,23 @@ class Downloader:
             except:
                 pass
 
-    def parse_and_write_regular_file(self, chunks, filename, keep_document_types, keep_filtered_metadata, standardize_metadata, tar_manager, output_dir):
+    def parse_and_write_regular_file(self, chunks, filename, keep_document_types, tar_manager, output_dir):
         try:
             content = b''.join(chunks)
             
             metadata, documents = parse_sgml_content_into_memory(
                 bytes_content=content,
-                filter_document_types=keep_document_types,
-                keep_filtered_metadata=keep_filtered_metadata,
-                standardize_metadata=standardize_metadata
+                filter_document_types=keep_document_types
             )
             
-            success = tar_manager.write_submission(filename, metadata, documents, standardize_metadata)
+            success = tar_manager.write_submission(filename, metadata, documents)
             return success
                 
         except Exception as e:
             self._log_error(output_dir, filename, f"Parsing error: {str(e)}")
             return False
 
-    async def download_and_process(self, session, url, semaphore, decompression_pool, keep_document_types, keep_filtered_metadata, standardize_metadata, tar_manager, output_dir, pbar):
+    async def download_and_process(self, session, url, semaphore, decompression_pool, keep_document_types, tar_manager, output_dir, pbar):
         async with semaphore:
             chunks = []
             filename = url.split('/')[-1]
@@ -244,13 +226,13 @@ class Downloader:
                             logger.debug(f"Processing {filename} as compressed (zstd)")
                             success = await loop.run_in_executor(
                                 decompression_pool,
-                                partial(self.decompress_and_parse_and_write, chunks, filename, keep_document_types, keep_filtered_metadata, standardize_metadata, tar_manager, output_dir)
+                                partial(self.decompress_and_parse_and_write, chunks, filename, keep_document_types, tar_manager, output_dir)
                             )
                         else:
                             logger.debug(f"Processing {filename} as uncompressed")
                             success = await loop.run_in_executor(
                                 decompression_pool,
-                                partial(self.parse_and_write_regular_file, chunks, filename, keep_document_types, keep_filtered_metadata, standardize_metadata, tar_manager, output_dir)
+                                partial(self.parse_and_write_regular_file, chunks, filename, keep_document_types, tar_manager, output_dir)
                             )
 
                         if not success:
@@ -268,7 +250,7 @@ class Downloader:
                 self._log_error(output_dir, filename, str(e))
                 pbar.update(1)
 
-    async def process_batch(self, urls, output_dir, keep_document_types=[], keep_filtered_metadata=False, standardize_metadata=True, max_batch_size=1024*1024*1024):
+    async def process_batch(self, urls, output_dir, keep_document_types=[], max_batch_size=1024*1024*1024):
         os.makedirs(output_dir, exist_ok=True)
         
         num_tar_files = min(self.MAX_TAR_WORKERS, len(urls))
@@ -292,7 +274,7 @@ class Downloader:
                     tasks = [
                         self.download_and_process(
                             session, url, semaphore, decompression_pool, 
-                            keep_document_types, keep_filtered_metadata, standardize_metadata, 
+                            keep_document_types, 
                             tar_manager, output_dir, pbar
                         ) 
                         for url in urls
@@ -305,19 +287,7 @@ class Downloader:
             tar_manager.close_all()
 
     def download(self, accession_numbers, output_dir="downloads", keep_document_types=[], 
-                 keep_filtered_metadata=False, standardize_metadata=True, 
                  max_batch_size=1024*1024*1024):
-        """
-        Download SEC filings for the given accession numbers.
-        
-        Args:
-            accession_numbers: List of accession numbers to download
-            output_dir: Directory to save downloaded files
-            keep_document_types: List of document types to keep (empty = keep all)
-            keep_filtered_metadata: Whether to keep metadata for filtered documents
-            standardize_metadata: Whether to standardize metadata keys to lowercase
-            max_batch_size: Maximum size of each batch tar file in bytes
-        """
         if self.api_key is None:
             raise ValueError("No API key found. Please set DATAMULE_API_KEY environment variable or provide api_key in constructor")
 
@@ -340,8 +310,6 @@ class Downloader:
         asyncio.run(self.process_batch(
             urls, output_dir, 
             keep_document_types=keep_document_types, 
-            keep_filtered_metadata=keep_filtered_metadata, 
-            standardize_metadata=standardize_metadata, 
             max_batch_size=max_batch_size
         ))
         
@@ -358,8 +326,7 @@ def download(cik=None, ticker=None, submission_type=None, filing_date=None,
              document_type=None, filename=None, sequence=None, 
              api_key=None, output_dir="downloads", 
              filtered_accession_numbers=None, skip_accession_numbers=None,
-             keep_document_types=[], keep_filtered_metadata=False, 
-             standardize_metadata=True, max_batch_size=1024*1024*1024,
+             keep_document_types=[], max_batch_size=1024*1024*1024,
              accession_numbers=None, quiet=False, **kwargs):
     """
     Download SEC filings from DataMule.
@@ -401,7 +368,5 @@ def download(cik=None, ticker=None, submission_type=None, filing_date=None,
         accession_numbers=accession_numbers,
         output_dir=output_dir,
         keep_document_types=keep_document_types,
-        keep_filtered_metadata=keep_filtered_metadata,
-        standardize_metadata=standardize_metadata,
         max_batch_size=max_batch_size
     )

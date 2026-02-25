@@ -1,5 +1,5 @@
 import zstandard as zstd
-from secsgml.utils import calculate_documents_locations_in_tar
+from secsgml2.utils import calculate_documents_locations_in_tar
 import tarfile
 import io
 import json

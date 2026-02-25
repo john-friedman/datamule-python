@@ -1,9 +1,7 @@
 from pathlib import Path
 import json
 from ..document.document import Document
-from secsgml import parse_sgml_content_into_memory
-from secsgml.parse_sgml import transform_metadata_string
-from secsgml.utils import bytes_to_str
+from secsgml2 import parse_sgml_content_into_memory
 from ..sec.utils import headers
 import tarfile
 import urllib.request
@@ -120,10 +118,8 @@ class Submission:
 
             self.path = None
             metadata, raw_documents = parse_sgml_content_into_memory(sgml_content)
-            metadata = bytes_to_str(metadata,lower=False)
 
-            # standardize metadata
-            metadata = transform_metadata_string(metadata)
+
 
             self.metadata = Document(type='submission_metadata', content=metadata, extension='.json',filing_date=None,accession=None,path=None)
             self.filing_date= f"{self.metadata.content['filing-date'][:4]}-{self.metadata.content['filing-date'][4:6]}-{self.metadata.content['filing-date'][6:8]}"
@@ -160,8 +156,6 @@ class Submission:
             # Set metadata path using :: notation
             metadata_path = f"{batch_tar_path}::{self.accession}/metadata.json"
             
-            # standardize metadata
-            metadata = transform_metadata_string(metadata)
             self.metadata = Document(type='submission_metadata', content=metadata, extension='.json',filing_date=None,accession=None,path=metadata_path)
             
             self.filing_date= f"{self.metadata.content['filing-date'][:4]}-{self.metadata.content['filing-date'][4:6]}-{self.metadata.content['filing-date'][6:8]}"
@@ -182,8 +176,6 @@ class Submission:
                 with metadata_path.open('r') as f:
                     metadata = json.load(f) 
 
-            # standardize metadata
-            metadata = transform_metadata_string(metadata)
             self.metadata = Document(type='submission_metadata', content=metadata, extension='.json',filing_date=None,accession=None,path=metadata_path)
             self.filing_date= f"{self.metadata.content['filing-date'][:4]}-{self.metadata.content['filing-date'][4:6]}-{self.metadata.content['filing-date'][6:8]}"
 

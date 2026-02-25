@@ -206,7 +206,7 @@ class Portfolio:
             self.accession_numbers = new_accession_numbers
 
     def download_submissions(self, cik=None, ticker=None, submission_type=None, filing_date=None, provider=None, document_type=[],
-                         requests_per_second=5, keep_filtered_metadata=False, standardize_metadata=True, skip_existing=True,
+                         requests_per_second=5, skip_existing=True,
                          accession_numbers=None, report_date=None, detected_time=None, contains_xbrl=None, sequence=None,
                          quiet=False, filename=None, **kwargs):
 
@@ -242,8 +242,6 @@ class Portfolio:
                 output_dir=self.path,
                 api_key=self.api_key,
                 keep_document_types=document_type,
-                keep_filtered_metadata=keep_filtered_metadata,
-                standardize_metadata=standardize_metadata,
                 quiet=quiet,
                 **kwargs
             )
@@ -271,7 +269,6 @@ class Portfolio:
             )
             
         else:
-            # will later add accession_numbers arg in the free update.
             sec_download(
                 output_dir=self.path,
                 cik=cik,
@@ -280,8 +277,6 @@ class Portfolio:
                 requests_per_second=requests_per_second, 
                 filtered_accession_numbers=filtered_accession_numbers,
                 keep_document_types=document_type,
-                keep_filtered_metadata=keep_filtered_metadata,
-                standardize_metadata=standardize_metadata,
                 skip_accession_numbers=skip_accession_numbers,
                 ticker = ticker,
                 **kwargs
