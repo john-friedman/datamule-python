@@ -19,11 +19,16 @@ get_table(self, database, **kwargs)
 Query SEC filings archive to get accession numbers matching specific criteria. Returns only accession numbers for matched filings.
 
 ```python
-sheet.get_table('r2-archive',
+from datamule import Sheet
+
+sheet = Sheet('test')
+result = sheet.get_table('sec-filings-lookup',
     cik=320193,
     submissionType='10-K',
     filingDate=('2024-01-01', '2024-12-31'),
-    containsXBRL=True)
+    containsXBRL=1)
+
+print(result)
 ```
 
 #### Schema
