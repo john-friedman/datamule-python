@@ -253,8 +253,17 @@ class Document:
 
         if path is not None:
             # need to think through document parsing w/ and w/o path... e.g. from url, metadata should fill it
-            self.path = Path(path)
-            self.filename = self.path.stem
+            path_str = str(path)
+            if isinstance(path, Path) or "::" not in path_str:
+                self.path = Path(path)
+            else:
+                # Preserve virtual "tar::inner/path" references
+                self.path = path
+
+            filename_source = path_str
+            if "::" in filename_source:
+                filename_source = filename_source.split("::", 1)[1]
+            self.filename = Path(filename_source).stem
 
 
 

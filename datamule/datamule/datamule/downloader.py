@@ -165,7 +165,7 @@ class Downloader:
             content = decompressed_content.getvalue()
             
             metadata, documents = parse_sgml_content_into_memory(
-                bytes_content=content,
+                data=content,
                 filter_document_types=keep_document_types
             )
             
@@ -187,7 +187,7 @@ class Downloader:
             content = b''.join(chunks)
             
             metadata, documents = parse_sgml_content_into_memory(
-                bytes_content=content,
+                data=content,
                 filter_document_types=keep_document_types
             )
             

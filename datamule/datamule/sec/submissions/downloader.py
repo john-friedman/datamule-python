@@ -4,7 +4,7 @@ from tqdm import tqdm
 from ...helper import _process_cik_and_metadata_filters
 import tarfile
 import io
-from secsgml2.parse_sgml import parse_sgml_content_into_memory
+from secsgml2 import parse_sgml_content_into_memory
 from secsgml2.utils import calculate_documents_locations_in_tar
 
 
@@ -50,10 +50,10 @@ def write_sgml_file_to_tar(output_path, bytes_content=None, input_path=None,filt
         
         with open(input_path, 'rb') as f:
             bytes_content = f.read()
-            metadata, documents = parse_sgml_content_into_memory(bytes_content=bytes_content,filter_document_types=filter_document_types)
+            metadata, documents = parse_sgml_content_into_memory(data=bytes_content,filter_document_types=filter_document_types)
     else:
         # Use content directly
-        metadata, documents = parse_sgml_content_into_memory(bytes_content=bytes_content, filter_document_types=filter_document_types)
+        metadata, documents = parse_sgml_content_into_memory(data=bytes_content, filter_document_types=filter_document_types)
     
     write_submission_to_tar(output_path,metadata,documents)
 

@@ -117,12 +117,13 @@ class Submission:
                     raise ValueError(f"URL: {url}, Error: {response.getcode()}")
 
             self.path = None
-            metadata, raw_documents = parse_sgml_content_into_memory(sgml_content)
+            metadata, raw_documents = parse_sgml_content_into_memory(data=sgml_content)
 
 
 
             self.metadata = Document(type='submission_metadata', content=metadata, extension='.json',filing_date=None,accession=None,path=None)
-            self.filing_date= f"{self.metadata.content['filing-date'][:4]}-{self.metadata.content['filing-date'][4:6]}-{self.metadata.content['filing-date'][6:8]}"
+            fd = self.metadata.content.get('filing-date')
+            self.filing_date = f"{fd[:4]}-{fd[4:6]}-{fd[6:8]}" if fd else None
     
             self.documents_obj_list = []
             filtered_metadata_documents = []
@@ -158,7 +159,8 @@ class Submission:
             
             self.metadata = Document(type='submission_metadata', content=metadata, extension='.json',filing_date=None,accession=None,path=metadata_path)
             
-            self.filing_date= f"{self.metadata.content['filing-date'][:4]}-{self.metadata.content['filing-date'][4:6]}-{self.metadata.content['filing-date'][6:8]}"
+            fd = self.metadata.content.get('filing-date')
+            self.filing_date = f"{fd[:4]}-{fd[4:6]}-{fd[6:8]}" if fd else None
 
         elif path is not None:
             self.path = Path(path)  
@@ -177,7 +179,8 @@ class Submission:
                     metadata = json.load(f) 
 
             self.metadata = Document(type='submission_metadata', content=metadata, extension='.json',filing_date=None,accession=None,path=metadata_path)
-            self.filing_date= f"{self.metadata.content['filing-date'][:4]}-{self.metadata.content['filing-date'][4:6]}-{self.metadata.content['filing-date'][6:8]}"
+            fd = self.metadata.content.get('filing-date')
+            self.filing_date = f"{fd[:4]}-{fd[4:6]}-{fd[6:8]}" if fd else None
 
 
         # booleans

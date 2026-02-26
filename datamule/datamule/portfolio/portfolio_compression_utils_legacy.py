@@ -159,14 +159,16 @@ class CompressionManager:
                         output_dir.mkdir(exist_ok=True)
                         
                         # Get all files for this accession
-                        accession_files = [m for m in tar.getmembers() 
-                                            if m.name.startswith(f'{accession_dir}/') and m.isfile()]
+                        accession_files = [
+                            m.name for m in tar.getmembers()
+                            if m.name.startswith(f'{accession_dir}/') and m.isfile()
+                        ]
                         
                         # Parallel file extraction
                         with ThreadPoolExecutor(max_workers=max_workers) as executor:
                             file_futures = [
-                                executor.submit(self._extract_file, member, tar, accession_dir, output_dir)
-                                for member in accession_files
+                                executor.submit(self._extract_file, member_name, batch_tar, accession_dir, output_dir)
+                                for member_name in accession_files
                             ]
                             
                             # Wait for all files to be processed
@@ -209,12 +211,17 @@ class CompressionManager:
         
         return content, compression_type
 
-    def _extract_file(self, member, tar, accession_dir, output_dir):
+    def _extract_file(self, member_name, batch_tar_path, accession_dir, output_dir):
         """Extract and decompress a single file from tar."""
-        relative_path = member.name[len(accession_dir)+1:]  # Remove accession prefix
+        relative_path = member_name[len(accession_dir)+1:]  # Remove accession prefix
         output_path = output_dir / relative_path
         
-        content = tar.extractfile(member).read()
+        # Open the tar per thread to avoid concurrent reads on a shared TarFile handle.
+        with tarfile.open(batch_tar_path, 'r') as tar:
+            extracted = tar.extractfile(member_name)
+            if extracted is None:
+                return
+            content = extracted.read()
         
         # Handle decompression based on filename
         if relative_path.endswith('.gz'):
