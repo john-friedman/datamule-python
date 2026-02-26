@@ -1,0 +1,1948 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../monitor_new_filings/">
+      
+      
+        <link rel="next" href="../../data_provider/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+    
+    
+      
+        <title>Using Index() to search filings by email usage - datamule</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#using-index-to-search-filings-by-email-usage" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="datamule" class="md-header__button md-logo" aria-label="datamule" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            datamule
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Using Index() to search filings by email usage
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="datamule" class="md-nav__button md-logo" aria-label="datamule" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    datamule
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../providers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Providers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    datamule-python
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    datamule-python
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../products/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Products
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../articles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Articles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tesla_risk_factor_language_score/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tesla Risk Factor Language Score
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../meta_risk_factor_semantic_drift/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meta Risk Factor Semantic Drift
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../costco_audit_complexity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Costco Audit Complexity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gm_impairment_event/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General Motors Impairment Event
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ge_covenant_breach_risk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General Electric Covenant Breach Risk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../late_filing_reasons/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Late Filing Reasons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../monitor_new_filings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitor New Filings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using Index() to search filings by email usage
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using Index() to search filings by email usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#plotting-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plotting code
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data_provider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setting a Data Provider
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../package_data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datasets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SEC Terminology
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SEC Terminology
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sec/submission_types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Submission Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Portfolio
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Portfolio
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../portfolio/portfolio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Portfolio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../portfolio/submission/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Submission
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../portfolio/document/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Document
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7_4" id="__nav_3_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tables
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tables
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../portfolio/tables/tables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../portfolio/tables/types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Table Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sheet/sheet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../book/book/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Config
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../filings_constructor/filings_constructor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filings Constructor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_13" id="__nav_3_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Utils
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Utils
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/_process_cik_and_metadata_filters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CIK Filtering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/convenience/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Convenient Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#plotting-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plotting code
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="using-index-to-search-filings-by-email-usage">Using Index() to search filings by email usage</h1>
+<p><img alt="Email Domain Race" src="../../images/email_domain_race_lines.gif" />
+<img alt="Email Domain Race Cumulative" src="../../images/email_domain_race_cumulative.gif" /></p>
+<p>Construct data using <code>Index()</code>.</p>
+<div class="highlight"><pre><span></span><code>import csv
+from datamule import Index
+
+index = Index()
+
+common_email_domains = [
+    &quot;gmail.com&quot;,
+    &quot;yahoo.com&quot;,
+    &quot;outlook.com&quot;,
+    &quot;hotmail.com&quot;,
+    &quot;icloud.com&quot;,
+    &quot;aol.com&quot;,
+    &quot;protonmail.com&quot;,
+    &quot;mail.com&quot;,
+    &quot;zoho.com&quot;,
+    &quot;yandex.com&quot;,
+    &quot;gmx.com&quot;,
+    &quot;inbox.com&quot;,
+    &quot;live.com&quot;,
+    &quot;msn.com&quot;,
+    &quot;me.com&quot;,
+    &quot;mac.com&quot;,
+    &quot;yahoo.co.uk&quot;,
+    &quot;yahoo.co.in&quot;,
+    &quot;fastmail.com&quot;,
+    &quot;tutanota.com&quot;
+]
+
+# Open CSV file for writing
+with open(&#39;sec_email_findings.csv&#39;, &#39;w&#39;, newline=&#39;&#39;, encoding=&#39;utf-8&#39;) as csvfile:
+    fieldnames = [&#39;accession&#39;, &#39;filing_date&#39;, &#39;filename&#39;, &#39;domain&#39;]
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+    # Write header
+    writer.writeheader()
+
+    # Search for each domain
+    for domain in common_email_domains:
+        print(f&quot;\nSearching for @{domain}...&quot;)
+
+        results = index.search_submissions(
+            text_query=f&#39;&quot;@{domain}&quot;&#39;,
+            requests_per_second=5.0,
+            quiet=False,
+        )
+
+        # Write each result to CSV
+        for result in results:
+            # Extract the _id and split at colon
+            doc_id = result[&#39;_id&#39;]
+            accession, filename = doc_id.split(&#39;:&#39;, 1)
+
+            # Extract filing date from _source
+            filing_date = result[&#39;_source&#39;].get(&#39;file_date&#39;, &#39;&#39;)
+
+            # Write row to CSV
+            writer.writerow({
+                &#39;accession&#39;: accession,
+                &#39;filing_date&#39;: filing_date,
+                &#39;filename&#39;: filename,
+                &#39;domain&#39;: domain
+            })
+
+        print(f&quot;Found {len(results)} results for @{domain}&quot;)
+
+print(&quot;\nCSV file created successfully!&quot;)
+</code></pre></div>
+<h2 id="plotting-code">Plotting code</h2>
+<p>Plot email popularity
+<div class="highlight"><pre><span></span><code>import csv
+import matplotlib.pyplot as plt
+from collections import defaultdict
+from datetime import datetime
+import matplotlib.animation as animation
+import numpy as np
+
+# Dictionary to store counts by domain and year
+domain_year_counts = defaultdict(lambda: defaultdict(int))
+
+def extract_base_domain(full_domain):
+    &quot;&quot;&quot;Extract base domain name (e.g., &#39;yahoo&#39; from &#39;yahoo.com&#39; or &#39;yahoo.co.uk&#39;)&quot;&quot;&quot;
+    return full_domain.split(&#39;.&#39;)[0]
+
+# Read the existing CSV file
+with open(&#39;sec_email_findings.csv&#39;, &#39;r&#39;, encoding=&#39;utf-8&#39;) as csvfile:
+    reader = csv.DictReader(csvfile)
+
+    for row in reader:
+        filing_date = row[&#39;filing_date&#39;]
+        full_domain = row[&#39;domain&#39;]
+
+        # Extract base domain
+        base_domain = extract_base_domain(full_domain)
+
+        # Count by year for plotting
+        if filing_date:
+            try:
+                year = datetime.strptime(filing_date, &#39;%Y-%m-%d&#39;).year
+                if year != 2026:  # Exclude 2026
+                    domain_year_counts[base_domain][year] += 1
+            except ValueError:
+                pass
+
+# Get all years and sort them
+all_years = sorted(set(year for domain_data in domain_year_counts.values() for year in domain_data.keys()))
+
+def get_top_5_domains_up_to_year(end_year):
+    &quot;&quot;&quot;Get top 5 domains based on count at a specific year&quot;&quot;&quot;
+    year_counts = {}
+    for domain, year_data in domain_year_counts.items():
+        year_counts[domain] = year_data[end_year]
+
+    # Sort by count and get top 5
+    top_5 = sorted(year_counts.items(), key=lambda x: x[1], reverse=True)[:5]
+    return [domain for domain, count in top_5 if count &gt; 0]
+
+# Prepare figure
+fig, ax = plt.subplots(figsize=(14, 8))
+
+# Color map for domains
+all_domains = list(domain_year_counts.keys())
+colors = plt.cm.tab10(np.linspace(0, 1, len(all_domains)))
+domain_colors = {domain: colors[i] for i, domain in enumerate(all_domains)}
+
+# Store line objects for each domain
+lines = {}
+for domain in all_domains:
+    line, = ax.plot([], [], marker=&#39;o&#39;, linewidth=2.5, markersize=6, 
+                    label=domain, color=domain_colors[domain], alpha=0)
+    lines[domain] = line
+
+# Number of intermediate frames between years
+FRAMES_PER_YEAR = 10
+total_frames = (len(all_years) - 1) * FRAMES_PER_YEAR + 1
+
+def interpolate_counts(domain, year_idx, progress):
+    &quot;&quot;&quot;Interpolate count values between two years&quot;&quot;&quot;
+    if year_idx &gt;= len(all_years) - 1:
+        return domain_year_counts[domain][all_years[year_idx]]
+
+    year1 = all_years[year_idx]
+    year2 = all_years[year_idx + 1]
+    count1 = domain_year_counts[domain][year1]
+    count2 = domain_year_counts[domain][year2]
+
+    # Linear interpolation
+    return count1 + (count2 - count1) * progress
+
+def animate(frame):
+    # Calculate which year we&#39;re in and progress through that year
+    year_idx = frame // FRAMES_PER_YEAR
+    progress = (frame % FRAMES_PER_YEAR) / FRAMES_PER_YEAR
+
+    if year_idx &gt;= len(all_years):
+        year_idx = len(all_years) - 1
+        progress = 1.0
+
+    current_year = all_years[year_idx]
+
+    # Get top 5 domains for current year
+    top_5_domains = get_top_5_domains_up_to_year(current_year)
+
+    # Get years and interpolated current position
+    years_so_far = all_years[:year_idx + 1]
+    if progress &gt; 0 and year_idx &lt; len(all_years) - 1:
+        current_x = current_year + progress
+        years_display = years_so_far + [current_x]
+    else:
+        years_display = years_so_far
+
+    # Update each domain&#39;s line
+    for domain in all_domains:
+        counts = [domain_year_counts[domain][year] for year in years_so_far]
+
+        # Add interpolated point if we&#39;re between years
+        if progress &gt; 0 and year_idx &lt; len(all_years) - 1:
+            interpolated_count = interpolate_counts(domain, year_idx, progress)
+            counts_display = counts + [interpolated_count]
+        else:
+            counts_display = counts
+
+        # Only show if domain is in top 5 for current year
+        if domain in top_5_domains:
+            lines[domain].set_data(years_display, counts_display)
+            lines[domain].set_alpha(1.0)  # Fully visible
+        else:
+            lines[domain].set_data(years_display, counts_display)
+            lines[domain].set_alpha(0.15)  # Faded out
+
+    # Update axes limits
+    if progress &gt; 0 and year_idx &lt; len(all_years) - 1:
+        ax.set_xlim(all_years[0] - 0.5, current_year + progress + 0.5)
+    else:
+        ax.set_xlim(all_years[0] - 0.5, current_year + 0.5)
+
+    # Get max count for scaling
+    max_count = 1
+    for domain in top_5_domains:
+        for year in years_so_far:
+            count = domain_year_counts[domain][year]
+            max_count = max(max_count, count)
+
+    ax.set_ylim(0.5, max_count * 1.15)
+
+    # Update title - just show current year as integer
+    ax.set_title(f&#39;Top 5 Email Domains in SEC Filings - {current_year}&#39;, 
+                 fontsize=16, fontweight=&#39;bold&#39;, pad=20)
+
+    # Update legend to only show top 5
+    handles = [lines[domain] for domain in top_5_domains]
+    labels = top_5_domains
+    ax.legend(handles, labels, loc=&#39;upper left&#39;, fontsize=11, framealpha=0.9)
+
+    return list(lines.values())
+
+# Set up the plot
+ax.set_xlabel(&#39;Year&#39;, fontsize=13, fontweight=&#39;bold&#39;)
+ax.set_ylabel(&#39;Number of Occurrences (log scale)&#39;, fontsize=13, fontweight=&#39;bold&#39;)
+ax.set_yscale(&#39;log&#39;)
+ax.grid(True, alpha=0.3, linestyle=&#39;--&#39;, linewidth=0.7)
+ax.set_facecolor(&#39;#f8f9fa&#39;)
+
+# Create animation - 2x slower: changed fps from 20 to 10
+print(f&quot;Creating animated racing line chart with {total_frames} frames... this may take a moment...&quot;)
+anim = animation.FuncAnimation(fig, animate, frames=total_frames, 
+                              interval=50, repeat=True, blit=False)
+
+# Save as gif - 2x slower: fps changed from 20 to 10
+anim.save(&#39;email_domain_race_lines.gif&#39;, writer=&#39;pillow&#39;, fps=10, dpi=100)
+print(&quot;Animation saved as &#39;email_domain_race_lines.gif&#39;&quot;)
+
+plt.close()
+</code></pre></div></p>
+<p>Cumulative
+<div class="highlight"><pre><span></span><code>import csv
+import matplotlib.pyplot as plt
+from collections import defaultdict
+from datetime import datetime
+import matplotlib.animation as animation
+import numpy as np
+
+# Dictionary to store counts by domain and year
+domain_year_counts = defaultdict(lambda: defaultdict(int))
+
+def extract_base_domain(full_domain):
+    &quot;&quot;&quot;Extract base domain name (e.g., &#39;yahoo&#39; from &#39;yahoo.com&#39; or &#39;yahoo.co.uk&#39;)&quot;&quot;&quot;
+    return full_domain.split(&#39;.&#39;)[0]
+
+# Read the existing CSV file
+with open(&#39;sec_email_findings.csv&#39;, &#39;r&#39;, encoding=&#39;utf-8&#39;) as csvfile:
+    reader = csv.DictReader(csvfile)
+
+    for row in reader:
+        filing_date = row[&#39;filing_date&#39;]
+        full_domain = row[&#39;domain&#39;]
+
+        # Extract base domain
+        base_domain = extract_base_domain(full_domain)
+
+        # Count by year for plotting
+        if filing_date:
+            try:
+                year = datetime.strptime(filing_date, &#39;%Y-%m-%d&#39;).year
+                if year != 2026:  # Exclude 2026
+                    domain_year_counts[base_domain][year] += 1
+            except ValueError:
+                pass
+
+# Get all years and sort them
+all_years = sorted(set(year for domain_data in domain_year_counts.values() for year in domain_data.keys()))
+
+# Calculate cumulative sums for each domain
+domain_cumsum = defaultdict(dict)
+for domain in domain_year_counts:
+    cumsum = 0
+    for year in all_years:
+        cumsum += domain_year_counts[domain][year]
+        domain_cumsum[domain][year] = cumsum
+
+# Calculate the maximum cumulative value across all domains and all years
+max_cumsum_overall = 0
+for domain in domain_cumsum:
+    if all_years:
+        final_cumsum = domain_cumsum[domain][all_years[-1]]
+        max_cumsum_overall = max(max_cumsum_overall, final_cumsum)
+
+def get_top_5_domains_cumulative(end_year):
+    &quot;&quot;&quot;Get top 5 domains based on cumulative count up to a specific year&quot;&quot;&quot;
+    cumulative_counts = {}
+    for domain in domain_cumsum:
+        cumulative_counts[domain] = domain_cumsum[domain].get(end_year, 0)
+
+    # Sort by cumulative count and get top 5
+    top_5 = sorted(cumulative_counts.items(), key=lambda x: x[1], reverse=True)[:5]
+    return [domain for domain, count in top_5 if count &gt; 0]
+
+# Prepare figure
+fig, ax = plt.subplots(figsize=(14, 8))
+
+# Color map for domains
+all_domains = list(domain_year_counts.keys())
+colors = plt.cm.tab10(np.linspace(0, 1, len(all_domains)))
+domain_colors = {domain: colors[i] for i, domain in enumerate(all_domains)}
+
+# Store line objects for each domain
+lines = {}
+for domain in all_domains:
+    line, = ax.plot([], [], marker=&#39;o&#39;, linewidth=2.5, markersize=6, 
+                    label=domain, color=domain_colors[domain], alpha=0)
+    lines[domain] = line
+
+# Number of intermediate frames between years
+FRAMES_PER_YEAR = 10
+# Add extra frames for the pause at the end (5 seconds at 20fps = 100 frames)
+PAUSE_FRAMES = 100
+animation_frames = (len(all_years) - 1) * FRAMES_PER_YEAR + 1
+total_frames = animation_frames + PAUSE_FRAMES
+
+def interpolate_cumsum(domain, year_idx, progress):
+    &quot;&quot;&quot;Interpolate cumulative count values between two years&quot;&quot;&quot;
+    if year_idx &gt;= len(all_years) - 1:
+        return domain_cumsum[domain][all_years[year_idx]]
+
+    year1 = all_years[year_idx]
+    year2 = all_years[year_idx + 1]
+    cumsum1 = domain_cumsum[domain][year1]
+    cumsum2 = domain_cumsum[domain][year2]
+
+    # Linear interpolation
+    return cumsum1 + (cumsum2 - cumsum1) * progress
+
+def animate(frame):
+    # If we&#39;re in the pause frames, just keep showing the final state
+    if frame &gt;= animation_frames:
+        frame = animation_frames - 1
+
+    # Calculate which year we&#39;re in and progress through that year
+    year_idx = frame // FRAMES_PER_YEAR
+    progress = (frame % FRAMES_PER_YEAR) / FRAMES_PER_YEAR
+
+    if year_idx &gt;= len(all_years):
+        year_idx = len(all_years) - 1
+        progress = 1.0
+
+    current_year = all_years[year_idx]
+
+    # Get top 5 domains for current year (based on cumulative)
+    top_5_domains = get_top_5_domains_cumulative(current_year)
+
+    # Get years and interpolated current position
+    years_so_far = all_years[:year_idx + 1]
+    if progress &gt; 0 and year_idx &lt; len(all_years) - 1:
+        current_x = current_year + progress
+        years_display = years_so_far + [current_x]
+    else:
+        years_display = years_so_far
+
+    # Update each domain&#39;s line
+    for domain in all_domains:
+        cumsums = [domain_cumsum[domain][year] for year in years_so_far]
+
+        # Add interpolated point if we&#39;re between years
+        if progress &gt; 0 and year_idx &lt; len(all_years) - 1:
+            interpolated_cumsum = interpolate_cumsum(domain, year_idx, progress)
+            cumsums_display = cumsums + [interpolated_cumsum]
+        else:
+            cumsums_display = cumsums
+
+        # Only show if domain is in top 5 for current year
+        if domain in top_5_domains:
+            lines[domain].set_data(years_display, cumsums_display)
+            lines[domain].set_alpha(1.0)  # Fully visible
+        else:
+            lines[domain].set_data(years_display, cumsums_display)
+            lines[domain].set_alpha(0.15)  # Faded out
+
+    # Update axes limits
+    if progress &gt; 0 and year_idx &lt; len(all_years) - 1:
+        ax.set_xlim(all_years[0] - 0.5, current_year + progress + 0.5)
+    else:
+        ax.set_xlim(all_years[0] - 0.5, current_year + 0.5)
+
+    # Keep y-axis constant throughout the entire animation
+    ax.set_ylim(0, max_cumsum_overall * 1.25)
+
+    # Update title
+    ax.set_title(f&#39;Top 5 Email Domains in SEC Filings (Cumulative) - {current_year}&#39;, 
+                 fontsize=16, fontweight=&#39;bold&#39;, pad=20)
+
+    # Update legend to only show top 5
+    handles = [lines[domain] for domain in top_5_domains]
+    labels = top_5_domains
+    ax.legend(handles, labels, loc=&#39;upper left&#39;, fontsize=11, framealpha=0.9)
+
+    return list(lines.values())
+
+# Set up the plot
+ax.set_xlabel(&#39;Year&#39;, fontsize=13, fontweight=&#39;bold&#39;)
+ax.set_ylabel(&#39;Cumulative Occurrences&#39;, fontsize=13, fontweight=&#39;bold&#39;)
+ax.grid(True, alpha=0.3, linestyle=&#39;--&#39;, linewidth=0.7)
+ax.set_facecolor(&#39;#f8f9fa&#39;)
+
+# Create animation
+print(f&quot;Creating cumulative animated racing line chart with {total_frames} frames (including 5 second pause at end)... this may take a moment...&quot;)
+anim = animation.FuncAnimation(fig, animate, frames=total_frames, 
+                              interval=50, repeat=True, blit=False)
+
+# Save as gif
+anim.save(&#39;email_domain_race_cumulative.gif&#39;, writer=&#39;pillow&#39;, fps=20, dpi=100)
+print(&quot;Animation saved as &#39;email_domain_race_cumulative.gif&#39;&quot;)
+
+plt.close()
+</code></pre></div></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

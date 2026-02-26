@@ -1,0 +1,4544 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../portfolio/tables/types/">
+      
+      
+        <link rel="next" href="../../index/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.3">
+    
+    
+      
+        <title>Sheet - datamule</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.484c7ddc.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#sheet" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="datamule" class="md-header__button md-logo" aria-label="datamule" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            datamule
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Sheet
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="datamule" class="md-nav__button md-logo" aria-label="datamule" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    datamule
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../providers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Data Providers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    datamule-python
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    datamule-python
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/quickstart/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quickstart
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/products/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Products
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/articles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Articles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/tesla_risk_factor_language_score/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tesla Risk Factor Language Score
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/meta_risk_factor_semantic_drift/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meta Risk Factor Semantic Drift
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/costco_audit_complexity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Costco Audit Complexity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/gm_impairment_event/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General Motors Impairment Event
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/ge_covenant_breach_risk/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General Electric Covenant Breach Risk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/late_filing_reasons/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Late Filing Reasons
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/monitor_new_filings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitor New Filings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/use_index_to_search_filings_by_email_usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Using Index() to search filings by email usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../data_provider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Setting a Data Provider
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../package_data/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package Data
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../datasets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Datasets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SEC Terminology
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SEC Terminology
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sec/submission_types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Submission Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7" id="__nav_3_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Portfolio
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Portfolio
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../portfolio/portfolio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Portfolio
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../portfolio/submission/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Submission
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../portfolio/document/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Document
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_7_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_7_4" id="__nav_3_7_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tables
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_3_7_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_7_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tables
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../portfolio/tables/tables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../portfolio/tables/types/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Table Types
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sheet
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Sheet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#get_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Databases
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Databases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#r2-archive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R2 Archive
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="R2 Archive">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sec-filings-lookup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SEC Filings Lookup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SEC Filings Lookup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sec_submission_details_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sec_submission_details_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sec_accession_cik_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sec_accession_cik_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sec_documents_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sec_documents_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simple-xbrl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simple XBRL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Simple XBRL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#institutional-holdings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Institutional Holdings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Institutional Holdings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proxy-voting-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proxy Voting Records
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Proxy Voting Records">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insider-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Insider Transactions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Insider Transactions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metadata_ownership_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metadata_ownership_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reporting_owner_ownership_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        reporting_owner_ownership_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non_derivative_transaction_ownership_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        non_derivative_transaction_ownership_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non_derivative_holding_ownership_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        non_derivative_holding_ownership_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#derivative_transaction_ownership_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        derivative_transaction_ownership_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#derivative_holding_ownership_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        derivative_holding_ownership_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#owner_signature_ownership_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        owner_signature_ownership_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-parameter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required Parameter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-parameters-available-for-all-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Parameters (Available for All Tables)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadata-table-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadata Table Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reporting-owner-table-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reporting Owner Table Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-derivative-transaction-table-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Derivative Transaction Table Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-derivative-holding-table-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Derivative Holding Table Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#derivative-transaction-table-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Derivative Transaction Table Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#derivative-holding-table-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Derivative Holding Table Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signature-table-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signature Table Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../index/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Index
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../book/book/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Book
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../config/config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Config
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../filings_constructor/filings_constructor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Filings Constructor
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_13" id="__nav_3_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Utils
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Utils
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/_process_cik_and_metadata_filters/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CIK Filtering
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/convenience/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Convenient Functions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#get_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        get_table
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#databases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Databases
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Databases">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#r2-archive" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        R2 Archive
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="R2 Archive">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sec-filings-lookup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SEC Filings Lookup
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SEC Filings Lookup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sec_submission_details_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sec_submission_details_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sec_accession_cik_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sec_accession_cik_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sec_documents_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        sec_documents_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#simple-xbrl" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Simple XBRL
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Simple XBRL">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#institutional-holdings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Institutional Holdings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Institutional Holdings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proxy-voting-records" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proxy Voting Records
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Proxy Voting Records">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insider-transactions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Insider Transactions
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Insider Transactions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Schema">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metadata_ownership_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        metadata_ownership_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reporting_owner_ownership_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        reporting_owner_ownership_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non_derivative_transaction_ownership_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        non_derivative_transaction_ownership_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non_derivative_holding_ownership_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        non_derivative_holding_ownership_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#derivative_transaction_ownership_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        derivative_transaction_ownership_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#derivative_holding_ownership_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        derivative_holding_ownership_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#owner_signature_ownership_table" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        owner_signature_ownership_table
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parameters_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parameters
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#required-parameter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required Parameter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-parameters-available-for-all-tables" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Parameters (Available for All Tables)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metadata-table-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Metadata Table Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reporting-owner-table-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reporting Owner Table Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-derivative-transaction-table-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Derivative Transaction Table Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#non-derivative-holding-table-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Non-Derivative Holding Table Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#derivative-transaction-table-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Derivative Transaction Table Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#derivative-holding-table-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Derivative Holding Table Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signature-table-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Signature Table Parameters
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="sheet">Sheet</h1>
+<p>Sheet is a class for downloading and working with tabular datasets constructed from SEC filings. It requires a <a href="https://datamule.xyz/dashboard2">datamule api_key</a>.</p>
+<p>Sheet is in beta. If you would like to suggest better indices or query patterns, my email is <a href="mailto:johnfriedman@datamule.xyz">johnfriedman@datamule.xyz?subject=[Sheet Feature Request]</a>. Or submit a <a href="https://github.com/john-friedman/datamule-python/issues/new">GitHub issue</a>.</p>
+<h2 id="get_table">get_table</h2>
+<p>Access datamule's MySQL RDS offerings.</p>
+<div class="highlight"><pre><span></span><code><span class="n">get_table</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">database</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="databases">Databases</h2>
+<h3 id="r2-archive">R2 Archive</h3>
+<p>Query SEC filings archive to get accession numbers matching specific criteria. Returns only accession numbers for matched filings.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">datamule</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sheet</span>
+
+<span class="n">sheet</span> <span class="o">=</span> <span class="n">Sheet</span><span class="p">(</span><span class="s1">&#39;test&#39;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">sheet</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="s1">&#39;sec-filings-lookup&#39;</span><span class="p">,</span>
+    <span class="n">cik</span><span class="o">=</span><span class="mi">320193</span><span class="p">,</span>
+    <span class="n">submissionType</span><span class="o">=</span><span class="s1">&#39;10-K&#39;</span><span class="p">,</span>
+    <span class="n">filingDate</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-12-31&#39;</span><span class="p">),</span>
+    <span class="n">containsXBRL</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="schema">Schema</h4>
+<p><strong>Database:</strong> <code>sec_filings_lookup</code></p>
+<p>Queries across three tables:
+- <code>sec_submission_details_table</code> - Filing metadata
+- <code>sec_accession_cik_table</code> - CIK associations
+- <code>sec_documents_table</code> - Document details (conditionally joined)</p>
+<p><strong>Returns:</strong> Array of accession numbers matching the query criteria.</p>
+<h4 id="parameters">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cik</code></td>
+<td>int / list[int]</td>
+<td>Filter by company CIK</td>
+</tr>
+<tr>
+<td><code>accessionNumber</code></td>
+<td>int / list[int]</td>
+<td>Filter by accession number(s)</td>
+</tr>
+<tr>
+<td><code>submissionType</code></td>
+<td>str / list[str]</td>
+<td>Filter by form type</td>
+</tr>
+<tr>
+<td><code>filingDate</code></td>
+<td>str / list[str] / tuple(str, str)</td>
+<td>Filing date(s) or range</td>
+</tr>
+<tr>
+<td><code>reportDate</code></td>
+<td>str / list[str] / tuple(str, str)</td>
+<td>Report date(s) or range</td>
+</tr>
+<tr>
+<td><code>detectedTime</code></td>
+<td>tuple(str, str)</td>
+<td>Detected time range</td>
+</tr>
+<tr>
+<td><code>containsXBRL</code></td>
+<td>bool</td>
+<td>Filter by XBRL presence</td>
+</tr>
+<tr>
+<td><code>documentType</code></td>
+<td>str / list[str]</td>
+<td>Filter by document type</td>
+</tr>
+<tr>
+<td><code>filename</code></td>
+<td>str</td>
+<td>LIKE match on filename</td>
+</tr>
+<tr>
+<td><code>sequence</code></td>
+<td>int / list[int]</td>
+<td>Filter by document sequence</td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td>int</td>
+<td>Page number (default: 1)</td>
+</tr>
+<tr>
+<td><code>pageSize</code></td>
+<td>int</td>
+<td>Records per page (max: 25000)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sec-filings-lookup">SEC Filings Lookup</h3>
+<p>Metadata for SEC filings including submission details, CIKs, and document information.</p>
+<div class="highlight"><pre><span></span><code><span class="n">sheet</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="s1">&#39;sec-filings-lookup&#39;</span><span class="p">,</span>
+    <span class="n">cik</span><span class="o">=</span><span class="mi">320193</span><span class="p">,</span>
+    <span class="n">submissionType</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;10-K&#39;</span><span class="p">,</span> <span class="s1">&#39;10-Q&#39;</span><span class="p">],</span>
+    <span class="n">filingDate</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-12-31&#39;</span><span class="p">),</span>
+    <span class="n">containsXBRL</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">returnCols</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;accessionNumber&#39;</span><span class="p">,</span> <span class="s1">&#39;cik&#39;</span><span class="p">,</span> <span class="s1">&#39;submissionType&#39;</span><span class="p">,</span> <span class="s1">&#39;filingDate&#39;</span><span class="p">])</span>
+</code></pre></div>
+<h4 id="schema_1">Schema</h4>
+<p><strong>Database:</strong> <code>sec_filings_lookup</code></p>
+<h5 id="sec_submission_details_table">sec_submission_details_table</h5>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>accessionNumber</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Primary key</td>
+</tr>
+<tr>
+<td><code>submissionType</code></td>
+<td>VARCHAR(16)</td>
+<td>Form type (e.g., '10-K', '10-Q')</td>
+</tr>
+<tr>
+<td><code>filingDate</code></td>
+<td>DATE</td>
+<td>Date filed with SEC</td>
+</tr>
+<tr>
+<td><code>reportDate</code></td>
+<td>DATE</td>
+<td>Period end date</td>
+</tr>
+<tr>
+<td><code>detectedTime</code></td>
+<td>DATETIME</td>
+<td>When filing was detected</td>
+</tr>
+<tr>
+<td><code>containsXBRL</code></td>
+<td>BOOLEAN</td>
+<td>Whether filing includes XBRL data</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Indexes:</strong>
+- PRIMARY KEY: <code>accessionNumber</code>
+- <code>idx_submission_filing</code>, <code>idx_filing_date</code>, <code>idx_time</code>, <code>idx_xbrl</code></p>
+<h5 id="sec_accession_cik_table">sec_accession_cik_table</h5>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>accessionNumber</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>SEC accession number</td>
+</tr>
+<tr>
+<td><code>cik</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Company CIK</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Indexes:</strong>
+- PRIMARY KEY: <code>(accessionNumber, cik)</code>
+- <code>idx_cik</code></p>
+<h5 id="sec_documents_table">sec_documents_table</h5>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>accessionNumber</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>SEC accession number</td>
+</tr>
+<tr>
+<td><code>documentType</code></td>
+<td>VARCHAR(128)</td>
+<td>Document type</td>
+</tr>
+<tr>
+<td><code>sequence</code></td>
+<td>SMALLINT</td>
+<td>Document sequence number</td>
+</tr>
+<tr>
+<td><code>filename</code></td>
+<td>VARCHAR(500)</td>
+<td>Document filename</td>
+</tr>
+<tr>
+<td><code>description</code></td>
+<td>VARCHAR(1000)</td>
+<td>Document description</td>
+</tr>
+<tr>
+<td><code>secsgmlSizeBytes</code></td>
+<td>INT</td>
+<td>Document size in bytes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Indexes:</strong>
+- PRIMARY KEY: <code>(accessionNumber, sequence)</code>
+- <code>idx_document_filename</code></p>
+<h4 id="parameters_1">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cik</code></td>
+<td>int / list[int]</td>
+<td>Filter by company CIK</td>
+</tr>
+<tr>
+<td><code>accessionNumber</code></td>
+<td>int / list[int]</td>
+<td>Filter by accession number(s)</td>
+</tr>
+<tr>
+<td><code>submissionType</code></td>
+<td>str / list[str]</td>
+<td>Filter by form type</td>
+</tr>
+<tr>
+<td><code>filingDate</code></td>
+<td>str / list[str] / tuple(str, str)</td>
+<td>Filing date(s) or range</td>
+</tr>
+<tr>
+<td><code>reportDate</code></td>
+<td>str / list[str] / tuple(str, str)</td>
+<td>Report date(s) or range</td>
+</tr>
+<tr>
+<td><code>detectedTime</code></td>
+<td>tuple(str, str)</td>
+<td>Detected time range</td>
+</tr>
+<tr>
+<td><code>containsXBRL</code></td>
+<td>bool</td>
+<td>Filter by XBRL presence</td>
+</tr>
+<tr>
+<td><code>documentType</code></td>
+<td>str / list[str]</td>
+<td>Filter by document type</td>
+</tr>
+<tr>
+<td><code>filename</code></td>
+<td>str</td>
+<td>LIKE match on filename</td>
+</tr>
+<tr>
+<td><code>sequence</code></td>
+<td>int / list[int]</td>
+<td>Filter by document sequence</td>
+</tr>
+<tr>
+<td><code>returnCols</code></td>
+<td>list[str]</td>
+<td>Columns to return (default: all)</td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td>int</td>
+<td>Page number (default: 1)</td>
+</tr>
+<tr>
+<td><code>pageSize</code></td>
+<td>int</td>
+<td>Records per page (max: 25000)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="simple-xbrl">Simple XBRL</h3>
+<p>Parsed XBRL facts from SEC filings. XBRL is a standardized format for financial reporting data.</p>
+<div class="highlight"><pre><span></span><code><span class="n">sheet</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="s1">&#39;simple-xbrl&#39;</span><span class="p">,</span>
+    <span class="n">accessionNumber</span><span class="o">=</span><span class="mi">1234567890</span><span class="p">,</span>
+    <span class="n">taxonomy</span><span class="o">=</span><span class="s1">&#39;us-gaap&#39;</span><span class="p">,</span>
+    <span class="n">namePattern</span><span class="o">=</span><span class="s1">&#39;Revenue&#39;</span><span class="p">,</span>
+    <span class="n">periodDate</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-12-31&#39;</span><span class="p">),</span>
+    <span class="n">hasValue</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="schema_2">Schema</h4>
+<p><strong>Database:</strong> <code>simple_xbrl</code><br />
+<strong>Table:</strong> <code>simple_xbrl_table</code></p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Auto-increment primary key</td>
+</tr>
+<tr>
+<td><code>accessionNumber</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>SEC filing accession number</td>
+</tr>
+<tr>
+<td><code>context_id</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>XBRL context identifier</td>
+</tr>
+<tr>
+<td><code>taxonomy</code></td>
+<td>VARCHAR(16)</td>
+<td>Taxonomy namespace (e.g., 'us-gaap', 'dei')</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>VARCHAR(256)</td>
+<td>XBRL element name</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td>TEXT</td>
+<td>The reported value</td>
+</tr>
+<tr>
+<td><code>period_start_date</code></td>
+<td>DATE</td>
+<td>Start date of the reporting period</td>
+</tr>
+<tr>
+<td><code>period_end_date</code></td>
+<td>DATE</td>
+<td>End date of the reporting period</td>
+</tr>
+<tr>
+<td><code>members</code></td>
+<td>TEXT</td>
+<td>Dimensional members/axes information</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Indexes:</strong>
+- PRIMARY KEY: <code>(id, accessionNumber)</code>
+- <code>idx_accession</code>, <code>idx_taxonomy_name</code>, <code>idx_period</code></p>
+<h4 id="parameters_2">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>accessionNumber</code></td>
+<td>int / list[int]</td>
+<td>Filter by accession number(s)</td>
+</tr>
+<tr>
+<td><code>taxonomy</code></td>
+<td>str / list[str]</td>
+<td>Filter by taxonomy</td>
+</tr>
+<tr>
+<td><code>contextId</code></td>
+<td>int / list[int]</td>
+<td>Filter by context ID</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>str / list[str]</td>
+<td>Exact match on element name</td>
+</tr>
+<tr>
+<td><code>namePattern</code></td>
+<td>str</td>
+<td>LIKE match on element name</td>
+</tr>
+<tr>
+<td><code>periodStartDate</code></td>
+<td>str / list[str]</td>
+<td>Exact match on start date</td>
+</tr>
+<tr>
+<td><code>periodEndDate</code></td>
+<td>str / list[str]</td>
+<td>Exact match on end date</td>
+</tr>
+<tr>
+<td><code>periodDate</code></td>
+<td>tuple(str, str)</td>
+<td>Date range (finds overlapping periods)</td>
+</tr>
+<tr>
+<td><code>instantDate</code></td>
+<td>str / list[str]</td>
+<td>Facts where start = end date</td>
+</tr>
+<tr>
+<td><code>members</code></td>
+<td>str / list[str]</td>
+<td>Exact match on members</td>
+</tr>
+<tr>
+<td><code>membersPattern</code></td>
+<td>str</td>
+<td>LIKE match on members</td>
+</tr>
+<tr>
+<td><code>hasValue</code></td>
+<td>bool</td>
+<td>Filter by presence of value</td>
+</tr>
+<tr>
+<td><code>hasPeriod</code></td>
+<td>bool</td>
+<td>Duration (True) vs instant (False)</td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td>int</td>
+<td>Page number (default: 1)</td>
+</tr>
+<tr>
+<td><code>pageSize</code></td>
+<td>int</td>
+<td>Records per page (max: 25000)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="institutional-holdings">Institutional Holdings</h3>
+<p>13F institutional holdings data showing equity positions held by institutional investment managers.</p>
+<div class="highlight"><pre><span></span><code><span class="n">sheet</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="s1">&#39;institutional-holdings&#39;</span><span class="p">,</span>
+    <span class="n">accessionNumber</span><span class="o">=</span><span class="mi">1234567890</span><span class="p">,</span>
+    <span class="n">cusip</span><span class="o">=</span><span class="s1">&#39;037833100&#39;</span><span class="p">,</span>
+    <span class="n">value</span><span class="o">=</span><span class="p">(</span><span class="mi">1000000</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+    <span class="n">investmentDiscretion</span><span class="o">=</span><span class="s1">&#39;SOLE&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="schema_3">Schema</h4>
+<p><strong>Database:</strong> <code>institutional_holdings</code><br />
+<strong>Table:</strong> <code>institutional_holdings_table</code></p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Auto-increment primary key</td>
+</tr>
+<tr>
+<td><code>accessionNumber</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>SEC filing accession number</td>
+</tr>
+<tr>
+<td><code>cusip</code></td>
+<td>CHAR(9)</td>
+<td>Security CUSIP identifier</td>
+</tr>
+<tr>
+<td><code>nameOfIssuer</code></td>
+<td>VARCHAR(256)</td>
+<td>Name of the security issuer</td>
+</tr>
+<tr>
+<td><code>titleOfClass</code></td>
+<td>VARCHAR(256)</td>
+<td>Class of security</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Position value in dollars</td>
+</tr>
+<tr>
+<td><code>sharesOrPrincipalAmount</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Number of shares or principal amount</td>
+</tr>
+<tr>
+<td><code>sharesOrPrincipalAmountType</code></td>
+<td>VARCHAR(16)</td>
+<td>Type: 'SH' (shares) or 'PRN' (principal)</td>
+</tr>
+<tr>
+<td><code>investmentDiscretion</code></td>
+<td>VARCHAR(16)</td>
+<td>Investment discretion type</td>
+</tr>
+<tr>
+<td><code>putCall</code></td>
+<td>VARCHAR(16)</td>
+<td>Put or call option indicator</td>
+</tr>
+<tr>
+<td><code>otherManager</code></td>
+<td>VARCHAR(256)</td>
+<td>Other managers with shared voting authority</td>
+</tr>
+<tr>
+<td><code>votingAuthoritySole</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Shares with sole voting authority</td>
+</tr>
+<tr>
+<td><code>votingAuthorityShared</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Shares with shared voting authority</td>
+</tr>
+<tr>
+<td><code>votingAuthorityNone</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Shares with no voting authority</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Indexes:</strong>
+- PRIMARY KEY: <code>(id, accessionNumber)</code>
+- <code>idx_accession</code>, <code>idx_cusip</code>, <code>idx_issuer</code>, <code>idx_value</code>, <code>idx_cusip_value</code></p>
+<h4 id="parameters_3">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>accessionNumber</code></td>
+<td>int / list[int]</td>
+<td>Filter by accession number(s)</td>
+</tr>
+<tr>
+<td><code>cusip</code></td>
+<td>str / list[str]</td>
+<td>Filter by CUSIP</td>
+</tr>
+<tr>
+<td><code>nameOfIssuer</code></td>
+<td>str / list[str]</td>
+<td>Exact match on issuer name</td>
+</tr>
+<tr>
+<td><code>nameOfIssuerPattern</code></td>
+<td>str</td>
+<td>LIKE match on issuer name</td>
+</tr>
+<tr>
+<td><code>titleOfClass</code></td>
+<td>str / list[str]</td>
+<td>Exact match on security class</td>
+</tr>
+<tr>
+<td><code>titleOfClassPattern</code></td>
+<td>str</td>
+<td>LIKE match on security class</td>
+</tr>
+<tr>
+<td><code>value</code></td>
+<td>int / list[int] / tuple(int, int)</td>
+<td>Position value(s) or range</td>
+</tr>
+<tr>
+<td><code>sharesOrPrincipalAmount</code></td>
+<td>int / list[int] / tuple(int, int)</td>
+<td>Shares/principal or range</td>
+</tr>
+<tr>
+<td><code>sharesOrPrincipalAmountType</code></td>
+<td>str / list[str]</td>
+<td>Filter by type ('SH' or 'PRN')</td>
+</tr>
+<tr>
+<td><code>investmentDiscretion</code></td>
+<td>str / list[str]</td>
+<td>Filter by discretion type</td>
+</tr>
+<tr>
+<td><code>putCall</code></td>
+<td>str / list[str]</td>
+<td>Filter by put/call indicator</td>
+</tr>
+<tr>
+<td><code>otherManager</code></td>
+<td>str / list[str]</td>
+<td>Exact match on other manager</td>
+</tr>
+<tr>
+<td><code>otherManagerPattern</code></td>
+<td>str</td>
+<td>LIKE match on other manager</td>
+</tr>
+<tr>
+<td><code>votingAuthoritySole</code></td>
+<td>int / list[int] / tuple(int, int)</td>
+<td>Sole voting shares or range</td>
+</tr>
+<tr>
+<td><code>votingAuthorityShared</code></td>
+<td>int / list[int] / tuple(int, int)</td>
+<td>Shared voting shares or range</td>
+</tr>
+<tr>
+<td><code>votingAuthorityNone</code></td>
+<td>int / list[int] / tuple(int, int)</td>
+<td>No voting shares or range</td>
+</tr>
+<tr>
+<td><code>hasValue</code></td>
+<td>bool</td>
+<td>Filter by value presence</td>
+</tr>
+<tr>
+<td><code>hasShares</code></td>
+<td>bool</td>
+<td>Filter by shares presence</td>
+</tr>
+<tr>
+<td><code>hasPutCall</code></td>
+<td>bool</td>
+<td>Filter by put/call presence</td>
+</tr>
+<tr>
+<td><code>hasOtherManager</code></td>
+<td>bool</td>
+<td>Filter by other manager presence</td>
+</tr>
+<tr>
+<td><code>hasVotingSole</code></td>
+<td>bool</td>
+<td>Filter by sole voting authority presence</td>
+</tr>
+<tr>
+<td><code>hasVotingShared</code></td>
+<td>bool</td>
+<td>Filter by shared voting authority presence</td>
+</tr>
+<tr>
+<td><code>hasVotingNone</code></td>
+<td>bool</td>
+<td>Filter by no voting authority presence</td>
+</tr>
+<tr>
+<td><code>returnCols</code></td>
+<td>list[str]</td>
+<td>Columns to return (default: all)</td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td>int</td>
+<td>Page number (default: 1)</td>
+</tr>
+<tr>
+<td><code>pageSize</code></td>
+<td>int</td>
+<td>Records per page (max: 25000)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="proxy-voting-records">Proxy Voting Records</h3>
+<p>Proxy voting records from institutional investors showing how they voted on corporate proposals.</p>
+<div class="highlight"><pre><span></span><code><span class="n">sheet</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="s1">&#39;proxy-voting-records&#39;</span><span class="p">,</span>
+    <span class="n">accessionNumber</span><span class="o">=</span><span class="mi">1234567890</span><span class="p">,</span>
+    <span class="n">cusip</span><span class="o">=</span><span class="s1">&#39;037833100&#39;</span><span class="p">,</span>
+    <span class="n">meetingDate</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-12-31&#39;</span><span class="p">),</span>
+    <span class="n">howVoted</span><span class="o">=</span><span class="s1">&#39;For&#39;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="schema_4">Schema</h4>
+<p><strong>Database:</strong> <code>proxy_voting_records</code><br />
+<strong>Table:</strong> <code>proxy_voting_records_table</code></p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Auto-increment primary key</td>
+</tr>
+<tr>
+<td><code>accessionNumber</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>SEC filing accession number</td>
+</tr>
+<tr>
+<td><code>cusip</code></td>
+<td>CHAR(9)</td>
+<td>Security CUSIP identifier</td>
+</tr>
+<tr>
+<td><code>issuerName</code></td>
+<td>VARCHAR(256)</td>
+<td>Name of the issuer</td>
+</tr>
+<tr>
+<td><code>meetingDate</code></td>
+<td>DATE</td>
+<td>Date of shareholder meeting</td>
+</tr>
+<tr>
+<td><code>categoryType</code></td>
+<td>VARCHAR(256)</td>
+<td>Category of vote (e.g., 'Director Election')</td>
+</tr>
+<tr>
+<td><code>voteDescription</code></td>
+<td>VARCHAR(8192)</td>
+<td>Description of the proposal</td>
+</tr>
+<tr>
+<td><code>managementRecommendation</code></td>
+<td>VARCHAR(16)</td>
+<td>Management's recommendation</td>
+</tr>
+<tr>
+<td><code>howVoted</code></td>
+<td>VARCHAR(16)</td>
+<td>How the fund voted (e.g., 'For', 'Against')</td>
+</tr>
+<tr>
+<td><code>sharesVoted</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Number of shares voted</td>
+</tr>
+<tr>
+<td><code>sharesOnLoan</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Number of shares on loan</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Indexes:</strong>
+- PRIMARY KEY: <code>(id, accessionNumber)</code>
+- <code>idx_accession</code>, <code>idx_cusip</code>, <code>idx_meeting_date</code>, <code>idx_cusip_date</code></p>
+<h4 id="parameters_4">Parameters</h4>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>accessionNumber</code></td>
+<td>int / list[int]</td>
+<td>Filter by accession number(s)</td>
+</tr>
+<tr>
+<td><code>cusip</code></td>
+<td>str / list[str]</td>
+<td>Filter by CUSIP</td>
+</tr>
+<tr>
+<td><code>issuerName</code></td>
+<td>str / list[str]</td>
+<td>Exact match on issuer name</td>
+</tr>
+<tr>
+<td><code>issuerNamePattern</code></td>
+<td>str</td>
+<td>LIKE match on issuer name</td>
+</tr>
+<tr>
+<td><code>meetingDate</code></td>
+<td>str / list[str] / tuple(str, str)</td>
+<td>Meeting date(s) or range</td>
+</tr>
+<tr>
+<td><code>categoryType</code></td>
+<td>str / list[str]</td>
+<td>Exact match on category</td>
+</tr>
+<tr>
+<td><code>categoryTypePattern</code></td>
+<td>str</td>
+<td>LIKE match on category</td>
+</tr>
+<tr>
+<td><code>voteDescriptionPattern</code></td>
+<td>str</td>
+<td>LIKE match on vote description</td>
+</tr>
+<tr>
+<td><code>managementRecommendation</code></td>
+<td>str / list[str]</td>
+<td>Filter by management recommendation</td>
+</tr>
+<tr>
+<td><code>howVoted</code></td>
+<td>str / list[str]</td>
+<td>Filter by vote choice</td>
+</tr>
+<tr>
+<td><code>sharesVoted</code></td>
+<td>int / list[int] / tuple(int, int)</td>
+<td>Shares voted or range</td>
+</tr>
+<tr>
+<td><code>sharesOnLoan</code></td>
+<td>int / list[int] / tuple(int, int)</td>
+<td>Shares on loan or range</td>
+</tr>
+<tr>
+<td><code>hasSharesVoted</code></td>
+<td>bool</td>
+<td>Filter by shares voted presence</td>
+</tr>
+<tr>
+<td><code>hasSharesOnLoan</code></td>
+<td>bool</td>
+<td>Filter by shares on loan presence</td>
+</tr>
+<tr>
+<td><code>returnCols</code></td>
+<td>list[str]</td>
+<td>Columns to return (default: all)</td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td>int</td>
+<td>Page number (default: 1)</td>
+</tr>
+<tr>
+<td><code>pageSize</code></td>
+<td>int</td>
+<td>Records per page (max: 25000)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="insider-transactions">Insider Transactions</h3>
+<p>Insider trading data from Forms 3, 4, and 5 showing transactions and holdings by company insiders.</p>
+<div class="highlight"><pre><span></span><code><span class="n">sheet</span><span class="o">.</span><span class="n">get_table</span><span class="p">(</span><span class="s1">&#39;insider-transactions&#39;</span><span class="p">,</span>
+    <span class="n">table</span><span class="o">=</span><span class="s1">&#39;non-derivative-transaction&#39;</span><span class="p">,</span>
+    <span class="n">accessionNumber</span><span class="o">=</span><span class="mi">1234567890</span><span class="p">,</span>
+    <span class="n">transactionCode</span><span class="o">=</span><span class="s1">&#39;P&#39;</span><span class="p">,</span>
+    <span class="n">transactionDate</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;2024-01-01&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-12-31&#39;</span><span class="p">))</span>
+</code></pre></div>
+<h4 id="schema_5">Schema</h4>
+<p><strong>Database:</strong> <code>insider_transactions</code></p>
+<p>The insider transactions database contains 7 related tables. Use the <code>table</code> parameter to specify which table to query.</p>
+<h5 id="metadata_ownership_table">metadata_ownership_table</h5>
+<p>Filing-level metadata for ownership reports.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Auto-increment primary key</td>
+</tr>
+<tr>
+<td><code>accessionNumber</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>SEC filing accession number</td>
+</tr>
+<tr>
+<td><code>issuerCik</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Issuer company CIK</td>
+</tr>
+<tr>
+<td><code>issuerName</code></td>
+<td>VARCHAR(128)</td>
+<td>Issuer company name</td>
+</tr>
+<tr>
+<td><code>issuerTradingSymbol</code></td>
+<td>VARCHAR(16)</td>
+<td>Issuer ticker symbol</td>
+</tr>
+<tr>
+<td><code>documentType</code></td>
+<td>VARCHAR(8)</td>
+<td>Form type (3, 4, 5)</td>
+</tr>
+<tr>
+<td><code>periodOfReport</code></td>
+<td>DATE</td>
+<td>Report period date</td>
+</tr>
+<tr>
+<td><code>notSubjectToSection16</code></td>
+<td>VARCHAR(8)</td>
+<td>Section 16 exemption status</td>
+</tr>
+<tr>
+<td><code>form3HoldingsReported</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Number of Form 3 holdings</td>
+</tr>
+<tr>
+<td><code>form4TransactionsReported</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Number of Form 4 transactions</td>
+</tr>
+<tr>
+<td><code>dateOfOriginalSubmission</code></td>
+<td>DATE</td>
+<td>Original submission date</td>
+</tr>
+<tr>
+<td><code>noSecuritiesOwned</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>No securities owned flag</td>
+</tr>
+<tr>
+<td><code>aff10b5One</code></td>
+<td>VARCHAR(8)</td>
+<td>10b5-1 plan indicator</td>
+</tr>
+<tr>
+<td><code>schemaVersion</code></td>
+<td>VARCHAR(8)</td>
+<td>XML schema version</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Indexes:</strong> PRIMARY KEY <code>(id, accessionNumber)</code>, <code>idx_accession</code></p>
+<h5 id="reporting_owner_ownership_table">reporting_owner_ownership_table</h5>
+<p>Information about the reporting owner (insider).</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Auto-increment primary key</td>
+</tr>
+<tr>
+<td><code>accessionNumber</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>SEC filing accession number</td>
+</tr>
+<tr>
+<td><code>rptOwnerCik</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Reporting owner CIK</td>
+</tr>
+<tr>
+<td><code>rptOwnerName</code></td>
+<td>VARCHAR(256)</td>
+<td>Reporting owner name</td>
+</tr>
+<tr>
+<td><code>rptOwnerStreet1</code></td>
+<td>VARCHAR(64)</td>
+<td>Address line 1</td>
+</tr>
+<tr>
+<td><code>rptOwnerStreet2</code></td>
+<td>VARCHAR(64)</td>
+<td>Address line 2</td>
+</tr>
+<tr>
+<td><code>rptOwnerCity</code></td>
+<td>VARCHAR(64)</td>
+<td>City</td>
+</tr>
+<tr>
+<td><code>rptOwnerState</code></td>
+<td>CHAR(4)</td>
+<td>State code</td>
+</tr>
+<tr>
+<td><code>rptOwnerStateDescription</code></td>
+<td>VARCHAR(64)</td>
+<td>State name</td>
+</tr>
+<tr>
+<td><code>rptOwnerZipCode</code></td>
+<td>VARCHAR(16)</td>
+<td>ZIP code</td>
+</tr>
+<tr>
+<td><code>rptOwnerIsDirector</code></td>
+<td>VARCHAR(8)</td>
+<td>Is director flag</td>
+</tr>
+<tr>
+<td><code>rptOwnerIsOfficer</code></td>
+<td>VARCHAR(8)</td>
+<td>Is officer flag</td>
+</tr>
+<tr>
+<td><code>rptOwnerIsTenPercentOwner</code></td>
+<td>VARCHAR(8)</td>
+<td>Is 10% owner flag</td>
+</tr>
+<tr>
+<td><code>rptOwnerIsOther</code></td>
+<td>VARCHAR(8)</td>
+<td>Other relationship flag</td>
+</tr>
+<tr>
+<td><code>rptOwnerOfficerTitle</code></td>
+<td>VARCHAR(64)</td>
+<td>Officer title</td>
+</tr>
+<tr>
+<td><code>rptOwnerOtherText</code></td>
+<td>VARCHAR(64)</td>
+<td>Other relationship text</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Indexes:</strong> PRIMARY KEY <code>(id, accessionNumber)</code>, <code>idx_accession</code></p>
+<h5 id="non_derivative_transaction_ownership_table">non_derivative_transaction_ownership_table</h5>
+<p>Non-derivative security transactions (common stock, etc.).</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Auto-increment primary key</td>
+</tr>
+<tr>
+<td><code>accessionNumber</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>SEC filing accession number</td>
+</tr>
+<tr>
+<td><code>securityTitle</code></td>
+<td>VARCHAR(128)</td>
+<td>Security name</td>
+</tr>
+<tr>
+<td><code>transactionDate</code></td>
+<td>DATE</td>
+<td>Transaction date</td>
+</tr>
+<tr>
+<td><code>deemedExecutionDate</code></td>
+<td>DATE</td>
+<td>Deemed execution date</td>
+</tr>
+<tr>
+<td><code>transactionFormType</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Form type</td>
+</tr>
+<tr>
+<td><code>transactionCode</code></td>
+<td>CHAR(1)</td>
+<td>Transaction code (P, S, A, D, etc.)</td>
+</tr>
+<tr>
+<td><code>equitySwapInvolved</code></td>
+<td>VARCHAR(8)</td>
+<td>Equity swap indicator</td>
+</tr>
+<tr>
+<td><code>transactionShares</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Number of shares</td>
+</tr>
+<tr>
+<td><code>transactionPricePerShare</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Price per share</td>
+</tr>
+<tr>
+<td><code>transactionAcquiredDisposedCode</code></td>
+<td>CHAR(1)</td>
+<td>Acquired (A) or Disposed (D)</td>
+</tr>
+<tr>
+<td><code>sharesOwnedFollowingTransaction</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Shares owned after</td>
+</tr>
+<tr>
+<td><code>valueOwnedFollowingTransaction</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Value owned after</td>
+</tr>
+<tr>
+<td><code>directOrIndirectOwnership</code></td>
+<td>CHAR(1)</td>
+<td>Direct (D) or Indirect (I)</td>
+</tr>
+<tr>
+<td><code>natureOfOwnership</code></td>
+<td>VARCHAR(256)</td>
+<td>Nature of indirect ownership</td>
+</tr>
+<tr>
+<td><code>transactionTimeliness</code></td>
+<td>CHAR(1)</td>
+<td>Timely or late filing</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Indexes:</strong> PRIMARY KEY <code>(id, accessionNumber)</code>, <code>idx_accession</code></p>
+<h5 id="non_derivative_holding_ownership_table">non_derivative_holding_ownership_table</h5>
+<p>Non-derivative security holdings (no transactions).</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Auto-increment primary key</td>
+</tr>
+<tr>
+<td><code>accessionNumber</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>SEC filing accession number</td>
+</tr>
+<tr>
+<td><code>securityTitle</code></td>
+<td>VARCHAR(128)</td>
+<td>Security name</td>
+</tr>
+<tr>
+<td><code>sharesOwnedFollowingTransaction</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Shares owned</td>
+</tr>
+<tr>
+<td><code>valueOwnedFollowingTransaction</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Value owned</td>
+</tr>
+<tr>
+<td><code>directOrIndirectOwnership</code></td>
+<td>CHAR(1)</td>
+<td>Direct (D) or Indirect (I)</td>
+</tr>
+<tr>
+<td><code>natureOfOwnership</code></td>
+<td>VARCHAR(256)</td>
+<td>Nature of indirect ownership</td>
+</tr>
+<tr>
+<td><code>transactionFormType</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Form type</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Indexes:</strong> PRIMARY KEY <code>(id, accessionNumber)</code>, <code>idx_accession</code></p>
+<h5 id="derivative_transaction_ownership_table">derivative_transaction_ownership_table</h5>
+<p>Derivative security transactions (options, warrants, etc.).</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Auto-increment primary key</td>
+</tr>
+<tr>
+<td><code>accessionNumber</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>SEC filing accession number</td>
+</tr>
+<tr>
+<td><code>securityTitle</code></td>
+<td>VARCHAR(128)</td>
+<td>Derivative security name</td>
+</tr>
+<tr>
+<td><code>conversionOrExercisePrice</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Conversion/exercise price</td>
+</tr>
+<tr>
+<td><code>transactionDate</code></td>
+<td>DATE</td>
+<td>Transaction date</td>
+</tr>
+<tr>
+<td><code>deemedExecutionDate</code></td>
+<td>DATE</td>
+<td>Deemed execution date</td>
+</tr>
+<tr>
+<td><code>transactionFormType</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Form type</td>
+</tr>
+<tr>
+<td><code>transactionCode</code></td>
+<td>CHAR(1)</td>
+<td>Transaction code</td>
+</tr>
+<tr>
+<td><code>equitySwapInvolved</code></td>
+<td>VARCHAR(8)</td>
+<td>Equity swap indicator</td>
+</tr>
+<tr>
+<td><code>transactionShares</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Number of derivative securities</td>
+</tr>
+<tr>
+<td><code>transactionPricePerShare</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Price per derivative</td>
+</tr>
+<tr>
+<td><code>transactionAcquiredDisposedCode</code></td>
+<td>CHAR(1)</td>
+<td>Acquired (A) or Disposed (D)</td>
+</tr>
+<tr>
+<td><code>transactionTotalValue</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Total transaction value</td>
+</tr>
+<tr>
+<td><code>exerciseDate</code></td>
+<td>DATE</td>
+<td>Exercise date</td>
+</tr>
+<tr>
+<td><code>expirationDate</code></td>
+<td>DATE</td>
+<td>Expiration date</td>
+</tr>
+<tr>
+<td><code>underlyingSecurityTitle</code></td>
+<td>VARCHAR(128)</td>
+<td>Underlying security name</td>
+</tr>
+<tr>
+<td><code>underlyingSecurityShares</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Underlying shares</td>
+</tr>
+<tr>
+<td><code>underlyingSecurityValue</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Underlying value</td>
+</tr>
+<tr>
+<td><code>sharesOwnedFollowingTransaction</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Derivatives owned after</td>
+</tr>
+<tr>
+<td><code>valueOwnedFollowingTransaction</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Value owned after</td>
+</tr>
+<tr>
+<td><code>directOrIndirectOwnership</code></td>
+<td>CHAR(1)</td>
+<td>Direct (D) or Indirect (I)</td>
+</tr>
+<tr>
+<td><code>natureOfOwnership</code></td>
+<td>VARCHAR(256)</td>
+<td>Nature of indirect ownership</td>
+</tr>
+<tr>
+<td><code>transactionTimeliness</code></td>
+<td>CHAR(1)</td>
+<td>Timely or late filing</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Indexes:</strong> PRIMARY KEY <code>(id, accessionNumber)</code>, <code>idx_accession</code></p>
+<h5 id="derivative_holding_ownership_table">derivative_holding_ownership_table</h5>
+<p>Derivative security holdings (no transactions).</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Auto-increment primary key</td>
+</tr>
+<tr>
+<td><code>accessionNumber</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>SEC filing accession number</td>
+</tr>
+<tr>
+<td><code>securityTitle</code></td>
+<td>VARCHAR(128)</td>
+<td>Derivative security name</td>
+</tr>
+<tr>
+<td><code>conversionOrExercisePrice</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Conversion/exercise price</td>
+</tr>
+<tr>
+<td><code>exerciseDate</code></td>
+<td>DATE</td>
+<td>Exercise date</td>
+</tr>
+<tr>
+<td><code>expirationDate</code></td>
+<td>DATE</td>
+<td>Expiration date</td>
+</tr>
+<tr>
+<td><code>underlyingSecurityTitle</code></td>
+<td>VARCHAR(128)</td>
+<td>Underlying security name</td>
+</tr>
+<tr>
+<td><code>underlyingSecurityShares</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Underlying shares</td>
+</tr>
+<tr>
+<td><code>underlyingSecurityValue</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Underlying value</td>
+</tr>
+<tr>
+<td><code>sharesOwnedFollowingTransaction</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Derivatives owned</td>
+</tr>
+<tr>
+<td><code>valueOwnedFollowingTransaction</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Value owned</td>
+</tr>
+<tr>
+<td><code>directOrIndirectOwnership</code></td>
+<td>CHAR(1)</td>
+<td>Direct (D) or Indirect (I)</td>
+</tr>
+<tr>
+<td><code>natureOfOwnership</code></td>
+<td>VARCHAR(256)</td>
+<td>Nature of indirect ownership</td>
+</tr>
+<tr>
+<td><code>transactionFormType</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Form type</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Indexes:</strong> PRIMARY KEY <code>(id, accessionNumber)</code>, <code>idx_accession</code></p>
+<h5 id="owner_signature_ownership_table">owner_signature_ownership_table</h5>
+<p>Signature information for the filing.</p>
+<table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>Auto-increment primary key</td>
+</tr>
+<tr>
+<td><code>accessionNumber</code></td>
+<td>BIGINT UNSIGNED</td>
+<td>SEC filing accession number</td>
+</tr>
+<tr>
+<td><code>signatureName</code></td>
+<td>VARCHAR(256)</td>
+<td>Name of signatory</td>
+</tr>
+<tr>
+<td><code>signatureDate</code></td>
+<td>DATE</td>
+<td>Signature date</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Indexes:</strong> PRIMARY KEY <code>(id, accessionNumber)</code>, <code>idx_accession</code></p>
+<h4 id="parameters_5">Parameters</h4>
+<h5 id="required-parameter">Required Parameter</h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>table</code></td>
+<td>str</td>
+<td><strong>Required.</strong> Table to query: 'metadata', 'reporting-owner', 'non-derivative-transaction', 'non-derivative-holding', 'derivative-transaction', 'derivative-holding', or 'signature'</td>
+</tr>
+</tbody>
+</table>
+<h5 id="common-parameters-available-for-all-tables">Common Parameters (Available for All Tables)</h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>accessionNumber</code></td>
+<td>int / list[int]</td>
+<td>Filter by accession number(s)</td>
+</tr>
+<tr>
+<td><code>returnCols</code></td>
+<td>list[str]</td>
+<td>Columns to return (default: all)</td>
+</tr>
+<tr>
+<td><code>page</code></td>
+<td>int</td>
+<td>Page number (default: 1)</td>
+</tr>
+<tr>
+<td><code>pageSize</code></td>
+<td>int</td>
+<td>Records per page (max: 25000)</td>
+</tr>
+</tbody>
+</table>
+<h5 id="metadata-table-parameters">Metadata Table Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>issuerCik</code></td>
+<td>int / list[int]</td>
+<td>Filter by issuer CIK</td>
+</tr>
+<tr>
+<td><code>issuerName</code></td>
+<td>str / list[str]</td>
+<td>Exact match on issuer name</td>
+</tr>
+<tr>
+<td><code>issuerNamePattern</code></td>
+<td>str</td>
+<td>LIKE match on issuer name</td>
+</tr>
+<tr>
+<td><code>issuerTradingSymbol</code></td>
+<td>str / list[str]</td>
+<td>Filter by ticker symbol</td>
+</tr>
+<tr>
+<td><code>documentType</code></td>
+<td>str / list[str]</td>
+<td>Filter by form type</td>
+</tr>
+<tr>
+<td><code>periodOfReport</code></td>
+<td>str / list[str] / tuple(str, str)</td>
+<td>Period of report date(s) or range</td>
+</tr>
+<tr>
+<td><code>dateOfOriginalSubmission</code></td>
+<td>str / list[str] / tuple(str, str)</td>
+<td>Submission date(s) or range</td>
+</tr>
+<tr>
+<td><code>notSubjectToSection16</code></td>
+<td>str / list[str]</td>
+<td>Section 16 exemption values</td>
+</tr>
+<tr>
+<td><code>form3HoldingsReported</code></td>
+<td>int / list[int] / tuple(int, int)</td>
+<td>Form 3 holdings count or range</td>
+</tr>
+<tr>
+<td><code>form4TransactionsReported</code></td>
+<td>int / list[int] / tuple(int, int)</td>
+<td>Form 4 transactions count or range</td>
+</tr>
+<tr>
+<td><code>noSecuritiesOwned</code></td>
+<td>int / list[int] / tuple(int, int)</td>
+<td>No securities flag or range</td>
+</tr>
+<tr>
+<td><code>aff10b5One</code></td>
+<td>str / list[str]</td>
+<td>10b5-1 plan values</td>
+</tr>
+<tr>
+<td><code>schemaVersion</code></td>
+<td>str / list[str]</td>
+<td>Schema version</td>
+</tr>
+<tr>
+<td><code>hasForm3Holdings</code></td>
+<td>bool</td>
+<td>Filter by Form 3 holdings presence</td>
+</tr>
+<tr>
+<td><code>hasForm4Transactions</code></td>
+<td>bool</td>
+<td>Filter by Form 4 transactions presence</td>
+</tr>
+<tr>
+<td><code>hasNoSecurities</code></td>
+<td>bool</td>
+<td>Filter by no securities flag</td>
+</tr>
+</tbody>
+</table>
+<h5 id="reporting-owner-table-parameters">Reporting Owner Table Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>rptOwnerCik</code></td>
+<td>int / list[int]</td>
+<td>Filter by reporting owner CIK</td>
+</tr>
+<tr>
+<td><code>rptOwnerName</code></td>
+<td>str / list[str]</td>
+<td>Exact match on owner name</td>
+</tr>
+<tr>
+<td><code>rptOwnerNamePattern</code></td>
+<td>str</td>
+<td>LIKE match on owner name</td>
+</tr>
+<tr>
+<td><code>rptOwnerCity</code></td>
+<td>str / list[str]</td>
+<td>Exact match on city</td>
+</tr>
+<tr>
+<td><code>rptOwnerCityPattern</code></td>
+<td>str</td>
+<td>LIKE match on city</td>
+</tr>
+<tr>
+<td><code>rptOwnerState</code></td>
+<td>str / list[str]</td>
+<td>Filter by state code</td>
+</tr>
+<tr>
+<td><code>rptOwnerStateDescription</code></td>
+<td>str / list[str]</td>
+<td>Exact match on state name</td>
+</tr>
+<tr>
+<td><code>rptOwnerStateDescriptionPattern</code></td>
+<td>str</td>
+<td>LIKE match on state name</td>
+</tr>
+<tr>
+<td><code>rptOwnerStreet1Pattern</code></td>
+<td>str</td>
+<td>LIKE match on street 1</td>
+</tr>
+<tr>
+<td><code>rptOwnerStreet2Pattern</code></td>
+<td>str</td>
+<td>LIKE match on street 2</td>
+</tr>
+<tr>
+<td><code>rptOwnerZipCode</code></td>
+<td>str / list[str]</td>
+<td>Filter by ZIP code</td>
+</tr>
+<tr>
+<td><code>rptOwnerIsDirector</code></td>
+<td>str / list[str]</td>
+<td>Director flag values</td>
+</tr>
+<tr>
+<td><code>rptOwnerIsOfficer</code></td>
+<td>str / list[str]</td>
+<td>Officer flag values</td>
+</tr>
+<tr>
+<td><code>rptOwnerIsTenPercentOwner</code></td>
+<td>str / list[str]</td>
+<td>10% owner flag values</td>
+</tr>
+<tr>
+<td><code>rptOwnerIsOther</code></td>
+<td>str / list[str]</td>
+<td>Other flag values</td>
+</tr>
+<tr>
+<td><code>rptOwnerOfficerTitle</code></td>
+<td>str / list[str]</td>
+<td>Exact match on officer title</td>
+</tr>
+<tr>
+<td><code>rptOwnerOfficerTitlePattern</code></td>
+<td>str</td>
+<td>LIKE match on officer title</td>
+</tr>
+<tr>
+<td><code>rptOwnerOtherText</code></td>
+<td>str / list[str]</td>
+<td>Exact match on other text</td>
+</tr>
+<tr>
+<td><code>rptOwnerOtherTextPattern</code></td>
+<td>str</td>
+<td>LIKE match on other text</td>
+</tr>
+<tr>
+<td><code>isDirector</code></td>
+<td>bool</td>
+<td>Filter for directors</td>
+</tr>
+<tr>
+<td><code>isOfficer</code></td>
+<td>bool</td>
+<td>Filter for officers</td>
+</tr>
+<tr>
+<td><code>isTenPercentOwner</code></td>
+<td>bool</td>
+<td>Filter for 10% owners</td>
+</tr>
+<tr>
+<td><code>isOther</code></td>
+<td>bool</td>
+<td>Filter for other relationships</td>
+</tr>
+</tbody>
+</table>
+<h5 id="non-derivative-transaction-table-parameters">Non-Derivative Transaction Table Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>securityTitle</code></td>
+<td>str / list[str]</td>
+<td>Exact match on security name</td>
+</tr>
+<tr>
+<td><code>securityTitlePattern</code></td>
+<td>str</td>
+<td>LIKE match on security name</td>
+</tr>
+<tr>
+<td><code>transactionDate</code></td>
+<td>str / list[str] / tuple(str, str)</td>
+<td>Transaction date(s) or range</td>
+</tr>
+<tr>
+<td><code>deemedExecutionDate</code></td>
+<td>str / list[str] / tuple(str, str)</td>
+<td>Deemed execution date(s) or range</td>
+</tr>
+<tr>
+<td><code>transactionFormType</code></td>
+<td>int / list[int]</td>
+<td>Filter by form type</td>
+</tr>
+<tr>
+<td><code>transactionCode</code></td>
+<td>str / list[str]</td>
+<td>Transaction code(s)</td>
+</tr>
+<tr>
+<td><code>equitySwapInvolved</code></td>
+<td>str / list[str]</td>
+<td>Equity swap values</td>
+</tr>
+<tr>
+<td><code>transactionShares</code></td>
+<td>int / list[int] / tuple(int, int)</td>
+<td>Transaction shares or range</td>
+</tr>
+<tr>
+<td><code>transactionPricePerShare</code></td>
+<td>int / list[int] / tuple(int, int)</td>
+<td>Price per share or range</td>
+</tr>
+<tr>
+<td><code>transactionAcquiredDisposedCode</code></td>
+<td>str / list[str]</td>
+<td>Acquired/Disposed code</td>
+</tr>
+<tr>
+<td><code>sharesOwnedFollowingTransaction</code></td>
+<td>int / list[int] / tuple(int, int)</td>
+<td>Shares owned after or range</td>
+</tr>
+<tr>
+<td><code>valueOwnedFollowingTransaction</code></td>
+<td>int / list[int] / tuple(int, int)</td>
+<td>Value owned after or range</td>
+</tr>
+<tr>
+<td><code>directOrIndirectOwnership</code></td>
+<td>str / list[str]</td>
+<td>Direct/Indirect code</td>
+</tr>
+<tr>
+<td><code>natureOfOwnership</code></td>
+<td>str / list[str]</td>
+<td>Exact match on ownership nature</td>
+</tr>
+<tr>
+<td><code>natureOfOwnershipPattern</code></td>
+<td>str</td>
+<td>LIKE match on ownership nature</td>
+</tr>
+<tr>
+<td><code>transactionTimeliness</code></td>
+<td>str / list[str]</td>
+<td>Timeliness code</td>
+</tr>
+<tr>
+<td><code>hasTransactionShares</code></td>
+<td>bool</td>
+<td>Filter by transaction shares presence</td>
+</tr>
+<tr>
+<td><code>hasTransactionPrice</code></td>
+<td>bool</td>
+<td>Filter by price presence</td>
+</tr>
+<tr>
+<td><code>isAcquisition</code></td>
+<td>bool</td>
+<td>Filter for acquisitions (code 'A')</td>
+</tr>
+<tr>
+<td><code>isDisposal</code></td>
+<td>bool</td>
+<td>Filter for disposals (code 'D')</td>
+</tr>
+</tbody>
+</table>
+<h5 id="non-derivative-holding-table-parameters">Non-Derivative Holding Table Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>securityTitle</code></td>
+<td>str / list[str]</td>
+<td>Exact match on security name</td>
+</tr>
+<tr>
+<td><code>securityTitlePattern</code></td>
+<td>str</td>
+<td>LIKE match on security name</td>
+</tr>
+<tr>
+<td><code>sharesOwnedFollowingTransaction</code></td>
+<td>int / list[int] / tuple(int, int)</td>
+<td>Shares owned or range</td>
+</tr>
+<tr>
+<td><code>valueOwnedFollowingTransaction</code></td>
+<td>int / list[int] / tuple(int, int)</td>
+<td>Value owned or range</td>
+</tr>
+<tr>
+<td><code>directOrIndirectOwnership</code></td>
+<td>str / list[str]</td>
+<td>Direct/Indirect code</td>
+</tr>
+<tr>
+<td><code>natureOfOwnership</code></td>
+<td>str / list[str]</td>
+<td>Exact match on ownership nature</td>
+</tr>
+<tr>
+<td><code>natureOfOwnershipPattern</code></td>
+<td>str</td>
+<td>LIKE match on ownership nature</td>
+</tr>
+<tr>
+<td><code>transactionFormType</code></td>
+<td>int / list[int]</td>
+<td>Filter by form type</td>
+</tr>
+</tbody>
+</table>
+<h5 id="derivative-transaction-table-parameters">Derivative Transaction Table Parameters</h5>
+<p>Includes all Non-Derivative Transaction parameters plus:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>conversionOrExercisePrice</code></td>
+<td>int / list[int] / tuple(int, int)</td>
+<td>Conversion/exercise price or range</td>
+</tr>
+<tr>
+<td><code>transactionTotalValue</code></td>
+<td>int / list[int] / tuple(int, int)</td>
+<td>Total value or range</td>
+</tr>
+<tr>
+<td><code>exerciseDate</code></td>
+<td>str / list[str] / tuple(str, str)</td>
+<td>Exercise date(s) or range</td>
+</tr>
+<tr>
+<td><code>expirationDate</code></td>
+<td>str / list[str] / tuple(str, str)</td>
+<td>Expiration date(s) or range</td>
+</tr>
+<tr>
+<td><code>underlyingSecurityTitle</code></td>
+<td>str / list[str]</td>
+<td>Exact match on underlying security</td>
+</tr>
+<tr>
+<td><code>underlyingSecurityTitlePattern</code></td>
+<td>str</td>
+<td>LIKE match on underlying security</td>
+</tr>
+<tr>
+<td><code>underlyingSecurityShares</code></td>
+<td>int / list[int] / tuple(int, int)</td>
+<td>Underlying shares or range</td>
+</tr>
+<tr>
+<td><code>underlyingSecurityValue</code></td>
+<td>int / list[int] / tuple(int, int)</td>
+<td>Underlying value or range</td>
+</tr>
+</tbody>
+</table>
+<h5 id="derivative-holding-table-parameters">Derivative Holding Table Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>securityTitle</code></td>
+<td>str / list[str]</td>
+<td>Exact match on security name</td>
+</tr>
+<tr>
+<td><code>securityTitlePattern</code></td>
+<td>str</td>
+<td>LIKE match on security name</td>
+</tr>
+<tr>
+<td><code>conversionOrExercisePrice</code></td>
+<td>int / list[int] / tuple(int, int)</td>
+<td>Conversion/exercise price or range</td>
+</tr>
+<tr>
+<td><code>exerciseDate</code></td>
+<td>str / list[str] / tuple(str, str)</td>
+<td>Exercise date(s) or range</td>
+</tr>
+<tr>
+<td><code>expirationDate</code></td>
+<td>str / list[str] / tuple(str, str)</td>
+<td>Expiration date(s) or range</td>
+</tr>
+<tr>
+<td><code>underlyingSecurityTitle</code></td>
+<td>str / list[str]</td>
+<td>Exact match on underlying security</td>
+</tr>
+<tr>
+<td><code>underlyingSecurityTitlePattern</code></td>
+<td>str</td>
+<td>LIKE match on underlying security</td>
+</tr>
+<tr>
+<td><code>underlyingSecurityShares</code></td>
+<td>int / list[int] / tuple(int, int)</td>
+<td>Underlying shares or range</td>
+</tr>
+<tr>
+<td><code>underlyingSecurityValue</code></td>
+<td>int / list[int] / tuple(int, int)</td>
+<td>Underlying value or range</td>
+</tr>
+<tr>
+<td><code>sharesOwnedFollowingTransaction</code></td>
+<td>int / list[int] / tuple(int, int)</td>
+<td>Shares owned or range</td>
+</tr>
+<tr>
+<td><code>valueOwnedFollowingTransaction</code></td>
+<td>int / list[int] / tuple(int, int)</td>
+<td>Value owned or range</td>
+</tr>
+<tr>
+<td><code>directOrIndirectOwnership</code></td>
+<td>str / list[str]</td>
+<td>Direct/Indirect code</td>
+</tr>
+<tr>
+<td><code>natureOfOwnership</code></td>
+<td>str / list[str]</td>
+<td>Exact match on ownership nature</td>
+</tr>
+<tr>
+<td><code>natureOfOwnershipPattern</code></td>
+<td>str</td>
+<td>LIKE match on ownership nature</td>
+</tr>
+<tr>
+<td><code>transactionFormType</code></td>
+<td>int / list[int]</td>
+<td>Filter by form type</td>
+</tr>
+</tbody>
+</table>
+<h5 id="signature-table-parameters">Signature Table Parameters</h5>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>signatureName</code></td>
+<td>str / list[str]</td>
+<td>Exact match on signature name</td>
+</tr>
+<tr>
+<td><code>signatureNamePattern</code></td>
+<td>str</td>
+<td>LIKE match on signature name</td>
+</tr>
+<tr>
+<td><code>signatureDate</code></td>
+<td>str / list[str] / tuple(str, str)</td>
+<td>Signature date(s) or range</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
