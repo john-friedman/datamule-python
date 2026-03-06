@@ -48,3 +48,26 @@ portfolio.monitor_submissions(data_callback=data_callback, interval_callback=Non
                             polling_interval=1000, quiet=True, start_date=None,
                             validation_interval=60000)
 ```
+
+## Filtering by document type
+
+```
+from datamule import Portfolio, Submission
+from datamule.utils.convenience import construct_sgml_url
+
+
+portfolio = Portfolio('monitor')
+
+def data_callback(hits):
+    for hit in hits:
+        sgml_url = construct_sgml_url(hit['accession'],hit['ciks'][0])
+
+        sub = Submission(url=sgml_url)
+        for doc in sub:
+            if doc.type == "EX-99.1":
+                print(f"Length: {len(doc.text)}")
+
+portfolio.monitor_submissions(data_callback=data_callback, interval_callback=None,
+                            polling_interval=1000, quiet=True, start_date=None,
+                            validation_interval=60000)
+```
