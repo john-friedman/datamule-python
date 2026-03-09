@@ -242,12 +242,14 @@ class Similarity(TextAnalysisBase):
 
 
 class Document:
-    def __init__(self, type, content, extension,accession,filing_date,path=None):
+    def __init__(self, type, content, filename, accession, filing_date, path=None):
         
         self.type = type
-        extension = extension.lower()
         self.accession = accession
         self.filing_date = filing_date
+        self.filename = filename
+        self.extension = Path(filename).suffix.lower()
+
 
         self.content = content
 
@@ -260,15 +262,6 @@ class Document:
                 # Preserve virtual "tar::inner/path" references
                 self.path = path
 
-            filename_source = path_str
-            if "::" in filename_source:
-                filename_source = filename_source.split("::", 1)[1]
-            self.filename = Path(filename_source).stem
-
-
-
-        self.extension = extension
-
         # this will be filled by parsed
         self._data = None
         self._data_tuples = None
@@ -279,12 +272,7 @@ class Document:
 
 
         # booleans
-        self._data_bool = self.extension in ('.htm', '.html','.txt')
-
-        # may slow things down?
-        if self.extension == '.pdf':
-            if has_extractable_text(pdf_bytes=self.content):
-                self._data_bool = True
+        self._data_bool = self.extension in ('.htm', '.html', '.txt', '.pdf')
 
         self._data_tuples_bool = self._data_bool
         self._text_bool = self._data_bool
@@ -304,6 +292,12 @@ class Document:
         # check if we have already parsed the content
         if self._data:
             return
+        
+        # made lazy
+        if self.extension == '.pdf':
+            if not has_extractable_text(pdf_bytes=self.content):
+                self._data_bool = False
+                return
         
         mapping_dict = None
         if self._data_bool:

@@ -105,7 +105,8 @@ class Submission:
         if url is not None or sgml_content is not None:
             if url is not None:
                 request = urllib.request.Request(url, headers=headers)
-                response = urllib.request.urlopen(request)
+                response = urllib.request.urlopen(request, timeout=30)
+
 
                 if response.getcode() == 200:
                     sgml_content=response.read()
@@ -121,7 +122,7 @@ class Submission:
 
 
 
-            self.metadata = Document(type='submission_metadata', content=metadata, extension='.json',filing_date=None,accession=None,path=None)
+            self.metadata = Document(type='submission_metadata', content=metadata, filename='metadata.json',filing_date=None,accession=None,path=None)
             fd = self.metadata.content.get('filing-date')
             self.filing_date = f"{fd[:4]}-{fd[4:6]}-{fd[6:8]}" if fd else None
     
@@ -137,8 +138,7 @@ class Submission:
 
                 # write as txt if not declared
                 filename = doc.get('filename','.txt')
-                extension = Path(filename).suffix
-                self.documents_obj_list.append(Document(type=type, content=raw_documents[idx], extension=extension,filing_date=self.filing_date,accession=self.accession))
+                self.documents_obj_list.append(Document(type=type, content=raw_documents[idx], filename=filename,filing_date=self.filing_date,accession=self.accession))
 
                 filtered_metadata_documents.append(doc)
             
@@ -157,7 +157,8 @@ class Submission:
             # Set metadata path using :: notation
             metadata_path = f"{batch_tar_path}::{self.accession}/metadata.json"
             
-            self.metadata = Document(type='submission_metadata', content=metadata, extension='.json',filing_date=None,accession=None,path=metadata_path)
+            self.metadata = Document(type='submission_metadata', content=metadata, filename='metadata.json',filing_date=None,accession=None,path=metadata_path)
+
             
             fd = self.metadata.content.get('filing-date')
             self.filing_date = f"{fd[:4]}-{fd[4:6]}-{fd[6:8]}" if fd else None
@@ -178,7 +179,8 @@ class Submission:
                 with metadata_path.open('r') as f:
                     metadata = json.load(f) 
 
-            self.metadata = Document(type='submission_metadata', content=metadata, extension='.json',filing_date=None,accession=None,path=metadata_path)
+            self.metadata = Document(type='submission_metadata', content=metadata, filename='metadata.json',filing_date=None,accession=None,path=metadata_path)
+
             fd = self.metadata.content.get('filing-date')
             self.filing_date = f"{fd[:4]}-{fd[4:6]}-{fd[6:8]}" if fd else None
 
@@ -252,7 +254,7 @@ class Submission:
         return Document(
             type=doc['type'], 
             content=content, 
-            extension=extension,
+            filename=filename,
             filing_date=self.filing_date,
             accession=self.accession,
             path=document_path
@@ -292,7 +294,7 @@ class Submission:
                 self._xbrl = parse_inline_xbrl(content=document.content,file_type='extracted_inline')
                 return  
             
-            if doc['filename'].endswith('_htm.xml'):
+            if doc.filename.endswith('_htm.xml'):
                 document = self._load_document_by_index(idx)
                 self._xbrl = parse_inline_xbrl(content=document.content,file_type='extracted_inline')
                 return
