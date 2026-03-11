@@ -6,7 +6,7 @@ import tarfile
 import io
 from secsgml2 import parse_sgml_content_into_memory
 from secsgml2.utils import calculate_documents_locations_in_tar
-
+import json
 
 # Moved from secsgml original
 def write_submission_to_tar(output_path,metadata,documents):
