@@ -1,0 +1,12 @@
+{
+    "qualif": {
+        "/edgarSubmission/effectiveData/filer/entityName": "entityName",
+        "/edgarSubmission/act": "act",
+        "/edgarSubmission/submissionType": "submissionType",
+        "/edgarSubmission/effectiveData/finalEffectivenessDispDate": "finalEffectivenessDispDate",
+        "/edgarSubmission/effectiveData/filer/fileNumber": "fileNumber",
+        "/edgarSubmission/effectiveData/form": "form",
+        "/edgarSubmission/effectiveData/filer/cik": "cik",
+        "/edgarSubmission/effectiveData/finalEffectivenessDispTime": "finalEffectivenessDispTime"
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "information_table": {
+        "/informationTable/infoTable/cusip": "cusip",
+        "/informationTable/infoTable/figi": "figi",
+        "/informationTable/infoTable/investmentDiscretion": "investmentDiscretion",
+        "/informationTable/infoTable/shrsOrPrnAmt/sshPrnamt": "sshPrnamt",
+        "/informationTable/infoTable/shrsOrPrnAmt/sshPrnamtType": "sshPrnamtType",
+        "/informationTable/infoTable/votingAuthority/Sole": "votingAuthoritySole",
+        "/informationTable/infoTable/votingAuthority/None": "votingAuthorityNone",
+        "/informationTable/infoTable/votingAuthority/Shared": "votingAuthorityShared",
+        "/informationTable/infoTable/titleOfClass": "titleOfClass",
+        "/informationTable/infoTable/value": "value",
+        "/informationTable/infoTable/nameOfIssuer": "nameOfIssuer",
+        "/informationTable/infoTable/putCall": "putCall",
+        "/informationTable/infoTable/otherManager": "otherManager"
+    }
+}

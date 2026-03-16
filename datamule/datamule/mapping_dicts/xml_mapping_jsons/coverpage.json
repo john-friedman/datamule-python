@@ -1,0 +1,15 @@
+{
+  "cover_page": {
+    "/edgarSubmission/submissionType": "submissionType",
+    "/edgarSubmission/liveTestFlag": "liveTestFlag",
+    "/edgarSubmission/accessionNumber": "accessionNumber",
+    "/edgarSubmission/fileNumber": "fileNumber",
+    "/edgarSubmission/filerCredentials/filerCik": "filerCik",
+    "/edgarSubmission/filerCredentials/filerCcc": "filerCcc",
+    "/edgarSubmission/flags/overrideInternetFlag": "overrideInternetFlag",
+    "/edgarSubmission/flags/confirmingCopyFlag": "confirmingCopyFlag",
+    "/edgarSubmission/taStatementAboutAmendment": "taStatementAboutAmendment",
+    "/edgarSubmission/rbOperatesPursuantToFormATS": "rbOperatesPursuantToFormATS",
+    "/edgarSubmission/txNMSStockATSName": "txNMSStockATSName"
+  }
+}

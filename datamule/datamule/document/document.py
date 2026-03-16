@@ -2,8 +2,8 @@ import json
 import csv
 import re
 from doc2dict import xml2dict, txt2dict, html2dict, visualize_dict, get_title, unnest_dict, pdf2dict, flatten_dict, convert_dict_to_columnar
-from ..mapping_dicts.xml_mapping_dicts import dict_345
-from ..mapping_dicts.html_mapping_dicts import MAPPING_DICTS_BY_TYPE, STANDARD_CONFIG
+from ..mapping_dicts import MAPPING_DICTS_BY_TYPE, XML_MAPPING_DICTS_BY_TYPE, STANDARD_CONFIG
+
 from pathlib import Path
 import webbrowser
 import tempfile
@@ -314,13 +314,6 @@ class Document:
                 dct = {}
             
             self._data = dct
-        elif self.extension == '.xml':
-            if self.type in ['3', '4', '5', '3/A', '4/A', '5/A']:
-                mapping_dict = dict_345
-            self._data = xml2dict(content=self.content, mapping_dict=mapping_dict)
-
-        else:
-            pass
 
     @property
     def data(self):
@@ -382,11 +375,12 @@ class Document:
         with open(output_filename, 'w',encoding='utf-8') as f:
             json.dump(self.data, f, indent=2)
 
-    def parse_tables(self, must_exist_in_mapping=True):
+    def parse_tables(self):
         """Must exist in mapping means columns must occur in mapping schema."""
-        if self.extension == '.xml':
+        if self.extension == '.xml' and self.type in XML_MAPPING_DICTS_BY_TYPE.keys():
             tables = Tables(document_type=self.type, accession=self.accession)
-            tables.parse_tables(data=self.data, must_exist_in_mapping=must_exist_in_mapping)
+            # this is where we should replace with add tables from dict.
+            tables.parse_xml_bytes(content=self.content,mapping_dict=XML_MAPPING_DICTS_BY_TYPE[self.type])
             self._tables = tables
 
         elif self._data_bool:

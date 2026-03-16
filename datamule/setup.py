@@ -57,7 +57,10 @@ setup(
     ],
     # Include the data directory in the package
     package_data={
-        'datamule': ['data/*'],
+        'datamule': [
+            'data/*',
+            'mapping_dicts/xml_mapping_jsons/*.json',
+        ],
     },
     # Make sure the data directory is created
     include_package_data=True,

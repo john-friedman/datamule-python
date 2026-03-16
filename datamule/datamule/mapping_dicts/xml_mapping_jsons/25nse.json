@@ -1,0 +1,22 @@
+{
+    "25-NSE": {
+        "/notificationOfRemoval/schemaVersion": "schemaVersion",
+        "/notificationOfRemoval/ruleProvision": "ruleProvision",
+        "/notificationOfRemoval/descriptionClassSecurity": "descriptionClassSecurity",
+        "/notificationOfRemoval/exchange/cik": "exchangeCik",
+        "/notificationOfRemoval/exchange/entityName": "exchangeEntityName",
+        "/notificationOfRemoval/issuer/cik": "issuerCik",
+        "/notificationOfRemoval/issuer/entityName": "issuerEntityName",
+        "/notificationOfRemoval/issuer/fileNumber": "issuerFileNumber",
+        "/notificationOfRemoval/issuer/telephoneNumber": "issuerTelephoneNumber",
+        "/notificationOfRemoval/issuer/address/street1": "street1",
+        "/notificationOfRemoval/issuer/address/street2": "street2",
+        "/notificationOfRemoval/issuer/address/city": "city",
+        "/notificationOfRemoval/issuer/address/stateOrCountryCode": "stateOrCountryCode",
+        "/notificationOfRemoval/issuer/address/stateOrCountry": "stateOrCountry",
+        "/notificationOfRemoval/issuer/address/zipCode": "zipCode",
+        "/notificationOfRemoval/signatureData/signatureName": "signatureName",
+        "/notificationOfRemoval/signatureData/signatureTitle": "signatureTitle",
+        "/notificationOfRemoval/signatureData/signatureDate": "signatureDate"
+    }
+}

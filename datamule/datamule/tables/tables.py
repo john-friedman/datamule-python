@@ -1,42 +1,8 @@
-from .tables_ownership import config_ownership
-from .tables_13fhr import config_13fhr
-from .tables_informationtable import config_information_table
-from .tables_25nse import config_25nse
-from .tables_npx import config_npx
-from .tables_sbsef import config_sbsef
-from .tables_sdr import config_sdr
-from .tables_proxyvotingrecord import config_proxyvotingrecord
 from doc2dict.utils.format_dict import _format_table
  
 from .utils import safe_get, flatten_dict
+from .tableparser import parser
 import re
-# will add filing date param later? or extension
-all_tables_dict = {
-    '3' : config_ownership,
-    '3/A' : config_ownership,
-    '4' : config_ownership,
-    '4/A' : config_ownership,
-    '5' : config_ownership,
-    '5/A' : config_ownership,
-    '13F-HR' : config_13fhr,
-    '13F-HR/A' : config_13fhr,
-    '13F-NT' : config_13fhr,
-    '13F-NT/A' : config_13fhr,
-    'INFORMATION TABLE' : config_information_table,
-    '25-NSE' : config_25nse,
-    '25-NSE/A' : config_25nse,
-    'N-PX' : config_npx,
-    'N-PX/A' : config_npx,
-    'SBSEF' : config_sbsef,
-    'SBSEF/A' : config_sbsef,
-    'SBSEF-V' : config_sbsef,
-    'SBSEF-W' : config_sbsef,
-    'SDR' : config_sdr,
-    'SDR/A' : config_sdr,
-    'SDR-W' : config_sdr,
-    'SDR-A' : config_sdr,
-    'PROXY VOTING RECORD' : config_proxyvotingrecord,
-}
 
 # may need to move to doc2dict
 def extract_text(dict_list):
@@ -145,25 +111,31 @@ class Table:
         if self.description:
             parts.append(f"Description: {self.description}")
         
-        # Preamble - now just use the string directly
+        # Preamble
         if self.preamble:
             parts.append(f"\nPreamble: {self.preamble}")
         
         # The actual table
-        formatted_table = _format_table(self.data)
+        if self.data and isinstance(self.data[0], dict):
+            headers = list(self.columns)
+            table_as_lists = [headers] + [[str(row.get(h, '')) for h in headers] for row in self.data]
+            formatted_table = _format_table(table_as_lists)
+        else:
+            formatted_table = _format_table(self.data)
+        
         if isinstance(formatted_table, list):
             table_str = '\n'.join(formatted_table)
         else:
             table_str = str(formatted_table)
         parts.append(f"\n{table_str}")
         
-        # Footnotes - now iterate over (id, text) tuples
+        # Footnotes
         if self.footnotes:
             parts.append(f"\nFootnotes:")
             for footnote_id, footnote_text in self.footnotes:
                 parts.append(f"{footnote_id}: {footnote_text}")
         
-        # Postamble - now just use the string directly
+        # Postamble
         if self.postamble:
             parts.append(f"\nPostamble: {self.postamble}")
         
@@ -176,24 +148,12 @@ class Tables():
         self.accession = accession
         self.tables = []
 
-    def parse_tables(self, data, must_exist_in_mapping=True):
-        self.data = data
-
-        try:
-            tables_dict = all_tables_dict[self.document_type]
-        except:
-            raise ValueError(f"Table not found: {self.document_type}.")
+    def parse_xml_bytes(self, content, mapping_dict):
         
-        # now get the dicts from the data
-        data_dicts = seperate_data(tables_dict, self.data)
-
-        # now flatten
-        data_dicts = [(x, flatten_dict(y)) for x, y in data_dicts]
-        
-        for table_name, flattened_data in data_dicts:
-            mapping_dict = tables_dict[table_name]['mapping']
-            mapped_data = apply_mapping(flattened_data, mapping_dict, self.accession, must_exist_in_mapping)
-            self.tables.append(Table(mapped_data, table_name, self.accession))
+        rows = parser(content, mapping_dict)
+        tables = [(t, [{k: v for k, v in r.items() if k != '_table'} for r in rows if r['_table'] == t]) for t in {r['_table'] for r in rows}]
+        for table in tables:
+            self.tables.append(Table(table[1], table[0], self.accession))
         
     def add_table(self, data, name, description=None, preamble=None, footnotes=None, postamble=None):
         """Add a table with optional metadata components"""

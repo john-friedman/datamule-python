@@ -1,0 +1,54 @@
+{
+  "sh_er": {
+    "/edgarDocument/cik": "cik"
+  },
+  "sh_er_monday": {
+    "/edgarDocument/shortSaleDataInfo/mondayData/saleDate": "saleDate",
+    "/edgarDocument/shortSaleDataInfo/mondayData/shortSaleDataList/cusip": "cusip",
+    "/edgarDocument/shortSaleDataInfo/mondayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
+    "/edgarDocument/shortSaleDataInfo/mondayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
+    "/edgarDocument/shortSaleDataInfo/mondayData/shortSaleDataList/shortEndPosition": "shortEndPosition"
+  },
+  "sh_er_tuesday": {
+    "/edgarDocument/shortSaleDataInfo/tuesdayData/saleDate": "saleDate",
+    "/edgarDocument/shortSaleDataInfo/tuesdayData/shortSaleDataList/cusip": "cusip",
+    "/edgarDocument/shortSaleDataInfo/tuesdayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
+    "/edgarDocument/shortSaleDataInfo/tuesdayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
+    "/edgarDocument/shortSaleDataInfo/tuesdayData/shortSaleDataList/shortEndPosition": "shortEndPosition"
+  },
+  "sh_er_wednesday": {
+    "/edgarDocument/shortSaleDataInfo/wednesdayData/saleDate": "saleDate",
+    "/edgarDocument/shortSaleDataInfo/wednesdayData/shortSaleDataList/cusip": "cusip",
+    "/edgarDocument/shortSaleDataInfo/wednesdayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
+    "/edgarDocument/shortSaleDataInfo/wednesdayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
+    "/edgarDocument/shortSaleDataInfo/wednesdayData/shortSaleDataList/shortEndPosition": "shortEndPosition"
+  },
+  "sh_er_thursday": {
+    "/edgarDocument/shortSaleDataInfo/thursdayData/saleDate": "saleDate",
+    "/edgarDocument/shortSaleDataInfo/thursdayData/shortSaleDataList/cusip": "cusip",
+    "/edgarDocument/shortSaleDataInfo/thursdayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
+    "/edgarDocument/shortSaleDataInfo/thursdayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
+    "/edgarDocument/shortSaleDataInfo/thursdayData/shortSaleDataList/shortEndPosition": "shortEndPosition"
+  },
+  "sh_er_friday": {
+    "/edgarDocument/shortSaleDataInfo/fridayData/saleDate": "saleDate",
+    "/edgarDocument/shortSaleDataInfo/fridayData/shortSaleDataList/cusip": "cusip",
+    "/edgarDocument/shortSaleDataInfo/fridayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
+    "/edgarDocument/shortSaleDataInfo/fridayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
+    "/edgarDocument/shortSaleDataInfo/fridayData/shortSaleDataList/shortEndPosition": "shortEndPosition"
+  },
+  "sh_er_saturday": {
+    "/edgarDocument/shortSaleDataInfo/saturdayData/saleDate": "saleDate",
+    "/edgarDocument/shortSaleDataInfo/saturdayData/shortSaleDataList/cusip": "cusip",
+    "/edgarDocument/shortSaleDataInfo/saturdayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
+    "/edgarDocument/shortSaleDataInfo/saturdayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
+    "/edgarDocument/shortSaleDataInfo/saturdayData/shortSaleDataList/shortEndPosition": "shortEndPosition"
+  },
+  "sh_er_sunday": {
+    "/edgarDocument/shortSaleDataInfo/sundayData/saleDate": "saleDate",
+    "/edgarDocument/shortSaleDataInfo/sundayData/shortSaleDataList/cusip": "cusip",
+    "/edgarDocument/shortSaleDataInfo/sundayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
+    "/edgarDocument/shortSaleDataInfo/sundayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
+    "/edgarDocument/shortSaleDataInfo/sundayData/shortSaleDataList/shortEndPosition": "shortEndPosition"
+  }
+}
