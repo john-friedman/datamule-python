@@ -10,6 +10,7 @@ nav:
           - Quickstart: datamule-python/examples/quickstart.md
           - Products: datamule-python/examples/products.md
           - Articles: datamule-python/examples/articles.md
+          - Parse Any SEC XML File: datamule-python/examples/parse_any_sec_xml_file.md
           - Tesla Risk Factor Language Score: datamule-python/examples/tesla_risk_factor_language_score.md
           - Meta Risk Factor Semantic Drift:  datamule-python/examples/meta_risk_factor_semantic_drift.md
           - Costco Audit Complexity: datamule-python/examples/costco_audit_complexity.md

@@ -377,9 +377,10 @@ class Document:
 
     def parse_tables(self):
         """Must exist in mapping means columns must occur in mapping schema."""
+
+        # TODO should add warning or something for XBRL XML, or redirect to xbrl parsing
         if self.extension == '.xml' and self.type in XML_MAPPING_DICTS_BY_TYPE.keys():
             tables = Tables(document_type=self.type, accession=self.accession)
-            # this is where we should replace with add tables from dict.
             tables.parse_xml_bytes(content=self.content,mapping_dict=XML_MAPPING_DICTS_BY_TYPE[self.type])
             self._tables = tables
 
