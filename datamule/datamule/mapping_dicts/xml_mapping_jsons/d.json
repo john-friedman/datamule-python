@@ -1,9 +1,8 @@
-{
+﻿{
     "d": {
         "/edgarSubmission/schemaVersion": "schemaVersion",
         "/edgarSubmission/submissionType": "submissionType",
         "/edgarSubmission/testOrLive": "testOrLive",
-        "/edgarSubmission/issuerList/over100IssuerFlag": "issuerPhoneNumber",
         "/edgarSubmission/offeringData/minimumInvestmentAccepted": "minimumInvestmentAccepted",
         "/edgarSubmission/primaryIssuer/cik": "primaryIssuerCik",
         "/edgarSubmission/primaryIssuer/entityName": "primaryIssuerEntityName",
@@ -11,7 +10,6 @@
         "/edgarSubmission/primaryIssuer/entityTypeOtherDesc": "primaryIssuerEntityTypeOtherDesc",
         "/edgarSubmission/primaryIssuer/issuerPhoneNumber": "issuerPhoneNumber",
         "/edgarSubmission/primaryIssuer/jurisdictionOfInc": "jurisdictionOfInc",
-        "/edgarSubmission/relatedPersonsList/over100PersonsFlag": "jurisdictionOfInc",
         "/edgarSubmission/offeringData/businessCombinationTransaction/clarificationOfResponse": "businessCombinationClarification",
         "/edgarSubmission/offeringData/businessCombinationTransaction/isBusinessCombinationTransaction": "isBusinessCombinationTransaction",
         "/edgarSubmission/offeringData/durationOfOffering/moreThanOneYear": "moreThanOneYear",
@@ -27,7 +25,6 @@
         "/edgarSubmission/offeringData/offeringSalesAmounts/totalOfferingAmount": "totalOfferingAmount",
         "/edgarSubmission/offeringData/offeringSalesAmounts/totalRemaining": "totalRemaining",
         "/edgarSubmission/offeringData/salesCommissionsFindersFees/clarificationOfResponse": "salesCommissionsClarification",
-        "/edgarSubmission/offeringData/salesCompensationList/over100RecipientFlag": "totalRemaining",
         "/edgarSubmission/offeringData/signatureBlock/authorizedRepresentative": "authorizedRepresentative",
         "/edgarSubmission/offeringData/typesOfSecuritiesOffered/descriptionOfOtherType": "descriptionOfOtherType",
         "/edgarSubmission/offeringData/typesOfSecuritiesOffered/isDebtType": "isDebtType",
@@ -112,7 +109,6 @@
         "/edgarSubmission/issuerList/issuer/issuerAddress/street1": "street1",
         "/edgarSubmission/issuerList/issuer/issuerAddress/street2": "street2",
         "/edgarSubmission/issuerList/issuer/issuerAddress/zipCode": "zipCode",
-        "/edgarSubmission/issuerList/issuer/issuerPreviousNameList/previousName": "entityName",
         "/edgarSubmission/issuerList/issuer/issuerPreviousNameList/value": "issuerPreviousName",
         "/edgarSubmission/issuerList/issuer/yearOfInc/overFiveYears": "yearOfIncOverFiveYears",
         "/edgarSubmission/issuerList/issuer/yearOfInc/value": "yearOfIncValue",

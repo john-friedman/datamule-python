@@ -1,4 +1,4 @@
-{
+﻿{
     "n_mfp": {
         "/edgarSubmission/AvailableForSaleSecuritiesAmortizedCost": "availableForSaleSecuritiesAmortizedCost",
         "/edgarSubmission/DocumentPeriodEndDate": "documentPeriodEndDate",
@@ -7,7 +7,6 @@
         "/edgarSubmission/InvestmentOwnedAtFairValue": "investmentOwnedAtFairValue",
         "/edgarSubmission/InvestmentOwnedBalancePrincipalAmount": "investmentOwnedBalancePrincipalAmount",
         "/edgarSubmission/InvestmentOwnedPercentOfNetAssets": "investmentOwnedPercentOfNetAssets",
-        "/edgarSubmission/doesSecuri": "totalClassesInSeries",
         "/edgarSubmission/doesSecurityHaveDemandFeature": "doesSecurityHaveDemandFeature",
         "/edgarSubmission/doesSecurityHaveEnhancementsOnWhichFundRelying": "doesSecurityHaveEnhancementsOnWhichFundRelying",
         "/edgarSubmission/finalLegalInvestmentMaturityDate": "finalLegalInvestmentMaturityDate",
@@ -502,7 +501,6 @@
         "/edgarSubmission/scheduleOfPortfolioSecuritiesList/scheduleOfPortfolioSecurities/InvestmentTitle": "investmentTitle",
         "/edgarSubmission/scheduleOfPortfolioSecuritiesList/scheduleOfPortfolioSecurities/InvestmentTypeD": "scheduleOfPortfolioSecuritiesInvestmentTypeDomain",
         "/edgarSubmission/scheduleOfPortfolioSecuritiesList/scheduleOfPortfolioSecurities/InvestmentTypeDomain": "scheduleOfPortfolioSecuritiesInvestmentTypeDomain",
-        "/edgarSubmission/scheduleOfPortfolioSecuritiesList/scheduleOfPortfolioSecurities/RepurchaseAgreement": "doesSecurityHaveGuarantee",
         "/edgarSubmission/scheduleOfPortfolioSecuritiesList/scheduleOfPortfolioSecurities/categoryOfInvestmentDesc": "categoryOfInvestmentDesc",
         "/edgarSubmission/scheduleOfPortfolioSecuritiesList/scheduleOfPortfolioSecurities/does": "doesSecurityHaveGuarantee",
         "/edgarSubmission/scheduleOfPortfolioSecuritiesList/scheduleOfPortfolioSecurities/doesS": "doesSecurityHaveGuarantee",
@@ -511,14 +509,12 @@
         "/edgarSubmission/scheduleOfPortfolioSecuritiesList/scheduleOfPortfolioSecurities/doesSecurityHav": "doesSecurityHaveGuarantee",
         "/edgarSubmission/scheduleOfPortfolioSecuritiesList/scheduleOfPortfolioSecurities/doesSecurityHave": "doesSecurityHaveGuarantee",
         "/edgarSubmission/scheduleOfPortfolioSecuritiesList/scheduleOfPortfolioSecurities/doesSecurityHaveDemandFeature": "doesSecurityHaveDemandFeature",
-        "/edgarSubmission/scheduleOfPortfolioSecuritiesList/scheduleOfPortfolioSecurities/doesSecurityHaveEnhancements": "doesSecurityHaveGuarantee",
         "/edgarSubmission/scheduleOfPortfolioSecuritiesList/scheduleOfPortfolioSecurities/doesSecurityHaveEnhancementsOnWhichFundR": "doesSecurityHaveEnhancementsOnWhichFundRelying",
         "/edgarSubmission/scheduleOfPortfolioSecuritiesList/scheduleOfPortfolioSecurities/doesSecurityHaveEnhancementsOnWhichFundRelying": "doesSecurityHaveEnhancementsOnWhichFundRelying",
         "/edgarSubmission/scheduleOfPortfolioSecuritiesList/scheduleOfPortfolioSecurities/doesSecurityHaveGuarantee": "doesSecurityHaveGuarantee",
         "/edgarSubmission/scheduleOfPortfolioSecuritiesList/scheduleOfPortfolioSecurities/finalLegalInvestm": "finalLegalInvestmentMaturityDate",
         "/edgarSubmission/scheduleOfPortfolioSecuritiesList/scheduleOfPortfolioSecurities/finalLegalInvestmentMaturi": "finalLegalInvestmentMaturityDate",
         "/edgarSubmission/scheduleOfPortfolioSecuritiesList/scheduleOfPortfolioSecurities/finalLegalInvestmentMaturityDate": "finalLegalInvestmentMaturityDate",
-        "/edgarSubmission/scheduleOfPortfolioSecuritiesList/scheduleOfPortfolioSecurities/isFundTreatin": "scheduleOfPortfolioSecuritiesInvestmentTypeDomain",
         "/edgarSubmission/scheduleOfPortfolioSecuritiesList/scheduleOfPortfolioSecurities/isFundTreatingA": "isFundTreatingAsAcquisitionUnderlyingSecurities",
         "/edgarSubmission/scheduleOfPortfolioSecuritiesList/scheduleOfPortfolioSecurities/isFundTreatingAsAcq": "isFundTreatingAsAcquisitionUnderlyingSecurities",
         "/edgarSubmission/scheduleOfPortfolioSecuritiesList/scheduleOfPortfolioSecurities/isFundTreatingAsAcquisitionUnderly": "isFundTreatingAsAcquisitionUnderlyingSecurities",

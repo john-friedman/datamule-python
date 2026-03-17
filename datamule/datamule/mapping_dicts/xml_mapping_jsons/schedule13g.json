@@ -1,13 +1,9 @@
-{
+﻿{
     "schedule_13g": {
         "/edgarSubmission/formData/exhibitInfo": "exhibitInfo",
         "/edgarSubmission/formData/signatureComments": "signatureComments",
         "/edgarSubmission/headerData/previousAccessionNumber": "previousAccessionNumber",
         "/edgarSubmission/headerData/submissionType": "submissionType",
-        "/edgarSubmission/documents/document/conformedDocumentType": "comments",
-        "/edgarSubmission/documents/document/conformedName": "comments",
-        "/edgarSubmission/documents/document/contents": "comments",
-        "/edgarSubmission/documents/document/description": "citizenshipOrOrganization",
         "/edgarSubmission/formData/coverPageHeader/amendmentNo": "amendmentNo",
         "/edgarSubmission/formData/coverPageHeader/eventDateRequiresFilingThisStatement": "eventDateRequiresFilingThisStatement",
         "/edgarSubmission/formData/coverPageHeader/securitiesClassTitle": "securitiesClassTitle",

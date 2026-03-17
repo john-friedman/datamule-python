@@ -1,4 +1,4 @@
-{
+﻿{
     "nport_p": {
         "/edgarSubmission/documents": "documents",
         "/edgarSubmission/headerData/accessionNumber": "submissionType",
@@ -69,7 +69,6 @@
         "/edgarSubmission/formData/fundInfo/mon3Flow/@redemption": "mon3FlowRedemption",
         "/edgarSubmission/formData/fundInfo/mon3Flow/@reinvestment": "mon3FlowReinvestment",
         "/edgarSubmission/formData/fundInfo/mon3Flow/@sales": "mon3FlowSales",
-        "/edgarSubmission/formData/fundInfo/namesRuleInvstPolicy/fundsEightyPercentBasket": "derivIntRateExposurePct",
         "/edgarSubmission/formData/fundInfo/varInfo/backtestingResults": "backtestingResults",
         "/edgarSubmission/formData/fundInfo/varInfo/medianDailyVarPct": "medianDailyVarPct",
         "/edgarSubmission/formData/genInfo/regStateConditional/@regCountry": "regStateConditionalRegCountry",
@@ -81,7 +80,6 @@
         "/edgarSubmission/formData/invstOrSecs/invstOrSec/descOthUnits": "descOthUnits",
         "/edgarSubmission/formData/invstOrSecs/invstOrSec/fairValLevel": "fairValLevel",
         "/edgarSubmission/formData/invstOrSecs/invstOrSec/invCountry": "invCountry",
-        "/edgarSubmission/formData/invstOrSecs/invstOrSec/isIncludedFunds80PercentBasket": "isRestrictedSec",
         "/edgarSubmission/formData/invstOrSecs/invstOrSec/isRestrictedSec": "isRestrictedSec",
         "/edgarSubmission/formData/invstOrSecs/invstOrSec/issuerCat": "issuerCat",
         "/edgarSubmission/formData/invstOrSecs/invstOrSec/lei": "lei",

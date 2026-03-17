@@ -1,4 +1,4 @@
-{
+﻿{
     "ma_w": {
         "/edgarSubmission/formData/fileNumber": "fileNumber",
         "/edgarSubmission/formData/fullLegalName": "fullLegalName",
@@ -21,8 +21,6 @@
         "/edgarSubmission/formData/execution/soleProprietor/signature": "soleProprietorSignature",
         "/edgarSubmission/formData/execution/soleProprietor/signerName": "soleProprietorSignerName",
         "/edgarSubmission/formData/execution/soleProprietor/title": "soleProprietorTitle",
-        "/edgarSubmission/formData/statementOfFinancials/assetInfo/totalAsset": "title",
-        "/edgarSubmission/formData/statementOfFinancials/liabiltyAndSharholdersEquityInfo/totalLiabiltiesAndShareholdersEquity": "phoneNumber",
         "/edgarSubmission/headerData/filerInfo/contact/name": "name",
         "/edgarSubmission/headerData/filerInfo/contact/phoneNumber": "contactPhoneNumber",
         "/edgarSubmission/headerData/filerInfo/filer/filerCcc": "filerCcc",
@@ -35,13 +33,7 @@
         "/edgarSubmission/formData/contactPersonInfo/nameAddressPhone/individualName/firstName": "firstName",
         "/edgarSubmission/formData/contactPersonInfo/nameAddressPhone/individualName/lastName": "lastName",
         "/edgarSubmission/formData/contactPersonInfo/nameAddressPhone/individualName/middleName": "middleName",
-        "/edgarSubmission/formData/statementOfFinancials/liabiltyAndSharholdersEquityInfo/currentLiabilties/otherShortTermLoans": "firstName",
         "/edgarSubmission/formData/statementOfFinancials/liabiltyAndSharholdersEquityInfo/currentLiabilties/prepaidAdvisoryFees": "isAdvisoryContract",
-        "/edgarSubmission/formData/statementOfFinancials/liabiltyAndSharholdersEquityInfo/currentLiabilties/shortTermLoansFromClients": "stateOrCountry",
-        "/edgarSubmission/formData/statementOfFinancials/liabiltyAndSharholdersEquityInfo/currentLiabilties/totalCurrentLiabilities": "contactEmail",
-        "/edgarSubmission/formData/statementOfFinancials/liabiltyAndSharholdersEquityInfo/fixedLiabilities/longTermDebtOwed": "internetNotificationAddress",
-        "/edgarSubmission/formData/statementOfFinancials/liabiltyAndSharholdersEquityInfo/fixedLiabilities/otherLongTermDebt": "stateOrCountry",
-        "/edgarSubmission/formData/statementOfFinancials/liabiltyAndSharholdersEquityInfo/fixedLiabilities/otherLongTermLiabilities": "internetNotificationAddress",
         "/edgarSubmission/formData/advisoryContractAssignments/advisoryContract/addressInfo/address/city": "city",
         "/edgarSubmission/formData/advisoryContractAssignments/advisoryContract/addressInfo/address/stateOrCountry": "stateOrCountry",
         "/edgarSubmission/formData/advisoryContractAssignments/advisoryContract/addressInfo/address/street1": "street1",

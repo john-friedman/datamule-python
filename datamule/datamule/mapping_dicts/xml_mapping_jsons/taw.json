@@ -1,4 +1,4 @@
-{
+﻿{
     "ta_w": {
         "/edgarSubmission/formVersion": "formVersion",
         "/edgarSubmission/schemaVersion": "schemaVersion",
@@ -90,7 +90,6 @@
         "/edgarSubmission/formData/documentRetention/tawSuccessorDetails/tawSuccessorAddress/city": "tawSuccessorAddressCity",
         "/edgarSubmission/formData/documentRetention/tawSuccessorDetails/tawSuccessorAddress/stateOrCountry": "tawSuccessorAddressStateOrCountry",
         "/edgarSubmission/formData/documentRetention/tawSuccessorDetails/tawSuccessorAddress/street1": "tawSuccessorAddressStreet1",
-        "/edgarSubmission/formData/documentRetention/tawSuccessorDetails/tawSuccessorAddress/street2": "tawSuccessorAddressStreet1",
         "/edgarSubmission/formData/documentRetention/tawSuccessorDetails/tawSuccessorAddress/zipCode": "tawSuccessorAddressZipCode",
         "/edgarSubmission/headerData/filerInfo/filer/filerCredentials/ccc": "ccc",
         "/edgarSubmission/headerData/filerInfo/filer/filerCredentials/cik": "filerCredentialsCik",
@@ -98,7 +97,6 @@
         "/edgarSubmission/tawDetails/tawSuccessors/tawSuccessorDetails/tawSuccessorAddress/stateOrCountry": "tawSuccessorAddressStateOrCountry",
         "/edgarSubmission/tawDetails/tawSuccessors/tawSuccessorDetails/tawSuccessorAddress/stateOrCountryCode": "tawSuccessorAddressStateOrCountryCode",
         "/edgarSubmission/tawDetails/tawSuccessors/tawSuccessorDetails/tawSuccessorAddress/street1": "tawSuccessorAddressStreet1",
-        "/edgarSubmission/tawDetails/tawSuccessors/tawSuccessorDetails/tawSuccessorAddress/street2": "tawSuccessorAddressStreet1",
         "/edgarSubmission/tawDetails/tawSuccessors/tawSuccessorDetails/tawSuccessorAddress/zipCode": "tawSuccessorAddressZipCode"
     }
 }

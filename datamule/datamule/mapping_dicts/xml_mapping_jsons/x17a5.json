@@ -1,4 +1,4 @@
-{
+﻿{
     "x_17a_5": {
         "/edgarSubmission/headerData/submissionType": "submissionType",
         "/edgarSubmission/formData/accountantIdentification/accountantName": "accountantName",
@@ -20,7 +20,6 @@
         "/edgarSubmission/formData/submissionInformation/subTypeOfBDRegistrant": "subTypeOfBDRegistrant",
         "/edgarSubmission/formData/submissionInformation/subTypeOfRegistrant": "subTypeOfRegistrant",
         "/edgarSubmission/formData/submissionInformation/subTypeOfSDRegistrant": "subTypeOfSDRegistrant",
-        "/edgarSubmission/formData/submissionInformation/typeOfRegistrant": "subTypeOfRegistrant",
         "/edgarSubmission/headerData/filerInfo/liveTestFlag": "liveTestFlag",
         "/edgarSubmission/formData/accountantIdentification/accountantAddress/city": "accountantCity",
         "/edgarSubmission/formData/accountantIdentification/accountantAddress/stateOrCountry": "accountantStateOrCountry",

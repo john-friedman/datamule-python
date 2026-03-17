@@ -1,16 +1,12 @@
-{
+﻿{
     "c_tr": {
         "/edgarSubmission/headerData/submissionType": "submissionType",
-        "/edgarSubmission/formData/issuerInformation/isCoIssuer": "nameOfIssuer",
         "/edgarSubmission/headerData/filerInfo/liveTestFlag": "liveTestFlag",
         "/edgarSubmission/formData/issuerInformation/issuerInfo/issuerWebsite": "issuerWebsite",
         "/edgarSubmission/formData/issuerInformation/issuerInfo/nameOfIssuer": "nameOfIssuer",
         "/edgarSubmission/formData/signatureInfo/issuerSignature/issuer": "issuerSignature",
         "/edgarSubmission/formData/signatureInfo/issuerSignature/issuerSignature": "issuerSignatureText",
         "/edgarSubmission/formData/signatureInfo/issuerSignature/issuerTitle": "issuerTitle",
-        "/edgarSubmission/headerData/filerInfo/filer/fileNumber": "filerCik",
-        "/edgarSubmission/headerData/filerInfo/flags/overrideInternetFlag": "liveTestFlag",
-        "/edgarSubmission/headerData/filerInfo/flags/returnCopyFlag": "liveTestFlag",
         "/edgarSubmission/formData/issuerInformation/issuerInfo/issuerAddress/city": "city",
         "/edgarSubmission/formData/issuerInformation/issuerInfo/issuerAddress/stateOrCountry": "stateOrCountry",
         "/edgarSubmission/formData/issuerInformation/issuerInfo/issuerAddress/street1": "street1",
@@ -31,7 +27,6 @@
     "c_tr_co_issuer": {
         "/edgarSubmission/formData/issuerInformation/coIssuers/coIssuerInfo/coIssuerCik": "coIssuerCik",
         "/edgarSubmission/formData/issuerInformation/coIssuers/coIssuerInfo/coIssuerWebsite": "coIssuerWebsite",
-        "/edgarSubmission/formData/issuerInformation/coIssuers/coIssuerInfo/isEdgarFiler": "coIssuerWebsite",
         "/edgarSubmission/formData/issuerInformation/coIssuers/coIssuerInfo/nameOfCoIssuer": "nameOfCoIssuer",
         "/edgarSubmission/formData/issuerInformation/coIssuers/coIssuerInfo/coIssuerAddress/city": "city",
         "/edgarSubmission/formData/issuerInformation/coIssuers/coIssuerInfo/coIssuerAddress/stateOrCountry": "stateOrCountry",

@@ -1,4 +1,4 @@
-{
+﻿{
     "cfportal": {
         "/edgarSubmission/headerData/submissionType": "submissionType",
         "/edgarSubmission/formData/escrowArrangements/compensationDesc": "escrowCompensationDesc",
@@ -9,7 +9,6 @@
         "/edgarSubmission/formData/formOfOrganization/dateIncorporation": "dateIncorporation",
         "/edgarSubmission/formData/formOfOrganization/jurisdictionOrganization": "jurisdictionOrganization",
         "/edgarSubmission/formData/formOfOrganization/legalStatusForm": "legalStatusForm",
-        "/edgarSubmission/formData/formOfOrganization/legalStatusOtherDesc": "legalStatusForm",
         "/edgarSubmission/formData/identifyingInformation/amendmentExplanation": "amendmentExplanation",
         "/edgarSubmission/formData/identifyingInformation/anyForeignRegistrations": "anyForeignRegistrations",
         "/edgarSubmission/formData/identifyingInformation/anyPreviousRegistrations": "anyPreviousRegistrations",
@@ -37,8 +36,6 @@
         "/edgarSubmission/formData/civilJudicialDrpInfo/civilJudicialDrp/drpFiledFor": "civilJudicialDrpDrpFiledFor",
         "/edgarSubmission/formData/civilJudicialDrpInfo/civilJudicialDrp/initialOrAmended": "civilJudicialDrpInitialOrAmended",
         "/edgarSubmission/formData/controlRelationships/fullLegalNames/fullLegalName": "controlRelationshipFullLegalName",
-        "/edgarSubmission/formData/criminalDrpInfo/criminalDrp/drpFiledFor": "civilJudicialDrpDrpFiledFor",
-        "/edgarSubmission/formData/criminalDrpInfo/criminalDrp/initialOrAmended": "civilJudicialDrpInitialOrAmended",
         "/edgarSubmission/formData/disclosureAnswers/civilJudicialActionDisclosure/isDismissed": "isDismissed",
         "/edgarSubmission/formData/disclosureAnswers/civilJudicialActionDisclosure/isEnjoined": "isEnjoined",
         "/edgarSubmission/formData/disclosureAnswers/civilJudicialActionDisclosure/isFoundInViolationOfRegulation": "civilIsFoundInViolationOfRegulation",
@@ -127,7 +124,6 @@
         "/edgarSubmission/formData/successions/acquiredHistoryDetails/acquiredDesc": "acquiredDesc",
         "/edgarSubmission/formData/successions/acquiredHistoryDetails/acquiredFundingPortal": "acquiredFundingPortal",
         "/edgarSubmission/formData/successions/acquiredHistoryDetails/acquiredPortalFileNumber": "acquiredPortalFileNumber",
-        "/edgarSubmission/headerData/filerInfo/filer/fileNumber": "filerCcc",
         "/edgarSubmission/headerData/filerInfo/flags/confirmingCopyFlag": "confirmingCopyFlag",
         "/edgarSubmission/headerData/filerInfo/flags/overrideInternetFlag": "overrideInternetFlag",
         "/edgarSubmission/headerData/filerInfo/flags/returnCopyFlag": "returnCopyFlag",
@@ -141,7 +137,6 @@
         "/edgarSubmission/formData/escrowArrangements/investorFundsContacts/investorFundsAddress/street1": "investorFundsStreet1",
         "/edgarSubmission/formData/escrowArrangements/investorFundsContacts/investorFundsAddress/street2": "investorFundsStreet2",
         "/edgarSubmission/formData/escrowArrangements/investorFundsContacts/investorFundsAddress/zipCode": "investorFundsZipCode",
-        "/edgarSubmission/formData/regulatoryDrpInfo/regulatoryDrp/applicant/drpRemovalReason": "scheduleBControlPerson",
         "/edgarSubmission/formData/regulatoryDrpInfo/regulatoryDrp/respondingTo/responseQuestion": "responseQuestion",
         "/edgarSubmission/formData/scheduleD/bookKeepingDetails/bookKeepingEntityAddress/city": "bookKeepingEntityAddressPortalCity",
         "/edgarSubmission/formData/scheduleD/bookKeepingDetails/bookKeepingEntityAddress/stateOrCountry": "bookKeepingEntityAddressPortalStateOrCountry",

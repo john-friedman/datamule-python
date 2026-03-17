@@ -1,4 +1,4 @@
-{
+﻿{
     "n_px": {
         "/edgarSubmission/headerData/submissionType": "submissionType",
         "/edgarSubmission/documents/document/conformedDocumentType": "amendmentType",
@@ -50,7 +50,6 @@
         "/edgarSubmission/formData/coverPage/reportingPerson/address/zipCode": "zipCode",
         "/edgarSubmission/headerData/filerInfo/filer/issuerCredentials/ccc": "filerCcc",
         "/edgarSubmission/headerData/filerInfo/filer/issuerCredentials/cik": "filerCik",
-        "/edgarSubmission/headerData/seriesClass/reportSeriesClass/rptSeriesClassInfo/includeAllClassesFlag": "liveTestFlag"
     },
     "n_px_other_manager": {
         "/edgarSubmission/formData/coverPage/otherManagersInfo/otherManager/crdNumber": "crdNumber",
@@ -60,7 +59,6 @@
         "/edgarSubmission/formData/coverPage/otherManagersInfo/otherManager/otherFileNumber": "otherFileNumber"
     },
     "n_px_investment_manager": {
-        "/edgarSubmission/documents/document/conformedName": "crdNumber",
         "/edgarSubmission/formData/summaryPage/otherManagers2/investmentManagers/crdNumber": "crdNumber",
         "/edgarSubmission/formData/summaryPage/otherManagers2/investmentManagers/form13FFileNumber": "form13FFileNumber",
         "/edgarSubmission/formData/summaryPage/otherManagers2/investmentManagers/leiNumber": "leiNumber",
@@ -69,7 +67,6 @@
         "/edgarSubmission/formData/summaryPage/otherManagers2/investmentManagers/serialNo": "serialNo"
     },
     "n_px_series": {
-        "/edgarSubmission/headerData/seriesClass/reportSeriesClass/rptIncludeAllSeriesFlag": "nameOfSeries",
         "/edgarSubmission/formData/seriesPage/seriesDetails/seriesReports/idOfSeries": "idOfSeries",
         "/edgarSubmission/formData/seriesPage/seriesDetails/seriesReports/leiOfSeries": "leiOfSeries",
         "/edgarSubmission/formData/seriesPage/seriesDetails/seriesReports/nameOfSeries": "nameOfSeries",

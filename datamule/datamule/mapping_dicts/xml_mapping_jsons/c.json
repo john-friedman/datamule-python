@@ -1,4 +1,4 @@
-{
+﻿{
     "c_a": {
         "/edgarSubmission/headerData/submissionType": "submissionType",
         "/edgarSubmission/formData/annualReportDisclosureRequirements/actReceivedMostRecentFiscalYear": "actReceivedMostRecentFiscalYear",
@@ -65,7 +65,6 @@
         "/edgarSubmission/formData/issuerInformation/issuerInfo/legalStatus/dateIncorporation": "dateIncorporation",
         "/edgarSubmission/formData/issuerInformation/issuerInfo/legalStatus/jurisdictionOrganization": "jurisdictionOrganization",
         "/edgarSubmission/formData/issuerInformation/issuerInfo/legalStatus/legalStatusForm": "legalStatusForm",
-        "/edgarSubmission/formData/issuerInformation/issuerInfo/legalStatus/legalStatusOtherDesc": "legalStatusForm",
         "/edgarSubmission/formData/signatureInfo/signaturePersons/signaturePerson/personSignature": "personSignature",
         "/edgarSubmission/formData/signatureInfo/signaturePersons/signaturePerson/personTitle": "personTitle",
         "/edgarSubmission/formData/signatureInfo/signaturePersons/signaturePerson/signatureDate": "signatureDate",
@@ -74,7 +73,6 @@
         "/edgarSubmission/formData/issuerInformation/coIssuers/coIssuerInfo/coIssuerAddress/city": "coIssuerAddressCity",
         "/edgarSubmission/formData/issuerInformation/coIssuers/coIssuerInfo/coIssuerAddress/stateOrCountry": "coIssuerAddressStateOrCountry",
         "/edgarSubmission/formData/issuerInformation/coIssuers/coIssuerInfo/coIssuerAddress/street1": "coIssuerAddressStreet1",
-        "/edgarSubmission/formData/issuerInformation/coIssuers/coIssuerInfo/coIssuerAddress/street2": "coIssuerAddressStreet1",
         "/edgarSubmission/formData/issuerInformation/coIssuers/coIssuerInfo/coIssuerAddress/zipCode": "coIssuerAddressZipCode",
         "/edgarSubmission/formData/issuerInformation/coIssuers/coIssuerInfo/coIssuerLegalStatus/dateIncorporation": "coIssuerLegalStatusDateIncorporation",
         "/edgarSubmission/formData/issuerInformation/coIssuers/coIssuerInfo/coIssuerLegalStatus/jurisdictionOrganization": "coIssuerLegalStatusJurisdictionOrganization",

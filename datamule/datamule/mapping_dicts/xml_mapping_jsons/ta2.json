@@ -1,4 +1,4 @@
-{
+﻿{
     "ta_2": {
         "/edgarSubmission/formVersion": "formVersion",
         "/edgarSubmission/periodOfReport": "periodOfReport",
@@ -73,7 +73,6 @@
         "/edgarSubmission/formData/serviceCompanyData/securityHolderData/directRegistrationSystem": "directRegistrationSystem",
         "/edgarSubmission/formData/serviceCompanyData/securityHolderData/dividendReinvDirectPurchasePlan": "dividendReinvDirectPurchasePlan",
         "/edgarSubmission/formData/serviceCompanyData/securityHolderData/numberFiled": "numberFiled",
-        "/edgarSubmission/formData/serviceCompanyData/securityHolderData/numberMonthsNotCompliant": "alwaysCompliant",
         "/edgarSubmission/formData/serviceCompanyData/securityHolderData/numberNoticeNonComplianceFiled": "numberFiled",
         "/edgarSubmission/formData/serviceCompanyData/securityHolderData/total": "total",
         "/edgarSubmission/formData/serviceCompanyData/securityHolderData/totalOtherThanReceiptOrderDate": "totalOtherThanReceiptOrderDate",
@@ -137,7 +136,6 @@
         "/edgarSubmission/formData/serviceCompanyData/securityHolderData/transNotMaintMasterSecHolder/other": "securityHolderDataTransNotMaintMasterSecHolderOther",
         "/edgarSubmission/headerData/filerInfo/filer/filerCredentials/ccc": "ccc",
         "/edgarSubmission/headerData/filerInfo/filer/filerCredentials/cik": "filerCredentialsCik",
-        "/edgarSubmission/serviceCompanyData/securityHolderData/turnaroundCompliant/nonCompliantData/numberMonthsNotCompliant": "turnaroundCompliantAlwaysCompliant",
         "/edgarSubmission/serviceCompanyData/securityHolderData/turnaroundCompliant/nonCompliantData/numberNoticeNonComplianceFiled": "numberFiled"
     }
 }
