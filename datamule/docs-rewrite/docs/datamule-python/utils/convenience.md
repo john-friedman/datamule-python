@@ -43,6 +43,90 @@ construct_submissions_data(
 )
 ```
 
+## `get_tickers_from_ciks`
+
+```python
+from datamule.utils.convenience import get_tickers_from_ciks
+print(get_tickers_from_ciks([1318605]))
+```
+```
+['TSLA']
+```
+
+```python
+from datamule.utils.convenience import get_tickers_from_ciks
+print(get_tickers_from_ciks([1318605, 51143]))
+```
+```
+['TSLA', 'IBM']
+```
+
+## `get_company_names_from_ciks`
+
+```python
+from datamule.utils.convenience import get_company_names_from_ciks
+print(get_company_names_from_ciks([1318605, 51143]))
+```
+```
+['Tesla, Inc.', 'INTERNATIONAL BUSINESS MACHINES CORP']
+```
+
+## `get_sics_from_ciks`
+
+```python
+from datamule.utils.convenience import get_sics_from_ciks
+print(get_sics_from_ciks([1318605, 51143]))
+```
+```
+['3711', '7372']
+```
+
+## `get_adm0_from_ciks`
+
+Returns the country of the company's business address. For US-based companies, returns `'United States of America'`.
+
+```python
+from datamule.utils.convenience import get_adm0_from_ciks
+print(get_adm0_from_ciks([1318605, 51143]))
+```
+```
+['United States of America', 'United States of America']
+```
+
+## `get_us_state_from_ciks`
+
+Returns the two-letter US state code for US-based companies. Returns `''` for non-US companies.
+
+```python
+from datamule.utils.convenience import get_us_state_from_ciks
+print(get_us_state_from_ciks([1318605, 51143]))
+```
+```
+['TX', 'NY']
+```
+
+## `get_us_zipcodes_from_ciks`
+
+Returns the ZIP code for US-based companies. Returns `None` for non-US companies.
+
+```python
+from datamule.utils.convenience import get_us_zipcodes_from_ciks
+print(get_us_zipcodes_from_ciks([1318605, 51143]))
+```
+```
+['78725', '10504']
+```
+
+## `get_business_street1_from_ciks`
+
+```python
+from datamule.utils.convenience import get_business_street1_from_ciks
+print(get_business_street1_from_ciks([1318605, 51143]))
+```
+```
+['1 TESLA ROAD', '1 NEW ORCHARD ROAD']
+```
+
 ## URL construction
 
 ```python

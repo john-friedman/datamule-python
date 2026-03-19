@@ -1,11 +1,10 @@
 from .submission.submission import Submission
 from .portfolio.portfolio import Portfolio
 from .document.document import Document
-from .helper import _load_package_csv, load_package_dataset
+from .helper import load_package_dataset
 from .config import Config
 from .sheet.sheet import Sheet
 from .index import Index
-from .package_updater import PackageUpdater
 from .utils.format_accession import format_accession
 from .utils.construct_submissions_data import construct_submissions_data
 from .book.book import Book
@@ -31,17 +30,3 @@ def _setup_notebook_env():
 
 # Set up notebook environment
 _setup_notebook_env()
-
-
-# TODO, is this load bearing?
-__all__ = [
-    '_load_package_csv',
-    'load_package_dataset',
-    'Portfolio',
-    'Submission',
-    'Document',
-    'Config',
-    'Sheet',
-    'Index',
-    'PackageUpdater',
-]

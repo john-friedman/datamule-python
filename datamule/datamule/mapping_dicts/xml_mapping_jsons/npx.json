@@ -49,7 +49,7 @@
         "/edgarSubmission/formData/coverPage/reportingPerson/address/street2": "street2",
         "/edgarSubmission/formData/coverPage/reportingPerson/address/zipCode": "zipCode",
         "/edgarSubmission/headerData/filerInfo/filer/issuerCredentials/ccc": "filerCcc",
-        "/edgarSubmission/headerData/filerInfo/filer/issuerCredentials/cik": "filerCik",
+        "/edgarSubmission/headerData/filerInfo/filer/issuerCredentials/cik": "filerCik"
     },
     "n_px_other_manager": {
         "/edgarSubmission/formData/coverPage/otherManagersInfo/otherManager/crdNumber": "crdNumber",

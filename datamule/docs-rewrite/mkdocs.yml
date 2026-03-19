@@ -20,7 +20,6 @@ nav:
           - Monitor New Filings: datamule-python/examples/monitor_new_filings.md
           - Using Index() to search filings by email usage: datamule-python/examples/use_index_to_search_filings_by_email_usage.md
       - Setting a Data Provider: datamule-python/data_provider.md
-      - Package Data: datamule-python/package_data.md
       - Datasets: datamule-python/datasets.md
       - SEC Terminology:
           - Submission Types: datamule-python/sec/submission_types.md

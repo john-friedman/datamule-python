@@ -5,7 +5,8 @@ _JSON_DIR = resources.files(__package__).joinpath("xml_mapping_jsons")
 
 
 def _load(filename: str):
-    return json.loads(_JSON_DIR.joinpath(filename).read_text(encoding="utf-8"))
+    return json.loads(_JSON_DIR.joinpath(filename).read_text(encoding="utf-8-sig"))
+
 
 
 XML_MAPPING_DICTS_BY_TYPE = {
