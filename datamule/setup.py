@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name="datamule",
     author="John Friedman",
-    version="3.6.1",
+    version="3.6.3",
     description="Work with SEC submissions at scale.",
     packages=find_packages(include=['datamule', 'datamule.*']),
     url="https://github.com/john-friedman/datamule-python",
