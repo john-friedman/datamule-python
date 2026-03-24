@@ -4,6 +4,7 @@
         "/Comments/commentData/fieldName": "fieldName",
         "/Comments/commentData/itemNumber": "itemNumber",
         "/comments/commentData/Comment": "comment",
+        "/comments/commentData/columnName": "columnName",
         "/comments/commentData/ItemNumber": "itemNumber",
         "/comments/commentData/comment": "comment",
         "/comments/commentData/commentColumn": "commentColumn",

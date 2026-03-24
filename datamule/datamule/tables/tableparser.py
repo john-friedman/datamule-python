@@ -1,8 +1,6 @@
 import xml.etree.ElementTree as ET
 from io import BytesIO
 
-# Prototype code, change #
-
 def parser(xml_bytes, mapping):
     rows = []
 
@@ -21,16 +19,13 @@ def parser(xml_bytes, mapping):
             _stack.pop()
 
     for table_name, table_mapping in mapping.items():
-        # Filter mapping to only paths present in this file
         table_mapping = {k: v for k, v in table_mapping.items() if k in real_paths}
         if not table_mapping:
             continue
 
-        # Split mapping into text paths and attribute paths
         attr_mapping = {k: v for k, v in table_mapping.items() if "/@" in k}
         text_mapping = {k: v for k, v in table_mapping.items() if "/@" not in k}
 
-        # Segment-wise common prefix (not character-wise)
         base_paths = [k.rsplit("/@", 1)[0] if "/@" in k else k for k in table_mapping.keys()]
         split_paths = [p.strip("/").split("/") for p in base_paths]
         prefix_segments = []
@@ -46,6 +41,14 @@ def parser(xml_bytes, mapping):
         empty_row = {col: None for col in table_mapping.values()}
         current_path = []
         current_row = empty_row.copy()
+        # Track accumulated values for repeating fields
+        accumulator = {col: [] for col in table_mapping.values()}
+
+        def flush_row():
+            # Merge accumulator into current_row as pipe-delimited strings
+            for col, values in accumulator.items():
+                if values:
+                    current_row[col] = "|".join(values)
 
         for event, elem in ET.iterparse(BytesIO(xml_bytes), events=("start", "end")):
             tag = elem.tag.split("}")[-1] if "}" in elem.tag else elem.tag.split(":")[-1]
@@ -57,23 +60,30 @@ def parser(xml_bytes, mapping):
 
                 # Handle text content
                 if path in text_mapping:
-                    current_row[text_mapping[path]] = elem.text
+                    col = text_mapping[path]
+                    if elem.text and elem.text.strip():
+                        accumulator[col].append(elem.text.strip())
 
                 # Handle attributes
                 for attr_name, attr_value in elem.attrib.items():
                     attr_path = f"{path}/@{attr_name}"
                     if attr_path in attr_mapping:
-                        current_row[attr_mapping[attr_path]] = attr_value
+                        col = attr_mapping[attr_path]
+                        accumulator[col].append(attr_value)
 
                 if path == row_boundary:
+                    flush_row()
                     current_row["_table"] = table_name
-                    rows.append(current_row)
+                    if any(v is not None and str(v).strip() for k, v in current_row.items() if k != "_table"):
+                        rows.append(current_row)
                     current_row = empty_row.copy()
+                    accumulator = {col: [] for col in table_mapping.values()}
 
                 current_path.pop()
 
         # Flush if boundary was the root (single-row tables like doc header)
-        if any(v is not None for v in current_row.values()):
+        flush_row()
+        if any(v is not None and str(v).strip() for v in current_row.values()):
             current_row["_table"] = table_name
             rows.append(current_row)
 

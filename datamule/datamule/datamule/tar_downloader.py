@@ -14,7 +14,6 @@ from functools import partial
 from threading import Lock
 from os import cpu_count
 from secsgml2.utils import calculate_documents_locations_in_tar
-from secsgml2 import decode_uuencoded_content
 from ..utils.format_accession import format_accession
 from ..providers.providers import SEC_FILINGS_TAR_BUCKET_ENDPOINT
 from .datamule_lookup import datamule_lookup
@@ -438,8 +437,6 @@ class TarDownloader:
                         partial(self._extract_documents_from_probe, probe_bytes, metadata_with_positions, keep_document_types)
                     )
 
-                    for doc in documents:
-                        doc['content'] = decode_uuencoded_content(doc['content'])
                     
                 elif keep_document_types == ['metadata']:
                     # Only metadata requested
@@ -461,8 +458,6 @@ class TarDownloader:
                             partial(self._extract_documents_from_probe_by_list, probe_bytes, docs_in_probe)
                         )
 
-                        for doc in probe_documents:
-                            doc['content'] = decode_uuencoded_content(doc['content'])
                         documents.extend(probe_documents)
 
                     # Download each document beyond probe individually
@@ -495,7 +490,6 @@ class TarDownloader:
                                     partial(self._decompress_zstd, doc_content)
                                 )
                             
-                                decompressed = decode_uuencoded_content(decompressed)
 
                                 
                                 documents.append({
