@@ -1,3 +1,19 @@
+## `format_accession`
+
+Converts accession numbers between three formats: `'int'`, `'dash'`, and `'no-dash'`. Input format is detected automatically.
+
+```python
+from datamule.utils.convenience import format_accession
+
+format_accession("0001398344-26-000514", 'int')
+# 139834426000514
+
+format_accession(139834426000514, 'dash')
+# '0001398344-26-000514'
+
+format_accession("0001398344-26-000514", 'no-dash')
+# '000139834426000514'
+```
 
 ## `get_ciks_from_tickers`
 

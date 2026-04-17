@@ -1,54 +1,189 @@
 {
   "sh_er": {
-    "/edgarDocument/cik": "cik"
+    "/edgarDocument/cik": "cik",
+    "/edgarDocument/informationTableData/cik": "cik"
   },
   "sh_er_monday": {
-    "/edgarDocument/shortSaleDataInfo/mondayData/saleDate": "saleDate",
-    "/edgarDocument/shortSaleDataInfo/mondayData/shortSaleDataList/cusip": "cusip",
-    "/edgarDocument/shortSaleDataInfo/mondayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
-    "/edgarDocument/shortSaleDataInfo/mondayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
-    "/edgarDocument/shortSaleDataInfo/mondayData/shortSaleDataList/shortEndPosition": "shortEndPosition"
+    "row_path": [
+      "/edgarDocument/informationTableData/shortSaleDataInfo/mondayData/shortSaleDataList",
+      "/edgarDocument/shortSaleDataInfo/mondayData/shortSaleDataList"
+    ],
+    "context_path": [
+      "/edgarDocument/informationTableData/shortSaleDataInfo/mondayData",
+      "/edgarDocument/shortSaleDataInfo/mondayData"
+    ],
+    "carry": {
+      "/edgarDocument/informationTableData/shortSaleDataInfo/mondayData/saleDate": "saleDate",
+      "/edgarDocument/shortSaleDataInfo/mondayData/saleDate": "saleDate"
+    },
+    "columns": {
+      "/edgarDocument/informationTableData/shortSaleDataInfo/mondayData/shortSaleDataList/cusip": "cusip",
+      "/edgarDocument/shortSaleDataInfo/mondayData/shortSaleDataList/cusip": "cusip",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/mondayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
+      "/edgarDocument/shortSaleDataInfo/mondayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/mondayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
+      "/edgarDocument/shortSaleDataInfo/mondayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/mondayData/shortSaleDataList/numberSecuritiesSoldShort": "numberSecuritiesSoldShort",
+      "/edgarDocument/shortSaleDataInfo/mondayData/shortSaleDataList/numberSecuritiesSoldShort": "numberSecuritiesSoldShort",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/mondayData/shortSaleDataList/shortEndPosition": "shortEndPosition",
+      "/edgarDocument/shortSaleDataInfo/mondayData/shortSaleDataList/shortEndPosition": "shortEndPosition"
+    }
   },
   "sh_er_tuesday": {
-    "/edgarDocument/shortSaleDataInfo/tuesdayData/saleDate": "saleDate",
-    "/edgarDocument/shortSaleDataInfo/tuesdayData/shortSaleDataList/cusip": "cusip",
-    "/edgarDocument/shortSaleDataInfo/tuesdayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
-    "/edgarDocument/shortSaleDataInfo/tuesdayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
-    "/edgarDocument/shortSaleDataInfo/tuesdayData/shortSaleDataList/shortEndPosition": "shortEndPosition"
+    "row_path": [
+      "/edgarDocument/informationTableData/shortSaleDataInfo/tuesdayData/shortSaleDataList",
+      "/edgarDocument/shortSaleDataInfo/tuesdayData/shortSaleDataList"
+    ],
+    "context_path": [
+      "/edgarDocument/informationTableData/shortSaleDataInfo/tuesdayData",
+      "/edgarDocument/shortSaleDataInfo/tuesdayData"
+    ],
+    "carry": {
+      "/edgarDocument/informationTableData/shortSaleDataInfo/tuesdayData/saleDate": "saleDate",
+      "/edgarDocument/shortSaleDataInfo/tuesdayData/saleDate": "saleDate"
+    },
+    "columns": {
+      "/edgarDocument/informationTableData/shortSaleDataInfo/tuesdayData/shortSaleDataList/cusip": "cusip",
+      "/edgarDocument/shortSaleDataInfo/tuesdayData/shortSaleDataList/cusip": "cusip",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/tuesdayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
+      "/edgarDocument/shortSaleDataInfo/tuesdayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/tuesdayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
+      "/edgarDocument/shortSaleDataInfo/tuesdayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/tuesdayData/shortSaleDataList/numberSecuritiesSoldShort": "numberSecuritiesSoldShort",
+      "/edgarDocument/shortSaleDataInfo/tuesdayData/shortSaleDataList/numberSecuritiesSoldShort": "numberSecuritiesSoldShort",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/tuesdayData/shortSaleDataList/shortEndPosition": "shortEndPosition",
+      "/edgarDocument/shortSaleDataInfo/tuesdayData/shortSaleDataList/shortEndPosition": "shortEndPosition"
+    }
   },
   "sh_er_wednesday": {
-    "/edgarDocument/shortSaleDataInfo/wednesdayData/saleDate": "saleDate",
-    "/edgarDocument/shortSaleDataInfo/wednesdayData/shortSaleDataList/cusip": "cusip",
-    "/edgarDocument/shortSaleDataInfo/wednesdayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
-    "/edgarDocument/shortSaleDataInfo/wednesdayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
-    "/edgarDocument/shortSaleDataInfo/wednesdayData/shortSaleDataList/shortEndPosition": "shortEndPosition"
+    "row_path": [
+      "/edgarDocument/informationTableData/shortSaleDataInfo/wednesdayData/shortSaleDataList",
+      "/edgarDocument/shortSaleDataInfo/wednesdayData/shortSaleDataList"
+    ],
+    "context_path": [
+      "/edgarDocument/informationTableData/shortSaleDataInfo/wednesdayData",
+      "/edgarDocument/shortSaleDataInfo/wednesdayData"
+    ],
+    "carry": {
+      "/edgarDocument/informationTableData/shortSaleDataInfo/wednesdayData/saleDate": "saleDate",
+      "/edgarDocument/shortSaleDataInfo/wednesdayData/saleDate": "saleDate"
+    },
+    "columns": {
+      "/edgarDocument/informationTableData/shortSaleDataInfo/wednesdayData/shortSaleDataList/cusip": "cusip",
+      "/edgarDocument/shortSaleDataInfo/wednesdayData/shortSaleDataList/cusip": "cusip",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/wednesdayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
+      "/edgarDocument/shortSaleDataInfo/wednesdayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/wednesdayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
+      "/edgarDocument/shortSaleDataInfo/wednesdayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/wednesdayData/shortSaleDataList/numberSecuritiesSoldShort": "numberSecuritiesSoldShort",
+      "/edgarDocument/shortSaleDataInfo/wednesdayData/shortSaleDataList/numberSecuritiesSoldShort": "numberSecuritiesSoldShort",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/wednesdayData/shortSaleDataList/shortEndPosition": "shortEndPosition",
+      "/edgarDocument/shortSaleDataInfo/wednesdayData/shortSaleDataList/shortEndPosition": "shortEndPosition"
+    }
   },
   "sh_er_thursday": {
-    "/edgarDocument/shortSaleDataInfo/thursdayData/saleDate": "saleDate",
-    "/edgarDocument/shortSaleDataInfo/thursdayData/shortSaleDataList/cusip": "cusip",
-    "/edgarDocument/shortSaleDataInfo/thursdayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
-    "/edgarDocument/shortSaleDataInfo/thursdayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
-    "/edgarDocument/shortSaleDataInfo/thursdayData/shortSaleDataList/shortEndPosition": "shortEndPosition"
+    "row_path": [
+      "/edgarDocument/informationTableData/shortSaleDataInfo/thursdayData/shortSaleDataList",
+      "/edgarDocument/shortSaleDataInfo/thursdayData/shortSaleDataList"
+    ],
+    "context_path": [
+      "/edgarDocument/informationTableData/shortSaleDataInfo/thursdayData",
+      "/edgarDocument/shortSaleDataInfo/thursdayData"
+    ],
+    "carry": {
+      "/edgarDocument/informationTableData/shortSaleDataInfo/thursdayData/saleDate": "saleDate",
+      "/edgarDocument/shortSaleDataInfo/thursdayData/saleDate": "saleDate"
+    },
+    "columns": {
+      "/edgarDocument/informationTableData/shortSaleDataInfo/thursdayData/shortSaleDataList/cusip": "cusip",
+      "/edgarDocument/shortSaleDataInfo/thursdayData/shortSaleDataList/cusip": "cusip",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/thursdayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
+      "/edgarDocument/shortSaleDataInfo/thursdayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/thursdayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
+      "/edgarDocument/shortSaleDataInfo/thursdayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/thursdayData/shortSaleDataList/numberSecuritiesSoldShort": "numberSecuritiesSoldShort",
+      "/edgarDocument/shortSaleDataInfo/thursdayData/shortSaleDataList/numberSecuritiesSoldShort": "numberSecuritiesSoldShort",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/thursdayData/shortSaleDataList/shortEndPosition": "shortEndPosition",
+      "/edgarDocument/shortSaleDataInfo/thursdayData/shortSaleDataList/shortEndPosition": "shortEndPosition"
+    }
   },
   "sh_er_friday": {
-    "/edgarDocument/shortSaleDataInfo/fridayData/saleDate": "saleDate",
-    "/edgarDocument/shortSaleDataInfo/fridayData/shortSaleDataList/cusip": "cusip",
-    "/edgarDocument/shortSaleDataInfo/fridayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
-    "/edgarDocument/shortSaleDataInfo/fridayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
-    "/edgarDocument/shortSaleDataInfo/fridayData/shortSaleDataList/shortEndPosition": "shortEndPosition"
+    "row_path": [
+      "/edgarDocument/informationTableData/shortSaleDataInfo/fridayData/shortSaleDataList",
+      "/edgarDocument/shortSaleDataInfo/fridayData/shortSaleDataList"
+    ],
+    "context_path": [
+      "/edgarDocument/informationTableData/shortSaleDataInfo/fridayData",
+      "/edgarDocument/shortSaleDataInfo/fridayData"
+    ],
+    "carry": {
+      "/edgarDocument/informationTableData/shortSaleDataInfo/fridayData/saleDate": "saleDate",
+      "/edgarDocument/shortSaleDataInfo/fridayData/saleDate": "saleDate"
+    },
+    "columns": {
+      "/edgarDocument/informationTableData/shortSaleDataInfo/fridayData/shortSaleDataList/cusip": "cusip",
+      "/edgarDocument/shortSaleDataInfo/fridayData/shortSaleDataList/cusip": "cusip",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/fridayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
+      "/edgarDocument/shortSaleDataInfo/fridayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/fridayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
+      "/edgarDocument/shortSaleDataInfo/fridayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/fridayData/shortSaleDataList/numberSecuritiesSoldShort": "numberSecuritiesSoldShort",
+      "/edgarDocument/shortSaleDataInfo/fridayData/shortSaleDataList/numberSecuritiesSoldShort": "numberSecuritiesSoldShort",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/fridayData/shortSaleDataList/shortEndPosition": "shortEndPosition",
+      "/edgarDocument/shortSaleDataInfo/fridayData/shortSaleDataList/shortEndPosition": "shortEndPosition"
+    }
   },
   "sh_er_saturday": {
-    "/edgarDocument/shortSaleDataInfo/saturdayData/saleDate": "saleDate",
-    "/edgarDocument/shortSaleDataInfo/saturdayData/shortSaleDataList/cusip": "cusip",
-    "/edgarDocument/shortSaleDataInfo/saturdayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
-    "/edgarDocument/shortSaleDataInfo/saturdayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
-    "/edgarDocument/shortSaleDataInfo/saturdayData/shortSaleDataList/shortEndPosition": "shortEndPosition"
+    "row_path": [
+      "/edgarDocument/informationTableData/shortSaleDataInfo/saturdayData/shortSaleDataList",
+      "/edgarDocument/shortSaleDataInfo/saturdayData/shortSaleDataList"
+    ],
+    "context_path": [
+      "/edgarDocument/informationTableData/shortSaleDataInfo/saturdayData",
+      "/edgarDocument/shortSaleDataInfo/saturdayData"
+    ],
+    "carry": {
+      "/edgarDocument/informationTableData/shortSaleDataInfo/saturdayData/saleDate": "saleDate",
+      "/edgarDocument/shortSaleDataInfo/saturdayData/saleDate": "saleDate"
+    },
+    "columns": {
+      "/edgarDocument/informationTableData/shortSaleDataInfo/saturdayData/shortSaleDataList/cusip": "cusip",
+      "/edgarDocument/shortSaleDataInfo/saturdayData/shortSaleDataList/cusip": "cusip",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/saturdayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
+      "/edgarDocument/shortSaleDataInfo/saturdayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/saturdayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
+      "/edgarDocument/shortSaleDataInfo/saturdayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/saturdayData/shortSaleDataList/numberSecuritiesSoldShort": "numberSecuritiesSoldShort",
+      "/edgarDocument/shortSaleDataInfo/saturdayData/shortSaleDataList/numberSecuritiesSoldShort": "numberSecuritiesSoldShort",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/saturdayData/shortSaleDataList/shortEndPosition": "shortEndPosition",
+      "/edgarDocument/shortSaleDataInfo/saturdayData/shortSaleDataList/shortEndPosition": "shortEndPosition"
+    }
   },
   "sh_er_sunday": {
-    "/edgarDocument/shortSaleDataInfo/sundayData/saleDate": "saleDate",
-    "/edgarDocument/shortSaleDataInfo/sundayData/shortSaleDataList/cusip": "cusip",
-    "/edgarDocument/shortSaleDataInfo/sundayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
-    "/edgarDocument/shortSaleDataInfo/sundayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
-    "/edgarDocument/shortSaleDataInfo/sundayData/shortSaleDataList/shortEndPosition": "shortEndPosition"
+    "row_path": [
+      "/edgarDocument/informationTableData/shortSaleDataInfo/sundayData/shortSaleDataList",
+      "/edgarDocument/shortSaleDataInfo/sundayData/shortSaleDataList"
+    ],
+    "context_path": [
+      "/edgarDocument/informationTableData/shortSaleDataInfo/sundayData",
+      "/edgarDocument/shortSaleDataInfo/sundayData"
+    ],
+    "carry": {
+      "/edgarDocument/informationTableData/shortSaleDataInfo/sundayData/saleDate": "saleDate",
+      "/edgarDocument/shortSaleDataInfo/sundayData/saleDate": "saleDate"
+    },
+    "columns": {
+      "/edgarDocument/informationTableData/shortSaleDataInfo/sundayData/shortSaleDataList/cusip": "cusip",
+      "/edgarDocument/shortSaleDataInfo/sundayData/shortSaleDataList/cusip": "cusip",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/sundayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
+      "/edgarDocument/shortSaleDataInfo/sundayData/shortSaleDataList/nameOfIssuer": "nameOfIssuer",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/sundayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
+      "/edgarDocument/shortSaleDataInfo/sundayData/shortSaleDataList/shortStartPosition": "shortStartPosition",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/sundayData/shortSaleDataList/numberSecuritiesSoldShort": "numberSecuritiesSoldShort",
+      "/edgarDocument/shortSaleDataInfo/sundayData/shortSaleDataList/numberSecuritiesSoldShort": "numberSecuritiesSoldShort",
+      "/edgarDocument/informationTableData/shortSaleDataInfo/sundayData/shortSaleDataList/shortEndPosition": "shortEndPosition",
+      "/edgarDocument/shortSaleDataInfo/sundayData/shortSaleDataList/shortEndPosition": "shortEndPosition"
+    }
   }
 }
+

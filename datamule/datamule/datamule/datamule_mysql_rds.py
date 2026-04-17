@@ -60,73 +60,64 @@ class DatamuleMySQL:
                 result_data = result_data['data']
             return result_data, pagination, page_cost
 
-    async def execute_query(self, database,  **kwargs):
+    async def execute_query(self, database, **kwargs):
         if self.api_key is None:
             raise ValueError("No API key found. Please set DATAMULE_API_KEY environment variable or provide api_key in constructor")
         
         # Extract pagination and display options
-        page_size = kwargs.pop('page_size', 25000)
+        pageSize = kwargs.pop('pageSize', 25000)
         quiet = kwargs.pop('quiet', False)
+        explicit_page = 'page' in kwargs
+        current_page = kwargs.pop('page', 1)
         
         # Process filters: tuples = range, lists = OR, single = exact
         params = {}
         for key, value in kwargs.items():
-            # Skip None values entirely
             if value is None:
                 continue
-
-            elif isinstance(value,list):
+            elif isinstance(value, list):
                 params[key] = ','.join([str(val) for val in value])
-            elif isinstance(value,tuple):
+            elif isinstance(value, tuple):
                 params[f"{key}_START"] = value[0]
                 params[f"{key}_END"] = value[1]
             else:
                 params[key] = value
 
-        
         self.start_time = time.time()
         total_items = 0
         pages_processed = 0
-        
-  
+
         connector = aiohttp.TCPConnector(ssl=ssl.create_default_context())
         async with aiohttp.ClientSession(connector=connector) as session:
-            # Initialize progress bar only if not quiet
             if not quiet:
                 pbar = tqdm(unit="page", bar_format="{desc}: {n_fmt} {unit} [{elapsed}<{remaining}, {rate_fmt}{postfix}]")
                 pbar.set_description("Fetching data")
             
-            current_page = 1
             has_more = True
             results = []
             
             while has_more:
-                # Fetch page
                 page_results, pagination, page_cost = await self._fetch_page(
                     session,
                     database,
                     params,
                     page=current_page,
-                    page_size=page_size
+                    page_size=pageSize
                 )
                 
-                # Accumulate results
                 results.extend(page_results)
-                
                 pages_processed += 1
                 total_items += len(page_results)
                 
-                # Update progress bar only if not quiet
                 if not quiet:
                     pbar.set_description(f"Fetching data (page {current_page})")
                     pbar.set_postfix_str(f"cost=${self.total_cost:.4f} | balance=${self.remaining_balance:.2f}")
                     pbar.update(1)
                 
-                # Check if we need to fetch more pages
-                has_more = pagination.get('hasMore', False)
+                # If user specified a page, only fetch that one page
+                has_more = False if explicit_page else pagination.get('hasMore', False)
                 current_page += 1
                 
-                # For the first page, display record info only if not quiet
                 if pages_processed == 1 and not quiet:
                     records_per_page = pagination.get('currentPageRecords', len(page_results))
                     if records_per_page > 0:
@@ -138,7 +129,6 @@ class DatamuleMySQL:
             if not quiet:
                 pbar.close()
             
-            # Final summary only if not quiet
             if not quiet:
                 elapsed_time = time.time() - self.start_time
                 print("\nQuery complete:")

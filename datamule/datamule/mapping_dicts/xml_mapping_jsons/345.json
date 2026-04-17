@@ -8,10 +8,16 @@
         "/ownershipDocument/notSubjectToSection16": "notSubjectToSection16",
         "/ownershipDocument/periodOfReport": "periodOfReport",
         "/ownershipDocument/remarks": "remarks",
+        "/ownershipDocument/dateOfOriginalSubmission" : "dateOfOriginalSubmission",
         "/ownershipDocument/schemaVersion": "schemaVersion",
         "/ownershipDocument/issuer/issuerCik": "issuerCik",
         "/ownershipDocument/issuer/issuerName": "issuerName",
-        "/ownershipDocument/issuer/issuerTradingSymbol": "issuerTradingSymbol"
+        "/ownershipDocument/issuer/issuerTradingSymbol": "issuerTradingSymbol",
+        "/ownershipDocument/reportingOwner/reportingOwnerId/rptOwnerCcc": "rptOwnerCcc",
+        "/ownershipDocument/issuer/issuerForeignTradingSymbol": "issuerForeignTradingSymbol",
+        "/ownershipDocument/reportingOwner/reportingOwnerAddress/rptOwnerNonUSAddressFlag": "rptOwnerNonUSAddressFlag",
+        "/ownershipDocument/reportingOwner/reportingOwnerAddress/rptOwnerNonUSStateTerritory": "rptOwnerNonUSStateTerritory",
+        "/ownershipDocument/reportingOwner/reportingOwnerAddress/rptOwnerCountry": "rptOwnerCountry"
     },
     "345_footnote": {
         "/ownershipDocument/derivativeSecurity/footnote": "footnoteText",

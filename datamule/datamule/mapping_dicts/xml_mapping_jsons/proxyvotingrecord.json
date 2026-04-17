@@ -1,22 +1,29 @@
 {
   "proxy_voting_record": {
-    "/proxyVoteTable/proxyTable/issuerName": "issuerName",
-    "/proxyVoteTable/proxyTable/isin": "isin",
-    "/proxyVoteTable/proxyTable/cusip": "cusip",
-    "/proxyVoteTable/proxyTable/figi": "figi",
-    "/proxyVoteTable/proxyTable/meetingDate": "meetingDate",
-    "/proxyVoteTable/proxyTable/sharesVoted": "sharesVoted",
-    "/proxyVoteTable/proxyTable/sharesOnLoan": "sharesOnLoan",
-    "/proxyVoteTable/proxyTable/voteDescription": "voteDescription",
-    "/proxyVoteTable/proxyTable/voteOtherInfo": "voteOtherInfo",
-    "/proxyVoteTable/proxyTable/otherVoteDescription": "otherVoteDescription",
-    "/proxyVoteTable/proxyTable/voteSource": "voteSource",
-    "/proxyVoteTable/proxyTable/voteSeries": "voteSeries",
-    "/proxyVoteTable/proxyTable/voteManager/otherManagers/otherManager": "voteManagerOtherManager",
-    "/proxyVoteTable/proxyTable/voteCategories/voteCategory/categoryType": "categoryType",
-    "/proxyVoteTable/proxyTable/vote/voteRecord/howVoted": "howVoted",
-    "/proxyVoteTable/proxyTable/vote/voteRecord/HowVoted": "howVoted",
-    "/proxyVoteTable/proxyTable/vote/voteRecord/managementRecommendation": "managementRecommendation",
-    "/proxyVoteTable/proxyTable/vote/voteRecord/sharesVoted": "voteRecordSharesVoted"
+    "row_path": "/proxyVoteTable/proxyTable/vote/voteRecord",
+    "context_path": "/proxyVoteTable/proxyTable",
+    "carry": {
+      "/proxyVoteTable/proxyTable/issuerName": "issuerName",
+      "/proxyVoteTable/proxyTable/isin": "isin",
+      "/proxyVoteTable/proxyTable/cusip": "cusip",
+      "/proxyVoteTable/proxyTable/figi": "figi",
+      "/proxyVoteTable/proxyTable/meetingDate": "meetingDate",
+      "/proxyVoteTable/proxyTable/sharesVoted": "sharesVoted",
+      "/proxyVoteTable/proxyTable/sharesOnLoan": "sharesOnLoan",
+      "/proxyVoteTable/proxyTable/voteDescription": "voteDescription",
+      "/proxyVoteTable/proxyTable/voteOtherInfo": "voteOtherInfo",
+      "/proxyVoteTable/proxyTable/otherVoteDescription": "otherVoteDescription",
+      "/proxyVoteTable/proxyTable/voteSource": "voteSource",
+      "/proxyVoteTable/proxyTable/voteSeries": "voteSeries",
+      "/proxyVoteTable/proxyTable/voteManager/otherManagers/otherManager": "voteManagerOtherManager",
+      "/proxyVoteTable/proxyTable/voteCategories/voteCategory/categoryType": "categoryType"
+    },
+    "columns": {
+      "/proxyVoteTable/proxyTable/vote/voteRecord/howVoted": "howVoted",
+      "/proxyVoteTable/proxyTable/vote/voteRecord/HowVoted": "howVoted",
+      "/proxyVoteTable/proxyTable/vote/voteRecord/managementRecommendation": "managementRecommendation",
+      "/proxyVoteTable/proxyTable/vote/voteRecord/sharesVoted": "voteRecordSharesVoted"
+    }
   }
 }
+
