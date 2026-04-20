@@ -4,6 +4,11 @@
         "/edgarSubmission/headerData/filerInfo/liveTestFlag": "liveTestFlag",
         "/edgarSubmission/headerData/filerInfo/filer/filerCredentials/cik": "filerCik",
         "/edgarSubmission/headerData/filerInfo/filer/filerCredentials/ccc": "filerCcc",
+        "/edgarSubmission/headerData/filerInfo/flags/overrideInternetFlag": "overrideInternetFlag",
+        "/edgarSubmission/headerData/filerInfo/contact/contactName": "contactName",
+        "/edgarSubmission/headerData/filerInfo/contact/contactPhoneNumber": "contactPhoneNumber",
+        "/edgarSubmission/headerData/filerInfo/contact/contactEmailAddress": "contactEmailAddress",
+        "/edgarSubmission/headerData/filerInfo/notifications/notificationEmailAddress": "notificationEmailAddress",
         "/edgarSubmission/headerData/previousAccessionNumber": "previousAccessionNumber",
         "/edgarSubmission/formData/coverPageHeader/dateOfEvent": "dateOfEvent",
         "/edgarSubmission/formData/coverPageHeader/amendmentNo": "amendmentNo",
@@ -12,6 +17,7 @@
         "/edgarSubmission/formData/coverPageHeader/issuerInfo/issuerName": "issuerName",
         "/edgarSubmission/formData/coverPageHeader/issuerInfo/issuerCIK": "issuerCIK",
         "/edgarSubmission/formData/coverPageHeader/issuerInfo/issuerCUSIP": "issuerCUSIP",
+        "/edgarSubmission/formData/coverPageHeader/issuerInfo/issuerCusips/issuerCusipNumber": "issuerCUSIP",
         "/edgarSubmission/formData/coverPageHeader/issuerInfo/address/street1": "issuerStreet1",
         "/edgarSubmission/formData/coverPageHeader/issuerInfo/address/street2": "issuerStreet2",
         "/edgarSubmission/formData/coverPageHeader/issuerInfo/address/city": "issuerCity",
@@ -74,3 +80,4 @@
         "/edgarSubmission/formData/signatureInfo/signaturePerson/signatureDetails/date": "date"
     }
 }
+

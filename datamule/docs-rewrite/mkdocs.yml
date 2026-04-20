@@ -20,6 +20,7 @@ nav:
           - Monitor New Filings: datamule-python/examples/monitor_new_filings.md
           - Using Index() to search filings by email usage: datamule-python/examples/use_index_to_search_filings_by_email_usage.md
           - Get Friday Night Dump: datamule-python/examples/get_friday_night_dump.md
+          - Construct SEC Documents: datamule-python/examples/construct_sec_documents.md
       - Setting a Data Provider: datamule-python/data_provider.md
       - Datasets: datamule-python/datasets.md
       - SEC Terminology:

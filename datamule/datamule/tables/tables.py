@@ -71,7 +71,7 @@ class Table:
             try:
                 # Handle xml tables - already list of dicts
                 self.columns = data_raw[0].keys()
-                self.data = data_raw
+                self.data = [{**row, '_table': name} for row in data_raw]
             except:
                 # Handle html tables - already list of lists
                 self.columns = data_raw[0]
@@ -140,6 +140,9 @@ class Table:
             parts.append(f"\nPostamble: {self.postamble}")
         
         return '\n'.join(parts)
+    
+    def __iter__(self):
+        yield from self.data
 
 
 class Tables():
@@ -148,10 +151,25 @@ class Tables():
         self.accession = accession
         self.tables = []
 
+    def __iter__(self):
+        for table in self.tables:
+            yield from table.data
+
+    def __len__(self):
+        return sum(len(t.data) for t in self.tables)
+
+    def __bool__(self):
+        return any(t.data for t in self.tables)
+
+    def __getitem__(self, idx):
+        # flatten lazily to a list for indexing
+        flat = [row for t in self.tables for row in t.data]
+        return flat[idx]
+
     def parse_xml_bytes(self, content, mapping_dict):
         
         rows = parser(content, mapping_dict)
-        tables = [(t, [{k: v for k, v in r.items() if k != '_table'} for r in rows if r['_table'] == t]) for t in {r['_table'] for r in rows}]
+        tables = [(t, [{k: v for k, v in r.items()} for r in rows if r['_table'] == t]) for t in {r['_table'] for r in rows}]
         for table in tables:
             self.tables.append(Table(table[1], table[0], self.accession))
         

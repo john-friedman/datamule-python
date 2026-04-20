@@ -431,12 +431,13 @@ class Document:
             
             self._tables = tables
         else:
-            self._tables = []
+            # Fix 2: always return a Tables instance so doc.get_tables(...) works
+            self._tables = Tables(document_type=self.type, accession=self.accession)
     @property
     def tables(self):
         if self._tables is None:
             self.parse_tables()
-        return self._tables.tables
+        return self._tables
     
 
     def write(self,file):
@@ -453,7 +454,9 @@ class Document:
         if not tables:
             return
         
-        for table in tables:
+        # Fix 1: iterate the underlying Table objects, not the Tables instance
+        # (iterating Tables yields row dicts now, which don't have .columns/.name/.data)
+        for table in tables.tables:
             fieldnames = table.columns
             output_filename = output_folder / f"{table.name}.csv"
 
