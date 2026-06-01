@@ -5,6 +5,7 @@ from ..submission.submission import Submission
 from ..sec.submissions.downloader import download as sec_download
 from ..sec.submissions.textsearch import filter_text
 from ..config import Config
+import json
 import os
 import tarfile
 from threading import Lock
@@ -283,7 +284,31 @@ class Portfolio:
             )
 
         self.submissions_loaded = False
-        
+
+    @property
+    def missing(self):
+        """
+        Submissions logged as failed by the most recent download_submissions() run.
+
+        Returns a dict keyed by the filename or accession identifier that the
+        underlying downloader logged, with the captured error message as the
+        value. Reads from ``errors.json`` in ``self.path`` (the same file the
+        ``datamule-tar`` and ``datamule-sgml`` providers already write to when
+        an individual download fails).
+
+        Returns an empty dict if no errors file exists or if it cannot be
+        parsed. The direct SEC provider does not currently write to
+        errors.json, so failures from that provider will not appear here.
+        """
+        errors_path = self.path / 'errors.json'
+        if not errors_path.exists():
+            return {}
+        try:
+            with open(errors_path, 'r') as f:
+                return json.load(f)
+        except (json.JSONDecodeError, OSError):
+            return {}
+
     def monitor_submissions(self, data_callback=None, interval_callback=None,
                             polling_interval=1000, quiet=True, start_date=None,
                             validation_interval=600000):
