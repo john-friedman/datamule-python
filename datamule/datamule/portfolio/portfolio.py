@@ -34,9 +34,7 @@ class Portfolio:
         self.monitor = Monitor()
         
         
-        if self.path.exists():
-            self._load_submissions()
-        else:
+        if not self.path.exists():
             self.path.mkdir(parents=True, exist_ok=True)
 
     def set_api_key(self, api_key):
@@ -117,11 +115,11 @@ class Portfolio:
         return submissions
             
 
-    def decompress(self):
+    def decompress(self, max_workers=None):
         """
         Decompress all batch tar files back to individual submission directories.
         """
-        CompressionManager().decompress_portfolio(self, self.MAX_WORKERS)
+        CompressionManager().decompress_portfolio(self, max_workers)
 
     def _close_batch_handles(self):
         """Close all open batch tar handles to free resources"""

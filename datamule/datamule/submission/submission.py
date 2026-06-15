@@ -210,7 +210,7 @@ class Submission:
         
         # Get filename from metadata - this is the source of truth
         filename = doc.get('filename')
-        if filename is None:
+        if not filename:
             filename = doc['sequence'] + '.txt'
 
         extension = Path(filename).suffix

@@ -6,6 +6,7 @@ import tarfile
 import shutil
 from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from threading import Lock
 from secsgml2.utils import calculate_documents_locations_in_tar
 
 # probably can delete much of this TODO
@@ -123,72 +124,101 @@ class CompressionManager:
             portfolio: Portfolio instance
             max_workers: Number of threads for parallel file processing (default: portfolio.MAX_WORKERS)
         """
-        if max_workers is None:
-            max_workers = portfolio.MAX_WORKERS
-            
-        if not portfolio.submissions_loaded:
-            portfolio._load_submissions()
-        
         # Find all batch tar files
         batch_tars = [f for f in portfolio.path.iterdir() if f.is_file() and 'batch' in f.name and f.suffix == '.tar']
         
         if not batch_tars:
             print("No batch tar files found to decompress")
             return
+
+        if max_workers is None:
+            max_workers = min(portfolio.MAX_WORKERS, 4)
+        max_workers = max(1, max_workers)
+        tar_workers = min(max_workers, len(batch_tars))
         
-        print(f"Decompressing {len(batch_tars)} batch tar files...")
+        print(f"Decompressing {len(batch_tars)} batch tar files with {tar_workers} workers...")
         
         # FIRST: Close all batch tar handles to free the files
         portfolio._close_batch_handles()
         
         total_extracted = 0
+        completed_tars = []
+        pbar_lock = Lock()
         
-        with tqdm(desc="Decompressing submissions", unit="submissions") as pbar:
-            for batch_tar in batch_tars:
-                with tarfile.open(batch_tar, 'r') as tar:
-                    # Find all accession directories in this tar
-                    accession_dirs = set()
-                    for member in tar.getmembers():
-                        if '/' in member.name:
-                            accession_dir = member.name.split('/')[0]
-                            accession_dirs.add(accession_dir)
-                    
-                    # Extract each submission
-                    for accession_dir in accession_dirs:
-                        output_dir = portfolio.path / accession_dir
-                        output_dir.mkdir(exist_ok=True)
-                        
-                        # Get all files for this accession
-                        accession_files = [
-                            m.name for m in tar.getmembers()
-                            if m.name.startswith(f'{accession_dir}/') and m.isfile()
-                        ]
-                        
-                        # Parallel file extraction
-                        with ThreadPoolExecutor(max_workers=max_workers) as executor:
-                            file_futures = [
-                                executor.submit(self._extract_file, member_name, batch_tar, accession_dir, output_dir)
-                                for member_name in accession_files
-                            ]
-                            
-                            # Wait for all files to be processed
-                            for future in as_completed(file_futures):
-                                future.result()
-                        
-                        total_extracted += 1
-                        pbar.update(1)
+        with tqdm(desc="Extracting files", unit="files") as pbar:
+            with ThreadPoolExecutor(max_workers=tar_workers) as executor:
+                futures = [
+                    executor.submit(
+                        self._decompress_batch_tar,
+                        batch_tar,
+                        portfolio.path,
+                        max_workers,
+                        pbar,
+                        pbar_lock
+                    )
+                    for batch_tar in batch_tars
+                ]
+
+                for future in as_completed(futures):
+                    batch_tar, extracted_count = future.result()
+                    completed_tars.append(batch_tar)
+                    total_extracted += extracted_count
                     
         
         # NOW delete the batch tar files after everything is extracted
-        for batch_tar in batch_tars:
+        for batch_tar in completed_tars:
             batch_tar.unlink()
 
         
-        # Reload submissions to reflect new directory structure
+        # Leave submissions lazy; the next iterator/processor call will load the new directory structure.
+        portfolio.submissions = []
         portfolio.submissions_loaded = False
-        portfolio._load_submissions()
         
         print(f"Decompression complete. Extracted {total_extracted} submissions.")
+
+    def _decompress_batch_tar(self, batch_tar, output_path, max_workers, pbar, pbar_lock):
+        """Extract one batch tar and post-process extracted files."""
+        with tarfile.open(batch_tar, 'r') as tar:
+            accession_files = {}
+            compressed_paths = []
+            for member in tar.getmembers():
+                if '/' not in member.name or not member.isfile():
+                    continue
+                self._validate_tar_member(member)
+                accession_dir = member.name.split('/')[0]
+                accession_files.setdefault(accession_dir, []).append(member)
+                if member.name.endswith(('.gz', '.zst')):
+                    compressed_paths.append(output_path / member.name)
+
+            with pbar_lock:
+                pbar.total = (pbar.total or 0) + sum(len(members) for members in accession_files.values())
+                pbar.refresh()
+
+            for members in accession_files.values():
+                for member in members:
+                    tar.extract(member, output_path)
+                    with pbar_lock:
+                        pbar.update(1)
+
+        metadata_paths = [
+            output_path / accession_dir / 'metadata.json'
+            for accession_dir in accession_files
+        ]
+
+        postprocess_workers = min(max_workers, 4)
+        with ThreadPoolExecutor(max_workers=postprocess_workers) as executor:
+            futures = [
+                executor.submit(self._decompress_extracted_file, path)
+                for path in compressed_paths
+            ]
+            futures.extend(
+                executor.submit(self._postprocess_metadata_file, path)
+                for path in metadata_paths
+            )
+            for future in as_completed(futures):
+                future.result()
+
+        return batch_tar, len(accession_files)
 
     def _process_document(self, doc, compression, threshold, compression_level):
         """Process a single document: load content and apply compression if needed."""
@@ -211,51 +241,45 @@ class CompressionManager:
         
         return content, compression_type
 
-    def _extract_file(self, member_name, batch_tar_path, accession_dir, output_dir):
-        """Extract and decompress a single file from tar."""
-        relative_path = member_name[len(accession_dir)+1:]  # Remove accession prefix
-        output_path = output_dir / relative_path
-        
-        # Open the tar per thread to avoid concurrent reads on a shared TarFile handle.
-        with tarfile.open(batch_tar_path, 'r') as tar:
-            extracted = tar.extractfile(member_name)
-            if extracted is None:
-                return
-            content = extracted.read()
-        
-        # Handle decompression based on filename
-        if relative_path.endswith('.gz'):
-            # File MUST be gzipped if it has .gz extension
-            content = gzip.decompress(content)
-            output_path = output_path.with_suffix('')  # Remove .gz
+    def _validate_tar_member(self, member):
+        """Reject tar members that would extract outside the portfolio directory."""
+        parts = member.name.replace('\\', '/').split('/')
+        if member.name.startswith(('/', '\\')) or '..' in parts:
+            raise ValueError(f"Unsafe tar member path: {member.name}")
 
-        elif relative_path.endswith('.zst'):
-            # File MUST be zstd compressed if it has .zst extension
-            content = zstd.ZstdDecompressor().decompress(content)
-            output_path = output_path.with_suffix('')  # Remove .zst
-        
-        # Special handling for metadata.json
-        if output_path.name == 'metadata.json':
-            metadata = json.loads(content.decode('utf-8'))
-            # Remove tar-specific metadata
-            for doc in metadata['documents']:
-                doc.pop('secsgml_start_byte', None)
-                doc.pop('secsgml_end_byte', None)
-                
-                # Update filenames to match decompressed files
-                filename = doc.get('filename', '')
-                if filename.endswith('.gz'):
-                    doc['filename'] = filename[:-3]  # Remove .gz
-                elif filename.endswith('.zst'):
-                    doc['filename'] = filename[:-4]  # Remove .zst
-            
-            with output_path.open('w', encoding='utf-8') as f:
-                json.dump(metadata, f, indent=2)
+    def _decompress_extracted_file(self, path):
+        """Decompress an already extracted legacy-compressed document."""
+        if path.suffix == '.gz':
+            content = gzip.decompress(path.read_bytes())
+        elif path.suffix == '.zst':
+            content = zstd.ZstdDecompressor().decompress(path.read_bytes())
         else:
-            # Write document file
-            output_path.parent.mkdir(parents=True, exist_ok=True)
-            with output_path.open('wb') as f:
-                f.write(content)
+            return
+
+        output_path = path.with_suffix('')
+        output_path.write_bytes(content)
+        path.unlink()
+
+    def _postprocess_metadata_file(self, metadata_path):
+        """Remove tar-specific offsets and align filenames after decompression."""
+        if not metadata_path.exists():
+            return
+
+        with metadata_path.open('r', encoding='utf-8') as f:
+            metadata = json.load(f)
+
+        for doc in metadata.get('documents', []):
+            doc.pop('secsgml_start_byte', None)
+            doc.pop('secsgml_end_byte', None)
+
+            filename = doc.get('filename', '')
+            if filename.endswith('.gz'):
+                doc['filename'] = filename[:-3]
+            elif filename.endswith('.zst'):
+                doc['filename'] = filename[:-4]
+
+        with metadata_path.open('w', encoding='utf-8') as f:
+            json.dump(metadata, f, indent=2)
                 
 
     def _write_submission_to_tar(self, tar_handle, submission, documents, compression_list, accession_prefix):

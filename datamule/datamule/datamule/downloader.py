@@ -17,8 +17,8 @@ from threading import Thread, Lock
 from os import cpu_count
 from secsgml2 import parse_sgml_content_into_memory
 from ..utils.format_accession import format_accession
-from ..providers.providers import SEC_FILINGS_SGML_BUCKET_ENDPOINT
-from .datamule_lookup import datamule_lookup
+from ..providers.providers import SEC_FILINGS_ARCHIVE_SGML_ENDPOINT
+from .archive_lookup import lookup_archive_sgml
 
 # Set up logging
 logging.basicConfig(
@@ -31,7 +31,7 @@ logger = logging.getLogger(__name__)
 
 class Downloader:
     def __init__(self, api_key=None):
-        self.BASE_URL = SEC_FILINGS_SGML_BUCKET_ENDPOINT
+        self.BASE_URL = SEC_FILINGS_ARCHIVE_SGML_ENDPOINT
         self.CHUNK_SIZE = 2 * 1024 * 1024
         self.MAX_CONCURRENT_DOWNLOADS = 10
         self.MAX_DECOMPRESSION_WORKERS = cpu_count()
@@ -222,7 +222,8 @@ class Downloader:
                             chunks.append(chunk)
 
                         loop = asyncio.get_running_loop()
-                        if content_type == 'application/zstd':
+                        is_zstd = filename.endswith('.zst') or 'zstd' in content_type
+                        if is_zstd:
                             logger.debug(f"Processing {filename} as compressed (zstd)")
                             success = await loop.run_in_executor(
                                 decompression_pool,
@@ -286,20 +287,36 @@ class Downloader:
         finally:
             tar_manager.close_all()
 
-    def download(self, accession_numbers, output_dir="downloads", keep_document_types=[], 
-                 max_batch_size=1024*1024*1024):
+    def _url_from_archive_record(self, record):
+        filing_date = record.get('filing_date') or record.get('filingDate')
+        accession = record.get('accession')
+        if filing_date is None or accession is None:
+            raise ValueError("Archive lookup record must include filing_date and accession")
+
+        accession = format_accession(accession, 'no-dash')
+        return f"{self.BASE_URL}{filing_date}/{accession}.sgml.zst"
+
+    def download(self, accession_numbers=None, output_dir="downloads", keep_document_types=[], 
+                 max_batch_size=1024*1024*1024, archive_records=None):
         if self.api_key is None:
             raise ValueError("No API key found. Please set DATAMULE_API_KEY environment variable or provide api_key in constructor")
 
-        logger.debug(f"Generating URLs for {len(accession_numbers)} filings...")
+        if archive_records is None:
+            if not accession_numbers:
+                logger.warning("No submissions found matching the criteria")
+                return
+            archive_records = lookup_archive_sgml(
+                accession=accession_numbers,
+                api_key=self.api_key,
+                quiet=True,
+            )
+
+        logger.debug(f"Generating URLs for {len(archive_records)} filings...")
         
-        urls = []
-        for accession in accession_numbers:
-            url = f"{self.BASE_URL}{format_accession(accession,'no-dash')}.sgml"
-            urls.append(url)
+        urls = [self._url_from_archive_record(record) for record in archive_records]
         
         # Deduplicate URLs
-        urls = list(set(urls))
+        urls = list(dict.fromkeys(urls))
         
         if not urls:
             logger.warning("No submissions found matching the criteria")
@@ -331,15 +348,24 @@ def download(cik=None, ticker=None, submission_type=None, filing_date=None,
     """
     Download SEC filings from DataMule.
     
-    If accession_numbers is provided, downloads those directly.
-    Otherwise, queries datamule_lookup with the provided filters to get accession numbers.
+    If accession_numbers is provided, resolves those archive records directly.
+    Otherwise, queries the v3 archive lookup with the provided filters.
     """
     
     downloader = Downloader(api_key=api_key)
 
-    # Get accession numbers if not provided
-    if accession_numbers is None:
-        accession_numbers = datamule_lookup(
+    # Get archive coordinates if not provided
+    if accession_numbers is not None:
+        if not accession_numbers:
+            logger.warning("No submissions found matching the criteria")
+            return
+        archive_records = lookup_archive_sgml(
+            accession=accession_numbers,
+            quiet=quiet,
+            api_key=api_key,
+        )
+    else:
+        archive_records = lookup_archive_sgml(
             cik=cik, 
             ticker=ticker, 
             submission_type=submission_type, 
@@ -354,18 +380,17 @@ def download(cik=None, ticker=None, submission_type=None, filing_date=None,
             skip_accession_numbers=skip_accession_numbers,
             quiet=quiet, 
             api_key=api_key,
-            provider='datamule-sgml',
             **kwargs
         )
 
         
-        if not accession_numbers:
-            logger.warning("No submissions found matching the criteria")
-            return
+    if not archive_records:
+        logger.warning("No submissions found matching the criteria")
+        return
     
     # Download the filings
     downloader.download(
-        accession_numbers=accession_numbers,
+        archive_records=archive_records,
         output_dir=output_dir,
         keep_document_types=keep_document_types,
         max_batch_size=max_batch_size

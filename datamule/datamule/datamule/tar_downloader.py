@@ -11,12 +11,13 @@ import tarfile
 import logging
 from concurrent.futures import ThreadPoolExecutor
 from functools import partial
+from pathlib import Path
 from threading import Lock
 from os import cpu_count
 from secsgml2.utils import calculate_documents_locations_in_tar
 from ..utils.format_accession import format_accession
-from ..providers.providers import SEC_FILINGS_TAR_BUCKET_ENDPOINT
-from .datamule_lookup import datamule_lookup
+from ..providers.providers import SEC_FILINGS_ARCHIVE_TAR_ENDPOINT
+from .archive_lookup import lookup_archive_sgml, lookup_archive_tar
 import shutil
 
 # Set up logging
@@ -28,9 +29,30 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+def _has_filter_value(value):
+    if value is None:
+        return False
+    if isinstance(value, (list, tuple, set)):
+        return len(value) > 0
+    return True
+
+
+def _archive_bin_member_alias(member_name):
+    # Archive v3 briefly wrote SGML-sliced documents as doc_N.bin.zst.
+    normalized_name = member_name[:-4] if member_name.endswith('.zst') else member_name
+    if not normalized_name.startswith('doc_') or not normalized_name.endswith('.bin'):
+        return None
+
+    sequence = normalized_name[4:-4]
+    if not sequence.isdigit():
+        return None
+
+    return f"{sequence}.txt"
+
+
 class TarDownloader:
     def __init__(self, api_key=None):
-        self.BASE_URL = SEC_FILINGS_TAR_BUCKET_ENDPOINT
+        self.BASE_URL = SEC_FILINGS_ARCHIVE_TAR_ENDPOINT
         self.CHUNK_SIZE = 2 * 1024 * 1024
         self.MAX_CONCURRENT_DOWNLOADS = 100
         self.MAX_EXTRACTION_WORKERS = cpu_count()
@@ -320,6 +342,74 @@ class TarDownloader:
             logger.error(f"Decompression error: {str(e)}")
             raise
 
+    def _document_name_from_metadata(self, doc):
+        filename = doc.get('filename')
+        if filename:
+            return filename
+        return f"{doc.get('sequence', 'document')}.txt"
+
+    def _extract_submission_from_tar(self, tar_bytes, keep_document_types, wanted_filenames=None):
+        metadata_dict = None
+        compressed_documents = {}
+        wanted_filenames = set(wanted_filenames) if wanted_filenames else None
+
+        with tarfile.open(fileobj=io.BytesIO(tar_bytes), mode='r:*') as archive:
+            for member in archive:
+                if not member.isfile():
+                    continue
+
+                extracted = archive.extractfile(member)
+                if extracted is None:
+                    continue
+
+                member_name = Path(member.name).name
+                if not member_name:
+                    continue
+
+                data = extracted.read()
+                if member_name == 'metadata.json':
+                    metadata_dict = json.loads(data.decode('utf-8'))
+                else:
+                    compressed_documents[member_name] = data
+                    if member_name.endswith('.zst'):
+                        compressed_documents[member_name[:-4]] = data
+                    alias_name = _archive_bin_member_alias(member_name)
+                    if alias_name:
+                        compressed_documents[alias_name] = data
+
+        if metadata_dict is None:
+            raise ValueError("Archive tar did not contain metadata.json")
+
+        documents = []
+        filtered_metadata_documents = []
+        keep_types = set(keep_document_types or [])
+
+        for doc in metadata_dict.get('documents', []):
+            doc_name = self._document_name_from_metadata(doc)
+            if wanted_filenames is not None and doc_name not in wanted_filenames:
+                continue
+            if keep_types and doc.get('type') not in keep_types:
+                continue
+            content = compressed_documents.get(doc_name)
+            if content is None:
+                content = compressed_documents.get(f"{doc_name}.zst")
+            if content is None:
+                raise FileNotFoundError(
+                    f"Document listed in metadata but not found in tar: {doc_name}"
+                )
+
+            content = self._decompress_zstd(content)
+            documents.append({
+                'name': doc_name,
+                'content': content,
+            })
+            filtered_metadata_documents.append(doc)
+
+        filtered_metadata = metadata_dict.copy()
+        filtered_metadata['documents'] = filtered_metadata_documents
+        metadata_content = json.dumps(filtered_metadata).encode('utf-8')
+        return metadata_content, documents
+
     class TarManager:
         def __init__(self, output_dir, num_tar_files, max_batch_size=1024*1024*1024):
             self.output_dir = output_dir
@@ -387,11 +477,11 @@ class TarDownloader:
                 except Exception as e:
                     logger.error(f"Error closing tar {i}: {str(e)}")
 
-    async def download_and_process(self, session, url, semaphore, extraction_pool, tar_manager, output_dir, pbar, keep_document_types):
+    async def download_and_process(self, session, spec, semaphore, extraction_pool, tar_manager, output_dir, pbar, keep_document_types):
         async with semaphore:
+            url = spec['url']
             filename = url.split('/')[-1]
-
-            accession_num = filename.replace('.tar', '').split('/')[-1]
+            accession_num = spec['accession']
 
             api_key = self.api_key
             if not api_key:
@@ -400,118 +490,34 @@ class TarDownloader:
             try:
                 headers = {
                     'Connection': 'keep-alive',
-                    'Accept-Encoding': 'gzip, deflate, br',
-                    'Authorization': f'Bearer {api_key}'
+                    'Accept-Encoding': 'gzip, deflate, br'
                 }
                 
-                # Step 1: Download 128KB probe
-                probe_headers = headers.copy()
-                probe_headers['Range'] = f'bytes=0-{self.PROBE_SIZE-1}'
-                
-                async with session.get(url, headers=probe_headers) as probe_response:
-                    if probe_response.status not in (200, 206):
-                        self._log_error(output_dir, filename, f"Probe failed: Status {probe_response.status}")
+                async with session.get(url, headers=headers) as response:
+                    if response.status != 200:
+                        self._log_error(output_dir, filename, f"Download failed: Status {response.status}")
                         pbar.update(1)
                         return
                     
-                    probe_chunks = []
-                    async for chunk in probe_response.content.iter_chunked(self.CHUNK_SIZE):
-                        probe_chunks.append(chunk)
-                    probe_bytes = b''.join(probe_chunks)
+                    chunks = []
+                    async for chunk in response.content.iter_chunked(self.CHUNK_SIZE):
+                        chunks.append(chunk)
+                    tar_bytes = b''.join(chunks)
                 
-                # Step 2: Extract metadata from probe
                 loop = asyncio.get_running_loop()
-                metadata_bytes, metadata_with_positions, is_complete = await loop.run_in_executor(
+                metadata_bytes, documents = await loop.run_in_executor(
                     extraction_pool,
-                    partial(self._extract_metadata_from_probe, probe_bytes)
+                    partial(
+                        self._extract_submission_from_tar,
+                        tar_bytes,
+                        keep_document_types,
+                        spec.get('wanted_filenames'),
+                    )
                 )
                 
-                # Step 3: Decide strategy based on completeness and filtering
-                documents = []
-                
-                if is_complete:
-                    # Entire tar fits in 128KB probe
-                    logger.debug(f"{filename}: Complete in probe")
-                    documents = await loop.run_in_executor(
-                        extraction_pool,
-                        partial(self._extract_documents_from_probe, probe_bytes, metadata_with_positions, keep_document_types)
-                    )
-
-                    
-                elif keep_document_types == ['metadata']:
-                    # Only metadata requested
-                    logger.debug(f"{filename}: Metadata only")
-                    documents = []
-                    
-                else:
-                    # Separate documents into probe vs beyond probe
-                    docs_in_probe, docs_beyond_probe = self._separate_documents_by_location(
-                        metadata_with_positions, keep_document_types
-                    )
-                    
-                    logger.debug(f"{filename}: {len(docs_in_probe)} docs in probe, {len(docs_beyond_probe)} docs beyond")
-                    
-                    # Extract documents from probe
-                    if docs_in_probe:
-                        probe_documents = await loop.run_in_executor(
-                            extraction_pool,
-                            partial(self._extract_documents_from_probe_by_list, probe_bytes, docs_in_probe)
-                        )
-
-                        documents.extend(probe_documents)
-
-                    # Download each document beyond probe individually
-                    if docs_beyond_probe:
-                        for doc in docs_beyond_probe:
-                            doc_start = doc['start']
-                            doc_end = doc['end']
-                            doc_name = doc['name']
-                            
-                            try:
-                                # Single range request for this document
-                                doc_range_headers = headers.copy()
-                                doc_range_headers['Range'] = f'bytes={doc_start}-{doc_end-1}'
-                                
-                                logger.debug(f"{filename}: Downloading {doc_name} bytes {doc_start}-{doc_end-1}")
-                                
-                                async with session.get(url, headers=doc_range_headers) as doc_response:
-                                    if doc_response.status not in (200, 206):
-                                        logger.error(f"Failed to download {doc_name}: Status {doc_response.status}")
-                                        continue
-                                    
-                                    doc_chunks = []
-                                    async for chunk in doc_response.content.iter_chunked(self.CHUNK_SIZE):
-                                        doc_chunks.append(chunk)
-                                    doc_content = b''.join(doc_chunks)
-                                
-                                # Decompress this single document
-                                decompressed = await loop.run_in_executor(
-                                    extraction_pool,
-                                    partial(self._decompress_zstd, doc_content)
-                                )
-                            
-
-                                
-                                documents.append({
-                                    'name': doc_name,
-                                    'content': decompressed
-                                })
-                                
-                            except Exception as e:
-                                logger.error(f"Failed to download/extract {doc_name}: {str(e)}")
-                
-                # Filter metadata to match downloaded documents
-                downloaded_names = {doc['name'] for doc in documents}
-                filtered_metadata_dict = self._filter_metadata_documents(
-                    metadata_with_positions, 
-                    downloaded_names
-                )
-                filtered_metadata_bytes = json.dumps(filtered_metadata_dict).encode('utf-8')
-                
-                # Step 4: Write to output tar
                 success = await loop.run_in_executor(
                     extraction_pool,
-                    partial(tar_manager.write_submission, accession_num, filtered_metadata_bytes, documents)
+                    partial(tar_manager.write_submission, accession_num, metadata_bytes, documents)
                 )
                 
                 if not success:
@@ -523,15 +529,15 @@ class TarDownloader:
                 self._log_error(output_dir, filename, str(e))
                 pbar.update(1)
 
-    async def process_batch(self, urls, output_dir, max_batch_size=1024*1024*1024, keep_document_types=[]):
+    async def process_batch(self, specs, output_dir, max_batch_size=1024*1024*1024, keep_document_types=[]):
         os.makedirs(output_dir, exist_ok=True)
         
-        num_tar_files = min(self.MAX_TAR_WORKERS, len(urls))
+        num_tar_files = min(self.MAX_TAR_WORKERS, len(specs))
         
         tar_manager = self.TarManager(output_dir, num_tar_files, max_batch_size)
         
         try:
-            with tqdm(total=len(urls), desc="Downloading tar files") as pbar:
+            with tqdm(total=len(specs), desc="Downloading tar files") as pbar:
                 semaphore = asyncio.Semaphore(self.MAX_CONCURRENT_DOWNLOADS)
                 extraction_pool = ThreadPoolExecutor(max_workers=self.MAX_EXTRACTION_WORKERS)
 
@@ -547,10 +553,10 @@ class TarDownloader:
                 async with aiohttp.ClientSession(connector=connector, timeout=aiohttp.ClientTimeout(total=60)) as session:
                     tasks = [
                         self.download_and_process(
-                            session, url, semaphore, extraction_pool,
+                            session, spec, semaphore, extraction_pool,
                             tar_manager, output_dir, pbar, keep_document_types
                         ) 
-                        for url in urls
+                        for spec in specs
                     ]
                     await asyncio.gather(*tasks, return_exceptions=True)
 
@@ -559,8 +565,22 @@ class TarDownloader:
         finally:
             tar_manager.close_all()
 
-    def download(self, accession_numbers, output_dir="downloads", 
-                 keep_document_types=[], max_batch_size=1024*1024*1024):
+    def _spec_from_archive_record(self, record):
+        filing_date = record.get('filing_date') or record.get('filingDate')
+        accession = record.get('accession')
+        if filing_date is None or accession is None:
+            raise ValueError("Archive lookup record must include filing_date and accession")
+
+        accession = format_accession(accession, 'no-dash')
+        return {
+            'url': f"{self.BASE_URL}{filing_date}/{accession}.tar",
+            'accession': accession,
+            'filename': record.get('filename'),
+        }
+
+    def download(self, accession_numbers=None, output_dir="downloads", 
+                 keep_document_types=[], max_batch_size=1024*1024*1024,
+                 archive_records=None):
         """
         Download SEC filings in tar format for the given accession numbers.
         
@@ -573,30 +593,54 @@ class TarDownloader:
         if self.api_key is None:
             raise ValueError("No API key found. Please set DATAMULE_API_KEY environment variable or provide api_key in constructor")
 
-        logger.debug(f"Generating URLs for {len(accession_numbers)} filings...")
+        if archive_records is None:
+            if not accession_numbers:
+                logger.warning("No submissions found matching the criteria")
+                return
+            archive_records = lookup_archive_sgml(
+                accession=accession_numbers,
+                api_key=self.api_key,
+                quiet=True,
+            )
+
+        logger.debug(f"Generating URLs for {len(archive_records)} filings...")
         
-        urls = []
-        for accession in accession_numbers:
-            url = f"{self.BASE_URL}{format_accession(accession,'no-dash').zfill(18)}.tar"
-            urls.append(url)
-        # Deduplicate URLs
-        urls = list(set(urls))
+        specs_by_url = {}
+        for record in archive_records:
+            spec = self._spec_from_archive_record(record)
+            url = spec['url']
+            if url not in specs_by_url:
+                specs_by_url[url] = {
+                    'url': url,
+                    'accession': spec['accession'],
+                    'wanted_filenames': set(),
+                    'has_filename_filter': False,
+                }
+            if spec.get('filename'):
+                specs_by_url[url]['wanted_filenames'].add(spec['filename'])
+                specs_by_url[url]['has_filename_filter'] = True
+
+        specs = []
+        for spec in specs_by_url.values():
+            if not spec.pop('has_filename_filter'):
+                spec['wanted_filenames'] = None
+            specs.append(spec)
         
-        if not urls:
+        if not specs:
             logger.warning("No submissions found matching the criteria")
             return
 
         start_time = time.time()
         
         asyncio.run(self.process_batch(
-            urls, output_dir, 
+            specs, output_dir,
             max_batch_size=max_batch_size, 
             keep_document_types=keep_document_types
         ))
         
         elapsed_time = time.time() - start_time
         logger.debug(f"Processing completed in {elapsed_time:.2f} seconds")
-        logger.debug(f"Processing speed: {len(urls)/elapsed_time:.2f} files/second")
+        logger.debug(f"Processing speed: {len(specs)/elapsed_time:.2f} files/second")
 
 
 def download_tar(cik=None, ticker=None, submission_type=None, filing_date=None, 
@@ -609,15 +653,30 @@ def download_tar(cik=None, ticker=None, submission_type=None, filing_date=None,
     """
     Download SEC filings in tar format from DataMule.
     
-    If accession_numbers is provided, downloads those directly.
-    Otherwise, queries datamule_lookup with the provided filters to get accession numbers.
+    If accession_numbers is provided, resolves those archive records directly.
+    Otherwise, queries the v3 archive lookup with the provided filters.
     """
     
     downloader = TarDownloader(api_key=api_key)
 
-    # Get accession numbers if not provided
-    if accession_numbers is None:
-        accession_numbers = datamule_lookup(
+    # Get archive coordinates if not provided
+    if accession_numbers is not None:
+        if not accession_numbers:
+            logger.warning("No submissions found matching the criteria")
+            return
+        archive_records = lookup_archive_sgml(
+            accession=accession_numbers,
+            quiet=quiet,
+            api_key=api_key,
+        )
+    else:
+        document_mode = (
+            _has_filter_value(document_type)
+            or _has_filter_value(filename)
+            or _has_filter_value(sequence)
+        )
+        lookup_fn = lookup_archive_tar if document_mode else lookup_archive_sgml
+        archive_records = lookup_fn(
             cik=cik, 
             ticker=ticker, 
             submission_type=submission_type, 
@@ -632,17 +691,16 @@ def download_tar(cik=None, ticker=None, submission_type=None, filing_date=None,
             skip_accession_numbers=skip_accession_numbers,
             quiet=quiet, 
             api_key=api_key,
-            provider='datamule-tar',
             **kwargs
         )
         
-        if not accession_numbers:
-            logger.warning("No submissions found matching the criteria")
-            return
+    if not archive_records:
+        logger.warning("No submissions found matching the criteria")
+        return
     
     # Download the filings
     downloader.download(
-        accession_numbers=accession_numbers,
+        archive_records=archive_records,
         output_dir=output_dir,
         keep_document_types=keep_document_types,
         max_batch_size=max_batch_size
