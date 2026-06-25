@@ -1,7 +1,5 @@
-from ..sheet.sheet import Sheet
+from .archive_lookup import lookup_archive_sgml, lookup_archive_tar
 from ..utils.format_accession import format_accession
-
-from ..helper import _process_cik_and_metadata_filters
 
 def _filters(accession_numbers, filtered_accession_numbers=None, skip_accession_numbers=None):
     """
@@ -37,50 +35,22 @@ def datamule_lookup(cik=None, ticker=None, submission_type=None, filing_date=Non
                    sequence=None, quiet=False, api_key=None,filtered_accession_numbers=None,
                    skip_accession_numbers= None, provider='datamule-tar', **kwargs):
     
-    lookup_args = {}
-    
-    # Direct mappings
-    cik =  _process_cik_and_metadata_filters(cik, ticker, **kwargs)
-    if cik is not None:
-        lookup_args['cik'] = cik
-    
-    if submission_type is not None:
-        lookup_args['submissionType'] = submission_type
-    
-    # Filing date - can be specific date(s) or range
-    if filing_date is not None:
-        lookup_args['filingDate'] = filing_date
-    
-    
-    # Report date - can be specific date(s) or range
-    if report_date is not None:
-        lookup_args['reportDate'] = report_date
-
-    if detected_time is not None:
-        lookup_args['detectedTime'] = detected_time
-    
-    # XBRL flag
-    if contains_xbrl is not None:
-        lookup_args['containsXBRL'] = contains_xbrl
-    
-    # Document-level filters
-    if document_type is not None:
-        lookup_args['documentType'] = document_type
-    
-    if filename is not None:
-        lookup_args['filename'] = filename
-    
-    if sequence is not None:
-        lookup_args['sequence'] = sequence
-    
-    sheet = Sheet('')
-    if provider == 'datamule-sgml':
-        database = 'sgml-archive'
-    else:
-        database = 'tar-archive'
-    accessions = sheet.get_table(
-        database = database, **lookup_args
+    lookup_fn = lookup_archive_sgml if provider == 'datamule-sgml' else lookup_archive_tar
+    rows = lookup_fn(
+        cik=cik,
+        ticker=ticker,
+        submission_type=submission_type,
+        filing_date=filing_date,
+        report_date=report_date,
+        detected_time=detected_time,
+        contains_xbrl=contains_xbrl,
+        document_type=document_type,
+        filename=filename,
+        sequence=sequence,
+        quiet=quiet,
+        api_key=api_key,
+        filtered_accession_numbers=filtered_accession_numbers,
+        skip_accession_numbers=skip_accession_numbers,
+        **kwargs
     )
-    accessions = _filters(accession_numbers=accessions, filtered_accession_numbers=filtered_accession_numbers,
-                           skip_accession_numbers=skip_accession_numbers)
-    return accessions
+    return [format_accession(row["accession"], "int") for row in rows]

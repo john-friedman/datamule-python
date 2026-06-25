@@ -8,7 +8,7 @@ from datetime import datetime, timedelta
 from urllib.parse import urlparse
 from tqdm import tqdm
 import logging
-from ..sheet.sheet import Sheet
+from ..datamule.archive_lookup import lookup_archive_sgml
 from ..utils.format_accession import format_accession
 
 # Set up logging
@@ -35,12 +35,16 @@ def generate_date_range(start_date_str, end_date_str):
 
 def get_filings_sgml_r2_urls(submission_type=None, cik=None, datamule_api_key=None, filing_date=None,accession_number=None):
     datamule_bucket_endpoint = 'https://sec-library.datamule.xyz/'
-    sheet = Sheet('s3transfer')
-    submissions = sheet.get_submissions(distinct=True, quiet=False, api_key=datamule_api_key,
-                                    submission_type=submission_type, cik=cik, columns=['accessionNumber'], filing_date=filing_date,
-                                    accession_number=accession_number)
+    submissions = lookup_archive_sgml(
+        quiet=False,
+        api_key=datamule_api_key,
+        submission_type=submission_type,
+        cik=cik,
+        filing_date=filing_date,
+        accession=accession_number,
+    )
     
-    accessions = [format_accession(sub['accessionNumber'], 'no-dash') for sub in submissions]
+    accessions = [format_accession(sub['accession'], 'no-dash') for sub in submissions]
     
     urls = [f"{datamule_bucket_endpoint}{accession}.sgml" for accession in accessions]
 

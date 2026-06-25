@@ -17,14 +17,13 @@ end_utc = end_et.astimezone(ZoneInfo("UTC")).strftime('%Y-%m-%d %H:%M:%S')
 
 sheet = Sheet('')
 
-result = sheet.get_table('sec-filings-lookup',
-    submissionType='8-K',
-    filingDate='2026-03-27',
-    detectedTime=(start_utc, end_utc))
+files = sheet.get_table(f"""
+    SELECT accessionNumber, submissionType, filingDate, detectedTime
+    FROM submissions_metadata
+    WHERE submissionType = '8-K'
+      AND filingDate = DATE '2026-03-27'
+      AND detectedTime BETWEEN TIMESTAMP '{start_utc}' AND TIMESTAMP '{end_utc}'
+""")
 
-print(len(result))
-```
-Result
-```
-110
+print(files)
 ```

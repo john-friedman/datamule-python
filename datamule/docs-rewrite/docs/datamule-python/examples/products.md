@@ -35,19 +35,21 @@ portfolio = Portfolio('meta')
 portfolio.download_submissions(ticker='META', submission_type='10-K', document_type='10-K', provider='datamule-tar')
 ```
 
-### SEC Filings Lookup MySQL
+### SEC Filings Metadata Query
 
-Query SEC Filing metadata.
+Query SEC filing metadata with SQL. Results are written as Parquet files.
 ```python
 from datamule import Sheet
 
 sheet = Sheet('lookup')
-sheet.get_table('sec-filings-lookup',
-    cik=320193,
-    submissionType=['10-K', '10-Q'],
-    filingDate=('2024-01-01', '2024-12-31'),
-    containsXBRL=True,
-    returnCols=['accessionNumber', 'cik', 'submissionType', 'filingDate', 'detectedTime'])
+files = sheet.get_table("""
+    SELECT accessionNumber, submissionType, filingDate, detectedTime
+    FROM submissions_metadata
+    WHERE submissionType IN ('10-K', '10-Q')
+      AND filingDate BETWEEN DATE '2024-01-01' AND DATE '2024-12-31'
+    LIMIT 1000
+""")
+print(files)
 ```
 
 ### SEC Filings Websocket
@@ -129,18 +131,20 @@ book.download_dataset(
 
 ## Proxy Voting Records Products
 
-### SEC Proxy Voting Records MySQL
+### SEC Proxy Voting Records Query
 
-Query proxy voting records.
+Query proxy voting records with SQL.
 ```python
 from datamule import Sheet
 
 sheet = Sheet('proxy')
-results = sheet.get_table('proxy-voting-records',
-    cusip='037833100',
-    meetingDate=('2024-01-01', '2024-12-31'),
-    howVoted='For')
-print(results)
+files = sheet.get_table("""
+    SELECT *
+    FROM proxy_voting_record
+    WHERE cusip = '037833100'
+    LIMIT 1000
+""")
+print(files)
 ```
 
 ### Proxy Voting Records Table
@@ -157,17 +161,20 @@ book.download_dataset(
 
 ## Institutional Holdings Products
 
-### SEC Institutional Holdings MySQL
+### SEC Institutional Holdings Query
 
-Query institutional holdings.
+Query institutional holdings with SQL.
 ```python
 from datamule import Sheet
 
 sheet = Sheet('sheet')
-results = sheet.get_table('institutional-holdings',
-    cusip='88160R101',
-    sharesOrPrincipalAmount=('14000','14300'))
-print(results)
+files = sheet.get_table("""
+    SELECT *
+    FROM information_table
+    WHERE cusip = '88160R101'
+    LIMIT 1000
+""")
+print(files)
 ```
 
 ### Institutional Holdings Table
@@ -184,17 +191,20 @@ book.download_dataset(
 
 ## Insider Transactions Products
 
-### SEC Insider Transactions MySQL
+### SEC Insider Transactions Query
 
-Query insider transactions.
+Query insider transactions with SQL.
 ```python
 from datamule import Sheet
 
 sheet = Sheet('sheet')
-results = sheet.get_table('insider-transactions',
-    table='signature',
-    signatureDate='2004-01-08')
-print(results)
+files = sheet.get_table("""
+    SELECT *
+    FROM owner_signature_ownership
+    WHERE signatureDate = DATE '2004-01-08'
+    LIMIT 1000
+""")
+print(files)
 ```
 
 ### Insider Ownership Metadata Table
@@ -293,16 +303,20 @@ book = Book()
 # Contact support for access details
 ```
 
-### Simple XBRL MySQL
+### Simple XBRL Query
 
 Query XBRL extracted from SEC filings in columnar format.
 ```python
 from datamule import Sheet
 
 sheet = Sheet('sheet')
-results = sheet.get_table('simple-xbrl',
-    accessionNumber=95017022000796)
-print(results)
+files = sheet.get_table("""
+    SELECT accessionNumber, taxonomy, name, value
+    FROM simple_xbrl
+    WHERE accessionNumber = 95017022000796
+    LIMIT 1000
+""")
+print(files)
 ```
 
 ### Fundamentals S3
@@ -315,14 +329,20 @@ book = Book()
 # Contact support for access details
 ```
 
-### Fundamentals MySQL
+### Fundamentals Query
 
 Query fundamentals created from SEC filings.
 ```python
 from datamule import Sheet
 
 sheet = Sheet('sheet')
-# Contact support for access details
+files = sheet.get_table("""
+    SELECT *
+    FROM simple_xbrl
+    WHERE taxonomy = 'us-gaap'
+    LIMIT 1000
+""")
+print(files)
 ```
 
 ### Simple XBRL Table
