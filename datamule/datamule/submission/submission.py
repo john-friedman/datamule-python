@@ -294,7 +294,7 @@ class Submission:
                 self._xbrl = parse_inline_xbrl(content=document.content,file_type='extracted_inline')
                 return  
             
-            if doc.filename.endswith('_htm.xml'):
+            if doc.get('filename', '').endswith('_htm.xml'):
                 document = self._load_document_by_index(idx)
                 self._xbrl = parse_inline_xbrl(content=document.content,file_type='extracted_inline')
                 return
